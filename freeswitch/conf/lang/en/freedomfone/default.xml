@@ -1,0 +1,8 @@
+<macro name="speak">
+     <input pattern="(.*)">
+       <match>
+         <action function="speak-text" data="$1"/>
+       </match>
+     </input>
+</macro>
+

@@ -1,0 +1,155 @@
+
+th {
+     font-size: 12px;
+     font-weight: bold;
+     background-color: #ddd;
+     padding: 5px;
+     color : #333;
+}
+
+th a:link, a:visited, a:hover, a:active {
+
+    color: #000; 
+
+}
+
+
+td {
+     font-size: 12px;
+     font-weight: normal;
+     background-color: #fff;
+     padding: 5px;
+     color: #333;
+}
+
+
+tr.darker td {
+
+     background-color: #eee;
+}
+
+.formTitleDefault {
+	font-weight: normal;
+	font-size: 100%;
+	width: 100px;
+	padding: 0px 5px 5px 0;
+	margin:  0px 5px 5px 0;
+
+}
+
+.formTitleAlone {
+	width: 70%;
+	border-bottom: 1px solid #555;
+	padding: 20px 5px 5px 0;
+	margin: 10px 5px 5px 0;
+	font-size: 14px;
+	color: #000;
+	font-style: bold;
+}
+
+.formComment {
+	margin: 5px 0 5px 0;
+	font-size: 90%;
+	color: #777;
+}
+
+.formHelp {
+	margin: 5px 0 5px 0;
+	font-size: 90%;
+	color: #000;
+}
+
+
+.message_success {
+    font-size: 100%;
+    font-weight: bold;
+
+}
+
+div.input {
+
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    color: #333;
+}
+
+legend {
+
+    font-size: 14px;
+    color: #000;
+   
+
+}
+div.required label:after {
+
+    content: ' *';
+    color: #990000;
+    display:inline;
+
+}
+
+
+
+.error-message {
+
+    font-size: 80%;
+    color: #f00;
+    margin: 0 0 10px 0;
+}
+
+img.icon {
+
+    padding: 2px 2px 2px 2px;
+
+}
+
+.frameRight {
+
+float: right;
+margin: 5px;
+padding: 5px;
+}
+
+.frameRight2{
+
+float:right;
+
+
+}
+.frameLeft {
+
+float: left;
+margin: 5px;
+padding: 5px;
+}
+
+
+fieldset {
+
+width: 100%;
+border: 1px solid #ddd;
+
+}
+
+.instruction {
+     font-size: 13px;
+     font-weight: normal;
+     padding: 5px;
+     font-color: #000;
+}
+
+.message {
+     font-size: 14px;
+     font-weight: bold;
+     padding: 5px;
+     font-color: #000;
+}
+
+
+.box {
+     font-size: 14px;
+     font-weight: normal;
+     padding: 10px;
+     font-color: #000;
+
+}

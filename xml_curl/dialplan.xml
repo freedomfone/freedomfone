@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://wiki.freeswitch.org/wiki/Dialplan_XML -->
+<!-- Freedom Fone v1.0 PICTUS PICTUS Default diaplan -->
+<!-- 900x for tests-->
+<!-- 100x Local SIP extensions -->
+<!-- 2000 Leave a Message -->
+<!-- 3000 Tickle -->
+<!-- 4000 IVR -->
+<!-- 5000 Inbound Mobigater -->
+<!-- 6000 Outbound Skype -->
+<!-- 7000 Outbound calls via VoiceBlue or GSMOpen -->
+<!-- 8000 OpenBTS Devel -->
+
+<document type="freeswitch/xml">
+  <section name="dialplan" description="curl_dialplan">
+    <include>
+      <context name="public">
+        <extension name="entry">
+          <condition field="destination_number" expression="^(.*)$">
+            <action application="speak" data="cepstral|allison|All external calls fall here!"/>
+          </condition>
+        </extension>
+      </context>
+
+
+
+      <context name="default">
+<!-- TESTING EXTENSIONS -->
+        <extension name="9000">
+          <condition field="destination_number" expression="^9000$">
+            <action application="speak" data="cepstral|allison|Testing cepstral and freedom!"/>
+          </condition>
+        </extension>
+        <extension name="9001">
+          <condition field="destination_number" expression="^9001$">
+            <action application="answer"/>
+            <action application="speak" data="cepstral|allison|Testing Testing and more testing of all the DTMF!"/>
+            <action application="javascript" data="freedomfone/dtmf/main.js"/>
+          </condition>
+        </extension>
+        <extension name="9002">
+          <condition field="destination_number" expression="^9002$">
+            <action application="answer"/>
+            <action application="sleep" data="1000"/>
+            <action application="phrase" data="spell,${caller_id_name}"/>
+            <action application="phrase" data="spell-phonetic,${caller_id_name}"/>
+            <action application="phrase" data="timespec,12:45:15"/>
+            <action application="phrase" data="saydate,0"/>
+            <action application="phrase" data="msgcount,130"/>
+          </condition>
+        </extension>
+
+
+
+        <extension name="9004">
+          <condition field="destination_number" expression="^9004$">
+            <action application="bridge" data="user/1003@192.168.46.15"/>
+          </condition>
+        </extension>
+        
+	<extension name="9005">
+          <condition field="destination_number" expression="^9005$">
+            <action application="bridge" data="user/1003"/>
+          </condition>
+        </extension>
+        
+	<extension name="9006">
+          <condition field="destination_number" expression="^9006$">
+            <action application="set" data="RECORD_TITLE=Recording
+${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
+            <action application="set" data="RECORD_COPYRIGHT=(c) 2009"/>
+            <action application="set" data="RECORD_SOFTWARE=FreeSwitch"/>
+            <action application="set" data="RECORD_ARTIST=FreeSwitch"/>
+            <action application="set" data="RECORD_COMMENT=FreeSwitch"/>
+            <action application="set" data="RECORD_DATE=${strftime(%Y-%m-%d
+%H:%M)}"/>
+            <action application="set" data="RECORD_STEREO=true"/>
+            <xaction application="ring_ready"/>
+            <action application="set" data="RECORD_ANSWER_REQ=true"/>
+	    <action application="set" data="ringback=%(2000,4000,440.0,480.0)"/>
+     
+    	    <xaction application="set" data="ringback=${us-ring}"/>
+            <xaction application="sleep" data="20000"/>
+            <action application="record_session" data="$${base_dir}/recordings/archive/${strftime(%Y-%m-%d-%H-%M-%S)}_${destination_number}_${caller_id_number}.wav"/>
+            <xaction application="transfer" data="9009 XML public"/>
+            <action application="bridge" data="user/1003"/>
+    	  </condition>
+        </extension>
+        
+
+	<extension name="9008">
+          <condition field="destination_number" expression="^9008$">
+            <action application="info" />
+          </condition>
+        </extension>
+	<extension name="9009">
+          <condition field="destination_number" expression="^9009$">
+            <action application="echo" />
+          </condition>
+        </extension>
+
+
+
+<!-- LEAVE A MESSAGE EXTENSIONS -->
+        <extension name="2000">
+          <condition field="destination_number" expression="^2000$">
+            <action application="ring_ready"/>
+            <action application="sleep" data="5000"/>
+            <action application="answer"/>
+            <action application="set" data="instance_id=100"/>
+            <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id}"/>
+          </condition>
+        </extension>
+
+
+<!-- TICKLE SERVICE -->
+        <extension name="ticklemaster">
+          <condition field="destination_number" expression="^3000$"/>
+		<condition field="caller_id_number" expression="^(10[01][0-9])$">
+            	<action application="ring_ready"/>
+		<action application="set" data="incoming_media=sip"/>
+                <action application="set" data="instance_id=100"/>
+         	<action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+		<anti-action application="set" data="incoming_media=0733310498"/>
+		<anti-action application="set" data="instance_id=100"/>
+         	<anti-action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+          	</condition>
+        </extension>
+
+
+<!-- IVR -->
+	<extension name="ivr_1">
+          <condition field="destination_number" expression="^4000$">
+            <action application="answer"/>
+	    <action application="set" data="instance_id=100"/>
+            <action application="ivr" data="freedomfone_ivr_${instance_id}"/>
+          </condition>
+        </extension>
+
+
+
+<!-- OPENBTS -->
+        <extension name="openbts1">
+          <condition field="destination_number" expression="^8000$">
+            <action application="bridge" data="user/IMSI310410260379955@192.168.46.15"/>
+          </condition>
+        </extension>
+        <extension name="openbts2">
+          <condition field="destination_number" expression="^8001$">
+            <action application="bridge" data="user/IMSI310410260029620@192.168.46.15"/>
+          </condition>
+        </extension>
+
+
+<!-- LOCAL EXTENSIONS -->
+        <extension name="Local_Extension">
+          <condition field="destination_number" expression="^(10[01][0-9])$">
+            <action application="set" data="dialed_extension=$1"/>
+            <action application="export" data="dialed_extension=$1"/>
+            <!-- bind_meta_app can have these args <key> [a|b|ab] [a|b|o|s] <app> -->
+            <action application="bind_meta_app" data="1 b s execute_extension::dx XML features"/>
+            <action application="bind_meta_app" data="2 b s record_session::$${base_dir}/recordings/${caller_id_number}.${strftime(%Y-%m-%d-%H-%M-%S)}.wav"/>
+            <action application="bind_meta_app" data="3 b s execute_extension::cf XML features"/>
+            <action application="set" data="ringback=${us-ring}"/>
+            <action application="set" data="transfer_ringback=$${hold_music}"/>
+            <action application="set" data="call_timeout=30"/>
+            <!-- <action application="set" data="sip_exclude_contact=${network_addr}"/> -->
+            <action application="set" data="hangup_after_bridge=true"/>
+            <!--<action application="set" data="continue_on_fail=NORMAL_TEMPORARY_FAILURE,USER_BUSY,NO_ANSWER,TIMEOUT,NO_ROUTE_DESTINATION"/> -->
+            <action application="set" data="continue_on_fail=true"/>
+            <action application="hash" data="insert/${domain_name}-call_return/${dialed_extension}/${caller_id_number}"/>
+            <action application="hash" data="insert/${domain_name}-last_dial_ext/${dialed_extension}/${uuid}"/>
+            <action application="set" data="called_party_callgroup=${user_data(${dialed_extension}@${domain_name} var callgroup)}"/>
+            <!--<action application="export" data="nolocal:sip_secure_media=${user_data(${dialed_extension}@${domain_name} var sip_secure_media)}"/>-->
+            <action application="hash" data="insert/${domain_name}-last_dial/${called_party_callgroup}/${uuid}"/>
+            <action application="bridge" data="user/${dialed_extension}@${domain_name}"/>
+            <action application="bridge" data="user/${dialed_extension}@${domain_name}"/>
+            <action application="answer"/>
+            <action application="sleep" data="1000"/>
+            <action application="voicemail" data="default ${domain_name} ${dialed_extension}"/>
+          </condition>
+        </extension>
+<!-- INBOUND MOBIGATER 1 -->
+
+        <extension name="inbound_Mobigater1">
+          <condition field="destination_number" expression="^5000$">
+            <action application="transfer" data="3000 XML default"/>
+          </condition>
+        </extension>
+
+<!-- OUTBOUND SKYPE -->
+    <!-- dial via skypiax -->
+    <extension name="skypiax">
+      <condition field="destination_number" expression="^6000$">
+        <action application="bridge" data="skypiax/skypiax1/echo123"/>
+      </condition>
+    </extension>
+
+    <!-- dial via skypiax ANY interface -->
+    <extension name="skypiax">
+      <condition field="destination_number" expression="^6123$">
+        <action application="bridge" data="skypiax/ANY/echo123"/>
+      </condition>
+    </extension>
+    <!-- dial via SKYPE uri with skypiax ANY interface-->
+    <extension name="skype_uri">
+      <condition field="destination_number" expression="^skype/(.*)$">
+        <action application="bridge" data="skypiax/ANY/$1"/>
+      </condition>
+    </extension>
+
+
+<!-- INBOUND VOICEBLUE 2N -->
+
+        <extension name="inbound_GSM1">
+          <condition field="destination_number" expression="^gsm1$">
+            <!-- <action application="bridge" data="user/1000"/> -->
+            <action application="transfer" data="9009 XML default"/>
+          </condition>
+        </extension>
+        
+
+<!-- OUTBOUND CELLIAX -->
+
+	<extension name="outbound GSMopen">
+          <condition field="destination_number" expression="^7000$">
+            <action application="bridge" data="gsmopen/interface1/101"/>
+          </condition>
+        </extension>
+
+<!-- OUTBOUND VOICEBLUE 2N -->
+
+        <extension name="outbound GSM1">
+          <condition field="destination_number" expression="^7001$">
+            <action application="bridge" data="sofia/gateway/2n/0702867989"/>
+          </condition>
+        </extension>
+      </context>
+    </include>
+  </section>
+</document>

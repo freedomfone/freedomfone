@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="freeswitch/xml">
+  <section name="configuration">
+    <configuration name="ivr.conf" description="IVR menus">
+      <menus>
+        <menu name="freedomfone_ivr_100" tts-engine="cepstral" tts-voice="allison" greet-long="say: Welcome to my vouice menu. For news, press 1. For health, press 2." greet-short="say:  For news, press 1. For health, press 2." invalid-sound="say: Invalid option. Please try again." exit-sound="say: Thank you and good bye." timeout="10000" inter-digit-timeout="2000" max-failures="3" max-timeouts="4" digit-len="4">
+          <entry action="menu-play-sound" digits="1" param="$${base_dir}/scripts/freedomfone/ivr/100/nodes/1255549537_Welcome.wav"/>
+          <entry action="menu-top" digits="9"/>
+          <entry action="menu-back" digits="0"/>
+        </menu>
+      </menus>
+    </configuration>
+  </section>
+</document>

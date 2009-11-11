@@ -1,4 +1,4 @@
-pictus
+.
 |-- README.pictus.tree
 |-- cron
 |-- dialer
@@ -12,9 +12,11 @@ pictus
 |-- dispatcher_in
 |   |-- config.php
 |   |-- dispatcher_in.php
-|   |-- spooler
-|   |   |-- spooler_in.sql
-|   |   `-- spooler_in.sql~
+|   |-- esl -> ../esl
+|   |-- install
+|   |   |-- spooler_db_createdb_user.sql
+|   |   `-- spooler_db_schema.sql
+|   |-- log -> ../log/
 |   |-- templates
 |   |   |-- default.xsl
 |   |   |-- event_lm.txt
@@ -29,17 +31,29 @@ pictus
 |   `-- dispatcher_out.php
 |-- documentation
 |   |-- installation
-|   |   |-- freedomfone_installation_guide_part2_v1.0.pdf
-|   |   `-- freedomfone_installation_test_guide_part1_v1.4.pdf
-|   `-- non_technical
-|       `-- freedomfone_documentation_non_technical_v1.0.doc
+|   |   |-- freedomfone_pictus_developers_part1_v1.6.pdf
+|   |   `-- freedomfone_pictus_developers_part2_v1.1.pdf
+|   |-- non_technical
+|   |   `-- freedomfone_documentation_non_technical_v1.0.doc
+|   `-- technical
+|       |-- freedomfone_technical_documentation_GSMopen_v1.0.doc
+|       |-- freedomfone_technical_documentation_GSMopen_v1.0.odt
+|       |-- freedomfone_technical_documentation_GSMopen_v1.0.pdf
+|       |-- freedomfone_technical_documentation_GSMopen_v2.0.doc
+|       |-- freedomfone_technical_documentation_GSMopen_v2.0.odt
+|       |-- freedomfone_technical_documentation_GSMopen_v2.0.pdf
+|       |-- freedomfone_technical_documentation_middle+application_v1.0.doc
+|       |-- freedomfone_technical_documentation_middle+application_v1.0.odt
+|       `-- freedomfone_technical_documentation_middle+application_v1.0.pdf
 |-- esl
 |   `-- fs_sock.php
 |-- extras
 |   |-- fs_debug.sh
 |   |-- lame397
 |   |-- php2twitter.php
-|   `-- setmixers
+|   |-- setmixers
+|   |-- sources.list.debian5
+|   `-- watchdog.sh
 |-- freeswitch
 |   |-- conf
 |   |   |-- autoload_configs
@@ -47,6 +61,7 @@ pictus
 |   |   |   |-- asound.conf
 |   |   |   |-- gsmopen.conf.xml
 |   |   |   |-- modules.conf.xml
+|   |   |   |-- skypiax.conf.xml
 |   |   |   `-- xml_curl.conf.xml
 |   |   |-- lang
 |   |   |   |-- de
@@ -119,33 +134,16 @@ pictus
 |   |       |   |   |-- audio_menu
 |   |       |   |   |   `-- README
 |   |       |   |   |-- conf
-|   |       |   |   |   |-- 100.conf -> default.conf
+|   |       |   |   |   |-- 100.conf
 |   |       |   |   |   |-- README
 |   |       |   |   |   `-- default.conf
 |   |       |   |   `-- messages
-|   |       |   |       |-- 0faedfc6-b8d5-11de-b85a-29d194a9c957.meta
-|   |       |   |       |-- 0faedfc6-b8d5-11de-b85a-29d194a9c957.mp3
 |   |       |   |       |-- 250cfbae-9329-11de-9565-7344fd34a3d8.meta
-|   |       |   |       |-- 2a3fc592-b8c3-11de-afff-711fe23b422e.meta
-|   |       |   |       |-- 2a3fc592-b8c3-11de-afff-711fe23b422e.mp3
-|   |       |   |       |-- 2a3fc592-b8c3-11de-afff-711fe23b422e.wav
-|   |       |   |       |-- 41e5bdca-b8d5-11de-b85a-29d194a9c957.meta
-|   |       |   |       |-- 41e5bdca-b8d5-11de-b85a-29d194a9c957.mp3
-|   |       |   |       |-- 441489fa-b8c1-11de-8649-41eadf072188.meta
-|   |       |   |       |-- 441489fa-b8c1-11de-8649-41eadf072188.mp3
-|   |       |   |       |-- 441489fa-b8c1-11de-8649-41eadf072188.wav
-|   |       |   |       |-- 47d72098-b8bc-11de-8388-4df1d6db3dd2.meta
-|   |       |   |       |-- 47d72098-b8bc-11de-8388-4df1d6db3dd2.mp3
-|   |       |   |       |-- 47d72098-b8bc-11de-8388-4df1d6db3dd2.wav
 |   |       |   |       |-- 54df7258-9324-11de-9981-17076624b6e4.meta
 |   |       |   |       |-- 5a7e0854-932a-11de-9565-7344fd34a3d8.meta
 |   |       |   |       |-- 65f60a80-9323-11de-9981-17076624b6e4.meta
 |   |       |   |       |-- 72f5d3e4-9320-11de-9981-17076624b6e4.meta
-|   |       |   |       |-- 76b5af72-b8be-11de-8f55-892fb8ab7906.meta
-|   |       |   |       |-- 76b5af72-b8be-11de-8f55-892fb8ab7906.mp3
-|   |       |   |       |-- 76b5af72-b8be-11de-8f55-892fb8ab7906.wav
 |   |       |   |       |-- 7ebadc0c-9329-11de-9565-7344fd34a3d8.meta
-|   |       |   |       |-- 883de2ac-b8c1-11de-8649-41eadf072188.wav
 |   |       |   |       |-- 8ada4c34-9248-11de-99ce-c7de6b9c0cc1.meta
 |   |       |   |       |-- 99cd5a2a-9323-11de-9981-17076624b6e4.meta
 |   |       |   |       |-- 9a6d4be2-9329-11de-9565-7344fd34a3d8.meta
@@ -153,18 +151,8 @@ pictus
 |   |       |   |       |-- a130445a-9321-11de-9981-17076624b6e4.meta
 |   |       |   |       |-- a5e31a72-92f9-11de-ae12-adb428f7ab7e.meta
 |   |       |   |       |-- b685385c-9320-11de-9981-17076624b6e4.meta
-|   |       |   |       |-- c0396e1c-b8c9-11de-ba5e-31b8b7d2c939.meta
-|   |       |   |       |-- c0396e1c-b8c9-11de-ba5e-31b8b7d2c939.mp3
 |   |       |   |       |-- c3c18990-9324-11de-9981-17076624b6e4.meta
-|   |       |   |       |-- c5f0783e-b8bd-11de-8f55-892fb8ab7906.meta
-|   |       |   |       |-- c5f0783e-b8bd-11de-8f55-892fb8ab7906.mp3
-|   |       |   |       |-- c5f0783e-b8bd-11de-8f55-892fb8ab7906.wav
 |   |       |   |       |-- d8ebc4fa-923b-11de-8586-3dd31df92e48.meta
-|   |       |   |       |-- da3431fe-b8c8-11de-ba5e-31b8b7d2c939.meta
-|   |       |   |       |-- da3431fe-b8c8-11de-ba5e-31b8b7d2c939.mp3
-|   |       |   |       |-- da85719a-b8be-11de-8f55-892fb8ab7906.meta
-|   |       |   |       |-- da85719a-b8be-11de-8f55-892fb8ab7906.mp3
-|   |       |   |       |-- da85719a-b8be-11de-8f55-892fb8ab7906.wav
 |   |       |   |       |-- dc50dc9a-914e-11de-a33a-edf6d27cc3dd.meta
 |   |       |   |       `-- ed91096a-9321-11de-9981-17076624b6e4.meta
 |   |       |   `-- main.js
@@ -196,15 +184,11 @@ pictus
 |                   |   |-- asound.conf
 |                   |   `-- gsmopen.conf.xml
 |                   |-- gsmopen.h
-|                   |-- gsmopen_protocol.c
-|                   |-- gsmopen_protocol.o
-|                   |-- mod_gsmopen -> /usr/src/pictus/freeswitch/src/mod/endpoints/mod_gsmopen
-|                   |-- mod_gsmopen.c
-|                   |-- mod_gsmopen.lo
-|                   |-- mod_gsmopen.o
-|                   |-- mod_gsmopen.so
+|                   |-- gsmopen_protocol.cpp
+|                   |-- mod_gsmopen.cpp
 |                   |-- modmake.rules
-|                   `-- setmixers
+|                   |-- setmixers
+|                   `-- test.cc
 |-- gui
 |   |-- apache2
 |   |   `-- freedomfone
@@ -241,7 +225,9 @@ pictus
 |   |   |   `-- votes_controller.php
 |   |   |-- index.php
 |   |   |-- install
-|   |   |   `-- freedomfone_db_schema.sql
+|   |   |   |-- freedomfone_db_createdb_user.sql
+|   |   |   |-- freedomfone_db_schema.sql
+|   |   |   `-- index.php
 |   |   |-- locale
 |   |   |   `-- eng
 |   |   |       `-- LC_MESSAGES
@@ -282,29 +268,14 @@ pictus
 |   |   |-- tmp
 |   |   |   |-- cache
 |   |   |   |   |-- models
-|   |   |   |   |   |-- cake_model_default_categories
-|   |   |   |   |   |-- cake_model_default_freedomfone_list
-|   |   |   |   |   |-- cake_model_default_messages
-|   |   |   |   |   |-- cake_model_default_messages_tags
-|   |   |   |   |   |-- cake_model_default_nodes
-|   |   |   |   |   |-- cake_model_default_polls
-|   |   |   |   |   |-- cake_model_default_tags
-|   |   |   |   |   |-- cake_model_default_votes
 |   |   |   |   |   `-- empty
 |   |   |   |   |-- persistent
-|   |   |   |   |   |-- cake_core_core_paths
-|   |   |   |   |   |-- cake_core_default_en_us
-|   |   |   |   |   |-- cake_core_dir_map
-|   |   |   |   |   |-- cake_core_file_map
 |   |   |   |   |   |-- cake_core_object_map
 |   |   |   |   |   `-- empty
 |   |   |   |   `-- views
 |   |   |   |       `-- empty
 |   |   |   |-- logs
-|   |   |   |   |-- debug.log
-|   |   |   |   |-- empty
-|   |   |   |   |-- error.log
-|   |   |   |   `-- leave_message.log
+|   |   |   |   `-- empty
 |   |   |   |-- sessions
 |   |   |   |   `-- empty
 |   |   |   `-- tests
@@ -370,13 +341,21 @@ pictus
 |   |   |   |   |-- edit.ctp
 |   |   |   |   `-- index.ctp
 |   |   |   |-- pages
-|   |   |   |   |-- callback.ctp
+|   |   |   |   |-- about.ctp
+|   |   |   |   |-- architecture
+|   |   |   |   |   |-- callback.ctp
+|   |   |   |   |   |-- index.ctp
+|   |   |   |   |   |-- ivr.ctp
+|   |   |   |   |   |-- leave-a-message.ctp
+|   |   |   |   |   `-- poll.ctp
 |   |   |   |   |-- contact.ctp
-|   |   |   |   |-- functionality.ctp
-|   |   |   |   |-- home.ctp
-|   |   |   |   |-- ivr.ctp
-|   |   |   |   |-- leave-a-message.ctp
-|   |   |   |   `-- poll.ctp
+|   |   |   |   |-- functionality
+|   |   |   |   |   |-- callback.ctp
+|   |   |   |   |   |-- index.ctp
+|   |   |   |   |   |-- ivr.ctp
+|   |   |   |   |   |-- leave-a-message.ctp
+|   |   |   |   |   `-- poll.ctp
+|   |   |   |   `-- home.ctp
 |   |   |   |-- polls
 |   |   |   |   |-- add.ctp
 |   |   |   |   |-- edit.ctp
@@ -433,20 +412,24 @@ pictus
 |   |       |   |   `-- space.png
 |   |       |   |-- illustrations
 |   |       |   |   |-- FF_IVR_design.png
-|   |       |   |   `-- FF_LAM_state_machine.png
+|   |       |   |   |-- FF_LAM_state_machine.png
+|   |       |   |   |-- freedomfone_v1.0_architecture.png
+|   |       |   |   |-- freedomfone_v1.0_architecture_callback.png
+|   |       |   |   |-- freedomfone_v1.0_architecture_leaveMessage.png
+|   |       |   |   |-- freedomfone_v1.0_architecture_poll.png
+|   |       |   |   `-- freedomfone_v1.0_architecture_voiceMenu.png
 |   |       |   |-- menu
-|   |       |   |   |-- corner_blue_left.png
-|   |       |   |   |-- corner_blue_right.png
 |   |       |   |   |-- corner_inset_left.png
 |   |       |   |   |-- corner_inset_right.png
 |   |       |   |   |-- corner_left.png
 |   |       |   |   |-- corner_right.png
 |   |       |   |   |-- dot.gif
 |   |       |   |   |-- dot_blue.png
-|   |       |   |   |-- magnifier.png
 |   |       |   |   |-- menu_left.png
 |   |       |   |   |-- menu_left_rss.png
+|   |       |   |   |-- menu_mid_svn.png
 |   |       |   |   |-- menu_right.png
+|   |       |   |   |-- menu_right_long.png
 |   |       |   |   |-- menu_right_rss.png
 |   |       |   |   `-- menu_right_svn.png
 |   |       |   |-- mod_header_bullet.gif
@@ -457,10 +440,12 @@ pictus
 |   |       |   |-- top_shadow.gif
 |   |       |   `-- top_shelf.gif
 |   |       |-- index.php
-|   |       |-- index.php.mod
 |   |       |-- js
 |   |       |   |-- addHTMLControls.js
-|   |       |   |-- player.js
+|   |       |   |-- addRemoveElements.js
+|   |       |   |-- corner.js
+|   |       |   |-- jquery.corner.js
+|   |       |   |-- jquery.js
 |   |       |   |-- prototype.js
 |   |       |   |-- scriptaculous.js
 |   |       |   |-- swfobject.js
@@ -478,12 +463,14 @@ pictus
 |   |       `-- xml_curl -> /usr/src/pictus/xml_curl/
 |   `-- index.php
 |-- installer
-|   `-- pictus_install.sh
+|   |-- centos
+|   |   `-- pictus_install_gui.sh
+|   |-- pictus_install.sh
+|   `-- pictus_install_gui.sh
 |-- log
 |   |-- dialer.log
 |   |-- dispatcher_in.log
 |   `-- dispatcher_out.log
-|-- svn-commit.tmp
 `-- xml_curl
     |-- Mod_XML_Curl_Outline.png
     |-- README
@@ -491,4 +478,4 @@ pictus
     |-- index.php
     `-- ivr.xml
 
-137 directories, 354 files
+140 directories, 338 files

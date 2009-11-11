@@ -26,7 +26,7 @@ echo "========================================================================="
 
 
 step "Checking if an old installation exists!"
-if [ -d /usr/src/pictusNONO ];
+if [ -d /usr/src/pictus ];
 then
 echo "And old installation exists, check /usr/src/pictus!"
 exit;
@@ -65,7 +65,7 @@ stop
 
 step "DEVEL: Downloading all the code (FS, Cesptral, Cake, Freedom Fone SVN"
 cd $SVNROOT; svn co http://svn.freeswitch.org:/svn/freeswitch/trunk freeswitch.trunk 
-cd $SVNROOT; svn co https://dev.freedomfone.org:/svn/freedomfone $RELEASE 
+cd $SVNROOT; svn co https://dev.freedomfone.org:/svn/freedomfone/trunk $RELEASE 
 cd $SVNROOT; wget http://downloads.cepstral.com/cepstral/i386-linux/$CEPSTRALPACK.tar.gz
 cd $SVNROOT; tar zxvf $CEPSTRALPACK.tar.gz
 #It forces us to go trough the donation page! Please Donate!

@@ -33,7 +33,7 @@ var lmDir = new File(lmDirRoot + "/" + lmId);
 
 
 // FIXME! Domain name should go to a global variable
-var lmURIRoot = "http://pictus.freedomfone.org/freedomfone/freedomfone/leave_message";
+var lmURIRoot = "http://demo.freedomfone.org/freedomfone/freedomfone/leave_message";
 var lmURI = lmURIRoot + "/" + lmId + "/" + "messages/"; 
 
 var lmWelcomeAudio = lmDir + "/audio_menu/lmWelcome.wav";

@@ -35,7 +35,7 @@ public $file;
 
 
 	$this->inter_digit_timout   = 2000;
-	$this->timeout 	      	    = 10000;			  
+	$this->timeout 	      	    = 3000;			  
 	$this->inter_digit_timeout  = 2000;
 	$this->max_failures 	    = 3;
 	$this->max_timeouts 	    = 4;

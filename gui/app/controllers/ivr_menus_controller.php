@@ -105,7 +105,7 @@ class IvrMenusController extends AppController{
 	        //Recreate ivr.xml
 		$this->IvrMenu->writeIVR();
 		//Flash message and redirect to index
-	 	$this->Session->setFlash(__("The IVR has been created!",true));
+	 	$this->Session->setFlash(__("The voice menu has been created!",true));
 	 	$this->redirect(array('action' => 'index'));
 
 
@@ -228,10 +228,15 @@ class IvrMenusController extends AppController{
 	     //Check if IVR is parent
     	     $isParent = $this->IvrMenu->isParent($id);
 
-	        //Delete IVR
+	     
+	   //Delete IVR
+
+	   //do not delete demo ivr
+	   if($id !=2){
+
     	     	if($this->IvrMenu->delete($id,true)){
 		   $this->log("Msg: INFO; Action: IVR deleted; Type: ".$id."; Code: N/A", "ivr");
-		   $this->Session->setFlash(__('The IVR has been deleted.',true),'default',array('class'=>'message_success'));
+		   $this->Session->setFlash(__('The voice menu has been deleted.',true),'default',array('class'=>'message_success'));
 		 }
 
 		 //If IVR was parent
@@ -243,6 +248,8 @@ class IvrMenusController extends AppController{
 			//Set new parent
 	     		$this->IvrMenu->setNewParent();
 		}	
+
+	   }
 
 	  	$this->redirect(array('action' => '/index'));
       }

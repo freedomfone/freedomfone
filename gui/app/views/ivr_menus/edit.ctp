@@ -1,7 +1,7 @@
 <?php
 	if($this->data){
 
-echo "<h1>".__("Edit IVR menu",true)."</h1>";
+echo "<h1>".__("Edit voice menu",true)."</h1>";
 
 $ivr_default  = Configure::read('IVR_DEFAULT');
 $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -34,7 +34,7 @@ $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 <fieldset>
 <legend><?php __('Name');?> </legend>
-<?php echo $form->input('title',array('type'=>'text','size' => '40', 'between'=>'<br />','label'=>$commentTitle)); ?>
+<?php echo $form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle)); ?>
 </fieldset>
 
 <fieldset>
@@ -52,11 +52,11 @@ $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 
 <h3><?php __('3. Goodbye');?> </h3>
-<?php echo $form->input('message_exit',array('type'=>'text','size' => '80','label'=>$commentExit,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
+<?php echo $form->input('message_exit',array('type'=>'text','size' => '93','label'=>$commentExit,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
 <?php echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file','after'=> $this->element('musicplayer_button',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$formatting->changeExt($this->data['IvrMenu']['file_exit'],'mp3'),'title'=>'Exit Message')))); ?>
 
 <h3><?php __('4. Invalid');?> </h3>
-<?php echo $form->input('message_invalid',array('type'=>'text','size' => '80','label'=>$commentInvalid,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
+<?php echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>$commentInvalid,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
 <?php echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file','after'=> $this->element('musicplayer_button',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$formatting->changeExt($this->data['IvrMenu']['file_invalid'],'mp3'),'title'=>'Invalid Message')))); ?>
 </fieldset>
 

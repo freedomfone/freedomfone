@@ -61,7 +61,7 @@ class NodesController extends AppController{
 		      $this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');
 		      
 		      //Flash message and redirect	
-		      $this->Session->setFlash(__('The node has been created.', true));
+		      $this->Session->setFlash(__('The voice menu node has been created.', true));
 		      $this->redirect(array('action'=>'index'));
 		}
 
@@ -123,14 +123,14 @@ class NodesController extends AppController{
 
     	     	if($this->Node->delete($id,true)){
 
-			$this->Session->setFlash('The selected node has been deleted.','default',array('class'=>'message_success'));
+			$this->Session->setFlash('The selected voice menu node has been deleted.','default',array('class'=>'message_success'));
 	     		$this->log('Msg: Node deleted, ID: '.$id, 'node');	
 	     		$this->redirect(array('action' => '/index'));
 	     		}
 	     }
 
 	     else {
-		$this->Session->setFlash('The selected node could not be deleted as it is present in one or more Voice menus.','default',array('class'=>'message_success'));
+		$this->Session->setFlash('The selected voice menu node could not be deleted as it is present in one or more Voice menus.','default',array('class'=>'message_success'));
 		$this->redirect(array('action' => '/index'));
 	     }
 

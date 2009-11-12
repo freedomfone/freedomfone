@@ -1,5 +1,5 @@
 <?php
-echo "<h1>".__("Create new IVR menu",true)."</h1>";
+echo "<h1>".__("Create voice menu",true)."</h1>";
 
 $ivr_default  = Configure::read('IVR_DEFAULT');
 
@@ -33,7 +33,7 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 
 <fieldset>
 <legend><?php __('Name');?> </legend>
-<?php echo $form->input('title',array('type'=>'text','size' => '40', 'between'=>'<br />','label'=>$commentTitle)); ?>
+<?php echo $form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle)); ?>
 </fieldset>
 
 <fieldset>
@@ -50,13 +50,13 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 
 <fieldset>
 <h3><?php __('3. Goodbye');?> </h3>
-<?php echo $form->input('message_exit',array('type'=>'text','size' => '80','label'=>$commentExit,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
+<?php echo $form->input('message_exit',array('type'=>'text','size' => '93','label'=>$commentExit,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
 <?php echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
 </fieldset>
 
 <fieldset>
 <h3><?php __('4. Invalid');?> </h3>
-<?php echo $form->input('message_invalid',array('type'=>'text','size' => '80','label'=>$commentInvalid,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
+<?php echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>$commentInvalid,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
 <?php echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
 </fieldset>
 

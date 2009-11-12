@@ -1,4 +1,7 @@
 * text=auto !eol
+/AUTHORS -text
+/COPYING -text
+/README -text
 /README.pictus.tree -text
 dialer/config.php -text
 dialer/dialer.sh -text

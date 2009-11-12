@@ -1,0 +1,62 @@
+Freedom Fone 
+Lycaon Pictus Pictus
+November 2009
+
+- Louise Berthilson (louise@it46.se)
+	cake php MVC GUI
+	dispatcher
+	dialer
+	esl
+	
+- Giovanni Maruzzelli (gmaruzz@gmail.com)
+	gsmopen
+	skypeopen 
+
+- Alberto Escudero-Pascual (aep@it46.se)
+	project architecture
+	system integration
+	freeswitch scripts/javascript
+	installer
+	xml_curl
+
+- Brenda Burrell (bren@kubatana.net)
+	Renowned Bug tracker
+
+---------------------------------------------------------
+
+Freedom Fone is also free software, enjoy the freedoms!
+
+* freeswitch
+	Open source telephony platform
+	http://www.freeswitch.org/
+
+* freeswitch scripts
+	Using Mozilla Spidermonkey Javascript engine
+	http://www.mozilla.org/js/spidermonkey/
+
+* gsmopen 
+	New release of former celliax FreeSWITCH endpoint
+	http://www.gsmopen.org/
+* esl  
+	Modified (fs_sock.php) PHP ESL Library based on initial work from Raymond Chandler intralaman@freeswitch.org
+
+* dispatcher
+	Was baked with CakePHP 1.2.5	
+	http://cakephp.org/
+
+* iwatch
+	File system monitoring
+	http://iwatch.sourceforge.net/
+
+---------------------------------------------------------
+
+Read the documentation 
+
+* documentation
+	Tons of it in the documentation folder, for developers and non-tech users
+	
+---------------------------------------------------------
+
+Code developed in cooperation with the Kubatana Trust of Zimbabwe
+http://www.kubatana.net/
+info@freedomfone.org

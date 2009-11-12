@@ -5,7 +5,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new poll")),"/nodes/add",null, null, false)."</div>";
 
-echo "<h1>".__('Nodes',true)."</h1>";
+echo "<h1>".__('Voice menu nodes',true)."</h1>";
 
 
    if ($nodes){
@@ -34,7 +34,7 @@ echo $form->hidden('source',array('value'=>'index'));
 	$created  = $time->niceShort($node['Node']['created']);
 	$modified = $time->niceShort($node['Node']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/nodes/edit/{$node['Node']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this node?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this voice menu node?",true),false);
 	$listen   = $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($node['Node']['file'],'mp3'),'title'=>$node['Node']['title']));
 
      $row[$key] = array(
@@ -52,12 +52,12 @@ echo $form->hidden('source',array('value'=>'index'));
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
 
-     echo "<table>";
+/*     echo "<table>";
      echo $html->tableCells(array(
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
      $form->submit( __('Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
      $paginator->numbers()));
-     echo "</table>";
+     echo "</table>";*/
      echo $form->end();
 
 

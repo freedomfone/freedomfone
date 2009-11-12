@@ -42,11 +42,11 @@ echo "<h1>".__('Voice Menus',true)."</h1>";
 	$created       = $time->niceShort($ivr_menu['IvrMenu']['created']);
 	$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this IVR?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
 
      	$row[$key] = array(
 		$default,
-		$title,
+		array($title,array('width'=>'100px')),
 		$message_long,
 		$created,		
 		$modified,

@@ -197,7 +197,7 @@ static switch_status_t channel_on_soft_execute(switch_core_session_t *session);
 static switch_call_cause_t channel_outgoing_channel(switch_core_session_t *session,
 													switch_event_t *var_event,
 													switch_caller_profile_t *outbound_profile,
-													switch_core_session_t **new_session, switch_memory_pool_t **pool, switch_originate_flag_t flags);
+													switch_core_session_t **new_session, switch_memory_pool_t **pool, switch_originate_flag_t flags, switch_call_cause_t *cancel_cause);
 static switch_status_t channel_read_frame(switch_core_session_t *session, switch_frame_t **frame, switch_io_flag_t flags, int stream_id);
 static switch_status_t channel_write_frame(switch_core_session_t *session, switch_frame_t *frame, switch_io_flag_t flags, int stream_id);
 static switch_status_t channel_kill_channel(switch_core_session_t *session, int sig);
@@ -970,7 +970,7 @@ switch_io_routines_t gsmopen_io_routines = {
 static switch_call_cause_t channel_outgoing_channel(switch_core_session_t *session,
 													switch_event_t *var_event,
 													switch_caller_profile_t *outbound_profile,
-													switch_core_session_t **new_session, switch_memory_pool_t **pool, switch_originate_flag_t flags)
+													switch_core_session_t **new_session, switch_memory_pool_t **pool, switch_originate_flag_t flags, switch_call_cause_t *cancel_cause)
 {
 	private_t *tech_pvt = NULL;
 	if ((*new_session = switch_core_session_request(gsmopen_endpoint_interface, SWITCH_CALL_DIRECTION_OUTBOUND, pool)) != 0) {
@@ -2423,27 +2423,6 @@ void *gsmopen_do_gsmopenapi_thread_func(void *obj)
 
 }
 
-#ifdef NOTDEF
-int sms_incoming(private_t * tech_pvt, char *value)
-{
-	char sms_buf[512];
-	switch_event_t *event;
-
-	DEBUGA_GSMOPEN("received SMS >>>%s<<< on interface %s\n", GSMOPEN_P_LOG, value, tech_pvt->name);
-
-	switch_snprintf(sms_buf, sizeof(sms_buf), "incoming SMS on %s\n", tech_pvt->name);
-
-	if (switch_event_create_subclass(&event, SWITCH_EVENT_CUSTOM, MY_EVENT_INCOMING_SMS) == SWITCH_STATUS_SUCCESS) {
-		switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "event_info", sms_buf);
-		switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "interface_name", tech_pvt->name);
-		switch_event_add_body(event, "%s\n\n", tech_pvt->sms_message);
-		switch_event_fire(&event);
-	}
-
-	return 0;
-}
-#endif // NOTDEF
-
 
 SWITCH_STANDARD_API(sendsms_function)
 {
@@ -2510,7 +2489,7 @@ int sms_incoming(private_t * tech_pvt)
 	int event_sent_to_esl = 0;
 
 	//DEBUGA_GSMOPEN("received SMS on interface %s: %s\n", GSMOPEN_P_LOG, tech_pvt->name, tech_pvt->sms_message);
-	DEBUGA_GSMOPEN("received SMS on interface %s: DATE=%s, SENDER=%s, BODY=%s\n", GSMOPEN_P_LOG, tech_pvt->name, tech_pvt->sms_date, tech_pvt->sms_sender,
+	DEBUGA_GSMOPEN("received SMS on interface %s: DATE=%s, SENDER=%s, BODY=%s|\n", GSMOPEN_P_LOG, tech_pvt->name, tech_pvt->sms_date, tech_pvt->sms_sender,
 				   tech_pvt->sms_body);
 
 	if (!zstr(tech_pvt->session_uuid_str)) {
@@ -2528,7 +2507,7 @@ int sms_incoming(private_t * tech_pvt)
 		//switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "chatname", tech_pvt->chatmessages[which].chatname);
 		//switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "id", tech_pvt->chatmessages[which].id);
 		switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "subject", "SIMPLE MESSAGE");
-		switch_event_add_body(event, "%s", tech_pvt->sms_body);
+		switch_event_add_body(event, "%s\n", tech_pvt->sms_body);
 		if (session) {
 			switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "during-call", "true");
 			if (switch_core_session_queue_event(session, &event) != SWITCH_STATUS_SUCCESS) {
@@ -2560,7 +2539,7 @@ int sms_incoming(private_t * tech_pvt)
 			switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "subject", "SIMPLE MESSAGE");
 			//switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "chatname", tech_pvt->chatmessages[which].chatname);
 			//switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "id", tech_pvt->chatmessages[which].id);
-			switch_event_add_body(event, "%s", tech_pvt->sms_body);
+			switch_event_add_body(event, "%s\n", tech_pvt->sms_body);
 			if (session) {
 				switch_event_add_header_string(event, SWITCH_STACK_BOTTOM, "during-call", "true");
 			} else {			//no session

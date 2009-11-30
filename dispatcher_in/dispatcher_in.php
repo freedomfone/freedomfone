@@ -12,7 +12,7 @@
  * Debug mode will write to logfile. If the argument is left out, debug is set to true
  *
  * Example: php dispatcher_in.php -v --debug --log=/tmp/dispatcher.log
- * Result: no verbose output to stdout, debug messages logged to file /tmp/dispatcher.log
+ * Result: Verbose output to stdout, debug messages logged to file /tmp/dispatcher.log
  *
  */
 include_once('config.php');
@@ -272,6 +272,7 @@ global $obj;
 
                  }
 
+	 $obj->log("XSL applied: ".$xsl,"INFO");
 	 $obj->debug("XSL applied: ".$xsl,"INFO");
 
    	 $xslDoc = new DOMDocument();
@@ -319,6 +320,7 @@ global $obj;
 	 if ($xml && $event_name){
 	 
        $obj->debug("Event name: ".$event_name,"INFO");
+       $obj->log("Event name: ".$event_name,"INFO");
 
                 //apply rules here
                 if($event_name == 'MESSAGE'){
@@ -342,6 +344,7 @@ global $obj;
                 elseif ($event_name=='CUSTOM') {
 
        		       $obj->debug("Event subclass: ".$event_subclass,"INFO");
+		       $obj->log("Event subclass: ".$event_subclass,"INFO");
 	               switch($event_subclass){
 
 	                 case 'leave_a_message':

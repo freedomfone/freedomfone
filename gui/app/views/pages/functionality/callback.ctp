@@ -1,7 +1,7 @@
 <?php echo $this->element('menu_next',array('back_text'=>__('Voice menu',true),'back_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
 
 
-<h1>Callback</h1>
+<h1>Functionality: Callback</h1>
 
 
 <p>The Callback service offers callers a means to access audio content from Freedom Fone at a low cost, or at no cost at all. As the name suggests, the Callback service establishes outgoing phone calls from Freedom Fone to a caller, with the Freedom Fone deployer carrying the cost of the call. </p>
@@ -31,4 +31,6 @@
 </ul>
 
 <p>The administration parameters can be found under Settings.</p>
+
+<p>Please note that the Callback service cannot be tested via the demo site.</p> 
 

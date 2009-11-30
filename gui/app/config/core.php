@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 /**
  * Application wide charset encoding
  */
@@ -148,7 +148,7 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'lsdkfjapictusrocks!OIUIUd8d83');
+	Configure::write('Security.salt', 'lsdkfppphsahsjatusrocks!OIUIUd8d83');
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.

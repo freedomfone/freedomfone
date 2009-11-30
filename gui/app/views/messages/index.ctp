@@ -3,6 +3,8 @@ $session->flash();
 
 echo "<h1>".__('Audio Messages',true)."</h1>";
 
+echo $html->div("box", "To call the Leave-a-message service, dial +39 340 47 80 434 or make a Skype call to 'skypiax2'");
+
 echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 
 

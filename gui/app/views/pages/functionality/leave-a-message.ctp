@@ -1,6 +1,6 @@
 <?php echo $this->element('menu_next',array('back_text'=>__('Poll',true),'back_link'=>'/functionality/poll','fwd_text'=>__('Voice Menu',true),'fwd_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
 
-<h1>Leave a message</h1>
+<h1>Functionality: Leave-a-Message</h1>
 
 
 <p>The Leave-a-Message service offers callers the option to call into Freedom Fone, and leave  their personal message. This may be a report, feedback, tip-off, response to a question, or perhaps a job application.</p>
@@ -44,3 +44,5 @@
 </ul>
 
 <p>The administrator can choose to delete a message, or to archive it for future use.</p>
+
+<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a Skype call to 'skypiax2'.</p>

@@ -1,5 +1,5 @@
 <?php 
-echo "<h1>Freedom Fone v.1 Architecture</h1>";
+echo "<h1>Architecture: Poll</h1>";
 echo $html->para(null,"Please select one of the alternatives below, to read about each component's architecture.");
 
 //echo $this->element('menu_next',array('fwd_text'=>__('Leave-a-message',true),'fwd_link'=>'/architecture/leave-a-message','div'=>'frameRight'));

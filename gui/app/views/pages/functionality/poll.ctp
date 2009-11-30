@@ -2,7 +2,7 @@
 
 echo $this->element('menu_next',array('fwd_text'=>__('Leave-a-message',true),'fwd_link'=>'/functionality/leave-a-message','div'=>'frameRight')); 
 
-echo "<h1>Poll</h1>";
+echo "<h1>Functionality: Poll</h1>";
 
 ?>
 <p>The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone. 

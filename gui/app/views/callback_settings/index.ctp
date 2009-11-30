@@ -32,14 +32,5 @@ echo $html->tableCells(array(
 echo "</table>";
 
 echo $form->end('Save'); 
-
-
-
-
-
-
-
-
-
-
 ?>
+<p>Please note that the Callback service cannot be tested via the demo site.</p> 

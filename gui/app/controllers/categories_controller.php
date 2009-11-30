@@ -77,7 +77,7 @@ class CategoriesController extends AppController {
 
     	     if($this->Category->delete($id,true))
 	     {
-    	     $this->Session->setFlash('The selected tag has been deleted.','default',array('class'=>'message_success'));
+    	     $this->Session->setFlash('The selected category has been deleted.','default',array('class'=>'message_success'));
 	     $this->redirect(array('action' => '/index'));
 
 	     }

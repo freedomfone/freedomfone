@@ -1,6 +1,6 @@
 <?php echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/functionality/leave-a-message','fwd_text'=>__('Callback',true),'fwd_link'=>'/functionality/callback','div'=>'frameRight')); ?>
 
-<h1>Voice Menus</h1>
+<h1>Functionality: Voice menu</h1>
 
 <?php echo $html->div('frameRight',$html->image('illustrations/FF_IVR_design.png', array('alt' => 'Freedon Fone v.1 Voice Menu design','border'=>'0')));?>
 
@@ -20,5 +20,7 @@ Freedom Fone v.1 offers the possibility to assign five nodes to a Voice Menu. Th
 
 <p>The administrator can create multiple Voice Menus, but only one can be active at a time (marked as Default). The administrator can at any time edit or delete a Voice Menu. If the default Voice menu is deleted, the oldest existing Voice Menu will automatically become the new default.</p>
 <p>The administrator can at any time change the default Voice Menu. </p>
+
+<p>To call the default Voice Menu, dial +39 333 677 45 32 or make a Skype call to 'skypiax4'.</p>
 
 

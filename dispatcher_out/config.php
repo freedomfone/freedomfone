@@ -6,7 +6,7 @@
  */
 
 /* FIXME! Move BasePath to globals */
-define("BasePath", "/usr/local/src/pictus/");
+define("BasePath", "/usr/src/pictus/");
 define("SpoolerOutDir", "dialer/spooler/incoming/");
 define("SpoolerTmpDir", "/tmp/");
 define("LogFile", "../log/dispatcher_out.log");

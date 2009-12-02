@@ -1817,10 +1817,16 @@ SWITCH_MODULE_SHUTDOWN_FUNCTION(mod_gsmopen_shutdown)
 			if (globals.GSMOPEN_INTERFACES[interface_id].gsmopen_api_thread) {
 				switch_thread_join(&status, globals.GSMOPEN_INTERFACES[interface_id].gsmopen_api_thread);
 			}
+
+			x = 10;
+			while (x) {			//FIXME 0.5 seconds?
+				x--;
+				switch_yield(50000);
+			}
 	fd = tech_pvt->controldevfd;
 		WARNINGA("SHUTDOWN tech_pvt->controldevfd=%d\n", GSMOPEN_P_LOG, tech_pvt->controldevfd);
 	if (fd) {
-		close(fd);
+		//close(fd);
 		//tech_pvt->controldevfd = -1;
 		WARNINGA("SHUTDOWN tech_pvt->controldevfd=%d\n", GSMOPEN_P_LOG, tech_pvt->controldevfd);
 	}

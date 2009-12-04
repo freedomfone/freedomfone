@@ -37,7 +37,7 @@ class TagsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->Tag->save($this->data)) {
-				$this->Session->setFlash(__('The Tag has been saved', true));
+				$this->Session->setFlash(__('The tag has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The Tag could not be saved. Please, try again.', true));

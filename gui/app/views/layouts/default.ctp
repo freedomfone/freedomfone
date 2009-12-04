@@ -21,6 +21,7 @@
     <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
+    <?=$html->meta('icon');?>
 
     <?=$javascript->link('swfobject');?>	<!-- Flashhelper -->
     

@@ -15,6 +15,8 @@ class CallbackInController extends AppController{
 
 	function index() {
 
+      	$this->pageTitle = 'Callback';           
+
 	$iid = IID;
      	$callback_settings = Configure::read('CALLBACK_SETTINGS');
 

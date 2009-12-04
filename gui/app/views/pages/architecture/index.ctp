@@ -1,5 +1,5 @@
 <?php
-
+$this->pageTitle = 'Architecture';           
 echo "<h1>Freedom Fone v.1 Architecture</h1>";
 echo $html->para(null,"Please select one of the alternatives below, to read about each component's architecture.");
 

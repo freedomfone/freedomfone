@@ -1,4 +1,5 @@
 <?php 
+$this->pageTitle = 'Architecture : Leave-a-Message';           
 echo "<h1>Architecture: Leave-a-Message</h1>";
 echo $html->para(null,"Please select one of the alternatives below, to read about each component's architecture.");
 

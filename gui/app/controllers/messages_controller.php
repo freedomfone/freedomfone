@@ -13,6 +13,8 @@ class MessagesController extends AppController{
 
       function index(){
 
+      $this->pageTitle = 'Leave-a-Message : Inbox';
+
       //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 
@@ -41,6 +43,8 @@ class MessagesController extends AppController{
 
       function archive(){
 
+      $this->pageTitle = 'Leave-a-Message : Archive';
+
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		}
@@ -58,14 +62,17 @@ class MessagesController extends AppController{
 
      function view($id){
 
+
       $this->Message->id = $id;
       $this->set('data',$this->Message->read());       
 
       }
 
 
-    function edit($id = null)
-    {  
+    function edit($id = null)    {  
+
+
+   $this->pageTitle = 'Leave-a-Message : Edit';   
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));

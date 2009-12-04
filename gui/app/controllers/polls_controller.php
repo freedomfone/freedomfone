@@ -90,6 +90,7 @@ class PollsController extends AppController{
 
       function index(){
 
+      $this->pageTitle = 'Manage polls';
       $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
 
       }
@@ -97,19 +98,18 @@ class PollsController extends AppController{
 
      function view($id){
 
-
-
       $this->Poll->id = $id;
-
       $this->set('data',$this->Poll->findById($id));       
-//      $this->set('data', $this->Poll->Vote->find('all', array('conditions' => array('Poll.id' => $id), array('order' =>'Vote.id ASC'))));      
-//      $this->set('data', $this->Poll->find('all', array('conditions' => array('Poll.id' => $id) )));      
+      $this->pageTitle = 'View poll: '.$this->Poll->getTitle($id);
+ 
+
       
       }
 
 
    function add(){
 
+      $this->pageTitle = 'Create new poll';
 
       //Render empty form
       if (empty($this->data)){
@@ -160,6 +160,7 @@ class PollsController extends AppController{
 
     function delete ($id){
 
+      $this->pageTitle = 'Delete poll';
 
      	     $title = $this->Poll->getTitle($id);
     	     if($this->Poll->delete($id,true))
@@ -177,6 +178,8 @@ class PollsController extends AppController{
 
 
    function edit($id = null){
+
+   $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
 
  
 		if (!$id && empty($this->data)){ 

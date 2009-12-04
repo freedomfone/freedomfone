@@ -3,7 +3,7 @@ $session->flash();
 
 echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new IVR")),"/ivr_menus/add",null, null, false)."</p>";
 
-echo "<h1>".__('Voice Menus',true)."</h1>";
+echo "<h1>".__('Voice menus',true)."</h1>";
 
 echo $html->div("box", "To call the default Voice Menu, dial +39 333 677 45 32 or make a Skype call to 'skypiax4'");
 

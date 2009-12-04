@@ -23,6 +23,8 @@
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
     <?=$html->meta('icon');?>
 
+    <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
+
     <?=$javascript->link('swfobject');?>	<!-- Flashhelper -->
     
     <?=$javascript->link('prototype');?>

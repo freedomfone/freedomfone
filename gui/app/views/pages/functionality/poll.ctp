@@ -1,5 +1,5 @@
 <?php 
-
+$this->pageTitle = 'Functionality : Poll ';           
 echo $this->element('menu_next',array('fwd_text'=>__('Leave-a-message',true),'fwd_link'=>'/functionality/leave-a-message','div'=>'frameRight')); 
 
 echo "<h1>Functionality: Poll</h1>";

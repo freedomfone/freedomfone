@@ -100,16 +100,16 @@
 
 
 
-<li><?php echo __("Voice menu",true);?>
+<li><?php echo __("Voice menus",true);?>
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Manage nodes",true),'/nodes/index'); ?>
+<?php echo $html->link(__("Audio files",true),'/nodes/index'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Manage voice menus",true),'/ivr_menus'); ?>
+<?php echo $html->link(__("Voice menus",true),'/ivr_menus'); ?>
 </li>
 
 <li class='last'>

@@ -11,6 +11,8 @@ class IvrMenusController extends AppController{
 
    function index(){
 
+      	$this->pageTitle = 'Voice menus';           
+
    	//Avoid fetching associated data
 	$this->IvrMenu->recursive = -1;
 	
@@ -35,6 +37,7 @@ class IvrMenusController extends AppController{
 
    function add(){
 
+      	$this->pageTitle = 'Voice menus : Add';           
 	$iid=IID;
 
             $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -118,7 +121,8 @@ class IvrMenusController extends AppController{
 
    function edit($id = null){
 
-	Configure::write('debug', 3);
+      	$this->pageTitle = 'Voice menus : Edit';           
+
             $ivr_settings = Configure::read('IVR_SETTINGS');
             $ivr_default  = Configure::read('IVR_DEFAULT');
 

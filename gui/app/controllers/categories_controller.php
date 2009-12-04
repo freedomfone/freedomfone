@@ -5,12 +5,16 @@ class CategoriesController extends AppController {
 
 
 	function index() {
+
+      		$this->pageTitle = 'Leave-a-Message : Categories';
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->paginate());
 	}
 
 
 	function add() {
+
+      		$this->pageTitle = 'Leave-a-Message : Categories : Add';
 		if (!empty($this->data)) {
 		  
 			$this->Category->create();
@@ -34,6 +38,9 @@ class CategoriesController extends AppController {
 
 
 	function edit($id = null) {
+
+      		$this->pageTitle = 'Leave-a-Message : Categories : Edit';
+
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Category', true));
 			$this->redirect(array('action'=>'index'));

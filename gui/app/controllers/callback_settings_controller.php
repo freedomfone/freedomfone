@@ -9,6 +9,8 @@ class CallbackSettingsController extends AppController{
 
 	function index(){
 
+      	$this->pageTitle = 'Callback : Settings';           
+
 		 $iid=IID;
 
 		if (empty($this->data)) {

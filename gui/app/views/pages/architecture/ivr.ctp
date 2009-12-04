@@ -1,4 +1,5 @@
 <?php 
+$this->pageTitle = 'Architecture : Voice Menus';           
 echo "<h1>Architecture: Voice menu</h1>";
 echo $html->para(null,"Please select one of the alternatives below, to read about each component's architecture.");
 

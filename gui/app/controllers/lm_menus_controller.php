@@ -7,7 +7,7 @@ class LmMenusController extends AppController{
 
 	function settings() {
 
-        
+   $this->pageTitle = 'Leave-a-Message : IVR';           
 
      	$lm_settings = Configure::read('LM_SETTINGS');
 

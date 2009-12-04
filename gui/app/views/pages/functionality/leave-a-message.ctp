@@ -1,4 +1,6 @@
-<?php echo $this->element('menu_next',array('back_text'=>__('Poll',true),'back_link'=>'/functionality/poll','fwd_text'=>__('Voice Menu',true),'fwd_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
+<?php 
+$this->pageTitle = 'Functionality : Leave-a-Message';           
+echo $this->element('menu_next',array('back_text'=>__('Poll',true),'back_link'=>'/functionality/poll','fwd_text'=>__('Voice Menus',true),'fwd_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
 
 <h1>Functionality: Leave-a-Message</h1>
 

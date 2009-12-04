@@ -13,6 +13,7 @@ class NodesController extends AppController{
 
       function index(){
 
+      	     $this->pageTitle = 'Voice menus : Audio files';           
              $this->paginate['limit'] = 10;
 	     $this->Node->recursive = 0; 
 
@@ -24,6 +25,7 @@ class NodesController extends AppController{
 
    function add(){
 
+      	     $this->pageTitle = 'Voice menus : Audio files : Add';           
 
    	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
@@ -97,19 +99,6 @@ class NodesController extends AppController{
 }
 
 
-
-    function view($id){
-
-
-      $this->Node->id = $id;
-
-      $this->set('data',$this->Node->findById($id));       
-      
-
-
-      }
-
-
     function delete ($id){
 
       	     $iid = IID;
@@ -140,6 +129,7 @@ class NodesController extends AppController{
 
    function edit($id=null){
 
+      	$this->pageTitle = 'Voice menus : Audio files : Edit';           
    	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$iid."/".$ivr_settings['dir_node'];
@@ -148,7 +138,7 @@ class NodesController extends AppController{
 
 	  if (!$id && empty($this->data)){
 
-	     $this->Session->setFlash(__('Invalid Node', true)); 
+	     $this->Session->setFlash(__('Invalid audio file', true)); 
 	     $this->redirect(array('action'=>'index')); 
 	  }
 

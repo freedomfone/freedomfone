@@ -7,6 +7,8 @@ class TagsController extends AppController {
 
 
 	function index() {
+
+      		$this->pageTitle = 'Leave-a-Message : Tags';
 		$this->Tag->recursive = 0;
 		$this->set('tags', $this->paginate());
 
@@ -16,6 +18,9 @@ class TagsController extends AppController {
 
 
 	function add() {
+
+      		$this->pageTitle = 'Leave-a-Message : Tags : Add';
+
 		if (!empty($this->data)) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->data)) {
@@ -31,6 +36,9 @@ class TagsController extends AppController {
 
 
 	function edit($id = null) {
+
+      		$this->pageTitle = 'Leave-a-Message : Tags : Edit';
+
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Tag', true));
 			$this->redirect(array('action'=>'index'));

@@ -1,6 +1,9 @@
-<?php echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/functionality/leave-a-message','fwd_text'=>__('Callback',true),'fwd_link'=>'/functionality/callback','div'=>'frameRight')); ?>
+<?php 
+$this->pageTitle = 'Functionality : Voice Menus';           
 
-<h1>Functionality: Voice menu</h1>
+echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/functionality/leave-a-message','fwd_text'=>__('Callback',true),'fwd_link'=>'/functionality/callback','div'=>'frameRight')); ?>
+
+<h1>Functionality: Voice menus</h1>
 
 <?php echo $html->div('frameRight',$html->image('illustrations/FF_IVR_design.png', array('alt' => 'Freedon Fone v.1 Voice Menu design','border'=>'0')));?>
 

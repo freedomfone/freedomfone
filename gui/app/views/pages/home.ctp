@@ -1,5 +1,5 @@
 <?php
-
+$this->pageTitle = 'Freedom Fone';           
 echo "<h1>".__("Welcome to Freedom Fone",true)."</h1>";
 ?>
 

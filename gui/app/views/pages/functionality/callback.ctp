@@ -1,4 +1,6 @@
-<?php echo $this->element('menu_next',array('back_text'=>__('Voice menu',true),'back_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
+<?php 
+$this->pageTitle = 'Functionality : Callback';           
+echo $this->element('menu_next',array('back_text'=>__('Voice menus',true),'back_link'=>'/functionality/ivr','div'=>'frameRight')); ?>
 
 
 <h1>Functionality: Callback</h1>

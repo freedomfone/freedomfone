@@ -6,7 +6,7 @@
       $session->flash();
 
       $options	  = array('label' => false);
-      $options_category = array('type'=>'select','multiple'=>'true','label'=>false);
+      $options_category = array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>'-- Use in none --');
 
       echo $form->create('Category',array('type' => 'post','action'=> 'edit'));
       echo "<table>";

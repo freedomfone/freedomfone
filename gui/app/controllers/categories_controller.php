@@ -41,20 +41,35 @@ class CategoriesController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Category->save($this->data['Category'])) {
 
+
    			//Get message_id for records to be updated
    			$message_id = $this->data['Category']['Message'];
-   
 
+
+			//Update selected messages
 			foreach($message_id as $value){
 
-	     			$this->data['Category']['Message']['id']=$value;
-	     			$this->data['Category']['Message']['category_id']=$id;
-	     			$this->Category->Message->save($this->data['Category']['Message']);
-
+			   if($value){
+				$this->data = $this->Category->Message->read(null,$value);
+				$this->data['Message']['category_id']=$id;
+     				$this->Category->Message->save($this->data['Message']);
+				}
 	  			}
 
+				
+		        //Update de-selected messages (set category_id=NULL)
+			$this->data = $this->Category->Message->findAllByCategoryId($id);
+			foreach($this->data as $message){
+					
+				$id = $message['Message']['id'];
 
-				$this->Session->setFlash(__('The Category has been saved', true));
+				if(!in_array($id, $message_id) && $id){
+					$this->Category->Message->id = $message['Message']['id'];
+					$this->Category->Message->saveField('category_id',NULL);
+				}
+	
+			}
+			$this->Session->setFlash(__('The Category has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The Category could not be saved. Please, try again.', true));

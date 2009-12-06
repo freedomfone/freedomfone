@@ -38,6 +38,11 @@ documentation/technical/freedomfone_technical_documentation_middle+application_v
 documentation/technical/freedomfone_technical_documentation_middle+application_v1.0.odt -text
 documentation/technical/freedomfone_technical_documentation_middle+application_v1.0.pdf -text
 esl/fs_sock.php -text
+esl/native/ESL.php -text
+esl/native/INSTALL -text
+esl/native/php.ini -text
+esl/native/samples/single_command.php -text
+esl/native/samples/test.php -text
 extras/fs_debug.sh -text
 extras/lame397 -text
 extras/php2twitter.php -text

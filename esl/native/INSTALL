@@ -1,0 +1,24 @@
+1. Install the following packages
+
+apt install libxml2-dev libpcre3-dev libcurl4-openssl-dev libgmp3-dev libaspell-dev python-dev php5-dev libdb-dev
+
+cd /usr/src/freeswitch.trunk/libs/esl/
+make
+make phpmod
+
+2. Edit /etc/php5/cli/php.ini
+
+Enable dynamic load of .so libraries for PHP CLI
+
+change Off for On
+
+enable_dl = On
+
+3. Copy ESL.so to PHP client folder for dynamic libs
+cp ESL.so /usr/lib/php5/20060613+lfs/
+
+4. Test ESL
+php test.php
+
+
+with freeswitch started

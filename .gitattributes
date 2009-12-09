@@ -155,6 +155,7 @@ gui/app/config/sql/i18n.php -text
 gui/app/config/sql/i18n.sql -text
 gui/app/config/sql/sessions.php -text
 gui/app/config/sql/sessions.sql -text
+gui/app/controllers/bin_controller.php -text
 gui/app/controllers/callback_in_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
 gui/app/controllers/categories_controller.php -text
@@ -203,6 +204,7 @@ gui/app/vendors/ivr_xml.php -text
 gui/app/vendors/shells/tasks/empty -text
 gui/app/vendors/shells/templates/empty -text
 gui/app/vendors/spooler_ff.php -text
+gui/app/views/bin/index.ctp -text
 gui/app/views/callback_in/index.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/categories/add.ctp -text

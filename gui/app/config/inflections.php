@@ -38,7 +38,7 @@
  *
  * $uninflectedPlural = array('.*[nrlm]ese', '.*deer', '.*fish', '.*measles', '.*ois', '.*pox');
  */
-	$uninflectedPlural = array('callback_in');
+	$uninflectedPlural = array('callback_in','bin');
 /**
  * This is a key => value array of plural irregular words.
  * If key matches then the value is returned.

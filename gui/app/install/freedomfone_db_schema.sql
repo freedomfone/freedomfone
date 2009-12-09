@@ -1,163 +1,26 @@
-use freedomfone;
-
-DROP TABLE IF EXISTS `categories`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `categories` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `name` varchar(100) NOT NULL,
-  `longname` varchar(200) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
 --
--- Table structure for table `lm_menus`
+-- Table structure for table `bin`
 --
 
-DROP TABLE IF EXISTS `lm_menus`;
+DROP TABLE IF EXISTS `bin`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-CREATE TABLE `lm_menus` (
+CREATE TABLE `bin` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `trunk` smallint(6) NOT NULL,
-  `lmWelcomeMessage` text,
-  `lmInformMessage` text,
-  `lmInvalidMessage` text,
-  `lmLongMessage` text,
-  `lmSelectMessage` text,
-  `lmDeleteMessage` text,
-  `lmSaveMessage` text,
-  `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `instance_id` (`instance_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
-INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100);
-
-
---
--- Table structure for table `messages`
---
-
-DROP TABLE IF EXISTS `messages`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `messages` (
-  `id` int(11) unsigned NOT NULL auto_increment,
+  `body` varchar(200) NOT NULL,
   `sender` varchar(200) NOT NULL,
-  `title` varchar(200) NOT NULL default 'No title',
-  `rate` smallint(6) default '0',
-  `file` varchar(200) NOT NULL,
-  `category_id` int(11) unsigned default NULL,
-  `created` int(11) unsigned NOT NULL,
-  `modified` int(11) unsigned default '0',
-  `url` varchar(100) default NULL,
-  `new` tinyint(1) default '1',
-  `status` tinyint(4) default '1',
-  `length` int(11) default NULL,
-  `instance_id` int(6) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `messages_tags`
---
-
-DROP TABLE IF EXISTS `messages_tags`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `messages_tags` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `message_id` int(11) unsigned default NULL,
- `tag_id` int(11) unsigned default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `nodes`
---
-
-DROP TABLE IF EXISTS `nodes`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `nodes` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `instance_id` int(6) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `file` varchar(100) NOT NULL,
-  `created` int(11) unsigned NOT NULL,
-  `modified` int(11) unsigned default '0',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `polls`
---
-
-DROP TABLE IF EXISTS `polls`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `polls` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `question` varchar(200) NOT NULL,
-  `code` varchar(10) NOT NULL,
   `created` int(10) unsigned default NULL,
-  `start_time` datetime default NULL,
-  `end_time` datetime default NULL,
-  `status` tinyint(4) default NULL,
-  `instance_id` int(6) NOT NULL,
+  `mode` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `tags`
---
-
-DROP TABLE IF EXISTS `tags`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `tags` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `name` varchar(100) NOT NULL,
-  `longname` varchar(200) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `votes`
---
-
-DROP TABLE IF EXISTS `votes`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `votes` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `poll_id` int(10) unsigned NOT NULL,
-  `chtext` varchar(128) default NULL,
-  `chvotes` int(10) unsigned default '0',
-  `chorder` int(11) default '0',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
 
 --
 -- Table structure for table `callback_in`
 --
 
+DROP TABLE IF EXISTS `callback_in`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `callback_in` (
@@ -171,13 +34,14 @@ CREATE TABLE `callback_in` (
   `status` tinyint(2) default NULL,
   `proto` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `callback_settings`
 --
 
+DROP TABLE IF EXISTS `callback_settings`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `callback_settings` (
@@ -188,14 +52,30 @@ CREATE TABLE `callback_settings` (
   `limit_user` smallint(6) NOT NULL default '20',
   `limit_time` smallint(6) default NULL,
   PRIMARY KEY  (`id`)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `categories` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(100) NOT NULL,
+  `longname` varchar(200) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `ivr_menus`
 --
 
-
+DROP TABLE IF EXISTS `ivr_menus`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `ivr_menus` (
@@ -232,5 +112,156 @@ CREATE TABLE `ivr_menus` (
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
   PRIMARY KEY  (`id`)
-);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `lm_menus`
+--
+
+DROP TABLE IF EXISTS `lm_menus`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `lm_menus` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `trunk` smallint(6) NOT NULL,
+  `lmWelcomeMessage` text,
+  `lmInformMessage` text,
+  `lmInvalidMessage` text,
+  `lmLongMessage` text,
+  `lmSelectMessage` text,
+  `lmDeleteMessage` text,
+  `lmSaveMessage` text,
+  `lmGoodbyeMessage` text,
+  `instance_id` int(6) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `instance_id` (`instance_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100);
+--
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `messages` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `sender` varchar(200) NOT NULL,
+  `title` varchar(200) NOT NULL default 'No title',
+  `rate` smallint(6) default '0',
+  `file` varchar(200) NOT NULL,
+  `category_id` int(11) unsigned default NULL,
+  `created` int(11) unsigned NOT NULL,
+  `modified` int(11) unsigned default '0',
+  `url` varchar(100) default NULL,
+  `new` tinyint(1) default '1',
+  `status` tinyint(4) default '1',
+  `length` int(11) default NULL,
+  `instance_id` int(6) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `file` (`file`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `messages_tags`
+--
+
+DROP TABLE IF EXISTS `messages_tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `messages_tags` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `message_id` int(11) unsigned default NULL,
+  `tag_id` int(11) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `nodes`
+--
+
+DROP TABLE IF EXISTS `nodes`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `nodes` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `instance_id` int(6) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `file` varchar(100) NOT NULL,
+  `created` int(11) unsigned NOT NULL,
+  `modified` int(11) unsigned default '0',
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `file` (`file`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `polls`
+--
+
+DROP TABLE IF EXISTS `polls`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `polls` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `question` varchar(200) NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `created` int(10) unsigned default NULL,
+  `start_time` datetime default NULL,
+  `end_time` datetime default NULL,
+  `status` tinyint(4) default NULL,
+  `instance_id` int(6) NOT NULL,
+  `incorrect_open` int(10) unsigned default NULL,
+  `incorrect_closed` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `tags` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(100) NOT NULL,
+  `longname` varchar(200) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `votes`
+--
+
+DROP TABLE IF EXISTS `votes`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `votes` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `poll_id` int(10) unsigned NOT NULL,
+  `chtext` varchar(128) default NULL,
+  `chvotes` int(10) unsigned default '0',
+  `votes_closed` int(10) unsigned default '0',
+  PRIMARY KEY  (`id`),
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2009-12-09 20:50:19

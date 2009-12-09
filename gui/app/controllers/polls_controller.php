@@ -13,79 +13,11 @@ class PollsController extends AppController{
       function refresh(){
 
       $this->autoRender = false;
-
-      $array = Configure::read('poll_in');
-
-	      
-	       $obj = new ff_event($array);	       
-
-	       if ($obj -> auth != true) {
-
-    	       die(printf("Unable to authenticate\r\n"));
-	       }
-
-
-      	    while ($entry = $obj->getNext('update')){
-	    
-
  
-		$_message= explode(' ',$entry['Body']);
-		$polls_code   =  trim($_message[0]);
-		$votes_chtext =  trim($_message[1]);
-		$matched      =  false;
-	
-		//if a poll entry with this code exists
-		if ($poll_entry = $this->Poll->findByCode( $polls_code)){
-
-	
- 	   if($poll_entry['Poll']['status']==1){
-
-				//get valid poll chtext
-	   		foreach ($poll_entry['Vote'] as $key => $vote){
-	
-				if (strcasecmp($votes_chtext,$vote['chtext'])==0){
-
-			   	   //update vote with one
-		   	   	   $vote_id = $vote['id'];
-		   	   	   $this->Poll->Vote->query("UPDATE votes SET chvotes=chvotes+1 WHERE id=$vote_id "); 
-		   	   	   $matched=true;
-		   	   	   $this->log("Msg: NEW VOTE; To: ".$polls_code."; Chtext: ".$votes_chtext."; From: ".$entry['sender']."; Timestamp: ".$entry['Event-Date-Timestamp'], "poll");
-		   		 }
-	 	         }
-
-	 		 //Poll messages has not been matched. Add to trash.
-	 		 if (!$matched){
-				$this->log("Msg: INCORRECT CHTEXT; To: ".$polls_code."; Chtext: ".$votes_chtext." From: ".$entry['sender']."; Timestamp: ".$entry['Event-Date-Timestamp'],"poll");
-	 	         }
-
-			// $this->log($entry['sender']." ".$entry['Event-Date-Timestamp']." ".$entry['Body']." ".$polls_code." ".$vote['chtext']." SMS","poll");	
-	          }		 
-
-	   	  else {
-
-	   	         $this->log("Msg: CLOSED POLL; To: ".$polls_code."; Chtext: ".$votes_chtext."; From: ".$entry['sender']."; Timestamp: ".$entry['Event-Date-Timestamp'] , "poll");
-	          }
-   
-		}	
-
-	   	else {
-
-	   	         $this->log("Msg: INCORRECT POLL; To: ".$polls_code."; Chtext: ".$votes_chtext."; From: ".$entry['sender']."; Timestamp: ".$entry['Event-Date-Timestamp'] , "poll");
-	        }
-
-          }
-
-
-	// Update status of polls (use beforeSave to update status)
-
-	$data = $this->Poll->findAll();
-
-	foreach ($data as $key => $entry){
-
-		$this->Poll->save($entry);
-	}
+      $this->Poll->refresh();
 
       }
+
 
 
       function index(){

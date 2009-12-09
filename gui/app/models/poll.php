@@ -125,7 +125,7 @@ class Poll extends AppModel{
 		$polls_code   	=  trim($_message[0]);
 		$votes_chtext 	=  trim($_message[1]);
 		$sender		=  $entry['sender'];
-		$created	=  $entry['Event-Date-Timestamp'];
+	        $created = floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
 
 		// CHECK A: CODE OK (VALID OR INCORRECT)

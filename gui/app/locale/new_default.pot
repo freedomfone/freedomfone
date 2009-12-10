@@ -1,0 +1,1845 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# No version information was available in the source files.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-12-10 13:25+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /controllers/callback_in_controller.php:26
+msgid "Invalid page"
+msgstr ""
+
+#: /controllers/categories_controller.php:22
+msgid "The category has been saved"
+msgstr ""
+
+#: /controllers/categories_controller.php:25
+msgid "The category could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/categories_controller.php:45
+msgid "Invalid Category"
+msgstr ""
+
+#: /controllers/categories_controller.php:79
+msgid "The Category has been saved"
+msgstr ""
+
+#: /controllers/categories_controller.php:82
+msgid "The Category could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:111
+msgid "The voice menu has been created!"
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:133
+msgid "Invalid option"
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:243
+msgid "The voice menu has been deleted."
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:20
+msgid "Invalid Entry"
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:70
+msgid "Your data has been saved"
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:77
+msgid "Your data could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/nodes_controller.php:66
+msgid "The voice menu node has been created."
+msgstr ""
+
+#: /controllers/nodes_controller.php:79
+msgid "No file selected"
+msgstr ""
+
+#: /controllers/nodes_controller.php:141
+msgid "Invalid audio file"
+msgstr ""
+
+#: /controllers/nodes_controller.php:177
+msgid "The settings has been saved"
+msgstr ""
+
+#: /controllers/polls_controller.php:34
+#: /views/polls/view.ctp:6
+msgid "Refresh"
+msgstr ""
+
+#: /controllers/polls_controller.php:89
+msgid "The poll has been added to the database"
+msgstr ""
+
+#: /controllers/polls_controller.php:123;137
+msgid "Invalid Poll"
+msgstr ""
+
+#: /controllers/polls_controller.php:173
+msgid "Your poll has been created."
+msgstr ""
+
+#: /controllers/tags_controller.php:27;48
+msgid "The tag has been saved"
+msgstr ""
+
+#: /controllers/tags_controller.php:30
+msgid "The tag could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/tags_controller.php:43
+msgid "Invalid Tag"
+msgstr ""
+
+#: /controllers/tags_controller.php:51
+msgid "The Tag could not be saved. Please, try again."
+msgstr ""
+
+#: /views/bin/index.ctp:4
+msgid "Unclassified SMS"
+msgstr ""
+
+#: /views/bin/index.ctp:6
+#: /views/messages/archive.ctp:6
+#: /views/messages/index.ctp:8
+msgid "Message:"
+msgstr ""
+
+#: /views/bin/index.ctp:6
+#: /views/messages/archive.ctp:6
+#: /views/messages/index.ctp:8
+#: /views/nodes/index.ctp:12
+msgid "-"
+msgstr ""
+
+#: /views/bin/index.ctp:6
+#: /views/callback_in/index.ctp:12
+#: /views/messages/archive.ctp:6
+#: /views/messages/index.ctp:8
+#: /views/messages/toggle.ctp:12
+#: /views/nodes/index.ctp:12
+msgid "of"
+msgstr ""
+
+#: /views/bin/index.ctp:18
+msgid "Body"
+msgstr ""
+
+#: /views/bin/index.ctp:19
+#: /views/ivr_menus/index.ctp:19
+#: /views/messages/archive.ctp:19
+#: /views/messages/edit.ctp:60
+#: /views/messages/index.ctp:24
+#: /views/messages/toggle.ctp:23
+#: /views/nodes/index.ctp:20
+msgid "Created"
+msgstr ""
+
+#: /views/bin/index.ctp:20;39
+#: /views/categories/index.ctp:15
+#: /views/ivr_menus/index.ctp:22
+#: /views/messages/archive.ctp:23;79
+#: /views/messages/index.ctp:28;75
+#: /views/messages/toggle.ctp:27;123
+#: /views/nodes/index.ctp:23
+#: /views/polls/index.ctp:15
+#: /views/tags/index.ctp:15
+msgid "Delete"
+msgstr ""
+
+#: /views/bin/index.ctp:28
+msgid "Are you sure you want to delete this entry?"
+msgstr ""
+
+#: /views/bin/index.ctp:45
+msgid "No of entries per page: "
+msgstr ""
+
+#: /views/bin/index.ctp:49
+#: /views/callback_in/index.ctp:8
+#: /views/messages/archive.ctp:90
+#: /views/messages/index.ctp:86
+#: /views/messages/toggle.ctp:8
+#: /views/nodes/index.ctp:68
+msgid "All"
+msgstr ""
+
+#: /views/callback_in/index.ctp:4
+msgid "Show callback records: "
+msgstr ""
+
+#: /views/callback_in/index.ctp:11
+msgid "Callback requests"
+msgstr ""
+
+#: /views/callback_in/index.ctp:12
+#: /views/messages/toggle.ctp:12
+msgid "Records"
+msgstr ""
+
+#: /views/callback_in/index.ctp:12
+#: /views/messages/toggle.ctp:12
+msgid "to"
+msgstr ""
+
+#: /views/callback_in/index.ctp:20
+#: /views/messages/edit.ctp:45
+#: /views/polls/index.ctp:15
+#: /views/polls/view.ctp:66
+msgid "Status"
+msgstr ""
+
+#: /views/callback_in/index.ctp:22
+msgid "From"
+msgstr ""
+
+#: /views/callback_in/index.ctp:23
+msgid "Mode"
+msgstr ""
+
+#: /views/callback_in/index.ctp:24
+msgid "Protocol"
+msgstr ""
+
+#: /views/callback_in/index.ctp:25
+msgid "Date"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:4;5
+msgid "No limit"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:6
+msgid "Callback settings"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:21
+msgid "Default response"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:22
+msgid "Default callback response"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:25
+msgid "Max calls"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:26;30
+msgid "Limit the number of calls per user per day."
+msgstr ""
+
+#: /views/callback_settings/index.ctp:29
+msgid "Period"
+msgstr ""
+
+#: /views/categories/add.ctp:2
+msgid "Add Category"
+msgstr ""
+
+#: /views/categories/add.ctp:13
+#: /views/categories/edit.ctp:15
+#: /views/categories/index.ctp:15
+#: /views/messages/archive.ctp:18
+#: /views/messages/edit.ctp:48
+#: /views/messages/index.ctp:23
+#: /views/messages/toggle.ctp:22
+msgid "Category"
+msgstr ""
+
+#: /views/categories/add.ctp:14
+#: /views/categories/edit.ctp:16
+#: /views/categories/index.ctp:15
+#: /views/tags/add.ctp:14
+#: /views/tags/edit.ctp:28
+#: /views/tags/index.ctp:15
+msgid "Description"
+msgstr ""
+
+#: /views/categories/edit.ctp:5
+msgid "Edit Category"
+msgstr ""
+
+#: /views/categories/edit.ctp:17
+msgid "Use in message"
+msgstr ""
+
+#: /views/categories/edit.ctp:25
+msgid "No category with this id exists"
+msgstr ""
+
+#: /views/categories/index.ctp:3
+msgid "Manage Categories"
+msgstr ""
+
+#: /views/categories/index.ctp:15
+#: /views/ivr_menus/index.ctp:21
+#: /views/messages/archive.ctp:22
+#: /views/messages/index.ctp:27
+#: /views/messages/toggle.ctp:26
+#: /views/nodes/index.ctp:22
+#: /views/polls/index.ctp:15
+#: /views/tags/index.ctp:15
+msgid "Edit"
+msgstr ""
+
+#: /views/categories/index.ctp:36
+msgid "No categories exist. Please create a category by clicking on the green button to the right."
+msgstr ""
+
+#: /views/elements/callback_status.ctp:6
+msgid "Rejected"
+msgstr ""
+
+#: /views/elements/callback_status.ctp:10
+msgid "Accepted"
+msgstr ""
+
+#: /views/elements/menu.ctp:9
+msgid "Home"
+msgstr ""
+
+#: /views/elements/menu.ctp:13
+msgid "Freedom Fone"
+msgstr ""
+
+#: /views/elements/menu.ctp:18
+#: /views/pages/about.ctp:3
+msgid "About"
+msgstr ""
+
+#: /views/elements/menu.ctp:23
+msgid "Architecture"
+msgstr ""
+
+#: /views/elements/menu.ctp:27
+msgid "Functionality"
+msgstr ""
+
+#: /views/elements/menu.ctp:32
+msgid "Download"
+msgstr ""
+
+#: /views/elements/menu.ctp:45
+#: /views/pages/functionality/leave-a-message.ctp:3
+msgid "Poll"
+msgstr ""
+
+#: /views/elements/menu.ctp:49
+msgid "Create poll"
+msgstr ""
+
+#: /views/elements/menu.ctp:55
+msgid "Manage polls"
+msgstr ""
+
+#: /views/elements/menu.ctp:60
+msgid "Unclassified"
+msgstr ""
+
+#: /views/elements/menu.ctp:73
+msgid "Leave-a-Message"
+msgstr ""
+
+#: /views/elements/menu.ctp:77
+msgid "Inbox"
+msgstr ""
+
+#: /views/elements/menu.ctp:82
+#: /views/elements/message_status.ctp:7
+#: /views/messages/edit.ctp:10
+#: /views/messages/index.ctp:76
+#: /views/messages/toggle.ctp:124
+msgid "Archive"
+msgstr ""
+
+#: /views/elements/menu.ctp:87
+msgid "Tags"
+msgstr ""
+
+#: /views/elements/menu.ctp:91
+msgid "Categories"
+msgstr ""
+
+#: /views/elements/menu.ctp:95
+msgid "IVR Menu"
+msgstr ""
+
+#: /views/elements/menu.ctp:109;118
+#: /views/ivr_menus/index.ctp:6
+#: /views/pages/functionality/callback.ctp:3
+msgid "Voice menus"
+msgstr ""
+
+#: /views/elements/menu.ctp:113
+#: /views/nodes/index.ctp:8
+msgid "Audio files"
+msgstr ""
+
+#: /views/elements/menu.ctp:131
+#: /views/pages/functionality/ivr.ctp:4
+msgid "Callback"
+msgstr ""
+
+#: /views/elements/menu.ctp:135
+msgid "Callbacks"
+msgstr ""
+
+#: /views/elements/menu.ctp:140
+msgid "Settings"
+msgstr ""
+
+#: /views/elements/message_status.ctp:13
+#: /views/messages/edit.ctp:10
+msgid "Active"
+msgstr ""
+
+#: /views/elements/message_status.ctp:24
+msgid "N/A"
+msgstr ""
+
+#: /views/elements/message_status.ctp:41
+msgid "Never"
+msgstr ""
+
+#: /views/elements/musicplayer_button.ctp:53
+msgid "No audio file available"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:9;26
+msgid "Pending"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:13;29
+#: /views/polls/index.ctp:15
+msgid "Open"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:17;32
+msgid "Closed"
+msgstr ""
+
+#: /views/helpers/formatting.php:29
+msgid "h"
+msgstr ""
+
+#: /views/helpers/formatting.php:35
+msgid "min"
+msgstr ""
+
+#: /views/helpers/formatting.php:40
+msgid "sec"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:2
+msgid "Create voice menu"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:12
+#: /views/ivr_menus/edit.ctp:15
+msgid "Name of IVR"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:13
+#: /views/ivr_menus/edit.ctp:16
+msgid "Long greeting message:include a brief description of the services offered and the menu alternatives."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:14
+#: /views/ivr_menus/edit.ctp:17
+msgid "Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:15;16;17
+#: /views/ivr_menus/edit.ctp:18;19;20
+msgid ""
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:19
+#: /views/ivr_menus/edit.ctp:21
+msgid "Select option for alternative 1."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:20
+#: /views/ivr_menus/edit.ctp:22
+msgid "Select option for alternative 2."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:23;24;25
+#: /views/ivr_menus/edit.ctp:23;24;25
+#: /views/lm_menus/settings.ctp:18;19;20;21;22;23;24;25
+msgid "Default: "
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:35
+#: /views/ivr_menus/edit.ctp:36
+msgid "Name"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:40
+#: /views/ivr_menus/edit.ctp:42
+msgid "1. Welcome"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:46
+#: /views/ivr_menus/edit.ctp:49
+msgid "2. Instructions"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:52
+#: /views/ivr_menus/edit.ctp:54
+msgid "3. Goodbye"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:58
+#: /views/ivr_menus/edit.ctp:58
+msgid "4. Invalid"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:64
+#: /views/ivr_menus/edit.ctp:65
+msgid "Menu entries"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:4
+msgid "Edit voice menu"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:41
+msgid "Default menu options"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:80
+msgid "No IVR with this id exists"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:16
+msgid "Default"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:17
+#: /views/messages/archive.ctp:16
+#: /views/messages/edit.ctp:44
+#: /views/messages/index.ctp:21
+#: /views/messages/toggle.ctp:20
+#: /views/nodes/add.ctp:11
+#: /views/nodes/edit.ctp:19
+#: /views/nodes/index.ctp:18
+msgid "Title"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:18
+msgid "Greeting"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:20
+#: /views/messages/archive.ctp:20
+#: /views/messages/index.ctp:25
+#: /views/messages/toggle.ctp:24
+#: /views/nodes/index.ctp:21
+msgid "Last modified"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:45
+msgid "Are you sure you want to delete this voice menu?"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:8
+msgid "Create Leave a Message IVR"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:14
+msgid "Please upload a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button."
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:35
+msgid "Step 1: Welcome message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:42
+msgid "Step 2: Inform message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:49
+msgid "Step 3: Invalid message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:57
+msgid "Step 4: Long message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:63
+msgid "Step 5: Select message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:69
+msgid "Step 6: Delete message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:75
+msgid "Step 7: Save message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:82
+msgid "Step 8: Goodbye message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:95
+msgid "Invalid page."
+msgstr ""
+
+#: /views/messages/archive.ctp:4
+msgid "Archived messages"
+msgstr ""
+
+#: /views/messages/archive.ctp:15
+#: /views/messages/index.ctp:20
+#: /views/messages/toggle.ctp:19
+msgid "New"
+msgstr ""
+
+#: /views/messages/archive.ctp:17
+#: /views/messages/edit.ctp:46
+#: /views/messages/index.ctp:22
+#: /views/messages/toggle.ctp:21
+msgid "Rate"
+msgstr ""
+
+#: /views/messages/archive.ctp:21
+#: /views/messages/edit.ctp:62
+#: /views/messages/index.ctp:26
+#: /views/messages/toggle.ctp:25
+msgid "Length"
+msgstr ""
+
+#: /views/messages/archive.ctp:24
+#: /views/messages/edit.ctp:64
+#: /views/messages/index.ctp:29
+#: /views/messages/toggle.ctp:28
+#: /views/nodes/index.ctp:24
+msgid "Listen"
+msgstr ""
+
+#: /views/messages/archive.ctp:49
+#: /views/messages/index.ctp:50
+#: /views/messages/toggle.ctp:91
+msgid "Are you sure you want to delete this message?"
+msgstr ""
+
+#: /views/messages/archive.ctp:80
+msgid "Activate"
+msgstr ""
+
+#: /views/messages/archive.ctp:86
+#: /views/messages/index.ctp:82
+msgid "No of messages per page: "
+msgstr ""
+
+#: /views/messages/edit.ctp:24
+msgid "Edit Message"
+msgstr ""
+
+#: /views/messages/edit.ctp:35
+msgid "Save & Index"
+msgstr ""
+
+#: /views/messages/edit.ctp:37
+msgid "Save & Next"
+msgstr ""
+
+#: /views/messages/edit.ctp:47
+#: /views/tags/add.ctp:13
+#: /views/tags/edit.ctp:27
+#: /views/tags/index.ctp:15
+msgid "Tag"
+msgstr ""
+
+#: /views/messages/edit.ctp:61
+msgid "Modified"
+msgstr ""
+
+#: /views/messages/edit.ctp:63
+msgid "Author"
+msgstr ""
+
+#: /views/messages/edit.ctp:72
+msgid "No messsage with this id exists"
+msgstr ""
+
+#: /views/messages/index.ctp:4
+#: /views/messages/toggle.ctp:11
+msgid "Audio Messages"
+msgstr ""
+
+#: /views/messages/toggle.ctp:4
+msgid "Show records: "
+msgstr ""
+
+#: /views/nodes/add.ctp:4
+msgid "Create voice menu node"
+msgstr ""
+
+#: /views/nodes/add.ctp:17
+#: /views/nodes/edit.ctp:24
+msgid "Audio file"
+msgstr ""
+
+#: /views/nodes/add.ctp:18
+msgid "Valid format: wav"
+msgstr ""
+
+#: /views/nodes/edit.ctp:5
+msgid "Edit audio file"
+msgstr ""
+
+#: /views/nodes/edit.ctp:25
+msgid "If you select a file, the previous one will be deleted. Valid format: wav"
+msgstr ""
+
+#: /views/nodes/edit.ctp:28
+msgid "Listen to uploaded file"
+msgstr ""
+
+#: /views/nodes/edit.ctp:36
+msgid "No audio file with that id exists"
+msgstr ""
+
+#: /views/nodes/index.ctp:12
+msgid "Audio files:"
+msgstr ""
+
+#: /views/nodes/index.ctp:37
+msgid "Are you sure you want to delete this audio file?"
+msgstr ""
+
+#: /views/nodes/index.ctp:64
+msgid "Number of audio files per page: "
+msgstr ""
+
+#: /views/nodes/index.ctp:76
+msgid "No audio files are uploaded. Please upload an audio file by clicking on the green button to the right."
+msgstr ""
+
+#: /views/pages/contact.ctp:3
+msgid "Contact us"
+msgstr ""
+
+#: /views/pages/contact.ctp:6
+msgid "Email"
+msgstr ""
+
+#: /views/pages/contact.ctp:7
+msgid "Twitter"
+msgstr ""
+
+#: /views/pages/contact.ctp:8
+msgid "Fone"
+msgstr ""
+
+#: /views/pages/contact.ctp:9
+msgid "Fax"
+msgstr ""
+
+#: /views/pages/home.ctp:3
+msgid "Welcome to Freedom Fone"
+msgstr ""
+
+#: /views/pages/functionality/ivr.ctp:4
+#: /views/pages/functionality/poll.ctp:3
+msgid "Leave-a-message"
+msgstr ""
+
+#: /views/pages/functionality/leave-a-message.ctp:3
+msgid "Voice Menus"
+msgstr ""
+
+#: /views/polls/add.ctp:5
+msgid "Create new poll"
+msgstr ""
+
+#: /views/polls/add.ctp:15
+#: /views/polls/edit.ctp:11
+#: /views/polls/index.ctp:15
+#: /views/polls/view.ctp:15
+msgid "Question"
+msgstr ""
+
+#: /views/polls/add.ctp:16
+#: /views/polls/edit.ctp:12
+msgid "Define a concrete question using simple language"
+msgstr ""
+
+#: /views/polls/add.ctp:17
+#: /views/polls/edit.ctp:13
+msgid "SMS Code"
+msgstr ""
+
+#: /views/polls/add.ctp:18;26
+#: /views/polls/edit.ctp:14;19
+msgid "Alpha-numeric characters only (maximum 10)"
+msgstr ""
+
+#: /views/polls/add.ctp:25
+#: /views/polls/edit.ctp:18
+msgid "Poll options"
+msgstr ""
+
+#: /views/polls/add.ctp:30;31
+#: /views/polls/edit.ctp:25
+msgid "Option"
+msgstr ""
+
+#: /views/polls/add.ctp:38
+msgid "Add"
+msgstr ""
+
+#: /views/polls/add.ctp:44
+#: /views/polls/edit.ctp:32
+msgid "Start and end time"
+msgstr ""
+
+#: /views/polls/add.ctp:45
+#: /views/polls/edit.ctp:33
+msgid "When would you like to open and close the poll?"
+msgstr ""
+
+#: /views/polls/add.ctp:49
+#: /views/polls/edit.ctp:37
+#: /views/polls/view.ctp:67
+msgid "Start time"
+msgstr ""
+
+#: /views/polls/add.ctp:50
+#: /views/polls/edit.ctp:38
+#: /views/polls/view.ctp:68
+msgid "End time"
+msgstr ""
+
+#: /views/polls/edit.ctp:5
+msgid "Edit Poll"
+msgstr ""
+
+#: /views/polls/index.ctp:3
+msgid "Polls"
+msgstr ""
+
+#: /views/polls/index.ctp:15
+msgid "Code"
+msgstr ""
+
+#: /views/polls/index.ctp:15
+#: /views/polls/view.ctp:25
+msgid "Votes"
+msgstr ""
+
+#: /views/polls/index.ctp:15
+msgid "Close"
+msgstr ""
+
+#: /views/polls/index.ctp:33
+msgid "Are you sure you want to delete this poll?"
+msgstr ""
+
+#: /views/polls/index.ctp:50
+msgid "System time"
+msgstr ""
+
+#: /views/polls/index.ctp:56
+msgid "No polls exists. Please create one by click on the green button to the right."
+msgstr ""
+
+#: /views/polls/view.ctp:17
+msgid "SMS code"
+msgstr ""
+
+#: /views/polls/view.ctp:20
+msgid "Result"
+msgstr ""
+
+#: /views/polls/view.ctp:25
+msgid "Options"
+msgstr ""
+
+#: /views/polls/view.ctp:25
+msgid "Percentage"
+msgstr ""
+
+#: /views/polls/view.ctp:25
+msgid "Late votes"
+msgstr ""
+
+#: /views/polls/view.ctp:55
+msgid "Invalid"
+msgstr ""
+
+#: /views/polls/view.ctp:58
+msgid "Total number of votes (in time): "
+msgstr ""
+
+#: /views/polls/view.ctp:59
+msgid "Total number of late votes: "
+msgstr ""
+
+#: /views/polls/view.ctp:63
+msgid "Poll information"
+msgstr ""
+
+#: /views/polls/view.ctp:75
+msgid "No poll with this id exists"
+msgstr ""
+
+#: /views/tags/add.ctp:2
+msgid "Add Tag"
+msgstr ""
+
+#: /views/tags/edit.ctp:6
+msgid "Edit Tag"
+msgstr ""
+
+#: /views/tags/edit.ctp:29
+msgid "Use in"
+msgstr ""
+
+#: /views/tags/edit.ctp:37
+msgid "No tag with this id exists"
+msgstr ""
+
+#: /views/tags/index.ctp:3
+msgid "Manage Tags"
+msgstr ""
+
+#: /views/tags/index.ctp:35
+msgid "No tags exist. Please create a tag by clicking on the green button to the right."
+msgstr ""
+
+#: /controllers/callback_in_controller.php:26;26
+msgid "Invalid page"
+msgstr ""
+
+#: /controllers/categories_controller.php:22;22
+msgid "The category has been saved"
+msgstr ""
+
+#: /controllers/categories_controller.php:25;25
+msgid "The category could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/categories_controller.php:45;45
+msgid "Invalid Category"
+msgstr ""
+
+#: /controllers/categories_controller.php:79;79
+msgid "The Category has been saved"
+msgstr ""
+
+#: /controllers/categories_controller.php:82;82
+msgid "The Category could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:111;111
+msgid "The voice menu has been created!"
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:133;133
+msgid "Invalid option"
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:243;243
+msgid "The voice menu has been deleted."
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:20;20
+msgid "Invalid Entry"
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:70;70
+msgid "Your data has been saved"
+msgstr ""
+
+#: /controllers/lm_menus_controller.php:77;77
+msgid "Your data could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/nodes_controller.php:66;66
+msgid "The voice menu node has been created."
+msgstr ""
+
+#: /controllers/nodes_controller.php:79;79
+msgid "No file selected"
+msgstr ""
+
+#: /controllers/nodes_controller.php:141;141
+msgid "Invalid audio file"
+msgstr ""
+
+#: /controllers/nodes_controller.php:177;177
+msgid "The settings has been saved"
+msgstr ""
+
+#: /controllers/polls_controller.php:34;34
+#: /views/polls/view.ctp:6;6
+msgid "Refresh"
+msgstr ""
+
+#: /controllers/polls_controller.php:89;89
+msgid "The poll has been added to the database"
+msgstr ""
+
+#: /controllers/polls_controller.php:123;137;123;137
+msgid "Invalid Poll"
+msgstr ""
+
+#: /controllers/polls_controller.php:173;173
+msgid "Your poll has been created."
+msgstr ""
+
+#: /controllers/tags_controller.php:27;48;27;48
+msgid "The tag has been saved"
+msgstr ""
+
+#: /controllers/tags_controller.php:30;30
+msgid "The tag could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/tags_controller.php:43;43
+msgid "Invalid Tag"
+msgstr ""
+
+#: /controllers/tags_controller.php:51;51
+msgid "The Tag could not be saved. Please, try again."
+msgstr ""
+
+#: /views/bin/index.ctp:4;4
+msgid "Unclassified SMS"
+msgstr ""
+
+#: /views/bin/index.ctp:6;6
+#: /views/messages/archive.ctp:6;6
+#: /views/messages/index.ctp:8;8
+msgid "Message:"
+msgstr ""
+
+#: /views/bin/index.ctp:6;6
+#: /views/messages/archive.ctp:6;6
+#: /views/messages/index.ctp:8;8
+#: /views/nodes/index.ctp:12;12
+msgid "-"
+msgstr ""
+
+#: /views/bin/index.ctp:6;6
+#: /views/callback_in/index.ctp:12;12
+#: /views/messages/archive.ctp:6;6
+#: /views/messages/index.ctp:8;8
+#: /views/messages/toggle.ctp:12;12
+#: /views/nodes/index.ctp:12;12
+msgid "of"
+msgstr ""
+
+#: /views/bin/index.ctp:18;18
+msgid "Body"
+msgstr ""
+
+#: /views/bin/index.ctp:19;19
+#: /views/ivr_menus/index.ctp:19;19
+#: /views/messages/archive.ctp:19;19
+#: /views/messages/edit.ctp:60;60
+#: /views/messages/index.ctp:24;24
+#: /views/messages/toggle.ctp:23;23
+#: /views/nodes/index.ctp:20;20
+msgid "Created"
+msgstr ""
+
+#: /views/bin/index.ctp:20;39;20;39
+#: /views/categories/index.ctp:15;15
+#: /views/ivr_menus/index.ctp:22;22
+#: /views/messages/archive.ctp:23;79;23;79
+#: /views/messages/index.ctp:28;75;28;75
+#: /views/messages/toggle.ctp:27;123;27;123
+#: /views/nodes/index.ctp:23;23
+#: /views/polls/index.ctp:15;15
+#: /views/tags/index.ctp:15;15
+msgid "Delete"
+msgstr ""
+
+#: /views/bin/index.ctp:28;28
+msgid "Are you sure you want to delete this entry?"
+msgstr ""
+
+#: /views/bin/index.ctp:45;45
+msgid "No of entries per page: "
+msgstr ""
+
+#: /views/bin/index.ctp:49;49
+#: /views/callback_in/index.ctp:8;8
+#: /views/messages/archive.ctp:90;90
+#: /views/messages/index.ctp:86;86
+#: /views/messages/toggle.ctp:8;8
+#: /views/nodes/index.ctp:68;68
+msgid "All"
+msgstr ""
+
+#: /views/callback_in/index.ctp:4;4
+msgid "Show callback records: "
+msgstr ""
+
+#: /views/callback_in/index.ctp:11;11
+msgid "Callback requests"
+msgstr ""
+
+#: /views/callback_in/index.ctp:12;12
+#: /views/messages/toggle.ctp:12;12
+msgid "Records"
+msgstr ""
+
+#: /views/callback_in/index.ctp:12;12
+#: /views/messages/toggle.ctp:12;12
+msgid "to"
+msgstr ""
+
+#: /views/callback_in/index.ctp:20;20
+#: /views/messages/edit.ctp:45;45
+#: /views/polls/index.ctp:15;15
+#: /views/polls/view.ctp:66;66
+msgid "Status"
+msgstr ""
+
+#: /views/callback_in/index.ctp:22;22
+msgid "From"
+msgstr ""
+
+#: /views/callback_in/index.ctp:23;23
+msgid "Mode"
+msgstr ""
+
+#: /views/callback_in/index.ctp:24;24
+msgid "Protocol"
+msgstr ""
+
+#: /views/callback_in/index.ctp:25;25
+msgid "Date"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:4;5;4;5
+msgid "No limit"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:6;6
+msgid "Callback settings"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:21;21
+msgid "Default response"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:22;22
+msgid "Default callback response"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:25;25
+msgid "Max calls"
+msgstr ""
+
+#: /views/callback_settings/index.ctp:26;30;26;30
+msgid "Limit the number of calls per user per day."
+msgstr ""
+
+#: /views/callback_settings/index.ctp:29;29
+msgid "Period"
+msgstr ""
+
+#: /views/categories/add.ctp:2;2
+msgid "Add Category"
+msgstr ""
+
+#: /views/categories/add.ctp:13;13
+#: /views/categories/edit.ctp:15;15
+#: /views/categories/index.ctp:15;15
+#: /views/messages/archive.ctp:18;18
+#: /views/messages/edit.ctp:48;48
+#: /views/messages/index.ctp:23;23
+#: /views/messages/toggle.ctp:22;22
+msgid "Category"
+msgstr ""
+
+#: /views/categories/add.ctp:14;14
+#: /views/categories/edit.ctp:16;16
+#: /views/categories/index.ctp:15;15
+#: /views/tags/add.ctp:14;14
+#: /views/tags/edit.ctp:28;28
+#: /views/tags/index.ctp:15;15
+msgid "Description"
+msgstr ""
+
+#: /views/categories/edit.ctp:5;5
+msgid "Edit Category"
+msgstr ""
+
+#: /views/categories/edit.ctp:17;17
+msgid "Use in message"
+msgstr ""
+
+#: /views/categories/edit.ctp:25;25
+msgid "No category with this id exists"
+msgstr ""
+
+#: /views/categories/index.ctp:3;3
+msgid "Manage Categories"
+msgstr ""
+
+#: /views/categories/index.ctp:15;15
+#: /views/ivr_menus/index.ctp:21;21
+#: /views/messages/archive.ctp:22;22
+#: /views/messages/index.ctp:27;27
+#: /views/messages/toggle.ctp:26;26
+#: /views/nodes/index.ctp:22;22
+#: /views/polls/index.ctp:15;15
+#: /views/tags/index.ctp:15;15
+msgid "Edit"
+msgstr ""
+
+#: /views/categories/index.ctp:36;36
+msgid "No categories exist. Please create a category by clicking on the green button to the right."
+msgstr ""
+
+#: /views/elements/callback_status.ctp:6;6
+msgid "Rejected"
+msgstr ""
+
+#: /views/elements/callback_status.ctp:10;10
+msgid "Accepted"
+msgstr ""
+
+#: /views/elements/menu.ctp:9;9
+msgid "Home"
+msgstr ""
+
+#: /views/elements/menu.ctp:13;13
+msgid "Freedom Fone"
+msgstr ""
+
+#: /views/elements/menu.ctp:18;18
+#: /views/pages/about.ctp:3;3
+msgid "About"
+msgstr ""
+
+#: /views/elements/menu.ctp:23;23
+msgid "Architecture"
+msgstr ""
+
+#: /views/elements/menu.ctp:27;27
+msgid "Functionality"
+msgstr ""
+
+#: /views/elements/menu.ctp:32;32
+msgid "Download"
+msgstr ""
+
+#: /views/elements/menu.ctp:45;45
+#: /views/pages/functionality/leave-a-message.ctp:3;3
+msgid "Poll"
+msgstr ""
+
+#: /views/elements/menu.ctp:49;49
+msgid "Create poll"
+msgstr ""
+
+#: /views/elements/menu.ctp:55;55
+msgid "Manage polls"
+msgstr ""
+
+#: /views/elements/menu.ctp:60;60
+msgid "Unclassified"
+msgstr ""
+
+#: /views/elements/menu.ctp:73;73
+msgid "Leave-a-Message"
+msgstr ""
+
+#: /views/elements/menu.ctp:77;77
+msgid "Inbox"
+msgstr ""
+
+#: /views/elements/menu.ctp:82;82
+#: /views/elements/message_status.ctp:7;7
+#: /views/messages/edit.ctp:10;10
+#: /views/messages/index.ctp:76;76
+#: /views/messages/toggle.ctp:124;124
+msgid "Archive"
+msgstr ""
+
+#: /views/elements/menu.ctp:87;87
+msgid "Tags"
+msgstr ""
+
+#: /views/elements/menu.ctp:91;91
+msgid "Categories"
+msgstr ""
+
+#: /views/elements/menu.ctp:95;95
+msgid "IVR Menu"
+msgstr ""
+
+#: /views/elements/menu.ctp:109;118;109;118
+#: /views/ivr_menus/index.ctp:6;6
+#: /views/pages/functionality/callback.ctp:3;3
+msgid "Voice menus"
+msgstr ""
+
+#: /views/elements/menu.ctp:113;113
+#: /views/nodes/index.ctp:8;8
+msgid "Audio files"
+msgstr ""
+
+#: /views/elements/menu.ctp:131;131
+#: /views/pages/functionality/ivr.ctp:4;4
+msgid "Callback"
+msgstr ""
+
+#: /views/elements/menu.ctp:135;135
+msgid "Callbacks"
+msgstr ""
+
+#: /views/elements/menu.ctp:140;140
+msgid "Settings"
+msgstr ""
+
+#: /views/elements/message_status.ctp:13;13
+#: /views/messages/edit.ctp:10;10
+msgid "Active"
+msgstr ""
+
+#: /views/elements/message_status.ctp:24;24
+msgid "N/A"
+msgstr ""
+
+#: /views/elements/message_status.ctp:41;41
+msgid "Never"
+msgstr ""
+
+#: /views/elements/musicplayer_button.ctp:53;53
+msgid "No audio file available"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:9;26;9;26
+msgid "Pending"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:13;29;13;29
+#: /views/polls/index.ctp:15;15
+msgid "Open"
+msgstr ""
+
+#: /views/elements/poll_status.ctp:17;32;17;32
+msgid "Closed"
+msgstr ""
+
+#: /views/helpers/formatting.php:29;29
+msgid "h"
+msgstr ""
+
+#: /views/helpers/formatting.php:35;35
+msgid "min"
+msgstr ""
+
+#: /views/helpers/formatting.php:40;40
+msgid "sec"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:2;2
+msgid "Create voice menu"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:12;12
+#: /views/ivr_menus/edit.ctp:15;15
+msgid "Name of IVR"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:13;13
+#: /views/ivr_menus/edit.ctp:16;16
+msgid "Long greeting message:include a brief description of the services offered and the menu alternatives."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:14;14
+#: /views/ivr_menus/edit.ctp:17;17
+msgid "Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:15;16;17;15;16;17
+#: /views/ivr_menus/edit.ctp:18;19;20;18;19;20
+msgid ""
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:19;19
+#: /views/ivr_menus/edit.ctp:21;21
+msgid "Select option for alternative 1."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:20;20
+#: /views/ivr_menus/edit.ctp:22;22
+msgid "Select option for alternative 2."
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:23;24;25;23;24;25
+#: /views/ivr_menus/edit.ctp:23;24;25;23;24;25
+#: /views/lm_menus/settings.ctp:18;19;20;21;22;23;24;25;18;19;20;21;22;23;24;25
+msgid "Default: "
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:35;35
+#: /views/ivr_menus/edit.ctp:36;36
+msgid "Name"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:40;40
+#: /views/ivr_menus/edit.ctp:42;42
+msgid "1. Welcome"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:46;46
+#: /views/ivr_menus/edit.ctp:49;49
+msgid "2. Instructions"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:52;52
+#: /views/ivr_menus/edit.ctp:54;54
+msgid "3. Goodbye"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:58;58
+#: /views/ivr_menus/edit.ctp:58;58
+msgid "4. Invalid"
+msgstr ""
+
+#: /views/ivr_menus/add.ctp:64;64
+#: /views/ivr_menus/edit.ctp:65;65
+msgid "Menu entries"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:4;4
+msgid "Edit voice menu"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:41;41
+msgid "Default menu options"
+msgstr ""
+
+#: /views/ivr_menus/edit.ctp:80;80
+msgid "No IVR with this id exists"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:16;16
+msgid "Default"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:17;17
+#: /views/messages/archive.ctp:16;16
+#: /views/messages/edit.ctp:44;44
+#: /views/messages/index.ctp:21;21
+#: /views/messages/toggle.ctp:20;20
+#: /views/nodes/add.ctp:11;11
+#: /views/nodes/edit.ctp:19;19
+#: /views/nodes/index.ctp:18;18
+msgid "Title"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:18;18
+msgid "Greeting"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:20;20
+#: /views/messages/archive.ctp:20;20
+#: /views/messages/index.ctp:25;25
+#: /views/messages/toggle.ctp:24;24
+#: /views/nodes/index.ctp:21;21
+msgid "Last modified"
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:45;45
+msgid "Are you sure you want to delete this voice menu?"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:8;8
+msgid "Create Leave a Message IVR"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:14;14
+msgid "Please upload a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button."
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:35;35
+msgid "Step 1: Welcome message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:42;42
+msgid "Step 2: Inform message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:49;49
+msgid "Step 3: Invalid message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:57;57
+msgid "Step 4: Long message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:63;63
+msgid "Step 5: Select message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:69;69
+msgid "Step 6: Delete message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:75;75
+msgid "Step 7: Save message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:82;82
+msgid "Step 8: Goodbye message"
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:95;95
+msgid "Invalid page."
+msgstr ""
+
+#: /views/messages/archive.ctp:4;4
+msgid "Archived messages"
+msgstr ""
+
+#: /views/messages/archive.ctp:15;15
+#: /views/messages/index.ctp:20;20
+#: /views/messages/toggle.ctp:19;19
+msgid "New"
+msgstr ""
+
+#: /views/messages/archive.ctp:17;17
+#: /views/messages/edit.ctp:46;46
+#: /views/messages/index.ctp:22;22
+#: /views/messages/toggle.ctp:21;21
+msgid "Rate"
+msgstr ""
+
+#: /views/messages/archive.ctp:21;21
+#: /views/messages/edit.ctp:62;62
+#: /views/messages/index.ctp:26;26
+#: /views/messages/toggle.ctp:25;25
+msgid "Length"
+msgstr ""
+
+#: /views/messages/archive.ctp:24;24
+#: /views/messages/edit.ctp:64;64
+#: /views/messages/index.ctp:29;29
+#: /views/messages/toggle.ctp:28;28
+#: /views/nodes/index.ctp:24;24
+msgid "Listen"
+msgstr ""
+
+#: /views/messages/archive.ctp:49;49
+#: /views/messages/index.ctp:50;50
+#: /views/messages/toggle.ctp:91;91
+msgid "Are you sure you want to delete this message?"
+msgstr ""
+
+#: /views/messages/archive.ctp:80;80
+msgid "Activate"
+msgstr ""
+
+#: /views/messages/archive.ctp:86;86
+#: /views/messages/index.ctp:82;82
+msgid "No of messages per page: "
+msgstr ""
+
+#: /views/messages/edit.ctp:24;24
+msgid "Edit Message"
+msgstr ""
+
+#: /views/messages/edit.ctp:35;35
+msgid "Save & Index"
+msgstr ""
+
+#: /views/messages/edit.ctp:37;37
+msgid "Save & Next"
+msgstr ""
+
+#: /views/messages/edit.ctp:47;47
+#: /views/tags/add.ctp:13;13
+#: /views/tags/edit.ctp:27;27
+#: /views/tags/index.ctp:15;15
+msgid "Tag"
+msgstr ""
+
+#: /views/messages/edit.ctp:61;61
+msgid "Modified"
+msgstr ""
+
+#: /views/messages/edit.ctp:63;63
+msgid "Author"
+msgstr ""
+
+#: /views/messages/edit.ctp:72;72
+msgid "No messsage with this id exists"
+msgstr ""
+
+#: /views/messages/index.ctp:4;4
+#: /views/messages/toggle.ctp:11;11
+msgid "Audio Messages"
+msgstr ""
+
+#: /views/messages/toggle.ctp:4;4
+msgid "Show records: "
+msgstr ""
+
+#: /views/nodes/add.ctp:4;4
+msgid "Create voice menu node"
+msgstr ""
+
+#: /views/nodes/add.ctp:17;17
+#: /views/nodes/edit.ctp:24;24
+msgid "Audio file"
+msgstr ""
+
+#: /views/nodes/add.ctp:18;18
+msgid "Valid format: wav"
+msgstr ""
+
+#: /views/nodes/edit.ctp:5;5
+msgid "Edit audio file"
+msgstr ""
+
+#: /views/nodes/edit.ctp:25;25
+msgid "If you select a file, the previous one will be deleted. Valid format: wav"
+msgstr ""
+
+#: /views/nodes/edit.ctp:28;28
+msgid "Listen to uploaded file"
+msgstr ""
+
+#: /views/nodes/edit.ctp:36;36
+msgid "No audio file with that id exists"
+msgstr ""
+
+#: /views/nodes/index.ctp:12;12
+msgid "Audio files:"
+msgstr ""
+
+#: /views/nodes/index.ctp:37;37
+msgid "Are you sure you want to delete this audio file?"
+msgstr ""
+
+#: /views/nodes/index.ctp:64;64
+msgid "Number of audio files per page: "
+msgstr ""
+
+#: /views/nodes/index.ctp:76;76
+msgid "No audio files are uploaded. Please upload an audio file by clicking on the green button to the right."
+msgstr ""
+
+#: /views/pages/contact.ctp:3;3
+msgid "Contact us"
+msgstr ""
+
+#: /views/pages/contact.ctp:6;6
+msgid "Email"
+msgstr ""
+
+#: /views/pages/contact.ctp:7;7
+msgid "Twitter"
+msgstr ""
+
+#: /views/pages/contact.ctp:8;8
+msgid "Fone"
+msgstr ""
+
+#: /views/pages/contact.ctp:9;9
+msgid "Fax"
+msgstr ""
+
+#: /views/pages/home.ctp:3;3
+msgid "Welcome to Freedom Fone"
+msgstr ""
+
+#: /views/pages/functionality/ivr.ctp:4;4
+#: /views/pages/functionality/poll.ctp:3;3
+msgid "Leave-a-message"
+msgstr ""
+
+#: /views/pages/functionality/leave-a-message.ctp:3;3
+msgid "Voice Menus"
+msgstr ""
+
+#: /views/polls/add.ctp:5;5
+msgid "Create new poll"
+msgstr ""
+
+#: /views/polls/add.ctp:15;15
+#: /views/polls/edit.ctp:11;11
+#: /views/polls/index.ctp:15;15
+#: /views/polls/view.ctp:15;15
+msgid "Question"
+msgstr ""
+
+#: /views/polls/add.ctp:16;16
+#: /views/polls/edit.ctp:12;12
+msgid "Define a concrete question using simple language"
+msgstr ""
+
+#: /views/polls/add.ctp:17;17
+#: /views/polls/edit.ctp:13;13
+msgid "SMS Code"
+msgstr ""
+
+#: /views/polls/add.ctp:18;26;18;26
+#: /views/polls/edit.ctp:14;19;14;19
+msgid "Alpha-numeric characters only (maximum 10)"
+msgstr ""
+
+#: /views/polls/add.ctp:25;25
+#: /views/polls/edit.ctp:18;18
+msgid "Poll options"
+msgstr ""
+
+#: /views/polls/add.ctp:30;31;30;31
+#: /views/polls/edit.ctp:25;25
+msgid "Option"
+msgstr ""
+
+#: /views/polls/add.ctp:38;38
+msgid "Add"
+msgstr ""
+
+#: /views/polls/add.ctp:44;44
+#: /views/polls/edit.ctp:32;32
+msgid "Start and end time"
+msgstr ""
+
+#: /views/polls/add.ctp:45;45
+#: /views/polls/edit.ctp:33;33
+msgid "When would you like to open and close the poll?"
+msgstr ""
+
+#: /views/polls/add.ctp:49;49
+#: /views/polls/edit.ctp:37;37
+#: /views/polls/view.ctp:67;67
+msgid "Start time"
+msgstr ""
+
+#: /views/polls/add.ctp:50;50
+#: /views/polls/edit.ctp:38;38
+#: /views/polls/view.ctp:68;68
+msgid "End time"
+msgstr ""
+
+#: /views/polls/edit.ctp:5;5
+msgid "Edit Poll"
+msgstr ""
+
+#: /views/polls/index.ctp:3;3
+msgid "Polls"
+msgstr ""
+
+#: /views/polls/index.ctp:15;15
+msgid "Code"
+msgstr ""
+
+#: /views/polls/index.ctp:15;15
+#: /views/polls/view.ctp:25;25
+msgid "Votes"
+msgstr ""
+
+#: /views/polls/index.ctp:15;15
+msgid "Close"
+msgstr ""
+
+#: /views/polls/index.ctp:33;33
+msgid "Are you sure you want to delete this poll?"
+msgstr ""
+
+#: /views/polls/index.ctp:50;50
+msgid "System time"
+msgstr ""
+
+#: /views/polls/index.ctp:56;56
+msgid "No polls exists. Please create one by click on the green button to the right."
+msgstr ""
+
+#: /views/polls/view.ctp:17;17
+msgid "SMS code"
+msgstr ""
+
+#: /views/polls/view.ctp:20;20
+msgid "Result"
+msgstr ""
+
+#: /views/polls/view.ctp:25;25
+msgid "Options"
+msgstr ""
+
+#: /views/polls/view.ctp:25;25
+msgid "Percentage"
+msgstr ""
+
+#: /views/polls/view.ctp:25;25
+msgid "Late votes"
+msgstr ""
+
+#: /views/polls/view.ctp:55;55
+msgid "Invalid"
+msgstr ""
+
+#: /views/polls/view.ctp:58;58
+msgid "Total number of votes (in time): "
+msgstr ""
+
+#: /views/polls/view.ctp:59;59
+msgid "Total number of late votes: "
+msgstr ""
+
+#: /views/polls/view.ctp:63;63
+msgid "Poll information"
+msgstr ""
+
+#: /views/polls/view.ctp:75;75
+msgid "No poll with this id exists"
+msgstr ""
+
+#: /views/tags/add.ctp:2;2
+msgid "Add Tag"
+msgstr ""
+
+#: /views/tags/edit.ctp:6;6
+msgid "Edit Tag"
+msgstr ""
+
+#: /views/tags/edit.ctp:29;29
+msgid "Use in"
+msgstr ""
+
+#: /views/tags/edit.ctp:37;37
+msgid "No tag with this id exists"
+msgstr ""
+
+#: /views/tags/index.ctp:3;3
+msgid "Manage Tags"
+msgstr ""
+
+#: /views/tags/index.ctp:35;35
+msgid "No tags exist. Please create a tag by clicking on the green button to the right."
+msgstr ""
+

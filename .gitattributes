@@ -171,7 +171,9 @@ gui/app/index.php -text
 gui/app/install/freedomfone_db_createdb_user.sql -text
 gui/app/install/freedomfone_db_schema.sql -text
 gui/app/install/index.php -text
+gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
+gui/app/locale/new_default.pot -text
 gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/callback_in.php -text
@@ -205,6 +207,7 @@ gui/app/vendors/ivr_xml.php -text
 gui/app/vendors/shells/tasks/empty -text
 gui/app/vendors/shells/templates/empty -text
 gui/app/vendors/spooler_ff.php -text
+gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/callback_in/index.ctp -text
 gui/app/views/callback_settings/index.ctp -text
@@ -222,6 +225,7 @@ gui/app/views/elements/poll_status.ctp -text
 gui/app/views/elements/toggle.ctp -text
 gui/app/views/errors/empty -text
 gui/app/views/helpers/css_menu.php -text
+gui/app/views/helpers/csv.php -text
 gui/app/views/helpers/empty -text
 gui/app/views/helpers/flash.php -text
 gui/app/views/helpers/formatting.php -text

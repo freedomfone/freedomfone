@@ -30,12 +30,16 @@ class PollsController extends AppController{
 
      function view($id){
 
-      $this->Poll->id = $id;
-      $this->set('data',$this->Poll->findById($id));       
-      $this->pageTitle = 'View poll: '.$this->Poll->getTitle($id);
- 
 
-      
+     	if(isset($this->params['form']['submit'])) {
+		if ($this->params['form']['submit']==__('Refresh',true)){
+	   	   $this->requestAction('/polls/refresh');
+     	   	   }
+	}	   
+      	   $this->Poll->id = $id;
+      	   $this->set('data',$this->Poll->findById($id));       
+      	   $this->pageTitle = 'View poll: '.$this->Poll->getTitle($id);
+       
       }
 
 

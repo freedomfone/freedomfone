@@ -3,7 +3,7 @@
 class BinController extends AppController{
 
       var $name = 'Bin';
-      var $helpers = array('Time','Html', 'Session','Form');
+      var $helpers = array('Time','Html', 'Session','Form','Csv');
       var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Bin.created' => 'desc')); 
 
       var $scaffold;
@@ -49,6 +49,16 @@ class BinController extends AppController{
 
     }
 
+    function export(){
+
+    Configure::write('debug', 0);
+    $this->set('data', $this->Bin->findAll()); 
+
+    $this->layout = null;
+    $this->autoLayout = false;
+
+    $this->render();    
+    }
 
 
 }

@@ -123,6 +123,7 @@ class MessagesController extends AppController{
 
     function delete ($id){
 
+
      	     $title = $this->Message->getTitle($id);
 
     	     if($this->Message->del($id))

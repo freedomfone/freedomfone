@@ -3,7 +3,7 @@
 class BinController extends AppController{
 
       var $name = 'Bin';
-      var $helpers = array('Time','Html', 'Session','Form','Csv');
+      var $helpers = array('Time','Html', 'Session','Form','Csv','Javascript');
       var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Bin.created' => 'desc')); 
 
       var $scaffold;
@@ -24,16 +24,36 @@ class BinController extends AppController{
 
 
      	     $this->Bin->recursive = 0; 
- //    	     $this->set('data',$this->Bin->find('all',array('order'=>'Bin.created ASC')));
-//	     $this->set('data',$this->paginate());
-
-
    	     $data = $this->paginate();
 	     $this->set('data',$data);  
 
 
 
       }
+
+
+    function process (){
+
+
+    	 if(!empty($this->data['Bin'])){
+
+    	     $entry = $this->data['Bin'];
+
+    	     foreach ($entry as $key => $id){
+
+	       	   $this->Bin->id = $id;
+  	       	   if ($this->Bin->del($id)){
+	       	      $body = $this->Bin->getBody($id);
+    		      $this->log('Message: BIN ENTRY DELETED; Id: '.$id."; Body:".$body, 'bin');
+		      }
+
+	      }
+	  }
+	  $this->redirect(array('action' => 'index'));
+
+    }
+
+
 
 
     function delete ($id){
@@ -59,6 +79,8 @@ class BinController extends AppController{
 
     $this->render();    
     }
+
+
 
 
 }

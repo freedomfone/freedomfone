@@ -232,11 +232,15 @@ font-weight: normal;
 /* button style for Joomla component, form and module buttons*/
 background: url(../img/button_bg.gif) repeat-x;
 border: 1px solid #f89843;
-color: #FFFFFF;
+color: #fff;
 margin: 4px;
 font-weight: normal;
 text-align: center;
 padding: 1px 0 3px 0;
+}
+
+button a {
+color: #fff;
 }
 
 .inputbox {

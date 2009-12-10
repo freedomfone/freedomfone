@@ -1,7 +1,14 @@
 <?php
 $session->flash();
 
+echo $form->create('Bin',array('type' => 'post','action'=> 'export'));
+echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
+
 echo "<h1>".__('Unclassified SMS',true)."</h1>";
+
+
 
 echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 

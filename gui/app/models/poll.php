@@ -124,8 +124,8 @@ class Poll extends AppModel{
 		$_message	=  explode(' ',$body);
 		$polls_code   	=  trim($_message[0]);
 		$votes_chtext 	=  trim($_message[1]);
-		$sender		=  $entry['sender'];
-	        $created = floor($entry['Event-Date-Timestamp']/1000000);
+		$sender		=  $entry['from'];
+	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
 
 		// CHECK A: CODE OK (VALID OR INCORRECT)
@@ -140,14 +140,13 @@ class Poll extends AppModel{
 				//Search for matching chtext
 				if (strcasecmp($votes_chtext,$vote['chtext'])==0){
 		   	   		$matched=true;
+					$vote_id = $vote['id'];
 		   		 }
 	 	         }		 
 
 			        //CHECK A1: OPTION CORRECT (correct code, correct chtext)
 
-				if ($matched){
-
-		   	   	  $vote_id = $vote['id'];
+				if ($matched){		   	   	  
 			
 				  switch($status){
 
@@ -167,7 +166,7 @@ class Poll extends AppModel{
 				   case 2:
 				   //ADD TO STATS (closed)
 				   $mode="VALID VOTE, CLOSED";
-		   	   	   debug($this->Vote->query("UPDATE votes SET votes_closed=votes_closed+1 WHERE id=$vote_id ")); 
+		   	   	   $this->Vote->query("UPDATE votes SET votes_closed=votes_closed+1 WHERE id=$vote_id "); 
 				   break;
 
 				   }

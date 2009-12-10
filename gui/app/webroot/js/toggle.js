@@ -1,14 +1,11 @@
-function toggle(a)
+function checkAll(field)
 {
-    var e = document.getElementById(a);
-     if(!e) return true;
-      if(e.style.display == "none")
-      {
-           e.style.display = "block"
-     }
-      else
-      {
-           e.style.display = "none"
-      }
-      return true;
-} 
+    for (i = 0; i < field.length; i++)
+	field[i].checked = true ;
+}
+
+function uncheckAll(field)
+{
+    for (i = 0; i < field.length; i++)
+	field[i].checked = false ;
+}

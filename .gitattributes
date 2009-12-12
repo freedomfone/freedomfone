@@ -165,6 +165,7 @@ gui/app/controllers/lm_menus_controller.php -text
 gui/app/controllers/messages_controller.php -text
 gui/app/controllers/nodes_controller.php -text
 gui/app/controllers/polls_controller.php -text
+gui/app/controllers/processes_controller.php -text
 gui/app/controllers/tags_controller.php -text
 gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
@@ -185,6 +186,7 @@ gui/app/models/lm_menu.php -text
 gui/app/models/message.php -text
 gui/app/models/node.php -text
 gui/app/models/poll.php -text
+gui/app/models/process.php -text
 gui/app/models/tag.php -text
 gui/app/models/vote.php -text
 gui/app/plugins/empty -text
@@ -222,6 +224,7 @@ gui/app/views/elements/menu_next.ctp -text
 gui/app/views/elements/message_status.ctp -text
 gui/app/views/elements/musicplayer_button.ctp -text
 gui/app/views/elements/poll_status.ctp -text
+gui/app/views/elements/process_status.ctp -text
 gui/app/views/elements/toggle.ctp -text
 gui/app/views/errors/empty -text
 gui/app/views/helpers/css_menu.php -text
@@ -263,6 +266,7 @@ gui/app/views/polls/add.ctp -text
 gui/app/views/polls/edit.ctp -text
 gui/app/views/polls/index.ctp -text
 gui/app/views/polls/view.ctp -text
+gui/app/views/processes/index.ctp -text
 gui/app/views/scaffolds/empty -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text
@@ -304,8 +308,12 @@ gui/app/webroot/img/icons/listen.png -text
 gui/app/webroot/img/icons/lock.png -text
 gui/app/webroot/img/icons/lock_unlock.png -text
 gui/app/webroot/img/icons/new.png -text
+gui/app/webroot/img/icons/off.png -text
+gui/app/webroot/img/icons/on.png -text
 gui/app/webroot/img/icons/reject.png -text
 gui/app/webroot/img/icons/space.png -text
+gui/app/webroot/img/icons/start.png -text
+gui/app/webroot/img/icons/stop.png -text
 gui/app/webroot/img/illustrations/FF_IVR_design.png -text
 gui/app/webroot/img/illustrations/FF_LAM_state_machine.png -text
 gui/app/webroot/img/illustrations/freedomfone_v1.0_architecture.png -text

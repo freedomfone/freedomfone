@@ -13,6 +13,12 @@ class BinController extends AppController{
 
       	    $this->pageTitle = 'Unclassified SMS';
 
+     	if(isset($this->params['form']['submit'])) {
+		if ($this->params['form']['submit']==__('Refresh',true)){
+	   	   $this->requestAction('/bin/refresh');
+     	   	   }
+	}	   
+
             if(isset($this->params['named']['sort'])) { 
       		
 			$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -71,16 +77,24 @@ class BinController extends AppController{
 
     function export(){
 
-    Configure::write('debug', 0);
-    $this->set('data', $this->Bin->findAll()); 
+    	     Configure::write('debug', 0);
+    	     $this->set('data', $this->Bin->findAll()); 
 
-    $this->layout = null;
-    $this->autoLayout = false;
+    	     $this->layout = null;
+    	     $this->autoLayout = false;
 
-    $this->render();    
+    	     $this->render();    
     }
 
 
+
+      function refresh(){
+
+      $this->autoRender = false;
+ 
+      $this->Bin->refresh();
+
+      }
 
 
 }

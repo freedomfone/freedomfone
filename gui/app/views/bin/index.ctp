@@ -2,6 +2,10 @@
 $session->flash();
 echo $javascript->includeScript('toggle');
 
+echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
+echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
 echo $form->create('Bin',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -28,6 +32,7 @@ echo $html->tableHeaders(array(
 	'',
  	$paginator->sort(__("Body",true), 'body'),
  	$paginator->sort(__("Created",true), 'created'),
+ 	$paginator->sort(__("Type",true), 'mode'),
 	__("Delete",true)));
 
       foreach ($data as $key => $entry){
@@ -36,9 +41,10 @@ echo $html->tableHeaders(array(
 	//$id = $form->input($entry['Bin']['id'],array('id' => $entry['Bin']['id'], 'type'=>'checkbox','value'=>$entry['Bin']['id']));
 	$body     = $entry['Bin']['body'];
 	$created  = $time->niceShort($entry['Bin']['created']);
+	$mode     = $entry['Bin']['mode'];
 	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/bin/delete/{$entry['Bin']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
 
-     	$row[$key] = array($id, $body, $created, array($delete,array('align'=>'center')));
+     	$row[$key] = array($id, $body, $created, $mode, array($delete,array('align'=>'center')));
 
 
 	}
@@ -58,8 +64,8 @@ echo $html->tableHeaders(array(
 echo "<span>".__("No of entries per page: ",true);
 echo $html->link('25','index/limit:25',null, null, false)." | ";
 echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false)." | " ;
-echo $html->link(__('All',true),'index',null, null, false);
+echo $html->link('100','index/limit:100',null, null, false);
+//echo $html->link(__('All',true),'index/limit:all',null, null, false);
 echo "</span>";
 
 

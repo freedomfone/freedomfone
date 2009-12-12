@@ -148,6 +148,26 @@
 </ul>
 </li>
 
+
+<li><?php echo __("Dashboard",true);?>
+<ul>
+
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Processes",true),'/processes'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
+</li>
+
+
+
 <li>
 <a href='https://dev.freedomfone.org/' target='_blank'><?php echo $html->image('menu/menu_mid_svn.png',array('style'=>'float:left'));?></a>
 </li>

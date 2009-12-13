@@ -14,6 +14,13 @@ $config['poll_in']= array(
 	       'database' => 'spooler_in',
 	       );
 
+$config['bin']= array(
+      	       'host'     => 'localhost',
+	       'user'     => 'bin',
+	       'password' => 'thefone',
+	       'database' => 'spooler_in',
+	       );
+
 
 $config['lm_in']= array(
       	       'host'     => 'localhost',
@@ -81,5 +88,13 @@ $config['CALLBACK_DEFAULT']=	array(
                 'limit_time'       => '24');
 
 	
+$config['FREESWITCH']=		array(
+	      'host'=>'localhost',
+	      'port'=>'8021',
+	      'pass'=>'ClueCon'
+	      );
+
+$config['ESL']	= array(
+	      'path' =>"/usr/src/pictus/esl/native/ESL.php");
 
 ?>

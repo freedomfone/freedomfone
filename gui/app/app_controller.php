@@ -38,6 +38,8 @@
  */
 
 App::import("Vendor", "ff_event", false, null, 'spooler_ff.php'); 
+App::import("Vendor", "ESL", false, null, 'ESL.php'); 
+
 App::import('Core','L10n');
 
 class AppController extends Controller {

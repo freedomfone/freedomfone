@@ -1,0 +1,73 @@
+<configuration name="ivr.conf" description="IVR menus">
+  <menus>
+    <!-- demo IVR setup -->
+    <!-- demo IVR, Main Menu -->
+    <menu name="demo_ivr"
+	  greet-long="phrase:demo_ivr_main_menu"
+	  greet-short="phrase:demo_ivr_main_menu_short"
+	  invalid-sound="ivr/ivr-that_was_an_invalid_entry.wav"
+	  exit-sound="voicemail/vm-goodbye.wav"
+          confirm-macro=""
+          confirm-key=""
+          tts-engine="flite"
+          tts-voice="rms"
+          confirm-attempts="3"
+	  timeout="10000"
+	  inter-digit-timeout="2000"
+	  max-failures="3"
+	  max-timeouts="3"
+	  digit-len="4">
+
+      <!-- The following are the definitions for the digits the user dials -->
+      <!-- Digit 1 transfer caller to the public FreeSWITCH conference -->
+      <xentry action="menu-play-sound" digits="1" param="/var/tmp/manolo.wav"/>
+      <entry action="menu-play-sound" digits="1" param="/var/tmp/welcome.wav"/>
+      <entry action="menu-play-sound" digits="2" param="/var/tmp/reno.wav"/>
+      <xentry action="menu-play-sound" digits="2" param="/var/tmp/reno.wav"/>
+      <entry action="menu-play-sound" digits="3" param="/var/tmp/macroform.wav"/>
+	<entry action="menu-exec-app" digits="1" param="javascript monitor_ivr.js ${uuid} 1_IVR_Name ${caller_id_number} ${destination_number} 1 1_Node_Tag"/>   
+	<entry action="menu-exec-app" digits="2" param="javascript monitor_ivr.js ${uuid} 2_IVR_Name ${caller_id_number} ${destination_number} 2 2_Node_Tag"/>   
+	<entry action="menu-exec-app" digits="3" param="javascript monitor_ivr.js ${uuid} 3_IVR_Name ${caller_id_number} ${destination_number} 3 3_Node_Tag"/>   
+      <entry action="menu-exec-app" digits="4" param="transfer 9996 XML default"/>    <!-- FS echo -->
+      <xentry action="menu-exec-app" digits="5" param="transfer 9999 XML default"/>    <!-- MOH -->
+      <entry action="menu-exec-app" digits="6" param="transfer 1234*256 enum"/>       <!-- Screaming monkeys -->
+      <entry action="menu-sub" digits="7" param="demo_ivr_submenu"/>                  <!-- demo sub menu -->
+      <!-- Using a regex in the digits tag lets you define a dial pattern for the caller
+           You may define multiple regexes if you need a different pattern for some reason -->
+      <entry action="menu-exec-app" digits="/^(10[01][0-9])$/" param="transfer $1 XML features"/> 
+      <entry action="menu-top" digits="9"/>          <!-- Repeat this menu -->
+    </menu>
+
+    <!-- Demo IVR, Sub Menu -->
+    <menu name="demo_ivr_submenu"
+        greet-long="phrase:demo_ivr_sub_menu"
+        greet-short="phrase:demo_ivr_sub_menu_short"
+        invalid-sound="ivr/ivr-that_was_an_invalid_entry.wav"
+        exit-sound="voicemail/vm-goodbye.wav"
+        timeout="15000"
+        max-failures="3"
+        max-timeouts="3">
+
+      <!-- The demo IVR sub menu prompt basically just says, "press star to return to previous menu..." -->
+      <entry action="menu-top" digits="*"/>
+     </menu>
+
+  </menus>
+</configuration>
+
+
+<!-- TTS sample; non-functional but it demonstrates say: and TTS -->
+<!--
+    <menu name="demo3"
+          greet-long="say:Press 1 to join the conference, Press 2 to join the other conference"
+          greet-short="say:Press 1 to join the conference, Press 2 to join the other conference"
+          invalid-sound="say:invalid extension"
+          exit-sound="say:exit sound"
+          timeout ="15000"
+          max-failures="3">
+      <entry action="menu-exit" digits="*"/>
+      <entry action="menu-playback" digits="1" param="say:You pressed 1"/>
+      <entry action="menu-call-transfer" digits="2" param="1000"/>
+      <entry action="menu-call-transfer" digits="3" param="1001"/>
+    </menu>
+-->

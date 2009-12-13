@@ -1,0 +1,186 @@
+Channel created at 
+<?xml version=\"1.0\"?>
+<cdr>
+  <variables>
+    <sip_received_ip>192.168.254.52</sip_received_ip>
+    <sip_received_port>5061</sip_received_port>
+    <sip_via_protocol>udp</sip_via_protocol>
+    <sip_authorized>true</sip_authorized>
+    <sip_number_alias>1003</sip_number_alias>
+    <sip_auth_username>1003</sip_auth_username>
+    <sip_auth_realm>192.168.254.52</sip_auth_realm>
+    <number_alias>1003</number_alias>
+    <user_name>1003</user_name>
+    <domain_name>192.168.254.52</domain_name>
+    <toll_allow>domestic,international,local</toll_allow>
+    <accountcode>1003</accountcode>
+    <user_context>default</user_context>
+    <effective_caller_id_name>Extension%201003</effective_caller_id_name>
+    <effective_caller_id_number>1003</effective_caller_id_number>
+    <outbound_caller_id_name>FreeSWITCH</outbound_caller_id_name>
+    <outbound_caller_id_number>0000000000</outbound_caller_id_number>
+    <callgroup>techsupport</callgroup>
+    <record_stereo>true</record_stereo>
+    <default_gateway>example.com</default_gateway>
+    <default_areacode>918</default_areacode>
+    <transfer_fallback_extension>operator</transfer_fallback_extension>
+    <sip_from_params>transport%3DUDP</sip_from_params>
+    <sip_from_user>1003</sip_from_user>
+    <sip_from_uri>1003%40192.168.254.52</sip_from_uri>
+    <sip_from_host>192.168.254.52</sip_from_host>
+    <sip_from_user_stripped>1003</sip_from_user_stripped>
+    <sip_from_tag>ae607c7e</sip_from_tag>
+    <sofia_profile_name>internal</sofia_profile_name>
+    <sip_req_params>transport%3DUDP</sip_req_params>
+    <sip_req_user>5000</sip_req_user>
+    <sip_req_uri>5000%40192.168.254.52</sip_req_uri>
+    <sip_req_host>192.168.254.52</sip_req_host>
+    <sip_to_params>transport%3DUDP</sip_to_params>
+    <sip_to_user>5000</sip_to_user>
+    <sip_to_uri>5000%40192.168.254.52</sip_to_uri>
+    <sip_to_host>192.168.254.52</sip_to_host>
+    <sip_contact_params>transport%3DUDP</sip_contact_params>
+    <sip_contact_user>1003</sip_contact_user>
+    <sip_contact_port>5061</sip_contact_port>
+    <sip_contact_uri>1003%40192.168.254.52%3A5061</sip_contact_uri>
+    <sip_contact_host>192.168.254.52</sip_contact_host>
+    <channel_name>sofia/internal/1003%40192.168.254.52</channel_name>
+    <sip_call_id>OTYyZjUwMTMxNGYzNTYxNzhjZDYyZGJjMzA3MzQ2Njg.</sip_call_id>
+    <sip_via_host>192.168.254.52</sip_via_host>
+    <sip_via_port>5061</sip_via_port>
+    <sip_via_rport>5061</sip_via_rport>
+    <max_forwards>70</max_forwards>
+    <presence_id>1003%40192.168.254.52</presence_id>
+    <switch_r_sdp>v%3D0%0D%0Ao%3DZ%200%200%20IN%20IP4%20192.168.254.52%0D%0As%3DZ%0D%0Ac%3DIN%20IP4%20192.168.254.52%0D%0At%3D0%200%0D%0Am%3Daudio%208000%20RTP/AVP%200%20101%0D%0Aa%3Drtpmap%3A0%20PCMU/8000%0D%0Aa%3Drtpmap%3A101%20telephone-event/8000%0D%0Aa%3Dfmtp%3A101%200-15%0D%0A</switch_r_sdp>
+    <read_codec>PCMU</read_codec>
+    <read_rate>8000</read_rate>
+    <write_codec>PCMU</write_codec>
+    <write_rate>8000</write_rate>
+    <local_media_ip>192.168.254.52</local_media_ip>
+    <local_media_port>23188</local_media_port>
+    <remote_media_ip>192.168.254.52</remote_media_ip>
+    <remote_media_port>8000</remote_media_port>
+    <endpoint_disposition>ANSWER</endpoint_disposition>
+    <ivr_menu_status>success</ivr_menu_status>
+    <current_application_data>monitor_ivr.js%20e5f23d64-e7d6-11de-be68-8bfd48931c0f%203_IVR_Name%201003%205000%203%203_Node_Tag</current_application_data>
+    <current_application>javascript</current_application>
+    <tts_engine>flite</tts_engine>
+    <tts_voice>rms</tts_voice>
+    <playback_seconds>0</playback_seconds>
+    <playback_ms>0</playback_ms>
+    <playback_samples>0</playback_samples>
+    <sound_prefix>/usr/local/freeswitch/sounds/en/us/callie</sound_prefix>
+    <sip_term_status>200</sip_term_status>
+    <sip_term_cause>16</sip_term_cause>
+    <sip_user_agent>Zoiper%20rev.4688</sip_user_agent>
+    <sip_hangup_disposition>recv_bye</sip_hangup_disposition>
+    <hangup_cause>NORMAL_CLEARING</hangup_cause>
+    <hangup_cause_q850>16</hangup_cause_q850>
+    <digits_dialed>1123</digits_dialed>
+    <start_stamp>2009-12-13%2012%3A01%3A43</start_stamp>
+    <profile_start_stamp>2009-12-13%2012%3A01%3A43</profile_start_stamp>
+    <answer_stamp>2009-12-13%2012%3A01%3A43</answer_stamp>
+    <end_stamp>2009-12-13%2012%3A11%3A57</end_stamp>
+    <start_epoch>1260702103</start_epoch>
+    <start_uepoch>1260702103455772</start_uepoch>
+    <profile_start_epoch>1260702103</profile_start_epoch>
+    <profile_start_uepoch>1260702103455772</profile_start_uepoch>
+    <answer_epoch>1260702103</answer_epoch>
+    <answer_uepoch>1260702103524386</answer_uepoch>
+    <progress_epoch>0</progress_epoch>
+    <progress_uepoch>0</progress_uepoch>
+    <progress_media_epoch>0</progress_media_epoch>
+    <progress_media_uepoch>0</progress_media_uepoch>
+    <end_epoch>1260702717</end_epoch>
+    <end_uepoch>1260702717505118</end_uepoch>
+    <last_app>javascript</last_app>
+    <last_arg>monitor_ivr.js%20e5f23d64-e7d6-11de-be68-8bfd48931c0f%203_IVR_Name%201003%205000%203%203_Node_Tag</last_arg>
+    <caller_id>%221003%22%20%3C1003%3E</caller_id>
+    <duration>614</duration>
+    <billsec>614</billsec>
+    <progresssec>0</progresssec>
+    <answersec>0</answersec>
+    <progress_mediasec>0</progress_mediasec>
+    <flow_billsec>614</flow_billsec>
+    <mduration>614050</mduration>
+    <billmsec>613981</billmsec>
+    <progressmsec>0</progressmsec>
+    <answermsec>69</answermsec>
+    <progress_mediamsec>0</progress_mediamsec>
+    <flow_billmsec>614050</flow_billmsec>
+    <uduration>614049346</uduration>
+    <billusec>613980732</billusec>
+    <progressusec>0</progressusec>
+    <answerusec>68614</answerusec>
+    <progress_mediausec>0</progress_mediausec>
+    <flow_billusec>614049346</flow_billusec>
+    <rtp_audio_in_raw_bytes>5214952</rtp_audio_in_raw_bytes>
+    <rtp_audio_in_media_bytes>5214696</rtp_audio_in_media_bytes>
+    <rtp_audio_in_packet_count>30334</rtp_audio_in_packet_count>
+    <rtp_audio_in_media_packet_count>30318</rtp_audio_in_media_packet_count>
+    <rtp_audio_in_skip_packet_count>331</rtp_audio_in_skip_packet_count>
+    <rtp_audio_in_jb_packet_count>0</rtp_audio_in_jb_packet_count>
+    <rtp_audio_in_dtmf_packet_count>16</rtp_audio_in_dtmf_packet_count>
+    <rtp_audio_in_cng_packet_count>0</rtp_audio_in_cng_packet_count>
+    <rtp_audio_in_flush_packet_count>0</rtp_audio_in_flush_packet_count>
+    <rtp_audio_out_raw_bytes>5060240</rtp_audio_out_raw_bytes>
+    <rtp_audio_out_media_bytes>5060240</rtp_audio_out_media_bytes>
+    <rtp_audio_out_packet_count>29420</rtp_audio_out_packet_count>
+    <rtp_audio_out_media_packet_count>29420</rtp_audio_out_media_packet_count>
+    <rtp_audio_out_skip_packet_count>0</rtp_audio_out_skip_packet_count>
+    <rtp_audio_out_dtmf_packet_count>0</rtp_audio_out_dtmf_packet_count>
+    <rtp_audio_out_cng_packet_count>0</rtp_audio_out_cng_packet_count>
+  </variables>
+  <app_log>
+    <application app_name=\"hash\" app_data=\"insert/192.168.254.52-spymap/1003/e5f23d64-e7d6-11de-be68-8bfd48931c0f\"></application>
+    <application app_name=\"hash\" app_data=\"insert/192.168.254.52-last_dial/1003/5000\"></application>
+    <application app_name=\"hash\" app_data=\"insert/192.168.254.52-last_dial/global/e5f23d64-e7d6-11de-be68-8bfd48931c0f\"></application>
+    <application app_name=\"answer\" app_data=\"\"></application>
+    <application app_name=\"sleep\" app_data=\"2000\"></application>
+    <application app_name=\"ivr\" app_data=\"demo_ivr\"></application>
+    <application app_name=\"javascript\" app_data=\"monitor_ivr.js e5f23d64-e7d6-11de-be68-8bfd48931c0f 1_IVR_Name 1003 5000 1 1_Node_Tag\"></application>
+    <application app_name=\"javascript\" app_data=\"monitor_ivr.js e5f23d64-e7d6-11de-be68-8bfd48931c0f 1_IVR_Name 1003 5000 1 1_Node_Tag\"></application>
+    <application app_name=\"javascript\" app_data=\"monitor_ivr.js e5f23d64-e7d6-11de-be68-8bfd48931c0f 2_IVR_Name 1003 5000 2 2_Node_Tag\"></application>
+    <application app_name=\"javascript\" app_data=\"monitor_ivr.js e5f23d64-e7d6-11de-be68-8bfd48931c0f 3_IVR_Name 1003 5000 3 3_Node_Tag\"></application>
+  </app_log>
+  <callflow dialplan=\"XML\" profile_index=\"1\">
+    <extension name=\"global\" number=\"5000\">
+      <application app_name=\"hash\" app_data=\"insert/${domain_name}-spymap/${caller_id_number}/${uuid}\"></application>
+      <application app_name=\"hash\" app_data=\"insert/${domain_name}-last_dial/${caller_id_number}/${destination_number}\"></application>
+      <application app_name=\"hash\" app_data=\"insert/${domain_name}-last_dial/global/${uuid}\"></application>
+      <application app_name=\"answer\" app_data=\"\"></application>
+      <application app_name=\"sleep\" app_data=\"2000\"></application>
+      <application app_name=\"ivr\" app_data=\"demo_ivr\"></application>
+    </extension>
+    <caller_profile>
+      <username>1003</username>
+      <dialplan>XML</dialplan>
+      <caller_id_name>1003</caller_id_name>
+      <ani>1003</ani>
+      <aniii></aniii>
+      <caller_id_number>1003</caller_id_number>
+      <network_addr>192.168.254.52</network_addr>
+      <rdnis></rdnis>
+      <destination_number>5000</destination_number>
+      <uuid>e5f23d64-e7d6-11de-be68-8bfd48931c0f</uuid>
+      <source>mod_sofia</source>
+      <context>default</context>
+      <chan_name>sofia/internal/1003@192.168.254.52</chan_name>
+    </caller_profile>
+    <times>
+      <created_time>1260702103455772</created_time>
+      <profile_created_time>1260702103455772</profile_created_time>
+      <progress_time>0</progress_time>
+      <progress_media_time>0</progress_media_time>
+      <answered_time>1260702103524386</answered_time>
+      <hangup_time>1260702717505118</hangup_time>
+      <transfer_time>0</transfer_time>
+    </times>
+  </callflow>
+</cdr>
+
+
+print_r
+
+
+

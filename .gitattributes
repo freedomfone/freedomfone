@@ -364,6 +364,15 @@ installer/pictus_install_gui.sh -text
 log/dialer.log -text
 log/dispatcher_in.log -text
 log/dispatcher_out.log -text
+monitor_ivr/cdr/cdr.php -text
+monitor_ivr/cdr/modules.conf.xml -text
+monitor_ivr/cdr/samples/b6dd9302-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text
+monitor_ivr/cdr/samples/cdr.xml4b24c950d6eb3 -text
+monitor_ivr/cdr/samples/cdr.xml4b24cbfd827a1 -text
+monitor_ivr/cdr/samples/cdr/b6dd9302-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text
+monitor_ivr/cdr/samples/cdr/e5f23d64-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text
+monitor_ivr/cdr/samples/e5f23d64-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text
+monitor_ivr/cdr/xml_cdr.conf.xml -text
 monitor_ivr/custom_events.txt -text
 monitor_ivr/ivr.conf.xml.sample -text
 monitor_ivr/monitor_ivr.js -text

@@ -364,6 +364,9 @@ installer/pictus_install_gui.sh -text
 log/dialer.log -text
 log/dispatcher_in.log -text
 log/dispatcher_out.log -text
+monitor_ivr/custom_events.txt -text
+monitor_ivr/ivr.conf.xml.sample -text
+monitor_ivr/monitor_ivr.js -text
 xml_curl/Mod_XML_Curl_Outline.png -text
 xml_curl/README -text
 xml_curl/dialplan.xml -text

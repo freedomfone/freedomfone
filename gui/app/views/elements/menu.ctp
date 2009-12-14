@@ -57,7 +57,7 @@
 
 
 <li>
-<?php echo $html->link(__("Unclassified",true),'/bin/'); ?>
+<?php echo $html->link(__("Other SMS",true),'/bin/'); ?>
 </li>
 
 

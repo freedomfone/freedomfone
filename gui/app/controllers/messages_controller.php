@@ -54,8 +54,7 @@ class MessagesController extends AppController{
 
       $this->pageTitle = 'Leave-a-Message : Archive';
       $this->Session->write('Message.source', 'archive');
-      debug($this->params);
-
+     
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		}

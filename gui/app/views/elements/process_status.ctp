@@ -6,11 +6,11 @@ if(isSet($status,$mode)){
 
 
 		if(!$status){
-   		  echo $html->image("icons/off.png", array("alt" => __("OFF",true)));
+   		  echo $html->image("icons/off.png", array("alt" => __("OFF",true), "title" => __("OFF",true)));
 		}
 
 		elseif($status==1){
-   		  echo $html->image("icons/on.png", array("alt" => __("ON",true)));
+   		  echo $html->image("icons/on.png", array("alt" => __("ON",true), "title" => __("ON",true)));
 		}
 
 		return $status;

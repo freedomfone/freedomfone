@@ -30,6 +30,11 @@ class ProcessesController extends AppController{
 		//Fetch record
 		$this->data = $this->Process->read(null, $id);
 
+		$type = $this->data['Process']['type'];
+
+		//Pid based process
+		if($type=='pid'){
+
 		//Process is not running
 		if(!$this->Process->isRunning($this->data['Process']['pid'])){
 
@@ -55,6 +60,19 @@ class ProcessesController extends AppController{
 		      	     $this->Session->setFlash($this->data['Process']['title']." ".__("is already running",true));
 	 	
 			}
+		} 
+		//ESL bases process (FreeSWITCH)
+		elseif ($type=='esl'){
+
+		       if($this->Process->fsCommand()){
+				$this->Session->setFlash($this->data['Process']['title']." ".__("is already running.",true));
+			} else {
+			       $this->Process->start();
+			       
+			       $this->Session->setFlash($this->data['Process']['title']." ".__("started.",true));
+			}
+
+		}
 
 
 	  $this->redirect(array('action' => 'index'));
@@ -66,27 +84,49 @@ class ProcessesController extends AppController{
 		//Fetch record
 		$this->data = $this->Process->read(null, $id);
 
-		//Process is NOT running
-		if(!$this->Process->isRunning($this->data['Process']['pid'])){
-			$this->Session->setFlash($this->data['Process']['title']." ".__("is not running",true));
+		$type = $this->data['Process']['type'];
 
-		} else {
+		//Pid based process
+		if($type=='pid'){
+
+
+			//Process is NOT running
+			if(!$this->Process->isRunning($this->data['Process']['pid'])){
+				$this->Session->setFlash($this->data['Process']['title']." ".__("is not running",true));
+
+				} else {
 		
-		if(!$this->Process->stop()){
-			$this->Session->setFlash(__("No pid found. Contact system admin.",true));
-		}
-		else {
+			if(!$this->Process->stop()){
+				$this->Session->setFlash(__("No pid found. Contact system admin.",true));
+				}
+				else {
 
-		//Save new PID (0) and update status
-		      $this->data['Process']['pid']= 0;		
-		      $this->data['Process']['status']= 0;		
-		      $this->data['Process']['start_time']= 0;
-		      $this->data['Process']['last_seen']= time();	
-		      $this->data['Process']['interupt']= 'Manual';	
-	      	      $this->Process->save($this->data);
-		      $this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
-		}
+				//Save new PID (0) and update status
+		      		$this->data['Process']['pid']= 0;		
+		      		$this->data['Process']['status']= 0;		
+		      		$this->data['Process']['start_time']= 0;
+		      		$this->data['Process']['last_seen']= time();	
+		      		$this->data['Process']['interupt']= 'Manual';	
+	      	      		$this->Process->save($this->data);
+		      		$this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
+				}
 		  
+			} 
+		} elseif ($type=='esl'){
+
+		       if(!$this->Process->fsCommand()){
+				$this->Session->setFlash($this->data['Process']['title']." ".__("is already stopped.",true));
+			} else {
+			       $this->Process->fsCommand("fsctl shutdown");
+		      		$this->data['Process']['status']= 0;		
+		      		$this->data['Process']['start_time']= 0;
+		      		$this->data['Process']['last_seen']= time();	
+		      		$this->data['Process']['interupt']= 'Manual';	
+	      	      		$this->Process->save($this->data);
+			       $this->Session->setFlash($this->data['Process']['title']." ".__("stopped.",true));
+			}
+
+
 		}
       	
 	$this->redirect(array('action' => 'index'));

@@ -171,7 +171,6 @@ gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
 gui/app/install/freedomfone_db_createdb_user.sql -text
 gui/app/install/freedomfone_db_schema.sql -text
-gui/app/install/index.php -text
 gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/new_default.pot -text

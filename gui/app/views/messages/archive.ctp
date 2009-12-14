@@ -1,13 +1,20 @@
 <?php
 $session->flash();
-
+echo $javascript->includeScript('toggle');
 echo "<h1>".__('Archived messages',true)."</h1>";
 
-echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+
 
 	if ($messages){
 
-echo $form->create('Message',array('type' => 'post','action'=> 'process'));
+echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
+
+?>
+<input type="button" name="CheckAll" value="Check All" onClick="checkAll(document.Message)">
+<input type="button" name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.Message)">
+<?
+
 echo "<table width=100%>";
 
 echo $html->tableHeaders(array(
@@ -32,7 +39,8 @@ echo $form->hidden('source',array('value'=>'archive'));
 
       $status='';
 
-	$id = $form->input($message['Message']['id'],array('type'=>'checkbox','label'=>false));
+	$id = "<input name='message[$key]['Message']' type='checkbox' value='".$message['Message']['id']."' id='check' class='check'>";
+	
 
 	if($message['Message']['new']){
 		$status = $html->image("icons/new.png",array("alt" => "New"));
@@ -69,7 +77,7 @@ echo $form->hidden('source',array('value'=>'archive'));
      echo $html->tableCells($row,array('class'=>'darker'));
 
 
-     }
+
      echo "</table>";
 
 
@@ -81,6 +89,8 @@ echo $html->tableCells(array(
      $paginator->counter(array('format' => 'Page %page% of %pages%')),
      $paginator->numbers()));
 echo "</table>";
+
+
 echo $form->end();
 
 echo "<span>".__("No of messages per page: ",true);
@@ -90,6 +100,7 @@ echo $html->link('25','archive/limit:25',null, null, false)." | " ;
 echo $html->link(__('All',true),'archive',null, null, false);
 echo "</span>";
 
+     }
 
 
 ?>

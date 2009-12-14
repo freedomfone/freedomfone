@@ -1,4 +1,7 @@
 <?php
+
+$ivr = Configure::read('IVR_SETTINGS');
+
 	if($this->data){
 
 echo "<h1>".__("Edit voice menu",true)."</h1>";
@@ -38,7 +41,7 @@ $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 </fieldset>
 
 <fieldset>
-<legend><?php __('Default menu options');?> </legend>
+<legend><?php __('Menu Instructions');?> </legend>
 <h3><?php __('1. Welcome');?> </h3>
 <?php echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'between'=>'<br />' )); ?>
 <?php echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file','after'=> $this->element('musicplayer_button',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$formatting->changeExt($this->data['IvrMenu']['file_long'],'mp3'),'title'=>'Welcome Message')))); ?>
@@ -62,13 +65,29 @@ $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 
 <fieldset>
-<legend><?php __('Menu entries');?> </legend>
+<legend><?php __('Menu Options');?> </legend>
 <?
+
+$path = $ivr['path'].IID."/".$ivr['dir_node'];
+
      for($i=0;$i<8;$i++){
-        $row[$i]=array(array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100px')), $form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'-Select node-' )));
+
+	$key = 'option'.($i+1).'_id';
+
+	if ($option_id = $this->data['IvrMenu'][$key]){
+	
+	   $listen =  $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($nodes['file'][$option_id],'mp3'),'title'=>$nodes['title'][$option_id]));
+	}    
+	else {$listen=false;}
+
+       $row[$i]=array(
+	array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100px')), 
+	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'-Select node-' )),
+	$listen
+	);
      }
 
-     echo "<table width='800px'>";
+     echo "<table width='400px'>";
      echo $html->tableCells($row);
      echo "</table>";
 

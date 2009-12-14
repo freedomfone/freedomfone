@@ -55,26 +55,22 @@ class Process extends AppModel{
       function start(){
  
       	       $cmd = $this->data['Process']['start_cmd'];
-      	       exec($cmd);
-     	       return true;
+	       exec($cmd);
+	       return true;
       }
 
 
       function stop(){
 
-      	       $cmd = $this->data['Process']['stop_cmd'];
       	       $pid = $this->data['Process']['pid'];
 
       	       if($pid){
-		   if ($cmd =='kill'){
-	      		exec('kill -9 '.$pid);
-	      	    }		   
-      		    return true;
-	      }
-	      else {
-	      	   return false;
-	      }
-
+			exec('kill -9 '.$pid);
+    			return true;
+	      	} else {
+		       return false;		   
+      		
+	      	}
 
       }
 
@@ -83,8 +79,6 @@ class Process extends AppModel{
 
 
       function isRunning($pid){
-      
-	//$pid = $this->data['Process']['pid'];
 
 	if ($pid){
 
@@ -111,16 +105,8 @@ class Process extends AppModel{
 	       //Connection established
 	       if($sock->connected()){
 
-		debug($sock->socketDescriptor());
-
-
 	       $event = $sock->api($cmd);
 	       $body = $event->getBody();
-
-	       $h1 = $event->firstHeader();
-
-	       	     debug($h1);
-
 
 		$sock->disconnect();
 		return $body;	

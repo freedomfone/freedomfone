@@ -1,5 +1,6 @@
 <?php
 $session->flash();
+
 echo $javascript->includeScript('toggle');
 echo "<h1>".__('Audio Messages',true)."</h1>";
 

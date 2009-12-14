@@ -143,8 +143,13 @@ class IvrMenusController extends AppController{
 		$this->IvrMenu->id = $id;
 
 		//Fetch list of all nodes
-		$nodes = $this->IvrMenu->Node->find('list');
+		$nodes['title']   = $this->IvrMenu->Node->find('list');
+		$nodes['file']    = $this->IvrMenu->Node->find('list', array('fields' => array('Node.file')));
+	
+
         	$this->set(compact('nodes'));
+
+
 
 		//Unbind association with nodes
 		$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   

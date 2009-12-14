@@ -140,38 +140,36 @@ class MessagesController extends AppController{
 
     	     if(!empty($this->data['Message'])){
 
-    	     $msg_id = $this->data['Message'];
+	    $entries = $this->params['form']['message'];
+    	    $action = $this->params['data']['Submit'];
+    	     	    foreach ($entries as $key => $id){
 
-    	     $action = $this->params['data']['Submit'];
+	     	     	    if ($id) {
 
-    	     	    foreach ($msg_id as $key => $value){
+			       $this->Message->id = $id;
+			 
+			       if ($action == __('Delete',true)){
 
-	     	     	    if ($value && $key!='source') {
-
-			       $this->Message->id = $key;
-
-			       if ($action == 'Delete'){
-
-		     	       	  	   if ($this->Message->del($key)){
-				     	        $title = $this->Message->getTitle($key);
-						$this->log('Msg: MESSAGE  DELETED; Id:title: '.$key.":".$title, 'leave_message');
+		     	       	  	   if ($this->Message->del($id)){
+				     	        $title = $this->Message->getTitle($id);
+						$this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
 
 	
 					    }
 			       }
 
-			       elseif ($action == 'Archive'){
+			       elseif ($action == __('Move to Archive',true)){
 
 				      $this->Message->saveField('status',0);
- 	      			      $this->log('ARCHIVE Message '.$key, 'leave_message');		       
+ 	      			      $this->log('ARCHIVE Message '.$id, 'leave_message');		       
 
 			       }
 
-			       elseif ($action == 'Activate'){
+			       elseif ($action == __('Activate',true)){
 
 	
 				      $this->Message->saveField('status',1);
- 	      			      $this->log('Msg: MESSAGE ACTIVATED '.$key, 'leave_message');		       
+ 	      			      $this->log('Msg: MESSAGE ACTIVATED '.$id, 'leave_message');		       
 
 			       }
 

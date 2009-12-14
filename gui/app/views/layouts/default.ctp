@@ -38,7 +38,8 @@
 <div id="wrapper">
 	 <div id="top_shadow"></div>
 	 <div class="top_a">
-		<div id="top_a_right"><?php echo $html->link('Contact us', '/contact'); ?></div>
+		<div id="top_a_right"><?php echo $html->link('Contact us', 'http://freedomfone.org/contact',array('target' => '_blank')); ?></div>
+
 	 </div>
 	 <div id="branding_header"></div>
 	 <div id="top_nav">

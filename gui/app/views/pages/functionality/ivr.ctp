@@ -9,15 +9,15 @@ echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'b
 
 
 <p>The administrator is able to build personal Voice Menus based on customized audio files, or synthesized text messages.<p>
-<p>A voice menu consists of:</p>
+<p>A Voice menu consists of:</p>
 
 <ul>
-<li>a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu, </li>
-<li>pointers to so called nodes, that contain the actual content. </li>
+<li>Menu instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu, </li>
+<li>Pointers to so called Menu Options, that contain the actual content. </li>
 </ul>
 
-<p>A node is the combination of a customized audio file, with a text based title. A node can be used in one or more Voice Menus. The administrator can at any time create, edit, or listen to existing nodes. Nodes may be deleted if they do not participate in an existing voice menu. 
-Freedom Fone v.1 offers the possibility to assign five nodes to a Voice Menu. The design of a Voice Menu is illustrated to the right.</p>
+<p>A Menu Option is the combination of a customized audio file, with a text based title. A Menu Option can be used in one or more Voice Menus. The administrator can at any time create, edit, or listen to existing Menu Options. Menu Optios may be deleted if they do not participate in an existing voice menu. 
+Freedom Fone v.1 offers the possibility to assign eight Menu Options to a Voice Menu. The design of a Voice Menu is illustrated to the right.</p>
 
 
 

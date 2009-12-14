@@ -2,7 +2,7 @@
 $ivr = Configure::read('IVR_SETTINGS');
 	if($this->data){
 
-		echo "<h1>".__("Edit audio file",true)."</h1>";
+		echo "<h1>".__("Edit Menu Option",true)."</h1>";
 
       		$path = $ivr['path'].$this->data['Node']['instance_id']."/".$ivr['dir_node'];
 		$listen =  $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($this->data['Node']['file'],'mp3'),'title'=>$this->data['Node']['title']));
@@ -33,7 +33,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 		}
 
 	else {
-    		echo "<h1>".__("No audio file with that id exists",true)."</h1>";
+    		echo "<h1>".__("No Menu Option with that id exists",true)."</h1>";
 	}
 
 

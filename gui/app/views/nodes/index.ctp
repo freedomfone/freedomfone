@@ -5,11 +5,11 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new poll")),"/nodes/add",null, null, false)."</div>";
 
-echo "<h1>".__('Audio files',true)."</h1>";
+echo "<h1>".__('Menu options',true)."</h1>";
 
 
    if ($nodes){
-echo $html->div("",$paginator->counter(array('format' => __("Audio files:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));  
+echo $html->div("",$paginator->counter(array('format' => __("Entry:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));  
 
 echo $form->create('Node',array('type' => 'post','action'=> 'process'));
 
@@ -34,7 +34,7 @@ echo $form->hidden('source',array('value'=>'index'));
 	$created  = $time->niceShort($node['Node']['created']);
 	$modified = $time->niceShort($node['Node']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/nodes/edit/{$node['Node']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this audio file?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
 	$listen   = $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($node['Node']['file'],'mp3'),'title'=>$node['Node']['title']));
 
      $row[$key] = array(
@@ -61,11 +61,10 @@ echo $form->hidden('source',array('value'=>'index'));
      echo $form->end();
 
 
-echo "<span>".__("Number of audio files per page: ",true);
-echo $html->link('10','index/limit:2',null, null, false)." | ";
-echo $html->link('50','index/limit:5',null, null, false)." | ";
-echo $html->link('100','index/limit:10',null, null, false)." | " ;
-echo $html->link(__('All',true),'index',null, null, false);
+echo "<span>".__("Number of entries per page: ",true);
+echo $html->link('10','index/limit:10',null, null, false)." | ";
+echo $html->link('50','index/limit:50',null, null, false)." | ";
+echo $html->link('100','index/limit:100',null, null, false) ;
 echo "</span>";
 
      }
@@ -73,7 +72,7 @@ echo "</span>";
 
       else {
 
-      echo "<div class='instruction'>".__("No audio files are uploaded. Please upload an audio file by clicking on the green button to the right.")."</div>";
+      echo "<div class='instruction'>".__("No Menu Option are uploaded. Please upload a Menu Option by clicking on the green button to the right.")."</div>";
 
       }
 

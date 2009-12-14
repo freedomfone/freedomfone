@@ -16,8 +16,7 @@ class MessagesController extends AppController{
       $this->pageTitle = 'Leave-a-Message : Inbox';
 
       $this->Session->write('Message.source', 'index');
-
-
+   
       //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 
@@ -26,6 +25,13 @@ class MessagesController extends AppController{
 	elseif($this->Session->check('messages_sort')) { 
   		$this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
+
+      if(isset($this->params['named']['limit'])) { 
+	$this->Session->write('messages_limit',$this->params['named']['limit']);
+	}
+	elseif($this->Session->check('messages_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('messages_limit');
+	}	
 
 	     $this->Message->recursive = 0; 
 
@@ -48,6 +54,7 @@ class MessagesController extends AppController{
 
       $this->pageTitle = 'Leave-a-Message : Archive';
       $this->Session->write('Message.source', 'archive');
+      debug($this->params);
 
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -55,6 +62,13 @@ class MessagesController extends AppController{
 	elseif($this->Session->check('messages_sort')) { 
   		$this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
+
+      if(isset($this->params['named']['limit'])) { 
+	$this->Session->write('messages_limit',$this->params['named']['limit']);
+	}
+	elseif($this->Session->check('messages_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('messages_limit');
+	}	
 
 
 	     $this->Message->recursive = 0; 

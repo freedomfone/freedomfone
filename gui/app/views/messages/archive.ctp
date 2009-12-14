@@ -1,5 +1,6 @@
 <?php
 $session->flash();
+
 echo $javascript->includeScript('toggle');
 echo "<h1>".__('Archived messages',true)."</h1>";
 
@@ -46,7 +47,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 		$status = $html->image("icons/new.png",array("alt" => "New"));
 	}
 
-	$title    = $html->link($message['Message']['title'],"/messages/view/{$message['Message']['id']}");
+	$title    = $message['Message']['title'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
 	$created  = $time->niceShort($message['Message']['created']);

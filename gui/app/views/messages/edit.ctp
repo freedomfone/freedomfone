@@ -1,4 +1,5 @@
 <?php 
+$source  = $session->read('Message.source');
 
       if($data){
 
@@ -31,6 +32,7 @@
 	echo "<table>";
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('next',array('value'=>$neighbors['next']['Message']['id']));
+     echo $form->hidden('source',array('value'=>$source));
 
             $button1 = $form->submit(__('Save & Index',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 	if ($next){

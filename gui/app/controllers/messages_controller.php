@@ -15,6 +15,9 @@ class MessagesController extends AppController{
 
       $this->pageTitle = 'Leave-a-Message : Inbox';
 
+      $this->Session->write('Message.source', 'index');
+
+
       //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 
@@ -44,6 +47,7 @@ class MessagesController extends AppController{
       function archive(){
 
       $this->pageTitle = 'Leave-a-Message : Archive';
+      $this->Session->write('Message.source', 'archive');
 
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -72,12 +76,12 @@ class MessagesController extends AppController{
     function edit($id = null)    {  
 
 
-   $this->pageTitle = 'Leave-a-Message : Edit';   
+    	     $this->pageTitle = 'Leave-a-Message : Edit';   
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));
 
-	}
+		     }
 
     	     elseif(empty($this->data['Message'])){
 
@@ -104,15 +108,14 @@ class MessagesController extends AppController{
 		$this->Message->save($this->data['Tag']);
 		$this->Session->setFlash('Your message has been updated');
     	     
-		$submit = $this->params['data']['Submit'];
+		$submit   = $this->params['data']['Submit'];
 
-		if ($submit == 'Save & Next' ){
+		if ($submit == __('Save & Next',true) ){
 		   $redirect = 'edit/'.$this->data['Message']['next'];
-		   }
-
-		   else {
-		   $redirect = 'index';
-		   }
+		   } elseif ($submit == __('Save & Index',true) ){
+		   $redirect = $this->data['Message']['source'];
+	
+		}
 
 		$this->redirect(array('action' => $redirect));
 		}
@@ -179,14 +182,16 @@ class MessagesController extends AppController{
 	             }
 
 
-
 		     if (!$redirect = $this->data['Message']['source']){
 
 		     	$redirect = 'index';
 
 		     }
 
+		     else { 
 		     $this->redirect(array('action' => $redirect));
+		     }
+
     	     } //empty
 
 	     else {

@@ -5,11 +5,21 @@ class LmMenusController extends AppController{
 	var $name = 'LmMenus';
 	var $helpers = array('Flash','Session');      
 
+
+	function demo_reset(){
+
+	 $iid=IID;
+	$this->data = $this->LmMenu->find('first', array('conditions' => array('instance_id' => $iid)));
+	$this->LmMenu->demoReset();
+	$this->redirect(array('action'=>'settings'));
+	}
+
 	function settings() {
 
    $this->pageTitle = 'Leave-a-Message : IVR';           
 
-     	$lm_settings = Configure::read('LM_SETTINGS');
+
+    	$lm_settings = Configure::read('LM_SETTINGS');
 
 		 $iid=IID;
 		 $fileData = array();

@@ -60,7 +60,14 @@ class PollsController extends AppController{
         //Fetch form data
 	$this->Poll->set( $this->data );
 
+	foreach($this->data['Vote'] as $key => $option){
+
+		if(!$option['chtext'] && $key>1){
+			unset($this->data['Vote'][$key]); 
+		}
 	
+	}
+
 	//Validate data (poll and vote)
 	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 
@@ -113,6 +120,22 @@ class PollsController extends AppController{
     }
 
 
+    function unlink ($id,$poll_id){
+
+
+    	     if($this->Poll->Vote->delete($id,true))
+	     {
+	     $this->log('Msg: POLL OPTION DELETED; Id: '.$id, 'poll');	
+	     $this->redirect(array('action' => '/edit/'.$poll_id));
+
+
+	     }
+
+
+
+    }
+
+
    function edit($id = null){
 
    $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
@@ -131,6 +154,7 @@ class PollsController extends AppController{
 			//if entry with this id exists
 			if ($this->data = $this->Poll->read(null,$id)){
 			   $this->set('data',$this->data);       
+			   
 			   }
 			else {
 			   $this->Session->setFlash(__('Invalid Poll', true)); 
@@ -155,15 +179,16 @@ class PollsController extends AppController{
 	 //Save poll data
 	  $this->Poll->save($this->data['Poll']);
 
-
 	  //Get unique id for each vote,
    	  $vote_id = $this->Poll->Vote->find('all', array('conditions' => array('Poll.id' => $id), 'order' => array('Vote.id asc')));
 
 	  //Set id for each vote, and save data
    	   foreach($this->data['Vote'] as $key => $vote){
-	     $this->data['Vote'][$key]['id']=$vote_id[$key]['Vote']['id'];
-	     }
 
+	   if(isset($vote_id[$key]['Vote']['id'])) { $voteId=$vote_id[$key]['Vote']['id'];} else { $voteId=false;}
+		$this->data['Vote'][$key]['id']= $voteId;
+	    	 $this->data['Vote'][$key]['poll_id']=$id;
+	     }
 
 	 //Save vote data
 	 $this->Poll->Vote->saveAll($this->data['Vote']);
@@ -172,6 +197,7 @@ class PollsController extends AppController{
 	 $this->Session->setFlash(__("Your poll has been created.",true));
 	 $this->redirect(array('action' => 'index'));
         }
+
       }
     }
 

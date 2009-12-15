@@ -51,7 +51,11 @@ echo "</div>";
     	      }
 
 	      //Add incorrect votes (open)
-	      $percentage = $number->toPercentage(100*$incorrect_open/$total,0);
+	      if ($total) {
+	      	 $percentage = $number->toPercentage(100*$incorrect_open/$total,0);
+	      } else {
+	      	$percentage=0;
+		}
 	      $rows[] = array(__('Invalid',true),array($incorrect_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($incorrect_closed,array('align'=>'center')));
 	      echo $html->tableCells($rows);
 	      echo "</table>";

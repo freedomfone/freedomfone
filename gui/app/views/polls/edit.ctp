@@ -1,5 +1,5 @@
 <?php
-
+echo $javascript->link('addRemoveElements');
 
 
 	   echo "<h1>".__("Edit Poll",true)."</h1>";
@@ -22,12 +22,28 @@
 	  $rows=array();
 
 		foreach ($this->data['Vote'] as $key =>$vote) {
-	    		$rows[$key] = array(__("Option",true)." ".($key+1),	$form->input('Vote.'.$key.'.chtext',array('label'=>false)));
+
+		if(isset($vote['id'])){ $voteId=$vote['id'];} else { $voteId=false;}
+			$hidden = $form->input('Vote.'.$key.'.id',array('value' => $voteId,'label'=>false));	    		
+			$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/polls/unlink/{$voteId}/{$this->data['Poll']['id']}",null , __("Are you sure you want to delete this poll option?",true),false);
+
+	    		//$rows[$key] = array(__("Option",true)." ".($key+1),	$form->input('Vote.'.$key.'.chtext',array('label'=>false)), $delete);
+
+			$rows[] = array(__("Option",true), $form->input('Vote.'.$key.'.chtext',array('value' => $vote['chtext'],'label'=>false)),$delete,$hidden);	    		
+
     			}
 
 
 	echo $html->tableCells($rows);
 	echo "</table>";
+
+	?>
+	<div id="doc">
+	<div id="content"></div>
+	<input id='add-element' type="button" value="<? echo __("Add",true);?>"/>
+	</div>
+	<?
+
 
 	echo "<div class='formTitleAlone'>".__("Start and end time",true)."</div>";
 	echo "<div class='formComment'>".__("When would you like to open and close the poll?",true)."</div>";

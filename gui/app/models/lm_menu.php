@@ -7,6 +7,8 @@ class LmMenu extends AppModel {
 
     function beforeSave(){
 
+    //DEMO FIX
+    if($this->data['LmMenu']['id']!=1){
 
     	$lm_default  = Configure::read('LM_DEFAULT');
      	$lm_settings = Configure::read('LM_SETTINGS');
@@ -27,6 +29,29 @@ class LmMenu extends AppModel {
 	    
 	    fclose($handle);
 
+	    }
+
+    return true;
+    }
+
+   // DEMO FIX
+    function demoReset(){
+
+
+        $lm_default  = Configure::read('LM_DEFAULT');
+
+            $data = file("http://localhost/freedomfone/app/webroot/defaults/lm/conf/100.conf");
+
+            foreach($data as $line){
+
+            $_line = explode(";",$line);
+
+            $this->data['LmMenu'][$_line[0]]= $_line[1];
+
+            }
+            $this->data['LmMenu']['id']= 1;
+
+            $this->updateAll($this->data['LmMenu']);
     return true;
     }
 

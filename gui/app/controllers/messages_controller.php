@@ -104,8 +104,9 @@ class MessagesController extends AppController{
 		$this->data = $this->Message->read();
 		$this->set('data',$this->Message->read());       
 
-      	  	$neighbors = $this->Message->find('neighbors', array('field' => 'id', 'value' => $id));	
+      	  	$neighbors = $this->Message->find('neighbors', array('field' => 'id', 'value' => $id, 'conditions' => array('status' => $this->data['Message']['status'] )));	
 
+		debug($neighbors);
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
  		$this->set(compact('tags','categories','neighbors'));
@@ -139,6 +140,8 @@ class MessagesController extends AppController{
 
     function delete ($id){
 
+    	     $source = $this->Session->read('Message.source');
+
 
      	     $title = $this->Message->getTitle($id);
 
@@ -146,8 +149,15 @@ class MessagesController extends AppController{
 	     {
 	     $this->Session->setFlash('Message with title "'.$title.'" has been deleted.');
 	     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
-	     $this->redirect(array('action' => 'index'));
+	    
 	     }
+
+
+ 	     if (!$redirect = $source){
+                        $redirect = 'index';
+              }
+             $this->redirect(array('action' => $redirect));
+
 
     }
 

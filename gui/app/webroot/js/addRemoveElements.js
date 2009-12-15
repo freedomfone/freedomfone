@@ -36,11 +36,12 @@ var Event = {
     }()
 };
 Event.add(window, 'load', function() {
-	var i = 3;
+	var i = 0;
+
 
 	Event.add('add-element', 'click', function() {
 		var el = document.createElement('p');
-				el.innerHTML = '<table><tr><td>Option ' + i++ + '</td><td><input type="text" id = "Vote'+ i +'Chtext value= "" name="data[Vote][' + i + '][chtext]"></td></tr></table>';
+				el.innerHTML = '<table><tr><td>Option </td><td><input type="text" id = "Vote'+ i +'Chtext value= "" name="data[Vote][][chtext]"></td></tr></table>';
 
 
 	Dom.add(el, 'content');

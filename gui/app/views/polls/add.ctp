@@ -1,5 +1,4 @@
 <?php
-echo $javascript->link("addHTMLControls.js", true); 
 echo $javascript->link('addRemoveElements');
 
 echo "<h1>".__("Create new poll",true)."</h1>";
@@ -25,11 +24,28 @@ echo "</table>";
 echo "<div class='formTitleAlone'>".__("Poll options",true)."</div>";
 echo "<div class='formComment'>".__("Alpha-numeric characters only (maximum 10)",true)."</div>";
 
+
 echo "<table>";
+if($votes = $this->data['Vote']){
+$i=0;
+
+	foreach ($votes as $key =>  $vote){
+	$i++;
+	$rows[] = array(__("Option",true)." ".$i, $form->input('Vote.'.$key.'.chtext',array('value' => $vote['chtext'],'label'=>false)));
+	}
+	echo $html->tableCells($rows);
+
+}
+else {
+
+
 echo $html->tableCells(array (
-     array(__("Option",true)." 1",	$form->input('Vote.0.chtext',array('label'=>false))),
-     array(__("Option",true)." 2",	$form->input('Vote.1.chtext',array('label'=>false)))
+     array(__("Option",true), $form->input('Vote.0.chtext',array('label'=>false))),
+     array(__("Option",true), $form->input('Vote.1.chtext',array('label'=>false)))
       ));
+
+}
+
 echo "</table>";
 ?>
 

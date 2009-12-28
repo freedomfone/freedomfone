@@ -14,9 +14,9 @@ class Vote extends AppModel{
 
       var $validate = array(
          'chtext'      => array(
-	 	        'minLength' => array(
-			   'rule'=>array('minLength', 1),
-            	  	   'message'=>'A valid answer for the poll is required'
+	 	        'between' => array(
+			   'rule'=>array('between', 1,10),
+            	  	   'message'=>'Between 1 to 10 characters.'
 			   ),
 			'alphaNumeric' => array(
 		       	   'rule' => 'alphaNumeric',

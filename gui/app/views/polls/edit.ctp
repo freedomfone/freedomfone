@@ -25,7 +25,11 @@ echo $javascript->link('addRemoveElements');
 
 		if(isset($vote['id'])){ $voteId=$vote['id'];} else { $voteId=false;}
 			$hidden = $form->input('Vote.'.$key.'.id',array('value' => $voteId,'label'=>false));	    		
-			$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/polls/unlink/{$voteId}/{$this->data['Poll']['id']}",null , __("Are you sure you want to delete this poll option?",true),false);
+			if ($voteId){ 
+			   $delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/polls/unlink/{$voteId}/{$this->data['Poll']['id']}",null , __("Are you sure you want to delete this poll option?",true),false);
+			   } else { 
+			   $delete=false;
+			   }
 
 	    		//$rows[$key] = array(__("Option",true)." ".($key+1),	$form->input('Vote.'.$key.'.chtext',array('label'=>false)), $delete);
 

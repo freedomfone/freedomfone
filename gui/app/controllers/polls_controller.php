@@ -172,6 +172,15 @@ class PollsController extends AppController{
 	$this->Poll->set( $this->data );
 
 	
+	foreach($this->data['Vote'] as $key => $option){
+
+		if(!$option['chtext'] && $key>1){
+			unset($this->data['Vote'][$key]); 
+		}
+	
+	}
+
+
 	//Validate data (poll and vote)
 	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 

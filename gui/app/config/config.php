@@ -70,7 +70,6 @@ $config['IVR_SETTINGS'] = array(
 		'dir_node'        =>  'nodes/',
 		'dir_menu'         =>  'ivr/',
 		'dir_conf'         =>  'conf/'
-
 		);
 
 
@@ -97,4 +96,5 @@ $config['FREESWITCH']=		array(
 $config['ESL']	= array(
 	      'path' =>"/usr/src/pictus/esl/native/ESL.php");
 
+$config['EXTENSIONS'] = array('lam' => '2000','ivr' => '4000');
 ?>

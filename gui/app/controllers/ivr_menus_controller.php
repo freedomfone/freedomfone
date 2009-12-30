@@ -217,7 +217,11 @@ class IvrMenusController extends AppController{
                      }
 
           //Save text based form data
-         $this->IvrMenu->save($this->data);
+
+
+
+        // $this->IvrMenu->save($this->data);
+	$this->IvrMenu->customizeSave($this->data);
 
 	 //Update IVR xml file
 	 $this->IvrMenu->writeIVR();

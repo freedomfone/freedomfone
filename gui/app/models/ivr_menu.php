@@ -139,16 +139,18 @@ class IvrMenu extends AppModel{
 
 	      //Create xml menu
 	      $obj->write_menu($ivr);
-	      if($ivr['option1_id']){ $obj->write_entry($ivr['option1_type'],$ivr['option1_id'],1,$key);}
-	      if($ivr['option2_id']){ $obj->write_entry($ivr['option2_type'],$ivr['option2_id'],2,$key);}
-	      if($ivr['option3_id']){ $obj->write_entry($ivr['option3_type'],$ivr['option3_id'],3,$key);}
-              if($ivr['option4_id']){ $obj->write_entry($ivr['option4_type'],$ivr['option4_id'],4,$key);}
-              if($ivr['option5_id']){ $obj->write_entry($ivr['option5_type'],$ivr['option5_id'],5,$key);}
-              if($ivr['option6_id']){ $obj->write_entry($ivr['option6_type'],$ivr['option6_id'],6,$key);}
-              if($ivr['option7_id']){ $obj->write_entry($ivr['option7_type'],$ivr['option7_id'],7,$key);}
-              if($ivr['option8_id']){ $obj->write_entry($ivr['option8_type'],$ivr['option8_id'],8,$key);}
-              
 
+	      for($i=1;$i<=9;$i++){
+	      
+		$type ='option'.$i.'_type';
+		$id   ='option'.$i.'_id';
+
+		if ($ivr[$type]=='node' && $ivr[$id]){ 
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key);
+		   } elseif ($ivr[$type] =='lam') {
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key);
+		   }
+	      }
 	      $obj->write_entry_common($key);
 	  
 	    }
@@ -158,6 +160,27 @@ class IvrMenu extends AppModel{
 	    $obj->close_file();
 
       }	    
+
+      function customizeSave($data){
+
+      	   for($i=1;$i<=8;$i++){
+		unset($type);
+		unset($id);
+		$id   = 'option'.$i.'_id';
+		$type = 'option'.$i.'_type';
+		if ($data['IvrMenu'][$type] == 'lam'){
+		   $data['IvrMenu'][$id]='';
+		}
+      
+	}
+
+        $this->save($data);
+
+
+	return true;
+
+      }
+
 }
 
 ?>

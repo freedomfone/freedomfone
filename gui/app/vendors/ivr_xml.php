@@ -22,16 +22,20 @@ public $ivr_settings;
 public $node_path;
 public $menu_path;
 public $file;
+public $ext;
 
 
 	function ivr_xml(){
 
      $ivr_settings = Configure::read('IVR_SETTINGS');
+     $ext 	   = Configure::read('EXTENSIONS');
      
 
      $this->node_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_node'];
      $this->menu_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
      $this->file	   = WWW_ROOT.$ivr_settings['curl']."ivr.xml";
+
+
 
 
 	$this->inter_digit_timout   = 2000;
@@ -42,7 +46,7 @@ public $file;
 	$this->digit_len	    = 4;
 	$this->tts_engine	    = 'cepstral';
 	$this->tts_voice	    = 'allison';
-
+	$this->ext		    = $ext;
 
 	$this->open_file();
 	}
@@ -86,8 +90,17 @@ public $file;
            $option2_id    = $data['option2_id'];
            $option3_type  = $data['option3_type'];
            $option3_id    = $data['option3_id'];
-	  
-	  
+           $option4_type  = $data['option4_type'];
+           $option4_id    = $data['option4_id'];
+           $option5_type  = $data['option5_type'];
+           $option5_id    = $data['option5_id'];
+           $option6_type  = $data['option6_type'];
+           $option6_id    = $data['option6_id'];
+           $option7_type  = $data['option7_type'];
+           $option7_id    = $data['option7_id'];
+           $option8_type  = $data['option8_type'];
+           $option8_id    = $data['option8_id'];
+  
 
 	   $menus = $this->body -> section-> configuration-> menus->addChild('menu');
 	   $menus -> addAttribute ("name",$name);  //Unique name {id}_{title}
@@ -153,25 +166,25 @@ public $file;
 	            	switch ($type){
 
 		      	   //Node
-			   case 0:
-	  			
-	                   $table  = 'nodes';
-			   $type   = 'node';
+			   case 'node':
+
+		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	   $arr = mysql_fetch_array($obj);
+			   $action = "menu-play-sound";
+			   $param  = $this->node_path.$arr['file'];
+			   break;
+
+		      	   //Leave-a-message
+			   case 'lam':
+
+			   $ext = $this->ext['lam'];
+			   $action = "menu-exec-app";
+			   $param  = "transfer ".$ext." XML default";
 			   break;
           		   }
 				
-
-		       $obj = mysql_query("select * from $table where id = '$id'");	 
-		       $arr = mysql_fetch_array($obj);
-
-		       $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
-
-		          if ($type=='node'){
-				$action = "menu-play-sound";
-				$param  = $this->node_path.$arr['file'];
-			      }
-    		        
-			$entry -> addAttribute("action",$action);
+		        $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+      			$entry -> addAttribute("action",$action);
 		        $entry -> addAttribute("digits",$digit);
 			$entry -> addAttribute("param",$param);
 		    

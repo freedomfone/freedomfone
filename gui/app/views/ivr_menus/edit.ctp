@@ -73,6 +73,14 @@ $path = $ivr['path'].IID."/".$ivr['dir_node'];
      for($i=0;$i<8;$i++){
 
 	$key = 'option'.($i+1).'_id';
+	$key_type = 'option'.($i+1).'_type';
+	$default = $this->data['IvrMenu'][$key_type];
+
+     	$options1=array('node' =>'');
+     	$options2=array('lam' =>'');
+        $attributes=array('legend'=>false,'default'=>$default);
+        $radio1 = $form->radio('option'.($i+1).'_type',$options1,$attributes);
+	$radio2 = $form->radio('option'.($i+1).'_type',$options2,$attributes);
 
 	if ($option_id = $this->data['IvrMenu'][$key]){
 	
@@ -81,13 +89,16 @@ $path = $ivr['path'].IID."/".$ivr['dir_node'];
 	else {$listen=false;}
 
        $row[$i]=array(
-	array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100px')), 
+	array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100px')),
+	$radio1, 
 	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'-Select node-' )),
-	$listen
+	$listen,
+	$radio2, 
+	__("Leave-a-message",true)
 	);
      }
 
-     echo "<table width='400px'>";
+     echo "<table width='600px'>";
      echo $html->tableCells($row);
      echo "</table>";
 

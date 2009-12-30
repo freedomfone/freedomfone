@@ -63,11 +63,19 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 <fieldset>
 <legend><?php __('Menu entries');?> </legend>
 <?
-     for($i=0;$i<8;$i++){
-        $row[$i]=array( array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100')), $form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'-Select node-' )));
+
+     for($i=1;$i<=8;$i++){
+
+     	$options1=array('node' =>'');
+     	$options2=array('lam' =>'');
+        $attributes=array('legend'=>false,'default'=>'node');
+        $radio1 = $form->radio('option'.$i.'_type',$options1,$attributes);
+	$radio2 = $form->radio('option'.$i.'_type',$options2,$attributes);
+
+        $row[$i-1]=array( array("<h3>".__('Press '.($i),true)."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'-Select node-' )),$radio2,__('Leave-a-message',true));
      }
 
-     echo "<table width='800px'>";
+     echo "<table width='400px'>";
      echo $html->tableCells($row);
      echo "</table>";
 

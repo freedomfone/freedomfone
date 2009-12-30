@@ -22,6 +22,13 @@ class PollsController extends AppController{
 
       function index(){
 
+        if(isset($this->params['form']['submit'])) {
+						   if ($this->params['form']['submit']==__('Refresh',true)){
+                   $this->requestAction('/polls/refresh');
+                   }
+       }
+
+
       $this->pageTitle = 'Manage polls';
       $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
 
@@ -89,7 +96,7 @@ class PollsController extends AppController{
 	 }
 
 	 //Save vote data
-	 $this->Poll->Vote->saveAll($this->data['Vote']);
+	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => 'false'));
 
 	
 	 $this->Session->setFlash(__("The poll has been added to the database",true));
@@ -200,12 +207,13 @@ class PollsController extends AppController{
 	     }
 
 	 //Save vote data
-	 $this->Poll->Vote->saveAll($this->data['Vote']);
+	$this->Poll->Vote->saveAll($this->data['Vote']);
 
 	
-	 $this->Session->setFlash(__("Your poll has been created.",true));
+	 $this->Session->setFlash(__("Your poll has been edited.",true));
 	 $this->redirect(array('action' => 'index'));
         }
+
 
       }
     }

@@ -1,8 +1,13 @@
 <?php
 
 echo "<h1>".__("Polls",true)."</h1>";
-echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new poll")),"/polls/add",null, null, false)."</p>";
 
+echo $html->div("frameRight");
+echo $html->link($html->image("icons/add.png", array("alt" => "Create new poll")),"/polls/add",null, null, false);
+echo $form->create('Poll',array('type' => 'post','action'=> 'index'));
+echo $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button'));
+echo $form->end();
+echo "</div>";
 
 $session->flash();
 

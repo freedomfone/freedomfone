@@ -11,33 +11,34 @@
 // * implied.  See  the License  for  the  specific language  governing
 // * rights and limitations under the License.  123
 //
-// * Version 1.1
+// * Version 1.2
 //
-var miIVR_UUID = argv[0];
-var miIVR_Name = argv[1]; // One Word
-var miIVR_CallerID = argv[2];
-var miIVR_Destination_Number = argv[3];
-var miIVR_Node_Option = argv[4];
-var miIVR_Node_Tag = argv[5];
+var miIVR_Unique_ID = argv[0];
+var miIVR_IVR_Name = argv[1]; 
+var miIVR_IVR_Node_Digit = argv[2];
+var miIVR_IVR_Node_Unique_ID = argv[3];
+var miIVR_Caller_ID_Number = argv[4];
+var miIVR_Destination_Number = argv[5];
 
 // Enable/Disable Debug
 var miDebug = true;
 
 	    e = new Event("custom", "monitor_ivr");
-	    e.addHeader("FF-IVR-UUID",miIVR_UUID);
-	    e.addHeader("FF-IVR-Name",miIVR_Name);
-	    e.addHeader("FF-IVR-CallerID",miIVR_CallerID);
+	    e.addHeader("FF-IVR-Unique-ID",miIVR_Unique_ID);
+	    e.addHeader("FF-IVR-IVR-Name",miIVR_IVR_Name);
+	    e.addHeader("FF-IVR-IVR-Node-Digit",miIVR_IVR_Node_Digit);
+	    e.addHeader("FF-IVR-IVR-Node-Unique-ID",miIVR_IVR_Node_Unique_ID);
+	    e.addHeader("FF-IVR-Caller-ID-Number",miIVR_Caller_ID_Number);
 	    e.addHeader("FF-IVR-Destination-Number",miIVR_Destination_Number);
-	    e.addHeader("FF-IVR-Node-Option",miIVR_Node_Option);
-	    e.addHeader("FF-IVR-Node-Tag",miIVR_Node_Tag);
 	    e.fire();
+
 	
 
 
 if (miDebug) {
         console_log("\n");
         console_log(" ============================================================================ " +"\n");
-        console_log(miIVR_UUID + "|" + miIVR_Name + "|" + miIVR_CallerID + "|" + miIVR_Destination_Number + "|" + miIVR_Node_Option + "|" + miIVR_Node_Tag +"\n");
+        console_log(miIVR_Unique_ID + "|" + miIVR_IVR_Name + "|" + miIVR_IVR_Node_Digit + "|" + miIVR_IVR_Node_Unique_ID + "|" + miIVR_Caller_ID_Number + "|" + miIVR_Destination_Number +"\n");
         console_log(" ============================================================================ " +"\n");
         console_log("\n");
-    }   
+	    }   

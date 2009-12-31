@@ -1,62 +1,24 @@
 Event-Subclass: monitor_ivr
 Event-Name: CUSTOM
-Core-UUID: 8c254aaa-e7be-11de-aef6-c7bebf73c01e
+Core-UUID: cee37222-f5fb-11de-b536-d7ac0e382a00
 FreeSWITCH-Hostname: nc10blue
-FreeSWITCH-IPv4: 192.168.254.52
+FreeSWITCH-IPv4: 192.168.46.72
 FreeSWITCH-IPv6: %3A%3A1
-Event-Date-Local: 2009-12-13%2010%3A17%3A43
-Event-Date-GMT: Sun,%2013%20Dec%202009%2009%3A17%3A43%20GMT
-Event-Date-Timestamp: 1260695863779919
+Event-Date-Local: 2009-12-31%2012%3A03%3A06
+Event-Date-GMT: Thu,%2031%20Dec%202009%2011%3A03%3A06%20GMT
+Event-Date-Timestamp: 1262257386559374
 Event-Calling-File: mod_spidermonkey.c
 Event-Calling-Function: event_construct
 Event-Calling-Line-Number: 502
-FF-IVR-UUID: 5b1ca764-e7c8-11de-aef6-c7bebf73c01e
-FF-IVR-Name: 1_IVR_Name
-FF-IVR-CallerID: 1003
+FF-IVR-Unique-ID: dc92e6be-f5fb-11de-b536-d7ac0e382a00
+FF-IVR-IVR-Name: IVR_Name_Text
+FF-IVR-IVR-Node-Digit: 2
+FF-IVR-IVR-Node-Unique-ID: Node_UniqueID_for_2
+FF-IVR-Caller-ID-Number: 1003
 FF-IVR-Destination-Number: 5000
-FF-IVR-Node-Option: 1
-FF-IVR-Node-Tag: 1_Node_Tag
 
-Content-Length: 614
-Content-Type: text/event-plain
+events plain CHANNEL_STATE
 
-Event-Subclass: monitor_ivr
-Event-Name: CUSTOM
-Core-UUID: 8c254aaa-e7be-11de-aef6-c7bebf73c01e
-FreeSWITCH-Hostname: nc10blue
-FreeSWITCH-IPv4: 192.168.254.52
-FreeSWITCH-IPv6: %3A%3A1
-Event-Date-Local: 2009-12-13%2010%3A17%3A52
-Event-Date-GMT: Sun,%2013%20Dec%202009%2009%3A17%3A52%20GMT
-Event-Date-Timestamp: 1260695872527186
-Event-Calling-File: mod_spidermonkey.c
-Event-Calling-Function: event_construct
-Event-Calling-Line-Number: 502
-FF-IVR-UUID: 5b1ca764-e7c8-11de-aef6-c7bebf73c01e
-FF-IVR-Name: 1_IVR_Name
-FF-IVR-CallerID: 1003
-FF-IVR-Destination-Number: 5000
-FF-IVR-Node-Option: 1
-FF-IVR-Node-Tag: 1_Node_Tag
+Content-Type: command/reply
+Reply-Text: +OK event listener enabled plain
 
-Content-Length: 614
-Content-Type: text/event-plain
-
-Event-Subclass: monitor_ivr
-Event-Name: CUSTOM
-Core-UUID: 8c254aaa-e7be-11de-aef6-c7bebf73c01e
-FreeSWITCH-Hostname: nc10blue
-FreeSWITCH-IPv4: 192.168.254.52
-FreeSWITCH-IPv6: %3A%3A1
-Event-Date-Local: 2009-12-13%2010%3A17%3A59
-Event-Date-GMT: Sun,%2013%20Dec%202009%2009%3A17%3A59%20GMT
-Event-Date-Timestamp: 1260695879360062
-Event-Calling-File: mod_spidermonkey.c
-Event-Calling-Function: event_construct
-Event-Calling-Line-Number: 502
-FF-IVR-UUID: 5b1ca764-e7c8-11de-aef6-c7bebf73c01e <--- call unique identifier
-FF-IVR-Name: 2_IVR_Name <---- This is a hash
-FF-IVR-CallerID: 1003
-FF-IVR-Destination-Number: 5000 <----- we can track trunk/media
-FF-IVR-Node-Option: 2 <--- pressed integer
-FF-IVR-Node-Tag: 2_Node_Tag  <----- This is a hash 

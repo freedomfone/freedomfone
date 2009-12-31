@@ -25,9 +25,9 @@
       <entry action="menu-play-sound" digits="2" param="/var/tmp/reno.wav"/>
       <xentry action="menu-play-sound" digits="2" param="/var/tmp/reno.wav"/>
       <entry action="menu-play-sound" digits="3" param="/var/tmp/macroform.wav"/>
-	<entry action="menu-exec-app" digits="1" param="javascript monitor_ivr.js ${uuid} 1_IVR_Name ${caller_id_number} ${destination_number} 1 1_Node_Tag"/>   
-	<entry action="menu-exec-app" digits="2" param="javascript monitor_ivr.js ${uuid} 2_IVR_Name ${caller_id_number} ${destination_number} 2 2_Node_Tag"/>   
-	<entry action="menu-exec-app" digits="3" param="javascript monitor_ivr.js ${uuid} 3_IVR_Name ${caller_id_number} ${destination_number} 3 3_Node_Tag"/>   
+	<entry action="menu-exec-app" digits="1" param="javascript monitor_ivr.js ${uuid} 'IVR_Name_Text' 1 'Node_UniqueID_for_1' ${caller_id_number} ${destination_number}"/>   
+	<entry action="menu-exec-app" digits="2" param="javascript monitor_ivr.js ${uuid} 'IVR_Name_Text' 2 'Node_UniqueID_for_2' ${caller_id_number} ${destination_number}"/>   
+	<entry action="menu-exec-app" digits="3" param="javascript monitor_ivr.js ${uuid} 'IVR_Name_Text' 3 'Node_UniqueID_for_3' ${caller_id_number} ${destination_number}"/>   
       <entry action="menu-exec-app" digits="4" param="transfer 9996 XML default"/>    <!-- FS echo -->
       <xentry action="menu-exec-app" digits="5" param="transfer 9999 XML default"/>    <!-- MOH -->
       <entry action="menu-exec-app" digits="6" param="transfer 1234*256 enum"/>       <!-- Screaming monkeys -->

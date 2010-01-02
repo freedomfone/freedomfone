@@ -27,6 +27,11 @@ $host = $_SocketParam['host'];
 $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
+$handle = fopen(PidFile,'w');
+$int = fwrite($handle,getmypid());
+fclose($handle);
+
+
 $param = parseArgs($argv);
 
        if (key_exists('v',$param)){  
@@ -69,7 +74,7 @@ $param = parseArgs($argv);
        	set_time_limit(0); // Remove the PHP time limit of 30 seconds for completion due to loop watching events
 
 	//1. Connect to spooler database
-	if (!db_connect($_DispatcherDB)) {
+	if (!$link = db_connect($_DispatcherDB)) {
                 logESL("Unable to connect to Spooler","ERROR",1);
                 die(printf("Unable to connect to spooler database","ERROR"));
            } else { 
@@ -82,8 +87,9 @@ $param = parseArgs($argv);
 		logESL("Successfully connected to FreeSWITCH","INFO",1); 
 
 	         //3. Subscribe to events
-       	   	   //$sock->sendRecv("event xml heartbeat message");
-       	   	   $sock->sendRecv("event xml custom tickle message leave_a_message");
+       	   	   
+       	   	   $sock->sendRecv("event xml message CHANNEL_STATE");
+       	   	   $sock->sendRecv("event xml custom message tickle leave_a_message monitor_ivr");
 		   logESL("Successfully subscribed to events","INFO",1); 
 
 		   //4. Wait for events
@@ -100,6 +106,12 @@ $param = parseArgs($argv);
 				//6. Apply rules to determine with application(s) to associate data with
   				if ($application = applyRules($xml)){
 				   logESL("Application match","INFO",1); 
+
+   				    if (!mysql_ping ($link)) {
+                                        mysql_close($link);
+                                        $link = db_connect($_DispatcherDB);
+                                        logESL("SQL connection down. Trying to re-establish", "INFO",1);
+				    }
 
 				   	//7. Create and execute MySQL query
     	     	    			if (XML2SQL($application,$xml)){
@@ -137,13 +149,23 @@ function applyXSL($event){
          $xsl= DirXSL.DefaultXSL;
 	 $xml = simplexml_load_string($body);
 	 $event_subclass  = $xml->headers->{'Event-Subclass'};
+	 $event_name_alt  = $xml->headers->{'Event-Name'};
+
+	 //PATCH FOR BROKEN RESPONSE OF getType() in ESL for CHANNEL_STATE
+	 if($event_name!=$event_name_alt){ $event_name= $event_name_alt;}
 
 	 logESL("Event name: ".$event_name,"INFO",2); 
 	 logESL("Event subclass: ".$event_subclass,"INFO",2); 
 
+
                  if($event_name == 'MESSAGE'){
 	             $xsl= DirXSL.'message.xsl';
-                 }  elseif($event_name == 'CUSTOM'){
+
+                 } elseif($event_name == 'CHANNEL_STATE'){
+	             $xsl= DirXSL.'channel_state.xsl';
+
+                 } elseif($event_name == 'CUSTOM'){
+
                	     switch ($event_subclass){
 
 	                    case 'leave_a_message':
@@ -156,6 +178,10 @@ function applyXSL($event){
 
 	                    case 'message':
 	                    $xsl= DirXSL.DefaultXSL;
+	                    break;
+
+	                    case 'monitor_ivr':
+	                    $xsl= DirXSL.'monitor_ivr.xsl';
 	                    break;
                      }
                  }
@@ -206,10 +232,16 @@ function applyRules($string){
                       $application[]='callback_in';
 		      logESL("Application match: callback (call/Skype)","INFO",2); 
 	 	      break;             
+
+                      case 'bin':
+                      $application[]='bin';
+		      logESL("Application match: bin (SMS/Skype)","INFO",2); 
+	 	      break;
+
                        }
 
                 }
-                if ($event_name=='CUSTOM') {
+                elseif ($event_name=='CUSTOM') {
 
 	               switch($event_subclass){
 
@@ -224,13 +256,27 @@ function applyRules($string){
                          break;
 	
                          case 'message':
-	                 $application[]='poll_in';
+			 $application[] = analyzeBody($body);
+	                 //$application[]='poll_in';
 			 logESL("Application match: poll (custom)","INFO",2); 
 	                 break;
+
+	                 case 'monitor_ivr':
+	                 $application[]='monitor_ivr';
+			 logESL("Application match: monitor_ivr (custom)","INFO",2); 
+	 	         break;
+
 	               }
 
                 }
+		elseif ($event_name == 'CHANNEL_STATE'){
 
+		         $channel_state = $xml->headers->{'Channel-State'};
+			 if($channel_state == 'CS_ROUTING' || $channel_state == 'CS_DESTROY'){
+		         	$application[]='channel_state';
+			 	logESL("Application match: channel_state","INFO",2);
+			 }
+	 	 }
  		return $application;
 }
 
@@ -255,8 +301,8 @@ function XML2SQL($table,$string){
 		     $values[] = $child[0];
 	     }
 
-	     $fields[] = 'body';
-	     $values[] = $xml->body;
+	    // $fields[] = 'body';
+	    // $values[] = $xml->body;
 
 	     return insertValues($table,$fields,$values);
 
@@ -383,6 +429,7 @@ global $obj;
 
         $data =  explode(' ',$body);
 	foreach ($data as $token){
+	echo $token;
 		if ($token){
 		$message[] =$token;
 		}
@@ -396,6 +443,10 @@ global $obj;
 
         elseif(sizeof($message)==2){
                 $app = 'poll';
+        }
+
+        else{
+                $app = 'bin';
         }
 
         return $app;

@@ -112,6 +112,7 @@ freeswitch/scripts/freedomfone/leave_message/100/messages/d8ebc4fa-923b-11de-858
 freeswitch/scripts/freedomfone/leave_message/100/messages/dc50dc9a-914e-11de-a33a-edf6d27cc3dd.meta -text
 freeswitch/scripts/freedomfone/leave_message/100/messages/ed91096a-9321-11de-9981-17076624b6e4.meta -text
 freeswitch/scripts/freedomfone/leave_message/main.js -text
+freeswitch/scripts/freedomfone/monitor_ivr/main.js -text
 freeswitch/scripts/freedomfone/sms/README -text
 freeswitch/scripts/freedomfone/sms/main.js -text
 freeswitch/scripts/freedomfone/tickle/main.js -text

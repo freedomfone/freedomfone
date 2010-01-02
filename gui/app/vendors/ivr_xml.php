@@ -28,12 +28,14 @@ public $ext;
 	function ivr_xml(){
 
      $ivr_settings = Configure::read('IVR_SETTINGS');
+     $ivr_monitor = Configure::read('IVR_MONITOR');
      $ext 	   = Configure::read('EXTENSIONS');
      
 
      $this->node_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_node'];
      $this->menu_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
      $this->file	   = WWW_ROOT.$ivr_settings['curl']."ivr.xml";
+     $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
 
 
@@ -161,7 +163,7 @@ public $ext;
 	   }
 
 
-	   function write_entry($type,$id,$digit,$key){
+	   function write_entry($type,$id,$digit,$key,$created){
 
 	            	switch ($type){
 
@@ -180,6 +182,7 @@ public $ext;
 			   $ext = $this->ext['lam'];
 			   $action = "menu-exec-app";
 			   $param  = "transfer ".$ext." XML default";
+			   $id='lam';
 			   break;
           		   }
 				
@@ -187,7 +190,25 @@ public $ext;
       			$entry -> addAttribute("action",$action);
 		        $entry -> addAttribute("digits",$digit);
 			$entry -> addAttribute("param",$param);
-		    
+
+			//FIX THIS
+			$monitor=true;
+
+// <entry action="menu-exec-app" digits="1" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'IVR_Name_Text' 2 'Node_UniqueID_for_2' ${caller_id_number} ${destination_number}"/>   
+  
+
+			if($monitor){
+				$action= "menu-exec-app";
+				$param = "javascript $this->ivr_monitor \${uuid} '$created' '$digit' '$id' \${caller_id_number} \${destination_number}";
+
+		        	$entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+      				$entry -> addAttribute("action",$action);
+		        	$entry -> addAttribute("digits",$digit);
+				$entry -> addAttribute("param",$param);
+		   
+
+			}
+ 
 	   }
 
 
@@ -196,7 +217,6 @@ public $ext;
 		 $entryExit = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
 	    	 $entryExit -> addAttribute("action","menu-top");
 	     	 $entryExit -> addAttribute("digits","9");
-
 
 
 		 $entryTop = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");

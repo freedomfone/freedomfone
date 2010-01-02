@@ -16,7 +16,10 @@
 // IVR XML sample
 // <entry action="menu-exec-app" digits="1" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'IVR_Name_Text' 2 'Node_UniqueID_for_2' ${caller_id_number} ${destination_number}"/>   
 // 
-//var miIVR_Unique_ID = argv[0];
+
+
+
+var miIVR_Unique_ID = argv[0];
 var miIVR_IVR_Name = argv[1]; 
 var miIVR_IVR_Node_Digit = argv[2];
 var miIVR_IVR_Node_Unique_ID = argv[3];

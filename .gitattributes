@@ -376,6 +376,7 @@ gui/index.php -text
 installer/centos/pictus_install_gui.sh -text
 installer/pictus_install.sh -text
 installer/pictus_install_gui.sh -text
+license/MPL -text
 log/dialer.log -text
 log/dispatcher_in.log -text
 log/dispatcher_out.log -text

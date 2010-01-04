@@ -3,10 +3,6 @@
  * Class for ...
  *
  */
-
-
-
-
 class ff_event {
     /**
      * sql table name 
@@ -32,16 +28,11 @@ class ff_event {
      * @return object $link mysql resource, on error return false
      */
     function ff_event($vars=null) {
-
-        $vars_array = is_array($vars) ? $vars : array();
-        $initial_vars = $this -> set_initial_vars($vars_array);
-        $this -> debug($initial_vars);
-
         
-        if ($link =$this -> db_connect($initial_vars)) {
+        if ($link =$this -> db_connect($vars)) {
            $this -> debug('---- Database connection established. ----');
             $this -> auth = true;
-	    $this -> table = $initial_vars['user'];
+	    $this -> table = $vars['user'];
         }
 
 	else { 
@@ -60,35 +51,6 @@ class ff_event {
 	mysql_close($link);
     }
 
-    /**
-     * Sets connection info from array passed, or used a set of defaults if nothing is passed
-     *
-     * @param array $var_array array of connection settings to use (host|database|user|password)
-     * @return array
-     */
-    function set_initial_vars($var_array) {
-
-        $defaults = array(
-        	  'host'	=> 'localhost',
-        	  'database'	=> 'freedomfone',
-         	  'user' 	=> 'app2',
-        	  'password' 	=> 'app2',
-        );
-
-
-        foreach ($defaults as $key => $value) {
-
-            if (array_key_exists($key, $var_array)) {
-                $this -> debug("$key found in vars");
-                $connection_settings[$key] = $var_array[$key];
-            } else {
-               $this -> debug("$key not found in vars");
-                $connection_settings[$key] = $value;
-            }
-        }
-        //$this -> debug($connection_settings);
-        return $connection_settings;
-    }
 
 
     /**
@@ -103,9 +65,6 @@ class ff_event {
      $database	= $initial_vars['database'];
      $user 	= $initial_vars['user'];
      $password	= $initial_vars['password'];
-
-
-
 
      	      $link = mysql_connect(trim($host), trim($user), trim($password))
    	      	    or die("Could not connect : " . mysql_error());
@@ -209,9 +168,8 @@ class ff_event {
      $table = $this->table;
 
 
-       $this -> debug('---- getNext. ----');
-       $this -> debug($table);
-
+       $this -> debug('---- Method: getNext. ----');
+       $this -> debug('---- Table: '.$table.'----');
      $result = mysql_query("select * from $table where status=0 order by id asc limit 0,1;");
 
 

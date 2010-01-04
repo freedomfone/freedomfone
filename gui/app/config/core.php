@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 3);
 /**
  * Application wide charset encoding
  */
@@ -229,7 +229,9 @@ define ('IID', '100');
 define ('AUDIO_FORMAT', 'mp3');
 
 //used for file upload component
-define ('MY_DOMAIN','http://demo.freedomfone.org/freedomfone/');
+
+define ('MY_DOMAIN','http://192.168.46.147/freedomfone/');
+define ('PID_URI',MY_DOMAIN.'freedomfone/pid/');
 
 
 

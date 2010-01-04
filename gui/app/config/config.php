@@ -37,6 +37,22 @@ $config['callback_in']= array(
 	       'database' => 'spooler_in',
 	       );
 
+$config['monitor_ivr']= array(
+      	       'host'     => 'localhost',
+	       'user'     => 'monitor_ivr',
+	       'password' => 'thefone',
+	       'database' => 'spooler_in',
+	       );
+
+$config['cdr']= array(
+      	       'host'     => 'localhost',
+	       'user'     => 'cdr',
+	       'password' => 'thefone',
+	       'database' => 'spooler_in',
+	       );
+	       
+	      
+
 //**
 //
 // Application specific settings
@@ -85,6 +101,10 @@ $config['CALLBACK_DEFAULT']=	array(
                 'response_type'     =>  array ('4000' =>'IVR','2000' =>'Leave-a-Message'),
                 'limit_user'       => '10',
                 'limit_time'       => '24');
+
+$config['IVR_MONITOR']=	array(
+	        'script'             => 'scripts/freedomfone/monitor_ivr/main.js'
+		);
 
 	
 $config['FREESWITCH']=		array(

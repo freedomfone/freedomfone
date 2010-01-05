@@ -3,6 +3,7 @@
 class CdrController extends AppController{
 
       var $name = 'Cdr';
+      var $helpers = array('Csv','Javascript');
 
       var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc')); 
 
@@ -92,6 +93,34 @@ class CdrController extends AppController{
 	  $this->redirect(array('action' => 'index'));
 
     }
+
+    function output(){
+
+    debug($this->data);
+    	     Configure::write('debug', 0);
+    	     $this->set('data', $this->Cdr->findAll()); 
+
+    	     $this->layout = null;
+    	     $this->autoLayout = false;
+
+    	     $this->render();    
+    }
+
+
+      function export(){
+
+      $start	  = $this->data['Cdr']['start_time'];
+      $end 	  = $this->data['Cdr']['start_time'];
+ 
+      $start = $start['year'].'-'.$start['month'].'-'.$start['day'];
+      $end   = $end['year'].'-'.$end['month'].'-'.$end['day'];
+
+      $start_epoch = strtotime($start);
+      $end_epoch = strtotime($end);
+
+    	     $this->render();  
+  
+     }
 
 
 }

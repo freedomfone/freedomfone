@@ -40,11 +40,12 @@ class ProcessesController extends AppController{
 
 
 			//Run start command
-			$this->Process->start();
-			sleep(3); //to allow pid to be written to file
+			$pid = $this->Process->start();
+	
+			//sleep(3); //to allow pid to be written to file
 
 			//Fetch NEW pid
-			$pid = $this->Process->getPid();
+			//$pid = $this->Process->getPid();
 				
 			//Save NEW pid, update status and timestamps
 			$this->Process->id = $id;

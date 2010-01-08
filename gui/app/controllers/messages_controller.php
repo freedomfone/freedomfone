@@ -9,8 +9,6 @@ class MessagesController extends AppController{
       var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Message.created' => 'desc')); 
 
 
-
-
       function index(){
 
       $this->pageTitle = 'Leave-a-Message : Inbox';

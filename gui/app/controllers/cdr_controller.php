@@ -1,11 +1,33 @@
 <?php
+/****************************************************************************
+ * cdr_controller.php	- Dispaly, delete, export of CDR 
+ * version 		- 1.0.353
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+  ***************************************************************************/
 
 class CdrController extends AppController{
 
       var $name = 'Cdr';
       var $helpers = array('Csv','Javascript');
 
-      var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc')); 
+      var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc')); 
 
 
       function refresh(){
@@ -30,8 +52,6 @@ class CdrController extends AppController{
       $this->pageTitle = 'Call Data Records';
 
       $this->Session->write('Cdr.source', 'index');
-   
-      //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('cdr_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -54,7 +74,6 @@ class CdrController extends AppController{
 	     $this->set('cdr',$data);  
 
 	     }
-
 
 
     function delete ($id){
@@ -96,10 +115,46 @@ class CdrController extends AppController{
 
     function output(){
 
-    debug($this->data);
-    	     Configure::write('debug', 0);
-    	     $this->set('data', $this->Cdr->findAll()); 
+      if ($this->data['Cdr']){
+      	 $start	  = $this->data['Cdr']['start_time'];
+      	 $end 	  = $this->data['Cdr']['end_time'];
+ 
 
+	$hour_start = $start['hour'];
+	$hour_end   = $end['hour'];
+
+	if($start['meridian']=='pm' && $start['hour']!=12){ 
+	   	$hour_start=$hour_start+12;
+		} 
+ 	elseif($start['meridian']=='am' && $start['hour']==12){ 
+	   	$hour_start='00';
+	}
+
+	if($end['meridian']=='pm' && $end['hour']!=12){ 
+	   	$hour_end=$hour_end+12;
+		} 
+ 	elseif($end['meridian']=='am' && $end['hour']==12){ 
+	   	$hour_end='00';
+	}
+
+	 $start = $start['year'].'-'.$start['month'].'-'.$start['day'].' '.$hour_start.':'.$start['min'].':00';
+     	 $end   = $end['year'].'-'.$end['month'].'-'.$end['day'].' '.$hour_end.':'.$end['min'].':00';
+
+
+      	 $start_epoch = strtotime($start);
+      	 $end_epoch = strtotime($end);
+
+	 $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
+    	 $this->set('data', $this->Cdr->find('all',$param)); 
+
+	 } else {
+
+    	   $this->set('data', $this->Cdr->findAll()); 
+	 }
+
+
+  	     Configure::write('debug', 0);
+ 	 
     	     $this->layout = null;
     	     $this->autoLayout = false;
 
@@ -109,14 +164,6 @@ class CdrController extends AppController{
 
       function export(){
 
-      $start	  = $this->data['Cdr']['start_time'];
-      $end 	  = $this->data['Cdr']['start_time'];
- 
-      $start = $start['year'].'-'.$start['month'].'-'.$start['day'];
-      $end   = $end['year'].'-'.$end['month'].'-'.$end['day'];
-
-      $start_epoch = strtotime($start);
-      $end_epoch = strtotime($end);
 
     	     $this->render();  
   

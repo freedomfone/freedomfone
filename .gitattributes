@@ -235,6 +235,7 @@ gui/app/views/callback_settings/index.ctp -text
 gui/app/views/categories/add.ctp -text
 gui/app/views/categories/edit.ctp -text
 gui/app/views/categories/index.ctp -text
+gui/app/views/cdr/export.ctp -text
 gui/app/views/cdr/index.ctp -text
 gui/app/views/cdr/output.ctp -text
 gui/app/views/elements/cakeflash_player.ctp -text
@@ -267,6 +268,10 @@ gui/app/views/messages/edit.ctp -text
 gui/app/views/messages/index.ctp -text
 gui/app/views/messages/toggle.ctp -text
 gui/app/views/messages/update_select.ctp -text
+gui/app/views/monitor_ivr/erase.ctp -text
+gui/app/views/monitor_ivr/export.ctp -text
+gui/app/views/monitor_ivr/index.ctp -text
+gui/app/views/monitor_ivr/output.ctp -text
 gui/app/views/nodes/add.ctp -text
 gui/app/views/nodes/edit.ctp -text
 gui/app/views/nodes/index.ctp -text

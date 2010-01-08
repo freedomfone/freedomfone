@@ -1,7 +1,6 @@
 <?php
 
 echo $html->div("frameRight");
-
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
 echo $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button'));
 echo $form->end();

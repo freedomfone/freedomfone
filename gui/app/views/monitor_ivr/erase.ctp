@@ -1,7 +1,7 @@
-<?
+<?php
 /****************************************************************************
- * category.php		- Model for Leave-a-message categories. One Leave-a-message entry can have one category.
- * version 		- 1.0.353
+ * erase.ctp	- Display form for erasing IVR monitoring data.
+ * version 	- 1.0.353
  * 
  * Version: MPL 1.1
  *
@@ -22,29 +22,15 @@
  *
  ***************************************************************************/
 
-class Category extends AppModel {
+echo "<h1>".__("Erase monitoring data",true)."</h1>";
+echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'erase'));
 
-    var $name = 'Category';
+echo "<table>";
+echo $html->tableCells(array (
+     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15))),
+     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' =>15)))
+      ));
+echo "</table>";
+echo $form->end('Erase');
 
-    var $hasMany = array('Message');
-
-      var $validate = array(
-	'name' => array(
- 			'between' => array(
- 				       'rule' => array('between', 1, 30),
- 				       'message' => 'Between 1 to 30 characters'
- 				       ),
-	                'isUnique' =>array(
-				     'rule' => 'isUnique',
-				     'message' => 'This name is already in use.'
-				     )
- 		),
-	'longname' => array(
- 			'between' => array(
- 				       'rule' => array('between', 1, 50),
- 				       'message' => 'Between 1 to 50 characters'
- 				       )
- 		));
-
-}
 ?>

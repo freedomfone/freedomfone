@@ -115,9 +115,13 @@
 </li>
 
 <li>
-
 <?php echo $html->link(__("Menu options",true),'/nodes/index'); ?>
 </li>
+
+<li>
+<?php echo $html->link(__("Monitoring",true),'/monitor_ivr'); ?>
+</li>
+
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -158,6 +162,11 @@
 <?php echo $html->link(__("Processes",true),'/processes'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
+
+<li>
+<?php echo $html->link(__("CDR",true),'/cdr'); ?>
+</li>
+
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>

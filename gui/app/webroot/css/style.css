@@ -28,6 +28,11 @@ tr.darker td {
      background-color: #eee;
 }
 
+tr.lighter td {
+
+     background-color: #fff;
+}
+
 .formTitleDefault {
 	font-weight: normal;
 	font-size: 100%;
@@ -110,6 +115,12 @@ padding: 5px;
 
 }
 
+.frameRightAlone {
+float: right;
+margin: 5px;
+padding: 5px;
+}
+
 .frameRight2{
 
 float:right;
@@ -153,3 +164,13 @@ border: 1px solid #ddd;
      font-color: #000;
 
 }
+
+.process {
+color: #f89843; 
+font-size: 1.3em; 
+font-weight: bold;
+margin:0px;
+padding:0px;
+}
+
+

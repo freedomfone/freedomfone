@@ -17,7 +17,7 @@ echo $html->div("box", "To participate in a poll, send an sms to +39 340 47 80 4
   if ($polls){
 
   echo "<table width='100%'>";
-  echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("Edit",true),__("Delete",true)));
+  echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__("Edit",true),__("Delete",true)));
 
 
      foreach ($polls as $key => $poll){

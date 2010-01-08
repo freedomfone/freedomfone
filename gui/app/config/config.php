@@ -116,5 +116,9 @@ $config['FREESWITCH']=		array(
 $config['ESL']	= array(
 	      'path' =>"/usr/src/pictus/esl/native/ESL.php");
 
-$config['EXTENSIONS'] = array('lam' => '2000','ivr' => '4000');
+$config['EXTENSIONS'] = array(
+		      'lam' => '2000',
+		      'ivr' => '4000'
+		      );
+
 ?>

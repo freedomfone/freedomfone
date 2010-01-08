@@ -1,4 +1,26 @@
 <?php
+/****************************************************************************
+ * ivr_menu.php		- Model for IVRs (aka 'Voice menus') Manages updates of default IVR (aka 'parent').
+ * version 		- 1.0.353
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 
 class IvrMenu extends AppModel{
@@ -146,9 +168,9 @@ class IvrMenu extends AppModel{
 		$id   ='option'.$i.'_id';
 
 		if ($ivr[$type]=='node' && $ivr[$id]){ 
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key);
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['modified']);
 		   } elseif ($ivr[$type] =='lam') {
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key);
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['modified']);
 		   }
 	      }
 	      $obj->write_entry_common($key);

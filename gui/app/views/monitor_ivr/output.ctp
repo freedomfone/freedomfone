@@ -20,34 +20,42 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
+ *
  ***************************************************************************/
-
 
 	if($data){
 
-		$line = array(__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller number',true),__('Application',true));
+		$line = array(__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Digit',true),__('Caller number',true),__('Type',true));
 		$csv->addRow($line);
 
 
 		foreach($data as $entry){
+
+	$type = $entry['MonitorIvr']['type'];
+	if($type =='CS_ROUTING'){ $type=__("start",true);}
+	elseif($type =='CS_DESTROY'){ $type=__("end",true);}
+
 	
-		$line = array( date('Y',$entry['Cdr']['epoch']),
-		      	       date('m',$entry['Cdr']['epoch']),
-			       date('d',$entry['Cdr']['epoch']),
-			       date('H:i:s',$entry['Cdr']['epoch']),
-			       $entry['Cdr']['channel_state'],
-			       $entry['Cdr']['caller_number'],
-			       $entry['Cdr']['application']);
+		$line = array( date('Y',$entry['MonitorIvr']['epoch']),
+		      	       date('m',$entry['MonitorIvr']['epoch']),
+			       date('d',$entry['MonitorIvr']['epoch']),
+			       date('H:i:s',$entry['MonitorIvr']['epoch']),
+			       $entry['MonitorIvr']['call_id'],
+			       $entry['MonitorIvr']['ivr_code'],
+			       $entry['MonitorIvr']['node_id'],
+			       $entry['MonitorIvr']['digit'],
+			       $entry['MonitorIvr']['caller_number'],
+			       $type
+			       );
 
 		$csv->addRow($line);
 
 		}
 
 		$prefix=date('Y-m-d_');
-		echo $csv->render($prefix.__('CDR',true).'.csv');  
+		echo $csv->render($prefix.__('MonitorIvr',true).'.csv');  
 		$csv->render(false);
 	}
-
 
 
 ?>

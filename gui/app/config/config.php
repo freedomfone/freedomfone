@@ -1,11 +1,26 @@
 <?php
-//**
-//
-// Database parameters for the spooler
-//
-//**
-
-
+/****************************************************************************
+ * config.php	- Configuration parameters for spooler tables, and application settings
+ * version 	- 1.0.354
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 $config['poll_in']= array(
       	       'host'     => 'localhost',
@@ -50,16 +65,16 @@ $config['cdr']= array(
 	       'password' => 'thefone',
 	       'database' => 'spooler_in',
 	       );
-	       
-	      
+	       	      
 
-//**
-//
-// Application specific settings
-//
-// Always use trailing slash after url or path
-//
-//**
+/*
+ *
+ * Application specific settings
+ *
+ * Always use trailing slash after url or path
+ *
+ */
+
 $config['LM_SETTINGS'] = array(
 		'host'	           => 'http://demo.freedomfone.org/freedomfone/',
 		'path'             => 'freedomfone/leave_message/',
@@ -121,4 +136,8 @@ $config['EXTENSIONS'] = array(
 		      'ivr' => '4000'
 		      );
 
+$config['VERSION'] = array(
+		   'dispatcher_in'  => '/freedomfone/freedomfone/version/dispatcher_in',
+		   'dispatcher_out' => '/freedomfone/freedomfone/version/dispatcher_out'
+		   );
 ?>

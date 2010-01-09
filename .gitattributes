@@ -28,11 +28,9 @@ dispatcher_in/install/spooler_db_schema.sql -text
 dispatcher_in/log -text
 dispatcher_in/templates/channel_state.xsl -text
 dispatcher_in/templates/default.xsl -text
-dispatcher_in/templates/event_lm.txt -text
 dispatcher_in/templates/lmsm.xsl -text
 dispatcher_in/templates/message.xsl -text
 dispatcher_in/templates/monitor_ivr.xsl -text
-dispatcher_in/templates/skype.xsl -text
 dispatcher_in/templates/tickle.xsl -text
 dispatcher_in/tests/sendSMS.php -text
 dispatcher_out/config.php -text

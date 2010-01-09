@@ -2,16 +2,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output method="xml" indent="yes"/> 
  
-<xsl:template match="ff-event">
-       <ff-event> <xsl:apply-templates select="fields"/> </ff-event>
+<xsl:template match="event">
+       <event> <xsl:apply-templates select="headers"/> </event>
 
 
 </xsl:template>
  
-<xsl:template match="fields">
+<xsl:template match="headers">
         <Event-Name><xsl:value-of select="Event-Name"/></Event-Name>
 
-     <fields>
+     <headers>
         <Event-Subclass><xsl:value-of select="Event-Subclass"/></Event-Subclass>
         <FreeSWITCH-IPv4><xsl:value-of select="FreeSWITCH-IPv4"/></FreeSWITCH-IPv4>
         <Event-Date-Timestamp><xsl:value-of select="Event-Date-Timestamp"/></Event-Date-Timestamp>
@@ -22,7 +22,7 @@
 	<FF-CallerName><xsl:value-of select="FF-CallerName"/></FF-CallerName>
 	<FF-StartTimeEpoch><xsl:value-of select="FF-StartTimeEpoch"/></FF-StartTimeEpoch>
 	<FF-FinishTimeEpoch><xsl:value-of select="FF-FinishTimeEpoch"/></FF-FinishTimeEpoch>
-     </fields>
+     </headers>
 </xsl:template>
 
 

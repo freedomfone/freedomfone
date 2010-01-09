@@ -1,25 +1,48 @@
 <?php
-/**
- * Incoming Dispatcher
+/****************************************************************************
+ * dispatcherESL.php	- Incoming dispatcher based on FreeSWITCH ESL. Manages events from FreeSWITCH to spooler (db).
+ * version 		- 1.0.1
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ * Manual connection to FreeSWITCH:
  *
  * telnet localhost 8021
  * auth ClueCon
- * events plain custom msg1 msg2 msg3
+ * events xml <type1> <type2>
+ * 
+ * How to run dispatcher:
  * 
  * php dispatcher.php -v --debug={true|false} --log={logfile}
  * 
- * Verbose mode will print to stdout
- * Debug mode will write to logfile. If the argument is left out, debug is set to true
+ * Verbose mode (-v) will print to stdout
+ * Debug mode will write to logfile. If all arguments are left out, verbose = false, debug = true
  *
- * Example: php dispatcher_in.php -v --debug --log=/tmp/dispatcher.log
+ * Example: php dispatcherESL.php -v --log=/tmp/dispatcher.log
  * Result: Verbose output to stdout, debug messages logged to file /tmp/dispatcher.log
  *
- */
+ ***************************************************************************/
+
 include_once('config.php');
 require_once(ESLPath);
 global $_SocketParam;
 global $_DispatcherDB;
 global $_AllowCURL;
+
 global $obj;
 
 
@@ -27,44 +50,39 @@ $host = $_SocketParam['host'];
 $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
-$handle = fopen(PidFile,'w');
-$int = fwrite($handle,getmypid());
-fclose($handle);
 
 
-$param = parseArgs($argv);
+      //Write pid to file
+      $handle = fopen(PidFile,'w');
+      $int = fwrite($handle,getmypid());
+      fclose($handle);
 
+      //Write version to file
+      $handle = fopen(VersionFile,'w');
+      $int = fwrite($handle,Version);
+      fclose($handle);
+
+
+      //Set default values
+      $param = parseArgs($argv);
+      $verbose=false;
+      $debug=true;
+      $logfile = LogFile;
+
+      //Read passed arguments
        if (key_exists('v',$param)){  
-			$verbose=true;
-			}
-			else {
-			$verbose= false;
-			}
-	
+	  $verbose=true;
+	} 
 
-
-       if (key_exists('debug',$param)){  
-		if($param['debug']==false){
-			$debug=false;
-			}
-			else {
-			$debug= true;
-			}
+       if (key_exists('debug',$param) && ($param['debug']==false)){
+       	  $debug=false;
 	}
-	else {
-	     $debug= true;
-	     }
-
 
        if (key_exists('log',$param) && $param['log']){  
        	  $logfile = $param['log'];
 	  }
-
-	  else {
-	  $logfile = LogFile;
-	  }
-
-	  $handle = fopen($logfile,'a');
+    
+    $handle = fopen($logfile,'a');
 
 
      //Eternal loop, until the server crashes!
@@ -73,21 +91,20 @@ $param = parseArgs($argv);
 	sleep(5);
        	set_time_limit(0); // Remove the PHP time limit of 30 seconds for completion due to loop watching events
 
-	//1. Connect to spooler database
-	if (!$link = db_connect($_DispatcherDB)) {
+	//1. Connect to FreeSWITCH
+       	$sock = new ESLconnection($host, $port, $pass);
+
+	if ($sock->connected()){
+	    logESL("Successfully connected to FreeSWITCH","INFO",1); 
+
+	    //2. Connect to spooler database
+	    if (!$link = db_connect($_DispatcherDB)) {
                 logESL("Unable to connect to Spooler","ERROR",1);
                 die(printf("Unable to connect to spooler database","ERROR"));
-           } else { 
+             } else { 
 		logESL("Successfully connected to spooler database","INFO",1); 
-	 
-		//2. Connect to FreeSWITCH
-       		$sock = new ESLconnection($host, $port, $pass);
-
-       		if ($sock->connected()){
-		logESL("Successfully connected to FreeSWITCH","INFO",1); 
-
-	         //3. Subscribe to events
-       	   	   
+		
+	         //3. Subscribe to events	   
        	   	   $sock->sendRecv("event xml message CHANNEL_STATE");
        	   	   $sock->sendRecv("event xml custom message tickle leave_a_message monitor_ivr");
 		   logESL("Successfully subscribed to events","INFO",1); 
@@ -95,17 +112,19 @@ $param = parseArgs($argv);
 		   //4. Wait for events
        	  	    while($sock->connected()){
 			$event = $sock->recvEvent();
-			logESL("New event received; Type: ".$event->getType(),"INFO",1); 
+			logESL("New event: ".$event->getType(),"INFO",1); 
 			debugESL($event->getBody(),"ESL raw event data");
 		
+		       //4.5 APPLY BLACKLIST WITH XSL
+
 			//5. Apply XSL template
 			$xml = applyXSL($event);
 			debugESL($xml,"XML data after XSL filter");
-			logESL("XSL template applied","INFO",2); 
+			
 
 				//6. Apply rules to determine with application(s) to associate data with
   				if ($application = applyRules($xml)){
-				   logESL("Application match","INFO",1); 
+				   
 
    				    if (!mysql_ping ($link)) {
                                         mysql_close($link);
@@ -123,14 +142,14 @@ $param = parseArgs($argv);
 					 } else {
 				   	   logESL("SQL query FAILED","ERROR",1); 
 					 }
-			         } else {
+			         }else {
  	   			   logESL("Application match not found","ERROR",1); 
 				 }					      
 		      }
-		} else {
-		logESL("Failed to connect to FreeSWITCH","ERROR",1); 
-		}
-	} //else
+		} 
+	} else {
+	logESL("Failed to connect to FreeSWITCH","ERROR",1); 
+	}
      } //while
 
 
@@ -151,12 +170,13 @@ function applyXSL($event){
 	 $event_subclass  = $xml->headers->{'Event-Subclass'};
 	 $event_name_alt  = $xml->headers->{'Event-Name'};
 
+
+
 	 //PATCH FOR BROKEN RESPONSE OF getType() in ESL for CHANNEL_STATE
 	 if($event_name!=$event_name_alt){ $event_name= $event_name_alt;}
 
 	 logESL("Event name: ".$event_name,"INFO",2); 
-	 logESL("Event subclass: ".$event_subclass,"INFO",2); 
-
+	 
 
                  if($event_name == 'MESSAGE'){
 	             $xsl= DirXSL.'message.xsl';
@@ -165,6 +185,8 @@ function applyXSL($event){
 	             $xsl= DirXSL.'channel_state.xsl';
 
                  } elseif($event_name == 'CUSTOM'){
+
+		 logESL("Event subclass: ".$event_subclass,"INFO",2); 
 
                	     switch ($event_subclass){
 
@@ -185,7 +207,7 @@ function applyXSL($event){
 	                    break;
                      }
                  }
-	 logESL("XSL template: ".$xsl,"INFO",2); 
+	 logESL("XSL: ".$xsl,"INFO",2); 
 
    	 $xslDoc = new DOMDocument();
    	 $xslDoc->load($xsl);
@@ -217,7 +239,7 @@ function applyRules($string){
 
 	 $event_name     = $xml->{'Event-Name'};
 	 $event_subclass = $xml->headers->{'Event-Subclass'};
-	 $body 		 = trim($xml->{'Body'});
+	 $body 		 = trim($xml->headers->{'Body'});
 	 
                 if($event_name == 'MESSAGE'){
 		$app = analyzeBody($body);
@@ -273,7 +295,7 @@ function applyRules($string){
 
 		         $channel_state = $xml->headers->{'Channel-State'};
 			 if($channel_state == 'CS_ROUTING' || $channel_state == 'CS_DESTROY'){
-		         	$application[]='channel_state';
+		         	$application[]='cdr';
 			 	logESL("Application match: channel_state","INFO",2);
 			 }
 	 	 }
@@ -300,9 +322,6 @@ function XML2SQL($table,$string){
 	     	     $fields[] = $child->getName();
 		     $values[] = $child[0];
 	     }
-
-	    // $fields[] = 'body';
-	    // $values[] = $xml->body;
 
 	     return insertValues($table,$fields,$values);
 
@@ -331,13 +350,12 @@ function insertValues($table,$fields,$values){
         debugESL($query, "SQL query");
  
 	if( $link = mysql_query($query)){ 
-	    logESL("SQL query OK","INFO",1); 
-    	    logESL("SQL query: ".$query,"INFO",3); 
+    	    logESL("SQL OK: ".$query,"INFO",3); 
 
 	    }
 	else {
-	    logESL("SQL query failed","ERROR",1); 
-    	    logESL("SQL query: ".$query,"ERROR",3); 
+    	    logESL("SQL failure: ".$query,"ERROR",3); 
+    	    logESL("SQL error: ".mysql_error(),"ERROR",3); 
 	}
 
      }
@@ -490,7 +508,7 @@ function parseArgs($argv){
 
    global $handle;
 
-   	  if($level<= LogLevel){
+   	  if($level <= LogLevel){
    	    $string = date('c')." ".$type." ". $msg."\n";
 	    fwrite($handle, $string);
 	    }

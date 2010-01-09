@@ -1,4 +1,26 @@
 <?php
+/****************************************************************************
+ * processes_controller.ctp	- Controller for processes. Manages start,stop,status of incoming and outgoing dispatcher.
+ * version 			- 1.0.354
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 class ProcessesController extends AppController{
 
@@ -17,6 +39,10 @@ class ProcessesController extends AppController{
      	   	   }
 	}	   
 
+	$version[0] = $this->Process->readValue('dispatcher_in');
+	$version[1]   = $this->Process->fsCommand("version");
+
+	$this->set(compact('version'));
 
 
       	$this->set('data',$this->Process->find('all',array('order'=>'Process.id ASC')));
@@ -41,12 +67,7 @@ class ProcessesController extends AppController{
 
 			//Run start command
 			$pid = $this->Process->start();
-	
-			//sleep(3); //to allow pid to be written to file
-
-			//Fetch NEW pid
-			//$pid = $this->Process->getPid();
-				
+					
 			//Save NEW pid, update status and timestamps
 			$this->Process->id = $id;
 			$this->data['Process']['pid']= $pid;
@@ -133,6 +154,8 @@ class ProcessesController extends AppController{
 	$this->redirect(array('action' => 'index'));
       }
 
+
+
       function refresh(){
 
       $this->autoRender = false;
@@ -142,18 +165,7 @@ class ProcessesController extends AppController{
       }
 
 
-      function test(){
-
-      $this->autoRender = false;
- 
-      $this->Process->fsCommand("status");
-      
-
-      }
-
 }
 
-
-////////////
 
 

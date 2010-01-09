@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * process.php		- Model for Freedom Fone main processes. Manages stop,start and monitoring of incoming and outgoing dispatcher
- * version 		- 1.0.353
+ * version 		- 1.0.354
  * 
  * Version: MPL 1.1
  *
@@ -30,10 +30,12 @@ class Process extends AppModel{
       var $name = 'Process';
 
 
-      function getPid(){
+      function readValue($key){
+
+      $array = Configure::read('VERSION');
 
 	$HttpSocket = new HttpSocket();  
-    	return $HttpSocket->request(array('uri' => PID_URI.$this->data['Process']['name'].'.pid'));
+    	return $HttpSocket->request(array('uri' => $array[$key]));
 
       }
 
@@ -81,8 +83,7 @@ class Process extends AppModel{
 	       exec($cmd,$op);
                $pid = (int)$op[0]; 
 	       return $pid;
-	//	 exec($cmd);
-	//	 return true;
+
       }
 
 
@@ -91,9 +92,7 @@ class Process extends AppModel{
       	       $pid = $this->data['Process']['pid'];
 
       	       if($pid){
-			//exec('kill -9 '.$pid);
-			$cmd='kill -- -'.$pid;
-			exec($cmd);
+			exec('kill -9 '.$pid);
     			return true;
 	      	} else {
 		       return false;		   

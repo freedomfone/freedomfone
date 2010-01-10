@@ -70,6 +70,13 @@ $pass = $_SocketParam['pass'];
       $logfile = LogFile;
 
       //Read passed arguments
+
+       if (key_exists('V',$param)){  
+	  echo Version;
+	  exit;
+	} 
+
+
        if (key_exists('v',$param)){  
 	  $verbose=true;
 	} 

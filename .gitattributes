@@ -365,7 +365,6 @@ gui/app/webroot/img/top_seperator_bg_r1_c1.gif -text
 gui/app/webroot/img/top_shadow.gif -text
 gui/app/webroot/img/top_shelf.gif -text
 gui/app/webroot/index.php -text
-gui/app/webroot/js/addHTMLControls.js -text
 gui/app/webroot/js/addRemoveElements.js -text
 gui/app/webroot/js/corner.js -text
 gui/app/webroot/js/jquery.corner.js -text

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * processes_controller.ctp	- Controller for processes. Manages start,stop,status of incoming and outgoing dispatcher.
- * version 			- 1.0.354
+ * version 			- 1.0.356
  * 
  * Version: MPL 1.1
  *
@@ -39,13 +39,11 @@ class ProcessesController extends AppController{
      	   	   }
 	}	   
 
-	$version[0] = $this->Process->readValue('dispatcher_in');
+	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
 
 	$this->set(compact('version'));
-
-
-      	$this->set('data',$this->Process->find('all',array('order'=>'Process.id ASC')));
+      	$this->set('data',$this->Process->findAllByType('run'));
 
       }
 
@@ -59,7 +57,7 @@ class ProcessesController extends AppController{
 		$type = $this->data['Process']['type'];
 
 		//Pid based process
-		if($type=='pid'){
+		if($type=='run'){
 
 		//Process is not running
 		if(!$this->Process->isRunning($this->data['Process']['pid'])){
@@ -83,19 +81,6 @@ class ProcessesController extends AppController{
 	 	
 			}
 		} 
-		//ESL bases process (FreeSWITCH)
-		elseif ($type=='esl'){
-
-		       if($this->Process->fsCommand()){
-				$this->Session->setFlash($this->data['Process']['title']." ".__("is already running.",true));
-			} else {
-			       $this->Process->start();
-			       
-			       $this->Session->setFlash($this->data['Process']['title']." ".__("started.",true));
-			}
-
-		}
-
 
 	  $this->redirect(array('action' => 'index'));
 	
@@ -109,7 +94,7 @@ class ProcessesController extends AppController{
 		$type = $this->data['Process']['type'];
 
 		//Pid based process
-		if($type=='pid'){
+		if($type=='run'){
 
 
 			//Process is NOT running
@@ -137,7 +122,7 @@ class ProcessesController extends AppController{
 		} elseif ($type=='esl'){
 
 		       if(!$this->Process->fsCommand()){
-				$this->Session->setFlash($this->data['Process']['title']." ".__("is already stopped.",true));
+				$this->Session->setFlash($this->data['Process']['title']." ".__("was already stopped",true));
 			} else {
 			       $this->Process->fsCommand("fsctl shutdown");
 		      		$this->data['Process']['status']= 0;		
@@ -145,7 +130,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['last_seen']= time();	
 		      		$this->data['Process']['interupt']= 'Manual';	
 	      	      		$this->Process->save($this->data);
-			       $this->Session->setFlash($this->data['Process']['title']." ".__("stopped.",true));
+			       $this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
 			}
 
 

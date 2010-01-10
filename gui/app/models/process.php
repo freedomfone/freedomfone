@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * process.php		- Model for Freedom Fone main processes. Manages stop,start and monitoring of incoming and outgoing dispatcher
- * version 		- 1.0.354
+ * version 		- 1.0.356
  * 
  * Version: MPL 1.1
  *
@@ -42,7 +42,7 @@ class Process extends AppModel{
 
       function refresh(){
 
-      	       $this->set('data',$this->find('all',array('order'=>'Process.id ASC')));
+      	       $this->set('data',$this->findAllByType('run'));
 
       	       foreach ($this->data['Process']['data'] as $key =>  $process){
 
@@ -101,7 +101,16 @@ class Process extends AppModel{
 
       }
 
+      function version($id){
+ 
+	       $this->data = $this->read(null,$id);
+      	       $cmd = $this->data['Process']['start_cmd'];
+	       $op = array();
+	       exec($cmd,$op);
+               $version = $op[0]; 
+	       return $version;
 
+      }
 
 
 

@@ -1,5 +1,5 @@
 <?php
-echo $javascript->link("addHTMLControls.js", true); 
+
 $session->flash();
 echo "<h1>".__("Create Menu Option",true)."</h1>";
 

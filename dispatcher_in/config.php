@@ -50,4 +50,3 @@ $_DispatcherDB = array(
 	      );
 $_AllowCURL = array('callback_in' => 'callback_in');
 ?>
-

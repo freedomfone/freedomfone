@@ -1,11 +1,31 @@
 <?php
+/****************************************************************************
+ * index.ctp	- List processes
+ * version 	- 1.0.359
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 $session->flash();
 
 echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new IVR")),"/ivr_menus/add",null, null, false)."</p>";
-
 echo "<h1>".__('Voice menus',true)."</h1>";
-
-echo $html->div("box", "To call the default Voice Menu, dial +39 333 677 45 32 or make a Skype call to 'skypiax4'");
 
      if ($ivr_menus){
 
@@ -41,8 +61,8 @@ echo $html->div("box", "To call the default Voice Menu, dial +39 333 677 45 32 o
 	$message_long  = $ivr_menu['IvrMenu']['message_long'];
 	$created       = $time->niceShort($ivr_menu['IvrMenu']['created']);
 	$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
-	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
+	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
 
      	$row[$key] = array(
 		$default,
@@ -58,7 +78,7 @@ echo $html->div("box", "To call the default Voice Menu, dial +39 333 677 45 32 o
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
 
-     echo $form->end('Update default');
+     echo $form->end(__('Update default',true));
      }
 
 ?>

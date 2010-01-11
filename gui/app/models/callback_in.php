@@ -61,6 +61,11 @@ class CallbackIn extends AppModel{
 
 
 
+/*
+ * Fetching new data from spooler
+ *
+ *
+ */
 
 	function dial($data){
 
@@ -80,10 +85,7 @@ class CallbackIn extends AppModel{
 
 
 	$msg = $id.",".$proto.','.$sender.','.$ext;
-
-	debug($msg);
 		 $this->Socket = new CakeSocket($defaults);	
-
 		 $this->Socket->connect();
 		 $this->Socket->write($msg);
 		 $this->Socket->disconnect();

@@ -1,7 +1,7 @@
-<?php
+k<?php
 /****************************************************************************
  * message.php		- Model for Leave-a-message entries.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -33,6 +33,14 @@ class Message extends AppModel {
 	var $hasAndBelongsToMany = array('Tag');
 
 
+
+/*
+ * Return message title
+ * 
+ * @param int $id
+ * @return string $title
+ *
+ */
 
     function getTitle($id){
 

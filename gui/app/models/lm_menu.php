@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * lm_menu.php		- Model for Leave-a-message IVR menu.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -28,10 +28,15 @@ class LmMenu extends AppModel {
 	
 
 
-    function beforeSave(){
+/*
+ * Before save: Writes fallback text messages to file
+ *  
+ *
+ * @return boolean
+ *
+ */
 
-    //DEMO FIX
-    if($this->data['LmMenu']['id']!=1){
+    function beforeSave(){
 
     	$lm_default  = Configure::read('LM_DEFAULT');
      	$lm_settings = Configure::read('LM_SETTINGS');
@@ -51,8 +56,6 @@ class LmMenu extends AppModel {
 	    }
 	    
 	    fclose($handle);
-
-	    }
 
     return true;
     }

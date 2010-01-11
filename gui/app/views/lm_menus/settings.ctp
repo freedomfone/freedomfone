@@ -15,14 +15,14 @@ echo "<div class ='instruction'>".__("Please upload a .wav audio file for each o
   	
 
 
-$commentWelcome  = "<div class='formComment'>".__("Default: ",true).$lm_default['lmWelcomeMessage']."</div>";
-$commentInform   = "<div class='formComment'>".__("Default: ",true).$lm_default['lmInformMessage']."</div>";
-$commentInvalid  = "<div class='formComment'>".__("Default: ",true).$lm_default['lmInvalidMessage']."</div>";
-$commentLong     = "<div class='formComment'>".__("Default: ",true).$lm_default['lmLongMessage']."</div>";
-$commentSelect   = "<div class='formComment'>".__("Default: ",true).$lm_default['lmSelectMessage']."</div>";
-$commentDelete   = "<div class='formComment'>".__("Default: ",true).$lm_default['lmDeleteMessage']."</div>";
-$commentSave     = "<div class='formComment'>".__("Default: ",true).$lm_default['lmSaveMessage']."</div>";
-$commentGoodbye  = "<div class='formComment'>".__("Default: ",true).$lm_default['lmGoodbyeMessage']."</div>";
+$commentWelcome  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";
+$commentInform   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInformMessage']."</div>";
+$commentInvalid  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInvalidMessage']."</div>";
+$commentLong     = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmLongMessage']."</div>";
+$commentSelect   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSelectMessage']."</div>";
+$commentDelete   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmDeleteMessage']."</div>";
+$commentSave     = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSaveMessage']."</div>";
+$commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
 
 
 echo $form->create('LmMenu', array('type' => 'post', 'action' => 'settings','enctype' => 'multipart/form-data') );

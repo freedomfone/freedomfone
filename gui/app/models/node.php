@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * node.php	- Model for nodes (aka 'Menu options') used to compose IVRs (aka Voice menus).
- * version 	- 1.0.353
+ * version 	- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -29,15 +29,25 @@ class Node extends AppModel{
 
 //      var $belongsTo = array('IvrMenu');
 
-      var $validate = array(
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+      $this->validate = array(
         'title' => array(
             'rule'     => array('minLength', 3),
 	    'required' =>  true,
-            'message'  => 'A title is required. Minimum 3 characters.' ));
+            'message'  => __('A title is required. Minimum 3 characters.',true)));
 
+}
 
+/*
+ * Delete audio files (with several extensions)
+ *  
+ * @param string $file, string $path, string $extensions
+ *
+ */
 
-	    function deleteAudio($file, $path, $extensions){
+     function deleteAudio($file, $path, $extensions){
 
     	    $name=substr($file,0,strlen($file)-3);
 
@@ -48,29 +58,41 @@ class Node extends AppModel{
 
 		     }
 
-	   }
+     }
 
 
-	   function isActive($id){
+/*
+ * Checks if a node is active in an existig IVR.
+ *  
+ * @param int $id
+ * @return bool
+ *
+ */
 
+      function isActive($id){
 
 	  $data = $this->query("select * from ivr_menus where option1_id= $id or option2_id=$id or option3_id=$id or option4_id=$id or option5_id=$id or option6_id=$id or option7_id=$id or option8_id=$id or option9_id=$id");
 
 	   if (sizeof($data)){
 	      return true;
-	      }
-
-	      else {
+	      } else {
 	      return false;
 	      }
+      }
 
-	   }
 
+/*
+ * Get node title
+ *  
+ * @param int $id
+ * @return sting $title
+ *
+ */
 
     function getTitle($id){
 
-    $data = $this->findById($id);
-    return $data['Node']['title'];     
+    	     $data = $this->findById($id);
+    	     return $data['Node']['title'];     
     }
 
 

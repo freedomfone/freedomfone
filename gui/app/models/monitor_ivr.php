@@ -1,7 +1,7 @@
 <?php
 /*
  * monitor_ivr.php	- Model for monitoring of IVR data.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -34,6 +34,14 @@ class MonitorIvr extends AppModel{
  		 ));
 		 
 
+/*
+ * Get unique call id
+ *  
+ * @param int $id
+ *
+ * @return string $call_id
+ *
+ */
 
     function getCallId($id){
 

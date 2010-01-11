@@ -214,7 +214,6 @@ function applyXSL($event){
 	                    break;
                      }
                  }
-	 logESL("XSL: ".$xsl,"INFO",2); 
 
    	 $xslDoc = new DOMDocument();
    	 $xslDoc->load($xsl);
@@ -225,7 +224,6 @@ function applyXSL($event){
    	 $proc = new XSLTProcessor();
    	 $proc->importStylesheet($xslDoc);
    
-
 	 return $proc->transformToXML($xmlDoc);
 
 
@@ -301,6 +299,7 @@ function applyRules($string){
 		elseif ($event_name == 'CHANNEL_STATE'){
 
 		         $channel_state = $xml->headers->{'Channel-State'};
+			 	logESL("Channel state: ".$channel_state,"INFO",2);
 			 if($channel_state == 'CS_ROUTING' || $channel_state == 'CS_DESTROY'){
 		         	$application[]='cdr';
 			 	logESL("Application match: channel_state","INFO",2);

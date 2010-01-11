@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_xml.php		- Class for creating XML files for Voice menus
- * version 		- 1.0.359
+ * version 		- 1.0.360
  * 
  * Version: MPL 1.1
  *
@@ -22,6 +22,8 @@
  *
  ***************************************************************************/
 
+class ivr_xml {
+
 public $body;
 public $inter_digit_timout;
 public $invalid_sound;
@@ -40,10 +42,10 @@ public $file;
 public $ext;
 
 
-	function ivr_xml(){
+ function ivr_xml(){
 
      $ivr_settings = Configure::read('IVR_SETTINGS');
-     $ivr_monitor = Configure::read('IVR_MONITOR');
+     $ivr_monitor  = Configure::read('IVR_MONITOR');
      $ext 	   = Configure::read('EXTENSIONS');
      
 
@@ -67,6 +69,7 @@ public $ext;
 
 	$this->open_file();
 	}
+
 
 	function ivr_header(){
 
@@ -126,20 +129,25 @@ public $ext;
 
 
 	   if($data['file_long'] && !$data['mode_long']){
-		$menus -> addAttribute ("greet-long",$this->menu_path.$data['file_long']);
+		$greet_long = $this->menu_path.$data['file_long'];
 		}
-	   else {
-	   	$menus -> addAttribute ("greet-long","say: ".$message_long);
+	   elseif (trim($message_long)) {
+	   	$greet_long = "say: ".$message_long;
+	   } else {
+	     $greet_long = "say: ".$ivr_default['ivrLongMessage'];
 	   }
-
+	   $menus -> addAttribute ("greet-long",$greet_long);
 
 
 	   if($data['file_short'] && !$data['mode_short']){
-		$menus -> addAttribute ("greet-short",$this->menu_path.$data['file_short']);
+		$greet_short = $this->menu_path.$data['file_short'];
 		}
-	   else {
-	   	$menus -> addAttribute ("greet-short","say: ".$message_short);
+	   elseif (trim($message_short)) {
+	   	$greet_short = "say: ".$message_short;
+	   } else {
+	     $greet_short = "say: ".$ivr_default['ivrShortMessage'];
 	   }
+	   $menus -> addAttribute ("greet-short",$greet_short);
 
 
 	   if($data['file_invalid'] && !$data['mode_invalid']){
@@ -261,7 +269,5 @@ public $ext;
 
 	  }
 
-
 }
-
 ?>

@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * category.php		- Model for Leave-a-message categories. One Leave-a-message entry can have one category.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -28,23 +28,27 @@ class Category extends AppModel {
 
     var $hasMany = array('Message');
 
-      var $validate = array(
+    function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+	$this->validate = array(
 	'name' => array(
  			'between' => array(
  				       'rule' => array('between', 1, 30),
- 				       'message' => 'Between 1 to 30 characters'
+ 				       'message' => __('Between 1 to 30 characters',true)
  				       ),
 	                'isUnique' =>array(
 				     'rule' => 'isUnique',
-				     'message' => 'This name is already in use.'
+				     'message' => __('This name is already in use.',true)
 				     )
  		),
 	'longname' => array(
  			'between' => array(
  				       'rule' => array('between', 1, 50),
- 				       'message' => 'Between 1 to 50 characters'
+ 				       'message' => __('Between 1 to 50 characters',true)
  				       )
  		));
 
+		}
 }
 ?>

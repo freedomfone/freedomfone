@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * tag.php		- Model for Leave-a-message tags. One Leave-a-message entry can have one of more tags.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -28,23 +28,27 @@ class Tag extends AppModel {
 
     var $hasAndBelongsToMany = array('Message');
 
-      var $validate = array(
+    function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+	$this->validate = array(
 	'name' => array(
  			'between' => array(
  				       'rule' => array('between', 1, 30),
- 				       'message' => 'Between 1 to 30 characters'
+ 				       'message' => __('Between 1 to 30 characters',true)
  				       ),
 	                'isUnique' =>array(
 				     'rule' => 'isUnique',
-				     'message' => 'This description is already in use.'
+				     'message' => __('This description is already in use.',true)
 				     )
  		),
 	'longname' => array(
  			'between' => array(
  				       'rule' => array('between', 1, 50),
- 				       'message' => 'Between 1 to 50 characters'
+ 				       'message' => __('Between 1 to 50 characters',true)
  				       )
  		));
 
+		}
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * vote.php		- Model for poll votes. Manages validation of poll options when addding/creating polls.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -33,9 +33,11 @@ class Vote extends AppModel{
  	  	 'className' => 'Poll',
  		 'foreignKey' => 'poll_id'
  		 ));
-		 
 
-      var $validate = array(
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+	$this->validate = array(
          'chtext'      => array(
 	 	        'between' => array(
 			   'rule'=>array('between', 1,10),
@@ -52,8 +54,17 @@ class Vote extends AppModel{
  		           ));
 
 
+}
 
- function uniqueChtext($data, $field) {
+/*
+ * Validation: Checks if chtext is unique for the poll
+ *  
+ * @param array $data, string $field
+ *
+ * @return boolean
+ *
+ */
+  function uniqueChtext($data, $field) {
 
  	  global $options;
 
@@ -64,9 +75,6 @@ class Vote extends AppModel{
 	   $result = TRUE;
 	   }
      } else { $result = TRUE; }
-
-     
-     
      
      $options[] = $data['chtext'];
 
@@ -74,7 +82,4 @@ class Vote extends AppModel{
 
 	}
 }
-
-
-
 ?>

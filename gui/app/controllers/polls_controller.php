@@ -210,7 +210,7 @@ class PollsController extends AppController{
 	$this->Poll->Vote->saveAll($this->data['Vote']);
 
 	
-	 $this->Session->setFlash(__("Your poll has been edited.",true));
+	 $this->Session->setFlash(__("The poll has been edited.",true));
 	 $this->redirect(array('action' => 'index'));
         }
 

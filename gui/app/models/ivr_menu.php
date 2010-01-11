@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menu.php		- Model for IVRs (aka 'Voice menus') Manages updates of default IVR (aka 'parent').
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -29,19 +29,22 @@ class IvrMenu extends AppModel{
 
       var $hasMany = array('Node');
 
-      var $validate = array(
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+	$this->validate = array(
         'title' => array(
             'rule'     => array('minLength', 3),
 	    'required' =>  true,
-            'message'  => 'A title is required. Minimum 3 characters.' ),
+            'message'  => __('A title is required. Minimum 3 characters.',true)),
         'message_short' => array(
             'rule'     => array('minLength', 3),
 	    'required' =>  true,
-            'message'  => 'Instructions are required.' ));
+            'message'  => __('Instructions are required.',true)));
 
+}
 
-
-/**
+/*
  * Check if parent exist. If not, set current to parent
  * 
  *
@@ -58,8 +61,16 @@ class IvrMenu extends AppModel{
 	 }    	 
 
 	 return true;
-}
+	 }
 
+
+/*
+ * 
+ * Check if any IVR entry exists
+ * 
+ * @return bool 
+ *
+ */
 
 	function lastIVR(){
 
@@ -75,7 +86,7 @@ class IvrMenu extends AppModel{
 
 }
 
-/**
+/*
  * Update parent status of IVR menus. 
  * update ivr_menus set status = 0;
  * update ivr_menus set status = 1 where id = $id
@@ -88,7 +99,7 @@ class IvrMenu extends AppModel{
     }
 
 
-/**
+/*
  * Check if IVR is parent
  * return true| false
  *

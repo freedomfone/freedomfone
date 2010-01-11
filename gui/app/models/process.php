@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * process.php		- Model for Freedom Fone main processes. Manages stop,start and monitoring of incoming and outgoing dispatcher
- * version 		- 1.0.356
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -30,15 +30,12 @@ class Process extends AppModel{
       var $name = 'Process';
 
 
-      function readValue($key){
-
-      $array = Configure::read('VERSION');
-
-	$HttpSocket = new HttpSocket();  
-    	return $HttpSocket->request(array('uri' => $array[$key]));
-
-      }
-
+/*
+ * Fetch new data from spooler
+ *  
+ * 
+ *
+ */
 
       function refresh(){
 
@@ -76,7 +73,13 @@ class Process extends AppModel{
       }
 
 
-      function start(){
+/*
+ * Start current process
+ *  
+ * @return int $pid
+ *
+ */
+   function start(){
  
       	       $cmd = $this->data['Process']['start_cmd'];
 	       $op = array();
@@ -87,7 +90,13 @@ class Process extends AppModel{
       }
 
 
-      function stop(){
+/*
+ * Stop current process
+ *  
+ * @return boolean
+ *
+ */
+    function stop(){
 
       	       $pid = $this->data['Process']['pid'];
 
@@ -101,7 +110,15 @@ class Process extends AppModel{
 
       }
 
-      function version($id){
+/*
+ * Get script version (dispatcher_in)
+ *  
+ * @param int $id
+ *
+ * @return string $version
+ *
+ */
+     function version($id){
  
 	       $this->data = $this->read(null,$id);
       	       $cmd = $this->data['Process']['start_cmd'];
@@ -112,9 +129,15 @@ class Process extends AppModel{
 
       }
 
-
-
-      function isRunning($pid){
+/*
+ * Check if process is running
+ *  
+ * @param int $pid
+ *
+ * @return bool
+ *
+ */
+     function isRunning($pid){
 
 	if ($pid){
 
@@ -132,6 +155,15 @@ class Process extends AppModel{
 	}
 
       }
+
+/*
+ * Send comamnd to FreeSWITCH
+ *  
+ * @param string $cmd
+ *
+ * @return boolean
+ *
+ */
 
       function fsCommand($cmd=null){
 

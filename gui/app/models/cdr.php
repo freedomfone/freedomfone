@@ -33,6 +33,12 @@ class Cdr extends AppModel{
 				       );
 
 
+/*
+ * Fetching new data from spooler
+ *
+ *
+ */
+
 	function refresh(){
 
 	$applications = Configure::read('EXTENSIONS');
@@ -49,16 +55,16 @@ class Cdr extends AppModel{
 
 	      	  $channel_state = $entry['Channel-State'];
 		  $call_id = $entry['Unique-ID'];
-		  $application=__('N/A',true);  
+		  $application=__('N/A',true);
+		  $ext = $entry['Caller-Destination-Number'];
+
 	       	  $this->set('epoch' , floor($entry['Event-Date-Timestamp']/1000000));
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
 
 		  $this->set('caller_name', $entry['Caller-Caller-ID-Name']);
     	       	  $this->set('caller_number',$entry['Caller-Caller-ID-Number']);
-	       	  $this->set('extension', $entry['Caller-Destination-Number']);
-
-		  $ext= $entry['Caller-Destination-Number'];
+	       	  $this->set('extension', $ext);
 
 		  while ($app = current($applications)) {
     		    if ($app ==  $ext) {
@@ -132,6 +138,12 @@ class Cdr extends AppModel{
 
 	}
 
+/*
+ * Get unique id for call
+ *
+ * @param int $id 
+ *
+ */
 
     function getCallId($id){
 

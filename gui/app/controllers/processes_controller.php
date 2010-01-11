@@ -39,7 +39,8 @@ class ProcessesController extends AppController{
      	   	   }
 	}	   
 
-	$version[0]   = $this->Process->version(3);
+//	$version[0]   = $this->Process->version(3);
+	$version[0] = 'foo';
 	$version[1]   = $this->Process->fsCommand("version");
 
 	$this->set(compact('version'));

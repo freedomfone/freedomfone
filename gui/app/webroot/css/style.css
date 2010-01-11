@@ -80,7 +80,7 @@ div.input {
 
 legend {
 
-    font-size: 14px;
+    font-size: 16px;
     color: #000;
    
 
@@ -137,8 +137,9 @@ padding: 5px;
 
 fieldset {
 
-width: 100%;
-border: 1px solid #ddd;
+width: 95%;
+border: 1px solid #aaa;
+padding: 10px;
 
 }
 
@@ -162,6 +163,13 @@ border: 1px solid #ddd;
      font-weight: normal;
      padding: 10px;
      font-color: #000;
+
+}
+
+.boxMarginDown {
+ 
+     padding-bottom: 20px;
+ 
 
 }
 

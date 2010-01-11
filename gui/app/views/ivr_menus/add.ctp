@@ -1,4 +1,27 @@
 <?php
+/****************************************************************************
+ * index.ctp	- List processes
+ * version 	- 1.0.359
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 echo "<h1>".__("Create voice menu",true)."</h1>";
 
 $ivr_default  = Configure::read('IVR_DEFAULT');
@@ -6,28 +29,25 @@ $ivr_default  = Configure::read('IVR_DEFAULT');
         if($session->check('Message.flash')){
                   $session->flash();
 		}  
-
-//echo "<div class ='instruction'>".__("add instructions here.",true)."</div>";
-  	
+	
 $commentTitle   = "<span class='formHelp'>".__("Name of IVR",true)."</span>";
-$commentLong   = "<span class='formHelp'>".__("Long greeting message:include a brief description of the services offered and the menu alternatives.",true)."</span>";
-$commentShort  = "<span class='formHelp'>".__("Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2.",true)."</span>";
-$commentIndex  = "<span class='formHelp'>".__("",true)."</span>";
-$commentExit   = "<span class='formHelp'>".__("",true)."</span>";
-$commentInvalid   = "<span class='formHelp'>".__("",true)."</span>";
+$commentLong    = "<span class='formHelp'>".__("Long greeting message:include a brief description of the services offered and the menu alternatives.",true)."</span>";
+$commentShort   = "<span class='formHelp'>".__("Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2.",true)."</span>";
+//$commentIndex   = "<span class='formHelp'>".__("",true)."</span>";
+//$commentExit    = "<span class='formHelp'>".__("",true)."</span>";
+//$commentInvalid = "<span class='formHelp'>".__("",true)."</span>";
 
 $commentOption1  = "<span class='formHelp'>".__("Select option for alternative 1.",true)."</span>";
 $commentOption2  = "<span class='formHelp'>".__("Select option for alternative 2.",true)."</span>";
 
 
-$FallbackIndex   = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrIndexMessage']."</div>";
-$FallbackExit    = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrExitMessage']."</div>";
-$FallbackInvalid    = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrInvalidMessage']."</div>";
+$FallbackIndex   = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrIndexMessage']."</div>";
+$FallbackExit    = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrExitMessage']."</div>";
+$FallbackInvalid = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrInvalidMessage']."</div>";
 
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
 
-//$path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 ?>
 
@@ -37,27 +57,27 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 </fieldset>
 
 <fieldset>
-<h3><?php __('1. Welcome');?> </h3>
+<h3>1. <?php __('Welcome');?> </h3>
 <?php echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
+<?php echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3><?php __('2. Instructions');?> </h3>
+<h3>2. <?php __('Instructions');?> </h3>
 <?php echo $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
+<?php echo $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3><?php __('3. Goodbye');?> </h3>
-<?php echo $form->input('message_exit',array('type'=>'text','size' => '93','label'=>$commentExit,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
+<h3>3. <?php __('Goodbye');?> </h3>
+<?php echo $form->input('message_exit',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
+<?php echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3><?php __('4. Invalid');?> </h3>
-<?php echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>$commentInvalid,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>'Audio file'));?>
+<h3>4. <?php __('Invalid');?> </h3>
+<?php echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
+<?php echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
@@ -72,7 +92,7 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
         $radio1 = $form->radio('option'.$i.'_type',$options1,$attributes);
 	$radio2 = $form->radio('option'.$i.'_type',$options2,$attributes);
 
-        $row[$i-1]=array( array("<h3>".__('Press '.($i),true)."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'-Select node-' )),$radio2,__('Leave-a-message',true));
+        $row[$i-1]=array( array("<h3>".__('Press',true)." ".$i."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>__('-Select node-',true) )),$radio2,__('Leave-a-message',true));
      }
 
      echo "<table width='400px'>";
@@ -80,7 +100,7 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
      echo "</table>";
 
 echo "</fieldset>";
-echo $form->end('Save'); 
+echo $form->end(__('Save',true)); 
 
 ?>
 

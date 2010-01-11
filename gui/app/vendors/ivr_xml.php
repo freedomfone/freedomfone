@@ -1,13 +1,28 @@
 <?php
-
-class ivr_xml {
-/**
- * Class for creating IVR xml files
+/****************************************************************************
+ * ivr_xml.php		- Class for creating XML files for Voice menus
+ * version 		- 1.0.359
+ * 
+ * Version: MPL 1.1
  *
- */
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 public $body;
-
 public $inter_digit_timout;
 public $invalid_sound;
 public $timeout;
@@ -110,7 +125,7 @@ public $ext;
 	   $menus -> addAttribute ("tts-voice",$this->tts_voice);  
 
 
-	   if($data['file_long']){
+	   if($data['file_long'] && !$data['mode_long']){
 		$menus -> addAttribute ("greet-long",$this->menu_path.$data['file_long']);
 		}
 	   else {
@@ -119,7 +134,7 @@ public $ext;
 
 
 
-	   if($data['file_short']){
+	   if($data['file_short'] && !$data['mode_short']){
 		$menus -> addAttribute ("greet-short",$this->menu_path.$data['file_short']);
 		}
 	   else {
@@ -127,7 +142,7 @@ public $ext;
 	   }
 
 
-	   if($data['file_invalid']){
+	   if($data['file_invalid'] && !$data['mode_invalid']){
 		$invalid = $this->menu_path.$data['file_invalid'];
 		}
 	   elseif(trim($message_invalid)){
@@ -139,7 +154,7 @@ public $ext;
 	   }
 
 
-	   if($data['file_exit']){
+	   if($data['file_exit'] && !$data['mode_exit']){
 		$exit = $this->menu_path.$data['file_exit'];
 		}
 	   elseif($message_exit){
@@ -191,11 +206,8 @@ public $ext;
 		        $entry -> addAttribute("digits",$digit);
 			$entry -> addAttribute("param",$param);
 
-			//FIX THIS
+			//ADD SWITCH TO GUI (global variable)
 			$monitor=true;
-
-// <entry action="menu-exec-app" digits="1" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'IVR_Name_Text' 2 'Node_UniqueID_for_2' ${caller_id_number} ${destination_number}"/>   
-  
 
 			if($monitor){
 				$action= "menu-exec-app";

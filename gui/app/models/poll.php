@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * poll.php		- Model for poll. Manages validation of poll creation, and refresh data from spooler.
- * version 		- 1.0.353
+ * version 		- 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -26,43 +26,49 @@
 class Poll extends AppModel{
 
       var $name = 'Poll';
-
-
-
-	var $hasMany = array('Vote' => array(
+      var $hasMany = array('Vote' => array(
                         	       'order' => 'Vote.id ASC',
                         	       'dependent' => true)
 				       ); 
 
-      var $validate = array(
+
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+      $this->validate = array(
         'question' => array(
             'rule'=>array('minLength', 10),
 	    'required' => true,
-            'message'=>'A valid question is required.' ),
+            'message'=> __('A valid question is required.',true)
+	    ),
 	'code' => array(
 			'alphaNumeric' => array(
  				       'rule' => 'alphaNumeric',
- 				       'message' => 'Alphabets and numbers only'
+ 				       'message' => __('Alphabets and numbers only',true)
  				       ),
  			'between' => array(
  				       'rule' => array('between', 1, 10),
- 				       'message' => 'Between 1 to 10 characters'
+ 				       'message' => __('Between 1 to 10 characters',true)
  				       ),
 	                'isUnique' =>array(
 				     'rule' => 'isUnique',
-				     'message' => 'This SMS code is already in use.'
+				     'message' => __('This SMS code is already in use.',true)
 				     )
  		),
 	'end_time' => array(
 			'compareFieldValues' => array(
         				       'rule' => array('compareFieldValues', 'start_time' ),
-        				       'message' => 'The end time must be later than the start time.'
+        				       'message' => __('The end time must be later than the start time.',true)
                 )
             ) 
 	);
+}
 
-
-
+/*
+ * Validation: Comparison of two fields
+ *
+ *
+ */
 
  function compareFieldValues( $data, $field) 
     {
@@ -79,6 +85,13 @@ class Poll extends AppModel{
     }
 
 
+
+/*
+ * Validation: Checks if a given timestamp is less than current timestamp
+ *
+ *
+ */
+
    function futureDate($data, $field){
 
                 if (strtotime($data[$field]) < time()){
@@ -94,11 +107,11 @@ class Poll extends AppModel{
     }
 
 
-//
-//
-// Calculates and sets the status of the poll before saving data.
-//
-//
+/*
+ * Calculates and sets status of a poll before saving
+ *
+ *
+ */
 
     function beforeSave(){
 
@@ -124,13 +137,16 @@ class Poll extends AppModel{
 
     }
 
-//////////
 
+/*
+ * Fetches new data from spooler
+ *
+ *
+ */
 
-	function refresh(){
+     function refresh(){
 
       $array = Configure::read('poll_in');
-
       $instance_id = IID;
 	      
 	       $obj = new ff_event($array);	       

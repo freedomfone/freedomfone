@@ -1,11 +1,34 @@
 <?php 
+/****************************************************************************
+ * exit.ctp	- Edit a Leave-a-message messages
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 $source  = $session->read('Message.source');
 
       if($data){
 
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
-		      'empty'   => '-Set rate-');
+		      'empty'   => __('-Set rate-',true));
 
 
         $options_status = array('options' => array ('1'=>__("Active",true),'0'=>__("Archive",true)),
@@ -14,11 +37,11 @@ $source  = $session->read('Message.source');
 
      echo "<div class='frameRight'>";
      if ($prev = $neighbors['prev']['Message']['id']) {     	  
-	  echo $html->link("« Previous ","edit/".$prev,array('class'=>'subTitles'));
+	  echo $html->link(__("« Previous ",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
      echo " | ";
      if ($next = $neighbors['next']['Message']['id']){
-     	echo $html->link("Next »","edit/".$next);
+     	echo $html->link(__("Next »",true),"edit/".$next);
      }
      echo "</div>";
 
@@ -27,9 +50,9 @@ $source  = $session->read('Message.source');
      echo "<fieldset>";
 
      echo "<div class='frameLeft'>";
-    // echo "<table>";
+  
      echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
-	echo "<table>";
+     echo "<table>";
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('next',array('value'=>$neighbors['next']['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
@@ -47,9 +70,8 @@ $source  = $session->read('Message.source');
      array(__("Status",true),	$form->input('status',$options_status)),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false))),
-     array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>'-Select category-','label'=>false))),
+     array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>__('-Select category-',true),'label'=>false))),
      array( $button1, $button2)
-//     array("",$form->end())
      ));
   
      echo "</table>";

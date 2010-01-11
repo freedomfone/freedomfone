@@ -1,4 +1,26 @@
 <?php
+/****************************************************************************
+ * view.ctp	- View poll result
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+***************************************************************************/
 
 echo $html->div("frameRight");
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
@@ -12,7 +34,7 @@ echo "</div>";
    if ($data){
 
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
-	echo  $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
+	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
 
 	//echo $html->div('box',__("Please hit the refresh button to refresh the poll result.",true));

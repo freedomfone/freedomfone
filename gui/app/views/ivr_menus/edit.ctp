@@ -120,9 +120,9 @@ $path = $ivr['path'].IID."/".$ivr['dir_node'];
 	else {$listen=false;}
 
        $row[$i]=array(
-	array("<h3>".__('Press '.($i+1),true)."</h3>",array('width'=>'100px')),
+	array("<h3>".__('Press',true)." ".($i+1)."</h3>",array('width'=>'100px')),
 	$radio1, 
-	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'-Select node-' )),
+	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>__('-Select node-',true) )),
 	$listen,
 	$radio2, 
 	__("Leave-a-message",true)

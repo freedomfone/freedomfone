@@ -1,4 +1,4 @@
-k<?php
+<?php
 /****************************************************************************
  * message.php		- Model for Leave-a-message entries.
  * version 		- 1.0.359

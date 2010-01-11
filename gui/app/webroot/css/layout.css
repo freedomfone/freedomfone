@@ -143,6 +143,7 @@ float: left;
 width: 880px;
 padding: 0px 10px 10px 10px;
 margin-left: 0px;
+min-height: 500px;
 }
 
 * html body #main_content {

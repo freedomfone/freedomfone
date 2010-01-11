@@ -1,4 +1,27 @@
 <?php
+/****************************************************************************
+ * index.ctp	- Display callback settings
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
 $user_limit = array('0' => __("No limit",true),'10'=>10,'25'=>25,'50'=>50,'100'=>100);
@@ -31,6 +54,6 @@ echo $html->tableCells(array(
 
 echo "</table>";
 
-echo $form->end('Save'); 
+echo $form->end(__('Save',true)); 
 ?>
-<p>Please note that the Callback service cannot be tested via the demo site.</p> 
+

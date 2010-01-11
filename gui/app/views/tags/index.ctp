@@ -1,13 +1,33 @@
 <?php
-echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Add tag")),"/tags/add",null, null, false)."</p>";
+/****************************************************************************
+ * index.ctp	- List all tags (used in Leave-a-message)
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
+
+echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Add tag",true))),"/tags/add",null, null, false)."</p>";
 echo "<h1>".__("Manage Tags",true)."</h1>";
 
 
 $session->flash();
-
-
-
-
 
    if ($tags){
 
@@ -19,8 +39,8 @@ $session->flash();
 
       		   $title 	= $tag['Tag']['name'];
       		   $description = $tag['Tag']['longname'];		   
-  		   $edit 	= $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/tags/edit/{$tag['Tag']['id']}",null, null, false);
-      		   $delete 	= $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/tags/delete/{$tag['Tag']['id']}",null, "Are you sure you want to delete this tag?",false);
+  		   $edit 	= $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/tags/edit/{$tag['Tag']['id']}",null, null, false);
+      		   $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/tags/delete/{$tag['Tag']['id']}",null, __("Are you sure you want to delete this tag?",true),false);
       		   
 
      $row[$key] = array($title, $description,$edit,$delete);

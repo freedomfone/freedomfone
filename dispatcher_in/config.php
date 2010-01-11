@@ -24,11 +24,11 @@
 
 define("Version", '1.0.1');
 define("ParentXML", "ff-event");
+define("BaseDir", "/usr/src/pictus/");
 define("DefaultXSL", "default.xsl");
-define("DirXSL", "templates/");
+define("DirXSL", BaseDir."dispatcher_in/templates/");
 define("LogFile", "/tmp/dispatcher_in.log");
 define("LocalDomain", "http://demo.freedomfone.org/freedomfone/");
-define("BaseDir", "/usr/src/pictus/");
 define("ESLPath", BaseDir."/esl/native/ESL.php");
 define("PidFile", BaseDir."freeswitch/scripts/freedomfone/pid/dispatcher_in.pid");
 define("VersionFile", BaseDir."freeswitch/scripts/freedomfone/version/dispatcher_in");

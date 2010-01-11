@@ -184,7 +184,7 @@ class NodesController extends AppController{
 
 				$this->log('Msg: NODE UPLOAD ERROR; Type: '.$fileOK['errors'][0], 'ivr');
 				$this->Node->save($this->data,array('fieldList'=>array('title','modified')));	
-				$this->Session->setFlash(__($fileOK['errors'][0], true));
+				$this->Session->setFlash($fileOK['errors'][0]);
 			 }
 
 

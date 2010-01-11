@@ -1,9 +1,31 @@
 <?php
+/****************************************************************************
+ * archive.ctp	- List all archived Leave-a-message messages
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 $session->flash();
 
 echo $javascript->includeScript('toggle');
 echo "<h1>".__('Archived messages',true)."</h1>";
-
 
 
 	if ($messages){
@@ -12,8 +34,8 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
 echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 
 ?>
-<input type="button" name="CheckAll" value="Check All" onClick="checkAll(document.Message)">
-<input type="button" name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.Message)">
+<input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
+<input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)">
 <?
 
 echo "<table width=100%>";
@@ -44,7 +66,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 	
 
 	if($message['Message']['new']){
-		$status = $html->image("icons/new.png",array("alt" => "New"));
+		$status = $html->image("icons/new.png",array("title" => __("New",true)));
 	}
 
 	$title    = $message['Message']['title'];
@@ -54,8 +76,8 @@ echo $form->hidden('source',array('value'=>'archive'));
 	$modified = $this->element('message_status',array('modified'=>$message['Message']['modified']));
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
-	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/messages/edit/{$message['Message']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/messages/delete/{$message['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
+	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$message['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
 
 	$listen   = $this->element('musicplayer_button',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$message['Message']['title']));
 

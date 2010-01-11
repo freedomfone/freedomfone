@@ -178,7 +178,6 @@ class PollsController extends AppController{
         //Fetch form data
 	$this->Poll->set( $this->data );
 
-	
 	foreach($this->data['Vote'] as $key => $option){
 
 		if(!$option['chtext'] && $key>1){

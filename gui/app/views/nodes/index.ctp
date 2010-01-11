@@ -1,9 +1,31 @@
 <?php
+/****************************************************************************
+ * index.ctp	- List nodes (aka Menu Options for Voice Menus)
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+***************************************************************************/
 $session->flash();
 $ivr = Configure::read('IVR_SETTINGS');
 
 
-echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("alt" => "Create new poll")),"/nodes/add",null, null, false)."</div>";
+echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Create new poll",true))),"/nodes/add",null, null, false)."</div>";
 
 echo "<h1>".__('Menu options',true)."</h1>";
 
@@ -33,8 +55,8 @@ echo $form->hidden('source',array('value'=>'index'));
 	//$category = $node['Category']['name'];
 	$created  = $time->niceShort($node['Node']['created']);
 	$modified = $time->niceShort($node['Node']['modified']);
-	$edit     = $html->link($html->image("icons/edit.png", array("alt" => "Edit")),"/nodes/edit/{$node['Node']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
+	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/nodes/edit/{$node['Node']['id']}",null, null, false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
 	$listen   = $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($node['Node']['file'],'mp3'),'title'=>$node['Node']['title']));
 
      $row[$key] = array(
@@ -51,29 +73,17 @@ echo $form->hidden('source',array('value'=>'index'));
 
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
-
-/*     echo "<table>";
-     echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-     $paginator->numbers()));
-     echo "</table>";*/
      echo $form->end();
 
 
-echo "<span>".__("Number of entries per page: ",true);
-echo $html->link('10','index/limit:10',null, null, false)." | ";
-echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false) ;
-echo "</span>";
-
+     echo "<span>".__("Number of entries per page: ",true);
+     echo $html->link('10','index/limit:10',null, null, false)." | ";
+     echo $html->link('50','index/limit:50',null, null, false)." | ";
+     echo $html->link('100','index/limit:100',null, null, false) ;
+     echo "</span>";
      }
-
-
       else {
-
-      echo "<div class='instruction'>".__("No Menu Option are uploaded. Please upload a Menu Option by clicking on the green button to the right.")."</div>";
-
+      	   echo "<div class='instruction'>".__("No Menu Option are uploaded. Please upload a Menu Option by clicking on the green button to the right.")."</div>";
       }
 
 ?>

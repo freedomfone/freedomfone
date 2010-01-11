@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * config.php	- Configuration parameters for spooler tables, and application settings
- * version 	- 1.0.354
+ * version 	- 1.0.360
  * 
  * Version: MPL 1.1
  *
@@ -107,6 +107,8 @@ $config['IVR_SETTINGS'] = array(
 $config['IVR_DEFAULT']=	array(
 	        'parent_ivr'       => 'freedomfone_ivr_'.IID,
                 'ivrIndexMessage'  => 'To repeat the menu, press 9.',
+                'ivrLongMessage'   => 'Hello and Welcome to Freedom Fone',
+		'ivrShortMessage'  => 'Navigate through the menu by pressing any number between 1 and 8.',
                 'ivrInvalidMessage'  => 'Invalid option. Please try again.',
 		'ivrExitMessage'   => 'Thank you and good bye.');
 

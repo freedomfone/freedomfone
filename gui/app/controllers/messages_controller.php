@@ -104,7 +104,6 @@ class MessagesController extends AppController{
 
       	  	$neighbors = $this->Message->find('neighbors', array('field' => 'id', 'value' => $id, 'conditions' => array('status' => $this->data['Message']['status'] )));	
 
-		debug($neighbors);
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
  		$this->set(compact('tags','categories','neighbors'));

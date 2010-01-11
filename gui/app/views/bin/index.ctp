@@ -1,4 +1,27 @@
 <?php
+/****************************************************************************
+ * index.ctp	- List Other SMS
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 $session->flash();
 echo $javascript->includeScript('toggle');
 
@@ -18,8 +41,8 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'Bin'));
 ?>
-<input type="button" name="CheckAll" value="Check All" onClick="checkAll(document.Bin)">
-<input type="button" name="UnCheckAll" value="Uncheck All" onClick="uncheckAll(document.Bin)">
+<input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Bin)">
+<input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Bin)">
 <?
 
 echo "<table width='100%'>";

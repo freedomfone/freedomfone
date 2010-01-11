@@ -1,4 +1,27 @@
 <?php
+/****************************************************************************
+ * edit.ctp	- Edit existing poll
+ * version 	- 1.0.362
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+***************************************************************************/
+
 echo $javascript->link('addRemoveElements');
 
 
@@ -26,13 +49,10 @@ echo $javascript->link('addRemoveElements');
 		if(isset($vote['id'])){ $voteId=$vote['id'];} else { $voteId=false;}
 			$hidden = $form->input('Vote.'.$key.'.id',array('value' => $voteId,'label'=>false));	    		
 			if ($voteId){ 
-			   $delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/polls/unlink/{$voteId}/{$this->data['Poll']['id']}",null , __("Are you sure you want to delete this poll option?",true),false);
+			   $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/polls/unlink/{$voteId}/{$this->data['Poll']['id']}",null , __("Are you sure you want to delete this poll option?",true),false);
 			   } else { 
 			   $delete=false;
 			   }
-
-	    		//$rows[$key] = array(__("Option",true)." ".($key+1),	$form->input('Vote.'.$key.'.chtext',array('label'=>false)), $delete);
-
 			$rows[] = array(__("Option",true), $form->input('Vote.'.$key.'.chtext',array('value' => $vote['chtext'],'label'=>false)),$delete,$hidden);	    		
 
     			}
@@ -58,7 +78,7 @@ echo $javascript->link('addRemoveElements');
      	     array(__("End time",true),		$form->input('end_time',array('label'=>false)))
       	     ));
 	echo "</table>";
-	echo $form->end('Save'); 
+	echo $form->end(__('Save',true)); 
 
 
 ?>

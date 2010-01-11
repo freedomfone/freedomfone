@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menu.php		- Model for IVRs (aka 'Voice menus') Manages updates of default IVR (aka 'parent').
- * version 		- 1.0.359
+ * version 		- 1.0.360
  * 
  * Version: MPL 1.1
  *
@@ -36,11 +36,8 @@ function __construct($id = false, $table = null, $ds = null) {
         'title' => array(
             'rule'     => array('minLength', 3),
 	    'required' =>  true,
-            'message'  => __('A title is required. Minimum 3 characters.',true)),
-        'message_short' => array(
-            'rule'     => array('minLength', 3),
-	    'required' =>  true,
-            'message'  => __('Instructions are required.',true)));
+            'message'  => __('A title is required. Minimum 3 characters.',true)));
+
 
 }
 

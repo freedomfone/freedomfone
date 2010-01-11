@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List processes
- * version 	- 1.0.359
+ * version 	- 1.0.360
  * 
  * Version: MPL 1.1
  *
@@ -48,6 +48,8 @@ $commentOption2  = "<span class='formHelp'>".__("Select option for alternative 2
 $FallbackIndex   = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrIndexMessage']."</div>";
 $FallbackExit    = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrExitMessage']."</div>";
 $FallbackInvalid    = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrInvalidMessage']."</div>";
+$FallbackLong    = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrLongMessage']."</div>";
+$FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrShortMessage']."</div>";
 
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
@@ -65,14 +67,14 @@ echo "<legend>".__('Menu Instructions',true)."</legend>";
 $box=array(false,false,false,false);
 
 echo "<h3>1. ".__('Welcome',true)."</h3>";
-echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'between'=>'<br />' ));
+echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' ));
 echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('musicplayer_button',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$formatting->changeExt($this->data['IvrMenu']['file_long'],'mp3'),'title'=>__('Welcome Message',true)))));
 if($ivrMenu['file_long']){$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true)));}
 echo $html->div("boxMarginDown",$box[0]);
 
 
 echo "<h3>2. ".__('Instructions',true)."</h3>";
-echo $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'between'=>'<br />' ));
+echo $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'after' => $FallbackShort,'between'=>'<br />' ));
 echo $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('musicplayer_button',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$formatting->changeExt($this->data['IvrMenu']['file_short'],'mp3'),'title'=>__('Instructions Message',true)))));
 if($ivrMenu['file_short']){$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true)));}
 echo $html->div("boxMarginDown",$box[1]);

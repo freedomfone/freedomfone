@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * vote.php		- Model for poll votes. Manages validation of poll options when addding/creating polls.
- * version 		- 1.0.359
+ * version 		- 1.0.367
  * 
  * Version: MPL 1.1
  *
@@ -56,6 +56,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
 }
 
+
 /*
  * Validation: Checks if chtext is unique for the poll
  *  
@@ -67,18 +68,18 @@ function __construct($id = false, $table = null, $ds = null) {
   function uniqueChtext($data, $field) {
 
  	  global $options;
+	  $result = true;
 
      if(is_array($options)){ 
 	if (in_array($data['chtext'],$options)) { 
-	   $result = FALSE;
-	   } else { 
-	   $result = TRUE;
-	   }
-     } else { $result = TRUE; }
+	   $result = __('The option is not unique',true);
+	} else { 
+	   $result = true;
+	}
+     }
      
      $options[] = $data['chtext'];
-
-	return $result;
+     return $result;
 
 	}
 }

@@ -1,4 +1,27 @@
 <?php
+/****************************************************************************
+ * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
+ * version 		 	- 1.0.367
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
+
 
 class PollsController extends AppController{
 
@@ -96,7 +119,9 @@ class PollsController extends AppController{
 	 }
 
 	 //Save vote data
-	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => 'false'));
+	 $this->Poll->Vote->create($this->data['Vote']);
+	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => false));
+
 
 	
 	 $this->Session->setFlash(__("The poll has been added to the database",true));
@@ -200,18 +225,22 @@ class PollsController extends AppController{
 	  //Set id for each vote, and save data
    	   foreach($this->data['Vote'] as $key => $vote){
 
+
 	   if(isset($vote_id[$key]['Vote']['id'])) { $voteId=$vote_id[$key]['Vote']['id'];} else { $voteId=false;}
 		$this->data['Vote'][$key]['id']= $voteId;
-	    	 $this->data['Vote'][$key]['poll_id']=$id;
+	    	$this->data['Vote'][$key]['poll_id']=$id;
+
 	     }
 
 	 //Save vote data
-	$this->Poll->Vote->saveAll($this->data['Vote']);
+
+	$this->Poll->Vote->create($this->data['Vote']);
+	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));
 
 	
 	 $this->Session->setFlash(__("The poll has been edited.",true));
 	 $this->redirect(array('action' => 'index'));
-        }
+       }
 
 
       }

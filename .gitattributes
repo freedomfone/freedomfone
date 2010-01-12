@@ -26,6 +26,7 @@ dispatcher_in/esl -text
 dispatcher_in/install/spooler_db_createdb_user.sql -text
 dispatcher_in/install/spooler_db_schema.sql -text
 dispatcher_in/log -text
+dispatcher_in/templates/blacklist.xsl -text
 dispatcher_in/templates/channel_state.xsl -text
 dispatcher_in/templates/default.xsl -text
 dispatcher_in/templates/lmsm.xsl -text

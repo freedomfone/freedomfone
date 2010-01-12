@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * dispatcherESL.php	- Incoming dispatcher based on FreeSWITCH ESL. Manages events from FreeSWITCH to spooler (db).
- * version 		- 1.0.1
+ * version 		- 1.0.2
  * 
  * Version: MPL 1.1
  *
@@ -119,10 +119,13 @@ $pass = $_SocketParam['pass'];
 		   //4. Wait for events
        	  	    while($sock->connected()){
 			$event = $sock->recvEvent();
+		
+		       //4.5 APPLY BLACKLIST WITH XSL
+			if (!$result = applyBlackList($event)){
+
 			logESL("New event: ".$event->getType(),"INFO",1); 
 			debugESL($event->getBody(),"ESL raw event data");
 		
-		       //4.5 APPLY BLACKLIST WITH XSL
 
 			//5. Apply XSL template
 			$xml = applyXSL($event);
@@ -151,13 +154,38 @@ $pass = $_SocketParam['pass'];
 					 }
 			         }else {
  	   			   logESL("Application match not found","ERROR",1); 
-				 }					      
-		      }
-		} 
-	} else {
+				 } // 6 Application
+			} // 4.5 Blacklist					      
+		      } //4 Wait for event 
+		} //2 Spooler database 
+	} //1. FreeSWITCH
+ 
+	else {
 	logESL("Failed to connect to FreeSWITCH","ERROR",1); 
 	}
      } //while
+
+
+function applyBlackList($event){
+
+	 $body = $event->getBody();
+
+         $xsl= DirXSL.BlackListXSL;
+	 $xml = simplexml_load_string($body);
+
+   	 $xslDoc = new DOMDocument();
+   	 $xslDoc->load($xsl);
+
+   	 $xmlDoc = new DOMDocument();
+   	 $xmlDoc->loadXML($body);
+
+   	 $proc = new XSLTProcessor();
+   	 $proc->importStylesheet($xslDoc);
+   
+	 return $proc->transformToXML($xmlDoc);
+
+
+}
 
 
 

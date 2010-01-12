@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * config.php		- Configuration parameters for incoming dispatcher.
- * version 		- 1.0.1
+ * version 		- 1.0.2
  * 
  * Version: MPL 1.1
  *
@@ -26,6 +26,7 @@ define("Version", '1.0.1');
 define("ParentXML", "ff-event");
 define("BaseDir", "/usr/src/pictus/");
 define("DefaultXSL", "default.xsl");
+define("BlackListXSL", "blacklist.xsl");
 define("DirXSL", BaseDir."dispatcher_in/templates/");
 define("LogFile", "/tmp/dispatcher_in.log");
 define("LocalDomain", "http://demo.freedomfone.org/freedomfone/");

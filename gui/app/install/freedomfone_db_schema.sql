@@ -1,3 +1,20 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: freedomfone
+-- ------------------------------------------------------
+-- Server version	5.0.51a-24+lenny2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 --
 -- Table structure for table `bin`
 --
@@ -13,7 +30,7 @@ CREATE TABLE `bin` (
   `created` int(10) unsigned default NULL,
   `mode` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -52,7 +69,7 @@ CREATE TABLE `callback_settings` (
   `limit_user` smallint(6) NOT NULL default '20',
   `limit_time` smallint(6) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -68,6 +85,26 @@ CREATE TABLE `categories` (
   `longname` varchar(200) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `cdr`
+--
+
+DROP TABLE IF EXISTS `cdr`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `cdr` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `channel_state` varchar(50) default NULL,
+  `epoch` int(10) unsigned default NULL,
+  `call_id` varchar(100) NOT NULL,
+  `caller_name` varchar(100) default NULL,
+  `caller_number` varchar(100) default NULL,
+  `extension` smallint(6) default NULL,
+  `application` varchar(50) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -111,6 +148,10 @@ CREATE TABLE `ivr_menus` (
   `parent` tinyint(1) default '0',
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
+  `mode_long` tinyint(1) default '0',
+  `mode_short` tinyint(1) default '0',
+  `mode_exit` tinyint(1) default '0',
+  `mode_invalid` tinyint(1) default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -182,6 +223,28 @@ CREATE TABLE `messages_tags` (
 SET character_set_client = @saved_cs_client;
 
 --
+-- Table structure for table `monitor_ivr`
+--
+
+DROP TABLE IF EXISTS `monitor_ivr`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `monitor_ivr` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `cdr_id` int(10) unsigned default NULL,
+  `epoch` int(10) unsigned default NULL,
+  `call_id` varchar(100) NOT NULL,
+  `ivr_code` varchar(100) NOT NULL,
+  `digit` smallint(6) default NULL,
+  `node_id` int(10) unsigned default NULL,
+  `caller_number` varchar(50) default NULL,
+  `extension` smallint(6) default NULL,
+  `type` varchar(10) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `nodes`
 --
 
@@ -216,10 +279,34 @@ CREATE TABLE `polls` (
   `end_time` datetime default NULL,
   `status` tinyint(4) default NULL,
   `instance_id` int(6) NOT NULL,
-  `incorrect_open` int(10) unsigned default NULL,
-  `incorrect_closed` int(10) unsigned default NULL,
+  `incorrect_open` int(10) unsigned default '0',
+  `incorrect_closed` int(10) unsigned default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `processes`
+--
+
+DROP TABLE IF EXISTS `processes`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `processes` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(200) NOT NULL,
+  `pid` int(10) unsigned NOT NULL,
+  `status` tinyint(2) default NULL,
+  `start_cmd` varchar(200) default NULL,
+  `instance_id` int(6) NOT NULL,
+  `title` varchar(50) default NULL,
+  `start_time` int(10) unsigned default '0',
+  `last_seen` int(10) unsigned default '0',
+  `interupt` varchar(30) default NULL,
+  `start_script` varchar(50) default NULL,
+  `type` varchar(10) NOT NULL default 'pid',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -252,6 +339,7 @@ CREATE TABLE `votes` (
   `chvotes` int(10) unsigned default '0',
   `votes_closed` int(10) unsigned default '0',
   PRIMARY KEY  (`id`),
+  UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -264,4 +352,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-12-09 20:50:19
+-- Dump completed on 2010-01-12 17:40:46

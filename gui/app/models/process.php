@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * process.php		- Model for Freedom Fone main processes. Manages stop,start and monitoring of incoming and outgoing dispatcher
- * version 		- 1.0.359
+ * version 		- 1.0.364
  * 
  * Version: MPL 1.1
  *
@@ -40,18 +40,24 @@ class Process extends AppModel{
       function refresh(){
 
       	       $this->set('data',$this->findAllByType('run'));
-
+	       
       	       foreach ($this->data['Process']['data'] as $key =>  $process){
 
 	       	       $id    = $process['Process']['id'];
-	       	       $pid    = $process['Process']['pid'];
+		       $pid = $this->getPid($process['Process']['name']);
+		   
 	       	       $status = $process['Process']['status'];
 	       	       $name = $process['Process']['name'];
 
 	       	       //Process is running but status = OFF
 	       	       if($this->isRunning($pid) && !$status){
+	
 			 $this->data['Process']['data'][$key]['Process']['status'] = '1';
-			 $this->save($this->data);
+			 $this->data['Process']['data'][$key]['Process']['pid'] = $pid;
+			
+			$update = $this->data['Process']['data'][$key];
+	
+			$this->save($update);
     			 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
 
 		       } elseif (!$this->isRunning($pid) && $status) {
@@ -71,6 +77,21 @@ class Process extends AppModel{
 
 
       }
+
+
+/*
+ * Read pid from file
+ *  
+ * @return int $pid
+ *
+ */
+
+ function getPid($name){
+    
+        $HttpSocket = new HttpSocket(); 
+        return $HttpSocket->request(array('uri' => PID_URI.$name.'.pid'));
+		  
+	}
 
 
 /*
@@ -98,8 +119,8 @@ class Process extends AppModel{
  */
     function stop(){
 
-      	       $pid = $this->data['Process']['pid'];
-
+	       $pid = $this->getPid($this->data['Process']['name']);
+	
       	       if($pid){
 			exec('kill -9 '.$pid);
     			return true;

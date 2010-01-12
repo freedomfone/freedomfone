@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * processes_controller.ctp	- Controller for processes. Manages start,stop,status of incoming and outgoing dispatcher.
- * version 			- 1.0.356
+ * version 			- 1.0.364
  * 
  * Version: MPL 1.1
  *
@@ -39,8 +39,7 @@ class ProcessesController extends AppController{
      	   	   }
 	}	   
 
-//	$version[0]   = $this->Process->version(3);
-	$version[0] = 'foo';
+	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
 
 	$this->set(compact('version'));
@@ -60,8 +59,12 @@ class ProcessesController extends AppController{
 		//Pid based process
 		if($type=='run'){
 
+		$pid = $this->Process->getPid($this->data['Process']['name']);
+
 		//Process is not running
-		if(!$this->Process->isRunning($this->data['Process']['pid'])){
+//		if(!$this->Process->isRunning($this->data['Process']['pid'])){
+
+		   if(!$this->Process->isRunning($pid)){
 
 
 			//Run start command
@@ -76,12 +79,10 @@ class ProcessesController extends AppController{
 		        $this->data['Process']['interupt']= '';	
 			$this->Process->save($this->data);
 		      	$this->Session->setFlash($this->data['Process']['title']." ".__("started",true));
-			}
-			else {
-		      	     $this->Session->setFlash($this->data['Process']['title']." ".__("is already running",true));
-	 	
-			}
-		} 
+		   } else {
+		   	$this->Session->setFlash($this->data['Process']['title']." ".__("is already running",true));
+		   }
+	 	 } 
 
 	  $this->redirect(array('action' => 'index'));
 	
@@ -100,6 +101,7 @@ class ProcessesController extends AppController{
 
 			//Process is NOT running
 			if(!$this->Process->isRunning($this->data['Process']['pid'])){
+
 				$this->Session->setFlash($this->data['Process']['title']." ".__("is not running",true));
 
 				} else {

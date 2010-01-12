@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
- * version 		 	- 1.0.367
+ * version 		 	- 1.0.368
  * 
  * Version: MPL 1.1
  *
@@ -154,14 +154,19 @@ class PollsController extends AppController{
 
     function unlink ($id,$poll_id){
 
-
+    $result =  $this->Poll->Vote->find('count',array('conditions' => array('Vote.poll_id' =>$poll_id)));
+    
+       if($result > 2){
     	     if($this->Poll->Vote->delete($id,true))
 	     {
 	     $this->log('Msg: POLL OPTION DELETED; Id: '.$id, 'poll');	
 	     $this->redirect(array('action' => '/edit/'.$poll_id));
-
-
 	     }
+       } else {
+
+       $this->Session->setFlash('Poll option could not be deleted. A poll needs at least two options.','default',array('class'=>'error-message'));
+       $this->redirect(array('action' => '/edit/'.$poll_id));
+       }
 
 
 

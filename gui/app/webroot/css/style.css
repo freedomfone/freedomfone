@@ -1,3 +1,25 @@
+/****************************************************************************
+ * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
+ * version 		 	- 1.0.368
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 th {
      font-size: 12px;
@@ -97,7 +119,7 @@ div.required label:after {
 
 .error-message {
 
-    font-size: 80%;
+    font-size: 16px;
     color: #f00;
     margin: 0 0 10px 0;
 }

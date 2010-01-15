@@ -41,8 +41,10 @@ class ProcessesController extends AppController{
 
 	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
+	$uptime    = $this->Process->fsCommand("status");
 
-	$this->set(compact('version'));
+	$uptime = $this->Process->uptime($uptime);
+	$this->set(compact('version','uptime'));
       	$this->set('data',$this->Process->findAllByType('run'));
 
       }

@@ -57,12 +57,14 @@ echo "<h1>".__('Processes',true)."</h1>";
 
 	}
 
+
+	$running = __("Not running",true);
 	$freeswitch=false;
 	if($version[1]){    
 	    $freeswitch=true;
-	    $running = __("Running",true);
+	    $running = __("Running since",true).': '.$time->niceShort($uptime);
 	}
-    $row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
+    	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
      echo "<table width='80%'>";
      echo $html->tableHeaders(array('','Component','Status','Interupt mode','Start','Stop'));

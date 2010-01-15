@@ -57,24 +57,23 @@ echo "<h1>".__('Processes',true)."</h1>";
 
 	}
 
+	$freeswitch=false;
+	if($version[1]){    
+	    $freeswitch=true;
+	    $running = __("Running",true);
+	}
+    $row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
+
      echo "<table width='80%'>";
-     echo $html->tableHeaders(array('Status','Component','Status','Interupt mode','Start','Stop'));
+     echo $html->tableHeaders(array('','Component','Status','Interupt mode','Start','Stop'));
      echo $html->tableCells($row);
      echo "</table>"; 
  
      }
 
 
-     echo "<h1>".__("System",true)."</h1>";
-     unset($row);
-     $row[] = array(__("FreeSWITCH",true).": ", $version[1]); 
-     $row[] = array(__("Web server",true).": ", apache_get_version());
-     $row[] = array(__("MySQL",true).": ", mysql_get_server_info());
-     $row[] = array(__("Dispatcher",true).": ", $version[0]);
+ 
 
-    echo "<table width='60%'>";
-    echo $html->tableCells($row);
-    echo "</table>"; 
  
 
 

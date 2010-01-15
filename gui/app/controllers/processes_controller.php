@@ -31,7 +31,7 @@ class ProcessesController extends AppController{
 
 
       function index(){
-      	$this->pageTitle = 'System Health';
+      	$this->pageTitle = __('System Health',true);
 
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
@@ -44,6 +44,18 @@ class ProcessesController extends AppController{
 
 	$this->set(compact('version'));
       	$this->set('data',$this->Process->findAllByType('run'));
+
+      }
+
+
+      function software(){
+      	$this->pageTitle = __('System Software',true);
+
+ 	$version[0]   = $this->Process->version(3);
+	$version[1]   = $this->Process->fsCommand("version");
+
+	$this->set(compact('version'));
+	$this->render();
 
       }
 

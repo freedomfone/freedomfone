@@ -279,8 +279,8 @@ CREATE TABLE `polls` (
   `end_time` datetime default NULL,
   `status` tinyint(4) default NULL,
   `instance_id` int(6) NOT NULL,
-  `incorrect_open` int(10) unsigned default '0',
-  `incorrect_closed` int(10) unsigned default '0',
+  `invalid_open` int(10) unsigned default '0',
+  `invalid_closed` int(10) unsigned default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

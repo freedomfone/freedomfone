@@ -16,6 +16,7 @@ class BinController extends AppController{
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
 	   	   $this->requestAction('/bin/refresh');
+   	   	   $this->requestAction('/polls/refresh');
      	   	   }
 	}	   
 

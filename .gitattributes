@@ -289,6 +289,7 @@ gui/app/views/polls/edit.ctp -text
 gui/app/views/polls/index.ctp -text
 gui/app/views/polls/view.ctp -text
 gui/app/views/processes/index.ctp -text
+gui/app/views/processes/software.ctp -text
 gui/app/views/scaffolds/empty -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text

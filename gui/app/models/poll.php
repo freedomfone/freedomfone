@@ -166,7 +166,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
 
-		// CHECK A: CODE OK (VALID OR INCORRECT)
+		// CHECK A: SMS CODE EXISTS (VALID/INVALID)
 		if ($poll_entry = $this->findByCode( $polls_code)){
 		   
 			$poll_id = $poll_entry['Poll']['id'];
@@ -182,28 +182,28 @@ function __construct($id = false, $table = null, $ds = null) {
 		   		 }
 	 	         }		 
 
-			        //CHECK A1: OPTION CORRECT (correct code, correct chtext)
+			        //CHECK A1: VALID VOTE (correct code, correct chtext)
 
 				if ($matched){		   	   	  
 			
 				  switch($status){
 
 				   case 0:
-				   //ADD TO TRASH (pending)
-				   $mode="VALID VOTE, PENDING";
+				   //ADD TO TRASH (early)
+				   $mode=__("Valid vote, early",true);
 				   $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
 				   break;
 
 				   case 1:
 				   //ADD TO STATS (open)
 		   	   	   $this->Vote->query("UPDATE votes SET chvotes=chvotes+1 WHERE id=$vote_id "); 
-				   $mode="VALID VOTE, OPEN";
+				   $mode=__("Valid vote, open", true);
 				   break;
 
 
 				   case 2:
 				   //ADD TO STATS (closed)
-				   $mode="VALID VOTE, CLOSED";
+				   $mode=__("Valid vote, closed",true);
 		   	   	   $this->Vote->query("UPDATE votes SET votes_closed=votes_closed+1 WHERE id=$vote_id "); 
 				   break;
 
@@ -211,26 +211,26 @@ function __construct($id = false, $table = null, $ds = null) {
 
 				} else {
 
-				//CHECK A2: OPTION INCORRECT (correct code, invalid chtext)
+				//CHECK A2: INVALID VOTE (correct code, invalid chtext)
 				   switch($status){
 
 				   case 0:
-				   //ADD TO TRASH (pending)
-				   $mode="INCORRECT VOTE, PENDING";
+				   //ADD TO TRASH (early)
+				   $mode=__("Invalid vote, early",true);
 				   $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
 				   break;
 
 				   case 1:
 				   //ADD TO STATS (open)
-				   $mode="INCORRECT VOTE, OPEN";
-				   $this->query("UPDATE polls SET incorrect_open=incorrect_open+1 WHERE id=$poll_id ");
+				   $mode=__("Invalid vote, open", true);
+				   $this->query("UPDATE polls SET invalid_open=invalid_open+1 WHERE id=$poll_id ");
 				   break;
 
 
 				   case 2:
 				   //ADD TO STATS (closed)
-				   $mode="INCORRECT VOTE, CLOSED";
-				   $this->query("UPDATE polls SET incorrect_closed=incorrect_closed+1 WHERE id=$poll_id");
+				   $mode=__("Invalid vote, closed",true);
+				   $this->query("UPDATE polls SET invalid_closed=invalid_closed+1 WHERE id=$poll_id");
 				   break;
 
 				   }
@@ -238,11 +238,11 @@ function __construct($id = false, $table = null, $ds = null) {
 	 	         	}
 
 		} else {
-		// CHECK B: CODE NOT OK (INVALID)
+		// CHECK B: INCORRECT VOTE (no matching code)
 
 			
 			 //ADD TO TRASH
-	   		 $mode="INVALID VOTE";
+	   		 $mode=__("Unclassified",true);
 			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
 	        }
 

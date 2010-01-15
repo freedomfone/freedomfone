@@ -190,7 +190,7 @@
 
 
 <li>
-<?php echo $html->link(__("What's running?",true),'/software'); ?>
+<?php echo $html->link(__("What's running?",true),'/processes/software'); ?>
 </li>
 
 <li>

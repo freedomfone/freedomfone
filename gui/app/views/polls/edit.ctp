@@ -26,8 +26,12 @@ echo $javascript->link('addRemoveElements');
 
 
 	   echo "<h1>".__("Edit Poll",true)."</h1>";
+
+	   $session->flash();
 	   echo $form->create('Poll',array('type' => 'post','action'=> 'edit'));
 	   echo $form->input('id',array('type' => 'hidden','value'=> $this->data['Poll']['id']));
+   	   echo $form->input('invalid_open',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_open']));
+   	   echo $form->input('invalid_closed',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_closed']));
 
 	   echo "<table>";
 	   echo $html->tableCells(array (

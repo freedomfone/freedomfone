@@ -46,8 +46,8 @@ echo "</div>";
         echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Late votes',true)));
 
 	$votes = $data['Vote'];
-	$incorrect_open = $data['Poll']['incorrect_open'];
-	$incorrect_closed = $data['Poll']['incorrect_closed'];
+	$invalid_open = $data['Poll']['invalid_open'];
+	$invalid_closed = $data['Poll']['invalid_closed'];
 
 	//Calculate total valid votes
 	   foreach ($votes as $vote) {
@@ -57,8 +57,8 @@ echo "</div>";
 
     	    }
     
-           $total = $total + $incorrect_open;
-           $total_closed = $total_closed + $incorrect_closed;
+           $total = $total + $invalid_open;
+           $total_closed = $total_closed + $invalid_closed;
 
 	    foreach ($votes as $vote) {
 
@@ -71,13 +71,13 @@ echo "</div>";
 		$rows[] = array($vote['chtext'],array($vote['chvotes'],array('align'=>'center')),array($percentage,array('align'=>'center')),array($vote['votes_closed'],array('align'=>'center')));
     	      }
 
-	      //Add incorrect votes (open)
+	      //Add invalid votes (open)
 	      if ($total) {
-	      	 $percentage = $number->toPercentage(100*$incorrect_open/$total,0);
+	      	 $percentage = $number->toPercentage(100*$invalid_open/$total,0);
 	      } else {
 	      	$percentage=0;
 		}
-	      $rows[] = array(__('Invalid',true),array($incorrect_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($incorrect_closed,array('align'=>'center')));
+	      $rows[] = array(__('Invalid',true),array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_closed,array('align'=>'center')));
 	      echo $html->tableCells($rows);
 	      echo "</table>";
 	      echo $html->div('instruction',__('Total number of votes (in time): ',true).$total);

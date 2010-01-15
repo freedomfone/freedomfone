@@ -145,7 +145,7 @@ class Process extends AppModel{
       	       $cmd = $this->data['Process']['start_cmd'];
 	       $op = array();
 	       exec($cmd,$op);
-               $version = $op[0]; 
+               $version = $op[0];
 	       return $version;
 
       }

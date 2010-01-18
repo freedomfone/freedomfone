@@ -243,6 +243,7 @@ gui/app/views/categories/index.ctp -text
 gui/app/views/cdr/export.ctp -text
 gui/app/views/cdr/index.ctp -text
 gui/app/views/cdr/output.ctp -text
+gui/app/views/cdr/overview.ctp -text
 gui/app/views/elements/cakeflash_player.ctp -text
 gui/app/views/elements/callback_status.ctp -text
 gui/app/views/elements/foo.ctp -text

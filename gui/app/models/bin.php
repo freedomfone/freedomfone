@@ -56,12 +56,18 @@ class Bin extends AppModel{
      	    while ($entry = $obj->getNext('update')){
 
 	      $created = floor($entry['Event-Date-Timestamp']/1000000);
-      	      $data= array ( 'instance_id'  =>$instance_id, 'body' => $entry['Body'], 'sender' => $entry['from'], 'created' => $created, 'mode' => $mode);
+	      $sender = $entry['from'];
+	      $proto = $entry['proto'];
+
+      	      $data= array ( 'instance_id'  =>$instance_id, 'body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
 	      
 	      $this->create();
 	      $result = $this->save($data);
-	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$entry['from']."; Timestamp: ".$created, "bin"); 
-	      
+	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$sender."; Timestamp: ".$created, "bin"); 
+	 
+	      //add to CDR
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','Other SMS','$proto')");
+
 	      }
 
 	}

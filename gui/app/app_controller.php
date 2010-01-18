@@ -116,18 +116,22 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		$ext = 'wav';
 		break;	       
 
+	       case 'audio':
+	       	$permitted = array('audio/mpeg','audio/x-wav','audio/wav');
+		break;	       
+
+
 	}
 
 	$result = array();
 
-
 	// loop through and deal with the files
 	foreach($data as $key =>$file) {
 
-
 		// set filename
-		if($useKey){ 
-		    $filename = $file['fileName'].".".$ext;
+		if($useKey){
+		    $ext = $this->getExt($file['name']); 
+		    $filename = $file['fileName'].$ext;
 		}
 		
 		else {
@@ -243,27 +247,33 @@ return $result;
  * @creates a mp3 file in the same dir
  */
 
-function wav2mp3($file){
+   function wav2mp3($file){
+
+     if (file_exists($file) && eregi("^.+\.[Ww][Aa][Vv]$", $file)) {
+
+      	$mp3 = substr($file, 0, -3) . "mp3";
+      	$cmd = "/usr/bin/lame -V2 -S " . escapeshellarg(WWW_ROOT.$file) . " " . escapeshellarg(WWW_ROOT.$mp3);
+      	passthru($cmd);
+  	}
+     }
 
 
-  if (file_exists($file) && eregi("^.+\.[Ww][Aa][Vv]$", $file)) {
+     function getExt($file){
 
-      $mp3 = substr($file, 0, -3) . "mp3";
+     return strrchr($file,'.');
 
-
-$cmd = "/usr/bin/lame -V2 -S " . escapeshellarg(WWW_ROOT.$file) . " " . escapeshellarg(WWW_ROOT.$mp3);
-
-passthru($cmd);
-
-  
-  }
+     }
 
 
-}
+     function getFilename($file){
 
 
+     $pos =strripos ($file,'.');
+
+     return substr($file,0,$pos);
 
 
+     }
 
 }
 ?>

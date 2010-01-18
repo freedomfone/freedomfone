@@ -44,17 +44,15 @@ class NodesController extends AppController{
 	   //If title exists, upload file (wav)
 	   if ($title) { 
 	   
-             $fileOK = $this->uploadFiles($path, $files ,false,'wav',false,false);
+             $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
 		//File upload OK
 		if(array_key_exists('urls', $fileOK)){
 
 		      //Set db fields
-	              $this->data['Node']['file']        = $fileOK['files'][0];
-		      $this->data['Node']['instance_id'] = $iid;
 
-	              // Convert wav to mp3
-                      $this->wav2mp3($fileOK['urls'][0]);
+	              $this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
+		      $this->data['Node']['instance_id'] = $iid;
 
 		      //Save node in db
 		      $this->Node->save($this->data);
@@ -159,12 +157,9 @@ class NodesController extends AppController{
 
 	       if ($files[0]['size']){
 
-	       $fileOK = $this->uploadFiles($path, $files ,false,'wav', false, false);
+	       $fileOK = $this->uploadFiles($path, $files ,false,'audio', false, false);
        
 		       	if(array_key_exists('urls', $fileOK)) {
-
-	                        // Convert wav to mp3
-                       	 	$this->wav2mp3($fileOK['urls'][0]);
 
 
 				$this->data['Node']['file']        = $fileOK['files'][0];

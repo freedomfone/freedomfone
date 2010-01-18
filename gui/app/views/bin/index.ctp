@@ -50,8 +50,10 @@ echo "<table width='100%'>";
 echo $html->tableHeaders(array(
 	'',
  	$paginator->sort(__("Body",true), 'body'),
- 	$paginator->sort(__("Created",true), 'created'),
+ 	$paginator->sort(__("Arrival",true), 'created'),
  	$paginator->sort(__("Type",true), 'mode'),
+ 	$paginator->sort(__("Protocol",true), 'proto'),
+ 	$paginator->sort(__("Sender",true), 'sender'),
 	__("Delete",true)));
 
       foreach ($data as $key => $entry){
@@ -61,9 +63,11 @@ echo $html->tableHeaders(array(
 	$body     = $entry['Bin']['body'];
 	$created  = $time->niceShort($entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
+	$proto    = $entry['Bin']['proto'];
+	$sender    = $entry['Bin']['sender'];
 	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/bin/delete/{$entry['Bin']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
 
-     	$row[$key] = array($id, $body, $created, $mode, array($delete,array('align'=>'center')));
+     	$row[$key] = array($id, $body, $created, $mode, $proto, $sender, array($delete,array('align'=>'center')));
 
 
 	}

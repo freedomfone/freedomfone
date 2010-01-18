@@ -208,21 +208,25 @@ class Process extends AppModel{
 
       function uptime($string){
 
-      $raw=explode(',',$string);
+      	   if($string){
+      
+		$raw=explode(',',$string);
 
-      $line0	=explode(' ',$raw[0]);
-      $line1	=explode(' ',$raw[1]);
-      $line2	=explode(' ',$raw[2]);
-      $line3	=explode(' ',$raw[3]);
-      $line4	=explode(' ',$raw[4]);
-      $years    = $line0[1];
-      $days	= $line1[1];
-      $hours	= $line2[1];
-      $minutes	= $line3[1];
-      $seconds	= $line4[1];
-
-      $diff = $hours*3600+ $minutes*60+ $seconds + $days*86400 + $years*86400*365;
-      return time()-$diff;
+      		$line0	=explode(' ',$raw[0]);
+		$line1	=explode(' ',$raw[1]);
+		$line2	=explode(' ',$raw[2]);
+      		$line3	=explode(' ',$raw[3]);
+      		$line4	=explode(' ',$raw[4]);
+      		$years    = $line0[1];
+      		$days	= $line1[1];
+      		$hours	= $line2[1];
+      		$minutes	= $line3[1];
+      		$seconds	= $line4[1];
+      		$diff = $hours*3600+ $minutes*60+ $seconds + $days*86400 + $years*86400*365;
+      		return time()-$diff;
+		} else {
+	return false;
+		}
       }
 }
 ?>

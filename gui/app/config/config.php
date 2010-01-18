@@ -76,7 +76,7 @@ $config['cdr']= array(
  */
 
 $config['LM_SETTINGS'] = array(
-		'host'	           => 'http://demo.freedomfone.org/freedomfone/',
+		'host'	           =>  MY_DOMAIN,
 		'path'             => 'freedomfone/leave_message/',
 		'dir_messages'     =>  'messages/',
 		'dir_menu'         =>  'audio_menu/',
@@ -95,7 +95,7 @@ $config['LM_DEFAULT']=	array(
 
 
 $config['IVR_SETTINGS'] = array(
-		'host'	           => 'http://demo.freedomfone.org/freedomfone',
+		'host'	           => MY_DOMAIN,
 		'path'             => 'freedomfone/ivr/',
 		'curl'             => 'xml_curl/',
 		'dir_node'        =>  'nodes/',
@@ -131,11 +131,11 @@ $config['FREESWITCH']=		array(
 	      );
 
 $config['ESL']	= array(
-	      'path' =>"/usr/src/pictus/esl/native/ESL.php");
+	      'path' =>BASE_DIR."esl/native/ESL.php");
 
 $config['EXTENSIONS'] = array(
 		      'lam' => '2000',
-		      'ivr' => '4000'
+		      'ivr' => '4000',
 		      );
 
 $config['VERSION'] = array(

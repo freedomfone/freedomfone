@@ -34,7 +34,7 @@ echo "<h1>".__("Create Leave a Message IVR",true)."</h1>";
                   $session->flash();
 		}  
 
-echo "<div class ='instruction'>".__("Please upload a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button.",true)."</div>";
+echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button.",true)."</div>";
   	
 
 
@@ -62,7 +62,7 @@ echo $form->hidden('id');
 
 
 <fieldset>
-<legend><?php __('Step 2: Inform message');?> </legend>
+<legend><?php __('Step 2: Record message');?> </legend>
 <?php echo $form->input('LmMenuFile.lmInform', array('between'=>'<br />','type'=>'file','label'=>'Audio file','after'=>$this->element('musicplayer_button',array('host'=>$lm_settings['host'],'path'=>$path,'file'=>'lmInform.mp3','title'=>__('Inform Message',true))))); ?>
 <?php echo $form->input('lmInformMessage',array('type'=>'text','size' => '75','label'=>'Fallback text','after' => $commentInform,'between'=>'<br />' )); ?>
 </fieldset>

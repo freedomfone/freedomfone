@@ -225,15 +225,17 @@
  */
 	Cache::config('default', array('engine' => 'File'));
 
+/*
+ * Freedom Fone core parameters
+ *
+ */
+
 define ('IID', '100');
-define ('AUDIO_FORMAT', 'mp3');
-
-//used for file upload component
-
+define ('BASE_DIR', '/usr/src/pictus/');
 define ('MY_DOMAIN','http://192.168.46.147/freedomfone/');
 define ('PID_URI',MY_DOMAIN.'freedomfone/pid/');
 
-
+Configure::write('Config.language', 'swe');
 
 
 ?>

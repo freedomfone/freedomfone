@@ -65,6 +65,7 @@ class Cdr extends AppModel{
 		  $this->set('caller_name', $entry['Caller-Caller-ID-Name']);
     	       	  $this->set('caller_number',$entry['Caller-Caller-ID-Number']);
 	       	  $this->set('extension', $ext);
+    	       	  //$this->set('proto',$entry['proto']);
 
 		  while ($app = current($applications)) {
     		    if ($app ==  $ext) {
@@ -152,10 +153,52 @@ class Cdr extends AppModel{
     }
 
 
- }	
 
+/*
+ * Convert date array to epoch
+ *
+ * @param array $data
+ * @return array $epoch
+ */
+
+   function dateToEpoch($data){
+ 
+      	 $start	  = $data['start_time'];
+      	 $end 	  = $data['end_time'];
+ 
+	$hour_start = $start['hour'];
+	$hour_end   = $end['hour'];
+
+	if($start['meridian']=='pm' && $start['hour']!=12){ 
+	   	$hour_start=$hour_start+12;
+		} 
+ 	elseif($start['meridian']=='am' && $start['hour']==12){ 
+	   	$hour_start='00';
+	}
+
+	if($end['meridian']=='pm' && $end['hour']!=12){ 
+	   	$hour_end=$hour_end+12;
+		} 
+ 	elseif($end['meridian']=='am' && $end['hour']==12){ 
+	   	$hour_end='00';
+	}
+
+	 $start = $start['year'].'-'.$start['month'].'-'.$start['day'].' '.$hour_start.':'.$start['min'].':00';
+     	 $end   = $end['year'].'-'.$end['month'].'-'.$end['day'].' '.$hour_end.':'.$end['min'].':00';
+
+
+	 $epoch['start'] = strtotime($start);
+      	 $epoch['end']  = strtotime($end);
+
+	 return $epoch;
+
+	 }
+
+}
 
 
 
 
 ?>
+
+

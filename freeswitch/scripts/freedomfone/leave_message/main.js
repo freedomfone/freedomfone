@@ -1,40 +1,43 @@
-
-// * Freedom Fone's Leave Message State Machine Written by:
-// * Alberto Escudero-Pascual aep@it46.se
+// * file_name    - Leave a Message for Freedom Fone 
+// * version      - 1.0.340 
+ 
+// * ***** BEGIN LICENSE BLOCK *****
+// * Version: MPL 1.1
+// *
+// * The contents of this file are subject to the Mozilla Public License Version
+// * 1.1 (the "License"); you may not use this file except in compliance with
+// * the License. You may obtain a copy of the License at
+// * http://www.mozilla.org/MPL/
+// *
+// * Software distributed under the License is distributed on an "AS IS" basis,
+// * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+// * for the specific language governing rights and limitations under the
+// * License.
 // *
 // *
-// * Inspired in work and ideas from Joshua Engelbrecht, Mike
-// * B. Murdock and Anthony Minessale II WARNING!  Beta for testing
-// * Revision: September 2009
+// * The Initial Developer of the Original Code is
+// *   	Alberto Escudero-Pascual  <aep@it46.se>
+// *
+// * Contributor(s):
+// *
+// * 	Inspired in work and ideas from Joshua Engelbrecht, Mike
+// * 	B. Murdock and Anthony Minessale II
 //
-// * Version: MPL  1.1 The  contents of this  file are subject  to the
-// * Mozilla Public  License Version 1.1  (the "License"); you  may not
-// * use  this file  except in  compliance  with the  License. You  may
-// * obtain  a  copy  of  the  License  at  http://www.mozilla.org/MPL/
-// * Software distributed  under the License  is distributed on  an "AS
-// * IS"  basis,  WITHOUT  WARRANTY  OF  ANY KIND,  either  express  or
-// * implied.  See  the License  for  the  specific language  governing
-// * rights and limitations under the License.  123
-//
-// * Version 1.1
-// 
-//
-//
+// * ***** END LICENSE BLOCK *****
 
 // Needed for the Beep(). Can we avoid it?
 use("TeleTone");
 
 // Allows to personalize TTS message in the Leave Message State Machine.
 var lmId = argv[0];
+
 include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + ".conf");
+// We retrieve global variables as BaseDir and Domain Name
+include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + "_core.conf");
 
-var lmDirRoot = new File("/usr/local/freeswitch/scripts/freedomfone/leave_message/");
+var lmDirRoot = new File(lmDirBaseDir  + "/freeswitch/scripts/freedomfone/leave_message/");
 var lmDir = new File(lmDirRoot + "/" + lmId); 
-
-
-// FIXME! Domain name should go to a global variable
-var lmURIRoot = "http://demo.freedomfone.org/freedomfone/freedomfone/leave_message";
-var lmURI = lmURIRoot + "/" + lmId + "/" + "messages/"; 
+var lmURI = lmURIRoot + "/freedomfone/leave_message/" + lmId + "/" + "messages/"; 
 
 var lmWelcomeAudio = lmDir + "/audio_menu/lmWelcome.wav";
 var lmInformAudio = lmDir + "/audio_menu/lmInform.wav";
@@ -44,9 +47,6 @@ var lmDeleteAudio = lmDir + "/audio_menu/lmDelete.wav";
 var lmSaveAudio = lmDir + "/audio_menu/lmSave.wav";
 var lmGoodbyeAudio = lmDir + "/audio_menu/lmGoodbye.wav";
 var lmLongAudio = lmDir + "/audio_menu/lmLong.wav";
-
-
-var lmWebUID = "www-data";
 
 // Maximum recording length in seconds (2 minutes).
 var lmMaxreclen = 120;
@@ -83,6 +83,9 @@ var lmDebug = true;
 // Boolean variable to provide feedback when a file is deleted
 var lmDeleteFeedback = true;
 
+// Boolean variable to track the creation of the metafile
+var lmMetaFile = false;
+
 // Session parameters 
 var lm_uuid = session.uuid;
 var lm_ani = session.ani;
@@ -95,22 +98,10 @@ var lm_name = session.name;
 var lm_network_addr = session.network_addr;
 var lm_state = session.state;
 
-// We check of the directory for storing the files has been previously
-// created. If not we create the root folder and the messages archive.
-//if(!lmDir.isDirectory){
-//      lmDirRoot.mkdir(lmId);
-//      lmDirRoot.mkdir(lmId+"/messages");
-//}
-
 // lmsm starts here!
 session.answer();
 // We decide which function will be trigger when a hangup takes place.
 session.setHangupHook(lmHangup);
-
-
-// FIXME! It  is possible to  set environment variables inside  of the
-// script that can be used later in the dialplan. E.g. follows
-//session.setVariable("lmId2", "101");
 
 // When the session is ready we move from default state 42 to STATE_ANSWER.
 if (session.ready()) {
@@ -202,7 +193,7 @@ function lmStateEntry(lmPreviousState) {
 } 
 
 // We  delete the file  when prompted  or when  the user  hangs during
-// recording.
+// recording. The user can hangup after SAVE state, before GOODBYE 
 
 function lmDeleteFile(lmPreviousState,lmFilenamePath) {
     if (lmPreviousState == STATE_RECORD || lmPreviousState == STATE_PLAY || lmPreviousState == STATE_SELECT) {
@@ -258,7 +249,7 @@ function lmStatePlay(lmPreviousState,lmPlayFilename) {
     } 	
 }
 
-// We create the meta file and conver the file to mp3 calling locally compiled lame version 3.97
+// We create the meta file and convert the file to mp3 calling locally compiled lame version 3.97
 function lmStateSave(lmPreviousState) {
     if (lmPreviousState == STATE_RECORD || lmPreviousState == STATE_PLAY || lmPreviousState == STATE_SELECT) {
 	lmState = STATE_GOODBYE;
@@ -276,21 +267,17 @@ function lmStateSave(lmPreviousState) {
         lmFd.writeln("FinishTime="+lmFinishDate);
         lmFd.writeln("FinishTimeEpoch="+lmFinishDate.getTime());
         lmFd.close;
+
+	// We set MetaFile to true so user can hangup before Goodbye	
+	lmMetaFile = true;
 	
 
-	// WARNING! We  should not hangup  inside of the script  of we
-	// can not  run anyother  applications called in  the dialplan
+	// WARNING! We  should not hangup  inside of the script or we
+	// can not  run another  applications called in  the dialplan
 	// session.hangup();
        		
-	lm42Logger("STATE_GOODBYE",lmState + " Converting file to MP3");
+	lm42Logger("STATE_GOODBYE",lmState + " Sending file to Audio Conversion");
 	
-	// FIXME! This is ugly.
-	// lame 398 overflows the FS stack?
-	lmLameCmd = "/usr/local/freeswitch/bin/lame397 -V2 " + lmDir + "/messages/" + lm_uuid +".wav "+ lmDir + "/messages/" + lm_uuid +".mp3 -S";
-	lmPermCmd = "chown " + lmWebUID + " " + lmDir + "/messages/" + lm_uuid +".*"
-	session.execute("system",lmLameCmd);
-        session.execute("system",lmPermCmd);	
-	// We trigger a CUSTOM event
 	lmTriggerEvent();
 			
 
@@ -318,9 +305,7 @@ function lmTriggerEvent() {
     lmEvent.addHeader("FF-CallerName",session.caller_id_name);
     lmEvent.addHeader("FF-StartTimeEpoch",lmStartDate.getTime());
     lmEvent.addHeader("FF-FinishTimeEpoch",lmFinishDate.getTime());
-    
-    //No body
-    //lmEvent.addBody(foovariable);
+    //lmEvent.addBody(EVENT WITHOUT BODY);
     
     lmEvent.fire();
     lm42Logger("STATE_EVENT","Event for FileID: "+lm_uuid);
@@ -423,7 +408,8 @@ function lmHangup(hup_session, how) {
     var lmFilenameHangup = File(lmFilenameHangupPath);
 
     // The hung up can take place before the STATE_RECORD, so let us check that the file is there
-    if (lmFilenameHangup.isFile) {
+    // We do not delete the file is the STATE_SAVE has taken place already 
+    if (lmFilenameHangup.isFile && lmMetaFile == false) {
 	lmFilenameHangup.remove();
 	lm42Logger("STATE_HANGUP","Deleting File: " + lmFilenameHangupPath);
     } 

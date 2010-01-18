@@ -80,8 +80,8 @@ class IvrMenusController extends AppController{
 
                  if(isset($fileData)){
 
-	          //Upload one ore more wav files
-		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'wav',true,true);
+	          //Upload one or more wav files
+		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
 
 
                         //If file upload is ok		      
@@ -89,11 +89,8 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-	                                   // Convert wav to mp3
-                       	 	   	   $this->wav2mp3($url);
-
                                            // Update database field correponding to file 
-                                           $filename = $fileOK['files'][$key];
+                                           $filename = $this->getFilename($fileOK['files'][$key]);
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part)-5);
                                            $this->IvrMenu->saveField($field,$filename);
@@ -182,7 +179,7 @@ class IvrMenusController extends AppController{
                  if(isset($fileData)){
 
 		  //Upload one ore more wav files
-		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'wav',true,true);
+		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
 
 		//  debug($fileOK);
                         //If file upload is ok		      
@@ -190,11 +187,8 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-	                                   // Convert wav to mp3
-                       	 	   	   $this->wav2mp3($url);
-
                                            // Update database field correponding to file 
-                                           $filename = $fileOK['files'][$key];
+                                           $filename = $this->getFilename($fileOK['files'][$key]);
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part)-5);
                                            $this->IvrMenu->saveField($field,$filename);

@@ -54,7 +54,11 @@
 
 
 <li>
-<?php echo $html->link(__("Download",true),'http://dev.freedomfone.org',array('target'=>'blank')); ?>
+<?php echo $html->link(__("Download",true),'http://www.freedomfone.org/page/downloads',array('target'=>'blank')); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Read more",true),'http://www.freedomfone.org',array('target'=>'blank')); ?>
 </li>
 
 
@@ -200,6 +204,10 @@
 
 <li>
 <?php echo $html->link(__("Call data records",true),'/cdr'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
 </li>
 
 

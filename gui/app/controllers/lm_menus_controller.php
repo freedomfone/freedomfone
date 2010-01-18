@@ -45,7 +45,7 @@ class LmMenusController extends AppController{
 		   }
 
 		     //Upload one ore more wav files
-		       $fileOK = $this->uploadFiles($lm_settings['path'].IID."/".$lm_settings['dir_menu'], $fileData ,false,'wav',true,true);
+		       $fileOK = $this->uploadFiles($lm_settings['path'].IID."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
 		      
 
 
@@ -59,8 +59,6 @@ class LmMenusController extends AppController{
 
 
 				   foreach ($fileOK['urls'] as $url ){
-
-	               	 	   	   $this->wav2mp3($url);			
 					   $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
 				   }
 					

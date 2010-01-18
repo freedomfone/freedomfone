@@ -28,7 +28,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 		echo "<h1>".__("Edit Menu Option",true)."</h1>";
 
       		$path = $ivr['path'].$this->data['Node']['instance_id']."/".$ivr['dir_node'];
-		$listen =  $this->element('musicplayer_button',array('path'=>$path,'file'=>$formatting->changeExt($this->data['Node']['file'],'mp3'),'title'=>$this->data['Node']['title']));
+		$listen =  $this->element('musicplayer_button',array('path'=>$path,'file'=>$this->data['Node']['file'],'title'=>$this->data['Node']['title']));
 
 
 

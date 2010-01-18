@@ -49,6 +49,7 @@ class CdrController extends AppController{
        }
 
 
+
       $this->pageTitle = 'Call Data Records';
 
       $this->Session->write('Cdr.source', 'index');
@@ -166,8 +167,27 @@ class CdrController extends AppController{
 
 
     	     $this->render();  
-  
-     }
+       }
+
+
+      function overview(){
+
+       	$this->pageTitle = 'Call Data Records : Overview';
+
+        if(isset($this->params['form']['submit'])) {
+		if ($this->params['form']['submit']==__('Refresh',true)){
+                   $this->requestAction('/cdr/refresh');
+                   }
+         } 
+
+         if($this->data){
+		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+       		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end']));
+       		$this->set('cdr', $this->Cdr->find('all',$param)); 
+          } else {
+       	       $this->set('cdr',$this->Cdr->find('all'));  
+                 }
+      }
 
 
 }

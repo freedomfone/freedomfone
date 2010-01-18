@@ -11,15 +11,14 @@
 	 }*/
  
       $check =1;
-      $song_url = $url.$file;
-
+      $song_url = $url.$file.'.mp3';
 
       }
 
 
       //if absolute path is provided
       else { 
-      	   if (file_exists($path.$file)){ 
+      	   if (file_exists($path.$file.'.mp3')){ 
       	      $check=1;
 	      } else {
 	      $check=0;
@@ -27,14 +26,12 @@
 
 	   if (!isset($host)){ $host = MY_DOMAIN;}
 
-      $song_url = $host.$path.$file;
+      $song_url = $host.$path.$file.'.mp3';
 
       }
 
 
     echo $html->image("icons/space.png");
-
-
      if($check==1){ 
      		 echo $flash->renderSwf('swf/musicplayer.swf',30,17,false,array(
 					'params' => array(

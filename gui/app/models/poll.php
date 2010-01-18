@@ -147,6 +147,7 @@ function __construct($id = false, $table = null, $ds = null) {
      function refresh(){
 
       $array = Configure::read('poll_in');
+ 
       $instance_id = IID;
 	      
 	       $obj = new ff_event($array);	       
@@ -163,6 +164,7 @@ function __construct($id = false, $table = null, $ds = null) {
 		$polls_code   	=  trim($_message[0]);
 		$votes_chtext 	=  trim($_message[1]);
 		$sender		=  $entry['from'];
+		$proto		=  $entry['proto'];
 	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
 
@@ -246,6 +248,8 @@ function __construct($id = false, $table = null, $ds = null) {
 			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
 	        }
 
+  	//add to CDR
+	$resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','poll','$proto')");
 	$this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
 
 	}

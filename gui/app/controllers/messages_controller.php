@@ -243,12 +243,12 @@ class MessagesController extends AppController{
 	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);
 	       
 	       $data= array ( 'sender'  =>$entry['FF-CallerID'],
-	       	      	      'file'    =>$entry['FF-FileID'].'.'.AUDIO_FORMAT,
+	       	      	      'file'    =>$entry['FF-FileID'],
 	       	      	      'created' =>$created,
 			      'length'  =>$length,
 	       		      'url'     => $entry['FF-URI']);
 
-		$this->log('Msg: NEW Message', 'leave_message');	
+	      $this->log('Msg: NEW Message', 'leave_message');	
 
 	       $this->Message->create();
 	       $this->Message->save($data);

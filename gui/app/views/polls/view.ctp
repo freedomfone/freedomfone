@@ -42,7 +42,7 @@ echo "</div>";
       
         $total =  0;
         $total_closed =  0;
-        echo "<table>";
+        echo "<table width='300px'>";
         echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Late votes',true)));
 
 	$votes = $data['Vote'];
@@ -77,10 +77,14 @@ echo "</div>";
 	      } else {
 	      	$percentage=0;
 		}
-	      $rows[] = array(__('Invalid',true),array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_closed,array('align'=>'center')));
+
+    	      $rows[] = array(array($html->div('empty_line'),array('colspan'=>'4')));
+
+	      
 	      echo $html->tableCells($rows);
+  	      echo $html->tableCells(array(__('Invalid',true),array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_closed,array('align'=>'center'))));
 	      echo "</table>";
-	      echo $html->div('instruction',__('Total number of votes (in time): ',true).$total);
+     	      echo $html->div('instruction',__('Total number of votes (in time): ',true).$total);
 	      echo $html->div('instruction',__('Total number of late votes: ',true).$total_closed);
 
 

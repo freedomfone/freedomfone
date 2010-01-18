@@ -3,6 +3,9 @@
 /COPYING -text
 /README -text
 /README.pictus.tree -text
+audio_bot/leave_message/main.sh -text
+audio_bot/leave_message/main_command.sh -text
+audio_bot/leave_message/nohup.out -text
 devel/monitor_ivr/cdr/cdr.php -text
 devel/monitor_ivr/cdr/modules.conf.xml -text
 devel/monitor_ivr/cdr/samples/b6dd9302-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text

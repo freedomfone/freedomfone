@@ -1,0 +1,3 @@
+[18/Jan/2010 12:26:58] * /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/messages/4de74d06-0424-11df-9c1b-bd0d99517a5e.meta is closed
+[18/Jan/2010 12:26:58] * Command: /usr/local/freedomfone/audio_bot/leave_message/main_command.sh /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/messages/4de74d06-0424-11df-9c1b-bd0d99517a5e.meta
+[18/Jan/2010 12:26:58] IN_CLOSE_WRITE /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/messages/4de74d06-0424-11df-9c1b-bd0d99517a5e.meta

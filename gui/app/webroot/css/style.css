@@ -54,6 +54,23 @@ tr.lighter td {
 
      background-color: #fff;
 }
+tr.main td {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+td.main  {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+tr.middle td {
+     background-color: #fff;
+     text-align: center;
+}
+
 
 .formTitleDefault {
 	font-weight: normal;
@@ -204,3 +221,9 @@ padding:0px;
 }
 
 
+.empty_line {
+
+width: 300px;
+border-bottom: 1px solid #aaa;
+padding: 0px;
+}

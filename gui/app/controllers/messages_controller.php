@@ -12,9 +12,15 @@ class MessagesController extends AppController{
       function index(){
 
       $this->pageTitle = 'Leave-a-Message : Inbox';
-
       $this->Session->write('Message.source', 'index');
    
+        if(isset($this->params['form']['submit'])) {
+	   if ($this->params['form']['submit']==__('Refresh',true)){
+                   $this->requestAction('/messages/refresh');
+                   }
+       }
+
+
       //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 

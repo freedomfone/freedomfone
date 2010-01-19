@@ -41,12 +41,14 @@ echo "</div>";
 	echo $html->div('formTitleAlone',__("Result",true));
       
         $total =  0;
+        $total_early =  0;
         $total_closed =  0;
-        echo "<table width='300px'>";
-        echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Late votes',true)));
+        echo "<table width='400px'>";
+        echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Early votes',true),__('Late votes',true)));
 
 	$votes = $data['Vote'];
-	$invalid_open = $data['Poll']['invalid_open'];
+	$invalid_open   = $data['Poll']['invalid_open'];
+	$invalid_early  = $data['Poll']['invalid_early'];
 	$invalid_closed = $data['Poll']['invalid_closed'];
 
 	//Calculate total valid votes
@@ -54,11 +56,13 @@ echo "</div>";
 	  
     	    $total = $total + $vote['chvotes'];
     	    $total_closed = $total_closed + $vote['votes_closed'];
+    	    $total_early   = $total_early + $vote['votes_early'];
 
     	    }
     
            $total = $total + $invalid_open;
            $total_closed = $total_closed + $invalid_closed;
+    	   $total_early = $total_early + $invalid_early;
 
 	    foreach ($votes as $vote) {
 
@@ -68,7 +72,7 @@ echo "</div>";
 		   $percentage = $number->toPercentage(100*$vote['chvotes']/$total,0);
 		}
 
-		$rows[] = array($vote['chtext'],array($vote['chvotes'],array('align'=>'center')),array($percentage,array('align'=>'center')),array($vote['votes_closed'],array('align'=>'center')));
+		$rows[] = array($vote['chtext'],array($vote['chvotes'],array('align'=>'center')),array($percentage,array('align'=>'center')),array($vote['votes_early'],array('align'=>'center')),array($vote['votes_closed'],array('align'=>'center')));
     	      }
 
 	      //Add invalid votes (open)
@@ -78,14 +82,15 @@ echo "</div>";
 	      	$percentage=0;
 		}
 
-    	      $rows[] = array(array($html->div('empty_line'),array('colspan'=>'4')));
-
-	      
+	 
+  	      $rows[] = array('"'.__('Invalid',true).'"',array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_early,array('align'=>'center')), array($invalid_closed,array('align'=>'center')));
+	      $rows[] =array(array($html->div('empty_line'),array('colspan'=>5)));
 	      echo $html->tableCells($rows);
-  	      echo $html->tableCells(array(__('Invalid',true),array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_closed,array('align'=>'center'))));
+
+  	      $final = array(__('Total',true),array($total,array('align'=>'center')),array('',array('align'=>'center')),array($total_early,array('align'=>'center')), array($total_closed,array('align'=>'center')));
+	      
+	      echo $html->tableCells($final);
 	      echo "</table>";
-     	      echo $html->div('instruction',__('Total number of votes (in time): ',true).$total);
-	      echo $html->div('instruction',__('Total number of late votes: ',true).$total_closed);
 
 
 	      //Poll information

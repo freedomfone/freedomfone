@@ -231,11 +231,16 @@
  */
 
 define ('IID', '100');
-define ('BASE_DIR', '/usr/local/freedomfone');
+define ('BASE_DIR', '/usr/local/freedomfone/');
 define ('MY_DOMAIN','http://192.168.46.147/freedomfone/');
 define ('PID_URI',MY_DOMAIN.'system/pid/');
 
 Configure::write('Config.language', 'swe');
+
+$config['VERSION'] = array(
+		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
+		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
+		   );
 
 
 ?>

@@ -75,15 +75,9 @@
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Create poll",true),'/polls/add/'); ?>
+<?php echo $html->link(__("Manage polls",true),'/polls/'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
-
-
-<li>
-<?php echo $html->link(__("Manage polls",true),'/polls/'); ?>
-</li>
-
 
 <li>
 <?php echo $html->link(__("Other SMS",true),'/bin/'); ?>

@@ -165,8 +165,6 @@ class IvrMenusController extends AppController{
 
 		   foreach($this->data['IvrMenuFile'] as $key => $file){
 
-
-				
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
@@ -181,7 +179,6 @@ class IvrMenusController extends AppController{
 		  //Upload one ore more wav files
 		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
 
-		//  debug($fileOK);
                         //If file upload is ok		      
                         if(array_key_exists('urls', $fileOK)) {
 
@@ -190,7 +187,7 @@ class IvrMenusController extends AppController{
                                            // Update database field correponding to file 
                                            $filename = $this->getFilename($fileOK['files'][$key]);
                                            $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part)-5);
+   			                   $field=substr($part,1,strlen($part));
                                            $this->IvrMenu->saveField($field,$filename);
 
 					   $this->log("Msg: INFO; Action: Edit menu; Type: ".$url."; Code: N/A", "ivr");

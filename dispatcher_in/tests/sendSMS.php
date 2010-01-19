@@ -26,7 +26,7 @@ $code   = $argv[1] ;
 $answer = $argv[2];
 
 
-	$obj = new fs_sock($_SocketParam);
+	$obj = new fs_sock($_SocketParam,"logfile");
 
 	while ($obj -> auth != true) {
     	   die(printf("Unable to authenticate\r\n"));
@@ -52,7 +52,7 @@ $answer = $argv[2];
     		$obj -> debug($bg_return);
 
     		$output[] = $obj -> wait_for_event(time());
-    		sleep(1);
+    		sleep(5);
 
 	  }
 

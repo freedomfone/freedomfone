@@ -22,6 +22,10 @@ $port = $_SpoolerOut['port'];
 
 $handle = fopen(LogFile,'a');
 
+$handle = fopen(PidFile,'w');
+$int = fwrite($handle,getmypid());
+fclose($handle);
+
  
  if (($master = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
 
@@ -47,7 +51,7 @@ $handle = fopen(LogFile,'a');
  
  $read_sockets = array($master);
 
-debug("socket setup ok","OK"); 
+
 ff_log("socket setup","OK");
 
 //---- Create Persistent Loop to continuously handle incoming socket messages ---------------------
@@ -117,7 +121,7 @@ ff_log("socket setup","OK");
 	 fwrite($handle,$cmd);
 	 fclose($handle);
 	 rename($tmp_file, $new_file);
-	 debug("New spooler job: ".$cmd);
+	 //debug("New spooler job: ".$cmd);
 	 ff_log("New spooler job: ".$cmd,"OK");
 	 }
 

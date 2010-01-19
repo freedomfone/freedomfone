@@ -3,7 +3,6 @@
 /COPYING -text
 /README -text
 /README.pictus.tree -text
-audio_bot/filters/main_command.sh -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text
 audio_bot/filters/w2m.sh -text

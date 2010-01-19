@@ -42,32 +42,22 @@ require_once(ESLPath);
 global $_SocketParam;
 global $_DispatcherDB;
 global $_AllowCURL;
-
-global $obj;
+global $mypid;
+//global $obj;
 
 
 $host = $_SocketParam['host'];
 $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
-
-
-      //Write pid to file
-      $handle = fopen(PidFile,'w');
-      $int = fwrite($handle,getmypid());
-      fclose($handle);
-
-      //Write version to file
-      $handle = fopen(VersionFile,'w');
-      $int = fwrite($handle,Version);
-      fclose($handle);
-
+$mypid = getmypid();
 
       //Set default values
       $param = parseArgs($argv);
       $verbose=false;
       $debug=true;
       $logfile = LogFile;
+      $pidfile = PidFile;
 
       //Read passed arguments
 
@@ -88,8 +78,40 @@ $pass = $_SocketParam['pass'];
        if (key_exists('log',$param) && $param['log']){  
        	  $logfile = $param['log'];
 	  }
+
+       if (key_exists('p',$param) && $param['p']){  
+       	  $pidfile = $param['p'];
+	  }
     
-    $handle = fopen($logfile,'a');
+      $handle = fopen($logfile,'a');
+
+      //If an instance of dispatcher is running, exit
+      if(file_exists($pidfile)){
+
+	$handlePid = fopen($pidfile,'r');
+      	$pid = fread($handle,filesize($pidfile));
+      	fclose($handlePid);
+	      if (isRunning($pid)){
+      	      	 logESL("Dispatcher is already running","INFO",1); 
+      	      	 exit;
+      		 }
+       }
+
+
+      logESL("Dispatcher started","INFO",1); 
+      debugESL("Logfile: ".$logfile); 
+
+
+      //Write pid to file
+      $handlePid = fopen($pidfile,'w');
+      $int = fwrite($handlePid,$mypid);
+      fclose($handlePid);
+
+      //Write version to file
+      $handleV = fopen(VersionFile,'w');
+      $int = fwrite($handleV,Version);
+      fclose($handleV);
+
 
 
      //Eternal loop, until the server crashes!
@@ -541,9 +563,10 @@ function parseArgs($argv){
    function logESL($msg,$type,$level){
 
    global $handle;
+   global $mypid;
 
    	  if($level <= LogLevel){
-   	    $string = date('c')." ".$type." ". $msg."\n";
+   	    $string = date('M d H:i:s')." dispatcher_in [".$mypid."] ".$type." ". $msg."\n";
 	    fwrite($handle, $string);
 	    }
 
@@ -562,6 +585,32 @@ function parseArgs($argv){
 
    }
 
+/*
+ * Check if process is running
+ *  
+ * @param int $pid
+ *
+ * @return bool
+ *
+ */
+     function isRunning($pid){
+
+	if ($pid){
+
+	   $ps    = array();
+      	   exec("ps -p ".$pid." -o pid",$ps);
+
+	   if(count($ps)<2){
+		return false;
+	   } else {
+	     return true;
+	   }
+	}
+	else {
+	     return false;
+	}
+
+      }
 
 
 ?>

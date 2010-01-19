@@ -22,7 +22,10 @@
  *
  ***************************************************************************/
 
-echo "<p class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Add category",true))),"/categories/add",null, null, false)."</p>";
+echo $form->create('Category',array('type' => 'post','action'=> 'add'));
+echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
 echo "<h1>".__("Manage Categories",true)."</h1>";
 
 

@@ -47,13 +47,13 @@ function __construct($id = false, $table = null, $ds = null) {
  *
  */
 
-     function deleteAudio($file, $path, $extensions){
+     function deleteAudio($name, $path, $extensions){
 
-    	    $name=substr($file,0,strlen($file)-3);
-
+    	    //$name=substr($file,0,strlen($file)-3);
+	    
 	    foreach ($extensions as $ext){
 
-	    	     $unlink=$path.$name.$ext;
+	    	     $unlink=$path.$name.'.'.$ext;
 	     	     unlink(WWW_ROOT.$unlink);
 
 		     }

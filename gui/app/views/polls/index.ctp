@@ -22,16 +22,19 @@
  *
 ***************************************************************************/
 
-echo "<h1>".__("Polls",true)."</h1>";
+
 $session->flash();
+
 echo $form->create('Poll',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRight', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-echo $html->div('frameRight',$html->link($html->image("icons/add.png", array("title" => __("Create new poll",true))),"/polls/add",null, null, false));
+
+echo $form->create('Poll',array('type' => 'post','action'=> 'add'));
+echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
 
 
-
-
+echo "<h1>".__("Polls",true)."</h1>";
 
   if ($polls){
 

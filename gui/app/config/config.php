@@ -139,7 +139,7 @@ $config['EXTENSIONS'] = array(
 		      );
 
 $config['VERSION'] = array(
-		   'dispatcher_in'  => '/freedomfone/freedomfone/version/dispatcher_in',
-		   'dispatcher_out' => '/freedomfone/freedomfone/version/dispatcher_out'
+		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
+		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
 		   );
 ?>

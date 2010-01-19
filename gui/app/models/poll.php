@@ -191,21 +191,21 @@ function __construct($id = false, $table = null, $ds = null) {
 				  switch($status){
 
 				   case 0:
-				   //ADD TO TRASH (early)
-				   $mode=__("Valid vote, early",true);
-				   $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
+				   //ADD TO STATS (early)
+				   $mode=__("Valid, early",true);
+				   $this->Vote->query("UPDATE votes SET votes_early=votes_early+1 WHERE id=$vote_id "); 
 				   break;
 
 				   case 1:
 				   //ADD TO STATS (open)
 		   	   	   $this->Vote->query("UPDATE votes SET chvotes=chvotes+1 WHERE id=$vote_id "); 
-				   $mode=__("Valid vote, open", true);
+				   $mode=__("Valid, open", true);
 				   break;
 
 
 				   case 2:
 				   //ADD TO STATS (closed)
-				   $mode=__("Valid vote, closed",true);
+				   $mode=__("Valid, closed",true);
 		   	   	   $this->Vote->query("UPDATE votes SET votes_closed=votes_closed+1 WHERE id=$vote_id "); 
 				   break;
 
@@ -218,20 +218,20 @@ function __construct($id = false, $table = null, $ds = null) {
 
 				   case 0:
 				   //ADD TO TRASH (early)
-				   $mode=__("Invalid vote, early",true);
+				   $mode=__("Invalid, early",true);
 				   $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
 				   break;
 
 				   case 1:
 				   //ADD TO STATS (open)
-				   $mode=__("Invalid vote, open", true);
+				   $mode=__("Invalid, open", true);
 				   $this->query("UPDATE polls SET invalid_open=invalid_open+1 WHERE id=$poll_id ");
 				   break;
 
 
 				   case 2:
 				   //ADD TO STATS (closed)
-				   $mode=__("Invalid vote, closed",true);
+				   $mode=__("Invalid, closed",true);
 				   $this->query("UPDATE polls SET invalid_closed=invalid_closed+1 WHERE id=$poll_id");
 				   break;
 

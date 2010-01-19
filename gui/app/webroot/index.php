@@ -55,7 +55,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH', '/var/www/freedomfone');
+		define('CAKE_CORE_INCLUDE_PATH', '/usr/local/freedomfone/gui');
 	}
 
 /**

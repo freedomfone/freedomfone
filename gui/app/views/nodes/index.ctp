@@ -25,7 +25,11 @@ $session->flash();
 $ivr = Configure::read('IVR_SETTINGS');
 
 
-echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Create new poll",true))),"/nodes/add",null, null, false)."</div>";
+echo $form->create('Node',array('type' => 'post','action'=> 'add'));
+echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
+//echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Create new poll",true))),"/nodes/add",null, null, false)."</div>";
 
 echo "<h1>".__('Menu options',true)."</h1>";
 

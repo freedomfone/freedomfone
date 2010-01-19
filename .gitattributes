@@ -388,6 +388,10 @@ gui/app/webroot/swf/xspf_player_slim.swf -text
 gui/app/webroot/themed/ff/css/style.css -text
 gui/app/webroot/xml_curl -text
 gui/index.php -text
+init.d/dispatcher_in -text
+init.d/etc/default/iwatch -text
+init.d/freeswitch -text
+init.d/iwatch -text
 installer/centos/pictus_install_gui.sh -text
 installer/pictus_install.sh -text
 installer/pictus_install_gui.sh -text

@@ -231,9 +231,9 @@
  */
 
 define ('IID', '100');
-define ('BASE_DIR', '/usr/src/pictus/');
+define ('BASE_DIR', '/usr/local/freedomfone');
 define ('MY_DOMAIN','http://192.168.46.147/freedomfone/');
-define ('PID_URI',MY_DOMAIN.'freedomfone/pid/');
+define ('PID_URI',MY_DOMAIN.'system/pid/');
 
 Configure::write('Config.language', 'swe');
 

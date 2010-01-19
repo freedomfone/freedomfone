@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "/etc/iwatch/iwatch.dtd" >
+
+<config>
+<guard email="freedomfone@localhost" name="Audio Bot"></guard>
+<watchlist>
+<title>Audio Converter Robot</title>
+<contactpoint email="root@localhost" name="FreedomFone Administrator"/>
+<path type="single" events="close_write" syslog="off" alert="on" filter="^(.*)\.meta$" exec="/usr/local/freedomfone/audio_bot/filters/meta2mp3.sh %f">/usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/messages</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/usr/local/freedomfone/audio_bot/filters/w2m.sh %f">/usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/audio_menu</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/usr/local/freedomfone/audio_bot/filters/w2m.sh %f">/usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/nodes</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/usr/local/freedomfone/audio_bot/filters/w2m.sh %f">/usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/ivr</path>
+</watchlist>
+</config>
+

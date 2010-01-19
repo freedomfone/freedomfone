@@ -7,6 +7,7 @@ audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text
 audio_bot/filters/w2m.sh -text
 audio_bot/filters/wav2mp3.sh -text
+audio_bot/iwatch/iwatch.xml -text
 audio_bot/iwatch/iwatch_command.sh -text
 devel/monitor_ivr/cdr/cdr.php -text
 devel/monitor_ivr/cdr/modules.conf.xml -text

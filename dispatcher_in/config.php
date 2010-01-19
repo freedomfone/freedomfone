@@ -24,15 +24,15 @@
 
 define("Version", '1.0.1');
 define("ParentXML", "ff-event");
-define("BaseDir", "/usr/src/pictus/");
+define("BaseDir", "/usr/local/freedomfone/");
 define("DefaultXSL", "default.xsl");
 define("BlackListXSL", "blacklist.xsl");
 define("DirXSL", BaseDir."dispatcher_in/templates/");
 define("LogFile", "/tmp/dispatcher_in.log");
 define("LocalDomain", "http://demo.freedomfone.org/freedomfone/");
 define("ESLPath", BaseDir."/esl/native/ESL.php");
-define("PidFile", BaseDir."freeswitch/scripts/freedomfone/pid/dispatcher_in.pid");
-define("VersionFile", BaseDir."freeswitch/scripts/freedomfone/version/dispatcher_in");
+define("PidFile", BaseDir."gui/app/webroot/system/pid/dispatcher_in.pid");
+define("VersionFile", BaseDir."gui/app/webroot/system/version/dispatcher_in");
 define("LogLevel", 3);  //1 = low, 2 = medium, 3 = high
 
 $_SocketParam = array(

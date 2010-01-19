@@ -1,7 +1,15 @@
 #!/bin/bash
 
-#We receive the .meta file with path and we convert the wav to mp3
-#We fix permissions for the files to be available via the GUI
+# WAV/MP3 Converter using META files
+# Freedom Fone 2010
+
+# We use the .meta file to trigger a wav2mp3 coversion. 
+# Not all files left by the leave_message need to be coverted
+# as the temporary messages can be deleted via the TUI
+#
+# Once iwatch catches a .meta file with full path, we convert the
+# associated wav to mp3
+# We fix permissions for the files to be available via the GUI
 
 if [ -z "$1" ]; then 
               echo $0: Converts a META-WAV to MP3 

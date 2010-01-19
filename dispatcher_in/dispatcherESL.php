@@ -294,13 +294,14 @@ function applyRules($string){
 
 	 $event_name     = $xml->{'Event-Name'};
 	 $event_subclass = $xml->headers->{'Event-Subclass'};
-	 $body 		 = trim($xml->headers->{'Body'});
+	 $body 		 = trim($xml->headers->{'body'});
 	 
                 if($event_name == 'MESSAGE'){
 		$app = analyzeBody($body);
+	
 
                       switch($app){
-                      case 'poll':
+                      case 'poll_in':
                       $application[]='poll_in';
 		      logESL("Application match: poll (SMS/Skype)","INFO",2); 
 	 	      break;
@@ -334,7 +335,6 @@ function applyRules($string){
 	
                          case 'message':
 			 $application[] = analyzeBody($body);
-	                 //$application[]='poll_in';
 			 logESL("Application match: poll (custom)","INFO",2); 
 	                 break;
 
@@ -503,20 +503,20 @@ global $obj;
 
         $data =  explode(' ',$body);
 	foreach ($data as $token){
-	echo $token;
+	
 		if ($token){
 		$message[] =$token;
 		}
 		
 	}
-
+	
         if (strpos($body,'CALLBACK')!== false){
 
                 $app ='callback';
         }
 
         elseif(sizeof($message)==2){
-                $app = 'poll';
+                $app = 'poll_in';
         }
 
         else{

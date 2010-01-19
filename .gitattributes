@@ -64,6 +64,8 @@ esl/native/INSTALL -text
 esl/native/php.ini -text
 esl/native/samples/single_command.php -text
 esl/native/samples/test.php -text
+extras/fix_perms_fs.sh -text
+extras/fix_perms_gui.sh -text
 extras/fs_debug.sh -text
 extras/lame397 -text
 extras/php2twitter.php -text

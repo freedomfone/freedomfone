@@ -217,9 +217,9 @@ function __construct($id = false, $table = null, $ds = null) {
 				   switch($status){
 
 				   case 0:
-				   //ADD TO TRASH (early)
+				   //ADD TO STATS (early)	
 				   $mode=__("Invalid, early",true);
-				   $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
+				   $this->query("UPDATE polls SET invalid_early=invalid_early+1 WHERE id=$poll_id ");
 				   break;
 
 				   case 1:

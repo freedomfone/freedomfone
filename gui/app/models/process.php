@@ -53,7 +53,7 @@ class Process extends AppModel{
 	       	       if($this->isRunning($pid) && !$status){
 	
 			 $this->data['Process']['data'][$key]['Process']['status'] = '1';
-			 $this->data['Process']['data'][$key]['Process']['pid'] = $pid;
+			 //$this->data['Process']['data'][$key]['Process']['pid'] = $pid;
 			
 			$update = $this->data['Process']['data'][$key];
 	
@@ -65,7 +65,7 @@ class Process extends AppModel{
 	
 				 $entry['id'] = $id;
 				 $entry['status'] = '0';
-				 $entry['pid'] = '0';
+				 //$entry['pid'] = '0';
 				 $entry['last_seen'] = time();
 				 $entry['interupt'] = 'unexpected crash';
 				 $this->save($entry);
@@ -87,7 +87,7 @@ class Process extends AppModel{
  */
 
  function getPid($name){
-    
+
         $HttpSocket = new HttpSocket(); 
         return $HttpSocket->request(array('uri' => PID_URI.$name.'.pid'));
 		  
@@ -102,7 +102,10 @@ class Process extends AppModel{
  */
    function start(){
  
-      	       $cmd = $this->data['Process']['start_cmd'];
+      	       $start = $this->data['Process']['start_cmd'];
+	       $script = $this->data['Process']['script'];
+	       $cmd=$script.' '.BASE_DIR.$start;
+
 	       $op = array();
 	       exec($cmd,$op);
                $pid = (int)$op[0]; 
@@ -142,7 +145,10 @@ class Process extends AppModel{
      function version($id){
  
 	       $this->data = $this->read(null,$id);
-      	       $cmd = $this->data['Process']['start_cmd'];
+      	       $start = $this->data['Process']['start_cmd'];
+	       $script = $this->data['Process']['script'];
+	       $cmd=$script.' '.BASE_DIR.$start;
+	       
 	       $op = array();
 	       exec($cmd,$op);
                $version = $op[0];

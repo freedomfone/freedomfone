@@ -46,7 +46,7 @@ class PollsController extends AppController{
       function index(){
 
         if(isset($this->params['form']['submit'])) {
-						   if ($this->params['form']['submit']==__('Refresh',true)){
+	   if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/polls/refresh');
                    }
        }
@@ -221,6 +221,7 @@ class PollsController extends AppController{
 	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 
 	 //Save poll data
+
 	  $this->Poll->save($this->data['Poll']);
 
 	  //Get unique id for each vote,

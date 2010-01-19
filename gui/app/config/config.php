@@ -138,8 +138,4 @@ $config['EXTENSIONS'] = array(
 		      'ivr' => '4000',
 		      );
 
-$config['VERSION'] = array(
-		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
-		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
-		   );
 ?>

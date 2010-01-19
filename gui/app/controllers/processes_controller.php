@@ -86,7 +86,7 @@ class ProcessesController extends AppController{
 					
 			//Save NEW pid, update status and timestamps
 			$this->Process->id = $id;
-			$this->data['Process']['pid']= $pid;
+			//$this->data['Process']['pid']= $pid;
  			$this->data['Process']['start_time']= time();
 			$this->data['Process']['last_seen']= time();
 			$this->data['Process']['status']= 1;		
@@ -113,8 +113,10 @@ class ProcessesController extends AppController{
 		if($type=='run'){
 
 
+			$pid = $this->Process->getPid($this->data['Process']['name']);
+
 			//Process is NOT running
-			if(!$this->Process->isRunning($this->data['Process']['pid'])){
+			if(!$this->Process->isRunning($pid)){
 
 				$this->Session->setFlash($this->data['Process']['title']." ".__("is not running",true));
 

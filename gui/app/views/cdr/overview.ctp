@@ -73,7 +73,7 @@ echo "<h1>".__('CDR Statistics',true)."</h1>";
      echo "<table width='300px'>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      $stat[] = array(__('Leave-a-message',true), array($lamCount,array('align'=>'center')),array(round(100*$lamCount/$all).' %',array('align'=>'center')));
-     $stat[] = array(__('Voice Menue',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
+     $stat[] = array(__('Voice menus',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Poll',true),		 array($pollCount,array('align'=>'center')),array(round(100*$pollCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Other SMS',true),	 array($otherCount,array('align'=>'center')),array(round(100*$otherCount/$all).' %',array('align'=>'center')));
      $stat[] = array(array($html->div('empty_line'),array('colspan'=>'3')));

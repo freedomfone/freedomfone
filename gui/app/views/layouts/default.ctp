@@ -35,7 +35,6 @@
 
     <?php echo $html->charset('UTF-8'); ?>
 
-    <?=$html->css('templete_css');?>		<!-- joomla template -->
     <?=$html->css('customise');?>    		<!-- joomla template -->
     <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->

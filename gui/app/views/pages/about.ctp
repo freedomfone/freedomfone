@@ -24,7 +24,7 @@
 
 
 echo "<h1>".__("About",true)."</h1>";
-echo "<h4>Release</h4>Freedom Fone v1.0, <i>aka: <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>Lycaon pictus pictus</a></i></p>";
+echo "<h4>".__('Release',true)."</h4>".__('Freedom Fone',true)." v1.5, <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>Lycaon pictus lupinus</a></i></p>";
 
 
 

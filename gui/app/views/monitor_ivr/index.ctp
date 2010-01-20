@@ -92,7 +92,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/monitor_ivr/delete/{$entry['MonitorIvr']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/monitor_ivr/delete/{$entry['MonitorIvr']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
 
 		//change class
 		if($call_id_old != $call_id){ 

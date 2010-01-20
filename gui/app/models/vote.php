@@ -41,15 +41,15 @@ function __construct($id = false, $table = null, $ds = null) {
          'chtext'      => array(
 	 	        'between' => array(
 			   'rule'=>array('between', 1,10),
-            	  	   'message'=>'Between 1 to 10 characters.'
+            	  	   'message'=>__('Between 1 to 10 characters.',true)
 			   ),
 			'alphaNumeric' => array(
 		       	   'rule' => 'alphaNumeric',
- 		           'message' => 'Letters and numbers only. No spaces allowed.'
+ 		           'message' => __('Letters and numbers only. No spaces allowed.',true)
 			   ),
 			'uniqueChtext' => array(
         		    'rule' => array('uniqueChtext', 'chtext'),
-        		     'message' => 'The option is not unique.'
+        		     'message' => __('The option is not unique.',true)
                 	   )
  		           ));
 

@@ -67,7 +67,7 @@
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Pictus</div>
+	 <div class="footer">Lycaon Pictus Lupinus</div>
 </div>										<!--wrapper end-->
 </body>
 </html>

@@ -53,7 +53,7 @@ $i=0;
 
 	foreach ($votes as $key =>  $vote){
 	$i++;
-	$rows[] = array(__("Option",true)." ".$i, $form->input('Vote.'.$key.'.chtext',array('value' => $vote['chtext'],'label'=>false)));
+	$rows[] = array(__("Option",true), $form->input('Vote.'.$key.'.chtext',array('value' => $vote['chtext'],'label'=>false)));
 	}
 	echo $html->tableCells($rows);
 

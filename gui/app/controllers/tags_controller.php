@@ -66,7 +66,7 @@ class TagsController extends AppController {
 
     	     if($this->Tag->delete($id,true))
 	     {
-    	     $this->Session->setFlash('The selected tag has been deleted.','default',array('class'=>'message_success'));
+    	     $this->Session->setFlash(__('The selected tag has been deleted.',true),'default',array('class'=>'message_success'));
 	     $this->redirect(array('action' => '/index'));
 
 	     }

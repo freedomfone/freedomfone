@@ -22,12 +22,13 @@
  *
  ***************************************************************************/
 
-	if($data){
+
 
 
 		$line = array(__('Date and Time',true),__('Date',true),__('Time',true),__('Message',true),__('Sender',true),__('Type',true));
 		$csv->addRow($line);
 
+	if($data){
 
 		foreach($data as $entry){
 	
@@ -36,9 +37,10 @@
 
 		}
 
+	}
 		echo $csv->render(__('OtherSMS',true).'.csv');  
 		$csv->render(false);
-	}
+
 
 
 

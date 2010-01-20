@@ -46,10 +46,8 @@ echo "<h1>".__('Processes',true)."</h1>";
 	$stop      = $html->link($html->image("icons/stop.png", array("title" => "Stop")),"/processes/stop/{$entry['Process']['id']}",null, null, false);
 
 	if(!$entry['Process']['status']){ 
-		//$text = $html->div('process',$title).$last_seen.'<br/>'.$interupt;
 		$text = $last_seen;
 	} else { 
-	       //$text = $html->div('process',$title).$start_time;
 	       $text = $start_time;
 	       }
 	
@@ -67,7 +65,7 @@ echo "<h1>".__('Processes',true)."</h1>";
     	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
      echo "<table width='80%'>";
-     echo $html->tableHeaders(array('','Component','Status','Interupt mode','Start','Stop'));
+     echo $html->tableHeaders(array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true)));
      echo $html->tableCells($row);
      echo "</table>"; 
  

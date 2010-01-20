@@ -74,7 +74,7 @@ echo $form->end();
 	$proto     = $entry['Cdr']['proto'];
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
 
      $row[$key] = array($id,
      		$date,

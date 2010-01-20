@@ -1,4 +1,26 @@
 <?php
+/****************************************************************************
+ * messages_controller.php	- Controller for Leave-a-message messages. Manages CRUD operations on messages.
+ * version 		 	- 1.0.408
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ *
+ ***************************************************************************/
 
 class MessagesController extends AppController{
 
@@ -167,64 +189,50 @@ class MessagesController extends AppController{
 
     function process (){
 
-    	     if(!empty($this->data['Message'])){
+	if (!$redirect = $this->data['Message']['source']){
+	   	$redirect = 'index';
+	}  
 
-	    $entries = $this->params['form']['message'];
-    	    $action = $this->params['data']['Submit'];
-    	     	    foreach ($entries as $key => $id){
+    	//Data to process
+    	if(!empty($this->data['Message'])){
 
-	     	     	    if ($id) {
+	    //One or more messages selected
+	    if(array_key_exists('message',$this->params['form'])){
 
-			       $this->Message->id = $id;
-			 
-			       if ($action == __('Delete',true)){
+		$entries = $this->params['form']['message'];
+    	    	$action = $this->params['data']['Submit'];
 
-		     	       	  	   if ($this->Message->del($id)){
-				     	        $title = $this->Message->getTitle($id);
-						$this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
-
-	
-					    }
-			       }
-
-			       elseif ($action == __('Move to Archive',true)){
-
-				      $this->Message->saveField('status',0);
- 	      			      $this->log('ARCHIVE Message '.$id, 'leave_message');		       
-
-			       }
-
-			       elseif ($action == __('Activate',true)){
-
-	
-				      $this->Message->saveField('status',1);
- 	      			      $this->log('Msg: MESSAGE ACTIVATED '.$id, 'leave_message');		       
-
-			       }
-
-	     
+		//Loop through messages
+    	     	foreach ($entries as $key => $id){
+	     	     if ($id) {
+			   $this->Message->id = $id;
+			   if ($action == __('Delete',true)){
+		     	       if ($this->Message->del($id)){
+				     $title = $this->Message->getTitle($id);
+				     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
+			        }
+			    } elseif ($action == __('Move to Archive',true)){
+				$this->Message->saveField('status',0);
+ 	      			$this->log('ARCHIVE Message '.$id, 'leave_message');		       
+			    }  elseif ($action == __('Activate',true)){
+				$this->Message->saveField('status',1);
+ 	      			$this->log('Msg: MESSAGE ACTIVATED '.$id, 'leave_message');		       
 			    }
+		        }
+	             } //foreach
 
-	             }
-
-
-		     if (!$redirect = $this->data['Message']['source']){
-
-		     	$redirect = 'index';
-
-		     }
-
-		     else { 
 		     $this->redirect(array('action' => $redirect));
-		     }
+		 } //array_key_exists 
+		 else {
+		     
+		     $this->redirect(array('action' => $redirect));
+		 }
 
-    	     } //empty
+    	     } // data to process
 
 	     else {
-
-		 $this->redirect(array('action' => 'index'));
+		 $this->redirect(array('action' => $redirect));
              }
-
     }
 
 

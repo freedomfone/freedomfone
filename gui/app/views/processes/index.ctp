@@ -30,13 +30,21 @@ echo $form->end();
 
 echo "<h1>".__('Processes',true)."</h1>";
 
+
      if ($data){
 
       foreach ($data as $key => $entry){
 
+      if( $entry['Process']['last_seen']) { 
+      	$last=$time->niceShort($entry['Process']['last_seen']); 
+	} else {
+	$last =__('N/A',true); 
+	}
+
+
       	$status	    =  $this->element('process_status',array('status'=>$entry['Process']['status'],'mode'=>'image'));
 	$title      = $entry['Process']['title'];
-	$last_seen  = __("Last seen",true).": ".$time->niceShort($entry['Process']['last_seen']);
+	$last_seen  = __("Last seen",true).": ".$last;
 	$start_time = __("Running since",true).": ".$time->niceShort($entry['Process']['start_time']);
 
 	if(!$interupt=$entry['Process']['interupt']){ $interupt=false;}
@@ -46,8 +54,10 @@ echo "<h1>".__('Processes',true)."</h1>";
 	$stop      = $html->link($html->image("icons/stop.png", array("title" => "Stop")),"/processes/stop/{$entry['Process']['id']}",null, null, false);
 
 	if(!$entry['Process']['status']){ 
+		//$text = $html->div('process',$title).$last_seen.'<br/>'.$interupt;
 		$text = $last_seen;
 	} else { 
+	       //$text = $html->div('process',$title).$start_time;
 	       $text = $start_time;
 	       }
 	
@@ -65,7 +75,7 @@ echo "<h1>".__('Processes',true)."</h1>";
     	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
      echo "<table width='80%'>";
-     echo $html->tableHeaders(array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true)));
+     echo $html->tableHeaders(array('','Component','Status','Interupt mode','Start','Stop'));
      echo $html->tableCells($row);
      echo "</table>"; 
  

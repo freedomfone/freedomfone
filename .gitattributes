@@ -397,6 +397,7 @@ init.d/etc/default/iwatch -text
 init.d/freeswitch -text
 init.d/iwatch -text
 installer/centos/pictus_install_gui.sh -text
+installer/lupinus_install.sh -text
 installer/pictus_install.sh -text
 installer/pictus_install_gui.sh -text
 license/MPL -text

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- http://wiki.freeswitch.org/wiki/Dialplan_XML -->
-<!-- Freedom Fone v1.0 PICTUS PICTUS Default diaplan -->
-<!-- 900x for tests-->
-<!-- 100x Local SIP extensions -->
-<!-- 2000 Leave a Message -->
-<!-- 3000 Tickle -->
-<!-- 4000 IVR -->
+<!-- Freedom Fone 2010 Default diaplan -->
+<!-- First digit (App), Instance (\d{3}) -->
+<!-- 1000-1019 Local SIP extensions -->
+<!-- 2000-2999 Leave a Message -->
+<!-- 3000-3999 Tickle -->
+<!-- 4000-4999 IVR -->
 <!-- 5000 Inbound Mobigater -->
 <!-- 6000 Outbound Skype -->
 <!-- 7000 Outbound calls via VoiceBlue or GSMOpen -->
 <!-- 8000 OpenBTS Devel -->
+<!-- 9000-9999 for tests-->
 
 <document type="freeswitch/xml">
   <section name="dialplan" description="curl_dialplan">
@@ -23,8 +24,44 @@
       </context>
 
 
-
       <context name="default">
+
+<!-- LEAVE A MESSAGE EXTENSIONS -->
+        <extension name="2000">
+          <condition field="destination_number" expression="^2(\d{3})$">
+            <action application="ring_ready"/>
+            <action application="sleep" data="2000"/>
+            <action application="answer"/>
+            <action application="set" data="instance_id=$1"/>
+            <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id}"/>
+          </condition>
+        </extension>
+
+
+<!-- IVR -->
+	<extension name="ivr_1">
+          <condition field="destination_number" expression="^4(\d{3})$">
+            <action application="answer"/>
+	    <action application="set" data="instance_id=$1"/>
+            <action application="ivr" data="freedomfone_ivr_${instance_id}"/>
+          </condition>
+        </extension>
+
+
+<!-- TICKLE SERVICE -->
+        <extension name="ticklemaster">
+          <condition field="destination_number" expression="^3000$"/>
+		<condition field="caller_id_number" expression="^(10[01][0-9])$">
+            	<action application="ring_ready"/>
+		<action application="set" data="incoming_media=sip"/>
+                <action application="set" data="instance_id=100"/>
+         	<action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+		<anti-action application="set" data="incoming_media=077777777"/>
+		<anti-action application="set" data="instance_id=100"/>
+         	<anti-action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+          	</condition>
+        </extension>
+
 <!-- TESTING EXTENSIONS -->
         <extension name="9000">
           <condition field="destination_number" expression="^9000$">
@@ -101,41 +138,8 @@ ${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
 
 
 
-<!-- LEAVE A MESSAGE EXTENSIONS -->
-        <extension name="2000">
-          <condition field="destination_number" expression="^2000$">
-            <action application="ring_ready"/>
-            <action application="sleep" data="5000"/>
-            <action application="answer"/>
-            <action application="set" data="instance_id=100"/>
-            <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id}"/>
-          </condition>
-        </extension>
 
 
-<!-- TICKLE SERVICE -->
-        <extension name="ticklemaster">
-          <condition field="destination_number" expression="^3000$"/>
-		<condition field="caller_id_number" expression="^(10[01][0-9])$">
-            	<action application="ring_ready"/>
-		<action application="set" data="incoming_media=sip"/>
-                <action application="set" data="instance_id=100"/>
-         	<action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
-		<anti-action application="set" data="incoming_media=0733310498"/>
-		<anti-action application="set" data="instance_id=100"/>
-         	<anti-action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
-          	</condition>
-        </extension>
-
-
-<!-- IVR -->
-	<extension name="ivr_1">
-          <condition field="destination_number" expression="^4000$">
-            <action application="answer"/>
-	    <action application="set" data="instance_id=100"/>
-            <action application="ivr" data="freedomfone_ivr_${instance_id}"/>
-          </condition>
-        </extension>
 
 
 

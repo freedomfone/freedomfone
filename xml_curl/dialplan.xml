@@ -27,7 +27,7 @@
       <context name="default">
 
 <!-- LEAVE A MESSAGE EXTENSIONS -->
-        <extension name="2000">
+        <extension name="leave_message_pool">
           <condition field="destination_number" expression="^2(\d{3})$">
             <action application="ring_ready"/>
             <action application="sleep" data="2000"/>
@@ -39,7 +39,7 @@
 
 
 <!-- IVR -->
-	<extension name="ivr_1">
+	<extension name="ivr_pool">
           <condition field="destination_number" expression="^4(\d{3})$">
             <action application="answer"/>
 	    <action application="set" data="instance_id=$1"/>
@@ -68,14 +68,16 @@
             <action application="speak" data="cepstral|allison|Testing cepstral and freedom!"/>
           </condition>
         </extension>
-        <extension name="9001">
+        
+	<extension name="9001">
           <condition field="destination_number" expression="^9001$">
             <action application="answer"/>
             <action application="speak" data="cepstral|allison|Testing Testing and more testing of all the DTMF!"/>
             <action application="javascript" data="freedomfone/dtmf/main.js"/>
           </condition>
         </extension>
-        <extension name="9002">
+        
+	<extension name="9002">
           <condition field="destination_number" expression="^9002$">
             <action application="answer"/>
             <action application="sleep" data="1000"/>
@@ -86,8 +88,6 @@
             <action application="phrase" data="msgcount,130"/>
           </condition>
         </extension>
-
-
 
         <extension name="9004">
           <condition field="destination_number" expression="^9004$">
@@ -103,14 +103,12 @@
         
 	<extension name="9006">
           <condition field="destination_number" expression="^9006$">
-            <action application="set" data="RECORD_TITLE=Recording
-${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
+            <action application="set" data="RECORD_TITLE=Recording ${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
             <action application="set" data="RECORD_COPYRIGHT=(c) 2009"/>
             <action application="set" data="RECORD_SOFTWARE=FreeSwitch"/>
             <action application="set" data="RECORD_ARTIST=FreeSwitch"/>
             <action application="set" data="RECORD_COMMENT=FreeSwitch"/>
-            <action application="set" data="RECORD_DATE=${strftime(%Y-%m-%d
-%H:%M)}"/>
+            <action application="set" data="RECORD_DATE=${strftime(%Y-%m-%d %H:%M)}"/>
             <action application="set" data="RECORD_STEREO=true"/>
             <xaction application="ring_ready"/>
             <action application="set" data="RECORD_ANSWER_REQ=true"/>
@@ -124,23 +122,17 @@ ${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
     	  </condition>
         </extension>
         
-
 	<extension name="9008">
           <condition field="destination_number" expression="^9008$">
             <action application="info" />
           </condition>
         </extension>
+
 	<extension name="9009">
           <condition field="destination_number" expression="^9009$">
             <action application="echo" />
           </condition>
         </extension>
-
-
-
-
-
-
 
 
 <!-- OPENBTS -->
@@ -194,24 +186,25 @@ ${destination_number} ${caller_id_number} ${strftime(%Y-%m-%d %H:%M)}"/>
 
 <!-- OUTBOUND SKYPE -->
     <!-- dial via skypiax -->
-    <extension name="skypiax">
-      <condition field="destination_number" expression="^6000$">
-        <action application="bridge" data="skypiax/skypiax1/echo123"/>
-      </condition>
-    </extension>
+        <extension name="skypiax">
+          <condition field="destination_number" expression="^6000$">
+            <action application="bridge" data="skypiax/skypiax1/echo123"/>
+          </condition>
+        </extension>
 
     <!-- dial via skypiax ANY interface -->
-    <extension name="skypiax">
-      <condition field="destination_number" expression="^6123$">
-        <action application="bridge" data="skypiax/ANY/echo123"/>
-      </condition>
-    </extension>
+        <extension name="skypiax">
+         <condition field="destination_number" expression="^6123$">
+          <action application="bridge" data="skypiax/ANY/echo123"/>
+         </condition>
+        </extension>
+    
     <!-- dial via SKYPE uri with skypiax ANY interface-->
-    <extension name="skype_uri">
-      <condition field="destination_number" expression="^skype/(.*)$">
-        <action application="bridge" data="skypiax/ANY/$1"/>
-      </condition>
-    </extension>
+        <extension name="skype_uri">
+         <condition field="destination_number" expression="^skype/(.*)$">
+          <action application="bridge" data="skypiax/ANY/$1"/>
+         </condition>
+        </extension>
 
 
 <!-- INBOUND VOICEBLUE 2N -->

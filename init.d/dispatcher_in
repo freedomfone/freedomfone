@@ -6,6 +6,7 @@
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Start dispatcher (incoming) from Freedom Fone  
+# Author: Alberto Escudero-Pascual aep@it46.se
 ### END INIT INFO
 ##############################################################################
 

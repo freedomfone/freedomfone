@@ -19,7 +19,7 @@
  * $params string $file
  */
 include_once('config.php');
-include_once('../esl/fs_sock.php');
+include_once('../esl/php/fs_sock.php');
 
 
 define('FS_SOCK_DEBUG', true);

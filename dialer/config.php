@@ -6,7 +6,7 @@
  */
 define("LogFile", "../log/dialer.log");
 define("SpoolerSavedDir", "dialer/spooler/saved/");
-define("BasePath", "/usr/src/pictus/");
+define("BasePath", "/usr/local/freedomfone/");
 define("Redial", "5");
 define("RedialSleep", "60");
 define("DefaultSleep", "5");

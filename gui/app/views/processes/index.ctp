@@ -23,6 +23,7 @@
  ***************************************************************************/
 
 $session->flash();
+$generated  = $session->read('Process.refresh');
 
 echo $form->create('Process',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
@@ -78,7 +79,12 @@ echo "<h1>".__('Processes',true)."</h1>";
      echo $html->tableHeaders(array('','Component','Status','Interupt mode','Start','Stop'));
      echo $html->tableCells($row);
      echo "</table>"; 
- 
+
+     echo "<table>";
+     echo $html->tableCells(array(__('Generated',true).' :', $time->format('H:i:s A',$generated)));
+     echo $html->tableCells(array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time())));
+     //echo $html->div('box',__('System time',true).": ".$time->format('H:i:s A (e \G\M\T O) ', time())); 
+ echo "</table>"; 
      }
 
 

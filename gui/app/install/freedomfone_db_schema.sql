@@ -29,6 +29,7 @@ CREATE TABLE `bin` (
   `sender` varchar(200) NOT NULL,
   `created` int(10) unsigned default NULL,
   `mode` varchar(50) default NULL,
+  `proto` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -69,7 +70,7 @@ CREATE TABLE `callback_settings` (
   `limit_user` smallint(6) NOT NULL default '20',
   `limit_time` smallint(6) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -104,6 +105,7 @@ CREATE TABLE `cdr` (
   `caller_number` varchar(100) default NULL,
   `extension` smallint(6) default NULL,
   `application` varchar(50) default NULL,
+  `proto` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -177,7 +179,7 @@ CREATE TABLE `lm_menus` (
   `instance_id` int(6) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100);
@@ -204,7 +206,7 @@ CREATE TABLE `messages` (
   `instance_id` int(6) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -219,7 +221,7 @@ CREATE TABLE `messages_tags` (
   `message_id` int(11) unsigned default NULL,
   `tag_id` int(11) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -281,8 +283,9 @@ CREATE TABLE `polls` (
   `instance_id` int(6) NOT NULL,
   `invalid_open` int(10) unsigned default '0',
   `invalid_closed` int(10) unsigned default '0',
+  `invalid_early` int(10) unsigned default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -295,7 +298,6 @@ SET character_set_client = utf8;
 CREATE TABLE `processes` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `name` varchar(200) NOT NULL,
-  `pid` int(10) unsigned NOT NULL,
   `status` tinyint(2) default NULL,
   `start_cmd` varchar(200) default NULL,
   `instance_id` int(6) NOT NULL,
@@ -303,11 +305,13 @@ CREATE TABLE `processes` (
   `start_time` int(10) unsigned default '0',
   `last_seen` int(10) unsigned default '0',
   `interupt` varchar(30) default NULL,
-  `start_script` varchar(50) default NULL,
   `type` varchar(10) NOT NULL default 'pid',
+  `script` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+INSERT INTO `processes` VALUES (1,'dispatcher_in',1,'dispatcher_in/dispatcherESL.php --log=/var/tmp/dispatcher_in.log > /dev/null 2>&1 & echo $!',100,'Dispatcher In',1263927040,1263977108,'unexpected crash','run','/usr/bin/php'),(2,'dispatcher_out',0,'dispatcher_out/dispatcher_out.php > /dev/null 2>&1 & echo $!',100,'Dispatcher Out',0,1264005011,'Manual','run','/usr/bin/php'),(3,'dispatcher_in_version',NULL,'dispatcher_in/dispatcherESL.php -V',100,'Dispatcher In Version',0,0,NULL,'version','/usr/bin/php');
 
 --
 -- Table structure for table `tags`
@@ -338,9 +342,10 @@ CREATE TABLE `votes` (
   `chtext` varchar(128) default NULL,
   `chvotes` int(10) unsigned default '0',
   `votes_closed` int(10) unsigned default '0',
+  `votes_early` int(10) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -352,4 +357,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-01-12 17:40:46
+-- Dump completed on 2010-01-20 16:41:38

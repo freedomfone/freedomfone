@@ -9,6 +9,7 @@ audio_bot/filters/w2m.sh -text
 audio_bot/filters/wav2mp3.sh -text
 audio_bot/iwatch/iwatch.xml -text
 audio_bot/iwatch/iwatch_command.sh -text
+cron/crontab.freedomfone -text
 devel/monitor_ivr/cdr/cdr.php -text
 devel/monitor_ivr/cdr/modules.conf.xml -text
 devel/monitor_ivr/cdr/samples/b6dd9302-e7d6-11de-be68-8bfd48931c0f.cdr.xml -text

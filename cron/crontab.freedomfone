@@ -1,0 +1,12 @@
+# Freedom Fone 2010, refresh methods for spoolers
+# App: SMS/Skype polls 
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh  >/dev/null 2>&1
+# App: Leave a message
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/messages/refresh  >/dev/null 2>&1
+# App: Call/Event data records
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh  >/dev/null 2>&1
+# App: Datamining of IVR options
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh  >/dev/null 2>&1
+# App: System Health
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh  >/dev/null 2>&1
+~                                                                                                               

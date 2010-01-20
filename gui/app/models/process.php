@@ -45,7 +45,7 @@ class Process extends AppModel{
 
 	       	       $id    = $process['Process']['id'];
 		       $pid = $this->getPid($process['Process']['name']);
-		   
+
 	       	       $status = $process['Process']['status'];
 	       	       $name = $process['Process']['name'];
 
@@ -53,7 +53,6 @@ class Process extends AppModel{
 	       	       if($this->isRunning($pid) && !$status){
 	
 			 $this->data['Process']['data'][$key]['Process']['status'] = '1';
-			 //$this->data['Process']['data'][$key]['Process']['pid'] = $pid;
 			
 			$update = $this->data['Process']['data'][$key];
 	
@@ -65,7 +64,6 @@ class Process extends AppModel{
 	
 				 $entry['id'] = $id;
 				 $entry['status'] = '0';
-				 //$entry['pid'] = '0';
 				 $entry['last_seen'] = time();
 				 $entry['interupt'] = 'unexpected crash';
 				 $this->save($entry);

@@ -23,11 +23,12 @@
  ***************************************************************************/
 
 
-	if($data){
+
 
 		$line = array(__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller number',true),__('Application',true));
 		$csv->addRow($line);
 
+	if($data){
 
 		foreach($data as $entry){
 	
@@ -43,10 +44,11 @@
 
 		}
 
+	}
 		$prefix=date('Y-m-d_');
 		echo $csv->render($prefix.__('CDR',true).'.csv');  
 		$csv->render(false);
-	}
+
 
 
 

@@ -90,7 +90,7 @@ echo "<h1>".__('CDR Statistics',true)."</h1>";
       echo "</table>"; 
 
 
-     echo $form->end('View');
+     echo $form->end(__('View',true));
 
 
 ?>

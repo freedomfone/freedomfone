@@ -23,11 +23,12 @@
  *
  ***************************************************************************/
 
-	if($data){
+
 
 		$line = array(__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Digit',true),__('Caller number',true),__('Type',true));
 		$csv->addRow($line);
 
+	if($data){
 
 		foreach($data as $entry){
 
@@ -52,10 +53,11 @@
 
 		}
 
+	}
 		$prefix=date('Y-m-d_');
 		echo $csv->render($prefix.__('MonitorIvr',true).'.csv');  
 		$csv->render(false);
-	}
+
 
 
 ?>

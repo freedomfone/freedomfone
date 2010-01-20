@@ -35,11 +35,8 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 
      if ($messages){
 
+
 echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-
-
-
-
 echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 echo $form->hidden('source',array('value'=>'index'));
 

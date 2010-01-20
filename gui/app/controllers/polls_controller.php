@@ -140,7 +140,7 @@ class PollsController extends AppController{
      	     $title = $this->Poll->getTitle($id);
     	     if($this->Poll->delete($id,true))
 	     {
-    	     $this->Session->setFlash('Poll with question "'.$title.'" has been deleted.','default',array('class'=>'message_success'));
+    	     $this->Session->setFlash(__('Poll with question "'.$title.'" has been deleted.',true),'default',array('class'=>'message_success'));
 	     $this->log('Msg: POLL DELETED; Id:title: '.$id.":".$title, 'poll');	
 	     $this->redirect(array('action' => '/index'));
 
@@ -164,7 +164,7 @@ class PollsController extends AppController{
 	     }
        } else {
 
-       $this->Session->setFlash('Poll option could not be deleted. A poll needs at least two options.','default',array('class'=>'error-message'));
+       $this->Session->setFlash(__('Poll option could not be deleted. A poll needs at least two options.',true),'default',array('class'=>'error-message'));
        $this->redirect(array('action' => '/edit/'.$poll_id));
        }
 

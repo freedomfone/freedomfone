@@ -65,7 +65,7 @@ echo $html->tableHeaders(array(
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];
 	$sender    = $entry['Bin']['sender'];
-	$delete   = $html->link($html->image("icons/delete.png", array("alt" => "Delete")),"/bin/delete/{$entry['Bin']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/bin/delete/{$entry['Bin']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
 
      	$row[$key] = array($id, $body, $created, $mode, $proto, $sender, array($delete,array('align'=>'center')));
 

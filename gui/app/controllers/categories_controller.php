@@ -52,17 +52,18 @@ class CategoriesController extends AppController {
    			//Get message_id for records to be updated
    			$message_id = $this->data['Category']['Message'];
 
+			if($message_id){
 
-			//Update selected messages
-			foreach($message_id as $value){
+			   //Update selected messages
+			   foreach($message_id as $value){
 
 			   if($value){
 				$this->data = $this->Category->Message->read(null,$value);
 				$this->data['Message']['category_id']=$id;
      				$this->Category->Message->save($this->data['Message']);
 				}
-	  			}
-
+	  		   }
+			}
 				
 		        //Update de-selected messages (set category_id=NULL)
 			$this->data = $this->Category->Message->findAllByCategoryId($id);
@@ -76,10 +77,10 @@ class CategoriesController extends AppController {
 				}
 	
 			}
-			$this->Session->setFlash(__('The Category has been saved', true));
+			$this->Session->setFlash(__('The category has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Category could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The category could not be saved. Please, try again.', true));
 			}
 		}
 		if (empty($this->data)) {
@@ -99,7 +100,7 @@ class CategoriesController extends AppController {
 
     	     if($this->Category->delete($id,true))
 	     {
-    	     $this->Session->setFlash('The selected category has been deleted.','default',array('class'=>'message_success'));
+    	     $this->Session->setFlash(__('The selected category has been deleted.',true),'default',array('class'=>'message_success'));
 	     $this->redirect(array('action' => '/index'));
 
 	     }

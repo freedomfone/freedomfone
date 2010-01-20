@@ -153,18 +153,15 @@ class CdrController extends AppController{
     	   $this->set('data', $this->Cdr->findAll()); 
 	 }
 
-
   	     Configure::write('debug', 0);
  	 
     	     $this->layout = null;
     	     $this->autoLayout = false;
-
     	     $this->render();    
     }
 
 
       function export(){
-
 
     	     $this->render();  
        }

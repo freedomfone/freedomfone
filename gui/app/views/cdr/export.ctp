@@ -31,6 +31,6 @@ echo $html->tableCells(array (
      array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15)))
       ));
 echo "</table>";
-echo $form->end('Export');
+echo $form->end(__('Export',true));
 
 ?>

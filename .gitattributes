@@ -21,6 +21,7 @@ devel/monitor_ivr/cdr/xml_cdr.conf.xml -text
 devel/monitor_ivr/custom_events.txt -text
 devel/monitor_ivr/ivr.conf.xml.sample -text
 devel/monitor_ivr/monitor_ivr.js -text
+dialer/TODO -text
 dialer/config.php -text
 dialer/dialer.sh -text
 dialer/dialer_engine.php -text

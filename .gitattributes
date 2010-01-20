@@ -57,12 +57,13 @@ documentation/technical/freedomfone_technical_documentation_GSMopen_v3.0.pdf -te
 documentation/technical/freedomfone_technical_documentation_middle+application_v1.0.doc -text
 documentation/technical/freedomfone_technical_documentation_middle+application_v1.0.odt -text
 documentation/technical/freedomfone_technical_documentation_middle+application_v1.0.pdf -text
-esl/fs_sock.php -text
+esl/README -text
 esl/native/ESL.php -text
 esl/native/INSTALL -text
 esl/native/php.ini -text
 esl/native/samples/single_command.php -text
 esl/native/samples/test.php -text
+esl/php/fs_sock.php -text
 extras/fix_perms_fs.sh -text
 extras/fix_perms_gui.sh -text
 extras/fs_debug.sh -text

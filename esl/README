@@ -1,0 +1,4 @@
+This folder contains to ESL implementations.
+
+php - Implementation of ESL fully in PHP (used in Pictus Pictus and buggy under heavy load)
+native - Native implementation, uses a C implementation wrapped in PHP. Requires to use "dl"

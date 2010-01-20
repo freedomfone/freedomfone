@@ -82,6 +82,7 @@ CREATE TABLE `cdr` (
   `Caller-Destination-Number` varchar(50) default NULL,
   `Caller-Unique-ID` varchar(50) default NULL,
   `status` tinyint(1) default '0',
+  `proto` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -107,7 +108,7 @@ CREATE TABLE `lm_in` (
   `FF-FinishTimeEpoch` bigint(20) unsigned default NULL,
   `status` tinyint(1) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -163,4 +164,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-01-12 17:49:14
+-- Dump completed on 2010-01-20 16:47:25

@@ -16,7 +16,8 @@ DESC="Freeswitch"
 NAME=freeswitch
 DAEMON=/usr/local/freeswitch/bin/$NAME
 DAEMON_ARGS="-nc"
-PIDFILE=/usr/local/freeswitch/log/$NAME.pid
+#From version 1.0.5 PID is stored in run folder
+PIDFILE=/usr/local/freeswitch/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 FS_USER=freeswitch

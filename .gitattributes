@@ -27,7 +27,6 @@ dialer/dialer_engine.php -text
 dialer/iwatch.log -text
 dispatcher_in/config.php -text
 dispatcher_in/dispatcherESL.php -text
-dispatcher_in/dispatcher_in.php -text
 dispatcher_in/esl -text
 dispatcher_in/install/spooler_db_createdb_user.sql -text
 dispatcher_in/install/spooler_db_schema.sql -text

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * dispatcherESL.php	- Incoming dispatcher based on FreeSWITCH ESL. Manages events from FreeSWITCH to spooler (db).
- * version 		- 1.0.2
+ * version 		- 1.0.3
  * 
  * Version: MPL 1.1
  *
@@ -27,11 +27,12 @@
  * 
  * How to run dispatcher:
  * 
- * php dispatcher.php -v --debug={true|false} --log={logfile}
+ * php dispatcher.php -v --debug={true|false} --log={logfile} -p /tmp/dispatcher_in.pid
  * 
  * Verbose mode (-v) will print to stdout
  * Debug mode will write to logfile. If all arguments are left out, verbose = false, debug = true
- *
+ * Pid file can be specified with (-p) flag. Useful to place the pid file under GUI control.
+ * 
  * Example: php dispatcherESL.php -v --log=/tmp/dispatcher.log
  * Result: Verbose output to stdout, debug messages logged to file /tmp/dispatcher.log
  *

@@ -379,8 +379,12 @@ init.d/dispatcher_in -text
 init.d/etc/default/iwatch -text
 init.d/freeswitch -text
 init.d/iwatch -text
-installer/centos/pictus_install_gui.sh -text
+installer/0_lupinus_install_download.sh -text
+installer/1_lupinus_install.sh -text
+installer/2_lupinus_install.sh -text
+installer/3_lupinus_db_reset.sh -text
 installer/lupinus_install.sh -text
+installer/pictus/centos/pictus_install_gui.sh -text
 installer/pictus_install.sh -text
 installer/pictus_install_gui.sh -text
 license/MPL -text

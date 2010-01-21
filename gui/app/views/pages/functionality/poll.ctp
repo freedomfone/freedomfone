@@ -36,6 +36,24 @@ echo __("<p>Poll details can be communicated with the public via any means, incl
 echo __("<p>The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public.</p>",true);
 echo __("<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll.</p>",true);
 echo __("<p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer.</p>",true);
+
+echo __("<h3></h3>",true);
+echo __("<p>The system classifies all incoming votes as <i>valid, invalid,</i> or <i>incorrect</i>:</p>",true);
+echo __("<p><b>Valid vote:</b> correct poll code, and correct poll option</p>",true);
+echo __("<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>",true);
+echo __("<p>Early votes will be registered as ”Valid, early”. The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll.",true);
+echo __("<p>Late votes will be registered as “Valid, late”. The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll.",true);
+echo __("<p>The Early and Late vote classifications are summarised separately to provide a complete view of votes submitted to the poll concerned.",true);
+
+echo __("<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option",true);
+echo __("<p>Invalid votes are registered as votes, but classified as “invalid”. “Early”, “late” and “on-time” invalid votes are registered.",true);
+echo __("<p>Only “on-time” invalid votes are incorporated into the Total number of votes (in time) summary.",true);
+echo __("<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results.",true); 
+
+echo __("<p><b>Incorrect vote: </b>Non-matching poll code",true);
+echo __("<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under “Other SMS”. The SMS will be classified as “Unclassified”.",true);
+
+
 echo __("<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES! The same logic applies to the SMS code.</p>",true);
 echo __("<p>More than one poll can be active at the same time. Incoming SMS are identified by the SMS code in use. </p>",true);
 

@@ -97,6 +97,8 @@ var lm_dialplan = session.dialplan;
 var lm_name = session.name;
 var lm_network_addr = session.network_addr;
 var lm_state = session.state;
+//Can we retrieve the local IP and autoconf the streaming address?
+//var lm_localIP = session.getVariable("local_ip_v4");
 
 // lmsm starts here!
 session.answer();

@@ -132,7 +132,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['status']= 0;		
 		      		$this->data['Process']['start_time']= 0;
 		      		$this->data['Process']['last_seen']= time();	
-		      		$this->data['Process']['interupt']= 'Manual';	
+		      		$this->data['Process']['interupt']= __('Manual',true);	
 	      	      		$this->Process->save($this->data);
 		      		$this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
 				}
@@ -147,7 +147,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['status']= 0;		
 		      		$this->data['Process']['start_time']= 0;
 		      		$this->data['Process']['last_seen']= time();	
-		      		$this->data['Process']['interupt']= 'Manual';	
+		      		$this->data['Process']['interupt']= _('Manual',true);	
 	      	      		$this->Process->save($this->data);
 			       $this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
 			}

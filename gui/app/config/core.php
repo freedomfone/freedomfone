@@ -233,9 +233,9 @@
 define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
 define ('MY_DOMAIN','http://localhost/freedomfone/');
-define ('PID_URI',MY_DOMAIN.'system/pid/');
+define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 
-Configure::write('Config.language', 'swe');
+Configure::write('Config.language', 'eng');
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',

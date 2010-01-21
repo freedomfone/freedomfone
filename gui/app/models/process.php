@@ -65,7 +65,7 @@ class Process extends AppModel{
 				 $entry['id'] = $id;
 				 $entry['status'] = '0';
 				 $entry['last_seen'] = time();
-				 $entry['interupt'] = 'unexpected crash';
+				 $entry['interupt'] = __('Unmanaged',true);
 				 $this->save($entry);
     		      		 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
 		       }
@@ -86,10 +86,33 @@ class Process extends AppModel{
 
  function getPid($name){
 
-        $HttpSocket = new HttpSocket(); 
-        return $HttpSocket->request(array('uri' => PID_URI.$name.'.pid'));
+ 	  $file = PID_URI.$name.'.pid';
+
+	  if(file_exists($file)){
+
+		$handle = fopen($file,'r');
+	  	$pid =fgets($handle);
+	  	fclose($handle);
+	  	return $pid;
+	  } else {
+	      return false;
+	  }
+	  
+}
+
+/*
+ * Delete pid file
+ *  
+ * @return boolean $result
+ *
+ */
+
+ function delPid($name){
+
+        return unlink(PID_URI.$name.'.pid');
 		  
 	}
+
 
 
 /*
@@ -121,7 +144,8 @@ class Process extends AppModel{
     function stop(){
 
 	       $pid = $this->getPid($this->data['Process']['name']);
-	
+		$this->delPid($this->data['Process']['name']);
+
       	       if($pid){
 			exec('kill -9 '.$pid);
     			return true;
@@ -129,6 +153,7 @@ class Process extends AppModel{
 		       return false;		   
       		
 	      	}
+
 
       }
 

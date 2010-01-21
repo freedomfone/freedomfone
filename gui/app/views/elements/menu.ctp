@@ -155,7 +155,7 @@
 </li>
 
 
-
+<!--
 <li><?php echo __("Callback",true);?>
 <ul>
 <li>
@@ -175,7 +175,7 @@
 </li>
 </ul>
 </li>
-
+!-->
 
 <li><?php echo __("Dashboard",true);?>
 <ul>
@@ -188,7 +188,7 @@
 
 
 <li>
-<?php echo $html->link(__("What's running?",true),'/processes/software'); ?>
+<?php echo $html->link(__("Software",true),'/processes/software'); ?>
 </li>
 
 <li>

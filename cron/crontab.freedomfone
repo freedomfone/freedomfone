@@ -1,3 +1,4 @@
+#########################################################################################################
 # Freedom Fone 2010, refresh methods for spoolers
 # App: SMS/Skype polls 
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh  >/dev/null 2>&1
@@ -9,4 +10,4 @@
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh  >/dev/null 2>&1
 # App: System Health
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh  >/dev/null 2>&1
-~                                                                                                               
+#########################################################################################################

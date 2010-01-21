@@ -37,7 +37,7 @@ echo __("<p>The administrator can at any time edit the above listed fields. Of c
 echo __("<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll.</p>",true);
 echo __("<p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer.</p>",true);
 
-echo __("<h3></h3>",true);
+echo "<h3>".__("Classification of votes",true)."</h3>";
 echo __("<p>The system classifies all incoming votes as <i>valid, invalid,</i> or <i>incorrect</i>:</p>",true);
 echo __("<p><b>Valid vote:</b> correct poll code, and correct poll option</p>",true);
 echo __("<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>",true);
@@ -53,10 +53,12 @@ echo __("<p>Invalid vote totals are provided to give deployers an idea of how SM
 echo __("<p><b>Incorrect vote: </b>Non-matching poll code",true);
 echo __("<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under “Other SMS”. The SMS will be classified as “Unclassified”.",true);
 
+echo "<h3>".__("Practical example",true)."</h3>";
+echo __("<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES. The same logic applies to the SMS code.</p>",true);
+echo __("<p>More than one poll can be active at the same time. Incoming SMS are identified by the SMS code used and matched with existing polls. </p>",true);
 
-echo __("<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES! The same logic applies to the SMS code.</p>",true);
-echo __("<p>More than one poll can be active at the same time. Incoming SMS are identified by the SMS code in use. </p>",true);
+echo __("<p>The timestamp used to determine whether or not a vote is in time for a poll, is the time of arrival to the Freedom Fone platform. Hence, if an SMS gets delayed in the GSM network, it will be classified as late even if it was sent before the poll deadline. ",true);
 
 echo __("<p>Example: The administrator creates a poll with the following parameters:<ul><li>Question: Would you like to deploy Freedom Fone in your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: 08:00 AM, January 31, 2010</li></ul></p>",true);
 
-echo __("<p>To participate in the poll, the end user needs to send an SMS (after  08:00 AM the 1st of January, and before 08:00 AM the 31st of January 2010) with the following message: </p><pre>freedomfone yes</pre>",true);
+echo __("<p>To participate in the poll, the end user needs to send an SMS (after  08:00 AM the 1st of January, and before 08:00 AM the 31st of January 2010) with one of the following messages: </p><pre>freedomfone yes\nfreedomfone no\nfreedomfone maybe</pre>",true);

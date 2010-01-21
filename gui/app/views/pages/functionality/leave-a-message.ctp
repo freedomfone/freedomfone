@@ -40,7 +40,7 @@ echo __("<p>The Leave-a-message voice menu is created by the administrator. The 
 echo __("<p>If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.</p>",true);
 echo __("<p>If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.</p>",true);
 echo __("<p>If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.</p>",true);
-echo __("<p>The audio files must be uploaded in .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.</p>",true);
+echo __("<p>The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.</p>",true);
 
 echo "<h3>".__("Received voice messages",true)."</h3>";
 echo __("<p>The Freedom Fone administrator receives all incoming messages to the “Inbox”. For each message, the administrator can</p><ul><li>listen to it (with a built-in Flashplayer)</li><li>name (give the message a title)</li><li>assign a category</li><li>associate the message with one or more tags</li><li>give the message a rating (1-5)</li></ul>",true);

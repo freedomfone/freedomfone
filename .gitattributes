@@ -277,6 +277,7 @@ gui/app/views/pages/architecture/ivr.ctp -text
 gui/app/views/pages/architecture/leave-a-message.ctp -text
 gui/app/views/pages/architecture/poll.ctp -text
 gui/app/views/pages/functionality/callback.ctp -text
+gui/app/views/pages/functionality/dashboard.ctp -text
 gui/app/views/pages/functionality/index.ctp -text
 gui/app/views/pages/functionality/ivr.ctp -text
 gui/app/views/pages/functionality/leave-a-message.ctp -text

@@ -1,3 +1,4 @@
+
 <?php
 /****************************************************************************
  * index.ctp	- Functionality: List components and links
@@ -33,6 +34,7 @@ echo "<li>".$html->link(__('Poll',true), '/functionality/poll', array('target'=>
 echo "<li>".$html->link(__('Leave-a-message',true), '/functionality/leave-a-message', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Voice Menus',true), '/functionality/ivr', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Callback',true), '/functionality/callback', array('class'=>'foo','target'=>'_parent'))."</li>";
+echo "<li>".$html->link(__('System health',true), '/functionality/system_health', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "</ul>";
 
 ?>

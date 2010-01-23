@@ -1,0 +1,13 @@
+TODO before freeze Lupinus
+
+
+2010-01-23	aep@it46.se
+	Review init.d scripts to catch crashes that leave .pid files
+	Integrate opengsm released code
+	init.d script for gsmopen, including setmixers and IMSI/IMEI dumping
+	add minicom and gsmutils to image
+	Add Changelog and description of new features
+	Change demo.freedomfone.org for localhost
+	Create config master folder pointing to conf files	
+
+	

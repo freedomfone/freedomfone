@@ -1,4 +1,3 @@
-
 <?php
 /**
  *
@@ -13,7 +12,7 @@
  */ 
 
 require_once('../config.php');
-require_once('../../esl/fs_sock.php');
+require_once('../../esl/php/fs_sock.php');
 
 
 global $_SocketParam;

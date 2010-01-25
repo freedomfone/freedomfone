@@ -24,9 +24,9 @@ echo "========================================================================="
 
 
 step "GUI Cake: Installing Cake SDK"
-##cd $DOWNLOAD/cake_1.2.5; cp -Rf cake /usr/local/freedomfone/gui/
-##cd $DOWNLOAD/cake_1.2.5; cp -Rf vendors /usr/local/freedomfone/gui/
-##cd $DOWNLOAD/cake_1.2.5; cp index.php /usr/local/freedomfone/gui
+cd $DOWNLOAD/cake_1.2.5; cp -Rf cake /usr/local/freedomfone/gui/
+cd $DOWNLOAD/cake_1.2.5; cp -Rf vendors /usr/local/freedomfone/gui/
+cd $DOWNLOAD/cake_1.2.5; cp index.php /usr/local/freedomfone/gui
 stop
 
 step "GUI Apache: Check .htaccess files"
@@ -52,8 +52,8 @@ stop
 
 step "SQL: Create mysql database"
 echo "You need the root password of mysql, hopefully ENTER will do!"
-##/usr/bin/mysql -u root -p < $SVNROOT/gui/app/install/freedomfone_db_createdb_user.sql  
-##/usr/bin/mysql -u root -p freedomfone < $SVNROOT/gui/app/install/freedomfone_db_schema.sql
+/usr/bin/mysql -u root -p < $SVNROOT/gui/app/install/freedomfone_db_createdb_user.sql  
+/usr/bin/mysql -u root -p freedomfone < $SVNROOT/gui/app/install/freedomfone_db_schema.sql
 stop
 
 

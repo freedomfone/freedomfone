@@ -26,13 +26,13 @@ echo "========================================================================="
 
 
 step "CEPSTRAL: Installing Cepstral SDK"
-##cd $SVNROOT/$CEPSTRALPACK; ./install.sh
+cd $SVNROOT/$CEPSTRALPACK; ./install.sh
 stop
 
 
 step "CEPSTRAL: Adding libraries to system"
-##echo "/usr/local/swift/lib" > /etc/ld.so.conf.d/cepstral.conf
-##ldconfig
+echo "/usr/local/swift/lib" > /etc/ld.so.conf.d/cepstral.conf
+ldconfig
 stop
 
 step "CEPSTRAL: Register Cepstral"
@@ -42,70 +42,71 @@ stop
 
 
 step "GSMOPEN: Adding endpoint to Freeswitch trunk code"
-##ln -s $SVNROOT/freeswitch/src/mod/endpoints/mod_gsmopen $FS_SRC/src/mod/endpoints/mod_gsmopen  
+ln -s $SVNROOT/freeswitch/src/mod/endpoints/mod_gsmopen $FS_SRC/src/mod/endpoints/mod_gsmopen  
 stop
 
 step "FS: Enabling extra FS modules"
-##cp $SVNROOT/freeswitch/modules.conf $FS_SRC/modules.conf
+cp $SVNROOT/freeswitch/modules.conf $FS_SRC/modules.conf
 stop
 
 step "FS: First Freeswitch compilation (this can take 1h)"
-##cd $FS_SRC; sh bootstrap.sh 
-##cd $FS_SRC/freeswitch-1.0.5; ./configure
-##cd $FS_SRC/freeswitch-1.0.5; make			
+cd $FS_SRC; sh bootstrap.sh 
+cd $FS_SRC/freeswitch-1.0.5; ./configure
+cd $FS_SRC/freeswitch-1.0.5; make			
 stop
 
 step "FS: Compiling new components"
-##cd $FS_SRC; make; make install
+cd $FS_SRC; make; make install
 stop
 
 step "FS: Adding autoload_config files... enabling modules, adding confs"
 #FIXME! Function to move from SVN to code!
-##cp $SVNROOT/freeswitch/conf/autoload_configs/modules.conf.xml $FS_INSTALL/conf/autoload_configs/
-##cp $SVNROOT/freeswitch/conf/autoload_configs/xml_curl.conf.xml $FS_INSTALL/conf/autoload_configs/
+cp $SVNROOT/freeswitch/conf/autoload_configs/modules.conf.xml $FS_INSTALL/conf/autoload_configs/
+cp $SVNROOT/freeswitch/conf/autoload_configs/xml_curl.conf.xml $FS_INSTALL/conf/autoload_configs/
 #FIXME! Installing config files from gsmopen
-##cp $SVNROOT/freeswitch/conf/autoload_configs/gsmopen.conf.xml $FS_INSTALL/conf/autoload_configs/
-##cp $SVNROOT/freeswitch/etc/asound.conf /etc
-##cp $SVNROOT/extras/setmixers $FS_INSTALL/bin/
+cp $SVNROOT/freeswitch/conf/autoload_configs/gsmopen.conf.xml $FS_INSTALL/conf/autoload_configs/
+cp $SVNROOT/freeswitch/etc/asound.conf /etc
+cp $SVNROOT/extras/setmixers $FS_INSTALL/bin/
 stop
 
 step "GUI: Configuring apache2 and enabling site (rewrite, override all)"
-##cp $SVNROOT/gui/apache2/freedomfone /etc/apache2/sites-available/
-##a2enmod rewrite
-##a2dissite default
-##a2ensite freedomfone
-##/etc/init.d/apache2 reload
+cp $SVNROOT/gui/apache2/freedomfone /etc/apache2/sites-available/
+a2enmod rewrite
+a2dissite default
+a2ensite freedomfone
+/etc/init.d/apache2 reload
 stop
 
 step "FS APP: Adding Freedom Fone applications to FS"
-##ln -s $SVNROOT/freeswitch/scripts/freedomfone/ $FS_INSTALL/scripts/freedomfone
+ln -s $SVNROOT/freeswitch/scripts/freedomfone/ $FS_INSTALL/scripts/freedomfone
 stop
 
 step "FS APP: Fixing Macros"
-##cp $SVNROOT/freeswitch/conf/lang/en/en.xml $FS_INSTALL/conf/lang/en/en.xml
-##cp -a $SVNROOT/freeswitch/conf/lang/en/freedomfone $FS_INSTALL/conf/lang/en/
+cp $SVNROOT/freeswitch/conf/lang/en/en.xml $FS_INSTALL/conf/lang/en/en.xml
+cp -a $SVNROOT/freeswitch/conf/lang/en/freedomfone $FS_INSTALL/conf/lang/en/
 stop
 
 step "Fixing init.d scripts"
-##cp $SVNROOT/init.d/freeswitch /etc/init.d/
-##cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
-##cp $SVNROOT/init.d/iwatch /etc/init.d/
-##cp $SVNROOT/init.d/etc/default/iwatch /etc/default
-##chmod 0755 /etc/init.d/freeswitch
-##chmod 0755 /etc/init.d/dispatcher_in
-##chmod 0755 /etc/init.d/iwatch
-##cd /etc/init.d; update-rc.d freeswitch defaults 90
-##cd /etc/init.d; update-rc.d dispatcher_in defaults 91
-##stop
+cp $SVNROOT/init.d/freeswitch /etc/init.d/
+cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
+cp $SVNROOT/init.d/iwatch /etc/init.d/
+cp $SVNROOT/init.d/etc/default/iwatch /etc/default
+chmod 0755 /etc/init.d/freeswitch
+chmod 0755 /etc/init.d/dispatcher_in
+chmod 0755 /etc/init.d/iwatch
+cd /etc/init.d; update-rc.d freeswitch defaults 90
+cd /etc/init.d; update-rc.d dispatcher_in defaults 91
+stop
 
 step "FS APP: Adding user freeswitch"
-##useradd freeswitch
+useradd freeswith
+adduser freeswitch dialout
+adduser freeswitch audio 
 stop
 
 step "Fixing ESL CLI dynamic load"
-##cd $FS_SRC/libs/esl; make; make phpmod
-##cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
-##sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/cli/php.ini
-##sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/apache2/php.ini
+cd $FS_SRC/libs/esl; make; make phpmod
+cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
+sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/cli/php.ini
+sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/apache2/php.ini
 stop
-echo "FIXME! Fix Makefile for Cepstral"

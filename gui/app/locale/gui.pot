@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2010-01-21 17:54+0100\n"
+"POT-Creation-Date: 2010-01-25 18:45+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /controllers/bin_controller.php:17
+#: /controllers/bin_controller.php:39
 #: /controllers/cdr_controller.php:46;175
 #: /controllers/messages_controller.php:40
 #: /controllers/monitor_ivr_controller.php:36
 #: /controllers/polls_controller.php:49;65
-#: /controllers/processes_controller.php:37
 #: /views/bin/index.ctp:29
 #: /views/cdr/index.ctp:29
+#: /views/channels/index.ctp:29
 #: /views/messages/index.ctp:29
 #: /views/monitor_ivr/index.ctp:30
 #: /views/polls/index.ctp:29
@@ -31,23 +31,23 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: /controllers/callback_in_controller.php:26
+#: /controllers/callback_in_controller.php:47
 msgid "Invalid page"
 msgstr ""
 
-#: /controllers/categories_controller.php:22;80
+#: /controllers/categories_controller.php:44;102
 msgid "The category has been saved"
 msgstr ""
 
-#: /controllers/categories_controller.php:25;83
+#: /controllers/categories_controller.php:47;105
 msgid "The category could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/categories_controller.php:45
+#: /controllers/categories_controller.php:67
 msgid "Invalid Category"
 msgstr ""
 
-#: /controllers/categories_controller.php:103
+#: /controllers/categories_controller.php:125
 msgid "The selected category has been deleted."
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 #: /controllers/monitor_ivr_controller.php:85
 #: /views/bin/index.ctp:57;68;81
 #: /views/categories/index.ctp:37;45
-#: /views/cdr/index.ctp:61;77;97
+#: /views/cdr/index.ctp:61;77;96
 #: /views/ivr_menus/index.ctp:45;68
 #: /views/messages/archive.ctp:53;80;110
 #: /views/messages/index.ctp:60;84;109
@@ -68,27 +68,31 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: /controllers/ivr_menus_controller.php:108
+#: /controllers/channels_controller.php:33
+msgid "System Health :: GSM channels"
+msgstr ""
+
+#: /controllers/ivr_menus_controller.php:131
 msgid "The voice menu has been created!"
 msgstr ""
 
-#: /controllers/ivr_menus_controller.php:130
+#: /controllers/ivr_menus_controller.php:153
 msgid "Invalid option"
 msgstr ""
 
-#: /controllers/ivr_menus_controller.php:243
+#: /controllers/ivr_menus_controller.php:266
 msgid "The voice menu has been deleted."
 msgstr ""
 
-#: /controllers/lm_menus_controller.php:30
+#: /controllers/lm_menus_controller.php:52
 msgid "Invalid Entry"
 msgstr ""
 
-#: /controllers/lm_menus_controller.php:78
+#: /controllers/lm_menus_controller.php:100
 msgid "Your data has been saved"
 msgstr ""
 
-#: /controllers/lm_menus_controller.php:85
+#: /controllers/lm_menus_controller.php:107
 msgid "Your data could not be saved. Please, try again."
 msgstr ""
 
@@ -112,32 +116,36 @@ msgstr ""
 msgid "Activate"
 msgstr ""
 
-#: /controllers/nodes_controller.php:64
+#: /controllers/nodes_controller.php:84
 msgid "The voice menu node has been created."
 msgstr ""
 
-#: /controllers/nodes_controller.php:77
+#: /controllers/nodes_controller.php:97
 msgid "No file selected"
 msgstr ""
 
-#: /controllers/nodes_controller.php:113
+#: /controllers/nodes_controller.php:133
 msgid "The selected voice menu node has been deleted."
 msgstr ""
 
-#: /controllers/nodes_controller.php:120
+#: /controllers/nodes_controller.php:140
 msgid "The selected voice menu node could not be deleted as it is present in one or more Voice menus."
 msgstr ""
 
-#: /controllers/nodes_controller.php:139
+#: /controllers/nodes_controller.php:159
 msgid "Invalid audio file"
 msgstr ""
 
-#: /controllers/nodes_controller.php:172
+#: /controllers/nodes_controller.php:192
 msgid "The settings has been saved"
 msgstr ""
 
 #: /controllers/polls_controller.php:127
 msgid "The poll has been added to the database"
+msgstr ""
+
+#: /controllers/polls_controller.php:143
+msgid "The follwing poll has been deleted"
 msgstr ""
 
 #: /controllers/polls_controller.php:167
@@ -158,55 +166,55 @@ msgstr ""
 msgid "System Health"
 msgstr ""
 
-#: /controllers/processes_controller.php:54
+#: /controllers/processes_controller.php:51
 msgid "System Software"
 msgstr ""
 
-#: /controllers/processes_controller.php:95
+#: /controllers/processes_controller.php:92
 msgid "started"
 msgstr ""
 
-#: /controllers/processes_controller.php:97
+#: /controllers/processes_controller.php:94
 msgid "is already running"
 msgstr ""
 
-#: /controllers/processes_controller.php:121
+#: /controllers/processes_controller.php:118
 msgid "is not running"
 msgstr ""
 
-#: /controllers/processes_controller.php:126
+#: /controllers/processes_controller.php:123
 msgid "No pid found. Contact system admin."
 msgstr ""
 
-#: /controllers/processes_controller.php:135
+#: /controllers/processes_controller.php:132
 msgid "Manual"
 msgstr ""
 
-#: /controllers/processes_controller.php:137;152
+#: /controllers/processes_controller.php:134;149
 msgid "stopped"
 msgstr ""
 
-#: /controllers/processes_controller.php:144
+#: /controllers/processes_controller.php:141
 msgid "was already stopped"
 msgstr ""
 
-#: /controllers/tags_controller.php:27;48
+#: /controllers/tags_controller.php:50;71
 msgid "The tag has been saved"
 msgstr ""
 
-#: /controllers/tags_controller.php:30
+#: /controllers/tags_controller.php:53
 msgid "The tag could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/tags_controller.php:43
+#: /controllers/tags_controller.php:66
 msgid "Invalid Tag"
 msgstr ""
 
-#: /controllers/tags_controller.php:51
+#: /controllers/tags_controller.php:74
 msgid "The Tag could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/tags_controller.php:69
+#: /controllers/tags_controller.php:92
 msgid "The selected tag has been deleted."
 msgstr ""
 
@@ -227,12 +235,6 @@ msgstr ""
 #: /models/category.php:48
 #: /models/tag.php:48
 msgid "Between 1 to 50 characters"
-msgstr ""
-
-#: /models/cdr.php:58
-#: /views/elements/message_status.ctp:24
-#: /views/processes/index.ctp:42
-msgid "N/A"
 msgstr ""
 
 #: /models/cdr.php:127
@@ -322,7 +324,7 @@ msgid "Date"
 msgstr ""
 
 #: /views/bin/export.ctp:28
-#: /views/cdr/index.ctp:55
+#: /views/cdr/index.ctp:56
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:64
 #: /views/monitor_ivr/output.ctp:28
@@ -340,7 +342,7 @@ msgstr ""
 
 #: /views/bin/export.ctp:28
 #: /views/bin/index.ctp:54
-#: /views/cdr/index.ctp:56
+#: /views/cdr/index.ctp:57
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:70
 #: /views/monitor_ivr/output.ctp:28
@@ -372,7 +374,7 @@ msgid "Message:"
 msgstr ""
 
 #: /views/bin/index.ctp:38
-#: /views/cdr/index.ctp:42
+#: /views/cdr/index.ctp:43
 #: /views/messages/archive.ctp:33
 #: /views/messages/index.ctp:39
 #: /views/monitor_ivr/index.ctp:51
@@ -382,7 +384,7 @@ msgstr ""
 
 #: /views/bin/index.ctp:38
 #: /views/callback_in/index.ctp:35
-#: /views/cdr/index.ctp:42
+#: /views/cdr/index.ctp:43
 #: /views/messages/archive.ctp:33
 #: /views/messages/index.ctp:39
 #: /views/monitor_ivr/index.ctp:51
@@ -391,7 +393,7 @@ msgid "of"
 msgstr ""
 
 #: /views/bin/index.ctp:44
-#: /views/cdr/index.ctp:46
+#: /views/cdr/index.ctp:47
 #: /views/messages/archive.ctp:37
 #: /views/messages/index.ctp:44
 #: /views/monitor_ivr/index.ctp:55
@@ -399,7 +401,7 @@ msgid "Check All"
 msgstr ""
 
 #: /views/bin/index.ctp:45
-#: /views/cdr/index.ctp:47
+#: /views/cdr/index.ctp:48
 #: /views/messages/archive.ctp:38
 #: /views/messages/index.ctp:45
 #: /views/monitor_ivr/index.ctp:56
@@ -416,7 +418,6 @@ msgstr ""
 
 #: /views/bin/index.ctp:55
 #: /views/callback_in/index.ctp:47
-#: /views/cdr/index.ctp:60
 msgid "Protocol"
 msgstr ""
 
@@ -609,29 +610,33 @@ msgstr ""
 msgid "Export all"
 msgstr ""
 
-#: /views/cdr/index.ctp:42
+#: /views/cdr/index.ctp:40
+msgid "Call Data Records"
+msgstr ""
+
+#: /views/cdr/index.ctp:43
 msgid "CDR:"
 msgstr ""
 
-#: /views/cdr/index.ctp:54
+#: /views/cdr/index.ctp:55
 #: /views/monitor_ivr/index.ctp:63
 msgid "Date (YMD)"
 msgstr ""
 
-#: /views/cdr/index.ctp:57
+#: /views/cdr/index.ctp:58
 #: /views/monitor_ivr/index.ctp:65
 #: /views/monitor_ivr/output.ctp:28
 msgid "Call ID"
 msgstr ""
 
-#: /views/cdr/index.ctp:58
+#: /views/cdr/index.ctp:59
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:69
 #: /views/monitor_ivr/output.ctp:28
 msgid "Caller number"
 msgstr ""
 
-#: /views/cdr/index.ctp:59
+#: /views/cdr/index.ctp:60
 #: /views/cdr/output.ctp:28
 #: /views/cdr/overview.ctp:74
 msgid "Application"
@@ -641,7 +646,7 @@ msgstr ""
 msgid "Are you sure you want to delete this CDR?"
 msgstr ""
 
-#: /views/cdr/index.ctp:103
+#: /views/cdr/index.ctp:102
 msgid "No of CDR per page: "
 msgstr ""
 
@@ -713,11 +718,52 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: /views/elements/callback_status.ctp:6
+#: /views/channels/index.ctp:32
+#: /views/elements/menu.ctp:195
+msgid "GSM channels"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+msgid "Interface id"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+msgid "Interface name"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+msgid "IMEI"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+msgid "IMSI"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+msgid "Signal"
+msgstr ""
+
+#: /views/channels/index.ctp:53
+#: /views/processes/index.ctp:48
+msgid "Last seen"
+msgstr ""
+
+#: /views/channels/index.ctp:59
+#: /views/processes/index.ctp:87
+msgid "Generated"
+msgstr ""
+
+#: /views/channels/index.ctp:60
+#: /views/polls/index.ctp:77
+#: /views/processes/index.ctp:88
+msgid "System time"
+msgstr ""
+
+#: /views/elements/callback_status.ctp:28
 msgid "Rejected"
 msgstr ""
 
-#: /views/elements/callback_status.ctp:10
+#: /views/elements/callback_status.ctp:32
 msgid "Accepted"
 msgstr ""
 
@@ -767,7 +813,7 @@ msgid "Inbox"
 msgstr ""
 
 #: /views/elements/menu.ctp:105
-#: /views/elements/message_status.ctp:7
+#: /views/elements/message_status.ctp:29
 #: /views/messages/edit.ctp:34
 msgid "Archive"
 msgstr ""
@@ -825,11 +871,6 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
-#: /views/elements/menu.ctp:195
-#: /views/pages/functionality/dashboard.ctp:38
-msgid "Hardware"
-msgstr ""
-
 #: /views/elements/menu.ctp:200
 msgid "Call data records"
 msgstr ""
@@ -838,49 +879,54 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: /views/elements/message_status.ctp:13
+#: /views/elements/message_status.ctp:35
 #: /views/messages/edit.ctp:34
 msgid "Active"
 msgstr ""
 
-#: /views/elements/message_status.ctp:41
+#: /views/elements/message_status.ctp:46
+#: /views/processes/index.ctp:42
+msgid "N/A"
+msgstr ""
+
+#: /views/elements/message_status.ctp:63
 msgid "Never"
 msgstr ""
 
-#: /views/elements/musicplayer_button.ctp:50
+#: /views/elements/musicplayer_button.ctp:72
 msgid "No audio file available"
 msgstr ""
 
-#: /views/elements/poll_status.ctp:9;26
+#: /views/elements/poll_status.ctp:31;48
 msgid "Pending"
 msgstr ""
 
-#: /views/elements/poll_status.ctp:13;29
+#: /views/elements/poll_status.ctp:35;51
 #: /views/polls/index.ctp:42
 msgid "Open"
 msgstr ""
 
-#: /views/elements/poll_status.ctp:17;32
+#: /views/elements/poll_status.ctp:39;54
 msgid "Closed"
 msgstr ""
 
-#: /views/elements/process_status.ctp:9;9;22
+#: /views/elements/process_status.ctp:31;31;44
 msgid "OFF"
 msgstr ""
 
-#: /views/elements/process_status.ctp:13;13;25
+#: /views/elements/process_status.ctp:35;35;47
 msgid "ON"
 msgstr ""
 
-#: /views/helpers/formatting.php:29
+#: /views/helpers/formatting.php:48
 msgid "h"
 msgstr ""
 
-#: /views/helpers/formatting.php:35
+#: /views/helpers/formatting.php:54
 msgid "min"
 msgstr ""
 
-#: /views/helpers/formatting.php:40
+#: /views/helpers/formatting.php:59
 msgid "sec"
 msgstr ""
 
@@ -965,7 +1011,7 @@ msgstr ""
 
 #: /views/ivr_menus/add.ctp:97
 #: /views/ivr_menus/edit.ctp:125
-msgid "-Select node-"
+msgid "-Select menu option-"
 msgstr ""
 
 #: /views/ivr_menus/edit.ctp:31
@@ -973,8 +1019,8 @@ msgid "Edit voice menu"
 msgstr ""
 
 #: /views/ivr_menus/edit.ctp:43;44;45
-msgid ""
-msgstr ""
+msgid " "
+msgstr " "
 
 #: /views/ivr_menus/edit.ctp:48;49;50
 msgid "Default: "
@@ -1031,11 +1077,7 @@ msgid "Greeting"
 msgstr ""
 
 #: /views/ivr_menus/index.ctp:42
-#: /views/messages/archive.ctp:49
-#: /views/messages/edit.ctp:84
-#: /views/messages/index.ctp:56
-#: /views/nodes/index.ctp:46
-msgid "Created"
+msgid "IVR code"
 msgstr ""
 
 #: /views/ivr_menus/index.ctp:43
@@ -1142,6 +1184,13 @@ msgstr ""
 #: /views/messages/edit.ctp:71
 #: /views/messages/index.ctp:54
 msgid "Rate"
+msgstr ""
+
+#: /views/messages/archive.ctp:49
+#: /views/messages/edit.ctp:84
+#: /views/messages/index.ctp:56
+#: /views/nodes/index.ctp:46
+msgid "Created"
 msgstr ""
 
 #: /views/messages/archive.ctp:51
@@ -1467,6 +1516,10 @@ msgstr ""
 
 #: /views/pages/functionality/dashboard.ctp:35
 msgid "<p>Software versions of database, web server, FreeSWITCH and dispatcher are displayed. The versions are dynamically updated when software updates take place."
+msgstr ""
+
+#: /views/pages/functionality/dashboard.ctp:38
+msgid "Hardware"
 msgstr ""
 
 #: /views/pages/functionality/dashboard.ctp:39
@@ -1800,11 +1853,6 @@ msgstr ""
 msgid "Are you sure you want to delete this poll?"
 msgstr ""
 
-#: /views/polls/index.ctp:77
-#: /views/processes/index.ctp:85
-msgid "System time"
-msgstr ""
-
 #: /views/polls/index.ctp:83
 msgid "No polls exists. Please create one by click on the green button to the right."
 msgstr ""
@@ -1849,25 +1897,17 @@ msgstr ""
 msgid "Processes"
 msgstr ""
 
-#: /views/processes/index.ctp:48
-msgid "Last seen"
-msgstr ""
-
-#: /views/processes/index.ctp:49;74
+#: /views/processes/index.ctp:49;76
 msgid "Running since"
 msgstr ""
 
-#: /views/processes/index.ctp:70
+#: /views/processes/index.ctp:72
 msgid "Not running"
 msgstr ""
 
-#: /views/processes/index.ctp:76
+#: /views/processes/index.ctp:78
 #: /views/processes/software.ctp:28
 msgid "FreeSWITCH"
-msgstr ""
-
-#: /views/processes/index.ctp:84
-msgid "Generated"
 msgstr ""
 
 #: /views/processes/software.ctp:27

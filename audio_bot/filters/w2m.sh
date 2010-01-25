@@ -4,8 +4,8 @@
 # Freedom Fone 2010
 
 DEBUG=no
-#LAME=/usr/bin/lame
-LAME=/usr/local/freeswitch/bin/lame397
+LAME=/usr/bin/lame
+#LAME=/usr/local/freeswitch/bin/lame397
 
 if [ -z "$1" ]; then 
               echo $0: WAV/MP3-MP3/WAV Audio Converter.   

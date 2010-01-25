@@ -21,7 +21,9 @@ PIDFILE=/usr/local/freeswitch/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 FS_USER=freeswitch
-FS_GROUP=freeswitch
+#CHECK THIS!
+#With -g we get problems with audio/dialout groups
+#FS_GROUP=freeswitch
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0

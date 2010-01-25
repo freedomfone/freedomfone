@@ -280,7 +280,6 @@ gui/app/webroot/css/cake.generic.css -text
 gui/app/webroot/css/customise.css -text
 gui/app/webroot/css/layout.css -text
 gui/app/webroot/css/style.css -text
-gui/app/webroot/css/template_css.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
 gui/app/webroot/freedomfone -text

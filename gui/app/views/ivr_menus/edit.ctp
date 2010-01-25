@@ -122,14 +122,14 @@ $path = $ivr['path'].IID."/".$ivr['dir_node'];
        $row[$i]=array(
 	array("<h3>".__('Press',true)." ".($i+1)."</h3>",array('width'=>'100px')),
 	$radio1, 
-	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>__('-Select menu option-',true) )),
+	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>__('-Select audio file-',true) )),
 	$listen,
 	$radio2, 
 	__("Leave-a-message",true)
 	);
      }
 
-     echo "<table width='600px'>";
+     echo "<table width='700px'>";
      echo $html->tableCells($row);
      echo "</table>";
 

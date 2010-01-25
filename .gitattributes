@@ -75,12 +75,10 @@ esl/native/samples/test.php -text
 esl/php/fs_sock.php -text
 extras/fix_perms_fs.sh -text
 extras/fix_perms_gui.sh -text
-extras/fs_debug.sh -text
 extras/lame397 -text
 extras/php2twitter.php -text
 extras/setmixers -text
 extras/sources.list.debian5 -text
-extras/watchdog.sh -text
 freeswitch/conf/autoload_configs/README -text
 freeswitch/conf/autoload_configs/asound.conf -text
 freeswitch/conf/autoload_configs/gsmopen.conf.xml -text

@@ -29,7 +29,7 @@ define("DefaultXSL", "default.xsl");
 define("BlackListXSL", "blacklist.xsl");
 define("DirXSL", BaseDir."dispatcher_in/templates/");
 define("LogFile", "/tmp/dispatcher_in.log");
-define("LocalDomain", "http://demo.freedomfone.org/freedomfone/");
+define("LocalDomain", "http://localhost/freedomfone/");
 define("ESLPath", BaseDir."/esl/native/ESL.php");
 define("PidFile", BaseDir."gui/app/webroot/system/pid/dispatcher_in.pid");
 define("VersionFile", BaseDir."gui/app/webroot/system/version/dispatcher_in");

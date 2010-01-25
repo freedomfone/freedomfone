@@ -18,6 +18,7 @@ RELOAD="gsm reload"
 PHP=/usr/bin/php
 GSMOPEN_BOOT_LOG=/var/tmp/gsmopen_boot.log
 AMIXER=/usr/bin/amixer
+APLAY=/usr/bin/aplay
 CARD_LIST="0 1 2"
 
 
@@ -35,7 +36,7 @@ case ${1:-} in
 		$AMIXER -c ${i}  -q set Mic cap mute 70%        >/dev/null 2>&1
 		$AXIMER -c ${i}  -q set "Auto Gain Control" off >/dev/null 2>&1
 	done
-	#	sleep 60
+		sleep 60
      	set +e
 	$PHP $APICLIENT "$STATUS" |grep "imei\|imsi\|interface_id\|interface_name"  
 	$PHP $APICLIENT "$STATUS" > $GSMOPEN_BOOT_LOG  
@@ -49,10 +50,17 @@ case ${1:-} in
     ;;
     reload)
                 $PHP $APICLIENT "$RELOAD" |grep reload
-   ;;
+    ;;	 
+    devices)
+		echo "Audio Devices List"
+		$APLAY -l
+	
+		echo "Serial Devices List"
+		ls -al /dev/ttyACM*  2>/dev/null
+    ;;
 
     *)
-      echo "Usage: ${0:-} {start|status}" >&2
+      echo "Usage: ${0:-} {start|status|reload|devices}" >&2
       exit 1
     ;;
 esac

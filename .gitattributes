@@ -2,7 +2,6 @@
 /AUTHORS -text
 /COPYING -text
 /README -text
-/README.pictus.tree -text
 /TODO -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text

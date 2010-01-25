@@ -29,11 +29,13 @@ case ${1:-} in
 	log_daemon_msg "Gsmopen, fixing audio levels (waiting 60 seconds)" 
 	for i in $CARD_LIST; do
 		#$AMIXER -c ${i}  -q set Mic 0% mute
-		$AMIXER -c ${i}  -q set Speaker 70% unmute >/dev/null 2>&1
+		#TTS Volume	
+		$AMIXER -c ${i}  -q set Speaker 50% unmute >/dev/null 2>&1
+		#Mobile client gain
 		$AMIXER -c ${i}  -q set Mic cap mute 70%        >/dev/null 2>&1
 		$AXIMER -c ${i}  -q set "Auto Gain Control" off >/dev/null 2>&1
 	done
-		sleep 60
+	#	sleep 60
      	set +e
 	$PHP $APICLIENT "$STATUS" |grep "imei\|imsi\|interface_id\|interface_name"  
 	$PHP $APICLIENT "$STATUS" > $GSMOPEN_BOOT_LOG  

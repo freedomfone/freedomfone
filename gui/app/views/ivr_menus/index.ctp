@@ -39,7 +39,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      	__("Default",true),
  	$paginator->sort(__("Title",true), 'title'),
  	$paginator->sort(__("Greeting",true), 'rate'),
- 	$paginator->sort(__("Created",true), 'created'),
+ 	$paginator->sort(__("IVR code",true), 'modified'),
  	$paginator->sort(__("Last modified",true), 'modified'),
 	__("Edit",true),
 	__("Delete",true)));
@@ -62,7 +62,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 
 	$title         = $ivr_menu['IvrMenu']['title'];
 	$message_long  = $ivr_menu['IvrMenu']['message_long'];
-	$created       = $time->niceShort($ivr_menu['IvrMenu']['created']);
+	$ivr_code      = $ivr_menu['IvrMenu']['modified'];
 	$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
@@ -71,7 +71,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 		$default,
 		array($title,array('width'=>'100px')),
 		$message_long,
-		$created,		
+		$ivr_code,		
 		$modified,
 		array($edit,array('align'=>'center')),
 		array($delete,array('align'=>'center')));

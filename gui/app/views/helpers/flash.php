@@ -30,6 +30,7 @@
  * @version 1.2
  * @modified 19. nov. 2008
  */
+
 class FlashHelper extends AppHelper {    
     var $helpers = array('Javascript');
     /**

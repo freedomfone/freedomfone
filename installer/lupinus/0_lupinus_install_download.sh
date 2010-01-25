@@ -57,7 +57,7 @@ apt-get install autoconf automake1.9 libtool build-essential libncurses5-dev \
 vim subversion openssh-server vim wireshark \
 apache2 php5 php5-curl php5-cli php5-mysql php5-xsl mysql-server libapache2-mod-php5 \
 mailx iwatch lame libgsmme-dev \
-libnspr4-dev libasound2-dev libx11-dev
+libnspr4-dev gettext libasound2-dev libx11-dev
 stop
 
 step "DEVEL: Requirements for ESL.so"

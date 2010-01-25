@@ -101,14 +101,15 @@ CREATE TABLE `cdr` (
   `channel_state` varchar(50) default NULL,
   `epoch` int(10) unsigned default NULL,
   `call_id` varchar(100) NOT NULL,
-  `caller_name` varchar(100) default NULL,
-  `caller_number` varchar(100) default NULL,
+  `caller_name` varchar(50) default NULL,
+  `caller_number` varchar(50) default NULL,
   `extension` smallint(6) default NULL,
   `application` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
 
 --
 -- Table structure for table `ivr_menus`
@@ -347,14 +348,39 @@ CREATE TABLE `votes` (
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Table structure for table `channels`
+--
 
--- Dump completed on 2010-01-20 16:41:38
+DROP TABLE IF EXISTS `channels`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `channels` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `epoch` int(11) unsigned default NULL,
+  `interface_name` varchar(50),
+  `interface_id` smallint,
+  `active` boolean,
+  `not_registered` boolean,  
+  `home_network_registered` boolean,
+  `roaming_registered` boolean,
+  `got_signal` smallint,
+  `running` boolean,
+  `imei` varchar(100),
+  `imsi` varchar(100),
+  `controldev_dead` boolean,
+  `controldevice_name` varchar(50),
+  `no_sound` boolean,
+  `playback_boost` float(8,3),
+  `capture_boost` float(8,3),
+  `ib_calls` int(6),
+  `ob_calls` int(6),
+  `ib_failed_calls` int(6),
+  `ob_failed_calls` int(6),
+  `interface_state` int(6),
+  `phone_callflow` int(6),
+  `during-call` boolean,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;

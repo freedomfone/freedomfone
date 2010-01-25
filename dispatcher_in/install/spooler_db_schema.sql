@@ -26,7 +26,7 @@ CREATE TABLE `bin` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `Event-Subclass` varchar(50) default NULL,
   `FreeSWITCH-IPv4` varchar(200) default NULL,
-  `Event-Date-Timestamp` varchar(200) default NULL,
+  `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `Body` varchar(200) default NULL,
   `status` tinyint(1) default '0',
   `from` varchar(100) default NULL,
@@ -73,12 +73,12 @@ SET character_set_client = utf8;
 CREATE TABLE `cdr` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `FreeSWITCH-IPv4` varchar(200) default NULL,
-  `Event-Date-Timestamp` varchar(200) default NULL,
+  `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `Channel-State` varchar(50) default NULL,
   `Channel-State-Number` varchar(100) default NULL,
   `Unique-ID` varchar(50) default NULL,
-  `Caller-Caller-ID-Name` smallint(6) default NULL,
-  `Caller-Caller-ID-Number` smallint(6) default NULL,
+  `Caller-Caller-ID-Name` varchar(50),
+  `Caller-Caller-ID-Number` varchar(50),
   `Caller-Destination-Number` varchar(50) default NULL,
   `Caller-Unique-ID` varchar(50) default NULL,
   `status` tinyint(1) default '0',
@@ -122,7 +122,7 @@ CREATE TABLE `monitor_ivr` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `Event-Subclass` varchar(50) default NULL,
   `FreeSWITCH-IPv4` varchar(200) default NULL,
-  `Event-Date-Timestamp` varchar(200) default NULL,
+  `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `FF-IVR-Unique-ID` varchar(100) default NULL,
   `FF-IVR-IVR-Name` varchar(50) default NULL,
   `FF-IVR-IVR-Node-Digit` smallint(6) default '0',
@@ -145,23 +145,47 @@ CREATE TABLE `poll_in` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `Event-Subclass` varchar(50) default NULL,
   `FreeSWITCH-IPv4` varchar(200) default NULL,
-  `Event-Date-Timestamp` varchar(200) default NULL,
+  `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `Body` varchar(200) default NULL,
-  `status` tinyint(1) default '0',
   `from` varchar(100) default NULL,
   `login` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
+  `status` tinyint(1) default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-01-20 16:47:25
+DROP TABLE IF EXISTS `gsmopen`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `gsmopen` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `Event-Subclass` varchar(50) default NULL,
+  `Event-Date-Timestamp` bigint(20) unsigned default NULL,
+  `interface_name` varchar(50),
+  `interface_id` smallint,
+  `active` boolean,
+  `not_registered` boolean,  
+  `home_network_registered` boolean,
+  `roaming_registered` boolean,
+  `got_signal` smallint,
+  `running` boolean,
+  `imei` varchar(100),
+  `imsi` varchar(100),
+  `controldev_dead` boolean,
+  `controldevice_name` varchar(50),
+  `no_sound` boolean,
+  `playback_boost` float(8,3),
+  `capture_boost` float(8,3),
+  `ib_calls` int(6),
+  `ob_calls` int(6),
+  `ib_failed_calls` int(6),
+  `ob_failed_calls` int(6),
+  `interface_state` int(6),
+  `phone_callflow` int(6),
+  `during-call` boolean,
+  `status` boolean default 0,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;

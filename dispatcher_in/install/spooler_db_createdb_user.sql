@@ -32,6 +32,10 @@ GRANT ALL PRIVILEGES ON spooler_in.cdr TO 'cdr'@'%' IDENTIFIED BY 'thefone' WITH
 GRANT ALL PRIVILEGES ON spooler_in.cdr TO 'cdr'@'localhost' IDENTIFIED BY 'thefone' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON spooler_in.cdr TO 'cdr'@'localhost.localdomain' IDENTIFIED BY 'thefone' WITH GRANT OPTION;
 
+GRANT ALL PRIVILEGES ON spooler_in.gsmopen TO 'gsmopen'@'%' IDENTIFIED BY 'thefone' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON spooler_in.gsmopen TO 'gsmopen'@'localhost' IDENTIFIED BY 'thefone' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON spooler_in.gsmopen TO 'gsmopen'@'localhost.localdomain' IDENTIFIED BY 'thefone' WITH GRANT OPTION;
+
 
 create DATABASE if not exists `spooler_in`;
 flush privileges;

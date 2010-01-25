@@ -1,8 +1,26 @@
 <?php
-/**
- * Class for socket connection with dialer
+/****************************************************************************
+ * dialout.php		- Class for socket connecton with dialer.
+ * version 		- 1.0.359
+ * 
+ * Version: MPL 1.1
  *
- */
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *  Raymond Chandler intralaman@freeswitch.org
+ *
+ *
+ ***************************************************************************/
 
 class dialer_sock {
     /**
@@ -95,19 +113,19 @@ class dialer_sock {
      * @return boolean
      */
    function sock_connect($sock_array) {
-        //$this -> debug($sock_array);
+
         $host = $sock_array['host'];
         $port = $sock_array['port'];
         $timeout = $sock_array['timeout'];
         $this -> sock = fsockopen($host, $port, $errno, $errstr, $timeout);
      
      if (!$this -> sock) {
-            //$error = sprintf('Unable to connect to %s:%s Error #%s: %s', $host, $port, $errno, $errstr );
+
 	    $this->log("Unable to connect to FreeSWITCH","ERROR");
-           // trigger_error($error, E_USER_ERROR);
+
             return false;
         } else {
-            //$this -> debug(stream_get_meta_data($this -> sock));
+
             $this -> set_stream_opts($sock_array);
             return true;
         }

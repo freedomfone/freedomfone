@@ -61,9 +61,11 @@ echo "<h1>".__('Processes',true)."</h1>";
 	       //$text = $html->div('process',$title).$start_time;
 	       $text = $start_time;
 	       }
-	
-     	$row[] = array($status, $title, $text, $interupt,array($start,array('align'=>'center')), array($stop,array('align'=>'center')));
 
+	       //Do not display outgoing dispatcher
+	       if($entry['Process']['id']!=2){	
+     	       	$row[] = array($status, $title, $text, $interupt,array($start,array('align'=>'center')), array($stop,array('align'=>'center')));
+		}
 	}
 
 
@@ -81,10 +83,11 @@ echo "<h1>".__('Processes',true)."</h1>";
      echo "</table>"; 
 
      echo "<table>";
-     echo $html->tableCells(array(__('Generated',true).' :', $time->format('H:i:s A',$generated)));
-     echo $html->tableCells(array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time())));
-     //echo $html->div('box',__('System time',true).": ".$time->format('H:i:s A (e \G\M\T O) ', time())); 
- echo "</table>"; 
+     $lines[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>100,'valign'=>'bottom')));
+     $lines[] = array(__('Generated',true).' :', $time->format('H:i:s A',$generated));
+     $lines[] = array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time()));
+     echo $html->tableCells($lines);
+     echo "</table>"; 
      }
 
 

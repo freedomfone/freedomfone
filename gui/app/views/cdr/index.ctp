@@ -37,6 +37,7 @@ echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
+echo "<h1>".__('Call Data Records',true)."</h1>";
      if ($cdr){
 
      echo $html->div("",$paginator->counter(array('format' => __("CDR:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
@@ -57,7 +58,6 @@ echo $form->end();
  	$paginator->sort(__("Call ID",true), 'call_id'),
  	$paginator->sort(__("Caller number",true), 'caller_number'),
  	$paginator->sort(__("Application",true), 'application'),
- 	$paginator->sort(__("Protocol",true), 'application'),
 	__("Delete",true)));
 
 
@@ -71,7 +71,7 @@ echo $form->end();
 	$type	     = $entry['Cdr']['channel_state'];
 	$application = $entry['Cdr']['application'];
 	$call_id     = $entry['Cdr']['call_id'];
-	$proto     = $entry['Cdr']['proto'];
+
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
@@ -83,7 +83,6 @@ echo $form->end();
 		$call_id,
 		$caller_number,
 		$application,
-		$proto,
 		array($delete,array('align'=>'center')));
 	
 	}

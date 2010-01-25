@@ -192,7 +192,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Hardware",true),'/hardware'); ?>
+<?php echo $html->link(__("GSM channels",true),'/channels'); ?>
 </li>
 
 

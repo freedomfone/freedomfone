@@ -52,10 +52,10 @@ class Process extends AppModel{
 	       	       //Process is running but status = OFF
 	       	       if($this->isRunning($pid) && !$status){
 	
-			 $this->data['Process']['data'][$key]['Process']['status'] = '1';
+			$this->data['Process']['data'][$key]['Process']['status'] = '1';
+			$this->data['Process']['data'][$key]['Process']['start_time'] = time();
 			
 			$update = $this->data['Process']['data'][$key];
-	
 			$this->save($update);
     			 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
 
@@ -69,6 +69,7 @@ class Process extends AppModel{
 				 $this->save($entry);
     		      		 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
 		       }
+
 
       	       }
 

@@ -33,11 +33,8 @@ class ProcessesController extends AppController{
       function index(){
       	$this->pageTitle = __('System Health',true);
 
-     	if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-	   	$this->requestAction('/processes/refresh');
-     	   	   }
-	}	   
+	$this->requestAction('/processes/refresh');
+
 
 	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");

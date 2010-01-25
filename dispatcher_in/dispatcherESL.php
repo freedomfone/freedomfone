@@ -1,6 +1,10 @@
 <?php
 /****************************************************************************
  * dispatcherESL.php	- Incoming dispatcher based on FreeSWITCH ESL. Manages events from FreeSWITCH to spooler (db).
+ *       	   	  Subscribes to the following events:
+ *                             message CHANNEL_STATE
+ *      	   	       custom message tickle leave_a_message monitor_ivr gsmopen::dump_event
+ *
  * version 		- 1.0.3
  * 
  * Version: MPL 1.1
@@ -44,7 +48,7 @@ global $_SocketParam;
 global $_DispatcherDB;
 global $_AllowCURL;
 global $mypid;
-//global $obj;
+
 
 
 $host = $_SocketParam['host'];
@@ -134,9 +138,9 @@ $mypid = getmypid();
              } else { 
 		logESL("Successfully connected to spooler database","INFO",1); 
 		
-	         //3. Subscribe to events	   
+	         //3. Subscribe to events
        	   	   $sock->sendRecv("event xml message CHANNEL_STATE");
-       	   	   $sock->sendRecv("event xml custom message tickle leave_a_message monitor_ivr");
+       	   	   $sock->sendRecv("event xml custom message tickle leave_a_message monitor_ivr gsmopen::dump_event");
 		   logESL("Successfully subscribed to events","INFO",1); 
 
 		   //4. Wait for events
@@ -229,7 +233,6 @@ function applyXSL($event){
 	 $event_name_alt  = $xml->headers->{'Event-Name'};
 
 
-
 	 //PATCH FOR BROKEN RESPONSE OF getType() in ESL for CHANNEL_STATE
 	 if($event_name!=$event_name_alt){ $event_name= $event_name_alt;}
 
@@ -262,6 +265,11 @@ function applyXSL($event){
 
 	                    case 'monitor_ivr':
 	                    $xsl= DirXSL.'monitor_ivr.xsl';
+	                    break;
+
+
+	                    case 'gsmopen%3A%3Adump_event':
+	                    $xsl= DirXSL.'gsmopen.xsl';
 	                    break;
                      }
                  }
@@ -342,6 +350,11 @@ function applyRules($string){
 	                 case 'monitor_ivr':
 	                 $application[]='monitor_ivr';
 			 logESL("Application match: monitor_ivr (custom)","INFO",2); 
+	 	         break;
+
+	                 case 'gsmopen%3A%3Adump_event':
+	                 $application[]='gsmopen';
+			 logESL("Application match: gsmopen (custom)","INFO",2); 
 	 	         break;
 
 	               }
@@ -427,7 +440,7 @@ function insertValues($table,$fields,$values){
  */
 function requestURL($apps){
 global $_AllowCURL;
-global $obj;
+
 
       foreach ($apps as $app){
  	 if(array_key_exists($app,$_AllowCURL)){	
@@ -499,8 +512,6 @@ function addQuotes($data,$quote){
 
 
 function analyzeBody($body){
-
-global $obj;
 
         $data =  explode(' ',$body);
 	foreach ($data as $token){

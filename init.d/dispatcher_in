@@ -15,6 +15,8 @@ BASEDIR=/usr/local/freedomfone
 DISPATCHER=$BASEDIR/dispatcher_in/dispatcherESL.php
 DISPATCHERUSER=www-data
 PIDFILE=$BASEDIR/gui/app/webroot/system/pid/dispatcher_in.pid
+PIDFILE_PID=""
+PID_PS=""
 START_DAEMON=true
 LOGFILE=/var/tmp/dispatcher_in.log
 
@@ -33,8 +35,18 @@ is_true()
 
 case "${1:-}" in
     start)
-      if [ -f "$PIDFILE" ] ; then
-         log_warning_msg "Warning: dispatcher daemon already running, doing nothing therefore."
+	#We check the process release exists
+      if [ -f "$PIDFILE" ]; then
+      PIDFILE_PID=`cat $PIDFILE`
+      PID_PS=`ps -ef |grep dispatcherESL.php |grep '/usr/bin/php' | awk '{print $2}'`
+      fi
+
+     if [ "$PIDFILE_PID" != "$PID_PS" ] ; then 
+         log_warning_msg "Warning: dispather crashed! Pid file exists but not process!"
+      fi
+
+     if [ -f "$PIDFILE" ] && [ -n "$PID_PS" ] ; then
+         log_warning_msg "Warning: dispatcher daemon already running ($PIDFILE_PID,$PID_PS), doing nothing therefore."
          exit 0
       fi
 

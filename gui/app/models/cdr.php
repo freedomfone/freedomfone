@@ -41,7 +41,7 @@ class Cdr extends AppModel{
 
 	function refresh(){
 
-	$applications = Configure::read('EXTENSIONS');
+	$mapping = Configure::read('EXT_MAPPING');
 
            //** Fetch CDR from spooler **//
       	      $array = Configure::read('cdr');
@@ -55,7 +55,7 @@ class Cdr extends AppModel{
 
 	      	  $channel_state = $entry['Channel-State'];
 		  $call_id = $entry['Unique-ID'];
-		  $application=__('N/A',true);
+		  $application='';
 		  $ext = $entry['Caller-Destination-Number'];
 
 	       	  $this->set('epoch' , floor($entry['Event-Date-Timestamp']/1000000));
@@ -67,21 +67,21 @@ class Cdr extends AppModel{
 	       	  $this->set('extension', $ext);
     	       	  //$this->set('proto',$entry['proto']);
 
-		  while ($app = current($applications)) {
-    		    if ($app ==  $ext) {
-        	       	 $application = key($applications);
-    		       }
-    		    next($applications);
-		   }
-		   
+		  foreach($mapping as $app => $reg){
+
+		  preg_match($reg,$ext,$matches);
+		    if($matches){	
+	 	       	$application = $app;
+		     }
+		  }
 		  $this->set('application', $application);
 		  $this->create($this->data);
 	  	  $this->save($this->data);
 
-		  //Add routing(start) and destroy(end) to monitor_ivr if application='ivr'
+		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
 
 
-		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
+		  if($application =='Voice menu' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
 
 		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);

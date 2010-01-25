@@ -56,7 +56,7 @@ class Bin extends AppModel{
      	    while ($entry = $obj->getNext('update')){
 
 	      $created = floor($entry['Event-Date-Timestamp']/1000000);
-	      $sender = $entry['from'];
+	      $sender = ereg_replace('%2B','+',$entry['from']);
 	      $proto = $entry['proto'];
 
       	      $data= array ( 'instance_id'  =>$instance_id, 'body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);

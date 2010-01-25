@@ -151,6 +151,7 @@ gui/app/controllers/callback_in_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
 gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text
+gui/app/controllers/channels_controller.php -text
 gui/app/controllers/components/empty -text
 gui/app/controllers/ivr_menus_controller.php -text
 gui/app/controllers/lm_menus_controller.php -text
@@ -174,6 +175,7 @@ gui/app/models/callback_in.php -text
 gui/app/models/callback_setting.php -text
 gui/app/models/category.php -text
 gui/app/models/cdr.php -text
+gui/app/models/channel.php -text
 gui/app/models/datasources/empty -text
 gui/app/models/ivr_menu.php -text
 gui/app/models/lm_menu.php -text

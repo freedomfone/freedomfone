@@ -65,6 +65,13 @@ $config['cdr']= array(
 	       'password' => 'thefone',
 	       'database' => 'spooler_in',
 	       );
+
+$config['gsmopen']= array(
+      	       'host'     => 'localhost',
+	       'user'     => 'gsmopen',
+	       'password' => 'thefone',
+	       'database' => 'spooler_in',
+	       );
 	       	      
 
 /*
@@ -136,6 +143,11 @@ $config['ESL']	= array(
 $config['EXTENSIONS'] = array(
 		      'lam' => '2000',
 		      'ivr' => '4000',
+		      );
+
+$config['EXT_MAPPING'] = array(
+		      'Leave-a-message' => '/^2(\d{3})/',
+		      'Voice menu' => '/^4(\d{3})/',
 		      );
 
 ?>

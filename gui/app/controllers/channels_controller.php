@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * callback_settings_controller.php		- Controller for callback settings.
- * version 		 			- 1.0.368
+ * channels_controller.ctp	- Controller for GSMopen channels.
+ * version 			- 1.0.364
  * 
  * Version: MPL 1.1
  *
@@ -22,29 +22,33 @@
  *
  ***************************************************************************/
 
-class CallbackSettingsController extends AppController{
+class ChannelsController extends AppController{
 
-	var $name = 'CallbackSettings';
-	var $helpers = array('Flash','Session');      
+      var $name = 'Channels';
+    
+
+      function index(){
+
+      	$this->Channel->fsCommand("gsmopen_dump list");
+      	$this->pageTitle = __('System Health :: GSM channels',true);
+	$this->requestAction('/channels/refresh');
+       	$this->set('data',$this->Channel->findAll());
+
+      }
 
 
 
-	function index(){
 
-      	$this->pageTitle = 'Callback : Settings';           
+      function refresh(){
 
-		 $iid=IID;
+      	   $this->Session->write('Channel.refresh', time());
+           $this->autoRender = false;
+       	   $this->Channel->refresh();
 
-		if (empty($this->data)) {
-		       $this->data = $this->CallbackSetting->find('first', array('conditions' => array('instance_id' => $iid)));
-		}
+      }
 
-		if (!empty($this->data)) {
-
-		   $this->data['CallbackSetting']['instance_id'] = $iid;
-		   $this->CallbackSetting->save($this->data);
-		}
-	}
 
 }
-?>
+
+
+

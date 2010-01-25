@@ -27,7 +27,7 @@ class PollsController extends AppController{
 
       var $name = 'Polls';
 
-      var $helpers = array('Time','Html', 'Session','Form','CssMenu','Formatting');
+      var $helpers = array('Time','Html', 'Session','Form','Formatting');
 
       var $total;
 

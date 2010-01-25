@@ -178,8 +178,14 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 						$success = move_uploaded_file($file['tmp_name'], $url);
 					}
 
+
 					// if upload was successful
 					if($success) {
+
+						$old = umask(0);
+						chmod($url, 0644);
+						umask($old);
+
 						// save the url of the file
 						$result['urls'][] = $url;
 					} else {

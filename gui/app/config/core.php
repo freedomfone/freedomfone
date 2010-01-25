@@ -232,7 +232,7 @@
 
 define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
-define ('MY_DOMAIN','http://localhost/freedomfone/');
+define ('MY_DOMAIN','http://192.168.46.238/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 
 Configure::write('Config.language', 'eng');

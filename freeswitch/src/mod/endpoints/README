@@ -1,0 +1,5 @@
+gsmopen has been upstreamed to freeswitch
+Code and documentation
+svn co http://svn.freeswitch.org:81/svn/freeswitch/branches/gmaruzz/mod_gsmopen
+http://wiki.freeswitch.org/wiki/GSMopen
+

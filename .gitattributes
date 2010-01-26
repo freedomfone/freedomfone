@@ -129,6 +129,7 @@ freeswitch/scripts/freedomfone/monitor_ivr/main.js -text
 freeswitch/scripts/freedomfone/sms/README -text
 freeswitch/scripts/freedomfone/sms/main.js -text
 freeswitch/scripts/freedomfone/tickle/main.js -text
+freeswitch/src/mod/endpoints/README -text
 gui/.htaccess -text
 gui/apache2/freedomfone -text
 gui/app/.htaccess -text

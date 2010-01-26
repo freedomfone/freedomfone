@@ -10,4 +10,6 @@
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh  >/dev/null 2>&1
 # App: System Health
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh  >/dev/null 2>&1
+# App: GSMOPEN 
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh  >/dev/null 2>&1
 #########################################################################################################

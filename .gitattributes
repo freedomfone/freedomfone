@@ -130,6 +130,7 @@ freeswitch/scripts/freedomfone/sms/README -text
 freeswitch/scripts/freedomfone/sms/main.js -text
 freeswitch/scripts/freedomfone/tickle/main.js -text
 freeswitch/src/mod/endpoints/README -text
+freeswitch/src/mod/endpoints/mod_gsmopen -text
 freeswitch/src/mod/endpoints/mod_gsmopen_lupinus/Makefile -text
 freeswitch/src/mod/endpoints/mod_gsmopen_lupinus/Makefile.am -text
 freeswitch/src/mod/endpoints/mod_gsmopen_lupinus/README -text

@@ -122,7 +122,7 @@ $config['IVR_DEFAULT']=	array(
 
 $config['CALLBACK_DEFAULT']=	array(
 	        'sms_code'	   => 'CALLBACK',
-                'response_type'     =>  array ('4000' =>'IVR','2000' =>'Leave-a-Message'),
+                'response_type'     =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
                 'limit_user'       => '10',
                 'limit_time'       => '24');
 
@@ -141,8 +141,8 @@ $config['ESL']	= array(
 	      'path' =>BASE_DIR."esl/native/ESL.php");
 
 $config['EXTENSIONS'] = array(
-		      'lam' => '2000',
-		      'ivr' => '4000',
+		      'lam' => '2100',
+		      'ivr' => '4100',
 		      );
 
 $config['EXT_MAPPING'] = array(

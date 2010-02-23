@@ -26,12 +26,12 @@ echo "========================================================================="
 
 
 step "CEPSTRAL: Installing Cepstral SDK"
-cd $SVNROOT/$CEPSTRALPACK; ./install.sh
+#cd /usr/local/src/$CEPSTRALPACK; ./install.sh
 stop
 
 
 step "CEPSTRAL: Adding libraries to system"
-echo "/usr/local/swift/lib" > /etc/ld.so.conf.d/cepstral.conf
+echo "/opt/swift/lib" > /etc/ld.so.conf.d/cepstral.conf
 ldconfig
 stop
 
@@ -42,21 +42,25 @@ stop
 
 
 step "GSMOPEN: Adding endpoint to Freeswitch trunk code"
-ln -s $SVNROOT/freeswitch/src/mod/endpoints/mod_gsmopen $FS_SRC/src/mod/endpoints/mod_gsmopen  
+#ln -s $SVNROOT/freeswitch/src/mod/endpoints/mod_gsmopen $FS_SRC/src/mod/endpoints/mod_gsmopen  
+stop
+
+step "GSMOPEN: Blacklisting pl2303"
+cat $SVNROOT/extras/blacklist.pl2303 >> /etc/modprobe.d/blacklist
 stop
 
 step "FS: Enabling extra FS modules"
-cp $SVNROOT/freeswitch/modules.conf $FS_SRC/modules.conf
+#cp $SVNROOT/freeswitch/modules.conf $FS_SRC/modules.conf
 stop
 
 step "FS: First Freeswitch compilation (this can take 1h)"
-cd $FS_SRC; sh bootstrap.sh 
-cd $FS_SRC/freeswitch-1.0.5; ./configure
-cd $FS_SRC/freeswitch-1.0.5; make			
+#cd $FS_SRC; sh bootstrap.sh 
+#cd $FS_SRC; ./configure
+#cd $FS_SRC; make			
 stop
 
 step "FS: Compiling new components"
-cd $FS_SRC; make; make install
+#cd $FS_SRC; make; make install
 stop
 
 step "FS: Adding autoload_config files... enabling modules, adding confs"
@@ -89,6 +93,7 @@ stop
 step "Fixing init.d scripts"
 cp $SVNROOT/init.d/freeswitch /etc/init.d/
 cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
+cp $SVNROOT/init.d/gsmopen /etc/init.d/
 cp $SVNROOT/init.d/iwatch /etc/init.d/
 cp $SVNROOT/init.d/etc/default/iwatch /etc/default
 chmod 0755 /etc/init.d/freeswitch
@@ -101,7 +106,7 @@ cd /etc/init.d; update-rc.d gsmopen defaults 92
 stop
 
 step "FS APP: Adding user freeswitch"
-useradd freeswith
+useradd freeswitch
 adduser freeswitch dialout
 adduser freeswitch audio 
 stop

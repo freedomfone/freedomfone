@@ -28,6 +28,10 @@ echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
+$info = __('Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components assosiated with telephony keypad selections.',true);
+
+echo $html->div('frameInfo', $html->link($html->image('icons/notepad.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+
 echo "<h1>".__('Voice menus',true)."</h1>";
 
      if ($ivr_menus){

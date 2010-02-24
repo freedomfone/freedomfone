@@ -207,11 +207,13 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                           // Update database field correponding to file 
-                                           $filename = $this->getFilename($fileOK['files'][$key]);
+                                                               $filename = $this->getFilename($fileOK['files'][$key]);
+					     $name= $fileData[$key]['name'];
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part));
-                                           $this->IvrMenu->saveField($field,$filename);
+                                           $this->IvrMenu->saveField($field,$name);
+
+                                           // Update database field correponding to file 
 
 					   $this->log("Msg: INFO; Action: Edit menu; Type: ".$url."; Code: N/A", "ivr");
 				   }
@@ -258,9 +260,6 @@ class IvrMenusController extends AppController{
 	     
 	   //Delete IVR
 
-	   //do not delete demo ivr
-	   if($id !=2){
-
     	     	if($this->IvrMenu->delete($id,true)){
 		   $this->log("Msg: INFO; Action: IVR deleted; Type: ".$id."; Code: N/A", "ivr");
 		   $this->Session->setFlash(__('The voice menu has been deleted.',true),'default',array('class'=>'message_success'));
@@ -276,7 +275,7 @@ class IvrMenusController extends AppController{
 	     		$this->IvrMenu->setNewParent();
 		}	
 
-	   }
+	  
 
 	  	$this->redirect(array('action' => '/index'));
       }

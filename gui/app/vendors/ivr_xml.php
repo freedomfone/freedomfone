@@ -98,6 +98,7 @@ public $ext;
 	$name = $data['id']."_".$data['title'];
 	      }
 	  
+
 	   $title           = $data['title'];
            $message_long    = $data['message_long'];
            $message_short   = $data['message_short'];
@@ -129,7 +130,7 @@ public $ext;
 
 
 	   if($data['file_long'] && !$data['mode_long']){
-		$greet_long = $this->menu_path.$data['file_long'].'.wav';
+		$greet_long = $this->menu_path.$data['id'].'_file_long.wav';
 		}
 	   elseif (trim($message_long)) {
 	   	$greet_long = "say: ".$message_long;
@@ -140,7 +141,7 @@ public $ext;
 
 
 	   if($data['file_short'] && !$data['mode_short']){
-		$greet_short = $this->menu_path.$data['file_short'].'.wav';
+		$greet_short = $this->menu_path.$data['id'].'_file_short.wav';
 		}
 	   elseif (trim($message_short)) {
 	   	$greet_short = "say: ".$message_short;
@@ -151,7 +152,7 @@ public $ext;
 
 
 	   if($data['file_invalid'] && !$data['mode_invalid']){
-		$invalid = $this->menu_path.$data['file_invalid'].'.wav';
+		$invalid = $this->menu_path.$data['id'].'_file_invalid.wav';
 		}
 	   elseif(trim($message_invalid)){
 		$invalid = "say: ".$message_invalid;
@@ -163,7 +164,7 @@ public $ext;
 
 
 	   if($data['file_exit'] && !$data['mode_exit']){
-		$exit = $this->menu_path.$data['file_exit'].'.wav';
+		$exit = $this->menu_path.$data['id'].'_file_exit.wav';
 		}
 	   elseif($message_exit){
 		$exit = "say: ".$message_exit;

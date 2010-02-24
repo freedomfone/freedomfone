@@ -90,7 +90,7 @@ echo $form->hidden('source',array('value'=>'index'));
      echo "</span>";
      }
       else {
-      	   echo "<div class='instruction'>".__("No Menu Option are uploaded. Please upload a Menu Option by clicking on the green button to the right.")."</div>";
+      	   echo "<div class='instruction'>".__("No Menu Option are uploaded. Please upload a Menu Option by clicking the 'Create new' button to the right.")."</div>";
       }
 
 ?>

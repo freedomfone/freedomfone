@@ -84,7 +84,7 @@ echo "<h1>".__("Polls",true)."</h1>";
 
    else {
 
-   echo "<div class='instruction'>".__("No polls exists. Please create one by click on the green button to the right.")."</div>";
+   echo "<div class='instruction'>".__("No polls exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
 
 
    }

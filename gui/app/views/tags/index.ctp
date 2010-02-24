@@ -56,7 +56,8 @@ $session->flash();
 
       }
       else {
-      echo "<div class='instruction'>".__("No tags exist. Please create a tag by clicking on the green button to the right.")."</div>";
+      echo "<div class='instruction'>".__("No tags exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
+
       }
 
 ?>

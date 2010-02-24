@@ -147,11 +147,19 @@ img.icon {
 
 }
 
+.frameInfo {
+
+  float: right;
+  padding: 5px;
+  margin: 5px;
+}
+
+
 .frameRight {
 float: right;
 margin: 5px;
 padding: 5px;
-
+background-color : #fff;
 }
 
 .frameRightAlone {
@@ -226,4 +234,11 @@ padding:0px;
 width: 400px;
 border-bottom: 1px solid #aaa;
 padding: 0px;
+}
+
+
+.long {
+      width: 400px;
+      cursor: help;
+      color: #fff;
 }

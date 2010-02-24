@@ -520,6 +520,7 @@ gui/app/webroot/img/icons/listen.png -text
 gui/app/webroot/img/icons/lock.png -text
 gui/app/webroot/img/icons/lock_unlock.png -text
 gui/app/webroot/img/icons/new.png -text
+gui/app/webroot/img/icons/notepad.png -text
 gui/app/webroot/img/icons/off.png -text
 gui/app/webroot/img/icons/on.png -text
 gui/app/webroot/img/icons/reject.png -text

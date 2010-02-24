@@ -497,6 +497,7 @@ gui/app/webroot/.htaccess -text
 gui/app/webroot/css.php -text
 gui/app/webroot/css/cake.generic.css -text
 gui/app/webroot/css/customise.css -text
+gui/app/webroot/css/jquery.cluetip.css -text
 gui/app/webroot/css/layout.css -text
 gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
@@ -551,7 +552,9 @@ gui/app/webroot/img/top_bg.gif -text
 gui/app/webroot/img/top_shadow.gif -text
 gui/app/webroot/index.php -text
 gui/app/webroot/js/addRemoveElements.js -text
+gui/app/webroot/js/cluetip.js -text
 gui/app/webroot/js/corner.js -text
+gui/app/webroot/js/jquery.cluetip.js -text
 gui/app/webroot/js/jquery.corner.js -text
 gui/app/webroot/js/jquery.js -text
 gui/app/webroot/js/prototype.js -text

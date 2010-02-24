@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add.ctp	- Add node (aka Menu Option for Voice Menus)
- * version 	- 1.0.362
+ * version 	- 1.0.475
  * 
  * Version: MPL 1.1
  *
@@ -35,7 +35,7 @@ echo $html->tableCells(array (
 
 echo $html->tableCells(array (
      array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
-     array(array(__("Valid format: wav",true),"colspan='2' class='formComment'"))));
+     array(array(__("Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));
 
 
 echo "</table>";

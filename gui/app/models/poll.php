@@ -44,7 +44,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	'code' => array(
 			'alphaNumeric' => array(
  				       'rule' => 'alphaNumeric',
- 				       'message' => __('Alphabets and numbers only',true)
+ 				       'message' => __('Letters and numbers only. No spaces or special characters allowed.',true)
  				       ),
  			'between' => array(
  				       'rule' => array('between', 1, 10),

@@ -25,14 +25,15 @@
 
 
 
-		$line = array(__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller number',true),__('Application',true));
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller number',true),__('Application',true));
 		$csv->addRow($line);
 
 	if($data){
 
 		foreach($data as $entry){
 	
-		$line = array( date('Y',$entry['Cdr']['epoch']),
+		$line = array( date('Y-m-d',$entry['Cdr']['epoch']),
+		               date('Y',$entry['Cdr']['epoch']),
 		      	       date('m',$entry['Cdr']['epoch']),
 			       date('d',$entry['Cdr']['epoch']),
 			       date('H:i:s',$entry['Cdr']['epoch']),

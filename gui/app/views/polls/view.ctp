@@ -43,7 +43,7 @@ Incorrect votes that cannot be matched to any existing poll, will be classified 
 
    if ($data){
 
-echo $html->div('frameInfo', $html->link($html->image('icons/notepad.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";

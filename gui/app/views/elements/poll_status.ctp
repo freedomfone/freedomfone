@@ -28,15 +28,15 @@ if(isSet($status,$mode)){
 
 
 		if(!$status){
-   		  echo $html->image("icons/clock.png", array("alt" => __("Pending",true)));
+   		  echo $html->image("icons/clock.png", array("title" => __("Pending",true)));
 		}
 
 		elseif($status==1){
-   		  echo $html->image("icons/lock_unlock.png", array("alt" => __("Open",true)));
+   		  echo $html->image("icons/lock_unlock.png", array("title" => __("Open",true)));
 		}
 
 		elseif($status==2){
-   		  echo $html->image("icons/lock.png", array("alt" => __("Closed",true)));
+   		  echo $html->image("icons/lock.png", array("title" => __("Closed",true)));
 		}
 
 		return $status;

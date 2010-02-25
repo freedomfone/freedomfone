@@ -45,7 +45,7 @@ function __construct($id = false, $table = null, $ds = null) {
 			   ),
 			'alphaNumeric' => array(
 		       	   'rule' => 'alphaNumeric',
- 		           'message' => __('Letters and numbers only. No spaces allowed.',true)
+ 		           'message' => __('Letters and numbers only. No spaces or special characters allowed.',true)
 			   ),
 			'uniqueChtext' => array(
         		    'rule' => array('uniqueChtext', 'chtext'),

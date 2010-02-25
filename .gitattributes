@@ -514,6 +514,7 @@ gui/app/webroot/img/footer_bg.gif -text
 gui/app/webroot/img/html_bg.gif -text
 gui/app/webroot/img/icons/accept.png -text
 gui/app/webroot/img/icons/add.png -text
+gui/app/webroot/img/icons/bulb.png -text
 gui/app/webroot/img/icons/clock.png -text
 gui/app/webroot/img/icons/delete.png -text
 gui/app/webroot/img/icons/edit.png -text

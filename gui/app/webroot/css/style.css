@@ -44,6 +44,15 @@ td {
      color: #333;
 }
 
+td a:link, a:visited, a:active {
+    color: #fe911c; 
+}
+
+
+td a:visited:hover, a:hover {
+    color: #333;
+}
+
 
 tr.darker td {
 

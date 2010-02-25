@@ -54,7 +54,7 @@ echo "<h1>".__('CDR Statistics',true)."</h1>";
 	     $ivrCount =$ivrCount +1;
 	     break;
 
-	     case 'Other SMS':
+	     case 'bin':
 	     $otherCount = $otherCount + 1;
 	     break;
 	     }

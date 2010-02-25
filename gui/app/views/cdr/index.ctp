@@ -69,7 +69,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$date  	     = date('Y-m-d',$entry['Cdr']['epoch']);
 	$time  	     = date('H:i:s A',$entry['Cdr']['epoch']);
 	$type	     = $entry['Cdr']['channel_state'];
-	$application = $entry['Cdr']['application'];
+	$application = $formatting->appMatch($entry['Cdr']['application']);
 	$call_id     = $entry['Cdr']['call_id'];
 
 

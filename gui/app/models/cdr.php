@@ -62,8 +62,10 @@ class Cdr extends AppModel{
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
 
-		  $this->set('caller_name', $entry['Caller-Caller-ID-Name']);
-    	       	  $this->set('caller_number',$entry['Caller-Caller-ID-Number']);
+		  $this->set('caller_name', urldecode($entry['Caller-Caller-ID-Name']));
+    	       	  $this->set('caller_number',urldecode($entry['Caller-Caller-ID-Number']));
+
+
 	       	  $this->set('extension', $ext);
     	       	  //$this->set('proto',$entry['proto']);
 

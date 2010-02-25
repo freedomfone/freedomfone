@@ -31,7 +31,7 @@ $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight di
 
 
 echo $html->div('frameInfo', $html->link($html->image('icons/notepad.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<h1>".__("ModifyLeave a Message IVR",true)."</h1>";
+echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
 
 

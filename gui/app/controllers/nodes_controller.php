@@ -62,7 +62,11 @@ class NodesController extends AppController{
            $title = $this->data['Node']['title'];
 
 	   //If title exists, upload file (wav)
-	   if ($title) { 
+
+   $this->Node->set( $this->data );
+
+  if ($this->Node->validates()){
+ 
 	   
              $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
@@ -83,6 +87,8 @@ class NodesController extends AppController{
 		      //Flash message and redirect	
 		      $this->Session->setFlash(__('The voice menu node has been created.', true));
 		      $this->redirect(array('action'=>'index'));
+
+
 		}
 
 		//File upload NOT OK
@@ -100,10 +106,7 @@ class NodesController extends AppController{
 	         }
 	    }
 
-	    else {
 
-      $this->Node->save($this->data);
-	    }
 	}
 			
 

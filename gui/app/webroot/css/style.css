@@ -145,9 +145,9 @@ div.required label:after {
 
 .error-message {
 
-    font-size: 16px;
+    font-size: 12px;
     color: #f00;
-    margin: 0 0 10px 0;
+    margin: 2px 0 10px 0;
 }
 
 img.icon {
@@ -160,7 +160,15 @@ img.icon {
 
   float: right;
   padding: 5px;
-  margin: 5px;
+  margin: 12px 0 0 0;
+
+}
+
+.frameInfoLeft {
+
+  float: left;
+  padding: 5px;
+
 }
 
 

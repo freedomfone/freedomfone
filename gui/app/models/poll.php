@@ -163,7 +163,7 @@ function __construct($id = false, $table = null, $ds = null) {
 		$_message	=  explode(' ',$body);
 		$polls_code   	=  trim($_message[0]);
 		$votes_chtext 	=  trim($_message[1]);
-		$sender		=  $entry['from'];
+		$sender		=  urldecode($entry['from']);
 		$proto		=  $entry['proto'];
 	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
@@ -245,7 +245,7 @@ function __construct($id = false, $table = null, $ds = null) {
 			
 			 //ADD TO TRASH
 	   		 $mode=__("Unclassified",true);
-			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode)values ($instance_id,'$body','$sender','$created','$mode')");
+			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode,proto)values ($instance_id,'$body','$sender','$created','$mode','$proto')");
 	        }
 
   	//add to CDR

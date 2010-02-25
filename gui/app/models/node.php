@@ -32,13 +32,28 @@ class Node extends AppModel{
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 
-      $this->validate = array(
-        'title' => array(
-            'rule'     => array('minLength', 3),
-	    'required' =>  true,
-            'message'  => __('A title is required. Minimum 3 characters.',true)));
+    $this->validate = array(
+      'title' => array(
+                        'minLength' => array(
+                                       'rule' => array('minLength', 3),
+                                       'message' => __('Alphabets and numbers only',true)
+                                       ),
+                        'validText' => array(
+                                       'rule' => array('validText','title'),
+                                       'message' => __('No hyperlinks allowed.',true)
+                                       )));
 
 }
+
+
+ function validText($data,$field)
+    {
+
+    if(stripos($data[$field],'href')){ return false;}
+    else { return true;}
+
+    }
+
 
 /*
  * Delete audio files (with several extensions)

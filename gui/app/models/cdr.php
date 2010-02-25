@@ -83,7 +83,7 @@ class Cdr extends AppModel{
 		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
 
 
-		  if($application =='Voice menu' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
+		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
 
 		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);

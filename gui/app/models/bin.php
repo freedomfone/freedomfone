@@ -66,7 +66,7 @@ class Bin extends AppModel{
 	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$sender."; Timestamp: ".$created, "bin"); 
 	 
 	      //add to CDR
-	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','Other SMS','$proto')");
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','bin','$proto')");
 
 	      }
 

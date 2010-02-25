@@ -146,8 +146,8 @@ $config['EXTENSIONS'] = array(
 		      );
 
 $config['EXT_MAPPING'] = array(
-		      'Leave-a-message' => '/^2(\d{3})/',
-		      'Voice menu' => '/^4(\d{3})/',
+		      'lam' => '/^2(\d{3})/',
+		      'ivr' => '/^4(\d{3})/',
 		      );
 
 ?>

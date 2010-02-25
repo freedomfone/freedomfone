@@ -25,7 +25,7 @@
 class CdrController extends AppController{
 
       var $name = 'Cdr';
-      var $helpers = array('Csv','Javascript');
+      var $helpers = array('Csv','Javascript','Formatting');
 
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.id' => 'desc')); 
 
@@ -184,6 +184,8 @@ class CdrController extends AppController{
           } else {
        	       $this->set('cdr',$this->Cdr->find('all'));  
                  }
+
+  $this->render();  
       }
 
 

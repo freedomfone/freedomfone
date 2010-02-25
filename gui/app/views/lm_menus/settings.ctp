@@ -27,11 +27,11 @@ if($this->data){
 
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
-$info = "Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.";
+$info = __("Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.",true);
 
 
 echo $html->div('frameInfo', $html->link($html->image('icons/notepad.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<h1>".__("Create Leave a Message IVR",true)."</h1>";
+echo "<h1>".__("ModifyLeave a Message IVR",true)."</h1>";
 
 
 

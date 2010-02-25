@@ -31,7 +31,6 @@
  
     function epochToWords($seconds){
 
-
     /*** return value ***/
     $ret = "";
 
@@ -66,6 +65,33 @@
     $part=substr($file,0,strlen($file)-3);
 
     return $part.$ext;
+
+    }
+
+    function appMatch($code){
+
+     switch($code){
+
+	     case 'poll':
+	     return __('Poll',true);
+	     break;
+
+	     case 'lam':
+	     return __('Leave-a-message',true);
+	     break;
+
+	     case 'ivr':
+	     return __('Voice menu',true);
+	     break;
+
+	     case 'callback':
+	     return __('Callback',true);
+	     break;
+
+	     case 'bin':
+	     return __('Other SMS',true);
+	     break;    
+      }
 
     }
 

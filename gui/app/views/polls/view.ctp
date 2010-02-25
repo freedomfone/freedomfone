@@ -22,11 +22,6 @@
  *
 ***************************************************************************/
 
-echo $html->div("frameRight");
-echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
-echo $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button'));
-echo $form->end();
-echo "</div>";
 
 $info = __('Classification of votes|The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|
 <p><b>Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>|
@@ -41,9 +36,17 @@ Incorrect votes that cannot be matched to any existing poll, will be classified 
 
 
 
-   if ($data){
+
+echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
+echo $html->div('frameRight', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+
+
+   if ($data){
+
+
 
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";

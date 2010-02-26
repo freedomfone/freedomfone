@@ -55,14 +55,44 @@ function __construct($id = false, $table = null, $ds = null) {
 				     'message' => __('This SMS code is already in use.',true)
 				     )
  		),
+	'start_time' => array(
+			'checkDate' => array(
+        				       'rule' => array('checkDate', 'start_time' ),
+        				       'message' => __('The date is not valid.',true)
+                )
+            ),	
 	'end_time' => array(
 			'compareFieldValues' => array(
         				       'rule' => array('compareFieldValues', 'start_time' ),
         				       'message' => __('The end time must be later than the start time.',true)
-                )
+                			       ),
+			'checkDate' => array(
+        				       'rule' => array('checkDate', 'end_time' ),
+        				       'message' => __('The date is not valid.',true)
+                			       )
+
             ) 
 	);
 }
+
+
+/*
+ * Validation: check that number of days is matching month
+ *
+ *
+ */
+function checkDate($data,$field){
+
+	 $date = date_parse($data[$field]);
+
+	 if(checkdate($date['month'],$date['day'],$date['year'])){ 
+	 	return true;
+		} else {
+		return false;
+		}
+
+}
+
 
 /*
  * Validation: Comparison of two fields

@@ -34,12 +34,57 @@ function __construct($id = false, $table = null, $ds = null) {
 
 	$this->validate = array(
         'title' => array(
-            'rule'     => array('minLength', 3),
-	    'required' =>  true,
-            'message'  => __('A title is required. Minimum 3 characters.',true)));
+		        'minLength' => array(
+            				'rule'     => array('minLength', 3),
+	    				'required' =>  true,
+            				'message'  => __('A title is required. Minimum 3 characters.',true)
+	    	       	  		)),
+      'file_long' => array(
+			'validFileSize' =>array(
+					'rule' => array('validFileSize','file_long'),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					)),
+      'file_short' => array(
+			'validFileSize' =>array(
+					'rule' => array('validFileSize','file_short'),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					)),
+      'file_exit' => array(
+			'validFileSize' =>array(
+					'rule' => array('validFileSize','file_exit'),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					)),
+      'file_invalid' => array(
+			'validFileSize' =>array(
+					'rule' => array('validFileSize','file_invalid'),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					)),
+
+					);
+
 
 
 }
+
+ function validFileSize($data,$field)
+    {
+    if($data[$field]!=1){ return true;}
+    else { return false;}
+
+    }
+
+ function validFileType($data)
+    {
+//debug($data['file_long_type']);
+	$type = $data['file_long_type'];
+
+	//allowed file types
+	$types = array('audio/x-wav','audio/wav','audio/mpeg');
+
+	if(in_array($type,$types)){ return true;}
+	else { return false;}
+
+   }
 
 /*
  * Check if parent exist. If not, set current to parent

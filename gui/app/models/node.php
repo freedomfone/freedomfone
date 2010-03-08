@@ -41,7 +41,18 @@ function __construct($id = false, $table = null, $ds = null) {
                         'validText' => array(
                                        'rule' => array('validText','title'),
                                        'message' => __('No hyperlinks allowed.',true)
-                                       )));
+                                       )),
+      'file' => array(
+			'validFileSize' =>array(
+					'rule' => array('validFileSize'),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true)
+					),
+			'validFileType' =>array(
+					'rule' => array('validFileType'),
+					'message' => __('Invalid file type (valid formats: mp3 and wav).',true)
+					)
+					));
+
 
 }
 
@@ -54,6 +65,26 @@ function __construct($id = false, $table = null, $ds = null) {
 
     }
 
+ function validFileSize($data)
+    {
+
+    if($data['file']['error']!=1){ return true;}
+    else { return false;}
+
+    }
+
+ function validFileType($data)
+    {
+
+	$type = $data['file']['type'];
+
+	//allowed file types
+	$types = array('audio/x-wav','audio/wav','audio/mpeg');
+
+	if(in_array($type,$types)){ return true;}
+	else { return false;}
+
+   }
 
 /*
  * Delete audio files (with several extensions)

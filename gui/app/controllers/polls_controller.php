@@ -101,7 +101,6 @@ class PollsController extends AppController{
 	//Validate data (poll and vote)
 	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 
-
 	 //Save poll data
 	  $this->Poll->save($this->data['Poll']);
 

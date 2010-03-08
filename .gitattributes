@@ -73,6 +73,7 @@ esl/native/php.ini -text
 esl/native/samples/single_command.php -text
 esl/native/samples/test.php -text
 esl/php/fs_sock.php -text
+extras/blacklist.pl2303 -text
 extras/fix_perms_fs.sh -text
 extras/fix_perms_gui.sh -text
 extras/lame397 -text

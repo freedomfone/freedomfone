@@ -61,25 +61,25 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 <fieldset>
 <h3>1. <?php __('Welcome');?> </h3>
 <?php echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
+<?php echo $form->input('IvrMenu.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
 <h3>2. <?php __('Instructions');?> </h3>
 <?php echo $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'after' => $FallbackShort,'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
+<?php echo $form->input('IvrMenu.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
 <h3>3. <?php __('Goodbye');?> </h3>
 <?php echo $form->input('message_exit',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
+<?php echo $form->input('IvrMenu.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
 <h3>4. <?php __('Invalid');?> </h3>
 <?php echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
-<?php echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
+<?php echo $form->input('IvrMenu.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>

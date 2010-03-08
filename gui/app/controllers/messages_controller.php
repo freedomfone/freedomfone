@@ -28,7 +28,8 @@ class MessagesController extends AppController{
 
       var $helpers = array('Flash','Formatting','Session');      
 
-      var  $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Message.created' => 'desc')); 
+      var  $paginate = array('page' => 1, 'order' => array( 'Message.created' => 'desc')); 
+
 
 
       function index(){
@@ -53,6 +54,7 @@ class MessagesController extends AppController{
 		} 
 
       if(isset($this->params['named']['limit'])) { 
+
 	$this->Session->write('messages_limit',$this->params['named']['limit']);
 	}
 	elseif($this->Session->check('messages_limit')) { 

@@ -86,7 +86,17 @@ class IvrMenusController extends AppController{
         //set instance_id
 	$this->data['IvrMenu']['instance_id']=$iid;
 
-	if ($this->IvrMenu->save($this->data['IvrMenu'],array('validate' => 'only'))){
+	$this->data['IvrMenuFile']['file_long'] = $this->data['IvrMenu']['file_long'];
+	$this->data['IvrMenuFile']['file_short'] = $this->data['IvrMenu']['file_short'];
+	$this->data['IvrMenuFile']['file_exit'] = $this->data['IvrMenu']['file_exit'];
+	$this->data['IvrMenuFile']['file_invalid'] = $this->data['IvrMenu']['file_invalid'];
+
+	$this->data['IvrMenu']['file_long']= $this->data['IvrMenu']['file_long']['error'];
+	$this->data['IvrMenu']['file_short']= $this->data['IvrMenu']['file_short']['error'];
+	$this->data['IvrMenu']['file_exit']= $this->data['IvrMenu']['file_exit']['error'];
+	$this->data['IvrMenu']['file_invalid']= $this->data['IvrMenu']['file_invalid']['error'];
+
+	if ($this->IvrMenu->save($this->data['IvrMenu'] )){
 
 	   //Retrieve id of saved poll
 	   $id = $this->IvrMenu->getLastInsertId();
@@ -169,8 +179,6 @@ class IvrMenusController extends AppController{
 
         	$this->set(compact('nodes'));
 
-
-
 		//Unbind association with nodes
 		$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 		
@@ -233,8 +241,6 @@ class IvrMenusController extends AppController{
                      }
 
           //Save text based form data
-
-
 
         // $this->IvrMenu->save($this->data);
 	$this->IvrMenu->customizeSave($this->data);

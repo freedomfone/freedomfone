@@ -39,11 +39,14 @@
     <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
+    <?=$html->css('jquery.cluetip');?>	     	<!-- JQuery Cluetip -->
     <?=$html->meta('icon');?>
 
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
     <?=$javascript->link('prototype');?>
     <?=$javascript->link('jquery');?>		
+    <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
+    <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
 
     <?=$javascript->link('swfobject');?>	<!-- Flashhelper -->
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->

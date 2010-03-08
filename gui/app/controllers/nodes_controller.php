@@ -58,16 +58,17 @@ class NodesController extends AppController{
 
 	   //Fetch form data
 	   $files = array();
+
+
 	   $files[0] = $this->data['Node']['file'];
            $title = $this->data['Node']['title'];
-
+	   
 	   //If title exists, upload file (wav)
 
    $this->Node->set( $this->data );
 
   if ($this->Node->validates()){
- 
-	   
+  	   
              $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
 		//File upload OK
@@ -95,8 +96,8 @@ class NodesController extends AppController{
 		elseif(array_key_exists('errors', $fileOK)) {
 		
 		      //Flash messsage, log error
-		      $this->Session->setFlash($fileOK['errors'][0], true);
-    		 
+		      $this->Session->setFlash($fileOK['errors'][0], 'default',array('class' => 'error-message'));
+
 		}
 		else {
 	

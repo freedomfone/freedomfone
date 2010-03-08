@@ -21,3 +21,6 @@ chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/le
 chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/nodes
 chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/ivr
 chown -Rf www-data:www-data /usr/local/freedomfone/xml_curl
+
+#Log folder is writable by all components
+chmod 777 /usr/local/freedomfone/log/

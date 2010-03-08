@@ -59,18 +59,15 @@ class LmMenusController extends AppController{
 		   foreach($this->data['LmMenuFile'] as $key => $file){
 				
 			if ($file['size']){
-			
 				$file['fileName']=$key;
 				$fileData[] = $file;
-			}
-		   
+			} elseif ($file['error']==1 && !$file['size']) {
+			       $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'default',array('class' => 'error-message'));							
+			   }	
 		   }
 
 		     //Upload one ore more wav files
 		       $fileOK = $this->uploadFiles($lm_settings['path'].IID."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
-		      
-
-
 	     		$this->data['LmMenu']['instance_id']=$iid;
                          $this->LmMenu->id = $this->data['LmMenu']['id'];
 
@@ -88,17 +85,17 @@ class LmMenusController extends AppController{
 
 				elseif(array_key_exists('errors', $fileOK)) {
 
-				   foreach ($fileOK['errors'] as $error ){
+				   foreach ($fileOK['errors'] as $key => $error ){
 				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
-				  	   
+					   $this->Session->setFlash($errors, 'default',array('class' => 'error-message'));							
 				    }
 				}
 
 
 
 
-		               $this->Session->setFlash(__('Your data has been saved',true));							
-			       //$this->redirect(array('action'=>'settings'));
+		              // $this->Session->setFlash(__('Your data has been saved',true));							
+			       
 
 
 			}

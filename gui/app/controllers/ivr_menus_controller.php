@@ -102,11 +102,14 @@ class IvrMenusController extends AppController{
 	   $id = $this->IvrMenu->getLastInsertId();
 
 		foreach($this->data['IvrMenuFile'] as $key => $file){
-				
+			
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
-			}
+			} elseif ($file['error']==1 && !$file['size']) {
+			       $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'default',array('class' => 'error-message'));							
+			   }	
+		  
 		   
 		   }
 
@@ -190,20 +193,24 @@ class IvrMenusController extends AppController{
           }
 
 
+
 	  //Save submitted data.
 	  else {
 
-
+		$flashMsg ='';
 		   foreach($this->data['IvrMenuFile'] as $key => $file){
 
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
-			}
+			}  elseif ($file['error']==1 && !$file['size']) {
+			   $flashMsg = $flashMsg."<br/>".__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'];			
+			   }	
+		  
 		   
 		   }
 
-		$flashMsg ='';
+
 
                  if(isset($fileData)){
 
@@ -232,13 +239,15 @@ class IvrMenusController extends AppController{
 
 			if(array_key_exists('errors',$fileOK)){
 
-
 				foreach ($fileOK['errors'] as $key => $error){
-					$flashMsg.= $error."<br/>";
+					$flashMsg = $flashMsg."<br/>".$error;
+					
 				}
 			}
 
                      }
+
+
 
           //Save text based form data
 
@@ -249,8 +258,9 @@ class IvrMenusController extends AppController{
 	 $this->IvrMenu->writeIVR();
 
 	//Flash message and redirect to index
-	 $this->Session->setFlash($flashMsg);
-	 $this->redirect(array('action' => 'index'));
+	 $this->Session->setFlash($flashMsg, 'default',array('class' => 'error-message'));
+	    $this->redirect(array('action' => 'index'));
+
 
 	 } 
 

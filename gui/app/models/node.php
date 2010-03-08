@@ -50,6 +50,10 @@ function __construct($id = false, $table = null, $ds = null) {
 			'validFileType' =>array(
 					'rule' => array('validFileType'),
 					'message' => __('Invalid file type (valid formats: mp3 and wav).',true)
+					),
+			'validFile' =>array(
+					'rule' => array('validFile'),
+					'message' => __('No file selected.',true)
 					)
 					));
 
@@ -65,11 +69,18 @@ function __construct($id = false, $table = null, $ds = null) {
 
     }
 
- function validFileSize($data)
-    {
+ function validFile($data)    {
+
+    if($data['file']['error']!=4){ return true;}
+    else { return false;}
+    }
+
+
+ function validFileSize($data){
 
     if($data['file']['error']!=1){ return true;}
-    else { return false;}
+    else { return false;
+    }
 
     }
 

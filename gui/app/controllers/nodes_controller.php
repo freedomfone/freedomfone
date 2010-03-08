@@ -63,6 +63,7 @@ class NodesController extends AppController{
 	   $files[0] = $this->data['Node']['file'];
            $title = $this->data['Node']['title'];
 	   
+
 	   //If title exists, upload file (wav)
 
    $this->Node->set( $this->data );

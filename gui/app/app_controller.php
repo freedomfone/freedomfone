@@ -71,6 +71,8 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
  *		will return an array with the success of each file upload
  */
 function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWrite) {
+
+
 	// setup dir names absolute and relative
 	$folder_url = WWW_ROOT.$folder;
 	$rel_url = $folder;
@@ -127,6 +129,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 
 	// loop through and deal with the files
 	foreach($data as $key =>$file) {
+
 
 		// set filename
 		if($useKey){
@@ -231,17 +234,19 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		
 
 		} elseif ($file['error']==4){
-			$result['errors'][] = "No file selected. Please try again.";
+			$result['errors'][] = __("No file selected. Please try again.",true);
 			$this->log("Msg: ERROR; Action: file upload; Type: no file selected; Code: ".$file['error'],"ivr");
 			
 		}
 
 		else {
 			// unacceptable file type
-			$result['errors'][] = "The file can not be uploaded. The file type is not valid.";
+
+			$result['errors'][] = __('The folling file could not be uploaded due to invalid file type:',true).' '.$file['name'];
 			$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: invalid file type; Code: ".$file['error'],"ivr");
 		}
-	}
+	} //foreach
+
 return $result;
 }
 

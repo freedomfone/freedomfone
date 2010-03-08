@@ -76,6 +76,7 @@ esl/php/fs_sock.php -text
 extras/fix_perms_fs.sh -text
 extras/fix_perms_gui.sh -text
 extras/lame397 -text
+extras/php.ini -text
 extras/php2twitter.php -text
 extras/setmixers -text
 extras/sources.list.debian5 -text

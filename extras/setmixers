@@ -8,7 +8,7 @@ for i in $CARD_LIST; do
 
 #amixer -c ${i}  -q set Mic 0% mute
 $AMIXER -c ${i}  -q set Speaker 70% unmute >/dev/null 2>&1
-$AMIXER -c ${i}  -q set Mic cap mute 70%	>/dev/null 2>&1
+$AMIXER -c ${i}  -q set Mic cap mute 0%	>/dev/null 2>&1
 $AXIMER -c ${i}  -q set "Auto Gain Control" off	>/dev/null 2>&1
 
 done

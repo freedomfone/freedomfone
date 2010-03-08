@@ -112,12 +112,13 @@ echo $html->tableHeaders(array(
      echo "</table>";
      echo $form->end();
 
-
+$count = $this->params['paging']['Message']['count'];
 echo "<span>".__("No of messages per page: ",true);
-echo $html->link('5','index/limit:5',null, null, false)." | ";
 echo $html->link('10','index/limit:10',null, null, false)." | ";
-echo $html->link('25','index/limit:25',null, null, false)." | " ;
-echo $html->link(__('All',true),'index',null, null, false);
+echo $html->link('25','index/limit:25',null, null, false)." | ";
+echo $html->link('50','index/limit:50',null, null, false)." | " ;
+echo $html->link(__('All',true),'index/limit:'.$count,null, null, false) ;
+
 echo "</span>";
      }
 

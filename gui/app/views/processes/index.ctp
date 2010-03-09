@@ -22,6 +22,8 @@
  *
  ***************************************************************************/
 
+date_default_timezone_set(Configure::read('Config.timezone'));
+
 $session->flash();
 $generated  = $session->read('Process.refresh');
 
@@ -84,8 +86,7 @@ echo "<h1>".__('Processes',true)."</h1>";
 
      echo "<table>";
      $lines[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>100,'valign'=>'bottom')));
-     $lines[] = array(__('Generated',true).' :', $time->format('H:i:s A',$generated));
-     $lines[] = array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time()));
+     $lines[] = array(__('Generated',true).' :', $time->format('H:i:s A (e \G\M\T O)',$generated));
      echo $html->tableCells($lines);
      echo "</table>"; 
      }

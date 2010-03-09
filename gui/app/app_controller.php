@@ -48,7 +48,7 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
 
 
 
-    function beforeFilter() {
+ function beforeFilter() {
 
     	     $locale = Configure::read('Config.language');
 	     	     if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {

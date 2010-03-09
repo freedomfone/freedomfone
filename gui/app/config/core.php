@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 3);
 /**
  * Application wide charset encoding
  */
@@ -232,10 +232,10 @@
 
 define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
-define ('MY_DOMAIN','http://192.168.46.238/freedomfone/');
+define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
-
 Configure::write('Config.language', 'eng');
+Configure::write('Config.timezone', 'Africa/Harare');
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',

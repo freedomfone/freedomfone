@@ -2,6 +2,7 @@
 /AUTHORS -text
 /COPYING -text
 /README -text
+/RELEASE-1.5 -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text
 audio_bot/filters/w2m.sh -text

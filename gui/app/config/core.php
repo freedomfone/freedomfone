@@ -232,15 +232,25 @@
 
 define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
-define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
-Configure::write('Config.language', 'eng');
-Configure::write('Config.timezone', 'Africa/Harare');
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
 		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
 		   );
 
+/********** ********** ********** **********
+ * CONFIG: Change localhost for the visible IP address of your server
+ *         Configure language: eng (english) swa (swahili) 
+ *         Set the correct time zone http://php.net/manual/en/timezones.php
+ ********** ********** ********** **********/
+
+define ('MY_DOMAIN','http://localhost/freedomfone/');
+Configure::write('Config.language', 'eng');
+Configure::write('Config.timezone', 'Africa/Harare');
+
+/********** ********** ********** **********
+ * END CONFIG: 
+ ********** ********** ********** **********/
 
 ?>

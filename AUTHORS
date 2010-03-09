@@ -37,8 +37,6 @@ Freedom Fone is also free software, enjoy the freedoms!
 * gsmopen 
 	New release of former celliax FreeSWITCH endpoint
 	http://www.gsmopen.org/
-* esl  
-	Modified (fs_sock.php) PHP ESL Library based on initial work from Raymond Chandler intralaman@freeswitch.org
 
 * dispatcher
 	Was baked with CakePHP 1.2.5	
@@ -53,7 +51,7 @@ Freedom Fone is also free software, enjoy the freedoms!
 Read the documentation 
 
 * documentation
-	Tons of it in the documentation folder, for developers and non-tech users
+Tons of it in the documentation folder, for developers and non-tech users
 	
 ---------------------------------------------------------
 

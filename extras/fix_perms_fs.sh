@@ -24,3 +24,4 @@ chown -Rf www-data:www-data /usr/local/freedomfone/xml_curl
 
 #Log folder is writable by all components
 chmod 777 /usr/local/freedomfone/log/
+chown -Rf www-data:www-data /usr/local/freedomfone/log/

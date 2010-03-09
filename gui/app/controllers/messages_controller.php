@@ -62,7 +62,6 @@ class MessagesController extends AppController{
 	}	
 
 	     $this->Message->recursive = 0; 
-
    	     $data = $this->paginate('Message', array('Message.status' => '1'));
 
 	     $this->set('messages',$data);  
@@ -132,7 +131,20 @@ class MessagesController extends AppController{
 		$this->data = $this->Message->read();
 		$this->set('data',$this->Message->read());       
 
-      	  	$neighbors = $this->Message->find('neighbors', array('field' => 'id', 'value' => $id, 'conditions' => array('status' => $this->data['Message']['status'] )));	
+
+      		if($this->Session->check('messages_sort')){
+			$data = $this->Session->read('messages_sort');
+			$keys = array_keys($data);
+			$field = $keys[0];
+			$dir = $data[$field];
+		} else {
+			$field = 'id';
+			$dir = 'asc';
+		}
+
+
+      		$this->Session->write('Message.messages_sort', $dir);
+      	  	$neighbors = $this->Message->find('neighbors', array('field' => $field, 'dir' => 'desc','value' => $this->data['Message'][$field], 'conditions' => array('status' => $this->data['Message']['status'] )));	
 
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');

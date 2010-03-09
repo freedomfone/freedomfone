@@ -23,9 +23,19 @@
  ***************************************************************************/
 
 $source  = $session->read('Message.source');
+$sort  = $session->read('messages_sort');
+
+      $Prev = 'prev';
+      $Next = 'next';
+
+      if(current($sort)=='desc'){
+
+      $Prev = 'next';
+      $Next = 'prev';
+
+      }
 
       if($data){
-
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
 		      'empty'   => __('-Set rate-',true));
@@ -36,11 +46,11 @@ $source  = $session->read('Message.source');
 
 
      echo "<div class='frameRight'>";
-     if ($prev = $neighbors['prev']['Message']['id']) {     	  
+     if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
 	  echo $html->link(__("« Previous ",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
      echo " | ";
-     if ($next = $neighbors['next']['Message']['id']){
+     if ($next = $neighbors[$Next]['Message']['id']){
      	echo $html->link(__("Next »",true),"edit/".$next);
      }
      echo "</div>";
@@ -54,7 +64,7 @@ $source  = $session->read('Message.source');
      echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
      echo "<table>";
      echo $form->hidden('new',array('value'=>0));
-     echo $form->hidden('next',array('value'=>$neighbors['next']['Message']['id']));
+     echo $form->hidden('next',array('value'=>$neighbors[$Next]['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
 
             $button1 = $form->submit(__('Save & Index',true),  array('name' =>'data[Submit]', 'class' => 'button'));

@@ -45,7 +45,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 		echo $html->tableCells(array (
      		     array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
-     		     array(array(__("If you select a file, the previous one will be deleted. Valid format: wav",true),"colspan='2' class='formComment'"))));
+     		     array(array(__("If you select a file, the previous one will be deleted. Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));
 
 		echo $html->tableCells(array (
      		     array(__("Listen to uploaded file",true),	$listen)));

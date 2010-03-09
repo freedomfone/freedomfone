@@ -22,10 +22,10 @@ APLAY=/usr/bin/aplay
 
 #We have broken down the Speaker/Mic values to support different networks quality
 #Per card specific values in case of different operators and network quality
-CARD_LIST="0 1 2"
-CARD0_SPEAKER=50
+CARD_LIST="1 2 3"
 CARD1_SPEAKER=50
 CARD2_SPEAKER=50
+CARD3_SPEAKER=50
 
 ##############################
 #Problems with DTMF detection#
@@ -38,9 +38,9 @@ CARD2_SPEAKER=50
 #
 #Card 0 needs to be setup in systems with no built-in sound card
 
-CARD0_MIC=0
 CARD1_MIC=0
 CARD2_MIC=0
+CARD3_MIC=0
 
 . /lib/lsb/init-functions
 
@@ -58,7 +58,7 @@ case ${1:-} in
 		#Incoming audio gain. Has an impact in distorsion and DTMF detection
 		$AMIXER -c ${i}  -q set Mic cap mute $[CARD${i}_MIC]%  >/dev/null 2>&1 
 	done
-		sleep 30
+		sleep 60
      	set +e
 	$PHP $APICLIENT "$STATUS" |grep "imei\|imsi\|interface_id\|interface_name\|got_signal"  
 	$PHP $APICLIENT "$STATUS" > $GSMOPEN_BOOT_LOG  

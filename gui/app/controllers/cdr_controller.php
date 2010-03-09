@@ -38,6 +38,10 @@ class CdrController extends AppController{
 
       }
 
+      function foo(){
+      debug($this);
+
+      }
 
       function index(){
 
@@ -98,29 +102,40 @@ class CdrController extends AppController{
 	   
 	      $entries = $this->params['form']['cdr'];
     	      $action = $this->params['data']['Submit'];
-    	      foreach ($entries as $key => $id){
+ 
+              if ($action == __('Delete',true)){
+
+   	        foreach ($entries as $key => $id){
     	     	    if ($id) {
 		       $this->Cdr->id = $id;
-		       if ($action == __('Delete',true)){
-    	     	       	   $call_id = $this->Cdr->getCallId($id);
-     	       	  	   if ($this->Cdr->del($id)){
+		       $call_id = $this->Cdr->getCallId($id);
+     	       	       if ($this->Cdr->del($id)){
 	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
-			    }
-			}
+		       }
 		    }
-	      }
-	     }
-	  $this->redirect(array('action' => 'index'));
+	         } //foreach
 
+
+	      } //action
+	      
+	     }
+	  
+		 $this->redirect(array('action' => 'index'));
     }
 
     function output(){
 
-      if ($this->data['Cdr']){
+
+
+     if(key_exists('selected',$this->params['form'])){
+     debug($this->params['form']);
+
+     }
+
+      if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
       	 $end 	  = $this->data['Cdr']['end_time'];
  
-
 	$hour_start = $start['hour'];
 	$hour_end   = $end['hour'];
 
@@ -147,8 +162,8 @@ class CdrController extends AppController{
 
 	 $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
     	 $this->set('data', $this->Cdr->find('all',$param)); 
-
-	 } else {
+	 } 
+	 else {
 
     	   $this->set('data', $this->Cdr->findAll()); 
 	 }

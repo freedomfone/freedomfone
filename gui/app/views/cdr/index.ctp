@@ -30,8 +30,10 @@ echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name
 echo $form->end();
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
-echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' =>'all', 'class' => 'button')));
 echo $form->end();
+
+
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
@@ -94,6 +96,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo "<table>";
      echo $html->tableCells(array(
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
+
      $paginator->numbers()));
      echo "</table>";
      echo $form->end();

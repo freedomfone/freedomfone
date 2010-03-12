@@ -34,6 +34,7 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
 echo "<h1>".__('Voice menus',true)."</h1>";
 
+echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
      if ($ivr_menus){
 
      echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));

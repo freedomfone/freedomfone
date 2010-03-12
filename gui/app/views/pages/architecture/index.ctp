@@ -23,14 +23,13 @@
  ***************************************************************************/
 
 $this->pageTitle = __('Architecture',true);           
-echo "<h1>".__('Freedom Fone v.1 Architecture',true)."</h1>";
+echo "<h1>".__('Freedom Fone v1.5 Architecture',true)."</h1>";
 echo $html->para(null,__("Please select one of the alternatives below, to read about each component's architecture."));
 
 echo "<ul>";
 echo "<li>".$html->link(__('Poll',true), '/architecture/poll', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Leave-a-message',true), '/architecture/leave-a-message', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Voice Menus',true), '/architecture/ivr', array('target'=>'_parent'))."</li>";
-echo "<li>".$html->link(__('Callback',true), '/architecture/callback', array('target'=>'_parent'))."</li>";
 echo "</ul>";
 
 

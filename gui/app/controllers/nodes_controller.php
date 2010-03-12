@@ -66,23 +66,23 @@ class NodesController extends AppController{
 
 	   //If title exists, upload file (wav)
 
-   $this->Node->set( $this->data );
+   	   $this->Node->set( $this->data );
 
-  if ($this->Node->validates()){
-  	   
+  	   if ($this->Node->validates()){
+
              $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
 		//File upload OK
 		if(array_key_exists('urls', $fileOK)){
 
 		      //Set db fields
-
 	              $this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
 		      $this->data['Node']['instance_id'] = $iid;
-
+	      	
 		      //Save node in db
-		      $this->Node->save($this->data);
 
+		      $this->Node->save($this->data, array('validate' => false));
+		
 		      //Log new node
 		      $this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');
 		      
@@ -183,14 +183,16 @@ class NodesController extends AppController{
 	       if ($files[0]['size']){
 
 	       $fileOK = $this->uploadFiles($path, $files ,false,'audio', false, false);
-       
+	       
 		       	if(array_key_exists('urls', $fileOK)) {
 
 
-				$this->data['Node']['file']        = $fileOK['files'][0];
+				$this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
 				$this->data['Node']['instance_id'] = $iid;		
 				$this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');	
-			        $this->Node->save($this->data);
+			        //$this->Node->save($this->data);
+
+     				$this->Node->save($this->data, array('validate' => false));
 
 				$this->Node->deleteAudio($this->data['Node']['file_old'],$path,array('mp3','wav'));
 

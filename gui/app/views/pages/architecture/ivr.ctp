@@ -26,13 +26,12 @@ $this->pageTitle = __('Architecture : Voice Menus',true);
 echo "<h1>".__('Architecture: Voice menu',true)."</h1>";
 echo $html->para(null,__("Please select one of the alternatives below, to read about each component's architecture.",true));
 
-//echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/architecture/leave-a-message','fwd_text'=>__('Callback',true),'fwd_link'=>'/architecture/callback','div'=>'frameRight')); 
+//echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/architecture/leave-a-message','fwd_text'=>__('Dashboard',true),'fwd_link'=>'/architecture/dashboard','div'=>'frameRight')); 
 
 echo "<ul>";
 echo "<li>".$html->link(__('Poll',true), '/architecture/poll', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Leave-a-message',true), '/architecture/leave-a-message', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Voice Menus',true), '/architecture/ivr', array('target'=>'_parent'))."</li>";
-echo "<li>".$html->link(__('Callback',true), '/architecture/callback', array('target'=>'_parent'))."</li>";
 echo "</ul>";
 
 

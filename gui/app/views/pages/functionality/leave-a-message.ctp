@@ -46,6 +46,6 @@ echo "<h3>".__("Received voice messages",true)."</h3>";
 echo __("<p>The Freedom Fone administrator receives all incoming messages to the “Inbox”. For each message, the administrator can</p><ul><li>listen to it (with a built-in Flashplayer)</li><li>name (give the message a title)</li><li>assign a category</li><li>associate the message with one or more tags</li><li>give the message a rating (1-5)</li></ul>",true);
 
 echo __("<p>The administrator can choose to delete a message, or to archive it for future use.</p>",true);
-echo __("<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a Skype call to 'skypiax2'.</p>",true);
+
 
 ?>

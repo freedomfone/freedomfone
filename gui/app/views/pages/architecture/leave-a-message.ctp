@@ -31,7 +31,6 @@ echo "<ul>";
 echo "<li>".$html->link(__('Poll',true), '/architecture/poll', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Leave-a-message',true), '/architecture/leave-a-message', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Voice Menus',true), '/architecture/ivr', array('target'=>'_parent'))."</li>";
-echo "<li>".$html->link(__('Callback',true), '/architecture/callback', array('target'=>'_parent'))."</li>";
 echo "</ul>";
 
 echo $html->image('illustrations/freedomfone_v1.0_architecture_leaveMessage.png', array('title' => __('Leave-a-Message architecture',true),'border'=>0,'width'=>'850px'))

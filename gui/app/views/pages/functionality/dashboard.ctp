@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 $this->pageTitle = __('Functionality : Dashboard',true);           
-echo $this->element('menu_next',array('back_text'=>__('Callback',true),'back_link'=>'/functionality/callback','div'=>'frameRight'));
+echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/functionality/leave-a-message','div'=>'frameRight'));
 echo "<h1>".__('Functionality : Dashboard',true)."</h1>";
 echo __("<p>The Dashboard gathers useful information about the system’s software and hardware and offers the opportunity to start and stop major components.",true);
 

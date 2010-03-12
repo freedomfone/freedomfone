@@ -45,7 +45,7 @@ class Category extends AppModel {
 	'longname' => array(
  			'between' => array(
  				       'rule' => array('between', 1, 50),
- 				       'message' => __('Between 1 to 50 characters',true)
+ 				       'message' => __('Please enter a description using 1 to 50 characters',true)
  				       )
  		));
 

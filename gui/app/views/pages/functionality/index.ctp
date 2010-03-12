@@ -24,7 +24,7 @@
  ***************************************************************************/
 
 $this->pageTitle = __('Functionality : ',true);           
-echo "<h1>".__('Freedom Fone v.1 functionality',true)."</h1>";
+echo "<h1>".__('Freedom Fone v1.5 functionality',true)."</h1>";
 
 echo $html->para(null,__("Please select one of the alternatives below, to read more about Freedom Fone's functionality.",true));
 
@@ -33,7 +33,6 @@ echo "<ul>";
 echo "<li>".$html->link(__('Poll',true), '/functionality/poll', array('target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Leave-a-message',true), '/functionality/leave-a-message', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Voice Menus',true), '/functionality/ivr', array('class'=>'foo','target'=>'_parent'))."</li>";
-echo "<li>".$html->link(__('Callback',true), '/functionality/callback', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "<li>".$html->link(__('Dashboard',true), '/functionality/dashboard', array('class'=>'foo','target'=>'_parent'))."</li>";
 echo "</ul>";
 

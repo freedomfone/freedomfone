@@ -29,7 +29,7 @@ echo $form->create('Node',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRight',$form->submit(__('Upload new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-$info = __('Menu Option|A Menu Option can either be (1) an audio file previously uploaded through the Menu option files screen, or (2) a Leave-a-Message service.| You can at any time add, edit, listen to or delete existing Menu Options.| Menu option files can be .mp3 or .wav audio files. When they are uploaded into the system they are associated with a Title to help you manage your audio files.| A Menu option file can be used in one or more different Voice Menus. These files cannot be deleted if they are currently associated with a Voice Menu.',true);
+$info = __('Menu Option|A Menu Option can either be (1) an audio file previously uploaded through the Create Menu option page, or (2) a Leave-a-Message service.| You can at any time add, edit, listen to or delete existing Menu Options.| Menu option files can be .mp3 or .wav audio files. When they are uploaded into the system they are associated with a Title to help you manage your audio files.| A Menu option file can be used in one or more different Voice Menus. These files cannot be deleted if they are currently associated with a Voice Menu.',true);
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 
 //echo "<div class='frameRight'>".$html->link($html->image("icons/add.png", array("title" => __("Create new poll",true))),"/nodes/add",null, null, false)."</div>";

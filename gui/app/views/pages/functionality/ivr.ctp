@@ -35,7 +35,7 @@ echo "<h3>".__("Menu Instructions",true)."</h3>";
 echo __("<p>A Menu Instruction can either be a text message (that is automatically synthesized) or an uploaded audio file. If an audio file is to be used it must be uploaded from your local computer by either clicking in the relevant Audio file text box or clicking the associated ‘Browse’ button.<p>You can revert to using a synthesized text message by “un-associating” the uploaded file. The audio file is not deleted and can be used in the Voice Menu at a later stage, by “associating” the file with the Menu Instruction once again.",true);
 
 echo "<h3>".__("Menu Options",true)."</h3>";
-echo __("<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously uploaded through the Menu option files screen, or</li><li>a Leave-a-Message service</li></ul>",true);
+echo __("<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously uploaded through the Create Menu option page, or</li><li>a Leave-a-Message service</li></ul>",true);
 echo __("<p>The administrator can at any time add, edit, listen to or delete existing Menu Options.",true);
 echo __("<p>Menu option files can be .mp3 or .wav audio files. When they are uploaded into the system they are associated with a Title to help you manage your audio files.",true);
 echo __("<p>A Menu option file can be used in one or more different Voice Menus. These files cannot be deleted if they are currently associated with a Voice Menu.",true);

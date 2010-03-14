@@ -83,7 +83,7 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
 </fieldset>
 
 <fieldset>
-<legend><?php __('Menu options');?> </legend>
+<legend><?php __('Menu entries');?> </legend>
 <?
 
      for($i=1;$i<=8;$i++){

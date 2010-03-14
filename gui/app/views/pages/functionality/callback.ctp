@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 $this->pageTitle = __('Functionality : Callback',true);           
-echo $this->element('menu_next',array('back_text'=>__('Voice menuse',true),'back_link'=>'/functionality/ivr','fwd_text'=>__('Dashboard',true),'fwd_link'=>'/functionality/dashboard','div'=>'frameRight'));
+echo $this->element('menu_next',array('back_text'=>__('Voice menues',true),'back_link'=>'/functionality/ivr','fwd_text'=>__('Dashboard',true),'fwd_link'=>'/functionality/dashboard','div'=>'frameRight'));
 echo "<h1>".__('Functionality: Callback',true)."</h1>";
 
 echo __("<p>The Callback service offers callers a means to access audio content from Freedom Fone at a low cost, or at no cost at all. As the name suggests, the Callback service establishes outgoing phone calls from Freedom Fone to a caller, with the Freedom Fone deployer carrying the cost of the call. </p>",true);

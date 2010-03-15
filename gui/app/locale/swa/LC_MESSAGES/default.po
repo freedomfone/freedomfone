@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2010-03-14 19:02+0100\n"
-"PO-Revision-Date: 2010-03-14 19:15+0100\n"
-"Last-Translator: Louise <louise@it46.se>\n"
+"PO-Revision-Date: 2010-03-15 15:26+0100\n"
+"Last-Translator: Louise Berthilson <louise@it46.se>\n"
 "Language-Team: Tri Labs Translators\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,7 +150,7 @@ msgstr "Fundo la menyu ya sauti lillochaguliwa halikuweza kufutwa kwani linatumi
 
 #: /controllers/nodes_controller.php:164
 msgid "Invalid audio file"
-msgstr "Faili ya sauti batili"
+msgstr "Faili ya sikizi batili"
 
 #: /controllers/nodes_controller.php:199
 msgid "The settings has been saved"
@@ -509,9 +509,8 @@ msgid "From"
 msgstr "Kutoka"
 
 #: /views/callback_in/index.ctp:46
-#, fuzzy
 msgid "Mode"
-msgstr "Namna"
+msgstr "Hali-tumizi"
 
 #: /views/callback_settings/index.ctp:27;28
 msgid "No limit"
@@ -782,14 +781,12 @@ msgid "GSM channels"
 msgstr "Mikondo ya GSM"
 
 #: /views/channels/index.ctp:53
-#, fuzzy
 msgid "Interface id"
-msgstr "Kitambulisho cha kusano"
+msgstr "Kitambulisho cha kiolesura"
 
 #: /views/channels/index.ctp:53
-#, fuzzy
 msgid "Interface name"
-msgstr "Jina la kusano"
+msgstr "Jina la kiolesura"
 
 #: /views/channels/index.ctp:53
 msgid "IMEI"
@@ -945,7 +942,7 @@ msgstr "Kamwe"
 
 #: /views/elements/musicplayer_button.ctp:72
 msgid "No audio file available"
-msgstr "Hakuna faili la sauti linalopatikana"
+msgstr "Hakuna faili sikizi linalopatikana"
 
 #: /views/elements/poll_status.ctp:31;48
 msgid "Pending"
@@ -1041,7 +1038,7 @@ msgstr "Karibu"
 #: /views/nodes/add.ctp:37
 #: /views/nodes/edit.ctp:47
 msgid "Audio file"
-msgstr "Faili la sauti"
+msgstr "Faili sikizi"
 
 #: /views/ivr_menus/add.ctp:68
 #: /views/ivr_menus/edit.ctp:76
@@ -1067,7 +1064,7 @@ msgstr "Bonyeza"
 #: /views/ivr_menus/add.ctp:97
 #: /views/ivr_menus/edit.ctp:125
 msgid "-Select audio file-"
-msgstr "-Chagua faili la sauti-"
+msgstr "-Chagua faili sikizi-"
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 #: /views/ivr_menus/edit.ctp:31
@@ -1126,12 +1123,12 @@ msgstr "Hakuna Menyu ya Sauti yenye kitambuzi hiki"
 # (pofilter) doublespacing: checks for bad double-spaces by comparing to original
 #: /views/ivr_menus/index.ctp:31
 msgid "Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components assosiated with telephony keypad selections."
-msgstr "Menyu ya Sauti| Kijenzi hiki kinakuwezesha kutengenza menyu mbalimbali za sauti kufuatana na mafaili maalum ya sauti, au ujumbe wa matini yaliyosautishwa.| Menyu ya sauti inajumuisha:| Maagizo ya menyu: seti ya ujumbe wa lazima, kama ujumbe wa kukaribisha, na maagizo ya jinsi ya kuabiri kwenye menyu| Machaguo ya menyu: mafaili ya sauti au vijenzi vinanyohusiana na machaguo ya kibao-namba kwenye simu."
+msgstr "Menyu ya Sauti| Kijenzi hiki kinakuwezesha kutengenza menyu mbalimbali za sauti kufuatana na mafaili sikizi maalum, au ujumbe wa matini yaliyosautishwa.| Menyu ya sauti inajumuisha:| Maagizo ya menyu: seti ya ujumbe wa lazima, kama ujumbe wa kukaribisha, na maagizo ya jinsi ya kuabiri kwenye menyu| Machaguo ya menyu: mafaili sikizi au vijenzi vinanyohusiana na machaguo ya kibao-namba kwenye simu."
 
 #: /views/ivr_menus/index.ctp:37
 #: /views/lm_menus/settings.ctp:45
 msgid "Audio files should be recorded in mono, 8KHz, and be maximum 10MB."
-msgstr "Mafaili ya sauti yarekodiwe mono, KHz8, yenye upeo wa 10MB."
+msgstr "Mafaili sikizi yarekodiwe mono, KHz8, yenye upeo wa 10MB."
 
 #: /views/ivr_menus/index.ctp:45
 #: /views/messages/archive.ctp:46
@@ -1173,7 +1170,7 @@ msgstr "Tembelea tuvuti ya Freedom Fone"
 # (pofilter) acronyms: acronyms should not be translated: GUI
 #: /views/lm_menus/settings.ctp:30
 msgid "Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file."
-msgstr "Acha-ujumbe| Menyu ya sauti ya acha-ujumbe inajumuisha ujumbe nane tofauti. Kila ujumbe unaweza kutengenezwa kwa njia tatu tofauti:| (1) faili maalum la sauti lililogeuzwa kufaa| (2) matini kwenda kwenye sauti, yaliyogeuzwa kufaa, au| (3) matini kwenda kwenye maneno, ya chaguo-msingi.|| Kama msimamizi amehusisha faili la sauti na ujumbe, faili hilo litachezwa kwa mpigaji atakapoingia kwenye menyu ya sauti.| Kama hakuna faili la sauti limelowekwa kwa ajili ya ujumbe, lakini kuna matini maalum, matini yatasautishwa na kuchezwa kwa mpigaji.| Kama zote hazipo, faili la sauti wala matini maalum, matini ya chaguo-msingi yatasautishwa na kuchezwa kwa mtumiaji.| Faili la sauti lipakiwe katika umbizo wa .mp3 au .wav kupitia ****kusano kwa mtumiaji. Baada ya kupakiwa, yanaweza kusikilizwa kupitia ****kusano kwa msimamizi kupitia Flashplayer ilijengewa ndani. Mafali ya sauti yanaweza kuandikizwa na mafaili mengine muda wowote."
+msgstr "Acha-ujumbe| Menyu ya sauti ya acha-ujumbe inajumuisha ujumbe nane tofauti. Kila ujumbe unaweza kutengenezwa kwa njia tatu tofauti:| (1) faili sikizi maalum lililogeuzwa kufaa| (2) matini ya kusautishwa, yaliyogeuzwa kufaa, au| (3) matini ya kusautishwa, ya chaguo-msingi.|| Kama msimamizi amehusisha faili sikizi na ujumbe, faili hilo litachezwa kwa mpigaji atakapoingia kwenye menyu ya sauti.| Kama hakuna faili sikizi limelowekwa kwa ajili ya ujumbe, lakini kuna matini maalum, matini yatasautishwa na kuchezwa kwa mpigaji.| Kama zote hazipo, faili sikizi wala matini maalum, matini ya chaguo-msingi yatasautishwa na kuchezwa kwa mtumiaji.| Faili sikizi lipakiwe katika umbizo wa .mp3 au .wav kupitia kiolesura cha mtumiaji. Baada ya kupakiwa, yanaweza kusikilizwa kupitia kiolesura cha msimamizi kupitia Flashplayer ilijengewa ndani. Mafali sikizi yanaweza kubadilishwa na mafaili mengine muda wowote."
 
 #: /views/lm_menus/settings.ctp:34
 msgid "Modify Leave a Message IVR"
@@ -1182,7 +1179,7 @@ msgstr "Rekebisha Acha-Ujumbe katika Menyu ya Sauti"
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 #: /views/lm_menus/settings.ctp:44
 msgid "Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button."
-msgstr "Tafadhali pakia faili la sauti kwenye umbizo kati ya .mp3 au .wav kwa ujumbe wote nane. Kama hakuna faili la sauti, matini ya awali yatatumika kwenye Menyu ya Sauti ya Acha-Ujumbe. Unaweza kusikiliza faili la sauti ulilopakia kwa kubonyeza kitufe cha Cheza."
+msgstr "Tafadhali pakia faili sikizi kwenye umbizo kati ya .mp3 au .wav kwa ujumbe wote nane. Kama hakuna faili sikizi, matini ya awali yatatumika kwenye Menyu ya Sauti ya Acha-Ujumbe. Unaweza kusikiliza faili sikizi ulilopakia kwa kubonyeza kitufe cha Cheza."
 
 #: /views/lm_menus/settings.ctp:65
 msgid "Step 1: Welcome message"
@@ -1430,7 +1427,7 @@ msgstr "Pakia mpya"
 # (pofilter) sentencecount: The number of sentences differ: 3 versus 4
 #: /views/nodes/index.ctp:32
 msgid "Menu Option|A Menu Option can either be (1) an audio file previously uploaded through the Create Menu option page, or (2) a Leave-a-Message service.| You can at any time add, edit, listen to or delete existing Menu Options.| Menu option files can be .mp3 or .wav audio files. When they are uploaded into the system they are associated with a Title to help you manage your audio files.| A Menu option file can be used in one or more different Voice Menus. These files cannot be deleted if they are currently associated with a Voice Menu."
-msgstr "Chaguo la Menyu|Chaguo la menyu linaweza kuwa (1) faili la sauti lililopakiwa kupitia ukurasa wa Unda Chaguo la Menyu, au (2) huduma ya Acha-Ujumbe.| Muda wowote unaweza kuongeza, kuhariri, kusikiliza au kufuta machaguo ya menyu yaliyopo. Mafaili ya machaguo ya menyu yanaweza kuwa mafaili ya sauti ya umbizo .mp3 au .wav. Yakishapakiwa, yanahusishwa na Kichwa kukusaidia kusimamia mafaili yako ya sauti.| Faili la chaguo la menyu linaweza kutumika kwenye Menyu za Sauti moja au zaidi, tofauti tofauti. Mafaili haya hayawezi kufutwa kama yamehusishwa na Menu ya Sauti."
+msgstr "Chaguo la Menyu|Chaguo la menyu linaweza kuwa (1) faili sikizi lililopakiwa kupitia ukurasa wa Unda Chaguo la Menyu, au (2) huduma ya Acha-Ujumbe.| Muda wowote unaweza kuongeza, kuhariri, kusikiliza au kufuta machaguo ya menyu yaliyopo. Mafaili ya machaguo ya menyu yanaweza kuwa mafaili sikizi ya umbizo .mp3 au .wav. Yakishapakiwa, yanahusishwa na Kichwa kukusaidia kusimamia mafaili sikizi yako.| Faili la chaguo la menyu linaweza kutumika kwenye Menyu za Sauti moja au zaidi, tofauti tofauti. Mafaili haya hayawezi kufutwa kama yamehusishwa na Menu ya Sauti."
 
 #: /views/nodes/index.ctp:41
 msgid "Entry:"
@@ -1446,11 +1443,8 @@ msgid "Number of entries per page: "
 msgstr "Idadi ya maingizo kwa ukurasa: "
 
 #: /views/nodes/index.ctp:93
-msgid "No Menu Options are uploaded. Please upload a Menu Option by clicking the 'Upload new' button to the right.
-msgstr ""
-"Hakuna machaguo ya menyu yaliyopakiwa. Tafadhali pakia chaguo la menyu "
-"kwa kubofya kitufe cha 'Unda mpya' kulia kwako."
-
+msgid "No Menu Options are uploaded. Please upload a Menu Option by clicking the 'Upload new' button to the right"
+msgstr "Hakuna machaguo ya menyu yaliyopakiwa. Tafadhali pakia chaguo la menyu kwa kubofya kitufe cha 'Unda mpya' kulia kwako."
 
 #: /views/pages/about.ctp:27
 msgid "Release"
@@ -1680,59 +1674,59 @@ msgstr "Ubunifu wa menyu za sauti Freedom Fone v.1"
 
 #: /views/pages/functionality/ivr.ctp:31
 msgid "<p>The administrator is able to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.<p>"
-msgstr "<p>Msimamizi ana uwezo wa kutengeneza Menyu za Sauti binafsi mbalimbali kufatana na mafaili ya sauti maalum, au ujumbe wa matini uliosautishwa.<p>"
+msgstr "<p>Msimamizi ana uwezo wa kutengeneza Menyu za Sauti binafsi mbalimbali kufatana na mafaili sikizi maalum, au ujumbe wa matini uliosautishwa.<p>"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) sentencecount: The number of sentences differ: 2 versus 1
 #: /views/pages/functionality/ivr.ctp:32
 msgid "<p>A Voice menu consists of:</p><ul><li>Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu, </li><li>Menu Options: audio files or components assosiated with telephony keypad selections. </li></ul>"
-msgstr "<p>Menyu sauti inajumuisha:</p><ul><li>Maelekezo ya Menyu: seti ya jumbe za sauti za lazima, kama vile Ujumbe wa karibisha, na maelekezo jinsi ya kurambaza kwenye menyu,</li><li>Machaguo ya Menyui: Mafaili ya sauti au vijenzi vinavyohusiana na chaguzi za pedibonye ya simu.</li></ul>"
+msgstr "<p>Menyu ya Sauti inajumuisha:</p><ul><li>Maagizo ya Menyu: ujumbe za sauti kadhaa za lazima, kama vile Ujumbe wa kukaribisha, na maagizo ya jinsi ya kuabiri kwenye menyu,</li><li>Machaguo ya Menyu: Mafaili sikizi au vijenzi vinavyohusiana na hiari za kibao-namba cha simu.</li></ul>"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 #: /views/pages/functionality/ivr.ctp:35
 msgid "<p>A Menu Instruction can either be a text message (that is automatically synthesized) or an uploaded audio file. If an audio file is to be used it must be uploaded from your local computer by either clicking in the relevant Audio file text box or clicking the associated ‘Browse’ button.<p>You can revert to using a synthesized text message by “un-associating” the uploaded file. The audio file is not deleted and can be used in the Voice Menu at a later stage, by “associating” the file with the Menu Instruction once again."
-msgstr "<p>Elezo la menyu linaweza kuwa ujumbe wa matini (itakoosautishwa kiotomatiki) au faili la sauti lililopakiwa. Kama faili la sauti litatumika ni lazima lipakiwe toka kwenye kompyuta yako kwa kubofya kwenye kisanduki cha matini cha faili la sauti husika au kubofya kutufe husika cha ‘Vinjari’.<p>Unaweza rudia ujumbe wa matini uliosautishwa kwa “kutohusisha” faili lililopakiwa. Faili la sauti lisolofutwa liwanaweza tumika kwenye menyu ya sauti nyingine baadaye, kwa “kuhusisha” faili hili na elezo la menyu kwa mara nyingine."
+msgstr "<p>Agizo la Menyu linaweza kuwa ujumbe wa matini (utakaosautishwa kiotomatiki) au faili sikizi lililopakiwa. Kama faili sikizi litatumika ni lazima lipakiwe kutoka kwenye kompyuta yako, kwa kubofya kwenye kisanduku cha matini cha faili sikizi husika, au kubofya kutufe husika cha ‘Vinjari’.<p>Unaweza kurudia kutumia ujumbe wa matini uliosautishwa kwa “kuacha kuhusisha” faili lililopakiwa. Faili sikizi halifutwi na litaweza kutumika kwenye Menyu ya Sauti nyingine baadaye, kwa “kuhusisha” faili hilo na Agizo la Menyu kwa mara nyingine."
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 #: /views/pages/functionality/ivr.ctp:38
 msgid "<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously uploaded through the Create Menu option page, or</li><li>a Leave-a-Message service</li></ul>"
-msgstr "<p><b>Menyu chaguzi</b> inaweza kuwa kati ya <ul><li>Faili sauti lililopita limepandishwa kupitia Menyu chaguzi za faili sinema au </li><li>huduama ya Acha-ujumbe</li></ul>"
+msgstr "<p><b>Chaguo la Menyu</b> linaweza kuwa ama <ul><li>faili sikizi ambalo lilishapakiwa kupitia ukurasa wa machaguo ya Unda Menyu, au</li><li>huduma ya Acha-ujumbe</li></ul>"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 #: /views/pages/functionality/ivr.ctp:39
 msgid "<p>The administrator can at any time add, edit, listen to or delete existing Menu Options."
-msgstr "<p>Mtawala anaweza wakati wowote kuongeza, kuhariri, kusikiliza au kufuta machaguo ya menyu yalizopo."
+msgstr "<p>Msimamiz anaweza wakati wowote kuongeza, kuhariri, kusikiliza au kufuta Machaguo ya Menyu yaliyopo."
 
 #: /views/pages/functionality/ivr.ctp:40
 msgid "<p>Menu option files can be .mp3 or .wav audio files. When they are uploaded into the system they are associated with a Title to help you manage your audio files."
-msgstr "<p>Faili za Menyu chaguzi zaweza kuwa.mp3 au .wav faili sauti. Wakati zinawekwa kwenye mfumo zitajuisha kichwa kusaidia kuongoza mafaili sauti."
+msgstr "<p>Mafaili ya machaguo ya menyu yaweza kuwa mafaili sikizi ya umbizo .mp3 au .wav. Wakati yanapopakiwa kwenye mfumo, zitajuisha Kichwa kusaidia kusimamia mafaili sikizi yako."
 
 #: /views/pages/functionality/ivr.ctp:41
 msgid "<p>A Menu option file can be used in one or more different Voice Menus. These files cannot be deleted if they are currently associated with a Voice Menu."
-msgstr "<p>Menyu sauti inawekutumika kati ya menyu sauti moja au zaidi. Mafaili haya hayawezi kufutwa kama wakati huo yanatumiwa na menyu sauti."
+msgstr "<p>Faili la Chaguo la Menyu linaweza kutumika kati ya Menyu ya Sauti moja au zaidi. Mafaili haya hayawezi kufutwa kama wakati huo yanatumiwa kwenye Menyu ya Sauti."
 
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 #: /views/pages/functionality/ivr.ctp:42
 msgid "<p>Freedom Fone v.1.5 offers the possibility to assign eight Menu Options to a Voice Menu."
-msgstr "<p>Freedom Fone v.1.5 inakupa uwezo wa kuweka menyu chaguzi nane kwenye menyu sauti."
+msgstr "<p>Freedom Fone v.1.5 inakupa uwezo wa kuteua Machaguo ya Menyu manane kwenye Menyu ya Sauti."
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 # (pofilter) brackets: translation is missing '(', ')'
 #: /views/pages/functionality/ivr.ctp:44
 msgid "<p>The administrator can create multiple Voice Menus, but only one can be active at a time (marked as Default). The administrator can at any time edit or delete a Voice Menu. If the default Voice menu is deleted, the oldest existing Voice Menu will automatically become the new default."
-msgstr "<p>Kiongozi anaweza kutengeneza menyu sauti kwa wingi. Ila moja tu ndio inaweza kufanya kazi kwa wakati mmoja.Kiongozi kwa muda wowote anaweza kuhariri au kufuta menyu sauti. Kama defoti menyu sauti iliyopo ikifutwa iliyokuwepo zamani ndo itafanywa difoti mpya."
+msgstr "<p>Msimamizi anaweza kuunda Menyu za Sauti nyingi. Ila moja tu ndio inaweza kufanya kazi kwa wakati mmoja. Msimamizi anaweza kuhariri au kufuta Menyu ya Sauti wakati wowote. Kama Menyu ya Sauti ya chaguo-msingi ikifutwa, Menyu ya Sauti inayobaki iliyotangulia zote kutoka zamani ndiyo itafanywa chaguo-msingi jipya."
 
 #: /views/pages/functionality/ivr.ctp:45
 msgid "The administrator can at any time change the default Voice Menu."
-msgstr "Kiongozi wakati wowoteanweza kufuta difoti menyu sauti."
+msgstr "Msimamizi anaweza kubadilisha Menyu ya Sauti ya chaguo-msingi wakati wowote."
 
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 # (pofilter) brackets: translation is missing '(', ')'
 #: /views/pages/functionality/ivr.ctp:48
 msgid "<p>Freedom Fone offers the administrator a means to monitor the features and audio files accessed by callers via a voice menu. For each incoming call to a Voice Menu, the caller's options are recorded (time, ivr, digit pressed, menu option, caller number).<p>These call records can be exported to a CSV file. The administrator can choose to export All entries, or a range of entries using a start and end time. Where privacy is a concern, the administrator can choose to delete all monitoring data from the system (using start and end time)."
-msgstr "<p>Freedom Fone inampa uwezo kiongozi wa kusimamia mitindo ya faili sauti inayotumiwa na mpigaji kupitia menyu sauti. Kwa kila simu inayoingia kwenye menyu sauti ,chaguzi za mpigaji zinarekodiwa.<p>Simu hizi zaweza kuhamishiwa kwenye faili la CSV. Kiongozi anaweza kuchagua kuhamisha vyote vilivyoingia au mpaka wake kwa kutumia muda wa kuanza na kumaliza. Wakati faragha inahitajika kiongozi anaweza kuchagua kufuta taharifa zote zilizosimamiwa kwenye mfumo(kwa kutumia muda wa kuanza na kumaliza)."
+msgstr "<p>Freedom Fone inampa msimamizi uwezo wa kufuatilia vipengele na mafaili sikizi kwamba wapigaji wanatumia kupitia kwenye Menyu ya Sauti. Kwa kila mwito inayoingia kwenye Menyu ya Sauti, machaguo ya mpigaji yanahifadhiwa. <p>Miito hii yaweza kuhamishiwa kwenye faili la CSV. Msimamizi anaweza kuchagua kuhamisha maingizo yote, au baadhi yao kwa kutaja muda wa kuanza na kumaliza. Wakati faragha inahitajika, msimamizi anaweza kuchagua kufuta taarifa zote za ufuatiliaji kutoka kwenye mfumo (kwa kutumia muda wa kuanza na kumaliza)."
 
 # (pofilter) startcaps: checks that the message starts with the correct capitalisation
 #: /views/pages/functionality/leave-a-message.ctp:25
@@ -1746,43 +1740,43 @@ msgstr "Matumizi: Acha-ujumbe"
 
 #: /views/pages/functionality/leave-a-message.ctp:30
 msgid "<p>The Leave-a-Message service offers callers the option to call into Freedom Fone, and leave  their personal message. This may be a report, feedback, tip-off, response to a question, or perhaps a job application.</p>"
-msgstr "<p>Huduma acha ujumbe inampa mpigaji uchaguzi wa kupiga simu Freedom Fone na kuacha ujumbe binafsi. Hii inaweza kuwa repoti,majibu  ya maswali au maombi ya kazi</p>"
+msgstr "<p>Huduma Acha-ujumbe inampa mpigaji hiari ya kupiga simu kwenye Freedom Fone, na kuacha ujumbe binafsi. Hii inaweza kuwa ripoti, mwitiko kuhusu huduma, majibu  ya maswali, au hata maombi ya kazi</p>"
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 # (pofilter) doublewords: The word 'huduma' is repeated
 #: /views/pages/functionality/leave-a-message.ctp:31
 msgid "<p>A caller using the Leave-a-message service is connected to a voice menu created by the Freedom Fone administrator. The voice menu greets the caller and provides instructions as to how to use the service.  The Leave-a-message service allows the caller to </p><ul><li>Record a message</li><li>Listen to their recorded message</li><li>Delete and record a new message OR</li><li>Save their message and exit</li></ul>"
-msgstr "<p>Mtumiaji wa huduma ya acha ujumbe anaunganishwa na menyu sauti iliyotengenezwa na kiongozi wa Freedom Fone. Menyu sauti itamsalimu mpigaji na kumpa maelekezo jinsi ya kutumia huduma. Huduma ya Acha ujumbe  itamwezesha mpigaji</p><ul><li>Kurekodi ujumbe</li><li>kusikiliza ujumbe uliorekodiwa</li><li>Kufuta ujumbe uliorekodiwa</li><li>kutunza ujumbe uliorekodiwa na kuondoka</li></ul>"
+msgstr "<p>Mpigaji akitumia huduma ya Acha-ujumbe anaunganishwa na menyu ya sauti iliyoundwa na msimamizi wa Freedom Fone. Menyu ya sauti itamsalimu mpigaji na kumpa maagizo jinsi ya kutumia huduma. Huduma ya Acha-ujumbe itamwezesha mpigaji</p><ul><li>Kurekodi ujumbe</li><li>Kusikiliza ujumbe uliorekodiwa</li><li>Kufuta ujumbe uliorekodiwa na kurekodi tena ujumbe mpya</li><li>Kuhifadhi ujumbe uliorekodiwa na kuondoka</li></ul>"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 # (pofilter) brackets: translation is missing '(', ')'
 #: /views/pages/functionality/leave-a-message.ctp:34
 msgid "<p>By using the buttons # (hash), * (star), 0 (zero) and 1 (one), the user is able to navigate through the menu according to the illustration above.</p>"
-msgstr "<p>Kwa kutumia kitufe # (reli), * (nyota), 0 (sifuri) na 1 (moja), mpigaji anaweza kutoka menyu kufatana na maelezo ya juu.</p>"
+msgstr "<p>Kwa kutumia vitufe # (reli), * (nyota), 0 (sifuri) na 1 (moja), mpigaji anaweza kuabiri menyu kufatana na picha hapo juu.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:36
 msgid "The Leave-a-message Voice Menu"
-msgstr "Menyu sauti ya acha ujumbe"
+msgstr "Menyu ya Sauti ya Acha-ujumbe"
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 #: /views/pages/functionality/leave-a-message.ctp:37
 msgid "<p>The Leave-a-message voice menu is created by the administrator. The menu consists of eight different messages. Each message can be generated in three different ways:</p><ol><li>Customized audio files</li><li>Customized text to speech</li><li>Default text to speech</li></ol>"
-msgstr "<p>Acha ujumbe imetengenezwa na kiongozi. Menyu inajumuisha ujumbe minane tofauti. Kila ujumbe unatengenezwa kwa njia tatu tofauti:</p><ol><li>Pekeesha faili sauti</li><li>Pekeesha ujumbe sema</li></ol>"
+msgstr "<p>Menyu ya sauti ya Acha-ujumbe inaundwa na msimamizi. Menyu inajumuisha ujumbe minane tofauti. Kila ujumbe unaweza kuundwa kwa njia tatu tofauti:</p><ol><li>Mafaili sikizi yanayogeuzwa kufaai</li><li>Matini ya kusautishwa, yanayogeuzwa kufaa</li><li>Matini ya kusautishwa, ya chaguo-msingi</ol>"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 #: /views/pages/functionality/leave-a-message.ctp:40
 msgid "<p>If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.</p>"
-msgstr "<p>Kama mtawala anashiliki faili sauti kwa ujumbe faili hilo litachezwa wakati anaweka menyu sauti.</p>"
+msgstr "<p>Kama msimamizi akishirikisha faili sikizi na ujumbe, faili hilo litachezwa wakati mpigaji akiingia menyu ya sauti.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:41
 msgid "<p>If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.</p>"
-msgstr "<p>Kama hakuna faili lililoletwa kwa ujumbe lakini limepekeeshwa na ujumbe maneno uliopo,ujumbe maneno utakuwa utachezwa kwa mpigaji.</p>"
+msgstr "<p>Kama hakuna faili sikizi lililoletwa kwa ujumbe lakini kuna ujumbe wa matini maalum uliopo, ujumbe wa matini utasautishwa na utachezwa kwa mpigaji.</p>"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 #: /views/pages/functionality/leave-a-message.ctp:42
 msgid "<p>If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.</p>"
-msgstr "<p>Kama kati ya faili sauti au neno halijaletwa, ujumbe uliopo utachezwa kwa mtumiaji.</p>"
+msgstr "<p>Kama hakuna faili sikizi wala matini maalum yaliyoletwa, matini ya chaguo-msingi utasautishwa na utachezwa kwa mtumiaji.</p>"
 
 # (pofilter) sentencecount: The number of sentences differ: 3 versus 2
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
@@ -1790,20 +1784,20 @@ msgstr "<p>Kama kati ya faili sauti au neno halijaletwa, ujumbe uliopo utachezwa
 # (pofilter) acronyms: acronyms should not be translated: GUI
 #: /views/pages/functionality/leave-a-message.ctp:43
 msgid "<p>The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.</p>"
-msgstr "<p>Mafaili ya sauti lazima yapakiwe kwenye fomati ya .mp3 au .wav kupitia kusano ya mtumiaji. Yakiisha pakiwa yatasikililizwa kwa kutumia Flashplayer ya utawala. Mafailli ya sauti yanaweza andikizwa na mafaili mapya wakati wowote.</p>"
+msgstr "<p>Mafaili sikizi lazima yapakiwe kwenye umbizo wa .mp3 au .wav kupitia kiolesura cha mtumiaji. Yakiishapakiwa yatasikililizwa kwa kutumia Flashplayer kwenye kiolesura cha msimamizi. Mafaili sikizi yanaweza kubadilishwa na mafaili sikizi mapya wakati wowote.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:45
 msgid "Received voice messages"
-msgstr "Acha ujumbe wa sauti"
+msgstr "Ujumbe wa sauti uliopokelewa"
 
 #: /views/pages/functionality/leave-a-message.ctp:46
 msgid "<p>The Freedom Fone administrator receives all incoming messages to the “Inbox”. For each message, the administrator can</p><ul><li>listen to it (with a built-in Flashplayer)</li><li>name (give the message a title)</li><li>assign a category</li><li>associate the message with one or more tags</li><li>give the message a rating (1-5)</li></ul>"
-msgstr "<p>Mtawala wa Freedom Fone anapoke jumbe zote zinazoingia kwenye kisanduku pokezi. Kwa kila ujumbe, mtawala anaweza</p><ul><li>kuusikiliza (kwa kutumiza Flashplayer)</li><li>kuupa jina (kuupa ujumbe kichwa)</li><li>kuuweka kwenye kundi</li><li>husisha ujumbe na tagi moja au zaidi</li><li>kuupa ujumbe daraha(1-5)</li></ul>"
+msgstr "<p>Msimamizi wa Freedom Fone anapokea ujumbe wote ambao unaingia kwenye kikasha pokezi. Kwa kila ujumbe, msimamizi anaweza</p><ul><li>kuusikiliza (kwa kutumia Flashplayer katika kiolesura)</li><li>kuupa jina (kuupa ujumbe kichwa)</li><li>kuuweka kwenye kategoria</li><li>kuhusisha ujumbe na lebo moja au zaidi</li><li>kuupa ujumbe kadirio (1-5)</li></ul>"
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 #: /views/pages/functionality/leave-a-message.ctp:48
 msgid "<p>The administrator can choose to delete a message, or to archive it for future use.</p>"
-msgstr "<p>Kiongozi anaweza kuchagua kufuta ujumbe au kuweka kwa matumizi ya baadae.</p>"
+msgstr "<p>Msimamizi anaweza kuchagua kufuta ujumbe, au kuuhifadhi kwenye nyaraka kwa matumizi ya baadaye.</p>"
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 #: /views/pages/functionality/poll.ctp:25
@@ -1821,7 +1815,7 @@ msgstr "<p>Huduma ya Kura inawawezesha watumiaji wa hatima kujumuika wakituma SM
 
 #: /views/pages/functionality/poll.ctp:30
 msgid "<p>The Freedom Fone administrator has the ability to <a href='/freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit and delete</a> polls. A poll is composed using the following parameters:"
-msgstr "<p>Msimamizi wa Freedom Fone ana uwezo wa <a href='/freedomfone/polls/add'>kuunda</a>, <a href='/freedomfone/polls/'>kuhariri na nafuta</a> kura. Kura inatengenezwa kwa kutumia vigezo hivi:"
+msgstr "<p>Msimamizi wa Freedom Fone ana uwezo wa <a href='/freedomfone/polls/add'>kuunda</a>, <a href='/freedomfone/polls/'>kuhariri na kufuta</a> kura. Kura inatengenezwa kwa kutumia vigezo hivi:"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
@@ -1829,26 +1823,26 @@ msgstr "<p>Msimamizi wa Freedom Fone ana uwezo wa <a href='/freedomfone/polls/ad
 # (pofilter) acronyms: acronyms should not be translated: SMS, SMS
 #: /views/pages/functionality/poll.ctp:32
 msgid "<ul><li>Question: The question you want your audience to answer to</li><li>Code: The SMS code to use, to associate an SMS with your poll</li><li>Answers: Two or more answers to the question.</li><li>Start time: Date and time when the poll opens for submission</li><li>End time: Date and time when the poll closes for submission</li></ul>"
-msgstr "<ul><li>Swali: swali unalotaka washiriki wajibu<li></li>Msimbo: Ujumbe mfupi unaotumika, kujumuisha SMS na kura</li><li>Majibu: Majibu mawili au zaidi kwa sali.</li><li>Muda wa kuanza: Tarehe na muda wakati pol imefunguliwa kwa ajili ya kutumwa</li><li>Muda wa kumaliza: Tarehe na muda wakati pol imefunguliwa kwa ajili ya kutumwa</li></ul>"
+msgstr "<ul><li>Swali: swali unalotaka washiriki wajibu<li></li>Msimbo: Ujumbe mfupi unaotumika, kujumuisha SMS na kura</li><li>Majibu: Maitiko mawili au zaidi kwa swali.</li><li>Muda wa kuanza: Tarehe na muda wakati kura imefunguliwa kwa ajili ya kutumwa</li><li>Muda wa kumaliza: Tarehe na muda wakati kura imefunguliwa kwa ajili ya kutumwa</li></ul>"
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/pages/functionality/poll.ctp:35
 msgid "<p>Poll details can be communicated with the public via any means, including website, email and printed materials. Remember to share the above details and include the phone number or short code to which participants should send their SMS replies.</p>"
-msgstr "<p>Taharifa za pol inaweza kuwasiliana na jumiya kwa njia ya, ikijuishwa tuvuti,barua pepe na vitu vilivyochapwa. Kumbuka kushilikisha habari hizimna jumisha namba ya simu ambapo watumiaji watatuma SMS.</p>"
+msgstr "<p>Taarifa za kura zinaweza kuenezwa na jumiya kwa njia yoyote, kwa mfano tovuti, barua pepe na vitu vilivyochapwa. Kumbuka kutaja habari hapo juu, hasa kuambatanisha namba ya simu au msimbo mfupi ambapo washiriki watatuma majibu yao ya SMS.</p>"
 
 #: /views/pages/functionality/poll.ctp:36
 msgid "<p>The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public.</p>"
-msgstr "<p>Kiongozi kwa muda wowote anaweza kuhariri mambo yaliyowekwa hapo juu. Ndo mana hatushauri kubadili swali,cod au jibu kwenda pol,wakati ikifunguliwa kwa jumuiya.</p>"
+msgstr "<p>Msimamizi anaweza kuhariri mambo yaliyowekwa hapo juu, wakati wowote. Bila shaka, hatushauri kubadili swali, msimbo, wala majibu ya kura, baada ya ikifunguliwa kwa jumuiya.</p>"
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 #: /views/pages/functionality/poll.ctp:37
 msgid "<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll.</p>"
-msgstr "<p>Kabla pol haijafunguliwa na baada ya kufungwa hakuna pol kura zitazorejistiwa kwenye uchaguzi.<p>"
+msgstr "<p>Kabla kura haijafunguliwa, na baada ya kufungwa, chaguo la mshriki halitaandikwa kwenye uchaguzi.<p>"
 
 #: /views/pages/functionality/poll.ctp:38
 msgid "<p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer.</p>"
-msgstr "<p>Kwa kila pol, wakati imefunguliwa kiongozi anaweza kwa wakati wowote kuangalia majibu ya mwisho kwa njia ya namba ya kura kwa jibu,na asilimia ya kura zote kwa jibu.</p>"
+msgstr "<p>Kwa kila kura, wakati wowote baada ya kufunguliwa, msimamizi anaweza kuangalia majibu ya muda au ya mwisho kwa njia ya idadi ya kura kwa jibu, na asilimia ya kura zote kwa jibu.</p>"
 
 #: /views/pages/functionality/poll.ctp:40
 msgid "Classification of votes"
@@ -1857,52 +1851,52 @@ msgstr "Uainishaji wa kura"
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 #: /views/pages/functionality/poll.ctp:41
 msgid "<p>The system classifies all incoming votes as <i>valid, invalid,</i> or <i>incorrect</i>:</p>"
-msgstr "<p>Mfumo unagawa kura zote zinazoingia kama<i>halali, batili,</i> au <i>si sahihi</i>:</p>"
+msgstr "<p>Mfumo unaanisha kura zote zinazoingia kama<i>halali, batili,</i> au <i>si sahihi</i>:</p>"
 
 #: /views/pages/functionality/poll.ctp:42
 msgid "<p><b>Valid vote:</b> correct poll code, and correct poll option</p>"
-msgstr "<p><b>Rura halali:</b> kodi sahihi ya kura na chaguo sahihi la kura</p>"
+msgstr "<p><b>Kura halali:</b> msimbo sahihi ya kura, na chaguo sahihi la kura</p>"
 
 #: /views/pages/functionality/poll.ctp:43
 msgid "<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>"
-msgstr "<ul><li>Mapema: Imepokelewa kabla ya upigaji kura kianza.</li><li>Kwa wakati: Imepokelewa wakati upigaji kura umeanza.</li><li>Baada: Imepokelewa baada ya upigaji kura kufungwa.</li></ul>"
+msgstr "<ul><li>Mapema: Imepokelewa kabla ya upigaji kura kufunguliwa.</li><li>Kwa wakati: Imepokelewa baada ya upigaji kura kufunguliwa na kabla ya kufungwa.</li><li>Chelewa: Imepokelewa baada ya upigaji kura kufungwa.</li></ul>"
 
 # (pofilter) doublewords: The word 'kura' is repeated
 #: /views/pages/functionality/poll.ctp:44
 msgid "<p>Early votes will be registered as ”Valid, early”. The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll."
-msgstr "<p>Kura zilizopokelewa mapema zitaandikwa kama ”Halali, mapema”. Namba ya kura zilizopokelewa mapema kwa kila chaguo la kura litaonekana kwenye safu-wima tovauti chini ya kura. Kura zilizopokelewa mapema hazijumlishwi kwenye jumla ya kura zilizokubaliwa."
+msgstr "<p>Kura zilizopokelewa mapema zitaandikwa kama ”Halali, mapema”. Idadi ya kura zilizopokelewa mapema kwa kila chaguo la kura litaonekana kwenye safu-wima tofauti kwenye ukurasa wa Tazama kura. Kura zilizopigwa mapema hazijumlishwi kwenye jumla ya kura zinazokubaliwa."
 
 # (pofilter) doublewords: The word 'kura' is repeated
 #: /views/pages/functionality/poll.ctp:45
 msgid "<p>Late votes will be registered as “Valid, late”. The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll."
-msgstr "<p>Kura zilizopokelewa baada zitaandikwa kama ”Halali, baada”. Namba ya kura zilizopokelewa baada kwa kila chaguo la kura litaonekana kwenye safu-wima tovauti chini ya kura. Kura zilizopokelewa baada hazijumlishwi kwenye jumla ya kura zilizokubaliwa."
+msgstr "<p>Kura zilizochelewa kupokelewa zitaandikwa kama ”Halali, chelewa”. Idadi ya kura zilizochelewa kupokelewa kwa kila chaguo la kura litaonekana kwenye safu-wima tofauti kwenye ukurasa wa Tazama kura.  Kura zilizochelewa kupokelewa hazijumlishwi kwenye jumla ya kura zinazokubaliwa."
 
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 #: /views/pages/functionality/poll.ctp:46
 msgid "<p>The Early and Late vote classifications are summarised separately to provide a complete view of votes submitted to the poll concerned."
-msgstr "<p>Kura za mwanzo na mwisho zimepangwa kama samari iliyotenganishwa kupa mwonekano mzima wa kura zilizoletwa kwenye uchaguzi."
+msgstr "<p>Kura ambazo zinaainishwa Mapema au Chelewa zitapangwa kwenye muhtasari pembeni ili kuonyesha kura zote zilizopigwa kwenye uchaguzi."
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 #: /views/pages/functionality/poll.ctp:48
 msgid "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
-msgstr "<p><b>Kura batili:</b>Kodi sahihi ya uchaguzi, lakini haikubaliani na chagio la uchaguzi"
+msgstr "<p><b>Kura batili:</b>Msimbo sahihi ya kura, lakini chaguo la kura halilingani"
 
 #: /views/pages/functionality/poll.ctp:49
 msgid "<p>Invalid votes are registered as votes, but classified as “invalid”. “Early”, “late” and “on-time” invalid votes are registered."
-msgstr "<p>Kura batili zitaandikiwa kama kura, lakini zitawekwa kwenye kundi as “batili”. Kura batili za “mapame”, “baada” and “kwa-wakati” zinaandikishwa."
+msgstr "<p>Kura batili zitaandikiwa kama kura, lakini zitaainishwa kama “batili”. Kura batili za “mapema”, “chelewa” and “kwa-wakati” zinaandikiwa."
 
 # (pofilter) brackets: translation is missing '(', ')'
 #: /views/pages/functionality/poll.ctp:50
 msgid "<p>Only “on-time” invalid votes are incorporated into the Total number of votes (in time) summary."
-msgstr "<p>Kura batili za “kwa-wakati” tu ndio zinawekwa kwenye jumla ya kura (kwa-wakati)."
+msgstr "<p>Kura batili za “kwa-wakati” tu ndio zinawekwa kwenye jumla ya kura (kwa-wakati) kwenye muhtasari."
 
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/pages/functionality/poll.ctp:51
 msgid "<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results."
-msgstr "<p>Jumla ya kra ambazo si sahihi zimepatikana kutoa deploya ujuzi jinsi tatizo la SMS litavyosumbua matokeo ya uchaguzi."
+msgstr "<p>Jumla ya kura batili inawawezesha wasambazaji kuona jinsi gani hitilafu za SMS zinaweza kuathiri matokeo ya uchaguzi."
 
 # (pofilter) puncspacing: checks for bad spacing after punctuation
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
@@ -1910,33 +1904,33 @@ msgstr "<p>Jumla ya kra ambazo si sahihi zimepatikana kutoa deploya ujuzi jinsi 
 # (pofilter) startcaps: checks that the message starts with the correct capitalisation
 #: /views/pages/functionality/poll.ctp:53
 msgid "<p><b>Incorrect vote: </b>Non-matching poll code"
-msgstr "<p><b>Kura si sahihi: </b>Kodi  ya uchaguzi isiyojulikana"
+msgstr "<p><b>Kura si sahihi: </b>Msimbo wa kura haulingani"
 
 #: /views/pages/functionality/poll.ctp:54
 msgid "<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under “Other SMS”. The SMS will be classified as “Unclassified”."
-msgstr "<p>Kura zisizo sahihi hazuwezi fananishwa kwenye kisanduku chochote kile, zitawekwa kama SMS zinazoingia na zitahifadhiwa chini ya “SMS Zingine”. SMS zitawekwa kama “Isiyooanishwa”."
+msgstr "<p>Kura zisizo sahihi ambazo haziwezi kufananishwa na kura yoyote, zitaainishwa kama SMS zinazoingia na zitahifadhiwa chini ya \"SMS Nyingine\". SMS zitaainishwa kama \"Isiyoainishwa\"."
 
 #: /views/pages/functionality/poll.ctp:56
 msgid "Practical example"
-msgstr "Mufano mwonekano"
+msgstr "Mfano"
 
 # (pofilter) singlequoting: checks whether singlequoting is consistent between the two strings
 # (pofilter) acronyms: acronyms should not be translated: YES, YES, SMS
 #: /views/pages/functionality/poll.ctp:57
 msgid "<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES. The same logic applies to the SMS code.</p>"
-msgstr "<p>Uchaguzi hauthiliwi na herufi ndogo wala kubwa, 'ndio', 'Ndio', 'NDIO', 'nDIO' hivyo zote zitatafsiriwa kama 'NDIO'. Hii namna inatumika pia kwa kodi za SMS.</p>"
+msgstr "<p>Kura haijali kama herufi ni ndogo wala kubwa, kwa hivyo 'ndio', 'Ndio', 'NDIO', 'nDIO' hivyo zote zitatafsiriwa kama 'NDIO'. Hii namna inatumika pia kwa mfumo wa SMS.</p>"
 
 # (pofilter) sentencecount: The number of sentences differ: 3 versus 1
 # (pofilter) acronyms: acronyms should not be translated: SMS, SMS
 #: /views/pages/functionality/poll.ctp:58
 msgid "<p>More than one poll can be active at the same time. Incoming SMS are identified by the SMS code used and matched with existing polls. </p>"
-msgstr "<p>Uchaguzi zaidi ya mmoja unaweza kuendelea kwa wakati mmoja. SMS zinazoingia zitatambuliwa kwa kodi za SMS na kufananishwa na chaguzi zite zilizopo.</p>"
+msgstr "<p>Kura zaidi ya moja inaweza kuendeshwa kwa wakati mmoja. SMS zinazoingia zitatambuliwa kwa msimbo wa SMS na kufananishwa na kura zilizopo.</p>"
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 # (pofilter) acronyms: acronyms should not be translated: SMS, GSM
 #: /views/pages/functionality/poll.ctp:60
 msgid "<p>The timestamp used to determine whether or not a vote is in time for a poll, is the time of arrival to the Freedom Fone platform. Hence, if an SMS gets delayed in the GSM network, it will be classified as late even if it was sent before the poll deadline. "
-msgstr "<p>Kitambuzimda kinatumika kutambulisha kama kura iko kwa wakati au, Ni muda Freedom Fone. Ivyo kama SMS utapata kuonyeshwa kwenye mtandao wa GMS, Itajumisha kama imechelewa hata kama ilikuwa wakati mafaka. "
+msgstr "<p>Mhuri wa muda unaotumika kutambulisha kama kura imefika kwa wakati, ndiyo ni muda wa kuonekana kwenye jukwaa la Freedom Fone. Hivyo, kama SMS uikicheleweshwa kwenye mtandao wa GSM, itaainishwa kwamba imechelewa hata kama ilitumwa kabla uchaguzi haujafungwa. "
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 # (pofilter) numbers: checks whether numbers of various forms are consistent between the two strings
@@ -1944,7 +1938,7 @@ msgstr "<p>Kitambuzimda kinatumika kutambulisha kama kura iko kwa wakati au, Ni 
 # (pofilter) doublespacing: checks for bad double-spaces by comparing to original
 #: /views/pages/functionality/poll.ctp:62
 msgid "<p>Example: The administrator creates a poll with the following parameters:<ul><li>Question: Would you like to deploy Freedom Fone in your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: 08:00 AM, January 31, 2010</li></ul></p>"
-msgstr "<p>Mfano: Mtawala anatengeneza uchaguzi kwa kutumia vigezo vifuatavyo:<ul><li>Swali Unapenda kuweka Freedom Fone kwenye kampuni yako?</li><li>Kodi:  freedomfone</li><li>Jibu: Ndio/Hapana/Labda</li><li>Muda wa kuanza: 08:00 asubuhi,Januari 1, 2010</li><li>Muda wa kumaliza: 08:00 asubuhi,Januari 31, 2010</li></ul></p>"
+msgstr "<p>Mfano: Msimamizi anatengeneza kura kwa kutumia vigezo vifuatavyo:<ul><li>Swali Unapenda kuweka Freedom Fone kwenye kampuni yako?</li><li>Msimbo:  freedomfone</li><li>Jibu: Ndio/Hapana/Labda</li><li>Muda wa kuanza: 08:00 asubuhi, 1 Januari, 2010</li><li>Muda wa kumaliza: 08:00 asubuhi, 31 Januari, 2010</li></ul></p>"
 
 # (pofilter) xmltags: checks that XML/HTML tags have not been translated
 # (pofilter) numbers: checks whether numbers of various forms are consistent between the two strings
@@ -1956,7 +1950,7 @@ msgid ""
 "freedomfone no\n"
 "freedomfone maybe</pre>"
 msgstr ""
-"<p>Kujumuika kwenye pol Mtumiaji anatakiwa kutuma Ujumbe mfupi(baada 08:00 asubuhi 01/01 na kabla ya 08:00 asubuhi 31/01/2010) na moja kati ya ujmbe ufuatao</p><pre>freedomfone ndio\n"
+"<p>Kushiriki kwenye kura, mtumiaji wa hatima anatakiwa kutuma Ujumbe mfupi (baada ya 08:00 asubuhi 01/01/2010 na kabla ya 08:00 asubuhi 31/01/2010) kwenye mmoja kati ya ujumbe ufuatao</p><pre>freedomfone ndio\n"
 " freedomfone hapana\n"
 "freedomfone labda</pre>"
 
@@ -2082,7 +2076,7 @@ msgstr ""
 "Kura batili zinaandikwa kama kura, lakini zinaainishwa kama \"batili\". Kura batili za \"mapema\", \"chelewa\" na \"kwa-wakati\" zinaandikwa.|\n"
 "Kura za \"kwa-wakati\" tu ndio zinajumlishwa kwenye jumla ya idadi ya kura.|\n"
 "<p>Jumla ya kura batili inawawezesha wasambazaji kuona jinsi gani hitilafu za SMS zinaweza kuathiri matokeo ya uchaguzi.|\n"
-"Kura batili ambazo haziwezi kufananishwa na kura yoyote, zitaainishwa kama SMS zinazoingia na zitahifadhiwa chini ya \"SMS Nyingine\". SMS zitaainishwa kama \"Isiyoainishwa\"."
+"Kura zisizo sahihi ambazo haziwezi kufananishwa na kura yoyote, zitaainishwa kama SMS zinazoingia na zitahifadhiwa chini ya \"SMS Nyingine\". SMS zitaainishwa kama \"Isiyoainishwa\"."
 
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/polls/view.ctp:53
@@ -2107,7 +2101,7 @@ msgstr "Kura zilizopigwa mapema"
 
 #: /views/polls/view.ctp:62
 msgid "Late votes"
-msgstr "Kura zilizopigwa mwishoni"
+msgstr "Kura zilizochelewa kupigwa"
 
 #: /views/polls/view.ctp:105
 msgid "Total"
@@ -2152,9 +2146,8 @@ msgid "Component"
 msgstr "Kijenzi"
 
 #: /views/processes/index.ctp:83
-#, fuzzy
 msgid "Interupt mode"
-msgstr "Miito isizidi"
+msgstr "Namna ya kuzimwa"
 
 #: /views/processes/software.ctp:27
 msgid "System software"

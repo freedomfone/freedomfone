@@ -70,7 +70,7 @@
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Lupinus</div>
+	 <div class="footer">Lycaon Pictus Lupinus 1.5.2</div>
 </div>										<!--wrapper end-->
 </body>
 </html>

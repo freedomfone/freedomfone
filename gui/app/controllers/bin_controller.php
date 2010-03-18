@@ -46,17 +46,15 @@ class BinController extends AppController{
       		
 			$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		
-	     }  elseif($this->Session->check('messages_sort')) { 
-  		
+	     }  elseif($this->Session->check('messages_sort')){
+		     if(in_array($this->Session->read('messags_sort'),array('body','created','mode','proto','sender'))){
 			$this->paginate['order'] = $this->Session->read('messages_sort');
+			} 
 	     } 
-
 
      	     $this->Bin->recursive = 0; 
    	     $data = $this->paginate();
 	     $this->set('data',$data);  
-
-
 
       }
 

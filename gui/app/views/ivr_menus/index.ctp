@@ -43,7 +43,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
      echo $html->tableHeaders(array(
      	__("Default",true),
  	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Greeting",true), 'rate'),
+ 	$paginator->sort(__("Greeting",true), 'message_long'),
  	$paginator->sort(__("IVR code",true), 'modified'),
  	$paginator->sort(__("Last modified",true), 'modified'),
 	__("Edit",true),

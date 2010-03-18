@@ -86,15 +86,17 @@ class IvrMenusController extends AppController{
         //set instance_id
 	$this->data['IvrMenu']['instance_id']=$iid;
 
+
 	$this->data['IvrMenuFile']['file_long'] = $this->data['IvrMenu']['file_long'];
 	$this->data['IvrMenuFile']['file_short'] = $this->data['IvrMenu']['file_short'];
 	$this->data['IvrMenuFile']['file_exit'] = $this->data['IvrMenu']['file_exit'];
-	$this->data['IvrMenuFile']['file_invalid'] = $this->data['IvrMenu']['file_invalid'];
+	$this->data['IvrMenuFile']['file_invalid'] = $this->data['IvrMenu']['file_invalid']; 
 
-	$this->data['IvrMenu']['file_long']= $this->data['IvrMenu']['file_long']['error'];
-	$this->data['IvrMenu']['file_short']= $this->data['IvrMenu']['file_short']['error'];
-	$this->data['IvrMenu']['file_exit']= $this->data['IvrMenu']['file_exit']['error'];
-	$this->data['IvrMenu']['file_invalid']= $this->data['IvrMenu']['file_invalid']['error'];
+	$this->data['IvrMenu']['file_long']= false;
+	$this->data['IvrMenu']['file_short']= false;
+	$this->data['IvrMenu']['file_exit']= false;
+	$this->data['IvrMenu']['file_invalid']= false;
+
 
 	if ($this->IvrMenu->save($this->data['IvrMenu'] )){
 
@@ -102,17 +104,14 @@ class IvrMenusController extends AppController{
 	   $id = $this->IvrMenu->getLastInsertId();
 
 		foreach($this->data['IvrMenuFile'] as $key => $file){
-			
+
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
 			       $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'default',array('class' => 'error-message'));							
-			   }	
-		  
-		   
+			   }			  		   
 		   }
-
 
                  if(isset($fileData)){
 
@@ -125,11 +124,11 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                           // Update database field correponding to file 
                                            $filename = $this->getFilename($fileOK['files'][$key]);
+					   $name= $fileData[$key]['name'];
                                            $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part)-5);
-                                           $this->IvrMenu->saveField($field,$filename);
+   			                   $field=substr($part,1,strlen($part));
+                                           $this->IvrMenu->saveField($field,$name);
 		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
 				   }
 					
@@ -205,12 +204,8 @@ class IvrMenusController extends AppController{
 				$fileData[] = $file;
 			}  elseif ($file['error']==1 && !$file['size']) {
 			   $flashMsg = $flashMsg."<br/>".__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'];			
-			   }	
-		  
-		   
+		        }		  
 		   }
-
-
 
                  if(isset($fileData)){
 
@@ -222,8 +217,8 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                                               $filename = $this->getFilename($fileOK['files'][$key]);
-					     $name= $fileData[$key]['name'];
+                                           $filename = $this->getFilename($fileOK['files'][$key]);
+					   $name= $fileData[$key]['name'];
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part));
                                            $this->IvrMenu->saveField($field,$name);

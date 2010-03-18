@@ -50,8 +50,10 @@ class MessagesController extends AppController{
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		}
 	elseif($this->Session->check('messages_sort')) { 
-  		$this->paginate['order'] = $this->Session->read('messages_sort');
+		if(in_array($this->Session->read('messags_sort'),array('new','title','rate','category','created','modified','length'))){
+		   $this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
+	} 
 
       if(isset($this->params['named']['limit'])) { 
 
@@ -86,8 +88,10 @@ class MessagesController extends AppController{
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		}
 	elseif($this->Session->check('messages_sort')) { 
-  		$this->paginate['order'] = $this->Session->read('messages_sort');
+		if(in_array($this->Session->read('messags_sort'),array('new','title','rate','category','created','modified','length'))){
+		   $this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
+	} 
 
       if(isset($this->params['named']['limit'])) { 
 	$this->Session->write('messages_limit',$this->params['named']['limit']);

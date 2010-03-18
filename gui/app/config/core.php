@@ -245,12 +245,14 @@ $config['VERSION'] = array(
  *         Set the correct time zone http://php.net/manual/en/timezones.php
  ********** ********** ********** **********/
 
-define ('MY_DOMAIN','http://localhost/freedomfone/');
+define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
 Configure::write('Config.language', 'eng');
 Configure::write('Config.timezone', 'Africa/Harare');
 
 /********** ********** ********** **********
  * END CONFIG: 
  ********** ********** ********** **********/
+
+date_default_timezone_set(Configure::read('Config.timezone'));
 
 ?>

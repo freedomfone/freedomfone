@@ -34,6 +34,7 @@ echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'s
 echo $form->end();
 
 
+
 echo "<h1>".__('Other SMS',true)."</h1>";
 echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 

@@ -555,6 +555,7 @@ gui/app/webroot/img/top_bg.gif -text
 gui/app/webroot/img/top_shadow.gif -text
 gui/app/webroot/index.php -text
 gui/app/webroot/js/addRemoveElements.js -text
+gui/app/webroot/js/audio-player.js -text
 gui/app/webroot/js/cluetip.js -text
 gui/app/webroot/js/corner.js -text
 gui/app/webroot/js/jquery.cluetip.js -text
@@ -567,6 +568,7 @@ gui/app/webroot/js/toggle.js -text
 gui/app/webroot/js/vendors.php -text
 gui/app/webroot/swf/cakeflash_soundtracker.swf -text
 gui/app/webroot/swf/musicplayer.swf -text
+gui/app/webroot/swf/player.swf -text
 gui/app/webroot/swf/xspf_player_slim.swf -text
 gui/app/webroot/themed/ff/css/style.css -text
 gui/app/webroot/xml_curl -text

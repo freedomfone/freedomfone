@@ -27,6 +27,16 @@
  * 
  ***************************************************************************/
 
+$player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {  
+	         width: 200,
+		 transparentpagebg: "yes",
+		 leftbg: "CCCCCC",  
+		 lefticon: "fe911c",
+		 righticon: "fe911c",
+		 righticonhover: "fe911c",
+            });';
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,6 +57,9 @@
     <?=$javascript->link('jquery');?>		
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
+    <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
+    <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
+   
 
     <?=$javascript->link('swfobject');?>	<!-- Flashhelper -->
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
@@ -58,7 +71,8 @@
 <div id="wrapper">
 	 <div id="top_shadow"></div>
 	 <div class="top_a">
-		<div id="top_a_right"><?php echo $html->link(__('Freedom Fone',true), 'http://www.freedomfone.org',array('target' => '_blank','title' =>__("Visit the Freedom Fone website",true))); ?></div>
+		 <div id="top_a_left">Leave-a-message: Call +46 734 309 008, Voice menu: Call +46 733 140 416, Poll: SMS to any of the two numbers </div>
+		 <div id="top_a_right"><?php echo $html->link(__('Freedom Fone',true), 'http://www.freedomfone.org',array('target' => '_blank','title' =>__("Visit the Freedom Fone website",true))); ?></div>
 
 	 </div>
 	 <div id="branding_header"></div>					<!-- banner -->

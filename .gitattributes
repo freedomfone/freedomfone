@@ -446,6 +446,7 @@ gui/app/views/elements/menu.ctp -text
 gui/app/views/elements/menu_next.ctp -text
 gui/app/views/elements/message_status.ctp -text
 gui/app/views/elements/musicplayer_button.ctp -text
+gui/app/views/elements/player.ctp -text
 gui/app/views/elements/poll_status.ctp -text
 gui/app/views/elements/process_status.ctp -text
 gui/app/views/errors/empty -text

@@ -28,11 +28,11 @@ $sort  = $session->read('messages_sort');
       $Prev = 'prev';
       $Next = 'next';
 
-      if(current($sort)=='desc'){
-
-      $Prev = 'next';
-      $Next = 'prev';
-
+      if($sort){
+	if(current($sort)=='desc'){
+		$Prev = 'next';
+      		$Next = 'prev';
+		}
       }
 
       if($data){
@@ -95,7 +95,7 @@ $sort  = $session->read('messages_sort');
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
      array(__("Author",true),   $data['Message']['sender']),
-     array(__("Listen",true),	$this->element('musicplayer_button',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'])))
+     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
      ));
      echo "</table>";
      echo "</div>";

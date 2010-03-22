@@ -64,7 +64,7 @@ echo $form->hidden('source',array('value'=>'index'));
 	$modified = $time->niceShort($node['Node']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/nodes/edit/{$node['Node']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
-	$listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$node['Node']['title']));
+	$listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
 
      $row[$key] = array(
 		$title,

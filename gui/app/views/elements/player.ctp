@@ -50,8 +50,8 @@
 
      if($check==1){ 
 
-        $script = 'AudioPlayer.embed("audio_player_'.$file.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';
-	echo $html->para(null,null,array('id'=>'audio_player_'.$file));
+        $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';
+	echo $html->para(null,null,array('id'=>'audio_player_'.$id));
 	echo $javascript->codeBlock($script,array('safe'=>false));
 	}
  

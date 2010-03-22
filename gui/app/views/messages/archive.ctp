@@ -79,7 +79,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$message['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
 
-	$listen   = $this->element('musicplayer_button',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$message['Message']['title']));
+	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
      $row[$key] = array(
      		$id,

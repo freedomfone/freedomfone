@@ -60,8 +60,6 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
     <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
    
-
-    <?=$javascript->link('swfobject');?>	<!-- Flashhelper -->
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
     <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
 

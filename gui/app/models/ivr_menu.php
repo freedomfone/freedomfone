@@ -39,6 +39,27 @@ function __construct($id = false, $table = null, $ds = null) {
 	    				'required' =>  true,
             				'message'  => __('A title is required. Minimum 3 characters.',true)
 	    	       	  		)),
+      'message_long' => array(
+                        'validText' => array(
+                                       'rule' => array('validText','message_long'),
+                                       'message' => __('No hyperlinks allowed.',true)
+                                       )),
+      'message_short' => array(
+                        'validText' => array(
+                                       'rule' => array('validText','message_short'),
+                                       'message' => __('No hyperlinks allowed.',true)
+                                       )),
+      'message_invalid' => array(
+                        'validText' => array(
+                                       'rule' => array('validText','message_invalid'),
+                                       'message' => __('No hyperlinks allowed.',true)
+                                       )),
+      'message_exit' => array(
+                        'validText' => array(
+                                       'rule' => array('validText','message_exit'),
+                                       'message' => __('No hyperlinks allowed.',true)
+                                       )),
+
       'file_long' => array(
 			'validFileSize' =>array(
 					'rule' => array('validFileSize','file_long'),
@@ -65,6 +86,15 @@ function __construct($id = false, $table = null, $ds = null) {
 
 
 }
+
+ function validText($data,$field)
+    {
+
+    if(stripos($data[$field],'href')){ return false;}
+    else { return true;}
+
+    }
+
 
  function validFileSize($data,$field)
     {

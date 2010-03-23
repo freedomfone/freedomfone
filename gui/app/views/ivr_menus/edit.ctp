@@ -115,7 +115,7 @@ $path = $ivr['path'].IID."/".$ivr['dir_node'];
 
 	if ($option_id = $this->data['IvrMenu'][$key]){
 	
-	   $listen =  $this->element('player',array('path'=>$path,'file'=>$nodes['file'][$option_id],'title'=>$nodes['title'][$option_id]));
+	   $listen =  $this->element('player',array('path'=>$path,'file'=>$nodes['file'][$option_id],'title'=>$nodes['title'][$option_id],'id'=>$i));
 	}    
 	else {$listen=false;}
 

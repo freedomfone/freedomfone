@@ -15,6 +15,7 @@
         <Caller-Caller-ID-Number><xsl:value-of select="event/headers/Caller-Caller-ID-Number"/></Caller-Caller-ID-Number>
         <Caller-Destination-Number><xsl:value-of select="event/headers/Caller-Destination-Number"/></Caller-Destination-Number>
         <Caller-Unique-ID><xsl:value-of select="event/headers/Caller-Unique-ID"/></Caller-Unique-ID>
+        <Answer-State><xsl:value-of select="event/headers/Answer-State"/></Answer-State>
      </headers>
        </event> 
 </xsl:template>

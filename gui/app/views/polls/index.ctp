@@ -80,7 +80,7 @@ echo "<h1>".__("Polls",true)."</h1>";
 
 
      echo "<table>";
-     $lines[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>50,'valign'=>'bottom')));
+     $lines[] = array(array($html->div('empty_line',''),array('colspan'=>2,'height'=>50,'valign'=>'bottom')));
      $lines[] = array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time()));
      echo $html->tableCells($lines);
      echo "</table>"; 

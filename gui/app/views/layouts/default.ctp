@@ -33,7 +33,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 		 leftbg: "CCCCCC",  
 		 lefticon: "fe911c",
 		 righticon: "fe911c",
-		 righticonhover: "fe911c",
+		 righticonhover: "fe911c"
             });';
 
 
@@ -53,7 +53,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
     <?=$html->meta('icon');?>
 
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
-    <?=$javascript->link('prototype');?>
+
     <?=$javascript->link('jquery');?>		
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
@@ -82,7 +82,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Lupinus 1.5.2</div>
+	 <div class="footer">Lycaon Pictus Lupinus 1.5.3</div>
 </div>										<!--wrapper end-->
 </body>
 </html>

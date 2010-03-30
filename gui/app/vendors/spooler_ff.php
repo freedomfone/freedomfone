@@ -49,8 +49,7 @@ class ff_event {
     function ff_event($vars=null) {
         
         if ($link =$this -> db_connect($vars)) {
-           $this -> debug('---- Database connection established. ----');
-            $this -> auth = true;
+                $this -> auth = true;
 	    $this -> table = $vars['user'];
         }
 
@@ -111,7 +110,7 @@ class ff_event {
 
      $result = mysql_query("update $table set status= $status where id = $id");
      	     if (!$result) {
-    	     	$this->debug('Invalid query: ' . mysql_error());
+
 		return false;
 		}
 
@@ -137,7 +136,7 @@ class ff_event {
 
      $result = mysql_query("delete $table where id = $id");
      	     if (!$result) {
-    	     	$this->debug('Invalid query: ' . mysql_error());
+
 		return false;
 		}
 
@@ -162,7 +161,7 @@ class ff_event {
 
      $result = mysql_query("delete $table where status = $status");
      	     if (!$result) {
-    	     	$this->debug('Invalid query: ' . mysql_error());
+
 		return false;
 		}
 
@@ -186,15 +185,12 @@ class ff_event {
 
      $table = $this->table;
 
-
-       $this -> debug('---- Method: getNext. ----');
-       $this -> debug('---- Table: '.$table.'----');
      $result = mysql_query("select * from $table where status=0 order by id asc limit 0,1;");
 
 
 
      	     if (!$result) {
-    	     	$this->debug('Invalid query: ' . mysql_error());
+
 		return false;
 		}
 
@@ -202,10 +198,6 @@ class ff_event {
 
 
 		if ($no = mysql_affected_rows()){
-
-
-
-       $this -> debug('No of records fetched: '.$no);
 
 		$data = mysql_fetch_array($result);
 
@@ -247,7 +239,7 @@ class ff_event {
       $result = mysql_query("select * from $table where status= 0");
 
      	       if (!$object) {
-    	     	$this->debug('Invalid query: ' . mysql_error());
+
 		return false;
 		}
 
@@ -290,9 +282,9 @@ class ff_event {
             if (is_array($input)) {
                 foreach ($input as $key=>$val) {
                     if (is_array($val) || is_object($val)) {
-                        $this -> debug("[$key] => $val", $spaces+4);
-                        $this -> debug('(', $spaces + 8);
-                        $this -> debug($val, $spaces + 8);
+                       $this -> debug("[$key] => $val", $spaces+4);
+                       $this -> debug('(', $spaces + 8);
+                       $this -> debug($val, $spaces + 8);
                     } else {
                         $this -> debug("[$key] => '$val'", $spaces + 4);
                     }

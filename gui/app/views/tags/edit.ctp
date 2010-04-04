@@ -1,6 +1,6 @@
 <?php 
 /****************************************************************************
- * edit.ctp	- Edit existing tag (used in Leave-a-message)
+ * edit.ctp	- Edit existing phone books (used in Contacts)
  * version 	- 1.0.362
  * 
  * Version: MPL 1.1
@@ -26,7 +26,7 @@
 
       if($this->data){
 
-      echo "<h1>".__("Edit Tag",true)."</h1>";
+      echo "<h1>".__("Phone book : Edit",true)."</h1>";
       $session->flash();
 
       $options_name = array('label' =>  array('text'=>false,
@@ -42,14 +42,14 @@
      $options_message = array('label' =>  array('text'=>false,
 			  	        'class'=>'formTitleDefault'));
 
-      echo $form->create('Tag',array('type' => 'post','action'=> 'edit'));
+      echo $form->create('PhoneBook',array('type' => 'post','action'=> 'edit'));
 			  		
 
      echo "<table>";
      echo $html->tableCells(array (
-     	  array(__("Tag",true),	        $form->input('name',$options_name)),
-     	  array(__("Description",true),	$form->input('longname',$options_longname)),
-     	  array(__("Use in",true),		$form->input('Message',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	  array(__("Name",true),	        $form->input('name',$options_name)),
+     	  array(__("Description",true),		$form->input('description',$options_longname)),
+     	  array(__("Use in",true),		$form->input('Users',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true)))),
      	  array('',	$form->end(__('Save',true)))
      	  ));
     echo "</table>";
@@ -57,7 +57,7 @@
     }
     else {
     
-    echo "<h1>".__("No tag with this id exists",true)."</h1>";
+    echo "<h1>".__("No phone book with this id exists",true)."</h1>";
 
     }
 

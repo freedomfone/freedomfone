@@ -28,7 +28,7 @@
  ***************************************************************************/
 
 $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {  
-	         width: 200,
+	         width: "200",
 		 transparentpagebg: "yes",
 		 leftbg: "CCCCCC",  
 		 lefticon: "fe911c",

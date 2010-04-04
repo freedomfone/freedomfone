@@ -381,9 +381,11 @@ gui/app/controllers/lm_menus_controller.php -text
 gui/app/controllers/messages_controller.php -text
 gui/app/controllers/monitor_ivr_controller.php -text
 gui/app/controllers/nodes_controller.php -text
+gui/app/controllers/phone_books_controller.php -text
 gui/app/controllers/polls_controller.php -text
 gui/app/controllers/processes_controller.php -text
 gui/app/controllers/tags_controller.php -text
+gui/app/controllers/users_controller.php -text
 gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
 gui/app/install/freedomfone_db_createdb_user.sql -text
@@ -495,6 +497,10 @@ gui/app/views/scaffolds/empty -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text
 gui/app/views/tags/index.ctp -text
+gui/app/views/users/add.ctp -text
+gui/app/views/users/edit.ctp -text
+gui/app/views/users/edit.php -text
+gui/app/views/users/index.ctp -text
 gui/app/webroot/.htaccess -text
 gui/app/webroot/css.php -text
 gui/app/webroot/css/cake.generic.css -text

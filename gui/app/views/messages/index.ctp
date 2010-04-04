@@ -70,7 +70,7 @@ echo $html->tableHeaders(array(
 	//$id = $form->input($message['Message']['id'],array('type'=>'checkbox','label'=>false,'checked'=>$checked,'div'=>'vote'));
 
 	if($message['Message']['new']){
-		$status = $html->image("icons/new.png",array("title" => __("New",true)));
+		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
 	$title    = $message['Message']['title'];

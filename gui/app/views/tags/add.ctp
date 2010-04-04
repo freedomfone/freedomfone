@@ -1,6 +1,6 @@
 <?php 
 /****************************************************************************
- * add.ctp	- Create new tag (used in Leave-a-message)
+ * add.ctp	- Create new phone book (used for Contacts)
  * version 	- 1.0.362
  * 
  * Version: MPL 1.1
@@ -22,19 +22,19 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Add Tag",true)."</h1>";
+echo "<h1>".__("Phone book : Add",true)."</h1>";
 
 $session->flash();
 
 $options	  = array('label' => false);
 
 
-echo $form->create('Tag',array('type' => 'post','action'=> 'add'));
+echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
 echo "<table>";
 
 echo $html->tableCells(array (
-     array(__("Tag",true),	        $form->input('name',$options)),
-     array(__("Description",true),	$form->input('longname',$options)),
+     array(__("Name",true),	        $form->input('name',$options)),
+     array(__("Description",true),	$form->input('description',$options)),
      array('',	$form->end(__('Save',true)))
      ));
 echo "</table>";

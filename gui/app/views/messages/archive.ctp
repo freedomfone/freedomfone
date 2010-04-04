@@ -66,7 +66,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 	
 
 	if($message['Message']['new']){
-		$status = $html->image("icons/new.png",array("title" => __("New",true)));
+		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
 	$title    = $message['Message']['title'];

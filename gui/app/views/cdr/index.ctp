@@ -58,9 +58,9 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
  	$paginator->sort(__("Time",true), 'epoch'),
  	$paginator->sort(__("Type",true), 'channel_state'),
  	$paginator->sort(__("Call ID",true), 'call_id'),
- 	$paginator->sort(__("Caller number",true), 'caller_number'),
+ 	$paginator->sort(__("Caller",true), 'caller_number'),
  	$paginator->sort(__("Application",true), 'application'),
-	__("Delete",true)));
+ 	$paginator->sort(__("Protocol",true), 'proto')));
 
 
  
@@ -73,6 +73,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$type	     = $entry['Cdr']['channel_state'];
 	$application = $formatting->appMatch($entry['Cdr']['application']);
 	$call_id     = $entry['Cdr']['call_id'];
+	$proto     = $entry['Cdr']['proto'];
 
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
@@ -85,7 +86,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 		$call_id,
 		$caller_number,
 		$application,
-		array($delete,array('align'=>'center')));
+		$proto );
+
 	
 	}
 

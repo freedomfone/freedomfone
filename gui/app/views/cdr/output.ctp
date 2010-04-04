@@ -25,7 +25,7 @@
 
 
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller number',true),__('Application',true));
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Caller',true),__('Application',true),__('Protocol',true));
 		$csv->addRow($line);
 
 	if($data){
@@ -39,7 +39,8 @@
 			       date('H:i:s',$entry['Cdr']['epoch']),
 			       $entry['Cdr']['channel_state'],
 			       $entry['Cdr']['caller_number'],
-			       $entry['Cdr']['application']);
+			       $entry['Cdr']['application'],
+			       $entry['Cdr']['proto']);
 
 		$csv->addRow($line);
 

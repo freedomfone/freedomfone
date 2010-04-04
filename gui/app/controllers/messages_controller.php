@@ -32,6 +32,7 @@ class MessagesController extends AppController{
 
 
 
+
       function index(){
 
       $this->pageTitle = 'Leave-a-Message : Inbox';
@@ -257,42 +258,10 @@ class MessagesController extends AppController{
       function refresh(){
 
       $this->autoRender = false;
+ 
+      $this->Message->refresh();
 
-      $array = Configure::read('lm_in');
-
-	      
-	       $obj = new ff_event($array);	       
-
-	       if ($obj -> auth != true) {
-    	       die(printf("Unable to authenticate\r\n"));
-	       }
-
-
- 	       while ($entry = $obj->getNext('update')){
-
-
-	       $created = floor($entry['Event-Date-Timestamp']/1000000);
-	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);
-	       
-	       $data= array ( 'sender'  =>$entry['FF-CallerID'],
-	       	      	      'file'    =>$entry['FF-FileID'],
-	       	      	      'created' =>$created,
-			      'length'  =>$length,
-	       		      'url'     => $entry['FF-URI']);
-
-	      $this->log('Msg: NEW Message', 'leave_message');	
-
-	       $this->Message->create();
-	       $this->Message->save($data);
-
-               }
-
-
-
-     	 
-
-     
-     }
+      }
 
 
 }

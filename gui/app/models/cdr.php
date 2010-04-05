@@ -27,6 +27,9 @@ class Cdr extends AppModel{
 
       var $name = 'Cdr';
 
+
+	var $belongsTo = array('User'); 
+
 	var $hasMany = array('MonitorIvr' => array(
                         	       'order' => 'MonitorIvr.id ASC',
                         	       'dependent' => true)
@@ -53,46 +56,36 @@ class Cdr extends AppModel{
 
       	      while ($entry = $obj->getNext('update')){
 
+	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];
 		  $call_id = $entry['Unique-ID'];
-		  $answer_state = $entry['Answer-State'];
 		  $application='';
 		  $ext = $entry['Caller-Destination-Number'];
 
 	       	  $this->set('epoch' , floor($entry['Event-Date-Timestamp']/1000000));
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
-
 		  $this->set('caller_name', urldecode($entry['Caller-Caller-ID-Name']));
     	       	  $this->set('caller_number',urldecode($entry['Caller-Caller-ID-Number']));
-
-
 	       	  $this->set('extension', $ext);
-    	       	  //$this->set('proto',$entry['proto']);
+
+		  //Determine sender protocol (skype,gsm,sip)
+		  $proto=false;		 
+		  if(stripos($channel,'skypiax')===0){ $proto = 'skype';}
+	          elseif(stripos($channel,'gsmopen')===0){ $proto = 'gsm';}
+	          elseif(stripos($channel,'sofia')===0){ $proto = 'sip';}
+       	          $this->set('proto',$proto);
 
 		  foreach($mapping as $app => $reg){
 
-		  preg_match($reg,$ext,$matches);
-		    if($matches){	
+		    preg_match($reg,$ext,$matches);
+		       if($matches){	
 	 	       	$application = $app;
+		       }
 		     }
-		  }
-		  $this->set('application', $application);
-
-		  //Drop interna routing messages
-		  $granted = true;
-		  if($channel_state=='CS_ROUTING' && $answer_state=='ringing'){
-			  $granted=false;
-		   }
-
-		   //Log all events
-		   $this->log("Channel state: ".$entry['Channel-State']."; Answer state: ".$entry['Answer-State'].";  Application: ".$application."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
-
-		   //Save only answered routing message
-		    if($granted){
- 		   	$this->create($this->data);
-	  	  	$this->save($this->data);
-
+		     $this->set('application', $application);
+		     $this->create($this->data);
+	  	     $this->save($this->data);
 
 		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
@@ -103,8 +96,7 @@ class Cdr extends AppModel{
 	       	  	$this->MonitorIvr->set('ivr_code', '');
 		  	$this->MonitorIvr->set('digit', '');
     	       	  	$this->MonitorIvr->set('node_id','');
-
-	       	  	$this->MonitorIvr->set('caller_number', urldecode($entry['Caller-Caller-ID-Number']));
+	       	  	$this->MonitorIvr->set('caller_number', $entry['Caller-Caller-ID-Number']);
 	       	  	$this->MonitorIvr->set('extension', $entry['Caller-Destination-Number']);
 		  	//$this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  	$this->MonitorIvr->set('type', $channel_state);
@@ -112,11 +104,40 @@ class Cdr extends AppModel{
 		  	$this->MonitorIvr->create($this->MonitorIvr->data);
 	  	  	$this->MonitorIvr->save($this->MonitorIvr->data);
 
-		  	
-		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr"); 
+		  	$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
+		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
+
+			//Check if user is registered
+
+			//Process only CS_ROUTING (start) messages
+			if($entry['Channel-State']=='CS_ROUTING'){
+
+			$value = urldecode($entry['Caller-Caller-ID-Number']);
+			$field = 'phone1';
+
+		  	if( $proto == 'skype') { $field = 'skype';}
+		  	elseif( $proto == 'gsm') { $field = 'phone1';}
+			elseif( $proto == 'sip') { $field = 'phone1';}
+			
+
+			    if ($userData = $this->User->find('first',array('conditions' => array('User.'.$field => $value)))){ 
+
+		 		$count_ivr = $userData['User']['count_ivr']+1;
+				$id = 	$userData['User']['id'];
+	 			$this->User->set(array('id' => $id, 'count_ivr'=>$count_ivr,'last_app'=>'ivr','last_epoch'=>time()));
+				$this->User->id = $id;
+ 		 		$this->User->save($this->data);
+
+		            } else {
+		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+		     	        $this->User->create();
+		     	        $this->User->save($user);
+				debug("add contact");
+			    }
+			}
+
 		}
 
-		    }
 	      }
 
            //** Fetch MONITOR_IVR from spooler **//
@@ -137,9 +158,7 @@ class Cdr extends AppModel{
 	       	  $this->MonitorIvr->set('ivr_code', $entry['FF-IVR-IVR-Name']);
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('node_id',$entry['FF-IVR-IVR-Node-Unique-ID']);
-
-		  if(trim($entry['FF-IVR-Caller-ID-Number'])=='not'){ $entry['FF-IVR-Caller-ID-Number']='not%20available';}
-	       	  $this->MonitorIvr->set('caller_number', urldecode($entry['FF-IVR-Caller-ID-Number']));
+	       	  $this->MonitorIvr->set('caller_number', $entry['FF-IVR-Caller-ID-Number']);
 	       	  $this->MonitorIvr->set('extension', $entry['FF-IVR-Destination-Number']);
 		  $this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  $this->MonitorIvr->set('type', __('tag',true));

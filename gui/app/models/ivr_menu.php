@@ -34,11 +34,11 @@ function __construct($id = false, $table = null, $ds = null) {
 
 	$this->validate = array(
         'title' => array(
-		        'minLength' => array(
-            				'rule'     => array('minLength', 3),
-	    				'required' =>  true,
-            				'message'  => __('A title is required. Minimum 3 characters.',true)
-	    	       	  		)),
+                        'minLength' => array(
+                                        'rule'     => array('minLength', 3),
+                                        'required' =>  true,
+                                        'message'  => __('A title is required. Minimum 3 characters.',true)
+                                        )),
       'message_long' => array(
                         'validText' => array(
                                        'rule' => array('validText','message_long'),
@@ -61,27 +61,27 @@ function __construct($id = false, $table = null, $ds = null) {
                                        )),
 
       'file_long' => array(
-			'validFileSize' =>array(
-					'rule' => array('validFileSize','file_long'),
-					'message' => __('The file size exceeds the maximum limit (10MB).',true),
-					)),
+                        'validFileSize' =>array(
+								'rule' => array('validFileSize','file_long'),
+                                        'message' => __('The file size exceeds the maximum limit (10MB).',true),
+						     	     	  )),
       'file_short' => array(
-			'validFileSize' =>array(
-					'rule' => array('validFileSize','file_short'),
-					'message' => __('The file size exceeds the maximum limit (10MB).',true),
-					)),
+                        'validFileSize' =>array(
+                                        'rule' => array('validFileSize','file_short'),
+                                        'message' => __('The file size exceeds the maximum limit (10MB).',true),
+                                        )),
       'file_exit' => array(
-			'validFileSize' =>array(
-					'rule' => array('validFileSize','file_exit'),
-					'message' => __('The file size exceeds the maximum limit (10MB).',true),
-					)),
+                        'validFileSize' =>array(
+                                        'rule' => array('validFileSize','file_exit'),
+								'message' => __('The file size exceeds the maximum limit (10MB).',true),
+                                        )),
       'file_invalid' => array(
-			'validFileSize' =>array(
-					'rule' => array('validFileSize','file_invalid'),
-					'message' => __('The file size exceeds the maximum limit (10MB).',true),
-					)),
+                        'validFileSize' =>array(
+                                        'rule' => array('validFileSize','file_invalid'),
+								'message' => __('The file size exceeds the maximum limit (10MB).',true),
+                                        )),
 
-					);
+                                        );
 
 
 
@@ -90,9 +90,15 @@ function __construct($id = false, $table = null, $ds = null) {
  function validText($data,$field)
     {
 
-    if(stripos($data[$field],'href')){ return false;}
-    else { return true;}
+    $blacklist = array('href','url=','http');
 
+    $status = true;
+    foreach($blacklist as $string){
+        if(stripos($data[$field],$string)){
+          $status =false;
+        }
+    }
+    return $status;
     }
 
 

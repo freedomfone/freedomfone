@@ -406,9 +406,11 @@ gui/app/models/lm_menu.php -text
 gui/app/models/message.php -text
 gui/app/models/monitor_ivr.php -text
 gui/app/models/node.php -text
+gui/app/models/phone_book.php -text
 gui/app/models/poll.php -text
 gui/app/models/process.php -text
 gui/app/models/tag.php -text
+gui/app/models/user.php -text
 gui/app/models/vote.php -text
 gui/app/plugins/empty -text
 gui/app/tests/cases/behaviors/empty -text

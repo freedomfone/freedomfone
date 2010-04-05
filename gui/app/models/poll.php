@@ -183,7 +183,7 @@ function checkDate($data,$field){
       $array = Configure::read('poll_in');
  
       $instance_id = IID;
-	      
+
 	       $obj = new ff_event($array);	       
 
 	       if ($obj -> auth != true) {
@@ -272,6 +272,7 @@ function checkDate($data,$field){
 				   }
 
 	 	         	}
+				$application = 'poll';
 
 		} else {
 		// CHECK B: INCORRECT VOTE (no matching code)
@@ -279,12 +280,42 @@ function checkDate($data,$field){
 			
 			 //ADD TO TRASH
 	   		 $mode=__("Unclassified",true);
+			 $application = 'bin';
 			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode,proto)values ($instance_id,'$body','$sender','$created','$mode','$proto')");
 	        }
 
-  	//add to CDR
-	$resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','poll','$proto')");
+  	//Add data to CDR
+	$resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
 	$this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
+
+
+			//Manage contact 
+			$field = 'phone1';
+			$value = $sender;
+			$time = time();
+			
+		  	if( $proto == 'skype') { $field = 'skype';}
+		  	elseif( $proto == 'SMS') { $field = 'phone1';}
+
+		        if($application=='poll'){ $count_app = 'count_poll';}
+		        else { $count_app = 'count_bin'; } 
+
+			       //Existing contact
+			       if ($userData = $this->query("SELECT * from  users WHERE $field = '$value'", false)){
+
+			        if($application=='poll'){ 
+				   $count = $userData[0]['users']['count_poll']+1;
+				} else { 
+				   $count = $userData[0]['users']['count_bin']+1;
+				} 
+				$id = 	$userData[0]['users']['id'];
+				$this->query("UPDATE users SET $count_app = '$count',last_app= '$application',last_epoch= '$time' WHERE id='$id'");
+				unset($userData);
+
+		            } else { //New contact
+				$this->query("INSERT INTO users ($count_app,first_app,last_app,last_epoch,$field,created,acl_id) values (1,'$application','$application', '$time','$value','$time',1)");
+			    }
+
 
 	}
 

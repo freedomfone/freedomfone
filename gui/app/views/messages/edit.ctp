@@ -81,6 +81,7 @@ $sort  = $session->read('messages_sort');
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false))),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>__('-Select category-',true),'label'=>false))),
+     array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false))),
      array( $button1, $button2)
      ));
   

@@ -35,6 +35,7 @@ class MessagesController extends AppController{
 
       function index(){
 
+
       $this->pageTitle = 'Leave-a-Message : Inbox';
       $this->Session->write('Message.source', 'index');
    
@@ -212,6 +213,7 @@ class MessagesController extends AppController{
 	   	$redirect = 'index';
 	}  
 
+
     	//Data to process
     	if(!empty($this->data['Message'])){
 
@@ -262,6 +264,37 @@ class MessagesController extends AppController{
       $this->Message->refresh();
 
       }
+
+  function download ($id) {
+
+
+    	Configure::write('debug', 0);
+
+	$this->Message->id = $id;
+	$data = $this->Message->read();
+	
+	$file = $data['Message']['file'].'.mp3';
+	$name = $data['Message']['title'];
+	$url  = 'webroot/freedomfone/leave_message/'.IID.'/messages';
+
+        $this->view = 'Media';
+
+    	$params = array(
+		'id' => $file,
+ 		'name' => $name,
+ 		'download' => true,
+ 		'cache' => true,
+ 		'extension' => 'mp3',
+ 		'path' => APP . $url . DS
+ 		);
+	$this->set($params);
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+  	$this->render();    
+
+
+    }
 
 
 }

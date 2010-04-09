@@ -22,25 +22,7 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Environment settings",true)."</h1>";
+echo "<h1>".__("Global settings",true)."</h1>";
 
-$session->flash();
-
-$options	  = array('label' => false);
-
-$selected = $data['Setting']['value_string'];
-$languages = Configure::read('LANGUAGES');
-
-echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
-echo $form->input('id',array('type' => 'hidden','value'=> $data['Setting']['id']));
-
-
-$rows[] = array(__("Language",true),$form->input('language',array('options'=>$languages,'label'=>false,'selected'=>$selected)));
-$rows[] = array(array($form->end(__('Save',true)),array('colspan'=>2,'align'=>'center')));
-
-
-echo "<table>";
-echo $html->tableCells($rows);
-echo "</table>";
 
 ?>

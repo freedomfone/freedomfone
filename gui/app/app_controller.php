@@ -48,14 +48,21 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
 
 
 
+
  function beforeFilter() {
 
-    	     $locale = Configure::read('Config.language');
-	     	     if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {
+
+ 	  	date_default_timezone_set($this->Session->read('Config.timezone'));
+
+    	     	$locale = Configure::read('Config.language');
+
+
+     	     if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {
 		     	
 			// e.g. use /app/views/fre/pages/tos.ctp instead of /app/views/pages/tos.ctp
 			$this->viewPath = $locale . DS . $this->viewPath;
-		     }
+	      }
+
     }
 
 
@@ -285,6 +292,7 @@ return $result;
 
 
      }
+
 
 }
 ?>

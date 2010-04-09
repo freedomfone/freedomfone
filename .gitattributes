@@ -357,6 +357,9 @@ freeswitch/src/mod/endpoints/mod_gsmopen_lupinus/test.cc -text
 freeswitch/src/mod/endpoints/mod_gsmopen_lupinus/usb-cm-108-2.txt -text
 gui/.htaccess -text
 gui/apache2/freedomfone -text
+gui/apache2/freedomfone.nginx.nolog -text
+gui/apache2/nginx/sites-available/default -text
+gui/apache2/nginx/sites-enabled/freedomfone -text
 gui/app/.htaccess -text
 gui/app/app_controller.php -text
 gui/app/config/acl.ini.php -text

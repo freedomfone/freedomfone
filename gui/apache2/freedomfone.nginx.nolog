@@ -1,0 +1,42 @@
+<VirtualHost *:8888>
+	ServerAdmin webmaster@freedomfone.org
+	
+	DocumentRoot /var/www/
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	<Directory /var/www/>
+		Options Indexes FollowSymLinks MultiViews
+	</Directory>
+
+	#AllowOverride: all (mode_rewrite.so)
+
+	<Directory /usr/local/freedomfone/gui>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride all 
+	</Directory>
+
+	ErrorLog /var/log/apache2/freedomfone-error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	#Disables logging of localhost refresh
+	SetEnvIf Remote_Addr "127\.0\.0\.1" dontlog
+	CustomLog /var/log/apache2/freedomfone-access.log combined env=!dontlog 
+
+    Alias /freedomfone "/usr/local/freedomfone/gui/"
+	#Enables RPAF to log extra HTTP header addresses libapache2-mod-rpaf 
+	RPAFenable On
+	RPAFsethostname On
+	#IP addresses of the reverse proxy
+	RPAFproxy_ips x.x.x.x  
+
+#RewriteLog "/tmp/foo.log" 
+#RewriteLogLevel 3
+
+
+</VirtualHost>

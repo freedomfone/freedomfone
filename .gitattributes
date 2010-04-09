@@ -505,7 +505,9 @@ gui/app/views/polls/view.ctp -text
 gui/app/views/processes/index.ctp -text
 gui/app/views/processes/software.ctp -text
 gui/app/views/scaffolds/empty -text
+gui/app/views/settings/env.ctp -text
 gui/app/views/settings/index.ctp -text
+gui/app/views/settings/lam.ctp -text
 gui/app/views/settings/set.ctp -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text

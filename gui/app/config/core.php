@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 3);
 /**
  * Application wide charset encoding
  */
@@ -246,13 +246,15 @@ $config['VERSION'] = array(
  ********** ********** ********** **********/
 
 define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
-Configure::write('Config.language', 'eng');
-Configure::write('Config.timezone', 'Africa/Harare');
+
 
 /********** ********** ********** **********
  * END CONFIG: 
  ********** ********** ********** **********/
 
-date_default_timezone_set(Configure::read('Config.timezone'));
+
+
+
+
 
 ?>

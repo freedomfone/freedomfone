@@ -39,8 +39,10 @@ class UsersController extends AppController{
 
       function index(){
 
+
+
+
       $this->pageTitle = 'Contact : Inbox';
-   
 
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
@@ -122,6 +124,35 @@ class UsersController extends AppController{
              $this->redirect(array('action' => 'index'));
     }
 
+    function process (){
+
+	    //One or more users selected
+	    if(array_key_exists('user',$this->params['form'])){
+
+		$entries = $this->params['form']['user'];
+    	    	$action = $this->params['data']['Submit'];
+
+		//Loop through users
+    	     	foreach ($entries as $key => $user){
+	     	     if ($user) {
+		     	$id = $user['User'];
+			   $this->User->id = $id; 
+			   if ($action == __('Delete',true)){
+
+		     	       $data = $this->User->getIdentifier($id);
+		     	       if ($this->User->del($id)){
+				     $this->log('Message: User deleted; Id: '.$id."; Key: ".$data['key']."; Value: ".$data['value']."; Timestamp: ".time(), 'user');
+			        }
+			    }
+		        }
+	             } //foreach
+		     
+		 } //array_key_exists 
+		 
+
+	     $this->redirect(array('action' => 'index'));
+
+    }
 
 
     function add() {
@@ -135,8 +166,6 @@ class UsersController extends AppController{
 		if (!empty($this->data)) {
 
 		   	$this->User->set( $this->data );
-
-//			$this->User->create();
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('New contact has been added', true));
 				$this->redirect(array('action'=>'index'));
@@ -151,6 +180,7 @@ class UsersController extends AppController{
 
 
 	}
+
 
 
 

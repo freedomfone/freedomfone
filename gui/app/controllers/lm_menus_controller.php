@@ -119,5 +119,38 @@ class LmMenusController extends AppController{
 	}
 
 
+  function download ($id,$message) {
+
+    	Configure::write('debug', 0);
+
+	$this->LmMenu->id = $id;
+
+	$data = $this->LmMenu->read();
+	
+	$file = 'lm'.$message.'.mp3';
+	$name = 'lm'.$message;
+	$url  = 'webroot/freedomfone/leave_message/'.IID.'/audio_menu';
+
+        $this->view = 'Media';
+
+    	$params = array(
+		'id' => $file,
+ 		'name' => $name,
+ 		'download' => true,
+ 		'cache' => true,
+ 		'extension' => 'mp3',
+ 		'path' => APP . $url . DS
+ 		);
+	$this->set($params);
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+  	$this->render();    
+
+
+    }
+
+
+
 }
 ?>

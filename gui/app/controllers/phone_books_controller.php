@@ -29,6 +29,7 @@ class PhoneBooksController extends AppController {
     var $scaffold;
 
 
+      var $helpers = array('Csv');
 	function index() {
 
       		$this->pageTitle = 'Phone books';
@@ -58,7 +59,7 @@ class PhoneBooksController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Phone book : Edit';
+      		$this->pageTitle = 'Phone book : Manage';
 
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid id', true));
@@ -75,7 +76,9 @@ class PhoneBooksController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->PhoneBook->read(null, $id);
 
+
 			$users   = $this->PhoneBook->User->find('list');
+
 			$this->set(compact('users'));
 		}
 
@@ -92,6 +95,24 @@ class PhoneBooksController extends AppController {
 
 	     }
      }
+
+
+
+    function export($id){
+
+    	     Configure::write('debug', 0);
+	     //$acl = $this->PhoneBook->User->Acl->findAll(); 
+
+
+//	 debug($this->PhoneBook->User->find('all',array('conditions' =>)));
+
+    	     $this->set('data', $this->PhoneBook->findById($id)); 
+
+    	     $this->layout = null;
+    	     $this->autoLayout = false;
+    	     $this->render();    
+    }
+
 
 }
 ?>

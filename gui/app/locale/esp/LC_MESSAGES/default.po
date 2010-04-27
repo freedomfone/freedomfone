@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2010-01-25 18:45+0100\n"
-"PO-Revision-Date: 2010-04-27 17:57+0200\n"
+"PO-Revision-Date: 2010-04-27 20:14+0200\n"
 "Last-Translator: Alberto <aep@it46.se>\n"
 "Language-Team: fooers\n"
 "Language: es\n"
@@ -38,7 +38,7 @@ msgstr "Página no válida"
 
 #: /controllers/categories_controller.php:44;102
 msgid "The category has been saved"
-msgstr "Categoría salvada."
+msgstr "La categoría se ha guardado"
 
 #: /controllers/categories_controller.php:47;105
 msgid "The category could not be saved. Please, try again."
@@ -79,7 +79,7 @@ msgstr "¡El menú de voz se ha creado!"
 
 #: /controllers/ivr_menus_controller.php:153
 msgid "Invalid option"
-msgstr "Opcion inválida"
+msgstr "Opción inválida"
 
 #: /controllers/ivr_menus_controller.php:266
 msgid "The voice menu has been deleted."
@@ -161,7 +161,7 @@ msgstr ""
 
 #: /controllers/polls_controller.php:182;197
 msgid "Invalid Poll"
-msgstr "Encuesta no válida"
+msgstr "Encuesta inválida"
 
 #: /controllers/polls_controller.php:246
 msgid "The poll has been edited."
@@ -1388,7 +1388,7 @@ msgid ""
 "No Menu Option are uploaded. Please upload a Menu Option by clicking on the "
 "green button to the right."
 msgstr ""
-"Ninguna Opción de menú subida. Suba una opción de menú haciendo clic en el "
+"Ninguna Opción de Menú creada. Cree una Opción de Menú haciendo clic en el "
 "botón verde a la derecha."
 
 #: /views/pages/about.ctp:27
@@ -1437,6 +1437,12 @@ msgid ""
 "in response to missed calls or sms requests; accept, tag and categorise "
 "voice messages.</p>"
 msgstr ""
+"<p>Freedom Fone tiene la intención de ofrecer una plataforma de telefonía "
+"fácil de usar que puedes usar para crear y administrar información dinámica "
+"bajo demanda. En la versión 1 incluimos la capacidad para: crear y modificar "
+"menús de voz; ejecutar una encuesta sms; hacer devoluciones de llamadas "
+"bajo demanda de SMS o llamadas perdidas; aceptar, etiquetar y clasificación "
+"de los mensajes de voz.</p>"
 
 #: /views/pages/home.ctp:32
 msgid ""
@@ -1444,6 +1450,9 @@ msgid ""
 "implementation of Freedom Fone. Its flexibility and accessible interface "
 "mean it can be used by a range of communities.</p>"
 msgstr ""
+"<p>No hay limitaciones de idioma, geografía o tamaño de comunidad para la "
+"implementación de Freedom Fone. Su flexibilidad y la interfaz accesible "
+"permite su utilización en una gran gama de comunidades de usuarios.</p>"
 
 #: /views/pages/home.ctp:34
 msgid ""
@@ -1454,6 +1463,13 @@ msgid ""
 "feedback to a radio station</li><li>File audio reports from citizen "
 "journalists in the field</li></ul>"
 msgstr ""
+"<p>Por ejemplo, <b>Freedom Fone</b> puede utilizarse "
+"para:</p><ul><li>Aumentar la participación ciudadana en elecciones y "
+"campañas de inscripción de votantes</li><li>Ampliar el acceso a la "
+"información de VIH/SIDA</li><li>Proporcionar información de salud durante "
+"una epidemia</li><li>Ofrecer información bajo demanda</li><li>Recoger los "
+"comentarios de radio oyentes</li><li>Compilar informes sonoros de "
+"periodistas</li></ul>"
 
 #: /views/pages/architecture/callback.ctp:25
 msgid "Architecture : Callback"
@@ -1566,6 +1582,8 @@ msgid ""
 "<p>The cost to the caller will either be the cost for an SMS, or nothing (if "
 "you hang up after the first ring).</p>"
 msgstr ""
+"<p>El costo de la llamada será el coste de un SMS, o nada (si usted colgar "
+"tras el primer tono de llamada).</p>"
 
 #: /views/pages/functionality/callback.ctp:34
 msgid "Administration settings"
@@ -1601,6 +1619,9 @@ msgid ""
 "<p>The Dashboard gathers useful information about the system’s software and "
 "hardware and offers the opportunity to start and stop major components."
 msgstr ""
+"<p>El panel del control recopila información útil acerca de software y el "
+"hardware del sistema y ofrece la oportunidad de iniciar y detener los "
+"componentes principales.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:31
 msgid ""
@@ -1609,6 +1630,10 @@ msgid ""
 "handling the calls and SMSs. The dispatchers can be stopped and started by "
 "the administrator."
 msgstr ""
+"<p>La página de estado del sistema muestra el estado actual de la aplicación "
+"de telefonía – FreeSWITCH - y los distribuidores de eventos responsables de "
+"controlar las llamadas y los SMS. Los distribuidores pueden ser detenidos y "
+"arrancados por el administrador.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:35
 msgid ""
@@ -1616,6 +1641,9 @@ msgid ""
 "displayed. The versions are dynamically updated when software updates take "
 "place."
 msgstr ""
+"<p>Se muestran las versiones de software de base de datos, servidor web, "
+"FreeSWITCH y distribuidor de eventos. Las versiones se actualizan "
+"dinámicamente cuando las actualizaciones de software tienen lugar.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:38
 msgid "Hardware"
@@ -1625,6 +1653,8 @@ msgstr "Hardware"
 msgid ""
 "<p>A list of connected GSM gateways are displayed with relevant information."
 msgstr ""
+"<p>Se mostrará una lista de los modems GSM conectados con la información "
+"pertinente.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:42
 msgid "Call Data Records (CDR)"

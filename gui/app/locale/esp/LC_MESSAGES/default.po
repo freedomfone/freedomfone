@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2010-01-25 18:45+0100\n"
-"PO-Revision-Date: 2010-04-28 09:57+0200\n"
+"PO-Revision-Date: 2010-04-28 15:39+0200\n"
 "Last-Translator: Alberto <aep@it46.se>\n"
 "Language-Team: fooers\n"
 "Language: es\n"
@@ -1388,7 +1388,7 @@ msgid ""
 "No Menu Option are uploaded. Please upload a Menu Option by clicking on the "
 "green button to the right."
 msgstr ""
-"No se ha creado ninguna opción en el menú de voz. Cree una Opción de Menú "
+"No se ha creado ninguna opción en el Menú de Voz. Cree una Opción de Menú "
 "haciendo clic en el botón verde a la derecha."
 
 #: /views/pages/about.ctp:27
@@ -1734,7 +1734,7 @@ msgid ""
 "to navigate through the menu, </li><li>Menu Options: audio files or "
 "components assosiated with telephony keypad selections. </li></ul>"
 msgstr ""
-"<p>Un menú de voz consta de:</p><ul><li>Instrucciones del Menú: el conjunto "
+"<p>Un Menú de Voz consta de:</p><ul><li>Instrucciones del Menú: el conjunto "
 "de mensajes de voz obligatorios, como un mensaje de bienvenida e "
 "instrucciones sobre cómo navegar por el menú,</li><li>Opciones de menú: "
 "arcivos de audio o  componentes asociados a través del teclado "
@@ -1860,10 +1860,10 @@ msgid ""
 "Freedom Fone, and leave  their personal message. This may be a report, "
 "feedback, tip-off, response to a question, or perhaps a job application.</p>"
 msgstr ""
-"<p>El servicio de Dejar-un-mensaje ofrece a los llamantes  la opción de "
-"llamar a Freedom Fone y dejar un mensaje personal. Esto puede ser un "
-"informe,  retroalimentación, la respuesta a una pregunta, o quizás una "
-"solicitud de empleo.</p>"
+"<p>El servicio Dejar-un-mensaje ofrece a los llamantes  la opción de llamar "
+"a Freedom Fone y dejar un mensaje personal. Esto puede ser un informe,  "
+"retroalimentación, la respuesta a una pregunta, o quizás una solicitud de "
+"empleo.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:31
 msgid ""
@@ -1940,6 +1940,11 @@ msgid ""
 "GUI via the built-in Flashplayer. Audio files can at any time be overwritten "
 "with a new audio file.</p>"
 msgstr ""
+"<p>Los archivos de audio se deben cargar en formato .mp3 o .wav a través de "
+"la interfaz de usuario. Una vez cargados, los archivos pueden ser escuchados "
+"a través del cliente de audio integrado en la  GUI. Los archivos de audio "
+"se pueden sobrescribir en cualquier momento con un nuevo archivo de "
+"audio.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:45
 msgid "Received voice messages"
@@ -1953,6 +1958,12 @@ msgid ""
 "title)</li><li>assign a category</li><li>associate the message with one or "
 "more tags</li><li>give the message a rating (1-5)</li></ul>"
 msgstr ""
+"<p>El administrador de Freedom Fone recibe todos los mensajes entrantes en "
+"la \"bandeja de entrada\". Por cada mensaje, el administrador "
+"puede</p><ul><li>Escuchar (con un FlashPlayer incorporado)</li><li>Nombrar "
+"(dar al mensaje de un título)</li><li>Asignar una categoría</li><li>Asociar "
+"el mensaje con una o más etiquetas</li><li>Dar el mensaje una calificación "
+"(1-5)</li></ul>"
 
 #: /views/pages/functionality/leave-a-message.ctp:48
 msgid ""
@@ -1963,10 +1974,13 @@ msgstr ""
 "para uso futuro. </p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:49
+#, fuzzy
 msgid ""
 "<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a "
 "Skype call to 'skypiax2'.</p>"
 msgstr ""
+"<p>Para llamar al servicio de dejar un mensaje, marcar el +39 340 47 80 434 "
+"o llame por  Skype al usuario 'skypiax2'.</p>"
 
 #: /views/pages/functionality/poll.ctp:25
 msgid "Functionality : Poll "
@@ -1981,6 +1995,8 @@ msgid ""
 "<p>The Poll service allows end users to participate in polls by sending SMSs "
 "to Freedom Fone."
 msgstr ""
+"<p>El servicio de encuesta permite a los usuarios finales  participar en "
+"encuestas mediante el envío de SMS a Freedom Fone.</p>"
 
 #: /views/pages/functionality/poll.ctp:30
 msgid ""
@@ -1988,6 +2004,10 @@ msgid ""
 "href='/freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit "
 "and delete</a> polls. A poll is composed using the following parameters:"
 msgstr ""
+"<p>El administrador de Freedom Fone tiene la capacidad de <a "
+"href=\"/freedomfone/polls/add\">Crear</a>, <a "
+"href=\"/freedomfone/polls/\">Editar y Eliminar</a> encuestas. Una encuesta "
+"está compuesta mediante los siguientes parámetros:</p>"
 
 #: /views/pages/functionality/poll.ctp:32
 msgid ""
@@ -1997,14 +2017,26 @@ msgid ""
 "time: Date and time when the poll opens for submission</li><li>End time: "
 "Date and time when the poll closes for submission</li></ul>"
 msgstr ""
+"<ul><li>Pregunta: La pregunta que deseas hacer a su audiencia "
+"</li><li>Código: El código SMS que deseas utilizar para asociar un SMS con "
+"tu encuesta</li><li>Respuestas: Dos o más respuestas a la "
+"pregunta.</li><li>Hora de inicio: fecha y la hora cuando se abre la "
+"encuesta</li><li>Tiempo de finalización: fecha y la hora cuando se cierra la "
+"encuesta</li></ul>"
 
 #: /views/pages/functionality/poll.ctp:35
+#, fuzzy
 msgid ""
 "<p>Poll details can be communicated with the public via any means, including "
 "website, email and printed materials. Remember to share the above details "
 "and include the phone number or short code to which participants should send "
 "their SMS replies.</p>"
 msgstr ""
+"<p>Los detalles de la encuesta se pueden comunicar al público a través de "
+"cualquier medio, incluyendo el sitio Web, correo electrónico y materiales "
+"impresos. Recuerde que compartir los detalles anteriores e incluir el número "
+"de teléfono y el código corto para que los participantes puedan enviar sus "
+"respuestas SMS.</p>"
 
 #: /views/pages/functionality/poll.ctp:36
 msgid ""
@@ -2012,12 +2044,18 @@ msgid ""
 "course, it is not recommended to change the question, code or answers to a "
 "poll, once it has been opened to the public.</p>"
 msgstr ""
+"<p>El administrador puede en cualquier momento, modificar los campos "
+"mencionados anteriormente. Por supuesto, no se recomienda cambiar la "
+"pregunta, el código o las respuestas a una encuesta, una vez que se abra al "
+"público.</p>"
 
 #: /views/pages/functionality/poll.ctp:37
 msgid ""
 "<p>Before a poll is opened, and after it has been closed, no poll votes are "
 "registered for the poll.</p>"
 msgstr ""
+"<p>Los votos no se registran si se reciben antes o despues del tiempo de "
+"apertura y cierra de la encuesta.</p>"
 
 #: /views/pages/functionality/poll.ctp:38
 msgid ""
@@ -2025,6 +2063,9 @@ msgid ""
 "view the interim or final result in terms of number of votes per answer, and "
 "percentage of total votes per answer.</p>"
 msgstr ""
+"<p>Por cada encuesta, una vez que ha comenzado, el administrador puede en "
+"cualquier momento, ver el resultado provisional o definitivo en términos de "
+"número y porcentaje de votos totales por respuesta.</p>"
 
 #: /views/pages/functionality/poll.ctp:40
 msgid "Classification of votes"
@@ -2035,10 +2076,14 @@ msgid ""
 "<p>The system classifies all incoming votes as <i>valid, invalid,</i> or "
 "<i>incorrect</i>:</p>"
 msgstr ""
+"<p>El sistema clasifica todos los votos entrantes como <i>válidos,</i> <i>no "
+"válidos</i> o <i>incorrectos</i>:</p>"
 
 #: /views/pages/functionality/poll.ctp:42
 msgid "<p><b>Valid vote:</b> correct poll code, and correct poll option</p>"
 msgstr ""
+"<p><b>Votación válida:</b> código de encuesta correcta y opción de encuesta "
+"correcta</p>"
 
 #: /views/pages/functionality/poll.ctp:43
 msgid ""
@@ -2046,6 +2091,9 @@ msgid ""
 "while the poll was open.</li><li>Late: Received after the poll was "
 "closed.</li></ul>"
 msgstr ""
+"<ul><li>Temprano: Recibido antes de la apertura de la votación. </li><li>En "
+"el tiempo: Recibido en el plazo de encuesta. </li><li>Tarde: Recibido "
+"después del cierre de la encuesta. </li></ul>"
 
 #: /views/pages/functionality/poll.ctp:44
 msgid ""
@@ -2054,6 +2102,10 @@ msgid ""
 "page. Early votes will not be added to the Total votes accepted for the "
 "poll."
 msgstr ""
+"<p>Los votos que llegan temprano se registrarán como \"Válido, temprano\". El "
+"número de votos que llegan temprano se presenta en una columna aparte en la "
+"página de Vista de la encuesta. Los votos que llegan temprano no se añadirán "
+"a los lista de votos totales aceptados en la encuesta."
 
 #: /views/pages/functionality/poll.ctp:45
 msgid ""
@@ -2061,39 +2113,56 @@ msgid ""
 "per poll option is presented in a separate column under the View poll page. "
 "Late votes will not be added to the Total votes accepted for the poll."
 msgstr ""
+"<p>Los votos que llegan tarde se registrarán como \"Válidos, tarde\". El "
+"número de votos que llegan tarde se presenta en una columna aparte en la "
+"página de Vista de la encuesta. Los votos que llegan tarde no se añadirán a "
+"los lista de votos totales aceptados en la encuesta."
 
 #: /views/pages/functionality/poll.ctp:46
 msgid ""
 "<p>The Early and Late vote classifications are summarised separately to "
 "provide a complete view of votes submitted to the poll concerned."
 msgstr ""
+"<p>Las clasificaciones de los votos tempranos y tardíos se resumen por "
+"separado para proporcionar una visión completa de los votos recibidos en una "
+"encuesta concreta."
 
 #: /views/pages/functionality/poll.ctp:48
 msgid ""
 "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
 msgstr ""
+"<p><b>Voto no válido:</b> código de encuesta correcto, pero la opción en la "
+"respuesta no es posible</p>"
 
 #: /views/pages/functionality/poll.ctp:49
+#, fuzzy
 msgid ""
 "<p>Invalid votes are registered as votes, but classified as “invalid”. "
 "“Early”, “late” and “on-time” invalid votes are registered."
 msgstr ""
+"<p>Votos no válidos se registran como votos, pero clasificados como \"no "
+"válidos\". \"temprano\", \"tarde\" y \"a tiempo\"."
 
 #: /views/pages/functionality/poll.ctp:50
 msgid ""
 "<p>Only “on-time” invalid votes are incorporated into the Total number of "
 "votes (in time) summary."
 msgstr ""
+"<p>Sólo los votos inválidos que llegan \"a tiempo\" se incorporan en el "
+"resumen total de votos."
 
 #: /views/pages/functionality/poll.ctp:51
 msgid ""
 "<p>Invalid vote totals are provided to give deployers an idea of how SMS "
 "errors might impact on poll results."
 msgstr ""
+"<p>La lista de votos totales se proporciona para ofrecer a los responsables "
+"del despliegue una idea de cómo los errores de SMS pueden influir en "
+"resultados de la encuesta."
 
 #: /views/pages/functionality/poll.ctp:53
 msgid "<p><b>Incorrect vote: </b>Non-matching poll code"
-msgstr ""
+msgstr "<p><b>Voto incorrecto: </b>Código de encuesta no existe"
 
 #: /views/pages/functionality/poll.ctp:54
 msgid ""
@@ -2101,22 +2170,31 @@ msgid ""
 "classified as an incoming SMS and will be stored under “Other SMS”. The SMS "
 "will be classified as “Unclassified”."
 msgstr ""
+"<p>Votos incorrectos que no puede ser registrados en ninguna encuesta "
+"existente, se clasificarán como un SMS entrantes y se almacenarán en la "
+"sección \"Otros SMS\". Los SMS serán clasificados como \"Sin Clasificar\"."
 
 #: /views/pages/functionality/poll.ctp:56
 msgid "Practical example"
-msgstr ""
+msgstr "Ejemplo práctico"
 
 #: /views/pages/functionality/poll.ctp:57
 msgid ""
 "<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will "
 "all be interpreted as a YES. The same logic applies to the SMS code.</p>"
 msgstr ""
+"<p>La encuesta no es sensible al uso de mayúsculas y minúsculas, por ejemplo "
+"'si', 'Si'y 'SI' van a ser interpretados como un 'si'. La misma lógica se "
+"aplica al código SMS.</p>"
 
 #: /views/pages/functionality/poll.ctp:58
 msgid ""
 "<p>More than one poll can be active at the same time. Incoming SMS are "
 "identified by the SMS code used and matched with existing polls. </p>"
 msgstr ""
+"<p>Más de una encuesta puede estar activa al mismo tiempo. Los SMS entrantes "
+"se identifican mediante el código SMS usado que concuerde con las encuestas "
+"existentes.</p>"
 
 #: /views/pages/functionality/poll.ctp:60
 msgid ""
@@ -2125,6 +2203,11 @@ msgid ""
 "gets delayed in the GSM network, it will be classified as late even if it "
 "was sent before the poll deadline. "
 msgstr ""
+"<p>El tiempo utilizado para determinar si o no una votación llega a tiempo "
+"para una encuesta, es el momento de llegada a la plataforma Freedom Fone. "
+"Por lo tanto, si se retrasa un SMS en la red GSM, el mensaje será "
+"clasificado como tarde incluso si ha sido enviado antes de la fecha de "
+"cierre de la encuesta."
 
 #: /views/pages/functionality/poll.ctp:62
 msgid ""
@@ -2134,6 +2217,11 @@ msgid ""
 "Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: "
 "08:00 AM, January 31, 2010</li></ul></p>"
 msgstr ""
+"<p>Ejemplo: El administrador crea una encuesta con los siguientes "
+"parámetros:<ul><li>Pregunta: ¿Desea implementar Freedom Fone en su "
+"organización?</li><li>Código: freedomfone</li><li>Respuestas: "
+"SI/NO/PUEDE</li><li>Hora de inicio: 08: 00 AM, 1 de enero de "
+"2010</li><li>Tiempo de cierre: 08: 00 AM, 31 de enero de 2010</li></ul></p>"
 
 #: /views/pages/functionality/poll.ctp:64
 msgid ""
@@ -2143,6 +2231,11 @@ msgid ""
 "freedomfone no\n"
 "freedomfone maybe</pre>"
 msgstr ""
+"<p>Para participar en la encuesta, el usuario final tiene que enviar un SMS "
+"(después de 8 AM del 1 de enero, y antes de las 8 AM del 31 de enero 2010) "
+"con uno de los siguientes mensajes: </p><pre> freedomfone SI\n"
+"freedomfone NO\n"
+"freedomfone PUEDE</pre>"
 
 #: /views/polls/add.ctp:26
 msgid "Create new poll"

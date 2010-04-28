@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2010-01-25 18:45+0100\n"
-"PO-Revision-Date: 2010-04-27 20:14+0200\n"
+"PO-Revision-Date: 2010-04-28 09:57+0200\n"
 "Last-Translator: Alberto <aep@it46.se>\n"
 "Language-Team: fooers\n"
 "Language: es\n"
@@ -1388,8 +1388,8 @@ msgid ""
 "No Menu Option are uploaded. Please upload a Menu Option by clicking on the "
 "green button to the right."
 msgstr ""
-"Ninguna Opción de Menú creada. Cree una Opción de Menú haciendo clic en el "
-"botón verde a la derecha."
+"No se ha creado ninguna opción en el menú de voz. Cree una Opción de Menú "
+"haciendo clic en el botón verde a la derecha."
 
 #: /views/pages/about.ctp:27
 msgid "Release"
@@ -1568,6 +1568,10 @@ msgid ""
 "Callback service establishes outgoing phone calls from Freedom Fone to a "
 "caller, with the Freedom Fone deployer carrying the cost of the call. </p>"
 msgstr ""
+"<p> El servicio de devolución de llamada ofrece un medio de bajo costo para "
+"acceder al contenido de audio de Freedom Fone. Como su nombre indica, el "
+"servicio de devolución de llamada genera las llamadas salientes asumiendo el "
+"costo de la llamada. </p>"
 
 #: /views/pages/functionality/callback.ctp:30
 msgid ""
@@ -1576,14 +1580,17 @@ msgid ""
 "“callback”, or</li><li>tickle a designated number (ring once and hang "
 "up)</li></ul>"
 msgstr ""
+"<p>Para solicitar una devolución de llamada en Freedom Fone, la personal que "
+"llama puede o bien</p><ul><li>enviar un SMS</li><li>hacer una llamada "
+"perdida a número especial</li></ul>"
 
 #: /views/pages/functionality/callback.ctp:32
 msgid ""
 "<p>The cost to the caller will either be the cost for an SMS, or nothing (if "
 "you hang up after the first ring).</p>"
 msgstr ""
-"<p>El costo de la llamada será el coste de un SMS, o nada (si usted colgar "
-"tras el primer tono de llamada).</p>"
+"<p>El costo de la llamada será el coste de un SMS, o gratuito (si usted "
+"decide colgar tras el primer tono de llamada).</p>"
 
 #: /views/pages/functionality/callback.ctp:34
 msgid "Administration settings"
@@ -1595,6 +1602,9 @@ msgid ""
 "service. The options for Freedom Fone v.1 are </p><ul><li>Leave-a-message "
 "menu OR</li><li>Default Voice Menu</li></ul>"
 msgstr ""
+"<p>El administrador puede elegir qué contenido se ofrecerá en la devolución "
+"de llamada. Los servicios disponibles en la primera versión es: </p><ul><li"
+">Dejar-un-mensaje</li><li>Menú interactivo de voz</li></ul>"
 
 #: /views/pages/functionality/callback.ctp:39
 msgid ""
@@ -1603,6 +1613,10 @@ msgid ""
 "period of time.</p><ul><li>Max Calls: 10, 25, 50, 100, no "
 "limit</li><li>Period : 12h, 24h, 2d, 4d, 1 week</li></ul>"
 msgstr ""
+"<p>Para limitar el riesgo de abuso del servicio de devolución de llamada, el "
+"administrador puede limitar el número máximo de devoluciones de llamada por "
+"número telefónico. </p><ul><li>Máx llamadas: 10, 25, 50, 100, sin "
+"límite</li><li>Período: 12h, 24h, 2d, 4d, 1 semana</li></ul>"
 
 #: /views/pages/functionality/callback.ctp:41
 msgid "<p>The administration parameters can be found under Settings.</p>"
@@ -1668,6 +1682,12 @@ msgid ""
 "CSV file. The administrator can choose to export All entries, or a range of "
 "entries using a start and end time."
 msgstr ""
+"<p>Los datos de registro de llamadas (CDR) de todas las llamadas entrantes "
+"(Deja-un-mensaje y de los Menús Interactivos de Voz) se muestran con los "
+"siguientes parámetros: identificador de llamada, hora de inicio, hora de "
+"finalización, el número del llamante, aplicaciones. Los CDR se pueden "
+"exportar en un archivo CSV. El administrador puede elegir exportar Todos los "
+"registros, o una serie de entradas con una hora de inicio y fin."
 
 #: /views/pages/functionality/index.ctp:26
 msgid "Functionality : "
@@ -1675,7 +1695,7 @@ msgstr "Funcionalidad:"
 
 #: /views/pages/functionality/index.ctp:27
 msgid "Freedom Fone v.1 functionality"
-msgstr ""
+msgstr "Funcionalidad de Freedom Fone versión 1"
 
 #: /views/pages/functionality/index.ctp:29
 msgid ""
@@ -1695,21 +1715,30 @@ msgstr "Funcionalidad : Menús de voz"
 
 #: /views/pages/functionality/ivr.ctp:29
 msgid "Freedon Fone v.1 Voice Menu design"
-msgstr ""
+msgstr "Freedom Fone v.1 Diseño del Menú de voz"
 
 #: /views/pages/functionality/ivr.ctp:31
 msgid ""
 "<p>The administrator is able to build a variety of personal Voice Menus "
 "based on customized audio files, or synthesized text messages.<p>"
 msgstr ""
+"<p>El administrador es capaz de construir una gran variedad de Menús "
+"interactivos de voz basados en archivos de audio personalizados, o mensajes "
+"de voz sintetizada.<p></p></p>"
 
 #: /views/pages/functionality/ivr.ctp:32
+#, fuzzy
 msgid ""
 "<p>A Voice menu consists of:</p><ul><li>Menu Instructions: a set of "
 "mandatory voice messages, such as a Welcome message, and instructions on how "
 "to navigate through the menu, </li><li>Menu Options: audio files or "
 "components assosiated with telephony keypad selections. </li></ul>"
 msgstr ""
+"<p>Un menú de voz consta de:</p><ul><li>Instrucciones del Menú: el conjunto "
+"de mensajes de voz obligatorios, como un mensaje de bienvenida e "
+"instrucciones sobre cómo navegar por el menú,</li><li>Opciones de menú: "
+"arcivos de audio o  componentes asociados a través del teclado "
+"telefónico.</li></ul>"
 
 #: /views/pages/functionality/ivr.ctp:35
 msgid ""
@@ -1721,6 +1750,15 @@ msgid ""
 "file. The audio file is not deleted and can be used in the Voice Menu at a "
 "later stage, by “associating” the file with the Menu Instruction once again."
 msgstr ""
+"<p>Una opción en el menú de voz pueden ser un mensaje de texto (que es "
+"sintetizado automáticamente) o un archivo de audio cargado. Si se utiliza un "
+"archivo de audio se debe cargar desde el equipo local ya sea al hacer clic "
+"en el cuadro de texto de archivo de audio pertinente o haciendo clic en el "
+"botón asociado 'Examinar'.<p>Siempre se puede volver a usar un mensaje de "
+"voz sintetizado \"desasociando\" el archivo cargado. Los archivos de audio no "
+"se eliminan y se pueden utilizar en el Menú de Voz en una etapa posterior, "
+"mediante la \"asociación\" del archivo con la opción del menú de voz una vez "
+"más.</p></p>"
 
 #: /views/pages/functionality/ivr.ctp:38
 msgid ""
@@ -1728,12 +1766,16 @@ msgid ""
 "uploaded through the Menu option files screen, or</li><li>a Leave-a-Message "
 "service</li></ul>"
 msgstr ""
+"<p>Una <b>Opción de menú</b> puede ser<ul><li>un archivo de audio "
+"previamente cargado, o</li><li>un servicio de Dejar-un-mensaje</li></ul></p>"
 
 #: /views/pages/functionality/ivr.ctp:39
 msgid ""
 "<p>The administrator can at any time add, edit, listen to or delete existing "
 "Menu Options."
 msgstr ""
+"<p>El administrador puede en cualquier momento agregar, editar, escuchar o "
+"eliminar opciones existentes.</p>"
 
 #: /views/pages/functionality/ivr.ctp:40
 msgid ""
@@ -1741,6 +1783,9 @@ msgid ""
 "into the system they are associated with a Title to help you manage your "
 "audio files."
 msgstr ""
+"<p>Los archivos de la Opción de Menú de Voz pueden ser archivos .mp3 o .wav "
+"de audio. Cuando se cargan en el sistema están asociadas con un título que "
+"le ayudarán a gestionar tus archivos de audio.</p>"
 
 #: /views/pages/functionality/ivr.ctp:41
 msgid ""
@@ -1748,12 +1793,17 @@ msgid ""
 "These files cannot be deleted if they are currently associated with a Voice "
 "Menu."
 msgstr ""
+"<p>Un archivo de la Opción de Menú puede utilizarse en uno o más diferentes "
+"Menús de Voz. Estos archivos no puede eliminar si están actualmente "
+"asociados con un menú de voz.</p>"
 
 #: /views/pages/functionality/ivr.ctp:42
 msgid ""
 "<p>Freedom Fone v.1.5 offers the possibility to assign eight Menu Options to "
 "a Voice Menu."
 msgstr ""
+"<p>Freedom Fone v.1.5 ofrece la posibilidad de asignar ocho opciones a un "
+"Menú de Voz.</p>"
 
 #: /views/pages/functionality/ivr.ctp:44
 msgid ""
@@ -1762,10 +1812,17 @@ msgid ""
 "or delete a Voice Menu. If the default Voice menu is deleted, the oldest "
 "existing Voice Menu will automatically become the new default."
 msgstr ""
+"<p>El administrador puede crear múltiples Menús de Voz, pero sólo uno puede "
+"estar activo en un momento (marcado como predeterminado). El administrador "
+"puede en cualquier momento editar o eliminar un menú de voz. Si se elimina "
+"el Menú de Voz de forma predeterminada, el Menú de Voz existente más antiguo "
+"se convertirá automáticamente en el nuevo valor predeterminado.</p>"
 
 #: /views/pages/functionality/ivr.ctp:45
 msgid "The administrator can at any time change the default Voice Menu."
 msgstr ""
+"El administrador puede cambiar en cualquier momento el valor predeterminado "
+"del Menú de Voz."
 
 #: /views/pages/functionality/ivr.ctp:48
 msgid ""
@@ -1778,6 +1835,15 @@ msgid ""
 "administrator can choose to delete all monitoring data from the system "
 "(using start and end time)."
 msgstr ""
+"<p>Freedom Fone ofrece el administrador un medio para supervisar los "
+"archivos de audio accedidos a través de un Menú de Voz. Por cada llamada "
+"entrante a un Menú de Voz, se registra (tiempo, ivr, dígito presionado, la "
+"opción de menú, el número entrante).<p>Estos registros se pueden exportar a "
+"un archivo CSV. El administrador puede elegir exportar todas las entradas, o "
+"un rango de entradas con un tiempo de inicio y final. Donde la privacidad "
+"es una preocupación, el administrador puede elegir eliminar todos los datos "
+"de monitorización del sistema (utilizando el tiempo de inicio y "
+"final).</p></p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:25
 msgid "Functionality : Leave-a-Message"
@@ -1788,11 +1854,16 @@ msgid "Functionality: Leave-a-Message"
 msgstr "Funcionalidad: Deja-un mensaje"
 
 #: /views/pages/functionality/leave-a-message.ctp:30
+#, fuzzy
 msgid ""
 "<p>The Leave-a-Message service offers callers the option to call into "
 "Freedom Fone, and leave  their personal message. This may be a report, "
 "feedback, tip-off, response to a question, or perhaps a job application.</p>"
 msgstr ""
+"<p>El servicio de Dejar-un-mensaje ofrece a los llamantes  la opción de "
+"llamar a Freedom Fone y dejar un mensaje personal. Esto puede ser un "
+"informe,  retroalimentación, la respuesta a una pregunta, o quizás una "
+"solicitud de empleo.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:31
 msgid ""
@@ -1803,6 +1874,12 @@ msgid ""
 "their recorded message</li><li>Delete and record a new message "
 "OR</li><li>Save their message and exit</li></ul>"
 msgstr ""
+"<p>El autor de la llamada al servicio Dejar-un-Mensaje entra en un menú de "
+"voz creado por Freedom Fone. Este Menú de Voz saluda al llamante y "
+"proporciona instrucciones sobre cómo utilizar el servicio.  El servicio de "
+"Dejar-un-Mensaje permite al llamante</p><ul><li>Grabar un "
+"mensaje</li><li>Escuchar su mensaje grabado</li><li>Eliminar y grabar un "
+"mensaje nuevo o</li><li>Guardar su mensaje y salir</li></ul>"
 
 #: /views/pages/functionality/leave-a-message.ctp:34
 msgid ""
@@ -1810,10 +1887,13 @@ msgid ""
 "is able to navigate through the menu according to the illustration "
 "above.</p>"
 msgstr ""
+"<p>Mediante los botones # (hash), * (asterisco), 0 (cero) y 1 (uno), el "
+"usuario es capaz de navegar por el menú de acuerdo con la ilustración "
+"anterior.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:36
 msgid "The Leave-a-message Voice Menu"
-msgstr ""
+msgstr "El menú de la voz de Dejar-un-Mensaje"
 
 #: /views/pages/functionality/leave-a-message.ctp:37
 msgid ""
@@ -1822,24 +1902,36 @@ msgid ""
 "different ways:</p><ol><li>Customized audio files</li><li>Customized text "
 "to speech</li><li>Default text to speech</li></ol>"
 msgstr ""
+"<p>El menú de voz de Dejar-un-Mensaje es creado por el administrador. El "
+"menú consta de ocho mensajes diferentes. Cada mensaje puede generarse de "
+"tres maneras diferentes:</p><ol><li>Archivos de audio "
+"personalizados</li><li>Síntesis de voz a partir de textos "
+"personalizado</li><li>Por defecto, Síntesis de voz</li></ol>"
 
 #: /views/pages/functionality/leave-a-message.ctp:40
 msgid ""
 "<p>If the administrator associates an audio file with a message, that file "
 "will be played to the caller when she enters the voice menu.</p>"
 msgstr ""
+"<p>Si el administrador asocia un archivo de audio con un mensaje, dicho "
+"archivo se reproducirá cuando el llamante entra en el menú de voz.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:41
 msgid ""
 "<p>If no audio file is provided for a message, but a customized text message "
 "exists, the text message will be synthesized and played to the caller.</p>"
 msgstr ""
+"<p>Si no hay ningún archivo de audio cargado, pero existe un mensaje de "
+"texto personalizado, el mensaje de texto será sintetizado durante la "
+"llamada.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:42
 msgid ""
 "<p>If neither an audio file, nor a customized text is provided, the default "
 "text will be synthesized and played to the user.</p>"
 msgstr ""
+"<p>Si no se proporciona un archivo de audio, ni un texto personalizado, el "
+"texto predeterminado será sintetizado durante la llamada.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:43
 msgid ""

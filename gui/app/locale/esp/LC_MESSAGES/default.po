@@ -1303,7 +1303,7 @@ msgstr "Creado"
 #: /views/messages/edit.ctp:96
 #: /views/messages/index.ctp:63
 msgid "Length"
-msgstr "Longitud"
+msgstr "Duración"
 
 #: /views/messages/archive.ctp:54
 #: /views/messages/edit.ctp:98

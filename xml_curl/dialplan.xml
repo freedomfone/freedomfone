@@ -186,7 +186,7 @@
         </extension>
         <extension name="inbound_Mobigater2">
           <condition field="destination_number" expression="^5001$">
-	    <action application="set" data="playback_terminators=*"/>
+<!--	    <action application="set" data="playback_terminators=*"/> -->
             <action application="transfer" data="4100 XML default"/>
         </condition>
         </extension>

@@ -1,12 +1,16 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: Revision: 6311 /app_controller.php
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
 # No version information was available in the source files.
 # Alberto <aep@it46.se>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2010-01-25 18:45+0100\n"
-"PO-Revision-Date: 2010-04-28 15:39+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-01 16:03+0200\n"
+"PO-Revision-Date: 2010-05-01 17:13+0200\n"
 "Last-Translator: Alberto <aep@it46.se>\n"
 "Language-Team: fooers\n"
 "Language: es\n"
@@ -16,19 +20,42 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.6.0\n"
 
+#: /app_controller.php:240
+msgid "No file selected. Please try again."
+msgstr "No se ha seleccionado ningún archivo. Por favor, inténtelo de nuevo."
+
+#: /app_controller.php:248
+msgid "The folling file could not be uploaded due to invalid file type:"
+msgstr ""
+"El siguiente archivo no se ha podido subir porque es un tipo de archivo no "
+"válido:"
+
+#: /config/config.php:154
+msgid "English"
+msgstr "Inglés"
+
+#: /config/config.php:155
+msgid "Swahili"
+msgstr "Swahili"
+
+#: /config/config.php:156
+msgid "Spanish"
+msgstr "Castellano"
+
 #: /controllers/bin_controller.php:39
-#: /controllers/cdr_controller.php:46;175
-#: /controllers/messages_controller.php:40
+#: /controllers/cdr_controller.php:50;190
+#: /controllers/messages_controller.php:41
 #: /controllers/monitor_ivr_controller.php:36
 #: /controllers/polls_controller.php:49;65
 #: /views/bin/index.ctp:29
 #: /views/cdr/index.ctp:29
+#: /views/cdr/overview.ctp:30
 #: /views/channels/index.ctp:29
 #: /views/messages/index.ctp:29
 #: /views/monitor_ivr/index.ctp:30
-#: /views/polls/index.ctp:29
-#: /views/polls/view.ctp:27
-#: /views/processes/index.ctp:29
+#: /views/polls/index.ctp:33
+#: /views/polls/view.ctp:41
+#: /views/processes/index.ctp:31
 msgid "Refresh"
 msgstr "Recargar"
 
@@ -52,19 +79,19 @@ msgstr "Categoría no válida"
 msgid "The selected category has been deleted."
 msgstr "La categoría seleccionada se ha eliminado."
 
-#: /controllers/cdr_controller.php:104
-#: /controllers/messages_controller.php:209
+#: /controllers/cdr_controller.php:106
+#: /controllers/messages_controller.php:229
 #: /controllers/monitor_ivr_controller.php:85
-#: /views/bin/index.ctp:57;68;81
+#: /views/bin/index.ctp:58;69;82
 #: /views/categories/index.ctp:37;45
-#: /views/cdr/index.ctp:61;77;96
-#: /views/ivr_menus/index.ctp:45;68
+#: /views/cdr/index.ctp:63;79;98
+#: /views/ivr_menus/index.ctp:55;78
 #: /views/messages/archive.ctp:53;80;110
-#: /views/messages/index.ctp:60;84;109
+#: /views/messages/index.ctp:65;89;114
 #: /views/monitor_ivr/index.ctp:71;95;126
-#: /views/nodes/index.ctp:49;63
+#: /views/nodes/index.ctp:52;66
 #: /views/polls/edit.ctp:57
-#: /views/polls/index.ctp:42;60
+#: /views/polls/index.ctp:49;68
 #: /views/tags/index.ctp:39;47
 msgid "Delete"
 msgstr "Eliminar"
@@ -73,15 +100,25 @@ msgstr "Eliminar"
 msgid "System Health :: GSM channels"
 msgstr "Estado del sistema :: Canales GSM"
 
-#: /controllers/ivr_menus_controller.php:131
+#: /controllers/ivr_menus_controller.php:112;210
+msgid "The following file could not be uploaded due to file size restrictions"
+msgstr ""
+"No se pudo cargar el archivo siguiente debido a las restricciones de tamaño "
+"de archivo"
+
+#: /controllers/ivr_menus_controller.php:143
 msgid "The voice menu has been created!"
 msgstr "¡El menú de voz se ha creado!"
 
-#: /controllers/ivr_menus_controller.php:153
+#: /controllers/ivr_menus_controller.php:167
 msgid "Invalid option"
 msgstr "Opción inválida"
 
-#: /controllers/ivr_menus_controller.php:266
+#: /controllers/ivr_menus_controller.php:264
+msgid "This is a protected Voice menu, which can not be edited."
+msgstr "Este es un menú de voz protegido, que no se puede editar."
+
+#: /controllers/ivr_menus_controller.php:286
 msgid "The voice menu has been deleted."
 msgstr "¡El menú de voz se ha borrado!"
 
@@ -89,86 +126,84 @@ msgstr "¡El menú de voz se ha borrado!"
 msgid "Invalid Entry"
 msgstr "Entrada Inválida"
 
-#: /controllers/lm_menus_controller.php:100
-msgid "Your data has been saved"
-msgstr "Tus datos se han salvado."
+#: /controllers/lm_menus_controller.php:60
+msgid "This is a protected demo IVR which can not be edited"
+msgstr "Esto es un IVR en demo protegida que no se puede editar"
 
-#: /controllers/lm_menus_controller.php:107
-msgid "Your data could not be saved. Please, try again."
-msgstr "Tus datos no se han podido salvar. Por favor, inténtelo de nuevo."
-
-#: /controllers/messages_controller.php:152
-#: /views/messages/edit.ctp:62
+#: /controllers/messages_controller.php:171
+#: /views/messages/edit.ctp:72
 msgid "Save & Next"
 msgstr "Salvar & Siguiente"
 
-#: /controllers/messages_controller.php:154
-#: /views/messages/edit.ctp:60
+#: /controllers/messages_controller.php:173
+#: /views/messages/edit.ctp:70
 msgid "Save & Index"
 msgstr "Salvar & Índice"
 
-#: /controllers/messages_controller.php:214
-#: /views/messages/index.ctp:110
+#: /controllers/messages_controller.php:234
+#: /views/messages/index.ctp:115
 msgid "Move to Archive"
 msgstr "Mover al Archivo"
 
-#: /controllers/messages_controller.php:217
+#: /controllers/messages_controller.php:237
 #: /views/messages/archive.ctp:111
 msgid "Activate"
 msgstr "Activar"
 
-#: /controllers/nodes_controller.php:84
+#: /controllers/nodes_controller.php:90
 msgid "The voice menu node has been created."
 msgstr "¡El menú de voz se ha creado!"
 
-#: /controllers/nodes_controller.php:97
+#: /controllers/nodes_controller.php:105
 msgid "No file selected"
 msgstr "No hay ningún archivo seleccionado"
 
-#: /controllers/nodes_controller.php:133
+#: /controllers/nodes_controller.php:142
 msgid "The selected voice menu node has been deleted."
 msgstr "El menú de voz se ha eliminado."
 
-#: /controllers/nodes_controller.php:140
-msgid ""
-"The selected voice menu node could not be deleted as it is present in one or "
-"more Voice menus."
+#: /controllers/nodes_controller.php:149
+msgid "The selected voice menu node could not be deleted as it is present in one or more Voice menus."
 msgstr ""
 "No se pudo eliminar el submenú de voz seleccionado porque está presente en "
 "uno o varios menús de voz."
 
-#: /controllers/nodes_controller.php:159
+#: /controllers/nodes_controller.php:174
 msgid "Invalid audio file"
 msgstr "Archivo de audio no válido"
 
-#: /controllers/nodes_controller.php:192
+#: /controllers/nodes_controller.php:209
 msgid "The settings has been saved"
 msgstr "La configuración se ha guardado"
 
-#: /controllers/polls_controller.php:127
+#: /controllers/polls_controller.php:126
 msgid "The poll has been added to the database"
 msgstr "La encuesta se ha agregado a la base de datos"
 
-#: /controllers/polls_controller.php:143
+#: /controllers/polls_controller.php:145
 msgid "The follwing poll has been deleted"
 msgstr "Esta encuesta se ha eliminado"
 
-#: /controllers/polls_controller.php:167
+#: /controllers/polls_controller.php:168
 msgid "Poll option could not be deleted. A poll needs at least two options."
 msgstr ""
 "No se pudo eliminar la opción de la encuesta. Una encuesta necesita al menos "
 "dos opciones."
 
-#: /controllers/polls_controller.php:182;197
+#: /controllers/polls_controller.php:186;201
 msgid "Invalid Poll"
 msgstr "Encuesta inválida"
 
-#: /controllers/polls_controller.php:246
+#: /controllers/polls_controller.php:252
 msgid "The poll has been edited."
 msgstr "La encuesta ha sido editada."
 
+#: /controllers/polls_controller.php:255
+msgid "This is a protected demo poll so no edits to it are permitted."
+msgstr "Esto es una encuesta en demo protegida que no se puede editar."
+
 #: /controllers/processes_controller.php:34
-#: /views/elements/menu.ctp:185
+#: /views/elements/menu.ctp:189
 #: /views/pages/functionality/dashboard.ctp:30
 msgid "System Health"
 msgstr "Salud de sistema"
@@ -176,35 +211,6 @@ msgstr "Salud de sistema"
 #: /controllers/processes_controller.php:51
 msgid "System Software"
 msgstr "Software del sistema"
-
-#: /controllers/processes_controller.php:92
-msgid "started"
-msgstr "activo"
-
-#: /controllers/processes_controller.php:94
-msgid "is already running"
-msgstr "ya se está ejecutando"
-
-#: /controllers/processes_controller.php:118
-msgid "is not running"
-msgstr "no se está ejecutando"
-
-#: /controllers/processes_controller.php:123
-msgid "No pid found. Contact system admin."
-msgstr ""
-"No se encontró el pid. Póngase en contacto con administrador de sistema."
-
-#: /controllers/processes_controller.php:132
-msgid "Manual"
-msgstr "Manual"
-
-#: /controllers/processes_controller.php:134;149
-msgid "stopped"
-msgstr "parado"
-
-#: /controllers/processes_controller.php:141
-msgid "was already stopped"
-msgstr "ya fue detenido"
 
 #: /controllers/tags_controller.php:50;71
 msgid "The tag has been saved"
@@ -227,7 +233,7 @@ msgid "The selected tag has been deleted."
 msgstr "La etiqueta seleccionada se ha eliminado."
 
 #: /models/bin.php:48
-#: /models/poll.php:247
+#: /models/poll.php:281
 msgid "Unclassified"
 msgstr "Sin clasificar"
 
@@ -242,63 +248,90 @@ msgstr "Este nombre ya está en uso."
 
 #: /models/category.php:48
 #: /models/tag.php:48
-msgid "Between 1 to 50 characters"
-msgstr "Entre 1 a 50 caracteres"
+msgid "Please enter a description using 1 to 50 characters"
+msgstr "Por favor, introduzca una descripción de 1 a 50 caracteres"
 
-#: /models/cdr.php:127
+#: /models/cdr.php:145
 msgid "tag"
 msgstr "etiqueta"
 
-#: /models/ivr_menu.php:39
-#: /models/node.php:39
+#: /models/ivr_menu.php:40
 msgid "A title is required. Minimum 3 characters."
 msgstr "Un título es obligatorio. Mínimo 3 caracteres."
 
-#: /models/poll.php:42
-msgid "A valid question is required."
-msgstr "Una pregunta válida es necesaria."
+#: /models/ivr_menu.php:45;50;55;60
+#: /models/message.php:43
+#: /models/node.php:43
+msgid "No hyperlinks allowed."
+msgstr "No hipervínculos permitidos."
 
-#: /models/poll.php:47
+#: /models/ivr_menu.php:66;71;76;81
+#: /models/node.php:48
+msgid "The file size exceeds the maximum limit (10MB)."
+msgstr "El tamaño del archivo supera el límite máximo (10 MB)."
+
+#: /models/node.php:39
 msgid "Alphabets and numbers only"
 msgstr "Solo números y letras"
 
-#: /models/poll.php:51
+#: /models/node.php:52
+msgid "Invalid file type (valid formats: mp3 and wav)."
+msgstr "Tipo de archivo no válido (formatos válidos: mp3 y wav)."
+
+#: /models/node.php:56
+msgid "No file selected."
+msgstr "No se ha seleccionado ningún archivo."
+
+#: /models/poll.php:43
+msgid "A valid question is required."
+msgstr "Una pregunta válida es necesaria."
+
+#: /models/poll.php:48
+#: /models/vote.php:48
+msgid "Letters and numbers only. No spaces or special characters allowed."
+msgstr "Letras y números solamente. Sin espacios ni caracteres especiales."
+
+#: /models/poll.php:52
 msgid "Between 1 to 10 characters"
 msgstr "Entre 1 y 10 caracteres"
 
-#: /models/poll.php:55
+#: /models/poll.php:56
 msgid "This SMS code is already in use."
 msgstr "Este código SMS ya está en uso."
 
-#: /models/poll.php:61
+#: /models/poll.php:62;72
+msgid "The date is not valid."
+msgstr "La fecha no es válida."
+
+#: /models/poll.php:68
 msgid "The end time must be later than the start time."
 msgstr "La hora de finalización debe ser posterior a la hora de inicio."
 
-#: /models/poll.php:195
+#: /models/poll.php:229
 msgid "Valid, early"
 msgstr "Válido, temprano"
 
-#: /models/poll.php:202
+#: /models/poll.php:236
 msgid "Valid, open"
 msgstr "Válido, abierto"
 
-#: /models/poll.php:208
+#: /models/poll.php:242
 msgid "Valid, closed"
 msgstr "Válido, cerrado"
 
-#: /models/poll.php:221
+#: /models/poll.php:255
 msgid "Invalid, early"
 msgstr "No válido, temprano"
 
-#: /models/poll.php:227
+#: /models/poll.php:261
 msgid "Invalid, open"
 msgstr "No válido, abierto"
 
-#: /models/poll.php:234
+#: /models/poll.php:268
 msgid "Invalid, closed"
 msgstr "No válido, cerrado"
 
-#: /models/process.php:68
+#: /models/process.php:69
 msgid "Unmanaged"
 msgstr "No administrado"
 
@@ -309,10 +342,6 @@ msgstr "Esta descripción ya está en uso."
 #: /models/vote.php:44
 msgid "Between 1 to 10 characters."
 msgstr "Entre 1 y 10 caracteres."
-
-#: /models/vote.php:48
-msgid "Letters and numbers only. No spaces allowed."
-msgstr "Letras y números solamente. No se permiten espacios."
 
 #: /models/vote.php:52
 msgid "The option is not unique."
@@ -332,7 +361,7 @@ msgid "Date"
 msgstr "Fecha"
 
 #: /views/bin/export.ctp:28
-#: /views/cdr/index.ctp:56
+#: /views/cdr/index.ctp:58
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:64
 #: /views/monitor_ivr/output.ctp:28
@@ -344,13 +373,13 @@ msgid "Message"
 msgstr "Mensaje"
 
 #: /views/bin/export.ctp:28
-#: /views/bin/index.ctp:56
+#: /views/bin/index.ctp:57
 msgid "Sender"
 msgstr "Remitente"
 
 #: /views/bin/export.ctp:28
-#: /views/bin/index.ctp:54
-#: /views/cdr/index.ctp:57
+#: /views/bin/index.ctp:55
+#: /views/cdr/index.ctp:59
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:70
 #: /views/monitor_ivr/output.ctp:28
@@ -363,78 +392,79 @@ msgstr "Otros SMS"
 
 #: /views/bin/index.ctp:33
 #: /views/cdr/export.ctp:34
-#: /views/cdr/index.ctp:37
+#: /views/cdr/index.ctp:39
 #: /views/monitor_ivr/export.ctp:35
 #: /views/monitor_ivr/index.ctp:38
 msgid "Export"
 msgstr "Exportar"
 
-#: /views/bin/index.ctp:37
-#: /views/cdr/overview.ctp:78
-#: /views/elements/menu.ctp:83
+#: /views/bin/index.ctp:38
+#: /views/cdr/overview.ctp:81
+#: /views/elements/menu.ctp:87
+#: /views/helpers/formatting.php:92
 msgid "Other SMS"
 msgstr "Otros SMS"
 
-#: /views/bin/index.ctp:38
+#: /views/bin/index.ctp:39
 #: /views/messages/archive.ctp:33
-#: /views/messages/index.ctp:39
+#: /views/messages/index.ctp:44
 msgid "Message:"
 msgstr "Mensaje:"
 
-#: /views/bin/index.ctp:38
-#: /views/cdr/index.ctp:43
+#: /views/bin/index.ctp:39
+#: /views/cdr/index.ctp:45
 #: /views/messages/archive.ctp:33
-#: /views/messages/index.ctp:39
+#: /views/messages/index.ctp:44
 #: /views/monitor_ivr/index.ctp:51
-#: /views/nodes/index.ctp:38
+#: /views/nodes/index.ctp:41
 msgid "-"
 msgstr "-"
 
-#: /views/bin/index.ctp:38
+#: /views/bin/index.ctp:39
 #: /views/callback_in/index.ctp:35
-#: /views/cdr/index.ctp:43
+#: /views/cdr/index.ctp:45
 #: /views/messages/archive.ctp:33
-#: /views/messages/index.ctp:39
+#: /views/messages/index.ctp:44
 #: /views/monitor_ivr/index.ctp:51
-#: /views/nodes/index.ctp:38
+#: /views/nodes/index.ctp:41
 msgid "of"
 msgstr "de"
 
-#: /views/bin/index.ctp:44
-#: /views/cdr/index.ctp:47
+#: /views/bin/index.ctp:45
+#: /views/cdr/index.ctp:49
 #: /views/messages/archive.ctp:37
-#: /views/messages/index.ctp:44
+#: /views/messages/index.ctp:49
 #: /views/monitor_ivr/index.ctp:55
 msgid "Check All"
 msgstr "Seleccionar Todos"
 
-#: /views/bin/index.ctp:45
-#: /views/cdr/index.ctp:48
+#: /views/bin/index.ctp:46
+#: /views/cdr/index.ctp:50
 #: /views/messages/archive.ctp:38
-#: /views/messages/index.ctp:45
+#: /views/messages/index.ctp:50
 #: /views/monitor_ivr/index.ctp:56
 msgid "Uncheck All"
 msgstr "Deseleccionar Todos"
 
-#: /views/bin/index.ctp:52
+#: /views/bin/index.ctp:53
 msgid "Body"
 msgstr "Mensaje"
 
-#: /views/bin/index.ctp:53
+#: /views/bin/index.ctp:54
 msgid "Arrival"
 msgstr "Llegada"
 
-#: /views/bin/index.ctp:55
+#: /views/bin/index.ctp:56
 #: /views/callback_in/index.ctp:47
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: /views/bin/index.ctp:68
+#: /views/bin/index.ctp:69
 #: /views/monitor_ivr/index.ctp:95
 msgid "Are you sure you want to delete this entry?"
 msgstr "¿Está seguro que desea eliminar esta entrada?"
 
-#: /views/bin/index.ctp:87
+#: /views/bin/index.ctp:88
 #: /views/monitor_ivr/index.ctp:132
 msgid "No of entries per page: "
 msgstr "Nº de entradas por página:"
@@ -444,9 +474,9 @@ msgid "Show callback records"
 msgstr "Mostrar registros de devolución de llamada"
 
 #: /views/callback_in/index.ctp:31
-#: /views/cdr/overview.ctp:80
+#: /views/cdr/overview.ctp:83
 #: /views/messages/archive.ctp:123
-#: /views/messages/index.ctp:120
+#: /views/messages/index.ctp:125
 msgid "All"
 msgstr "Todos"
 
@@ -463,9 +493,10 @@ msgid "to"
 msgstr "a"
 
 #: /views/callback_in/index.ctp:43
-#: /views/messages/edit.ctp:70
-#: /views/polls/index.ctp:42
-#: /views/polls/view.ctp:100
+#: /views/messages/edit.ctp:80
+#: /views/polls/index.ctp:49
+#: /views/polls/view.ctp:115
+#: /views/processes/index.ctp:85
 msgid "Status"
 msgstr "Estado"
 
@@ -510,11 +541,12 @@ msgstr "Período"
 #: /views/categories/edit.ctp:40
 #: /views/ivr_menus/add.ctp:105
 #: /views/ivr_menus/edit.ctp:137
-#: /views/lm_menus/settings.ctp:112
+#: /views/lm_menus/settings.ctp:121
 #: /views/nodes/add.ctp:42
 #: /views/nodes/edit.ctp:54
 #: /views/polls/add.ctp:91
 #: /views/polls/edit.ctp:86
+#: /views/settings/index.ctp:48
 #: /views/tags/add.ctp:38
 #: /views/tags/edit.ctp:53
 msgid "Save"
@@ -528,8 +560,8 @@ msgstr "Añadir categoría"
 #: /views/categories/edit.ctp:37
 #: /views/categories/index.ctp:37
 #: /views/messages/archive.ctp:48
-#: /views/messages/edit.ctp:73
-#: /views/messages/index.ctp:55
+#: /views/messages/edit.ctp:83
+#: /views/messages/index.ctp:60
 msgid "Category"
 msgstr "Categoría"
 
@@ -561,7 +593,7 @@ msgstr "Ninguna categoría con este identificador existe"
 
 #: /views/categories/index.ctp:26
 #: /views/ivr_menus/index.ctp:28
-#: /views/polls/index.ctp:33
+#: /views/polls/index.ctp:37
 #: /views/tags/index.ctp:27
 msgid "Create new"
 msgstr "Crear nuevo"
@@ -571,12 +603,12 @@ msgid "Manage Categories"
 msgstr "Administrar categorías"
 
 #: /views/categories/index.ctp:37;44
-#: /views/ivr_menus/index.ctp:44;67
+#: /views/ivr_menus/index.ctp:54;77
 #: /views/messages/archive.ctp:52;79
-#: /views/messages/index.ctp:59;83
-#: /views/nodes/index.ctp:48;62
-#: /views/polls/index.ctp:42;59
-#: /views/polls/view.ctp:37
+#: /views/messages/index.ctp:64;88
+#: /views/nodes/index.ctp:51;65
+#: /views/polls/index.ctp:49;67
+#: /views/polls/view.ctp:52
 #: /views/tags/index.ctp:39;46
 msgid "Edit"
 msgstr "Editar"
@@ -587,33 +619,33 @@ msgstr "¿Está seguro de que desea eliminar esta categoría?"
 
 #: /views/categories/index.ctp:58
 msgid ""
-"No categories exist. Please create a category by clicking on the green "
-"button to the right."
+"No categories exist. Please create one by clicking the 'Create new' button "
+"to the right."
 msgstr ""
-"No existen categorías. Por favor, cree una categoría haciendo clic en el "
-"botón verde de la derecha."
+"No existen categorías. Por favor cree una haciendo clic en el botón 'Crear "
+"nueva' a la derecha."
 
 #: /views/cdr/export.ctp:25
 msgid "Export CDR"
 msgstr "Exportar CDR"
 
 #: /views/cdr/export.ctp:30
-#: /views/cdr/overview.ctp:87
+#: /views/cdr/overview.ctp:90
 #: /views/monitor_ivr/erase.ctp:30
 #: /views/monitor_ivr/export.ctp:31
 #: /views/polls/add.ctp:87
 #: /views/polls/edit.ctp:82
-#: /views/polls/view.ctp:101
+#: /views/polls/view.ctp:116
 msgid "Start time"
 msgstr "Tiempo de inicio"
 
 #: /views/cdr/export.ctp:31
-#: /views/cdr/overview.ctp:88
+#: /views/cdr/overview.ctp:91
 #: /views/monitor_ivr/erase.ctp:31
 #: /views/monitor_ivr/export.ctp:32
 #: /views/polls/add.ctp:88
 #: /views/polls/edit.ctp:83
-#: /views/polls/view.ctp:102
+#: /views/polls/view.ctp:117
 msgid "End time"
 msgstr "Tiempo de finalización"
 
@@ -622,45 +654,50 @@ msgstr "Tiempo de finalización"
 msgid "Export all"
 msgstr "Exportar todas"
 
-#: /views/cdr/index.ctp:40
+#: /views/cdr/index.ctp:42
 msgid "Call Data Records"
 msgstr "Registros de datos de la llamada"
 
-#: /views/cdr/index.ctp:43
+#: /views/cdr/index.ctp:45
 msgid "CDR:"
 msgstr "CDR:"
 
-#: /views/cdr/index.ctp:55
+#: /views/cdr/index.ctp:57
 #: /views/monitor_ivr/index.ctp:63
 msgid "Date (YMD)"
 msgstr "Fecha (AMD)"
 
-#: /views/cdr/index.ctp:58
+#: /views/cdr/index.ctp:60
 #: /views/monitor_ivr/index.ctp:65
 #: /views/monitor_ivr/output.ctp:28
 msgid "Call ID"
 msgstr "ID de llamada"
 
-#: /views/cdr/index.ctp:59
+#: /views/cdr/index.ctp:61
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/index.ctp:69
 #: /views/monitor_ivr/output.ctp:28
 msgid "Caller number"
 msgstr "Nº Identificación del llamante"
 
-#: /views/cdr/index.ctp:60
+#: /views/cdr/index.ctp:62
 #: /views/cdr/output.ctp:28
-#: /views/cdr/overview.ctp:74
+#: /views/cdr/overview.ctp:77
 msgid "Application"
 msgstr "Aplicación"
 
-#: /views/cdr/index.ctp:77
+#: /views/cdr/index.ctp:79
 msgid "Are you sure you want to delete this CDR?"
 msgstr "¿Estás seguro que quieres eliminar este CDR?"
 
-#: /views/cdr/index.ctp:102
+#: /views/cdr/index.ctp:105
 msgid "No of CDR per page: "
 msgstr "Nº de entradas por página: "
+
+#: /views/cdr/output.ctp:28
+#: /views/monitor_ivr/output.ctp:28
+msgid "Date (Y-m-d)"
+msgstr "Fecha (A-m-d)"
 
 #: /views/cdr/output.ctp:28
 #: /views/monitor_ivr/output.ctp:28
@@ -677,7 +714,7 @@ msgstr "Mes"
 msgid "Day"
 msgstr "Día"
 
-#: /views/cdr/output.ctp:49
+#: /views/cdr/output.ctp:50
 msgid "CDR"
 msgstr "CDR"
 
@@ -685,16 +722,17 @@ msgstr "CDR"
 msgid "CDR Statistics"
 msgstr "Estadísticas del CDR"
 
-#: /views/cdr/overview.ctp:74
+#: /views/cdr/overview.ctp:77
 msgid "No of entries"
 msgstr "Nº de entradas"
 
-#: /views/cdr/overview.ctp:74
-#: /views/polls/view.ctp:47
+#: /views/cdr/overview.ctp:77
+#: /views/polls/view.ctp:62
 msgid "Percentage"
 msgstr "Porcentaje"
 
-#: /views/cdr/overview.ctp:75
+#: /views/cdr/overview.ctp:78
+#: /views/helpers/formatting.php:80
 #: /views/ivr_menus/add.ctp:97
 #: /views/ivr_menus/edit.ctp:128
 #: /views/pages/architecture/callback.ctp:33
@@ -702,20 +740,22 @@ msgstr "Porcentaje"
 #: /views/pages/architecture/ivr.ctp:33
 #: /views/pages/architecture/leave-a-message.ctp:32
 #: /views/pages/architecture/poll.ctp:32
+#: /views/pages/functionality/dashboard.ctp:26
 #: /views/pages/functionality/index.ctp:34
 #: /views/pages/functionality/ivr.ctp:27
 #: /views/pages/functionality/poll.ctp:26
 msgid "Leave-a-message"
 msgstr "Deja-un-mensaje"
 
-#: /views/cdr/overview.ctp:76
-#: /views/elements/menu.ctp:132;136
-#: /views/ivr_menus/index.ctp:31
+#: /views/cdr/overview.ctp:79
+#: /views/elements/menu.ctp:136;140
+#: /views/ivr_menus/index.ctp:35
 msgid "Voice menus"
 msgstr "Menús de voz"
 
-#: /views/cdr/overview.ctp:77
-#: /views/elements/menu.ctp:74
+#: /views/cdr/overview.ctp:80
+#: /views/elements/menu.ctp:78
+#: /views/helpers/formatting.php:76
 #: /views/pages/architecture/callback.ctp:32
 #: /views/pages/architecture/index.ctp:30
 #: /views/pages/architecture/ivr.ctp:32
@@ -726,12 +766,12 @@ msgstr "Menús de voz"
 msgid "Poll"
 msgstr "Encuesta"
 
-#: /views/cdr/overview.ctp:93
+#: /views/cdr/overview.ctp:96
 msgid "View"
 msgstr "Ver"
 
 #: /views/channels/index.ctp:32
-#: /views/elements/menu.ctp:195
+#: /views/elements/menu.ctp:199
 msgid "GSM channels"
 msgstr "Canales GSM"
 
@@ -756,20 +796,14 @@ msgid "Signal"
 msgstr "Señal"
 
 #: /views/channels/index.ctp:53
-#: /views/processes/index.ctp:48
+#: /views/processes/index.ctp:50
 msgid "Last seen"
 msgstr "Visto por última vez"
 
-#: /views/channels/index.ctp:59
-#: /views/processes/index.ctp:87
+#: /views/channels/index.ctp:60
+#: /views/processes/index.ctp:91
 msgid "Generated"
 msgstr "Generado"
-
-#: /views/channels/index.ctp:60
-#: /views/polls/index.ctp:77
-#: /views/processes/index.ctp:88
-msgid "System time"
-msgstr "Hora del sistema"
 
 #: /views/elements/callback_status.ctp:28
 msgid "Rejected"
@@ -784,7 +818,7 @@ msgid "Home"
 msgstr "Entrada"
 
 #: /views/elements/menu.ctp:38
-#: /views/layouts/default.ctp:58
+#: /views/layouts/default.ctp:72
 #: /views/pages/about.ctp:27
 #: /views/pages/home.ctp:24
 msgid "Freedom Fone"
@@ -796,108 +830,112 @@ msgid "About"
 msgstr "Acerca de"
 
 #: /views/elements/menu.ctp:48
+msgid "Acknowledgements"
+msgstr "Agradecimientos"
+
+#: /views/elements/menu.ctp:52
 #: /views/pages/architecture/index.ctp:25
 msgid "Architecture"
 msgstr "Arquitectura"
 
-#: /views/elements/menu.ctp:52
+#: /views/elements/menu.ctp:56
 msgid "Functionality"
 msgstr "Funcionalidad"
 
-#: /views/elements/menu.ctp:57
+#: /views/elements/menu.ctp:61
 msgid "Download"
 msgstr "Descargar"
 
-#: /views/elements/menu.ctp:61
+#: /views/elements/menu.ctp:65
 msgid "Read more"
 msgstr "Leer más"
 
-#: /views/elements/menu.ctp:78
+#: /views/elements/menu.ctp:82
 msgid "Manage polls"
 msgstr "Gestionar encuestas"
 
-#: /views/elements/menu.ctp:96
+#: /views/elements/menu.ctp:100
 msgid "Leave-a-Message"
 msgstr "Deja-un-mensaje"
 
-#: /views/elements/menu.ctp:100
+#: /views/elements/menu.ctp:104
 msgid "Inbox"
 msgstr "Bandeja de entrada"
 
-#: /views/elements/menu.ctp:105
+#: /views/elements/menu.ctp:109
 #: /views/elements/message_status.ctp:29
-#: /views/messages/edit.ctp:34
+#: /views/messages/edit.ctp:44
 msgid "Archive"
 msgstr "Archivo"
 
-#: /views/elements/menu.ctp:110
+#: /views/elements/menu.ctp:114
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: /views/elements/menu.ctp:114
+#: /views/elements/menu.ctp:118
 msgid "Categories"
 msgstr "Categorías"
 
-#: /views/elements/menu.ctp:118
+#: /views/elements/menu.ctp:122
 msgid "IVR Menu"
 msgstr "Menú IVR"
 
-#: /views/elements/menu.ctp:141
-#: /views/nodes/index.ctp:34
+#: /views/elements/menu.ctp:145
+#: /views/nodes/index.ctp:37
 msgid "Menu options"
 msgstr "Opciones de menú"
 
-#: /views/elements/menu.ctp:145
+#: /views/elements/menu.ctp:149
 #: /views/pages/functionality/ivr.ctp:47
 msgid "Monitoring"
 msgstr "Supervisión"
 
-#: /views/elements/menu.ctp:159
+#: /views/elements/menu.ctp:163
+#: /views/helpers/formatting.php:88
 #: /views/pages/architecture/callback.ctp:35
-#: /views/pages/architecture/index.ctp:33
-#: /views/pages/architecture/ivr.ctp:35
-#: /views/pages/architecture/leave-a-message.ctp:34
-#: /views/pages/architecture/poll.ctp:34
-#: /views/pages/functionality/dashboard.ctp:26
-#: /views/pages/functionality/index.ctp:36
-#: /views/pages/functionality/ivr.ctp:27
 msgid "Callback"
 msgstr "Devolución de llamada"
 
-#: /views/elements/menu.ctp:163
+#: /views/elements/menu.ctp:167
 msgid "Callbacks"
 msgstr "Devolución de llamada"
 
-#: /views/elements/menu.ctp:168
+#: /views/elements/menu.ctp:172;222
 msgid "Settings"
 msgstr "Configuración"
 
-#: /views/elements/menu.ctp:180
+#: /views/elements/menu.ctp:184
 #: /views/pages/functionality/callback.ctp:26
-#: /views/pages/functionality/index.ctp:37
+#: /views/pages/functionality/index.ctp:36
+#: /views/pages/functionality/ivr.ctp:27
 msgid "Dashboard"
 msgstr "Panel de control"
 
-#: /views/elements/menu.ctp:191
+#: /views/elements/menu.ctp:195
 #: /views/pages/functionality/dashboard.ctp:34
 msgid "Software"
 msgstr "Software"
 
-#: /views/elements/menu.ctp:200
+#: /views/elements/menu.ctp:204
 msgid "Call data records"
 msgstr "Registro de llamadas de datos"
 
-#: /views/elements/menu.ctp:204
+#: /views/elements/menu.ctp:208
 msgid "Statistics"
 msgstr "Estadística"
 
+#: /views/elements/menu.ctp:227
+#: /views/settings/index.ctp:39
+msgid "Language"
+msgstr "Idioma"
+
 #: /views/elements/message_status.ctp:35
-#: /views/messages/edit.ctp:34
+#: /views/messages/edit.ctp:44
 msgid "Active"
 msgstr "Activo"
 
 #: /views/elements/message_status.ctp:46
-#: /views/processes/index.ctp:42
+#: /views/processes/index.ctp:44
 msgid "N/A"
 msgstr "N/A"
 
@@ -905,7 +943,7 @@ msgstr "N/A"
 msgid "Never"
 msgstr "Nunca"
 
-#: /views/elements/musicplayer_button.ctp:72
+#: /views/elements/player.ctp:59
 msgid "No audio file available"
 msgstr "No hay ningún archivo de audio disponible"
 
@@ -914,7 +952,7 @@ msgid "Pending"
 msgstr "Pendiente"
 
 #: /views/elements/poll_status.ctp:35;51
-#: /views/polls/index.ctp:42
+#: /views/polls/index.ctp:49
 msgid "Open"
 msgstr "Abierto"
 
@@ -930,17 +968,21 @@ msgstr "OFF"
 msgid "ON"
 msgstr "ON"
 
-#: /views/helpers/formatting.php:48
+#: /views/helpers/formatting.php:47
 msgid "h"
 msgstr "h"
 
-#: /views/helpers/formatting.php:54
+#: /views/helpers/formatting.php:53
 msgid "min"
 msgstr "min"
 
-#: /views/helpers/formatting.php:59
+#: /views/helpers/formatting.php:58
 msgid "sec"
 msgstr "seg"
+
+#: /views/helpers/formatting.php:84
+msgid "Voice menu"
+msgstr "Menús de voz"
 
 #: /views/ivr_menus/add.ctp:25
 msgid "Create voice menu"
@@ -953,18 +995,14 @@ msgstr "Nombre de IVR"
 
 #: /views/ivr_menus/add.ctp:34
 #: /views/ivr_menus/edit.ctp:41
-msgid ""
-"Long greeting message:include a brief description of the services offered "
-"and the menu alternatives."
+msgid "Long greeting message:include a brief description of the services offered and the menu alternatives."
 msgstr ""
 "Mensaje de saludo largo: incluir una breve descripción de los servicios "
 "ofrecidos y las alternativas de menú de voz."
 
 #: /views/ivr_menus/add.ctp:35
 #: /views/ivr_menus/edit.ctp:42
-msgid ""
-"Brief instuctions: Repeat the menu alternatives. For example: For news, "
-"press 1. For health, press 2."
+msgid "Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2."
 msgstr ""
 "Instrucciones breves: repetir las alternativas del menú de voz. Por ejemplo: "
 "para noticias, presione 1. Para salud, pulse 2."
@@ -981,8 +1019,8 @@ msgstr "Seleccione la opción para la alternativa 2."
 
 #: /views/ivr_menus/add.ctp:44;45;46;47;48
 #: /views/ivr_menus/edit.ctp:51;52
-#: /views/ivr_menus/index.ctp:39
-#: /views/lm_menus/settings.ctp:41;42;43;44;45;46;47;48
+#: /views/ivr_menus/index.ctp:49
+#: /views/lm_menus/settings.ctp:50;51;52;53;54;55;56;57
 msgid "Default"
 msgstr "Defecto"
 
@@ -998,7 +1036,7 @@ msgstr "Bienvenida"
 
 #: /views/ivr_menus/add.ctp:64;70;76;82
 #: /views/ivr_menus/edit.ctp:71;78;85;92
-#: /views/lm_menus/settings.ctp:59;66;73;81;87;93;99;106
+#: /views/lm_menus/settings.ctp:68;75;82;90;96;102;108;115
 #: /views/nodes/add.ctp:37
 #: /views/nodes/edit.ctp:47
 msgid "Audio file"
@@ -1016,7 +1054,7 @@ msgstr "Despedida"
 
 #: /views/ivr_menus/add.ctp:80
 #: /views/ivr_menus/edit.ctp:90
-#: /views/polls/view.ctp:86
+#: /views/polls/view.ctp:101
 msgid "Invalid"
 msgstr "Inválido"
 
@@ -1031,8 +1069,8 @@ msgstr "Selecciona"
 
 #: /views/ivr_menus/add.ctp:97
 #: /views/ivr_menus/edit.ctp:125
-msgid "-Select menu option-"
-msgstr "-Seleccione opción del menú-"
+msgid "-Select audio file-"
+msgstr ""
 
 #: /views/ivr_menus/edit.ctp:31
 msgid "Edit voice menu"
@@ -1052,7 +1090,7 @@ msgid "Menu Instructions"
 msgstr "Instrucciones del menú"
 
 #: /views/ivr_menus/edit.ctp:71
-#: /views/lm_menus/settings.ctp:59
+#: /views/lm_menus/settings.ctp:68
 msgid "Welcome Message"
 msgstr "Mensaje de bienvenida"
 
@@ -1069,7 +1107,7 @@ msgid "Exit Message"
 msgstr "Mensaje de salida"
 
 #: /views/ivr_menus/edit.ctp:92
-#: /views/lm_menus/settings.ctp:73
+#: /views/lm_menus/settings.ctp:82
 msgid "Invalid Message"
 msgstr "Mensaje no válido"
 
@@ -1082,120 +1120,160 @@ msgstr "Opciones del menú"
 msgid "No IVR with this id exists"
 msgstr "No existe el IVR con este id"
 
-#: /views/ivr_menus/index.ctp:40
+#: /views/ivr_menus/index.ctp:31
+msgid ""
+"Voice Menu| This component allows you to build a variety of personal Voice "
+"Menus based on customized audio files, or synthesized text messages.| A "
+"Voice menu consists of:| Menu Instructions: a set of mandatory voice "
+"messages, such as a Welcome message, and instructions on how to navigate "
+"through the menu|  Menu Options: audio files or components assosiated with "
+"telephony keypad selections."
+msgstr ""
+
+#: /views/ivr_menus/index.ctp:42
+#: /views/lm_menus/settings.ctp:47
+msgid "Audio files should be recorded in mono, 8KHz, and be maximum 10MB."
+msgstr ""
+"Archivos de audio deben registrarse en mono, 8 KHz y de un máximo 10 MB."
+
+#: /views/ivr_menus/index.ctp:50
 #: /views/messages/archive.ctp:46
-#: /views/messages/edit.ctp:69
-#: /views/messages/index.ctp:53
+#: /views/messages/edit.ctp:79
+#: /views/messages/index.ctp:58
 #: /views/nodes/add.ctp:33
 #: /views/nodes/edit.ctp:42
-#: /views/nodes/index.ctp:44
+#: /views/nodes/index.ctp:47
 msgid "Title"
 msgstr "Título"
 
-#: /views/ivr_menus/index.ctp:41
+#: /views/ivr_menus/index.ctp:51
 msgid "Greeting"
 msgstr "Saludo"
 
-#: /views/ivr_menus/index.ctp:42
+#: /views/ivr_menus/index.ctp:52
 msgid "IVR code"
 msgstr "Código IVR"
 
-#: /views/ivr_menus/index.ctp:43
+#: /views/ivr_menus/index.ctp:53
 #: /views/messages/archive.ctp:50
-#: /views/messages/index.ctp:57
-#: /views/nodes/index.ctp:47
+#: /views/messages/index.ctp:62
+#: /views/nodes/index.ctp:50
 msgid "Last modified"
 msgstr "Última modificación"
 
-#: /views/ivr_menus/index.ctp:68
+#: /views/ivr_menus/index.ctp:78
 msgid "Are you sure you want to delete this voice menu?"
 msgstr "¿Estás seguro que quieres eliminar este menú de voz?"
 
-#: /views/ivr_menus/index.ctp:84
+#: /views/ivr_menus/index.ctp:96
 msgid "Update default"
 msgstr "Actualización por defecto"
 
-#: /views/layouts/default.ctp:58
+#: /views/layouts/default.ctp:72
 msgid "Visit the Freedom Fone website"
 msgstr "Visite el sitio web de Freedom Fone"
 
-#: /views/lm_menus/settings.ctp:31
-msgid "Create Leave a Message IVR"
-msgstr "Crear IVR Deja-un-mensaje"
+#: /views/layouts/default.ctp:78
+msgid "Leave-a-message: Call +46 733 140 416 or Skype \"freedomfone.org\""
+msgstr ""
 
-#: /views/lm_menus/settings.ctp:37
+#: /views/layouts/default.ctp:79
+msgid "Voice menu: Call +46 734 309 008 or Skype \"freedomfone.org2\""
+msgstr "Menú de voz: Llama +46 734 309 008 o por Skype \"freedomfone.org2\""
+
+#: /views/layouts/default.ctp:80
+msgid "Poll: SMS or Skype to any number"
+msgstr "Encuesta: SMS o Skype para cualquier número"
+
+#: /views/lm_menus/settings.ctp:30
 msgid ""
-"Please upload either an .mp3 or a .wav audio file for each of the eight "
-"messages. If no audio file is present, the fallback text will be used in the "
-"Leave-a-Message IVR. You can listen to your uploaded audio files by "
-"pressing the Play button."
+"Leave-a-message| The Leave-a-message voice menu consists of eight different "
+"messages. Each message can be generated in three different ways:| (1) "
+"customized audio files| (2) customized text to speech, or| (3) default text "
+"to speech.||If the administrator associates an audio file with a message, "
+"that file will be played to the caller when she enters the voice menu.|If no "
+"audio file is provided for a message, but a customized text message exists, "
+"the text message will be synthesized and played to the caller.|If neither "
+"an audio file, nor a customized text is provided, the default text will be "
+"synthesized and played to the user.|The audio files must be uploaded in .mp3 "
+"or .wav format through the user interface. Once uploaded, they can be "
+"listened to from the administration GUI via the built-in Flashplayer. Audio "
+"files can at any time be overwritten with a new audio file."
+msgstr ""
+
+#: /views/lm_menus/settings.ctp:34
+msgid "Modify Leave a Message IVR"
+msgstr "Modifica el IVR Deja-un-mensaje"
+
+#: /views/lm_menus/settings.ctp:47
+msgid "Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button."
 msgstr ""
 "Cargue un archivo de audio .mp3 o un .wav por cada uno de los ocho mensajes. "
 "Si no hay ningún archivo de audio, se utilizará el texto de respalado (voz "
 "sintética). Puede escuchar los archivos de audio subidos presionando el "
 "botón Reproducir."
 
-#: /views/lm_menus/settings.ctp:58
+#: /views/lm_menus/settings.ctp:67
 msgid "Step 1: Welcome message"
 msgstr "Paso 1: Mensaje de bienvenida"
 
-#: /views/lm_menus/settings.ctp:60;67;74;82;88;94;100;107
+#: /views/lm_menus/settings.ctp:69;76;83;91;97;103;109;116
 msgid "Fallback text"
 msgstr "Texto de respaldo"
 
-#: /views/lm_menus/settings.ctp:65
+#: /views/lm_menus/settings.ctp:74
 msgid "Step 2: Record message"
 msgstr "Paso 2: Grabar Mensaje"
 
-#: /views/lm_menus/settings.ctp:66
+#: /views/lm_menus/settings.ctp:75
 msgid "Inform Message"
 msgstr "Mensaje de información"
 
-#: /views/lm_menus/settings.ctp:72
+#: /views/lm_menus/settings.ctp:81
 msgid "Step 3: Invalid message"
 msgstr "Paso 3: Mensaje no válido"
 
-#: /views/lm_menus/settings.ctp:80
+#: /views/lm_menus/settings.ctp:89
 msgid "Step 4: Long message"
 msgstr "Paso 4: Mensaje largo"
 
-#: /views/lm_menus/settings.ctp:81
+#: /views/lm_menus/settings.ctp:90
 msgid "Long Message"
 msgstr "Mensaje largo"
 
-#: /views/lm_menus/settings.ctp:86
+#: /views/lm_menus/settings.ctp:95
 msgid "Step 5: Select message"
 msgstr "Paso 5: Seleccionar mensaje"
 
-#: /views/lm_menus/settings.ctp:87
+#: /views/lm_menus/settings.ctp:96
 msgid "Select Message"
 msgstr "Mensaje de selección"
 
-#: /views/lm_menus/settings.ctp:92
+#: /views/lm_menus/settings.ctp:101
 msgid "Step 6: Delete message"
 msgstr "Paso 6: Borrar mensaje"
 
-#: /views/lm_menus/settings.ctp:93
+#: /views/lm_menus/settings.ctp:102
 msgid "Delete Message"
 msgstr "Borrar mensaje"
 
-#: /views/lm_menus/settings.ctp:98
+#: /views/lm_menus/settings.ctp:107
 msgid "Step 7: Save message"
 msgstr "Paso 7: Guardar mensaje"
 
-#: /views/lm_menus/settings.ctp:99
+#: /views/lm_menus/settings.ctp:108
 msgid "Save Message"
 msgstr "Guardar mensaje"
 
-#: /views/lm_menus/settings.ctp:105
+#: /views/lm_menus/settings.ctp:114
 msgid "Step 8: Goodbye message"
 msgstr "Paso 8: Mensaje de despedida"
 
-#: /views/lm_menus/settings.ctp:106
+#: /views/lm_menus/settings.ctp:115
 msgid "Goodbye Message"
 msgstr "Mensaje de despedida"
 
-#: /views/lm_menus/settings.ctp:118
+#: /views/lm_menus/settings.ctp:127
 msgid "Invalid page."
 msgstr "Página no válida."
 
@@ -1204,86 +1282,86 @@ msgid "Archived messages"
 msgstr "Mensajes archivados"
 
 #: /views/messages/archive.ctp:45;69
-#: /views/messages/index.ctp:52;73
+#: /views/messages/index.ctp:57;78
 msgid "New"
 msgstr "Nuevo"
 
 #: /views/messages/archive.ctp:47
-#: /views/messages/edit.ctp:71
-#: /views/messages/index.ctp:54
+#: /views/messages/edit.ctp:81
+#: /views/messages/index.ctp:59
 msgid "Rate"
 msgstr "Valoración"
 
 #: /views/messages/archive.ctp:49
-#: /views/messages/edit.ctp:84
-#: /views/messages/index.ctp:56
-#: /views/nodes/index.ctp:46
+#: /views/messages/edit.ctp:94
+#: /views/messages/index.ctp:61
+#: /views/nodes/index.ctp:49
 msgid "Created"
 msgstr "Creado"
 
 #: /views/messages/archive.ctp:51
-#: /views/messages/edit.ctp:86
-#: /views/messages/index.ctp:58
+#: /views/messages/edit.ctp:96
+#: /views/messages/index.ctp:63
 msgid "Length"
 msgstr "Longitud"
 
 #: /views/messages/archive.ctp:54
-#: /views/messages/edit.ctp:88
-#: /views/messages/index.ctp:61
-#: /views/nodes/index.ctp:50
+#: /views/messages/edit.ctp:98
+#: /views/messages/index.ctp:66
+#: /views/nodes/index.ctp:53
 msgid "Listen"
 msgstr "Escuchar"
 
 #: /views/messages/archive.ctp:80
-#: /views/messages/index.ctp:84
+#: /views/messages/index.ctp:89
 msgid "Are you sure you want to delete this message?"
 msgstr "¿Está seguro que desea eliminar este mensaje?"
 
 #: /views/messages/archive.ctp:119
-#: /views/messages/index.ctp:116
+#: /views/messages/index.ctp:121
 msgid "No of messages per page: "
 msgstr "Nº de mensajes por página:"
 
-#: /views/messages/edit.ctp:31
+#: /views/messages/edit.ctp:41
 msgid "-Set rate-"
 msgstr "-Establecer valoración-"
 
-#: /views/messages/edit.ctp:40
+#: /views/messages/edit.ctp:50
 msgid "« Previous "
 msgstr "« Anterior"
 
-#: /views/messages/edit.ctp:44
+#: /views/messages/edit.ctp:54
 msgid "Next »"
 msgstr "Siguiente »"
 
-#: /views/messages/edit.ctp:48
+#: /views/messages/edit.ctp:58
 msgid "Edit Message"
 msgstr "Editar mensaje"
 
-#: /views/messages/edit.ctp:72
+#: /views/messages/edit.ctp:82
 #: /views/tags/add.ctp:36
 #: /views/tags/edit.ctp:50
 #: /views/tags/index.ctp:39
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: /views/messages/edit.ctp:73
+#: /views/messages/edit.ctp:83
 msgid "-Select category-"
 msgstr "-Seleccione la categoría-"
 
-#: /views/messages/edit.ctp:85
+#: /views/messages/edit.ctp:95
 msgid "Modified"
 msgstr "Modificado"
 
-#: /views/messages/edit.ctp:87
+#: /views/messages/edit.ctp:97
 msgid "Author"
 msgstr "Autor"
 
-#: /views/messages/edit.ctp:96
+#: /views/messages/edit.ctp:106
 msgid "No messsage with this id exists"
 msgstr "No existe ningún mensaje con este id"
 
-#: /views/messages/index.ctp:33
+#: /views/messages/index.ctp:35
 msgid "Audio Messages"
 msgstr "Mensajes de audio"
 
@@ -1336,7 +1414,7 @@ msgstr "fin"
 msgid "IVR ID"
 msgstr "ID DE IVR"
 
-#: /views/monitor_ivr/output.ctp:58
+#: /views/monitor_ivr/output.ctp:59
 #, fuzzy
 msgid "MonitorIvr"
 msgstr "MonitorIvr"
@@ -1346,8 +1424,8 @@ msgid "Create Menu Option"
 msgstr "Crear la opción de menú"
 
 #: /views/nodes/add.ctp:38
-msgid "Valid format: wav"
-msgstr "Formato válido: wav"
+msgid "Valid formats: wav and mp3"
+msgstr "Formatos válidos: wav y mp3"
 
 #: /views/nodes/edit.ctp:28
 msgid "Edit Menu Option"
@@ -1355,8 +1433,11 @@ msgstr "Crear la opción de menú"
 
 #: /views/nodes/edit.ctp:48
 msgid ""
-"If you select a file, the previous one will be deleted. Valid format: wav"
-msgstr "Si selecciona un archivo, se eliminará la anterior. Formato válido: wav"
+"If you select a file, the previous one will be deleted. Valid formats: wav "
+"and mp3"
+msgstr ""
+"Si selecciona un archivo, se eliminará la anterior. Formatos válidos: wav y "
+"mp3"
 
 #: /views/nodes/edit.ctp:51
 msgid "Listen to uploaded file"
@@ -1370,26 +1451,37 @@ msgstr "No existe la opción de menú con ese id"
 msgid "Upload new"
 msgstr "Subir nuevo"
 
-#: /views/nodes/index.ctp:38
+#: /views/nodes/index.ctp:32
+msgid ""
+"Menu Option|A Menu Option can either be (1) an audio file previously "
+"uploaded through the Create Menu option page, or (2) a Leave-a-Message "
+"service.| You can at any time add, edit, listen to or delete existing Menu "
+"Options.| Menu option files can be .mp3 or .wav audio files. When they are "
+"uploaded into the system they are associated with a Title to help you manage "
+"your audio files.| A Menu option file can be used in one or more different "
+"Voice Menus. These files cannot be deleted if they are currently associated "
+"with a Voice Menu."
+msgstr ""
+
+#: /views/nodes/index.ctp:41
 msgid "Entry:"
 msgstr "Entrada:"
 
-#: /views/nodes/index.ctp:63
+#: /views/nodes/index.ctp:66
 msgid "Are you sure you want to delete this Menu Option?"
 msgstr "¿Estás seguro que quieres eliminar esta opcion del menú?"
 
-#: /views/nodes/index.ctp:83
+#: /views/nodes/index.ctp:90
 msgid "Number of entries per page: "
 msgstr "Nº de entradas por página:"
 
-#: /views/nodes/index.ctp:90
-#, fuzzy
+#: /views/nodes/index.ctp:97
 msgid ""
-"No Menu Option are uploaded. Please upload a Menu Option by clicking on the "
-"green button to the right."
+"No Menu Options are uploaded. Please upload a Menu Option by clicking the "
+"'Upload new' button to the right."
 msgstr ""
-"No se ha creado ninguna opción en el Menú de Voz. Cree una Opción de Menú "
-"haciendo clic en el botón verde a la derecha."
+"No hay Opciones de menú cargadas. Por favor, sube un fichero al menú de "
+"opciones haciendo clic en el botón 'Cargar nuevo' a la derecha."
 
 #: /views/pages/about.ctp:27
 msgid "Release"
@@ -1404,23 +1496,14 @@ msgid "Welcome to Freedom Fone"
 msgstr "Bienvenido al Freedom Fone"
 
 #: /views/pages/home.ctp:27
-msgid ""
-"<p>Does your community need access to information but has limited or no "
-"access to the internet or email? Do you want to be able to share more "
-"information than 160 characters allows?</p>"
+msgid "<p>Does your community need access to information but has limited or no access to the internet or email? Do you want to be able to share more information than 160 characters allows?</p>"
 msgstr ""
 "<p>¿Tu comunidad necesita acceso a la información pero tiene accesso "
 "limitado a la Internet o al correo electrónico? ¿Desea poder compartir más "
 "información que lo que permiten 160 caracteres?</p>"
 
 #: /views/pages/home.ctp:28
-msgid ""
-"<p>Freedom Fone offers the possibility to extend the reach of information to "
-"citizens and groups presently excluded from the information loop because of "
-"lack of access to resources such as computers and the internet. It takes "
-"advantage of the cell phone's role as an \"access equaliser\" to provide "
-"communities with the opportunity to create, listen to and act on information "
-"of immediate relevance to them.</p>"
+msgid "<p>Freedom Fone offers the possibility to extend the reach of information to citizens and groups presently excluded from the information loop because of lack of access to resources such as computers and the internet. It takes advantage of the cell phone's role as an \"access equaliser\" to provide communities with the opportunity to create, listen to and act on information of immediate relevance to them.</p>"
 msgstr ""
 "<p>Freedom Fone ofrece la posibilidad de ampliar el alcance de la "
 "información a los grupos actualmente excluidos debido a la falta de acceso a "
@@ -1429,13 +1512,7 @@ msgstr ""
 "oportunidad a la comunidad de crear, escuchar y actuar. </p>"
 
 #: /views/pages/home.ctp:30
-msgid ""
-"<p>Freedom Fone intends to deliver an easy to use telephony platform that "
-"YOU can use to build and manage dynamic information on demand services to "
-"suit your audience’s needs. Useful features in version 1 will include the "
-"ability to: create and modify voice menus; run a sms poll; make a callback "
-"in response to missed calls or sms requests; accept, tag and categorise "
-"voice messages.</p>"
+msgid "<p>Freedom Fone intends to deliver an easy to use telephony platform that YOU can use to build and manage dynamic information on demand services to suit your audience’s needs. Useful features in version 1 will include the ability to: create and modify voice menus; run a sms poll; make a callback in response to missed calls or sms requests; accept, tag and categorise voice messages.</p>"
 msgstr ""
 "<p>Freedom Fone tiene la intención de ofrecer una plataforma de telefonía "
 "fácil de usar que puedes usar para crear y administrar información dinámica "
@@ -1445,23 +1522,14 @@ msgstr ""
 "de los mensajes de voz.</p>"
 
 #: /views/pages/home.ctp:32
-msgid ""
-"<p>There are no language, geographical or community size limitations to the "
-"implementation of Freedom Fone. Its flexibility and accessible interface "
-"mean it can be used by a range of communities.</p>"
+msgid "<p>There are no language, geographical or community size limitations to the implementation of Freedom Fone. Its flexibility and accessible interface mean it can be used by a range of communities.</p>"
 msgstr ""
 "<p>No hay limitaciones de idioma, geografía o tamaño de comunidad para la "
 "implementación de Freedom Fone. Su flexibilidad y la interfaz accesible "
 "permite su utilización en una gran gama de comunidades de usuarios.</p>"
 
 #: /views/pages/home.ctp:34
-msgid ""
-"<p>For example, <b>Freedom Fone</b> can be used to:</p><ul><li>Enhance civic "
-"engagement in electoral and voter registration campaigns</li><li>Broaden "
-"access to HIV/Aids information</li><li>Provide health information during an "
-"epidemic</li><li>Offer information on demand</li><li>Record community "
-"feedback to a radio station</li><li>File audio reports from citizen "
-"journalists in the field</li></ul>"
+msgid "<p>For example, <b>Freedom Fone</b> can be used to:</p><ul><li>Enhance civic engagement in electoral and voter registration campaigns</li><li>Broaden access to HIV/Aids information</li><li>Provide health information during an epidemic</li><li>Offer information on demand</li><li>Record community feedback to a radio station</li><li>File audio reports from citizen journalists in the field</li></ul>"
 msgstr ""
 "<p>Por ejemplo, <b>Freedom Fone</b> puede utilizarse "
 "para:</p><ul><li>Aumentar la participación ciudadana en elecciones y "
@@ -1484,9 +1552,7 @@ msgstr "Arquitectura: Devolución de llamada"
 #: /views/pages/architecture/ivr.ctp:27
 #: /views/pages/architecture/leave-a-message.ctp:26
 #: /views/pages/architecture/poll.ctp:26
-msgid ""
-"Please select one of the alternatives below, to read about each component's "
-"architecture."
+msgid "Please select one of the alternatives below, to read about each component's architecture."
 msgstr ""
 "Por favor, seleccione una de las alternativas que aparecen a continuación, "
 "para leer acerca de la arquitectura de cada componente."
@@ -1506,10 +1572,10 @@ msgid "Callback architecture"
 msgstr "Arquitectura de devolución de llamada"
 
 #: /views/pages/architecture/index.ctp:26
-msgid "Freedom Fone v.1 Architecture"
-msgstr "Arquitectura de Freedom Fone"
+msgid "Freedom Fone v1.5 Architecture"
+msgstr ""
 
-#: /views/pages/architecture/index.ctp:37
+#: /views/pages/architecture/index.ctp:36
 msgid "Freedom Fone architecture"
 msgstr "Arquitectura de Freedom Fone"
 
@@ -1521,7 +1587,7 @@ msgstr "Arquitectura: Menús de voz"
 msgid "Architecture: Voice menu"
 msgstr "Arquitectura: Menú de voz"
 
-#: /views/pages/architecture/ivr.ctp:39
+#: /views/pages/architecture/ivr.ctp:38
 msgid "Voice Menu architecture"
 msgstr "Arquitectura de menú de voz"
 
@@ -1533,7 +1599,7 @@ msgstr "Arquitectura: Deja-un mensaje-"
 msgid "Architecture: Leave-a-Message"
 msgstr "Arquitectura: Deja-un mensaje-"
 
-#: /views/pages/architecture/leave-a-message.ctp:37
+#: /views/pages/architecture/leave-a-message.ctp:36
 msgid "Leave-a-Message architecture"
 msgstr "Arquitectura Deja-un-mensaje"
 
@@ -1545,7 +1611,7 @@ msgstr "Arquitectura: Encuesta"
 msgid "Architecture: Poll"
 msgstr "Arquitectura: Encuesta"
 
-#: /views/pages/architecture/poll.ctp:37
+#: /views/pages/architecture/poll.ctp:36
 msgid "Poll architecture"
 msgstr "Arquitectura de la encuesta"
 
@@ -1554,19 +1620,15 @@ msgid "Functionality : Callback"
 msgstr "Funcionalidad: Devolución de llamada"
 
 #: /views/pages/functionality/callback.ctp:26
-msgid "Voice menuse"
-msgstr "Menús de voz"
+msgid "Voice menues"
+msgstr ""
 
 #: /views/pages/functionality/callback.ctp:27
 msgid "Functionality: Callback"
 msgstr "Funcionalidad: Devolución de llamada"
 
 #: /views/pages/functionality/callback.ctp:29
-msgid ""
-"<p>The Callback service offers callers a means to access audio content from "
-"Freedom Fone at a low cost, or at no cost at all. As the name suggests, the "
-"Callback service establishes outgoing phone calls from Freedom Fone to a "
-"caller, with the Freedom Fone deployer carrying the cost of the call. </p>"
+msgid "<p>The Callback service offers callers a means to access audio content from Freedom Fone at a low cost, or at no cost at all. As the name suggests, the Callback service establishes outgoing phone calls from Freedom Fone to a caller, with the Freedom Fone deployer carrying the cost of the call. </p>"
 msgstr ""
 "<p> El servicio de devolución de llamada ofrece un medio de bajo costo para "
 "acceder al contenido de audio de Freedom Fone. Como su nombre indica, el "
@@ -1574,20 +1636,14 @@ msgstr ""
 "costo de la llamada. </p>"
 
 #: /views/pages/functionality/callback.ctp:30
-msgid ""
-"<p>To request a Callback from Freedom Fone, the caller can "
-"either</p><ul><li>send an SMS to a designated number with the text "
-"“callback”, or</li><li>tickle a designated number (ring once and hang "
-"up)</li></ul>"
+msgid "<p>To request a Callback from Freedom Fone, the caller can either</p><ul><li>send an SMS to a designated number with the text “callback”, or</li><li>tickle a designated number (ring once and hang up)</li></ul>"
 msgstr ""
 "<p>Para solicitar una devolución de llamada en Freedom Fone, la personal que "
 "llama puede o bien</p><ul><li>enviar un SMS</li><li>hacer una llamada "
 "perdida a número especial</li></ul>"
 
 #: /views/pages/functionality/callback.ctp:32
-msgid ""
-"<p>The cost to the caller will either be the cost for an SMS, or nothing (if "
-"you hang up after the first ring).</p>"
+msgid "<p>The cost to the caller will either be the cost for an SMS, or nothing (if you hang up after the first ring).</p>"
 msgstr ""
 "<p>El costo de la llamada será el coste de un SMS, o gratuito (si usted "
 "decide colgar tras el primer tono de llamada).</p>"
@@ -1597,21 +1653,14 @@ msgid "Administration settings"
 msgstr "Configuración de administración"
 
 #: /views/pages/functionality/callback.ctp:36
-msgid ""
-"<p>The administrator can choose which content to connect with the Callback "
-"service. The options for Freedom Fone v.1 are </p><ul><li>Leave-a-message "
-"menu OR</li><li>Default Voice Menu</li></ul>"
+msgid "<p>The administrator can choose which content to connect with the Callback service. The options for Freedom Fone v.1 are </p><ul><li>Leave-a-message menu OR</li><li>Default Voice Menu</li></ul>"
 msgstr ""
 "<p>El administrador puede elegir qué contenido se ofrecerá en la devolución "
 "de llamada. Los servicios disponibles en la primera versión es: </p><ul><li"
 ">Dejar-un-mensaje</li><li>Menú interactivo de voz</li></ul>"
 
 #: /views/pages/functionality/callback.ctp:39
-msgid ""
-"<p>To limit the risk of abuse of the Callback service, the administrator can "
-"limit the maximum number of Callbacks for a unique GSM number for a certain "
-"period of time.</p><ul><li>Max Calls: 10, 25, 50, 100, no "
-"limit</li><li>Period : 12h, 24h, 2d, 4d, 1 week</li></ul>"
+msgid "<p>To limit the risk of abuse of the Callback service, the administrator can limit the maximum number of Callbacks for a unique GSM number for a certain period of time.</p><ul><li>Max Calls: 10, 25, 50, 100, no limit</li><li>Period : 12h, 24h, 2d, 4d, 1 week</li></ul>"
 msgstr ""
 "<p>Para limitar el riesgo de abuso del servicio de devolución de llamada, el "
 "administrador puede limitar el número máximo de devoluciones de llamada por "
@@ -1629,20 +1678,14 @@ msgid "Functionality : Dashboard"
 msgstr "Funcionalidad: Panel Control"
 
 #: /views/pages/functionality/dashboard.ctp:28
-msgid ""
-"<p>The Dashboard gathers useful information about the system’s software and "
-"hardware and offers the opportunity to start and stop major components."
+msgid "<p>The Dashboard gathers useful information about the system’s software and hardware and offers the opportunity to start and stop major components."
 msgstr ""
 "<p>El panel del control recopila información útil acerca de software y el "
 "hardware del sistema y ofrece la oportunidad de iniciar y detener los "
 "componentes principales.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:31
-msgid ""
-"<p>The System Health page displays the current status of the telephony "
-"application – FreeSWITCH - and the incoming and outgoing dispatchers "
-"handling the calls and SMSs. The dispatchers can be stopped and started by "
-"the administrator."
+msgid "<p>The System Health page displays the current status of the telephony application – FreeSWITCH - and the incoming and outgoing dispatchers handling the calls and SMSs. The dispatchers can be stopped and started by the administrator."
 msgstr ""
 "<p>La página de estado del sistema muestra el estado actual de la aplicación "
 "de telefonía – FreeSWITCH - y los distribuidores de eventos responsables de "
@@ -1650,10 +1693,7 @@ msgstr ""
 "arrancados por el administrador.</p>"
 
 #: /views/pages/functionality/dashboard.ctp:35
-msgid ""
-"<p>Software versions of database, web server, FreeSWITCH and dispatcher are "
-"displayed. The versions are dynamically updated when software updates take "
-"place."
+msgid "<p>Software versions of database, web server, FreeSWITCH and dispatcher are displayed. The versions are dynamically updated when software updates take place."
 msgstr ""
 "<p>Se muestran las versiones de software de base de datos, servidor web, "
 "FreeSWITCH y distribuidor de eventos. Las versiones se actualizan "
@@ -1664,8 +1704,7 @@ msgid "Hardware"
 msgstr "Hardware"
 
 #: /views/pages/functionality/dashboard.ctp:39
-msgid ""
-"<p>A list of connected GSM gateways are displayed with relevant information."
+msgid "<p>A list of connected GSM gateways are displayed with relevant information."
 msgstr ""
 "<p>Se mostrará una lista de los modems GSM conectados con la información "
 "pertinente.</p>"
@@ -1691,11 +1730,11 @@ msgstr ""
 
 #: /views/pages/functionality/index.ctp:26
 msgid "Functionality : "
-msgstr "Funcionalidad:"
+msgstr "Funcionalidad :"
 
 #: /views/pages/functionality/index.ctp:27
-msgid "Freedom Fone v.1 functionality"
-msgstr "Funcionalidad de Freedom Fone versión 1"
+msgid "Freedom Fone v1.5 functionality"
+msgstr "Funcionalidad de Freedom Fone"
 
 #: /views/pages/functionality/index.ctp:29
 msgid ""
@@ -1724,7 +1763,7 @@ msgid ""
 msgstr ""
 "<p>El administrador es capaz de construir una gran variedad de Menús "
 "interactivos de voz basados en archivos de audio personalizados, o mensajes "
-"de voz sintetizada.<p></p></p>"
+"de voz sintetizada.<p>"
 
 #: /views/pages/functionality/ivr.ctp:32
 #, fuzzy
@@ -1763,11 +1802,9 @@ msgstr ""
 #: /views/pages/functionality/ivr.ctp:38
 msgid ""
 "<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously "
-"uploaded through the Menu option files screen, or</li><li>a Leave-a-Message "
+"uploaded through the Create Menu option page, or</li><li>a Leave-a-Message "
 "service</li></ul>"
 msgstr ""
-"<p>Una <b>Opción de menú</b> puede ser<ul><li>un archivo de audio "
-"previamente cargado, o</li><li>un servicio de Dejar-un-mensaje</li></ul></p>"
 
 #: /views/pages/functionality/ivr.ctp:39
 msgid ""
@@ -1775,7 +1812,7 @@ msgid ""
 "Menu Options."
 msgstr ""
 "<p>El administrador puede en cualquier momento agregar, editar, escuchar o "
-"eliminar opciones existentes.</p>"
+"eliminar opciones existentes"
 
 #: /views/pages/functionality/ivr.ctp:40
 msgid ""
@@ -1806,11 +1843,7 @@ msgstr ""
 "Menú de Voz.</p>"
 
 #: /views/pages/functionality/ivr.ctp:44
-msgid ""
-"<p>The administrator can create multiple Voice Menus, but only one can be "
-"active at a time (marked as Default). The administrator can at any time edit "
-"or delete a Voice Menu. If the default Voice menu is deleted, the oldest "
-"existing Voice Menu will automatically become the new default."
+msgid "<p>The administrator can create multiple Voice Menus, but only one can be active at a time (marked as Default). The administrator can at any time edit or delete a Voice Menu. If the default Voice menu is deleted, the oldest existing Voice Menu will automatically become the new default."
 msgstr ""
 "<p>El administrador puede crear múltiples Menús de Voz, pero sólo uno puede "
 "estar activo en un momento (marcado como predeterminado). El administrador "
@@ -1855,10 +1888,7 @@ msgstr "Funcionalidad: Deja-un mensaje"
 
 #: /views/pages/functionality/leave-a-message.ctp:30
 #, fuzzy
-msgid ""
-"<p>The Leave-a-Message service offers callers the option to call into "
-"Freedom Fone, and leave  their personal message. This may be a report, "
-"feedback, tip-off, response to a question, or perhaps a job application.</p>"
+msgid "<p>The Leave-a-Message service offers callers the option to call into Freedom Fone, and leave  their personal message. This may be a report, feedback, tip-off, response to a question, or perhaps a job application.</p>"
 msgstr ""
 "<p>El servicio Dejar-un-mensaje ofrece a los llamantes  la opción de llamar "
 "a Freedom Fone y dejar un mensaje personal. Esto puede ser un informe,  "
@@ -1866,13 +1896,7 @@ msgstr ""
 "empleo.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:31
-msgid ""
-"<p>A caller using the Leave-a-message service is connected to a voice menu "
-"created by the Freedom Fone administrator. The voice menu greets the caller "
-"and provides instructions as to how to use the service.  The Leave-a-message "
-"service allows the caller to </p><ul><li>Record a message</li><li>Listen to "
-"their recorded message</li><li>Delete and record a new message "
-"OR</li><li>Save their message and exit</li></ul>"
+msgid "<p>A caller using the Leave-a-message service is connected to a voice menu created by the Freedom Fone administrator. The voice menu greets the caller and provides instructions as to how to use the service.  The Leave-a-message service allows the caller to </p><ul><li>Record a message</li><li>Listen to their recorded message</li><li>Delete and record a new message OR</li><li>Save their message and exit</li></ul>"
 msgstr ""
 "<p>El autor de la llamada al servicio Dejar-un-Mensaje entra en un menú de "
 "voz creado por Freedom Fone. Este Menú de Voz saluda al llamante y "
@@ -1882,10 +1906,7 @@ msgstr ""
 "mensaje nuevo o</li><li>Guardar su mensaje y salir</li></ul>"
 
 #: /views/pages/functionality/leave-a-message.ctp:34
-msgid ""
-"<p>By using the buttons # (hash), * (star), 0 (zero) and 1 (one), the user "
-"is able to navigate through the menu according to the illustration "
-"above.</p>"
+msgid "<p>By using the buttons # (hash), * (star), 0 (zero) and 1 (one), the user is able to navigate through the menu according to the illustration above.</p>"
 msgstr ""
 "<p>Mediante los botones # (hash), * (asterisco), 0 (cero) y 1 (uno), el "
 "usuario es capaz de navegar por el menú de acuerdo con la ilustración "
@@ -1896,11 +1917,7 @@ msgid "The Leave-a-message Voice Menu"
 msgstr "El menú de la voz de Dejar-un-Mensaje"
 
 #: /views/pages/functionality/leave-a-message.ctp:37
-msgid ""
-"<p>The Leave-a-message voice menu is created by the administrator. The menu "
-"consists of eight different messages. Each message can be generated in three "
-"different ways:</p><ol><li>Customized audio files</li><li>Customized text "
-"to speech</li><li>Default text to speech</li></ol>"
+msgid "<p>The Leave-a-message voice menu is created by the administrator. The menu consists of eight different messages. Each message can be generated in three different ways:</p><ol><li>Customized audio files</li><li>Customized text to speech</li><li>Default text to speech</li></ol>"
 msgstr ""
 "<p>El menú de voz de Dejar-un-Mensaje es creado por el administrador. El "
 "menú consta de ocho mensajes diferentes. Cada mensaje puede generarse de "
@@ -1909,36 +1926,26 @@ msgstr ""
 "personalizado</li><li>Por defecto, Síntesis de voz</li></ol>"
 
 #: /views/pages/functionality/leave-a-message.ctp:40
-msgid ""
-"<p>If the administrator associates an audio file with a message, that file "
-"will be played to the caller when she enters the voice menu.</p>"
+msgid "<p>If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.</p>"
 msgstr ""
 "<p>Si el administrador asocia un archivo de audio con un mensaje, dicho "
 "archivo se reproducirá cuando el llamante entra en el menú de voz.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:41
-msgid ""
-"<p>If no audio file is provided for a message, but a customized text message "
-"exists, the text message will be synthesized and played to the caller.</p>"
+msgid "<p>If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.</p>"
 msgstr ""
 "<p>Si no hay ningún archivo de audio cargado, pero existe un mensaje de "
 "texto personalizado, el mensaje de texto será sintetizado durante la "
 "llamada.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:42
-msgid ""
-"<p>If neither an audio file, nor a customized text is provided, the default "
-"text will be synthesized and played to the user.</p>"
+msgid "<p>If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.</p>"
 msgstr ""
 "<p>Si no se proporciona un archivo de audio, ni un texto personalizado, el "
 "texto predeterminado será sintetizado durante la llamada.</p>"
 
 #: /views/pages/functionality/leave-a-message.ctp:43
-msgid ""
-"<p>The audio files must be uploaded in .mp3 or .wav format through the user "
-"interface. Once uploaded, they can be listened to from the administration "
-"GUI via the built-in Flashplayer. Audio files can at any time be overwritten "
-"with a new audio file.</p>"
+msgid "<p>The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.</p>"
 msgstr ""
 "<p>Los archivos de audio se deben cargar en formato .mp3 o .wav a través de "
 "la interfaz de usuario. Una vez cargados, los archivos pueden ser escuchados "
@@ -1951,12 +1958,7 @@ msgid "Received voice messages"
 msgstr "Mensajes de voz recibidos"
 
 #: /views/pages/functionality/leave-a-message.ctp:46
-msgid ""
-"<p>The Freedom Fone administrator receives all incoming messages to the "
-"“Inbox”. For each message, the administrator can</p><ul><li>listen to it "
-"(with a built-in Flashplayer)</li><li>name (give the message a "
-"title)</li><li>assign a category</li><li>associate the message with one or "
-"more tags</li><li>give the message a rating (1-5)</li></ul>"
+msgid "<p>The Freedom Fone administrator receives all incoming messages to the “Inbox”. For each message, the administrator can</p><ul><li>listen to it (with a built-in Flashplayer)</li><li>name (give the message a title)</li><li>assign a category</li><li>associate the message with one or more tags</li><li>give the message a rating (1-5)</li></ul>"
 msgstr ""
 "<p>El administrador de Freedom Fone recibe todos los mensajes entrantes en "
 "la \"bandeja de entrada\". Por cada mensaje, el administrador "
@@ -1966,21 +1968,10 @@ msgstr ""
 "(1-5)</li></ul>"
 
 #: /views/pages/functionality/leave-a-message.ctp:48
-msgid ""
-"<p>The administrator can choose to delete a message, or to archive it for "
-"future use.</p>"
+msgid "<p>The administrator can choose to delete a message, or to archive it for future use.</p>"
 msgstr ""
 "<p> El administrador puede optar por eliminar un mensaje, o para guardarlo "
 "para uso futuro. </p>"
-
-#: /views/pages/functionality/leave-a-message.ctp:49
-#, fuzzy
-msgid ""
-"<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a "
-"Skype call to 'skypiax2'.</p>"
-msgstr ""
-"<p>Para llamar al servicio de dejar un mensaje, marcar el +39 340 47 80 434 "
-"o llame por  Skype al usuario 'skypiax2'.</p>"
 
 #: /views/pages/functionality/poll.ctp:25
 msgid "Functionality : Poll "
@@ -1991,18 +1982,13 @@ msgid "Functionality: Poll"
 msgstr "Funcionalidad: Encuesta"
 
 #: /views/pages/functionality/poll.ctp:29
-msgid ""
-"<p>The Poll service allows end users to participate in polls by sending SMSs "
-"to Freedom Fone."
+msgid "<p>The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone."
 msgstr ""
 "<p>El servicio de encuesta permite a los usuarios finales  participar en "
 "encuestas mediante el envío de SMS a Freedom Fone.</p>"
 
 #: /views/pages/functionality/poll.ctp:30
-msgid ""
-"<p>The Freedom Fone administrator has the ability to <a "
-"href='/freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit "
-"and delete</a> polls. A poll is composed using the following parameters:"
+msgid "<p>The Freedom Fone administrator has the ability to <a href='/freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit and delete</a> polls. A poll is composed using the following parameters:"
 msgstr ""
 "<p>El administrador de Freedom Fone tiene la capacidad de <a "
 "href=\"/freedomfone/polls/add\">Crear</a>, <a "
@@ -2010,12 +1996,7 @@ msgstr ""
 "está compuesta mediante los siguientes parámetros:</p>"
 
 #: /views/pages/functionality/poll.ctp:32
-msgid ""
-"<ul><li>Question: The question you want your audience to answer "
-"to</li><li>Code: The SMS code to use, to associate an SMS with your "
-"poll</li><li>Answers: Two or more answers to the question.</li><li>Start "
-"time: Date and time when the poll opens for submission</li><li>End time: "
-"Date and time when the poll closes for submission</li></ul>"
+msgid "<ul><li>Question: The question you want your audience to answer to</li><li>Code: The SMS code to use, to associate an SMS with your poll</li><li>Answers: Two or more answers to the question.</li><li>Start time: Date and time when the poll opens for submission</li><li>End time: Date and time when the poll closes for submission</li></ul>"
 msgstr ""
 "<ul><li>Pregunta: La pregunta que deseas hacer a su audiencia "
 "</li><li>Código: El código SMS que deseas utilizar para asociar un SMS con "
@@ -2026,11 +2007,7 @@ msgstr ""
 
 #: /views/pages/functionality/poll.ctp:35
 #, fuzzy
-msgid ""
-"<p>Poll details can be communicated with the public via any means, including "
-"website, email and printed materials. Remember to share the above details "
-"and include the phone number or short code to which participants should send "
-"their SMS replies.</p>"
+msgid "<p>Poll details can be communicated with the public via any means, including website, email and printed materials. Remember to share the above details and include the phone number or short code to which participants should send their SMS replies.</p>"
 msgstr ""
 "<p>Los detalles de la encuesta se pueden comunicar al público a través de "
 "cualquier medio, incluyendo el sitio Web, correo electrónico y materiales "
@@ -2039,10 +2016,7 @@ msgstr ""
 "respuestas SMS.</p>"
 
 #: /views/pages/functionality/poll.ctp:36
-msgid ""
-"<p>The administrator can at any time edit the above listed fields. Of "
-"course, it is not recommended to change the question, code or answers to a "
-"poll, once it has been opened to the public.</p>"
+msgid "<p>The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public.</p>"
 msgstr ""
 "<p>El administrador puede en cualquier momento, modificar los campos "
 "mencionados anteriormente. Por supuesto, no se recomienda cambiar la "
@@ -2050,18 +2024,13 @@ msgstr ""
 "público.</p>"
 
 #: /views/pages/functionality/poll.ctp:37
-msgid ""
-"<p>Before a poll is opened, and after it has been closed, no poll votes are "
-"registered for the poll.</p>"
+msgid "<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll.</p>"
 msgstr ""
 "<p>Los votos no se registran si se reciben antes o despues del tiempo de "
 "apertura y cierra de la encuesta.</p>"
 
 #: /views/pages/functionality/poll.ctp:38
-msgid ""
-"<p>For each poll, once it has started, the administrator can at anytime, "
-"view the interim or final result in terms of number of votes per answer, and "
-"percentage of total votes per answer.</p>"
+msgid "<p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer.</p>"
 msgstr ""
 "<p>Por cada encuesta, una vez que ha comenzado, el administrador puede en "
 "cualquier momento, ver el resultado provisional o definitivo en términos de "
@@ -2072,9 +2041,7 @@ msgid "Classification of votes"
 msgstr "Clasificación de votos"
 
 #: /views/pages/functionality/poll.ctp:41
-msgid ""
-"<p>The system classifies all incoming votes as <i>valid, invalid,</i> or "
-"<i>incorrect</i>:</p>"
+msgid "<p>The system classifies all incoming votes as <i>valid, invalid,</i> or <i>incorrect</i>:</p>"
 msgstr ""
 "<p>El sistema clasifica todos los votos entrantes como <i>válidos,</i> <i>no "
 "válidos</i> o <i>incorrectos</i>:</p>"
@@ -2086,21 +2053,14 @@ msgstr ""
 "correcta</p>"
 
 #: /views/pages/functionality/poll.ctp:43
-msgid ""
-"<ul><li>Early: Received before the poll opened.</li><li>In time: Received "
-"while the poll was open.</li><li>Late: Received after the poll was "
-"closed.</li></ul>"
+msgid "<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>"
 msgstr ""
 "<ul><li>Temprano: Recibido antes de la apertura de la votación. </li><li>En "
 "el tiempo: Recibido en el plazo de encuesta. </li><li>Tarde: Recibido "
 "después del cierre de la encuesta. </li></ul>"
 
 #: /views/pages/functionality/poll.ctp:44
-msgid ""
-"<p>Early votes will be registered as ”Valid, early”. The number of early "
-"votes per poll option is presented in a separate column under the View poll "
-"page. Early votes will not be added to the Total votes accepted for the "
-"poll."
+msgid "<p>Early votes will be registered as ”Valid, early”. The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll."
 msgstr ""
 "<p>Los votos que llegan temprano se registrarán como \"Válido, temprano\". El "
 "número de votos que llegan temprano se presenta en una columna aparte en la "
@@ -2108,10 +2068,7 @@ msgstr ""
 "a los lista de votos totales aceptados en la encuesta."
 
 #: /views/pages/functionality/poll.ctp:45
-msgid ""
-"<p>Late votes will be registered as “Valid, late”. The number of late votes "
-"per poll option is presented in a separate column under the View poll page. "
-"Late votes will not be added to the Total votes accepted for the poll."
+msgid "<p>Late votes will be registered as “Valid, late”. The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll."
 msgstr ""
 "<p>Los votos que llegan tarde se registrarán como \"Válidos, tarde\". El "
 "número de votos que llegan tarde se presenta en una columna aparte en la "
@@ -2119,42 +2076,33 @@ msgstr ""
 "los lista de votos totales aceptados en la encuesta."
 
 #: /views/pages/functionality/poll.ctp:46
-msgid ""
-"<p>The Early and Late vote classifications are summarised separately to "
-"provide a complete view of votes submitted to the poll concerned."
+msgid "<p>The Early and Late vote classifications are summarised separately to provide a complete view of votes submitted to the poll concerned."
 msgstr ""
 "<p>Las clasificaciones de los votos tempranos y tardíos se resumen por "
 "separado para proporcionar una visión completa de los votos recibidos en una "
 "encuesta concreta."
 
 #: /views/pages/functionality/poll.ctp:48
-msgid ""
-"<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
+msgid "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
 msgstr ""
 "<p><b>Voto no válido:</b> código de encuesta correcto, pero la opción en la "
 "respuesta no es posible</p>"
 
 #: /views/pages/functionality/poll.ctp:49
 #, fuzzy
-msgid ""
-"<p>Invalid votes are registered as votes, but classified as “invalid”. "
-"“Early”, “late” and “on-time” invalid votes are registered."
+msgid "<p>Invalid votes are registered as votes, but classified as “invalid”. “Early”, “late” and “on-time” invalid votes are registered."
 msgstr ""
 "<p>Votos no válidos se registran como votos, pero clasificados como \"no "
 "válidos\". \"temprano\", \"tarde\" y \"a tiempo\"."
 
 #: /views/pages/functionality/poll.ctp:50
-msgid ""
-"<p>Only “on-time” invalid votes are incorporated into the Total number of "
-"votes (in time) summary."
+msgid "<p>Only “on-time” invalid votes are incorporated into the Total number of votes (in time) summary."
 msgstr ""
 "<p>Sólo los votos inválidos que llegan \"a tiempo\" se incorporan en el "
 "resumen total de votos."
 
 #: /views/pages/functionality/poll.ctp:51
-msgid ""
-"<p>Invalid vote totals are provided to give deployers an idea of how SMS "
-"errors might impact on poll results."
+msgid "<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results."
 msgstr ""
 "<p>La lista de votos totales se proporciona para ofrecer a los responsables "
 "del despliegue una idea de cómo los errores de SMS pueden influir en "
@@ -2165,10 +2113,7 @@ msgid "<p><b>Incorrect vote: </b>Non-matching poll code"
 msgstr "<p><b>Voto incorrecto: </b>Código de encuesta no existe"
 
 #: /views/pages/functionality/poll.ctp:54
-msgid ""
-"<p>Incorrect votes that cannot be matched to any existing poll, will be "
-"classified as an incoming SMS and will be stored under “Other SMS”. The SMS "
-"will be classified as “Unclassified”."
+msgid "<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under “Other SMS”. The SMS will be classified as “Unclassified”."
 msgstr ""
 "<p>Votos incorrectos que no puede ser registrados en ninguna encuesta "
 "existente, se clasificarán como un SMS entrantes y se almacenarán en la "
@@ -2179,29 +2124,21 @@ msgid "Practical example"
 msgstr "Ejemplo práctico"
 
 #: /views/pages/functionality/poll.ctp:57
-msgid ""
-"<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will "
-"all be interpreted as a YES. The same logic applies to the SMS code.</p>"
+msgid "<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES. The same logic applies to the SMS code.</p>"
 msgstr ""
 "<p>La encuesta no es sensible al uso de mayúsculas y minúsculas, por ejemplo "
 "'si', 'Si'y 'SI' van a ser interpretados como un 'si'. La misma lógica se "
 "aplica al código SMS.</p>"
 
 #: /views/pages/functionality/poll.ctp:58
-msgid ""
-"<p>More than one poll can be active at the same time. Incoming SMS are "
-"identified by the SMS code used and matched with existing polls. </p>"
+msgid "<p>More than one poll can be active at the same time. Incoming SMS are identified by the SMS code used and matched with existing polls. </p>"
 msgstr ""
 "<p>Más de una encuesta puede estar activa al mismo tiempo. Los SMS entrantes "
 "se identifican mediante el código SMS usado que concuerde con las encuestas "
 "existentes.</p>"
 
 #: /views/pages/functionality/poll.ctp:60
-msgid ""
-"<p>The timestamp used to determine whether or not a vote is in time for a "
-"poll, is the time of arrival to the Freedom Fone platform. Hence, if an SMS "
-"gets delayed in the GSM network, it will be classified as late even if it "
-"was sent before the poll deadline. "
+msgid "<p>The timestamp used to determine whether or not a vote is in time for a poll, is the time of arrival to the Freedom Fone platform. Hence, if an SMS gets delayed in the GSM network, it will be classified as late even if it was sent before the poll deadline. "
 msgstr ""
 "<p>El tiempo utilizado para determinar si o no una votación llega a tiempo "
 "para una encuesta, es el momento de llegada a la plataforma Freedom Fone. "
@@ -2210,12 +2147,7 @@ msgstr ""
 "cierre de la encuesta."
 
 #: /views/pages/functionality/poll.ctp:62
-msgid ""
-"<p>Example: The administrator creates a poll with the following "
-"parameters:<ul><li>Question: Would you like to deploy Freedom Fone in your "
-"organization?</li><li>Code: freedomfone</li><li>Answers: "
-"Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: "
-"08:00 AM, January 31, 2010</li></ul></p>"
+msgid "<p>Example: The administrator creates a poll with the following parameters:<ul><li>Question: Would you like to deploy Freedom Fone in your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: 08:00 AM, January 31, 2010</li></ul></p>"
 msgstr ""
 "<p>Ejemplo: El administrador crea una encuesta con los siguientes "
 "parámetros:<ul><li>Pregunta: ¿Desea implementar Freedom Fone en su "
@@ -2224,12 +2156,7 @@ msgstr ""
 "2010</li><li>Tiempo de cierre: 08: 00 AM, 31 de enero de 2010</li></ul></p>"
 
 #: /views/pages/functionality/poll.ctp:64
-msgid ""
-"<p>To participate in the poll, the end user needs to send an SMS (after  "
-"08:00 AM the 1st of January, and before 08:00 AM the 31st of January 2010) "
-"with one of the following messages: </p><pre>freedomfone yes\n"
-"freedomfone no\n"
-"freedomfone maybe</pre>"
+msgid "<p>To participate in the poll, the end user needs to send an SMS (after  08:00 AM the 1st of January, and before 08:00 AM the 31st of January 2010) with one of the following messages: </p><pre>freedomfone yes\nfreedomfone no\nfreedomfone maybe</pre>"
 msgstr ""
 "<p>Para participar en la encuesta, el usuario final tiene que enviar un SMS "
 "(después de 8 AM del 1 de enero, y antes de las 8 AM del 31 de enero 2010) "
@@ -2243,8 +2170,8 @@ msgstr "Crear nueva encuesta"
 
 #: /views/polls/add.ctp:36
 #: /views/polls/edit.ctp:39
-#: /views/polls/index.ctp:42
-#: /views/polls/view.ctp:36
+#: /views/polls/index.ctp:49
+#: /views/polls/view.ctp:51
 msgid "Question"
 msgstr "Pregunta"
 
@@ -2296,86 +2223,106 @@ msgstr "Editar Encuesta"
 msgid "Are you sure you want to delete this poll option?"
 msgstr "¿Está seguro que desea eliminar esta opción de la encuesta?"
 
-#: /views/polls/index.ctp:37
+#: /views/polls/index.ctp:27
+msgid "Poll|The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone.<p>The Freedom Fone administrator has the ability to create, edit and delete polls.<p>The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public.<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll. <p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer."
+msgstr ""
+
+#: /views/polls/index.ctp:42
 msgid "Polls"
 msgstr "Encuestas"
 
-#: /views/polls/index.ctp:42
+#: /views/polls/index.ctp:49
 msgid "Code"
 msgstr "Código"
 
-#: /views/polls/index.ctp:42
+#: /views/polls/index.ctp:49
 msgid "Valid votes"
 msgstr "Votos válidos"
 
-#: /views/polls/index.ctp:42
+#: /views/polls/index.ctp:49
 msgid "Close"
 msgstr "Cerrar"
 
-#: /views/polls/index.ctp:60
+#: /views/polls/index.ctp:68
 msgid "Are you sure you want to delete this poll?"
 msgstr "¿Está seguro que desea eliminar esta encuesta?"
 
-#: /views/polls/index.ctp:83
-msgid ""
-"No polls exists. Please create one by click on the green button to the "
-"right."
-msgstr ""
-"No existen encuestas. Por favor, cree una encuesta haciendo clic en el botón "
-"verde de la derecha."
+#: /views/polls/index.ctp:90
+msgid "System time"
+msgstr "Hora del sistema"
 
-#: /views/polls/view.ctp:38
+#: /views/polls/index.ctp:100
+msgid "No polls exist. Please create one by clicking the 'Create new' button to the right."
+msgstr ""
+
+#: /views/polls/view.ctp:26
+msgid "Classification of votes|The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|\n<p><b>Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>|\nEarly votes will be registered as \"Valid, early\". The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll.|\n<p>Late votes will be registered as \"Valid, late\". The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll.|\n<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option|\nInvalid votes are registered as votes, but classified as \"invalid\". \"Early\", \"late\" and \"on-time\" invalid votes are registered.|\nOnly \"on-time\" invalid votes are incorporated into the Total number of votes (in time) summary.|\n<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results.|\n<p><b>Incorrect vote:</b> Non-matching poll code|\nIncorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Other SMS\". The SMS will be classified as \"Unclassified\"."
+msgstr ""
+
+#: /views/polls/view.ctp:53
 msgid "SMS code"
 msgstr "Código SMS"
 
-#: /views/polls/view.ctp:41
+#: /views/polls/view.ctp:56
 msgid "Result"
 msgstr "Resultado"
 
-#: /views/polls/view.ctp:47
+#: /views/polls/view.ctp:62
 msgid "Options"
 msgstr "Opciones"
 
-#: /views/polls/view.ctp:47
+#: /views/polls/view.ctp:62
 msgid "Votes"
 msgstr "Votos"
 
-#: /views/polls/view.ctp:47
+#: /views/polls/view.ctp:62
 msgid "Early votes"
 msgstr "Votos por adelantado"
 
-#: /views/polls/view.ctp:47
+#: /views/polls/view.ctp:62
 msgid "Late votes"
 msgstr "Votos tarde"
 
-#: /views/polls/view.ctp:90
+#: /views/polls/view.ctp:105
 msgid "Total"
 msgstr "Total"
 
-#: /views/polls/view.ctp:97
+#: /views/polls/view.ctp:112
 msgid "Poll information"
 msgstr "Información de la encuesta"
 
-#: /views/polls/view.ctp:109
+#: /views/polls/view.ctp:124
 msgid "No poll with this id exists"
 msgstr "No existe ninguna encuesta con este id"
 
-#: /views/processes/index.ctp:32
+#: /views/processes/index.ctp:34
 msgid "Processes"
 msgstr "Procesos"
 
-#: /views/processes/index.ctp:49;76
+#: /views/processes/index.ctp:51;79
 msgid "Running since"
 msgstr "Funcionando desde"
 
-#: /views/processes/index.ctp:72
+#: /views/processes/index.ctp:56
+msgid "Start"
+msgstr ""
+
+#: /views/processes/index.ctp:57
+msgid "Stop"
+msgstr ""
+
+#: /views/processes/index.ctp:75
 msgid "Not running"
 msgstr "No está en ejecución"
 
-#: /views/processes/index.ctp:78
+#: /views/processes/index.ctp:81
 #: /views/processes/software.ctp:28
 msgid "FreeSWITCH"
 msgstr "FreeSWITCH"
+
+#: /views/processes/index.ctp:85
+msgid "Component"
+msgstr ""
 
 #: /views/processes/software.ctp:27
 msgid "System software"
@@ -2392,6 +2339,10 @@ msgstr "MySQL"
 #: /views/processes/software.ctp:31
 msgid "Dispatcher"
 msgstr "Distribuidor"
+
+#: /views/settings/index.ctp:25
+msgid "Language settings"
+msgstr ""
 
 #: /views/tags/add.ctp:25
 msgid "Add Tag"
@@ -2418,9 +2369,106 @@ msgid "Are you sure you want to delete this tag?"
 msgstr "¿Está seguro de que desea eliminar esta etiqueta?"
 
 #: /views/tags/index.ctp:59
-msgid ""
-"No tags exist. Please create a tag by clicking on the green button to the "
-"right."
+msgid "No tags exist. Please create one by clicking the 'Create new' button to the right."
 msgstr ""
-"No existe ninguna etiqueta. Por favor, cree una etiqueta haciendo clic en el "
-"botón verde de la derecha."
+
+#~ msgid "Your data has been saved"
+#~ msgstr "Tus datos se han salvado."
+
+#~ msgid "Your data could not be saved. Please, try again."
+#~ msgstr "Tus datos no se han podido salvar. Por favor, inténtelo de nuevo."
+
+#~ msgid "started"
+#~ msgstr "activo"
+
+#~ msgid "is already running"
+#~ msgstr "ya se está ejecutando"
+
+#~ msgid "is not running"
+#~ msgstr "no se está ejecutando"
+
+#~ msgid "No pid found. Contact system admin."
+#~ msgstr ""
+#~ "No se encontró el pid. Póngase en contacto con administrador de sistema."
+
+#~ msgid "Manual"
+#~ msgstr "Manual"
+
+#~ msgid "stopped"
+#~ msgstr "parado"
+
+#~ msgid "was already stopped"
+#~ msgstr "ya fue detenido"
+
+#~ msgid "Between 1 to 50 characters"
+#~ msgstr "Entre 1 a 50 caracteres"
+
+#~ msgid "Letters and numbers only. No spaces allowed."
+#~ msgstr "Letras y números solamente. No se permiten espacios."
+
+#~ msgid ""
+#~ "No categories exist. Please create a category by clicking on the green "
+#~ "button to the right."
+#~ msgstr ""
+#~ "No existen categorías. Por favor, cree una categoría haciendo clic en el "
+#~ "botón verde de la derecha."
+
+#~ msgid "-Select menu option-"
+#~ msgstr "-Seleccione opción del menú-"
+
+#~ msgid "Create Leave a Message IVR"
+#~ msgstr "Crear IVR Deja-un-mensaje"
+
+#~ msgid "Valid format: wav"
+#~ msgstr "Formato válido: wav"
+
+#~ msgid ""
+#~ "If you select a file, the previous one will be deleted. Valid format: wav"
+#~ msgstr "Si selecciona un archivo, se eliminará la anterior. Formato válido: wav"
+
+#, fuzzy
+#~ msgid ""
+#~ "No Menu Option are uploaded. Please upload a Menu Option by clicking on the "
+#~ "green button to the right."
+#~ msgstr ""
+#~ "No se ha creado ninguna opción en el Menú de Voz. Cree una Opción de Menú "
+#~ "haciendo clic en el botón verde a la derecha."
+
+#~ msgid "Freedom Fone v.1 Architecture"
+#~ msgstr "Arquitectura de Freedom Fone"
+
+#~ msgid "Voice menuse"
+#~ msgstr "Menús de voz"
+
+#~ msgid "Freedom Fone v.1 functionality"
+#~ msgstr "Funcionalidad de Freedom Fone versión 1"
+
+#~ msgid ""
+#~ "<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously "
+#~ "uploaded through the Menu option files screen, or</li><li>a Leave-a-Message "
+#~ "service</li></ul>"
+#~ msgstr ""
+#~ "<p>Una <b>Opción de menú</b> puede ser<ul><li>un archivo de audio "
+#~ "previamente cargado, o</li><li>un servicio de Dejar-un-mensaje</li></ul></p>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a "
+#~ "Skype call to 'skypiax2'.</p>"
+#~ msgstr ""
+#~ "<p>Para llamar al servicio de dejar un mensaje, marcar el +39 340 47 80 434 "
+#~ "o llame por  Skype al usuario 'skypiax2'.</p>"
+
+#~ msgid ""
+#~ "No polls exists. Please create one by click on the green button to the "
+#~ "right."
+#~ msgstr ""
+#~ "No existen encuestas. Por favor, cree una encuesta haciendo clic en el botón "
+#~ "verde de la derecha."
+
+#~ msgid ""
+#~ "No tags exist. Please create a tag by clicking on the green button to the "
+#~ "right."
+#~ msgstr ""
+#~ "No existe ninguna etiqueta. Por favor, cree una etiqueta haciendo clic en el "
+#~ "botón verde de la derecha."

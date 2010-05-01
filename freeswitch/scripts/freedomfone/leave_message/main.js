@@ -1,5 +1,5 @@
 // * file_name    - Leave a Message for Freedom Fone 
-// * version      - 1.0.340 
+// * version      - 1.0.573 
  
 // * ***** BEGIN LICENSE BLOCK *****
 // * Version: MPL 1.1
@@ -22,14 +22,35 @@
 // *
 // * 	Inspired in work and ideas from Joshua Engelbrecht, Mike
 // * 	B. Murdock and Anthony Minessale II
-//
 // * ***** END LICENSE BLOCK *****
+//
+//
+// The second version of LAM includes a extended State Machine for the Quick Hangup State keeping
+// backwards compatibility with early versions
+//
+// Audio File | Meta File | On Hangup Delete | From State |Action
+// 1		1		X		GOODBYE 	Do nothing, event already triggered	
+// 1		0		0		QUICKHANGUP 	Create meta and trigger event	
+// 1		0		1		QUICKHANGUP 	Create the meta file and trigger event
+// 0		X		X			  	Do nothing, no audio file to work with
+// 								Early hanger or deleted file by DTMF					 
+// Now we can set in the dialplan how to handle quick hangers that do not accept the file via DTMF
+// <!--             <action application="set" data="on_quick_hangup=delete"/> --> 
+//             <action application="set" data="on_quick_hangup=accept"/>  
+//             <action application="javascript" data="freedomfone/leave_message2/main.js ${instance_id} ${on_quick_hangup}"/>
+//
+
+
+
 
 // Needed for the Beep(). Can we avoid it?
 use("TeleTone");
 
 // Allows to personalize TTS message in the Leave Message State Machine.
 var lmId = argv[0];
+
+// What to do after early hangup when file was recorded but not DTMF accepted
+var lmOnHangup = argv[1];
 
 include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + ".conf");
 // We retrieve global variables as BaseDir and Domain Name
@@ -62,6 +83,9 @@ var lmSilencethreshold = 300;
    
 // Amount of time in seconds caller must be silent to trigger detector.
 var lmSilence = 50;
+
+// Variable to monitor if the file has been recorded On Quick hangup
+var lmOnQuickHangup = false;
    
 // We defined our states here, useful for future checks
 var STATE_ANSWER = 0; 
@@ -72,6 +96,9 @@ var STATE_PLAY = 4;
 var STATE_DELETE = 5;
 var STATE_GOODBYE = 6;
 var STATE_HANGUP = 7;
+var STATE_QUICKHANGUP = 8;
+var STATE_METAFILE = 9;
+var STATE_EVENT = 10;
    
 // We iniatilize the State to the Answer to Life, the Universe, and
 // Everything!. Obviously this is State 42.
@@ -109,7 +136,7 @@ session.setHangupHook(lmHangup);
 if (session.ready()) {
 	lmState = STATE_ANSWER;
 	lm42Logger("STATE_ANSWER",lmState);
-	lm42Logger("STATE_ANSWER",  lm_uuid + " " + lm_ani + " " + lm_dialplan + " " + lm_state);   
+	lm42Logger("STATE_ANSWER",  lm_uuid + " " + lm_ani + " " + lm_dialplan + " " + lm_state + " " + lmOnHangup);   
 
 
 // We  play  welcome message.  If  audio  file  is not  available,  we
@@ -175,6 +202,7 @@ function lm42Beep () {
     tts.generate(BONG);
 }
 
+
 /////////////////////////////////////////////////////////////////////
 ////////////////////     STATE MACHINE FUNCTIONS      ///////////////
 /////////////////////////////////////////////////////////////////////
@@ -195,7 +223,8 @@ function lmStateEntry(lmPreviousState) {
 } 
 
 // We  delete the file  when prompted  or when  the user  hangs during
-// recording. The user can hangup after SAVE state, before GOODBYE 
+// recording and the variable lmOnHangup is set to delete
+// The user can hangup after SAVE state, before GOODBYE 
 
 function lmDeleteFile(lmPreviousState,lmFilenamePath) {
     if (lmPreviousState == STATE_RECORD || lmPreviousState == STATE_PLAY || lmPreviousState == STATE_SELECT) {
@@ -251,34 +280,20 @@ function lmStatePlay(lmPreviousState,lmPlayFilename) {
     } 	
 }
 
-// We create the meta file and convert the file to mp3 calling locally compiled lame version 3.97
+
 function lmStateSave(lmPreviousState) {
     if (lmPreviousState == STATE_RECORD || lmPreviousState == STATE_PLAY || lmPreviousState == STATE_SELECT) {
 	lmState = STATE_GOODBYE;
-	lm42Logger("STATE_GOODBYE",lmState + " Creating meta file");
-
-	// Prapare the meta file
-	var lmFd = new File(lmDir + "/messages/" + lm_uuid + ".meta");
-	lmFd.open("write,create");
-      	lmFd.writeln("InstanceID="+lmId);
-       	lmFd.writeln("FileID="+lm_uuid);
-      	lmFd.writeln("CallerID="+session.caller_id_num);
-       	lmFd.writeln("CallerName="+session.caller_id_name);
-      	lmFd.writeln("StartTime="+lmStartDate);
-    	lmFd.writeln("StartTimeEpoch="+lmStartDate.getTime());
-        lmFd.writeln("FinishTime="+lmFinishDate);
-        lmFd.writeln("FinishTimeEpoch="+lmFinishDate.getTime());
-        lmFd.close;
+	lmOnQuickHangup = false;
+	lmCreateMetaFile();
 
 	// We set MetaFile to true so user can hangup before Goodbye	
 	lmMetaFile = true;
+	lm42Logger("STATE_GOODBYE",lmState + " Sending file to Audio Conversion");
 	
-
 	// WARNING! We  should not hangup  inside of the script or we
 	// can not  run another  applications called in  the dialplan
 	// session.hangup();
-       		
-	lm42Logger("STATE_GOODBYE",lmState + " Sending file to Audio Conversion");
 	
 	lmTriggerEvent();
 			
@@ -297,21 +312,6 @@ function lmStateSave(lmPreviousState) {
     }
 }
 
-//We notify our dispatcher about the message
-function lmTriggerEvent() {
-    lmEvent = new Event("custom", "leave_a_message");
-    lmEvent.addHeader("FF-InstanceID",lmId);
-    lmEvent.addHeader("FF-URI",lmURI);
-    lmEvent.addHeader("FF-FileID",lm_uuid);
-    lmEvent.addHeader("FF-CallerID",session.caller_id_num);
-    lmEvent.addHeader("FF-CallerName",session.caller_id_name);
-    lmEvent.addHeader("FF-StartTimeEpoch",lmStartDate.getTime());
-    lmEvent.addHeader("FF-FinishTimeEpoch",lmFinishDate.getTime());
-    //lmEvent.addBody(EVENT WITHOUT BODY);
-    
-    lmEvent.fire();
-    lm42Logger("STATE_EVENT","Event for FileID: "+lm_uuid);
-}
 
 function lmStateSelect(lmPreviousState,lmSelectTmpFilename) {
     if (lmPreviousState == STATE_RECORD || lmPreviousState == STATE_SELECT || lmPreviousState == STATE_PLAY || lmPreviousState == STATE_GOODBYE )  {
@@ -398,24 +398,83 @@ function lmStateTmpRecord(lmPreviousState) {
     }	  
 }	
 
-//FIXME! Look into this variables, which values are matched in each? ASK LIST!
-function lmHangup(hup_session, how) { 
-    lmState = STATE_HANGUP;
-    lm42Logger("STATE_HANGUP",how + " " + hup_session.name + " " + hup_session.cause + "\n");    
+/////////////////////////////////////////////////////////////////////
+///////////////     STATE MACHINE CORE FUNCTIONS      ///////////////
+/////////////////////////////////////////////////////////////////////
 
-    // The user has hangup, let us delete the temporary file! Should we override this :D?
-    // Clean the temporary WAV file if user hangs before call is finished	
-  
+function lmCreateMetaFile() {
+	var lmFd = new File(lmDir + "/messages/" + lm_uuid + ".meta");
+	lmFd.open("write,create");
+      	lmFd.writeln("InstanceID="+lmId);
+       	lmFd.writeln("FileID="+lm_uuid);
+      	lmFd.writeln("CallerID="+lm_caller_id_num);
+       	lmFd.writeln("CallerName="+lm_caller_id_name);
+      	lmFd.writeln("StartTime="+lmStartDate);
+    	lmFd.writeln("StartTimeEpoch="+lmStartDate.getTime());
+        lmFd.writeln("FinishTime="+lmFinishDate);
+        lmFd.writeln("FinishTimeEpoch="+lmFinishDate.getTime());
+        lmFd.writeln("OnQuickHangup="+lmOnQuickHangup);
+	lm42Logger("STATE_METAFILE","From: " + lmState + " Creating meta file");
+        lmFd.close;
+}
+
+function lmTriggerEvent() {
+    lmEvent = new Event("custom", "leave_a_message");
+    lmEvent.addHeader("FF-InstanceID",lmId);
+    lmEvent.addHeader("FF-URI",lmURI);
+    lmEvent.addHeader("FF-FileID",lm_uuid);
+    lmEvent.addHeader("FF-CallerID",lm_caller_id_num);
+    lmEvent.addHeader("FF-CallerName",lm_caller_id_name);
+    lmEvent.addHeader("FF-StartTimeEpoch",lmStartDate.getTime());
+    lmEvent.addHeader("FF-FinishTimeEpoch",lmFinishDate.getTime());
+    lmEvent.addHeader("FF-OnQuickHangup",lmOnQuickHangup);
+    //lmEvent.addBody(EVENT WITHOUT BODY);
+    
+    lmEvent.fire();
+    lm42Logger("STATE_EVENT","From: " + lmState + " " + "Event for FileID: "+lm_uuid+" "+lmOnQuickHangup);
+}
+
+function lmHangup(hup_session, how) { 
+    // The user has hangup, let us check if there is file recorded and if it has been accepted by DTMF
     var lmFilenameHangupPath = lmDir + "/messages/" + lm_uuid + ".wav";
     var lmFilenameHangup = File(lmFilenameHangupPath);
+   
+    
 
-    // The hung up can take place before the STATE_RECORD, so let us check that the file is there
-    // We do not delete the file is the STATE_SAVE has taken place already 
-    if (lmFilenameHangup.isFile && lmMetaFile == false) {
-	lmFilenameHangup.remove();
-	lm42Logger("STATE_HANGUP","Deleting File: " + lmFilenameHangupPath);
-    } 
+
+    // Do we have an audio file to work with at all? 
+if (lmFilenameHangup.isFile) {
+    		// Do we have a meta file? 
+    		if (lmMetaFile == true) {
+    		lmState = STATE_HANGUP;
+    		lm42Logger("STATE_HANGUP",how + " " + hup_session.name + " " + hup_session.cause + "\n");    
+		exit();	
+		}	 
+		else {
+    		lmState = STATE_QUICKHANGUP;
+    		lm42Logger("STATE_QUICKHANGUP",how + " " + hup_session.name + " " + hup_session.cause + "\n");    
+    			// Should we delete the audio file of the quick hangers? 
+			if (lmOnHangup == "delete") {
+			lm42Logger("STATE_QUICKHANGUP","Deleting File: " + lmFilenameHangupPath);
+			lmFilenameHangup.remove();
+    			exit();
+			} 
+			else {
+			// Default behaviour is to keep the file if variable is not set in dialplan
+			// We do not have finish timestamp for this case so we create one now
+			lmOnQuickHangup = true;
+			lmFinishDate=new Date();
+            		
+			lm42Logger("STATE_QUICKHANGUP","Finish date: " + lmFinishDate);
+			lmCreateMetaFile();
+			lmTriggerEvent();
+    			exit();
+			}
+   		}
+	} 
+	else {
+    		lmState = STATE_HANGUP;
+    		lm42Logger("STATE_HANGUP",how + " " + hup_session.name + " " + hup_session.cause + "\n");    
+    		exit();
+	}
 }	
-
-
-

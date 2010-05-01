@@ -30,9 +30,10 @@
         <extension name="leave_message_pool">
           <condition field="destination_number" expression="^2(\d{3})$">
             <action application="ring_ready"/>
-            <action application="sleep" data="2000"/>
             <action application="answer"/>
+            <action application="sleep" data="2000"/>
             <action application="set" data="instance_id=$1"/>
+<!--             <action application="set" data="on_quick_hangup=delete"/> --> 
             <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id}"/>
           </condition>
         </extension>
@@ -185,8 +186,9 @@
         </extension>
         <extension name="inbound_Mobigater2">
           <condition field="destination_number" expression="^5001$">
+	    <action application="set" data="playback_terminators=*"/>
             <action application="transfer" data="4100 XML default"/>
-          </condition>
+        </condition>
         </extension>
         <extension name="inbound_Mobigater3">
           <condition field="destination_number" expression="^5002$">

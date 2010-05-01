@@ -249,7 +249,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		else {
 			// unacceptable file type
 
-			$result['errors'][] = __('The folling file could not be uploaded due to invalid file type:',true).' '.$file['name'];
+			$result['errors'][] = __('The following file could not be uploaded due to invalid file type:',true).' '.$file['name'];
 			$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: invalid file type; Code: ".$file['error'],"ivr");
 		}
 	} //foreach

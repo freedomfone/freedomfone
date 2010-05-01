@@ -23,22 +23,48 @@
 // * 	Inspired in work and ideas from Joshua Engelbrecht, Mike
 // * 	B. Murdock and Anthony Minessale II
 // * ***** END LICENSE BLOCK *****
-//
-//
-// The second version of LAM includes a extended State Machine for the Quick Hangup State keeping
+
+
+
+///////////////////////////////////////////
+//// Leave-a-message for Quick Hangers ////
+///////////////////////////////////////////
+// 
+// This second version of LAM (May 2010) includes a extended State Machine for the Quick Hangup State keeping
 // backwards compatibility with early versions
 //
-// Audio File | Meta File | On Hangup Delete | From State |Action
-// 1		1		X		GOODBYE 	Do nothing, event already triggered	
-// 1		0		0		QUICKHANGUP 	Create meta and trigger event	
-// 1		0		1		QUICKHANGUP 	Create the meta file and trigger event
-// 0		X		X			  	Do nothing, no audio file to work with
-// 								Early hanger or deleted file by DTMF					 
-// Now we can set in the dialplan how to handle quick hangers that do not accept the file via DTMF
+// When the caller arrives to the STATE_RECORD an audio file starts to get recorded. In this state
+// the caller can either hangup (quick hang) or play, delete, save the recording. DTMFs are used
+// to feedback to the LAM state machine. Once the caller SAVEs the file, a .meta file is created.
+// This .meta file triggers the audio converter daemon (iwatch) that is responsible to convert the WAV
+// file to a MP3 File.
+//
+// In case that the caller hangs the phone (quick hang), the on_hangup function is responsible to 
+// determine if there is an audio file available and if needs to be "deleteD" or "acceptED". If the 
+// dialplan variable on_quick_hangup is set to "delete", the audio file is deleted and no meta file
+// and event are triggered. If the variable on_quick_hangup is set to "accept", a .meta file is created
+// and the event is triggered.
+// 
+// This logic can be modeled with three variables
+// lmFilenameHangup.isFile: checks if the audio file exists
+// lmMetaFile: checks if the meta file exists
+// lmOnHangup: dialplan variable that indicates what to do if a quick hangup takes place (delete/accept)
+//
+// The states can be modeled as follows:
+// A  	M	HD 	Prev		Next State 
+// 1	1	X	GOODBYE 	Do nothing, event already triggered	
+// 1	0	0	QUICKHANGUP 	Create meta and trigger event (META, EVENT)	
+// 1	0	1	QUICKHANGUP 	Delete audio file	
+// 0	X	X	QUICKHANGUP  	Do nothing, no audio file to work with
+//
+//
+//
+//
+// Modifying behaviour of LAM from the dialplan
+// We can set in the dialplan how to handle quick hangers that do not SAVE the file via DTMF
 // <!--             <action application="set" data="on_quick_hangup=delete"/> --> 
 //             <action application="set" data="on_quick_hangup=accept"/>  
 //             <action application="javascript" data="freedomfone/leave_message2/main.js ${instance_id} ${on_quick_hangup}"/>
-//
 
 
 
@@ -49,9 +75,13 @@ use("TeleTone");
 // Allows to personalize TTS message in the Leave Message State Machine.
 var lmId = argv[0];
 
-// What to do after early hangup when file was recorded but not DTMF accepted
+// What to do after quick hangup if we have a file recorded but no DTMF received 
 var lmOnHangup = argv[1];
 
+// TTS texts are loaded here. File generated from GUI
+//
+//FIXME! We will love to do this reading a XML file and not a JS.
+//
 include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + ".conf");
 // We retrieve global variables as BaseDir and Domain Name
 include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + "_core.conf");
@@ -73,8 +103,12 @@ var lmLongAudio = lmDir + "/audio_menu/lmLong.wav";
 var lmMaxreclen = 120;
 
 // Artificial silences for sleep session.execute. 
-var lmSilenceTime = 1300;   
-var lmLoopmax = 0;
+// FIXME! Play with this value and provide reference values
+var lmSilenceTime = 2000;   
+
+// This variable is used to prevent a DoS when callers block line
+var lmLoop = 1;
+var lmLoopmax = 4;
 
 // Energy  level  audio  must  fall  below to  be  considered  silence
 // (300-500), we  might like  to have higher  values for PSTN  and GSM
@@ -82,7 +116,7 @@ var lmLoopmax = 0;
 var lmSilencethreshold = 300;
    
 // Amount of time in seconds caller must be silent to trigger detector.
-var lmSilence = 50;
+var lmSilence = 30;
 
 // Variable to monitor if the file has been recorded On Quick hangup
 var lmOnQuickHangup = false;
@@ -241,10 +275,10 @@ function lmDeleteFile(lmPreviousState,lmFilenamePath) {
 	    //We reset the flag to always feedback the Delete of a file
 	    lmDeleteFeedback = true;
 	    //Counting the number of loops, i.e. times we have deleted a file
-	    lmLoopmax++;
+	    lmLoop++;
 		session.sleep(1000); 
-		lm42Logger("STATE_LOOP","Loop number: " + lmLoopmax );
-	    if (lmLoopmax > 5) {
+		lm42Logger("STATE_LOOP","Loop number: " + lmLoop + " out of " +lmLoopmax);
+	    if (lmLoop > lmLoopmax) {
 		lm42Logger("STATE_LOOP","Maximum number of loops reached" );
 		exit();
 		}  

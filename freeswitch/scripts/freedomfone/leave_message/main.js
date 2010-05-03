@@ -116,7 +116,7 @@ var lmLoopmax = 4;
 var lmSilencethreshold = 300;
    
 // Amount of time in seconds caller must be silent to trigger detector.
-var lmSilence = 30;
+var lmSilence = 300;
 
 // Variable to monitor if the file has been recorded On Quick hangup
 var lmOnQuickHangup = false;

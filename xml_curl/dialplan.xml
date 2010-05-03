@@ -34,6 +34,7 @@
             <action application="sleep" data="2000"/>
             <action application="set" data="instance_id=$1"/>
 <!--             <action application="set" data="on_quick_hangup=delete"/> --> 
+<!--             <action application="set" data="on_quick_hangup=accept"/> --> 
             <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id}"/>
           </condition>
         </extension>

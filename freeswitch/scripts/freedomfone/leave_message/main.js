@@ -120,6 +120,7 @@ var lmSilence = 30;
 
 // Variable to monitor if the file has been recorded On Quick hangup
 var lmOnQuickHangup = false;
+var lmFinishDateExists = false;
    
 // We defined our states here, useful for future checks
 var STATE_ANSWER = 0; 
@@ -378,6 +379,7 @@ function lmStateTmpRecord(lmPreviousState) {
     if (lmPreviousState == STATE_ENTRY || lmPreviousState == STATE_DELETE)  {
 	lmState = STATE_RECORD;
 	lm42Logger("STATE_RECORD",lmState);
+	lmFinishDateExists = false;  
 	lm42Beep(); 
        
 	// Preparing the filename
@@ -395,10 +397,10 @@ function lmStateTmpRecord(lmPreviousState) {
 	session.flushDigits();
 	var lmDTMF = session.recordFile(lmTmpFilename, lm42FeedBackInput, "", lmMaxreclen, lmSilencethreshold, lmSilence);
 	lm42Logger("STATE_RECORD","DTMF Feedback is ++ "+lmDTMF+" ++");
-
-	// If lmDTMF is something! we take the finish timestamp
+	// If lmDTMF is something! we take the finish timestamp and set lmFinishDateExists=true
 	if ( lmDTMF ) { 
 	    lmFinishDate=new Date();  
+	    lmFinishDateExists=true;  
 	    lm42Logger("STATE_RECORD","Finish date: " + lmFinishDate); 
 	}
 	
@@ -497,7 +499,7 @@ if (lmFilenameHangup.isFile) {
 			// Default behaviour is to keep the file if variable is not set in dialplan
 			// We do not have finish timestamp for this case so we create one now
 			lmOnQuickHangup = true;
-			lmFinishDate=new Date();
+			if (lmFinishDateExists == false) { lmFinishDate=new Date(); }
             		
 			lm42Logger("STATE_QUICKHANGUP","Finish date: " + lmFinishDate);
 			lmCreateMetaFile();

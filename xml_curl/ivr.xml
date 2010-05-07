@@ -1,1 +1,19 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="freeswitch/xml">
+  <section name="configuration">
+    <configuration name="ivr.conf" description="IVR menus">
+      <menus>
+        <menu name="freedomfone_ivr_100" tts-engine="cepstral" tts-voice="allison" greet-long="$${base_dir}/scripts/freedomfone/ivr/100/ivr/1_file_long.wav" greet-short="$${base_dir}/scripts/freedomfone/ivr/100/ivr/1_file_short.wav" invalid-sound="$${base_dir}/scripts/freedomfone/ivr/100/ivr/1_file_invalid.wav" exit-sound="$${base_dir}/scripts/freedomfone/ivr/100/ivr/1_file_exit.wav" timeout="3000" inter-digit-timeout="2000" max-failures="3" max-timeouts="4" digit-len="4">
+          <entry action="menu-exec-app" digits="1" param="transfer 2100 XML default"/>
+          <entry action="menu-exec-app" digits="1" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} '1268917781' '1' 'lam' ${caller_id_number} ${destination_number}"/>
+          <entry action="menu-top" digits="9"/>
+          <entry action="menu-back" digits="0"/>
+        </menu>
+        <menu name="44_Foo" tts-engine="cepstral" tts-voice="allison" greet-long="$${base_dir}/scripts/freedomfone/ivr/100/ivr/44_file_long.wav" greet-short="$${base_dir}/scripts/freedomfone/ivr/100/ivr/44_file_short.wav" invalid-sound="say: Invalid option. Please try again." exit-sound="say: Thank you and good bye." timeout="3000" inter-digit-timeout="2000" max-failures="3" max-timeouts="4" digit-len="4">
+          <entry action="menu-top" digits="9"/>
+          <entry action="menu-back" digits="0"/>
+        </menu>
+      </menus>
+    </configuration>
+  </section>
+</document>

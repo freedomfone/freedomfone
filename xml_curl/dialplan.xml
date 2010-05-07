@@ -182,13 +182,12 @@
 
         <extension name="inbound_Mobigater1">
           <condition field="destination_number" expression="^5000$">
-            <action application="transfer" data="2100 XML default"/>
+            <action application="transfer" data="4100 XML default"/>
           </condition>
         </extension>
         <extension name="inbound_Mobigater2">
           <condition field="destination_number" expression="^5001$">
-<!--	    <action application="set" data="playback_terminators=*"/> -->
-            <action application="transfer" data="4100 XML default"/>
+            <action application="transfer" data="2100 XML default"/>
         </condition>
         </extension>
         <extension name="inbound_Mobigater3">

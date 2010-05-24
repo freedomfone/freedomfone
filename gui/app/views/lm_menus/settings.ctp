@@ -53,6 +53,8 @@ $commentSave     = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
 
 
+
+
 echo $form->create('LmMenu', array('type' => 'post', 'action' => 'settings','enctype' => 'multipart/form-data') );
 $path = $lm_settings['path'].IID."/".$lm_settings['dir_menu'];
 echo $form->hidden('id');
@@ -84,10 +86,18 @@ $input8_3 = $input8_4 = false;
      $lines1[0] = array($input1_1,$input1_2, $input1_3);
      $lines1[2] = array(array($input1_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
+
+
      echo "<table>";
      echo $html->tableCells($lines1);
      echo "</table>";
      echo "</fieldset>";
+
+     // Show and collapse advanced menu.
+
+     echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
+     echo $html->div();
+
 
      // ** Record **//
      echo "<fieldset><legend>".__('Step 2: Record message',true)."</legend>";
@@ -239,6 +249,7 @@ $input8_3 = $input8_4 = false;
      echo "</table>";
      echo "</fieldset>";
 
+     echo "</div>";
 
      echo $form->end(__('Save',true)); 
 

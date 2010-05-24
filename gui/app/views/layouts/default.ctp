@@ -49,17 +49,20 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
     <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
+    <?=$html->css('domcollapse');?>  		<!-- Hide/collapse elements -->
     <?=$html->css('jquery.cluetip');?>	     	<!-- JQuery Cluetip -->
     <?=$html->meta('icon');?>
 
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
+    <?=$javascript->link('prototype');?>		
     <?=$javascript->link('jquery');?>		
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
     <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
-   
+    <?=$javascript->link('domcollapse');?>        <!-- Hide/collapse elements -->
+
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
     <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
 
@@ -82,7 +85,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Lupinus 1.5.3</div>
+	 <div class="footer">Lycaon Pictus Lupinus 1.6</div>
 </div>										<!--wrapper end-->
 </body>
 </html>

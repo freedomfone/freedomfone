@@ -26,33 +26,46 @@ class SettingsController extends AppController {
 
     var $name = 'Settings';
 
-
 	function index() {
+	
 
       		$this->pageTitle = 'Environment settings';
 
 		//process data
 		if (!empty($this->data)) {
+		  
+		   foreach($this->data as $id => $entry){
 
 
-				$lang = $this->data['Setting']['language'];
-				$id = $this->data['Setting']['id'];
-				
-				$this->data['Setting']['id']=$id; 
-				$this->data['Setting']['value_string']=$lang; 
+		    $data['id'] = $id; 
+		    $data[$entry['field']]=$entry['value']; 
+ 		    $this->Setting->set( $data );
+		    $this->Setting->save();
+		    unset($data);
 
-				$this->Setting->set( $this->data );
-				$this->Setting->save();
+		      //Language setting
+		      if($id == 1) { 
+			  Configure::write('Config.language', $entry['value']);
+			  $this->Session->write('Config.language', $entry['value']);		 
+  	              }
 
-				Configure::write('Config.language', $lang);
-				$this->Session->write('Config.language', $lang);
-		 
+		      //Timezone setting
+		      elseif($id == 6) { 
+
+		      $this->Session->write('Config.timezone', $entry['value']);		 
+
+  	              }
+		   }
+
+		$this->redirect(array('action' =>'/')); 
+
 		}
 
-		$data = $this->Setting->findByName('language');
+		$data = $this->Setting->findAllByType('env');
  		$this->set(compact('data'));
 		$this->render();		
 	}
+
 
 }
 ?>

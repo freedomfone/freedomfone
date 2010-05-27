@@ -241,7 +241,7 @@
 
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Environment",true),'/settings/env'); ?>
+<?php echo $html->link(__("Environment",true),'/settings/'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 

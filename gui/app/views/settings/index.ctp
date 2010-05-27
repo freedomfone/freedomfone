@@ -22,7 +22,35 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Global settings",true)."</h1>";
+echo "<h1>".__("Language settings",true)."</h1>";
+
+$session->flash();
+echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
+$empty = '- '.__('Select language',true).' -';
+
+	foreach ($data as $key => $unit){
+
+	  $entry = $unit['Setting'];
+
+	  if ($entry['name']=='language'){
+
+	     $lang_selected = $entry['value_string'];
+	     $languages = Configure::read('LANGUAGES');
+	     $rows[] = array(__("Language",true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'empty'=>$empty,'selected'=>$lang_selected)));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+
+
+	  } 
+	  
+
+	}
+
+	$rows[] = array(array($form->end(__('Save',true)),array('colspan'=>2,'align'=>'center')));
+
+
+	echo "<table>";
+	echo $html->tableCells($rows);
+	echo "</table>";
 
 
 ?>

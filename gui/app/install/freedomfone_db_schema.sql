@@ -384,3 +384,56 @@ CREATE TABLE `channels` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(50) default NULL,
+  `surname` varchar(50) default NULL,
+  `email` varchar(50) default NULL,
+  `skype` varchar(50) default NULL,
+  `phone1` varchar(50) default NULL,
+  `phone2` varchar(50) default NULL,
+  `organization` varchar(50) default NULL,
+  `created` int(11) unsigned NOT NULL,
+  `modified` int(11) unsigned default '0',
+  `count_poll` int(11) unsigned default NULL,
+  `count_ivr` int(11) unsigned default NULL,
+  `count_lam` int(11) unsigned default NULL,
+  `callback_count` int(11) unsigned default NULL,
+  `first_app` varchar(10) default NULL,
+  `first_epoch` int(11) unsigned default NULL,
+  `last_app` varchar(10) default NULL,
+  `last_epoch` int(11) unsigned default NULL,
+  `instance_id` int(6) NOT NULL,
+  `acl_id` int(11) unsigned default '0',
+  `new` tinyint(4) default '1',
+  `country_id` int(11) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
+--
+-- Table structure for table `phone_books`
+--
+
+DROP TABLE IF EXISTS `phone_books`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `phone_books` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+

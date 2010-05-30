@@ -187,7 +187,6 @@ INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100);
 --
 -- Table structure for table `messages`
 --
-
 DROP TABLE IF EXISTS `messages`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
@@ -205,10 +204,13 @@ CREATE TABLE `messages` (
   `status` tinyint(4) default '1',
   `length` int(11) default NULL,
   `instance_id` int(6) NOT NULL,
+  `user_id` int(11) unsigned default NULL,
+  `comment` varchar(300) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
 
 --
 -- Table structure for table `messages_tags`

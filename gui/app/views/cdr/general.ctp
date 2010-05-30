@@ -22,6 +22,40 @@
  *
  ***************************************************************************/
 
+
+ if(isset($this->params['form']['action'])) {	
+	     if ($this->params['form']['action']==__('Export',true)){
+
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Protocol',true),__('Length',true));
+		$csv->addRow($line);
+
+	if($cdr){
+
+		foreach($cdr as $key => $entry){
+
+		$line = array( date('Y-m-d',$entry['Cdr']['epoch']),
+		               date('Y',$entry['Cdr']['epoch']),
+		      	       date('m',$entry['Cdr']['epoch']),
+			       date('d',$entry['Cdr']['epoch']),
+			       date('H:i:s',$entry['Cdr']['epoch']),
+			       $entry['Cdr']['title'],
+			       $entry['Cdr']['caller_name'],
+			       $entry['Cdr']['proto'],
+			       $entry['Cdr']['length']);
+
+		$csv->addRow($line);
+
+		}
+
+	}
+		$prefix=date('Y-m-d_');
+		echo $csv->render($prefix.__('CDR',true).'.csv');  
+		$csv->render(false);
+
+
+	     } else {
+
+
 echo "<h1>".__("Data mining: Leave-a-message and Voice menu calls",true)."</h1>";
 echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
 
@@ -80,7 +114,9 @@ echo $form->end();
 	 echo $html->tableHeaders($headers);
 	 echo $html->tableCells($rows);
 	 echo "</table>";
+	 }
 
 
+	 } //else Action
 	 }
 ?>

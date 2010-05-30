@@ -84,22 +84,18 @@ class CdrController extends AppController{
 	}*/
 	$lam=array();
 
+        $this->set(compact('ivr','lam','cdr'));
+
         if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action']==__('Submit',true)){
-
-             $this->set(compact('ivr','lam','cdr'));
-             $this->render();  
-
-                   
-              } elseif ($this->params['form']['action']==__('Export',true)){
-
-	      echo "export here";
-
+	     if ($this->params['form']['action']==__('Export',true)){
+	     	     
+  	     Configure::write('debug', 0);
+    	     $this->layout = null;
+    	     $this->autoLayout = false;
+    	     $this->render();    
 	      }	   
        }
-
-
-
+            // $this->render();  
 
       }
 

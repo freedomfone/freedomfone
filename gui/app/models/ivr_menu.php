@@ -111,7 +111,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
  function validFileType($data)
     {
-//debug($data['file_long_type']);
+
 	$type = $data['file_long_type'];
 
 	//allowed file types
@@ -257,9 +257,9 @@ function __construct($id = false, $table = null, $ds = null) {
 		$id   ='option'.$i.'_id';
 
 		if ($ivr[$type]=='node' && $ivr[$id]){ 
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['modified']);
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title']);
 		   } elseif ($ivr[$type] =='lam') {
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['modified']);
+		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title']);
 		   }
 	      }
 	      $obj->write_entry_common($key);

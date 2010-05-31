@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-define("Version", '1.5.0');
+define("Version", '1.6.0');
 define("ParentXML", "ff-event");
 define("BaseDir", "/usr/local/freedomfone/");
 define("DefaultXSL", "default.xsl");

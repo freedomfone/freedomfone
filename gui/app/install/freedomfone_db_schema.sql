@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: freedomfone
 -- ------------------------------------------------------
--- Server version	5.0.51a-24+lenny2
+-- Server version	5.0.51a-3ubuntu5.5
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -106,10 +106,48 @@ CREATE TABLE `cdr` (
   `extension` smallint(6) default NULL,
   `application` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
+  `length` int(11) unsigned default '0',
+  `user_id` varchar(50) default NULL,
+  `title` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
+--
+-- Table structure for table `channels`
+--
+
+DROP TABLE IF EXISTS `channels`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `channels` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `epoch` int(11) unsigned default NULL,
+  `interface_name` varchar(50) default NULL,
+  `interface_id` smallint(6) default NULL,
+  `active` tinyint(1) default NULL,
+  `not_registered` tinyint(1) default NULL,
+  `home_network_registered` tinyint(1) default NULL,
+  `roaming_registered` tinyint(1) default NULL,
+  `got_signal` smallint(6) default NULL,
+  `running` tinyint(1) default NULL,
+  `imei` varchar(100) default NULL,
+  `imsi` varchar(100) default NULL,
+  `controldev_dead` tinyint(1) default NULL,
+  `controldevice_name` varchar(50) default NULL,
+  `no_sound` tinyint(1) default NULL,
+  `playback_boost` float(8,3) default NULL,
+  `capture_boost` float(8,3) default NULL,
+  `ib_calls` int(6) default NULL,
+  `ob_calls` int(6) default NULL,
+  `ib_failed_calls` int(6) default NULL,
+  `ob_failed_calls` int(6) default NULL,
+  `interface_state` int(6) default NULL,
+  `phone_callflow` int(6) default NULL,
+  `during-call` tinyint(1) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `ivr_menus`
@@ -178,6 +216,15 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
+  `modeWelcome` tinyint(4) default '0',
+  `modeInform` tinyint(4) default '0',
+  `modeInvalid` tinyint(4) default '0',
+  `modeLong` tinyint(4) default '0',
+  `modeSelect` tinyint(4) default '0',
+  `modeDelete` tinyint(4) default '0',
+  `modeSave` tinyint(4) default '0',
+  `modeGoodbye` tinyint(4) default '0',
+  `title` varchar(50) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
@@ -205,9 +252,11 @@ CREATE TABLE `messages` (
   `status` tinyint(4) default '1',
   `length` int(11) default NULL,
   `instance_id` int(6) NOT NULL,
+  `user_id` int(11) unsigned default NULL,
+  `comment` varchar(300) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -222,7 +271,7 @@ CREATE TABLE `messages_tags` (
   `message_id` int(11) unsigned default NULL,
   `tag_id` int(11) unsigned default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -243,6 +292,7 @@ CREATE TABLE `monitor_ivr` (
   `caller_number` varchar(50) default NULL,
   `extension` smallint(6) default NULL,
   `type` varchar(10) default NULL,
+  `title` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -263,8 +313,10 @@ CREATE TABLE `nodes` (
   `modified` int(11) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `file` (`file`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+
 
 --
 -- Table structure for table `polls`
@@ -286,7 +338,7 @@ CREATE TABLE `polls` (
   `invalid_closed` int(10) unsigned default '0',
   `invalid_early` int(10) unsigned default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -313,7 +365,26 @@ CREATE TABLE `processes` (
 SET character_set_client = @saved_cs_client;
 
 INSERT INTO `processes` VALUES (1,'dispatcher_in',0,'dispatcher_in/dispatcherESL.php --log=/var/tmp/dispatcher_in.log > /dev/null 2>&1 & echo $!',100,'Incoming dispatcher',0,0,'','run','/usr/bin/php'),(2,'dispatcher_out',0,'dispatcher_out/dispatcher_out.php > /dev/null 2>&1 & echo $!',100,'Outgoing dispatcher',0,0,'','run','/usr/bin/php'),(3,'dispatcher_in_version',NULL,'dispatcher_in/dispatcherESL.php -V',100,'Incoming dispatcher version',0,0,NULL,'version','/usr/bin/php');
+--
+-- Table structure for table `settings`
+--
 
+DROP TABLE IF EXISTS `settings`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `settings` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `value_float` float default '0',
+  `value_string` varchar(50) default NULL,
+  `value_int` int(11) default '0',
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+INSERT INTO `settings` VALUES (1,'language',0,'eng',0,'env');
 --
 -- Table structure for table `tags`
 --
@@ -327,6 +398,40 @@ CREATE TABLE `tags` (
   `longname` varchar(200) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(50) default NULL,
+  `surname` varchar(50) default NULL,
+  `email` varchar(50) default NULL,
+  `skype` varchar(50) default NULL,
+  `phone1` varchar(50) default NULL,
+  `phone2` varchar(50) default NULL,
+  `organization` varchar(50) default NULL,
+  `created` int(11) unsigned NOT NULL,
+  `modified` int(11) unsigned default '0',
+  `count_poll` int(11) unsigned default NULL,
+  `count_ivr` int(11) unsigned default NULL,
+  `count_lam` int(11) unsigned default NULL,
+  `callback_count` int(11) unsigned default NULL,
+  `first_app` varchar(10) default NULL,
+  `first_epoch` int(11) unsigned default NULL,
+  `last_app` varchar(10) default NULL,
+  `last_epoch` int(11) unsigned default NULL,
+  `instance_id` int(6) NOT NULL,
+  `acl_id` int(11) unsigned default '0',
+  `new` tinyint(4) default '1',
+  `country_id` int(11) unsigned default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
@@ -346,41 +451,16 @@ CREATE TABLE `votes` (
   `votes_early` int(10) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `channels`
---
-
-DROP TABLE IF EXISTS `channels`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `channels` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `epoch` int(11) unsigned default NULL,
-  `interface_name` varchar(50),
-  `interface_id` smallint,
-  `active` boolean,
-  `not_registered` boolean,  
-  `home_network_registered` boolean,
-  `roaming_registered` boolean,
-  `got_signal` smallint,
-  `running` boolean,
-  `imei` varchar(100),
-  `imsi` varchar(100),
-  `controldev_dead` boolean,
-  `controldevice_name` varchar(50),
-  `no_sound` boolean,
-  `playback_boost` float(8,3),
-  `capture_boost` float(8,3),
-  `ib_calls` int(6),
-  `ob_calls` int(6),
-  `ib_failed_calls` int(6),
-  `ob_failed_calls` int(6),
-  `interface_state` int(6),
-  `phone_callflow` int(6),
-  `during-call` boolean,
-  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2010-05-31 16:32:56

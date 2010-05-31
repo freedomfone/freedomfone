@@ -1,0 +1,104 @@
+		----------------------------------------------------
+		W E L C O M E  T O   F R E E D O M F O N E  v 1 . 6 
+		P I C T U S    L U P I N U S 
+		----------------------------------------------------
+
+This is the third official release of Freedom Fone after 18 months of continous development.
+
+- Freedom Fone v1.6 is built at the top of Ubuntu 8.04.4 LTS and kernel 2.6.24-17. 
+  At the end of 2010, our future releases will run in Ubuntu 10.04
+
+- Software and security updates applied until 1 June 2010
+
+- Freeswitch has been also updated from 1.0.5 to 1.0.6 and we have included the recently upstreamed gsmopen channel
+  http://www.gsmopen.org
+
+
+
+Thanks for your feedback! As a result of it, this version includes a few cool requested features:
+
+- BETTER LISTENING: We have updated the flash player and include the new audio flash player from the Word Press community, Code thanks to Martin Laine http://wpaudioplayer.com 
+
+- QUICK FEEDBACKS: Our Leave-a-message (LAM) application now supports a basic and advance mode. In basic mode users can just hang the phone without having to listen to their recorded message. This option will help in countries with very noisy lines where DTMF tones are difficult to detect. In the advance version, LAM users that decide to finish their message with the # key, can still play, delete and save their messages.
+
+- EXPORTING AUDIO: Both the files uploaded and received by LAM can be played with the new built-in flash media player. Now, all files can be downloaded out of Freedom Fone so you can add them to your favourite player or broadcast them using any third party application. 
+
+- MORE LOCALIZATION: Localization of Freedom Fone includes English, Swahili and Spanish and a language switcher to set your favourite language.
+
+- MORE AND BETTER DATA: Data mining of Call data Records
+
+- BUGS FIXED: Lots of bug fixed and hopefully less bugs introduced. :)
+
+
+GET YOUR MODEMS READY!
+======================
+
+Of the shelf Freedom Fone is ready to receive calls from low cost GSM modems and SIP VoIP devices.
+The USB modems are available at: http://www.mobigater.bg/. Without any special USB hub, you can plug three USB modems to your PC.
+
+You can verify that the USB modems are detected and available by issuing the command:
+
+#/etc/init.d/gsmopen devices
+
+root@lupinus:/home/lupinus# /etc/init.d/gsmopen devices
+Audio Devices List
+**** List of PLAYBACK Hardware Devices ****
+card 0: V8237 [VIA 8237], device 0: VIA 8237 [VIA 8237]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: V8237 [VIA 8237], device 1: VIA 8237 [VIA 8237]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: default [C-Media USB Headphone Set  ], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+Serial Devices List
+crw-rw---- 1 root dialout 166, 0 2010-05-31 16:32 /dev/ttyACM0
+
+This output tell us that we have one GSM modem connected at the serial port /dev/ttyACM0 and that the modem built-in sound card is available as card 1.
+
+There is plenty of information available about your GSM modems by issuing the command:
+
+root@lupinus:/home/lupinus# /etc/init.d/gsmopen status
+Alternatively you can check the file /var/tmp/gsmopen_boot.log
+
+SIP gateways and Freedom Fone
+=============================
+
+If you want to have plenty of GSM channels you can consider using a SIP based GSM gateway
+like the 2N Telecommunications Voice Blue Lite. http://www.2n.cz/en/products/gsm-gateways/voip/voiceblue-lite/
+
+Freedom Fone has left the internal extensions 1000 to 1019 with password 1234 pre-configured so you can register external SIP gateways.
+
+
+SSH server
+==========
+
+For security reasons this distribution does not have the SSH server activated, to activate the ssh server open a Terminal and run the command:
+
+#dpkg-reconfigure openssh-server
+
+The dpkg-reconfigure command will create unique cryptographic keys for your server.
+
+Listening to the audio files from a remote server
+=================================================
+
+When you select an audio file via Freedom Fone GUI interface, the file is streamed to your browser. The default installation assumes that you are using the local browser to listen to the files. If you want to listen to the audio files from another server, you need to edit the files:
+
+/usr/local/freedomfone/config/leave_message_100_core.conf
+/usr/local/freedomfone/config/gui_config_core.php
+
+Change the string "localhost" for your server IP in the following variables:
+
+var lmURIRoot = "http://localhost/freedomfone/";
+define ('MY_DOMAIN','http://localhost/freedomfone/');
+
+Check the IP address of your server by running:
+
+#ifconfig eth0 
+
+If your IP is 192.168.1.120, you will edit the variables as follows:
+var lmURIRoot = "http://192.168.1.120/freedomfone/";
+define ('MY_DOMAIN','http://192.168.1.120/freedomfone/');
+
+

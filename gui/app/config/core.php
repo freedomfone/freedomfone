@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 /**
  * Application wide charset encoding
  */
@@ -245,7 +245,7 @@ $config['VERSION'] = array(
  *         Set the correct time zone http://php.net/manual/en/timezones.php
  ********** ********** ********** **********/
 
-define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
+define ('MY_DOMAIN','http://demo.freedomfone.org/freedomfone16/');
 
 
 /********** ********** ********** **********

@@ -36,12 +36,14 @@ class CdrController extends AppController{
  
       $this->Cdr->refresh();
 
+
       }
 
       function general($action = null){
 
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
+
 
       $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
       $app   = $this->data['Cdr']['application'];
@@ -94,8 +96,8 @@ class CdrController extends AppController{
     	     $this->autoLayout = false;
     	     $this->render();    
 	      }	   
-       }
-            // $this->render();  
+       } 
+             //$this->render();  
 
       }
 

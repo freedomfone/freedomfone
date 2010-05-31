@@ -94,6 +94,7 @@ class Cdr extends AppModel{
 
 		     	$this->bindModel(array('hasOne' => array(
 		     					      	 'Message' => array(
+								 'foreignKey' => false,
 								 'conditions'=>array('Message.file'=>$call_id)))));
 								
 		        $message = $this->Message->findByFile($call_id);

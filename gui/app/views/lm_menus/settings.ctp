@@ -93,14 +93,10 @@ $input8_3 = $input8_4 = false;
      echo "</table>";
      echo "</fieldset>";
 
-     // Show and collapse advanced menu.
-
-     echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
-     echo $html->div();
 
 
      // ** Record **//
-     echo "<fieldset><legend>".__('Step 2: Record message',true)."</legend>";
+     echo "<fieldset><legend>".__('Step 2: Record message instructions',true)."</legend>";
      $input2_1 = $form->input('LmMenuFile.lmInform', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
      $input2_2 = array($this->element('player',array('host'=>$lm_settings['host'],'path'=>$path,'file'=>'lmInform','title'=>__('Inform Message',true),'id'=>'inform')),array('valign'=>'bottom'));
   
@@ -119,6 +115,11 @@ $input8_3 = $input8_4 = false;
      echo $html->tableCells($lines2);
      echo "</table>";
      echo "</fieldset>";
+
+     // Show and collapse advanced menu.
+
+     echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
+     echo $html->div();
 
 
      // ** Invalid **//

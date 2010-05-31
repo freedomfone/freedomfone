@@ -60,9 +60,11 @@ class Cdr extends AppModel{
 	      	  $channel_state = $entry['Channel-State'];
 		  $call_id = $entry['Unique-ID'];
 		  $application='';
+		  $start='';
 		  $ext = $entry['Caller-Destination-Number'];
+		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 
-	       	  $this->set('epoch' , floor($entry['Event-Date-Timestamp']/1000000));
+	       	  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
 		  $this->set('caller_name', urldecode($entry['Caller-Caller-ID-Name']));
@@ -76,16 +78,48 @@ class Cdr extends AppModel{
 	          elseif(stripos($channel,'sofia')===0){ $proto = 'sip';}
        	          $this->set('proto',$proto);
 
+
 		  foreach($mapping as $app => $reg){
 
-		    preg_match($reg,$ext,$matches);
-		       if($matches){	
-	 	       	$application = $app;
-		       }
+		       preg_match($reg,$ext,$matches);
+		         if($matches){	
+	 	        	$application = $app;
+		         }
+		   }
+
+		   //Calculate length of LAM and IVR calls
+
+		     //LAM: fetch length of file from Messages
+		     if ($application == 'lam' && $channel_state=='CS_ROUTING'){
+
+		     	$this->bindModel(array('hasOne' => array(
+		     					      	 'Message' => array(
+								 'foreignKey' => false,
+								 'conditions'=>array('Message.file'=>$call_id)))));
+								
+		        $message = $this->Message->findByFile($call_id);
+		        $this->set('length',$message['Message']['length']);
+		     } 
+
+		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
+		     elseif ($channel_state =='CS_DESTROY'){
+
+		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'CHANNEL_STATE' =>'CS_ROUTING','application'=>'ivr')))){
+		     	    	$length = $epoch - $start['Cdr']['epoch'];
+		     		$this->set('length',$length);
+		     		}
 		     }
+
+
 		     $this->set('application', $application);
 		     $this->create($this->data);
 	  	     $this->save($this->data);
+		
+		  if($start){
+		     $this->id = $start['Cdr']['id'];
+		     $this->saveField('length',$length);
+		     }
+
 
 		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
@@ -140,7 +174,7 @@ class Cdr extends AppModel{
 
 	      }
 
-           //** Fetch MONITOR_IVR from spooler **//
+              //** Fetch MONITOR_IVR from spooler **//
       	      $array = Configure::read('monitor_ivr');
 	      $obj = new ff_event($array);	       
 
@@ -149,13 +183,14 @@ class Cdr extends AppModel{
 	      }
 
       	      while ($entry = $obj->getNext('update')){
- 
+
+
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
 		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
-	       	  $this->MonitorIvr->set('ivr_code', $entry['FF-IVR-IVR-Name']);
+	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('node_id',$entry['FF-IVR-IVR-Node-Unique-ID']);
 	       	  $this->MonitorIvr->set('caller_number', $entry['FF-IVR-Caller-ID-Number']);
@@ -165,6 +200,10 @@ class Cdr extends AppModel{
 
 		  $this->MonitorIvr->create($this->MonitorIvr->data);
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
+
+		  //Save IVR title to CDR
+		  $this->id = $cdr['Cdr']['id'];
+		  $this->saveField('title',urldecode($entry['FF-IVR-IVR-Name']));
 
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 

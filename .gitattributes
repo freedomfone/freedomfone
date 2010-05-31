@@ -532,10 +532,7 @@ gui/app/views/settings/set.ctp -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text
 gui/app/views/tags/index.ctp -text
-gui/app/views/users/add.ctp -text
-gui/app/views/users/edit.ctp -text
 gui/app/views/users/edit.php -text
-gui/app/views/users/index.ctp -text
 gui/app/webroot/.htaccess -text
 gui/app/webroot/css.php -text
 gui/app/webroot/css/cake.generic.css -text

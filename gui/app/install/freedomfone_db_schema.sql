@@ -295,7 +295,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `lm_menus` WRITE;
 /*!40000 ALTER TABLE `lm_menus` DISABLE KEYS */;
-INSERT INTO `lm_menus` VALUES (1,1,'Welcome to my message service.','Record your message after the beep. To finish, press #.','','Get to the point!','','','','',100,0,0,0,0,0,0,0,0,'Default LAM');
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,0,0,0,0,0,0,0,'Default LAM');
 /*!40000 ALTER TABLE `lm_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -36,12 +36,71 @@ class CdrController extends AppController{
  
       $this->Cdr->refresh();
 
-      }
-
-      function foo(){
-      debug($this);
 
       }
+
+      function general($action = null){
+
+      $this->requestAction('/messages/refresh');
+      $this->requestAction('/cdr/refresh');
+
+
+      $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+      $app   = $this->data['Cdr']['application'];
+      $title=false;
+
+      if($app =='ivr'){ 
+      	      $title   = $this->data['Cdr']['title_ivr'];
+	      } elseif ($app =='lam') {
+	      $title   = $this->data['Cdr']['title_lam'];
+      }
+
+      $this->Cdr->unbindModel(array('belongsTo' => array('User')));
+      $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
+
+
+      //Fetch All CDR
+      if(!$title){
+
+	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+
+      } else {
+      //Fetch CDR by Title
+        
+         $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app,'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+      }
+
+
+      //Fetch list of all IVR (id and title)
+	$data   = $this->Cdr->query('select id,title from ivr_menus');
+	foreach ($data as $key => $entry){
+		$ivr[$entry['ivr_menus']['title']] = $entry['ivr_menus']['title'];
+	}
+
+      //Fetch list of all LAM (id and title)
+	/*
+	$data   = $this->Cdr->query('select id,title from lm_menus');
+	foreach ($data as $key => $entry){
+		$lam[$entry['lm_menus']['title']] = $entry['lm_menus']['title'];
+	}*/
+	$lam=array();
+
+        $this->set(compact('ivr','lam','cdr'));
+
+        if(isset($this->params['form']['action'])) {	
+	     if ($this->params['form']['action']==__('Export',true)){
+	     	     
+  	     Configure::write('debug', 0);
+    	     $this->layout = null;
+    	     $this->autoLayout = false;
+    	     $this->render();    
+	      }	   
+       } 
+             //$this->render();  
+
+      }
+
 
       function index(){
 
@@ -98,6 +157,7 @@ class CdrController extends AppController{
 
     function process (){
 
+
     	    if(!empty($this->params['form']['cdr'])){
 	   
 	      $entries = $this->params['form']['cdr'];
@@ -123,9 +183,8 @@ class CdrController extends AppController{
 		 $this->redirect(array('action' => 'index'));
     }
 
-    function output(){
 
-
+    function output (){
 
      if(key_exists('selected',$this->params['form'])){
      debug($this->params['form']);

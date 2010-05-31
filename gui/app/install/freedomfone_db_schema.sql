@@ -230,7 +230,7 @@ CREATE TABLE `lm_menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
-INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100);
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,'','','','','','','','','');
 --
 -- Table structure for table `messages`
 --

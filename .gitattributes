@@ -142,7 +142,6 @@ freeswitch/scripts/freedomfone/leave_message/100/conf/100_core.conf -text
 freeswitch/scripts/freedomfone/leave_message/100/conf/README -text
 freeswitch/scripts/freedomfone/leave_message/100/conf/default.conf -text
 freeswitch/scripts/freedomfone/leave_message/main.js -text
-freeswitch/scripts/freedomfone/leave_message2/main.js -text
 freeswitch/scripts/freedomfone/monitor_ivr/main.js -text
 freeswitch/scripts/freedomfone/sms/README -text
 freeswitch/scripts/freedomfone/sms/main.js -text

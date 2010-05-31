@@ -464,6 +464,7 @@ gui/app/views/categories/add.ctp -text
 gui/app/views/categories/edit.ctp -text
 gui/app/views/categories/index.ctp -text
 gui/app/views/cdr/export.ctp -text
+gui/app/views/cdr/general.ctp -text
 gui/app/views/cdr/index.ctp -text
 gui/app/views/cdr/output.ctp -text
 gui/app/views/cdr/overview.ctp -text

@@ -41,6 +41,7 @@
 	      } else {
 	      $check=0;
 	    }
+	    
 
       if (!isset($host)){ $host = MY_DOMAIN;}
 

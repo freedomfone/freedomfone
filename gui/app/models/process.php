@@ -173,7 +173,6 @@ class Process extends AppModel{
       	       $start = $this->data['Process']['start_cmd'];
 	       $script = $this->data['Process']['script'];
 	       $cmd=$script.' '.BASE_DIR.$start;
-	       
 	       $op = array();
 	       exec($cmd,$op);
                $version = $op[0];

@@ -88,10 +88,10 @@ When you select an audio file via Freedom Fone GUI interface, the file is stream
 /usr/local/freedomfone/config/leave_message_100_core.conf
 /usr/local/freedomfone/config/gui_config_core.php
 
-Change the string "localhost" for your server IP in the following variables:
+Change the string "localhost" and "127.0.0.1" for your server IP in the following variables:
 
 var lmURIRoot = "http://localhost/freedomfone/";
-define ('MY_DOMAIN','http://localhost/freedomfone/');
+define ('MY_DOMAIN','http://127.0.0.1/freedomfone/');
 
 Check the IP address of your server by running:
 

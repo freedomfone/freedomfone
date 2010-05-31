@@ -72,7 +72,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 <div id="wrapper">
 	 <div id="top_shadow"></div>
 	 <div class="top_a">
-		 <div id="top_a_left">Leave-a-message: Call +46 734 309 008, Voice menu: Call +46 733 140 416, Poll: SMS to any of the two numbers </div>
+		 <div id="top_a_left"></div>
 		 <div id="top_a_right"><?php echo $html->link(__('Freedom Fone',true), 'http://www.freedomfone.org',array('target' => '_blank','title' =>__("Visit the Freedom Fone website",true))); ?></div>
 
 	 </div>

@@ -44,13 +44,13 @@
 
     if($hours > 0)
     {
-        $ret .= $seconds." ".__("h",true)." ";
+        $ret .= $hours." ".__("h",true)." ";
     }
     /*** get the minutes ***/
 
     if($hours > 0 || $minutes > 0)
     {
-        $ret .= $seconds." ".__("min",true)." ";
+        $ret .= $minutes." ".__("min",true)." ";
     }
   
     /*** get the seconds ***/

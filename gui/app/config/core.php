@@ -241,11 +241,12 @@ $config['VERSION'] = array(
 
 /********** ********** ********** **********
  * CONFIG: Change localhost for the visible IP address of your server
- *         Configure language: eng (english) swa (swahili) 
  *         Set the correct time zone http://php.net/manual/en/timezones.php
  ********** ********** ********** **********/
 
-define ('MY_DOMAIN','http://demo.freedomfone.org/freedomfone16/');
+define ('MY_DOMAIN','http://localhost/freedomfone');
+Configure::write('Config.timezone', 'Africa/Harare');  
+date_default_timezone_set(Configure::read('Config.timezone'));
 
 
 /********** ********** ********** **********

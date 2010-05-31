@@ -529,6 +529,9 @@ gui/app/views/settings/env.ctp -text
 gui/app/views/settings/index.ctp -text
 gui/app/views/settings/lam.ctp -text
 gui/app/views/settings/set.ctp -text
+gui/app/views/tags/add.ctp -text
+gui/app/views/tags/edit.ctp -text
+gui/app/views/tags/index.ctp -text
 gui/app/views/users/add.ctp -text
 gui/app/views/users/edit.ctp -text
 gui/app/views/users/edit.php -text

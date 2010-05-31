@@ -120,7 +120,6 @@ $mypid = getmypid();
      //1. Connect to FreeSWITCH
      $sock = new ESLconnection($host, $port, $pass);
 
-
      //Eternal loop, until the server crashes!
      while(1){
 

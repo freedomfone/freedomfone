@@ -33,7 +33,7 @@ CREATE TABLE `bin` (
   `login` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -84,6 +84,7 @@ CREATE TABLE `cdr` (
   `status` tinyint(1) default '0',
   `proto` varchar(10) default NULL,
   `Answer-State` varchar(50) default NULL,
+  `Channel-Name` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -203,4 +204,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-03-25 10:02:51
+-- Dump completed on 2010-05-31 15:45:09

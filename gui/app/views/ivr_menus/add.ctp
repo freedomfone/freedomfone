@@ -94,7 +94,7 @@ echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype
         $radio1 = $form->radio('option'.$i.'_type',$options1,$attributes);
 	$radio2 = $form->radio('option'.$i.'_type',$options2,$attributes);
 
-        $row[$i-1]=array( array("<h3>".__('Press',true)." ".$i."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>__('-Select audio file-',true) )),$radio2,__('Leave-a-message',true));
+        $row[$i-1]=array( array("<h3>".__('Press',true)." ".$i."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'- '.__('Select menu option',true).' -' )),$radio2,__('Leave-a-message',true));
      }
 
      echo "<table width='700px'>";

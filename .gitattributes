@@ -514,6 +514,10 @@ gui/app/views/pages/functionality/ivr.ctp -text
 gui/app/views/pages/functionality/leave-a-message.ctp -text
 gui/app/views/pages/functionality/poll.ctp -text
 gui/app/views/pages/home.ctp -text
+gui/app/views/phone_books/add.ctp -text
+gui/app/views/phone_books/edit.ctp -text
+gui/app/views/phone_books/export.ctp -text
+gui/app/views/phone_books/index.ctp -text
 gui/app/views/polls/add.ctp -text
 gui/app/views/polls/edit.ctp -text
 gui/app/views/polls/index.ctp -text

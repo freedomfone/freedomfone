@@ -90,7 +90,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	$type = $data['file']['type'];
 
 	//allowed file types
-	$types = array('audio/x-wav','audio/wav','audio/mpeg');
+	$types = array('audio/x-wav','audio/wav','audio/mpeg','audio/mp3');
 
 	if(in_array($type,$types)){ return true;}
 	else { return false;}

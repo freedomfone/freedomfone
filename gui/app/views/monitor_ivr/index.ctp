@@ -26,6 +26,8 @@
 $session->flash();
 echo $javascript->includeScript('toggle');
 
+$msg_erase = 'return confirmSubmit("'.__("Are you sure that you want to erase the selected entries?",true).'")';
+
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -39,7 +41,7 @@ echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'s
 echo $form->end();
 
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'erase'));
-echo $html->div('frameRight',$form->submit(__('Erase',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRight',$form->submit(__('Erase',true),  array('name' =>'submit', 'class' => 'button','onClick'=>$msg_erase)));
 echo $form->end();
 
 
@@ -121,9 +123,11 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
      echo "</table>";
 
+
+     $msg_delete = 'return confirmSubmit("'.__("Are you sure that you want to erase the selected entries?",true).'")';
      echo "<table>";
      echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
+     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete)),
      $paginator->numbers()));
      echo "</table>";
      echo $form->end();

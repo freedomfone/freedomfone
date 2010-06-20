@@ -79,6 +79,9 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
 
+
+
+
      $row[$key] = array($id,
      		$date,
 		$time,
@@ -95,10 +98,11 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
 
+     $msg = 'return confirmSubmit("'.__("Are you sure that you want to delete the selected entries?",true).'")';
+
      echo "<table>";
      echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-
+     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg)),
      $paginator->numbers()));
      echo "</table>";
      echo $form->end();

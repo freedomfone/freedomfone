@@ -245,6 +245,8 @@ $config['VERSION'] = array(
  ********** ********** ********** **********/
 
 define ('MY_DOMAIN','http://127.0.0.1/freedomfone/');
+define ('VERSION','v1.6.5');
+define ('VERSION_NAME','Lycaon Pictus Lupinus');
 Configure::write('Config.timezone', 'Africa/Harare');  
 date_default_timezone_set(Configure::read('Config.timezone'));
 

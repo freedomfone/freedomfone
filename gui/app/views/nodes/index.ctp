@@ -84,6 +84,11 @@ echo $form->hidden('source',array('value'=>'index'));
      echo $form->end();
 
 
+     echo "<table>";
+     echo $html->tableCells(array(__('Page',true),$paginator->numbers()));
+     echo "</table>";
+
+
      echo "<span>".__("Number of entries per page: ",true);
      echo $html->link('10','index/limit:10',null, null, false)." | ";
      echo $html->link('50','index/limit:50',null, null, false)." | ";

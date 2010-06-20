@@ -38,21 +38,28 @@ $sort  = $session->read('messages_sort');
       if($data){
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
-		      'empty'   => __('-Set rate-',true));
+		      'empty'   => "--- ".__('No rate',true)." ---");
 
 
         $options_status = array('options' => array ('1'=>__("Active",true),'0'=>__("Archive",true)),
 		          'label'   => false);
 
 
-     echo "<div class='frameRight'>";
+
      if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
-	  echo $html->link(__("« Previous ",true),"edit/".$prev,array('class'=>'subTitles'));
+	  $prev = $html->link(__("« Previous ",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
-     echo " | ";
+
      if ($next = $neighbors[$Next]['Message']['id']){
-     	echo $html->link(__("Next »",true),"edit/".$next);
+     	$next = $html->link(__("Next »",true),"edit/".$next);
      }
+
+
+     echo "<div class='frameRight'>";
+     if ($prev && $next){ echo $prev." | ".$next;}
+     elseif ($prev) { echo $prev;}
+     elseif ($next) { echo $next;}
+
      echo "</div>";
 
      echo "<h1>".__("Edit Message",true)."</h1>";
@@ -79,8 +86,8 @@ $sort  = $session->read('messages_sort');
      array(__("Title",true),	$form->input('title',array('label'=>false))),
      array(__("Status",true),	$form->input('status',$options_status)),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
-     array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false))),
-     array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>__('-Select category-',true),'label'=>false))),
+     array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
+     array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false))),
      array( $button1, $button2)
      ));
@@ -96,7 +103,8 @@ $sort  = $session->read('messages_sort');
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
      array(__("Author",true),   $data['Message']['sender']),
-     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
+     array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
+    array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
      ));
      echo "</table>";
      echo "</div>";

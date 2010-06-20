@@ -22,10 +22,10 @@
  *
  ***************************************************************************/
 
-$this->pageTitle = __("Functionality : Leave-a-Message",true);           
+$this->pageTitle = __('Functionality',true)." : ".__('Leave-a-Message',true);           
 echo $this->element('menu_next',array('back_text'=>__('Poll',true),'back_link'=>'/functionality/poll','fwd_text'=>__('Voice Menus',true),'fwd_link'=>'/functionality/ivr','div'=>'frameRight'));
 
-echo "<h1>".__("Functionality: Leave-a-Message",true)."</h1>";
+echo "<h1>".__('Functionality',true)." : ".__('Leave-a-Message',true)."</h1>";
 
 echo __("<p>The Leave-a-Message service offers callers the option to call into Freedom Fone, and leave  their personal message. This may be a report, feedback, tip-off, response to a question, or perhaps a job application.</p>",true);
 echo __("<p>A caller using the Leave-a-message service is connected to a voice menu created by the Freedom Fone administrator. The voice menu greets the caller and provides instructions as to how to use the service.  The Leave-a-message service allows the caller to </p><ul><li>Record a message</li><li>Listen to their recorded message</li><li>Delete and record a new message OR</li><li>Save their message and exit</li></ul>",true);

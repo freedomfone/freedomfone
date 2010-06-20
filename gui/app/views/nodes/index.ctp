@@ -47,9 +47,9 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Title",true), 'title'),
  	//$paginator->sort(__("Category",true), 'Category.name'),
  	$paginator->sort(__("Created",true), 'created'),
- 	$paginator->sort(__("Last modified",true), 'modified'),
 	__("Edit",true),
 	__("Delete",true),
+	__("Download",true),
 	__("Listen",true)));
 
 echo $form->hidden('source',array('value'=>'index'));
@@ -61,17 +61,18 @@ echo $form->hidden('source',array('value'=>'index'));
 	$title    = $node['Node']['title'];
 	//$category = $node['Category']['name'];
 	$created  = $time->niceShort($node['Node']['created']);
-	$modified = $time->niceShort($node['Node']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/nodes/edit/{$node['Node']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
+	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$node['Node']['id']}",null, null, false);
 	$listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
 
+
      $row[$key] = array(
-		$title,
-		$created,		
-		$modified,
+		array($title,array('align'=>'left')),
+		array($created,array('align'=>'left','width'=>'125px')),
 		array($edit,array('align'=>'center','width'=>'30px')),
 		array($delete,array('align'=>'center','width'=>'30px')),
+		array($download,array('align'=>'center','width'=>'30px')),
 		array($listen,array('align'=>'left','width'=>'200px')));
 		
 

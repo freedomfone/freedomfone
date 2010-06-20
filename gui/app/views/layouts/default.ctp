@@ -85,7 +85,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Lupinus 1.6</div>
+	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?></div>
 </div>										<!--wrapper end-->
 </body>
 </html>

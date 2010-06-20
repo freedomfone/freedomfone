@@ -224,6 +224,39 @@ class NodesController extends AppController{
 
 	}
 
+
+  function download ($id) {
+
+
+    	Configure::write('debug', 0);
+
+	$this->Node->id = $id;
+	$data = $this->Node->read();
+	
+	$file = $data['Node']['file'].'.mp3';
+	$name = $data['Node']['title'];
+	$url  = 'webroot/freedomfone/ivr/'.IID.'/nodes';
+
+        $this->view = 'Media';
+
+    	$params = array(
+		'id' => $file,
+ 		'name' => $name,
+ 		'download' => true,
+ 		'cache' => true,
+ 		'extension' => 'mp3',
+ 		'path' => APP . $url . DS
+ 		);
+	$this->set($params);
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+  	$this->render();    
+
+
+    }
+
+
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * about.ctp	- About page (Freedom Fone version)
+ * version.ctp	- Version page 
  * version 	- 1.0.354
  * 
  * Version: MPL 1.1
@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo "<h1>".__("About",true)."</h1>";
-echo "<h4>".__('Release',true)."</h4>".__('Freedom Fone',true)." v1.6, <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>Lycaon pictus lupinus</a></i></p>";
+echo "<h1>".__("Freedom Fone Version",true)."</h1>";
+echo "<h4>".__('Release',true)."</h4>".__('Freedom Fone',true)." ".VERSION." <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a></i></p>";
 
 
 

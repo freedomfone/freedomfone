@@ -194,7 +194,7 @@
 
 
 <li>
-<?php echo $html->link(__("Data mining",true),'/cdr/general'); ?>
+<?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
 </li>
 
 

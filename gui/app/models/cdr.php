@@ -194,7 +194,7 @@ class Cdr extends AppModel{
 	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('node_id',$entry['FF-IVR-IVR-Node-Unique-ID']);
-	       	  $this->MonitorIvr->set('caller_number', $entry['FF-IVR-Caller-ID-Number']);
+	       	  $this->MonitorIvr->set('caller_number', urldecode($entry['FF-IVR-Caller-ID-Number']));
 	       	  $this->MonitorIvr->set('extension', $entry['FF-IVR-Destination-Number']);
 		  $this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  $this->MonitorIvr->set('type', __('tag',true));

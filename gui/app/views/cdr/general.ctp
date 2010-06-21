@@ -130,7 +130,7 @@ $session->flash();
 	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
 	     		     }
 
-	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Sender',true),__('Protocol',true),__('Length',true));
+	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true));
 	     echo "<table>";
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);

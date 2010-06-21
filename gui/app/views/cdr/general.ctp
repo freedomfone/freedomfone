@@ -48,7 +48,7 @@ $session->flash();
 			       date('d',$entry['Cdr']['epoch']),
 			       date('H:i:s',$entry['Cdr']['epoch']),
 			       $entry['Cdr']['title'],
-			       $entry['Cdr']['caller_name'],
+			       $entry['Cdr']['caller_number'],
 			       $entry['Cdr']['proto'],
 			       $entry['Cdr']['length']);
 
@@ -127,7 +127,7 @@ $session->flash();
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
-	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_name'],$data['proto'],$formatting->epochToWords($data['length']));
+	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
 	     		     }
 
 	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Sender',true),__('Protocol',true),__('Length',true));

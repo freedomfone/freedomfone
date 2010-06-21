@@ -36,7 +36,7 @@ class MessagesController extends AppController{
       function index(){
 
 
-      $this->pageTitle = 'Leave-a-Message : Inbox';
+      $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
       $this->Session->write('Message.source', 'index');
    
         if(isset($this->params['form']['submit'])) {

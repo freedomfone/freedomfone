@@ -26,7 +26,8 @@
 $session->flash();
 echo $javascript->includeScript('toggle');
 
-$msg_erase = 'return confirmSubmit("'.__("Are you sure that you want to erase the selected entries?",true).'")';
+
+$msg_delete = 'return confirmSubmit("'.__("Are you sure that you want to delete the selected entries?",true).'")';
 
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
@@ -40,9 +41,10 @@ echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'erase'));
-echo $html->div('frameRight',$form->submit(__('Erase',true),  array('name' =>'submit', 'class' => 'button','onClick'=>$msg_erase)));
+echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'delete'));
+echo $html->div('frameRight',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
+
 
 
 echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
@@ -57,7 +59,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
      <input type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.MonitorIvr)">
      <input type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.MonitorIvr)">
      <?
-
+     echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete));
 
      echo "<table width='100%'>";
      echo $html->tableHeaders(array(
@@ -94,7 +96,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/monitor_ivr/delete/{$entry['MonitorIvr']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/monitor_ivr/del/{$entry['MonitorIvr']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
 
 		//change class
 		if($call_id_old != $call_id){ 
@@ -123,13 +125,11 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
      echo "</table>";
 
-
-     $msg_delete = 'return confirmSubmit("'.__("Are you sure that you want to erase the selected entries?",true).'")';
      echo "<table>";
      echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete)),
      $paginator->numbers()));
      echo "</table>";
+
      echo $form->end();
 
 

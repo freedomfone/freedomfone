@@ -24,8 +24,15 @@
 
 
  $os = php_uname('s');
- $release = explode(':',exec('lsb_release -d'));
- $lsb = explode(':',exec('lsb_release -a'));
+
+$cmd1 = exec('/usr/bin/lsb_release -d');
+$cmd2 = exec('/usr/bin/lsb_release -a');
+$release = $lsb = false;
+
+if($cmd1){ $release = explode(':',$cmd1); }
+if($cmd2){ $lsb = explode(':',$cmd2); }
+
+
  $string = $os.', '.$release[1].', '.$lsb[1];
 
      echo "<h1>".__("System software",true)."</h1>";

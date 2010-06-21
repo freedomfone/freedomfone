@@ -44,10 +44,12 @@ class CdrController extends AppController{
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
 
+      $this->pageTitle = __('Reporting',true);
 
       $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
       $app   = $this->data['Cdr']['application'];
       $title=false;
+
 
       if($app =='ivr'){ 
       	      $title   = $this->data['Cdr']['title_ivr'];
@@ -63,11 +65,13 @@ class CdrController extends AppController{
       if(!$title){
 
 	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+	      $this->set('select_option','all');
 
       } else {
       //Fetch CDR by Title
         
          $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app,'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+	 $this->set('select_option','selected');
 
       }
 
@@ -78,25 +82,21 @@ class CdrController extends AppController{
 		$ivr[$entry['ivr_menus']['title']] = $entry['ivr_menus']['title'];
 	}
 
-      //Fetch list of all LAM (id and title)
-	/*
-	$data   = $this->Cdr->query('select id,title from lm_menus');
-	foreach ($data as $key => $entry){
-		$lam[$entry['lm_menus']['title']] = $entry['lm_menus']['title'];
-	}*/
+
 	$lam=array();
+	$application = $this->data['Cdr']['application'];
+        $this->set(compact('ivr','lam','cdr','application','select_option'));
 
-        $this->set(compact('ivr','lam','cdr'));
-
+	//Export data
         if(isset($this->params['form']['action'])) {	
 	     if ($this->params['form']['action']==__('Export',true)){
-	     	     
-  	     Configure::write('debug', 0);
-    	     $this->layout = null;
-    	     $this->autoLayout = false;
-    	     $this->render();    
-	      }	   
-       } 
+     
+  	       Configure::write('debug', 0);
+    	       $this->layout = null;
+    	       $this->autoLayout = false;
+    	       $this->render();   
+	     }	   
+         } 
              //$this->render();  
 
       }
@@ -163,7 +163,7 @@ class CdrController extends AppController{
 	      $entries = $this->params['form']['cdr'];
     	      $action = $this->params['data']['Submit'];
  
-              if ($action == __('Delete',true)){
+              if ($action == __('Delete selected',true)){
 
    	        foreach ($entries as $key => $id){
     	     	    if ($id) {
@@ -186,15 +186,14 @@ class CdrController extends AppController{
 
     function output (){
 
-     if(key_exists('selected',$this->params['form'])){
-     debug($this->params['form']);
 
-     }
 
       if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
       	 $end 	  = $this->data['Cdr']['end_time'];
- 
+	 $this->set('select_option','selected');	   
+
+
 	$hour_start = $start['hour'];
 	$hour_end   = $end['hour'];
 
@@ -223,15 +222,17 @@ class CdrController extends AppController{
     	 $this->set('data', $this->Cdr->find('all',$param)); 
 	 } 
 	 else {
-
     	   $this->set('data', $this->Cdr->findAll()); 
+	   $this->set('select_option','all');	   
 	 }
 
+
+         $this->set(compact('select_option'));
+
   	     Configure::write('debug', 0);
- 	 
     	     $this->layout = null;
     	     $this->autoLayout = false;
-    	     $this->render();    
+    	     $this->render();   
     }
 
 

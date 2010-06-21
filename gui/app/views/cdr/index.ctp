@@ -23,6 +23,9 @@
  ***************************************************************************/
 
 $session->flash();
+
+$msg = 'return confirmSubmit("'.__("Are you sure that you want to delete the selected entries?",true).'")';
+
 echo $javascript->includeScript('toggle');
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'index'));
@@ -44,12 +47,13 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
      echo $html->div("",$paginator->counter(array('format' => __("CDR:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('Cdr',array('type' => 'post','action'=> 'process','name'  => 'Cdr'));
+
      
      ?>
      <input type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.Cdr)">
      <input type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.Cdr)">
      <?
-
+     echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg));
 
      echo "<table width='100%'>";
      echo $html->tableHeaders(array(
@@ -98,11 +102,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
 
-     $msg = 'return confirmSubmit("'.__("Are you sure that you want to delete the selected entries?",true).'")';
-
      echo "<table>";
      echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg)),
      $paginator->numbers()));
      echo "</table>";
      echo $form->end();

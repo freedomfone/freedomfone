@@ -22,6 +22,7 @@
  *
  ***************************************************************************/
 
+$session->flash();
 
 
  //If action = Export, create CSV file 
@@ -74,14 +75,19 @@
 	//** START: Search form **/
 	echo "<h1>".__("Reporting",true)." : ".__("Incoming calls",true)."</h1>";
 	echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
+	echo $form->input('foo1',array('type' => 'hidden','value'=> 100));;
+	echo $form->input('foo2',array('type' => 'hidden','value'=> 200));;
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');
 
 
 	//Set application default value (IVR)
+
 	if( ! $default = $this->data['Cdr']['application']){
-    	    $default= 'ivr';
-    	    }
+	      if(!$default = $session->read('cdr_app')){
+    	      		   $default= 'ivr';
+    	       }
+	    }
 
 	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$default));
 	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$default));
@@ -97,8 +103,8 @@
 
 	    echo "<table>";
 	    echo $html->tableCells(array (
-     	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15))),
-     		 array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15))),
+     	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$session->read('cdr_start')))),
+     		 array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$session->read('cdr_end')))),
       		 ));
 	    echo "</table>";
 
@@ -109,13 +115,15 @@
 	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
              }
 	     echo $html->tableCells($buttons);
-	    echo "</table>";
+	     echo "</table>";
 	     echo $form->end();
 	     //** END: Search form **/
 
 
 	    //** START: List CDR **/
     	    if($cdr){
+	    
+	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
@@ -127,8 +135,19 @@
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);
 	     echo "</table>";
-	     }	  else {
 
+	     echo "<span>".__("No of entries per page: ",true);
+	     echo $html->link('10','general/view/limit:10',null, null, false)." | ";
+	     echo $html->link('50','general/view/limit:50',null, null, false)." | ";
+	     echo $html->link('100','general/view/limit:100',null, null, false)." | ";
+	     echo $html->link('250','general/view/limit:250',null, null, false);
+	     echo "</span>";
+
+
+
+
+
+	     }	  else {
 	     echo $html->div('feedback',__('No records found',true));
 	     }
  
@@ -137,3 +156,5 @@
 	     }
 
 ?>
+
+

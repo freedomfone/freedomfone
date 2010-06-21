@@ -25,12 +25,17 @@
 
 
  //If action = Export, create CSV file 
+
+
+ $export=false;
+
  if(isset($this->params['form']['action'])) {	
 	     if ($this->params['form']['action']==__('Export',true)){
 
+	     $export=true;
+
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Protocol',true),__('Length',true));
 		$csv->addRow($line);
-
 
 	if($cdr){
 
@@ -51,15 +56,23 @@
 		}
 
 	}
-		$prefix=date('Y-m-d_');
-		echo $csv->render($prefix.__('CDR',true).'.csv');  
+
+		$prefix=date('Y-m-d');
+	
+		$filename = $prefix."_".__('CDR',true)."_".$application."_".$select_option;
+
+		echo $csv->render($filename);  
 		$csv->render(false);
 	
 	} //export
-} //action 
+
+   } //action 
   
+	//Do not display form if action=Export
+	if(!$export){
+
 	//** START: Search form **/
-	echo "<h1>".__("Data mining: Leave-a-message and Voice menu calls",true)."</h1>";
+	echo "<h1>".__("Reporting",true)." : ".__("Incoming calls",true)."</h1>";
 	echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');
@@ -91,7 +104,7 @@
 
 	    echo "<table>";
 	    $buttons=array();
-	    $buttons[]= $form->submit(__('Submit',true),array('name'=>'action'));
+	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));
      	    if($cdr){ 
 	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
              }
@@ -114,7 +127,13 @@
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);
 	     echo "</table>";
-	     } 
+	     }	  else {
+
+	     echo $html->div('feedback',__('No records found',true));
+	     }
+ 
 	     //** END: List CDR **/
-	 
+
+	     }
+
 ?>

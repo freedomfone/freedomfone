@@ -113,6 +113,9 @@ echo $html->link('50','index/limit:50',null, null, false)." | ";
 echo $html->link('100','index/limit:100',null, null, false)." | ";
 echo $html->link('250','index/limit:250',null, null, false);
 echo "</span>";
+     } else {
+
+	     echo $html->div('feedback',__('No records found',true));
      }
 
 ?>

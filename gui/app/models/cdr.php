@@ -111,6 +111,7 @@ class Cdr extends AppModel{
 		     }
 
 
+		     $this->set('title', LAM_DEFAULT);
 		     $this->set('application', $application);
 		     $this->create($this->data);
 	  	     $this->save($this->data);
@@ -208,9 +209,6 @@ class Cdr extends AppModel{
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 
 	      }
-
-
-
 
 
 

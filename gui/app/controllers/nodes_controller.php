@@ -27,8 +27,7 @@ class NodesController extends AppController{
       var $name = 'Nodes';
       var $helpers = array('Html', 'Session','Form','Formatting','Flash');
 
-
-      
+    
      	
 
       function index(){
@@ -36,6 +35,14 @@ class NodesController extends AppController{
       	     $this->pageTitle = 'Voice menus : Audio files';           
              $this->paginate['limit'] = 10;
 	     $this->Node->recursive = 0; 
+
+      if(isset($this->params['named']['limit'])) { 
+	$this->Session->write('messages_limit',$this->params['named']['limit']);
+	}
+	elseif($this->Session->check('messages_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('messages_limit');
+	}	
+
 
      	     $this->set('nodes',$this->Node->find('all',array('order'=>'Node.created ASC')));
 	     $this->set('nodes',$this->paginate());
@@ -169,7 +176,8 @@ class NodesController extends AppController{
 
 		$this->Node->id = $id;
 		$this->data = $this->Node->read(null,$id);
-	//	$this->set('data',$this->Node->read());       
+   	   	//$this->Node->set( $this->data );
+
           }
 
 
@@ -216,8 +224,10 @@ class NodesController extends AppController{
 
 		else {
 
-	        $this->Node->save($this->data,array('fieldList'=>array('title','modified')));	
-		$this->redirect(array('action'=>'index'));
+		    $this->Node->save($this->data,array('fieldList'=>array('title','modified'),'validate'=>true));
+		    $this->redirect(array('action'=>'index'));
+
+
 		}
 
 		}

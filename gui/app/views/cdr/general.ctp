@@ -101,10 +101,11 @@ $session->flash();
       		 ));
             echo "</table>";
 
+
 	    echo "<table>";
 	    echo $html->tableCells(array (
      	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$session->read('cdr_start')))),
-     		 array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$session->read('cdr_end')))),
+     		 array(__("End time",true),	$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$session->read('cdr_end')))),
       		 ));
 	    echo "</table>";
 

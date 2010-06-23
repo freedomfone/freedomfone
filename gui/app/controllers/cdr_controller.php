@@ -54,9 +54,18 @@ class CdrController extends AppController{
 	$this->paginate['limit'] = $this->Session->read('cdr_limit');
 	}	
 
+            //User arrived from other page, reset session variables
+            if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
+
+            $this->Session->write('cdr_start', strtotime('1 January 2010'));
+            $this->Session->write('cdr_end',time());
+
+            }
+
 
 
       $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+
       if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
       if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 

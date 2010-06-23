@@ -98,7 +98,16 @@ $config['LM_DEFAULT']=	array(
 		'lmSelectMessage'  => 'To Play... press *. To Delete... press 0. To Save... press 1',
 		'lmDeleteMessage'  => 'Your message has been deleted!',
 		'lmSaveMessage'    => 'Thank you!',
-		'lmGoodbyeMessage' => 'Goodbye');
+		'lmGoodbyeMessage' => 'Goodbye',
+                'lmWelcomeUseText' => false,
+                'lmInformUseText'  => false,
+                'lmInvalidUseText' => false,
+                'lmLongUseText'    => false,
+                'lmSelectUseText' => false,
+                'lmDeleteUseText'  => false,
+                'lmSaveUseText'    => false,
+                'lmGoodbyeUseText' => false
+                );
 
 
 $config['IVR_SETTINGS'] = array(

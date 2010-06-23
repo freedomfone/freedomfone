@@ -46,7 +46,6 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
     <?php echo $html->charset('UTF-8'); ?>
 
     <?=$html->css('customise');?>    		<!-- joomla template -->
-    <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
     <?=$html->css('domcollapse');?>  		<!-- Hide/collapse elements -->

@@ -259,7 +259,6 @@ SET character_set_client = @saved_cs_client;
 --
 -- Table structure for table `lm_menus`
 --
-
 DROP TABLE IF EXISTS `lm_menus`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
@@ -275,18 +274,18 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  `modeWelcome` tinyint(4) default '0',
-  `modeInform` tinyint(4) default '0',
-  `modeInvalid` tinyint(4) default '0',
-  `modeLong` tinyint(4) default '0',
-  `modeSelect` tinyint(4) default '0',
-  `modeDelete` tinyint(4) default '0',
-  `modeSave` tinyint(4) default '0',
-  `modeGoodbye` tinyint(4) default '0',
+  `lmWelcomeUseText` tinyint(4) default '0',
+  `lmInformUseText` tinyint(4) default '0',
+  `lmInvalidUseText` tinyint(4) default '0',
+  `lmLongUseText` tinyint(4) default '0',
+  `lmSelectUseText` tinyint(4) default '0',
+  `lmDeleteUseText` tinyint(4) default '0',
+  `lmSaveUseText` tinyint(4) default '0',
+  `lmGoodbyeUseText` tinyint(4) default '0',
   `title` varchar(50) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --

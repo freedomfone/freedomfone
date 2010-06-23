@@ -45,7 +45,6 @@ class LmMenu extends AppModel {
 
     	    foreach ($lm_default as $key => $default){
 
-
 	    	    $text = $this->data['LmMenu'][$key];
 	    	    if (!$text){
 		       $text = $default;

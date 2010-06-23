@@ -36,6 +36,7 @@ class MessagesController extends AppController{
       function index(){
 
 
+
       $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
       $this->Session->write('Message.source', 'index');
    
@@ -83,6 +84,7 @@ class MessagesController extends AppController{
 
       function archive(){
 
+
       $this->pageTitle = 'Leave-a-Message : Archive';
       $this->Session->write('Message.source', 'archive');
      
@@ -120,6 +122,7 @@ class MessagesController extends AppController{
 
 
     function edit($id = null)    {  
+
 
 
     	     $this->pageTitle = 'Leave-a-Message : Edit';   
@@ -169,11 +172,12 @@ class MessagesController extends AppController{
     	     
 		$submit   = $this->params['data']['Submit'];
 
-		if ($submit == __('Save & Next',true) ){
+		if ($submit == __('Save »',true) ){
+		   $redirect = 'edit/'.$this->data['Message']['prev'];
+		}  elseif ($submit == __('« Save',true) ){
 		   $redirect = 'edit/'.$this->data['Message']['next'];
-		   } elseif ($submit == __('Save & Index',true) ){
+		}  elseif ($submit == __('Save',true) ){
 		   $redirect = $this->data['Message']['source'];
-	
 		}
 
 		$this->redirect(array('action' => $redirect));
@@ -258,6 +262,7 @@ class MessagesController extends AppController{
 
 
       function refresh(){
+
 
       $this->autoRender = false;
  

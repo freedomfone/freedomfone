@@ -47,16 +47,18 @@ $sort  = $session->read('messages_sort');
 
 
      if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
-	  $prev = $html->link(__("« Previous ",true),"edit/".$prev,array('class'=>'subTitles'));
+	  $prev = $html->link(__("Next »",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
 
      if ($next = $neighbors[$Next]['Message']['id']){
-     	$next = $html->link(__("Next »",true),"edit/".$next);
+     	$next = $html->link(__("« Previous",true),"edit/".$next);
      }
 
 
+
+
      echo "<div class='frameRight'>";
-     if ($prev && $next){ echo $prev." | ".$next;}
+     if ($prev && $next){ echo $next." | ".$prev;}
         elseif ($prev) { echo $prev;}
         elseif ($next) { echo $next;}
         echo "</div>";
@@ -69,6 +71,7 @@ $sort  = $session->read('messages_sort');
      echo "<table>";
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('next',array('value'=>$neighbors[$Next]['Message']['id']));
+     echo $form->hidden('prev',array('value'=>$neighbors[$Prev]['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
 
      echo $html->tableCells(array (
@@ -81,12 +84,16 @@ $sort  = $session->read('messages_sort');
      ));
      echo "</table>";
 
-
-        $button[] = $form->submit(__('Save & Index',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 	if ($next){
-            $button[] = $form->submit(__('Save & Next',true),   array('name' =>'data[Submit]', 'class' => 'button'));
+            $button[] = $form->submit(__('« Save',true),   array('name' =>'data[Submit]','title'=>__('Save and go to previous message',true), 'class' => 'button'));
+            }
+        $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save and go to inbox',true),'class' => 'button'));
+
+	if ($prev){
+            $button[] = $form->submit(__('Save »',true),   array('name' =>'data[Submit]', 'title'=>__('Save and go to next message',true), 'class' => 'button'));
 	}
-	$button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
+       
+      $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
 
 
 

@@ -23,6 +23,7 @@
 ***************************************************************************/
 echo $javascript->link('addRemoveElements');
 
+
 echo "<h1>".__("Create new poll",true)."</h1>";
 echo $form->create('Poll',array('type' => 'post','action'=> 'add'));
 

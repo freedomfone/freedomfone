@@ -42,6 +42,7 @@ class CdrController extends AppController{
       function general($action = null){
 
 
+
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
       $this->pageTitle = __('Reporting',true);
@@ -107,9 +108,13 @@ class CdrController extends AppController{
 
       //Fetch list of all IVR (id and title)
 	$data   = $this->Cdr->query('select id,title from ivr_menus');
-	foreach ($data as $key => $entry){
+        if ($data){
+	   foreach ($data as $key => $entry){
 		$ivr[$entry['ivr_menus']['title']] = $entry['ivr_menus']['title'];
-	}
+	   }
+        } else {
+        $ivr = array();
+        } 
 
 
 	$lam=array();
@@ -164,7 +169,7 @@ class CdrController extends AppController{
 	     }
 
 
-    function delete ($id){
+    function del ($id){
 
     	     $call_id = $this->Cdr->getCallId($id);
 
@@ -262,11 +267,13 @@ class CdrController extends AppController{
 
       function export(){
 
+
     	     $this->render();  
        }
 
 
       function overview(){
+
 
        	$this->pageTitle = 'Call Data Records : Overview';
 
@@ -287,6 +294,50 @@ class CdrController extends AppController{
   $this->render();  
       }
 
+
+
+    function delete(){
+
+
+      if ($this->data['Cdr']){
+      	 $start	  = $this->data['Cdr']['start_time'];
+      	 $end 	  = $this->data['Cdr']['end_time'];
+ 
+
+	$hour_start = $start['hour'];
+	$hour_end   = $end['hour'];
+
+	if($start['meridian']=='pm' && $start['hour']!=12){ 
+	   	$hour_start=$hour_start+12;
+		} 
+ 	elseif($start['meridian']=='am' && $start['hour']==12){ 
+	   	$hour_start='00';
+	}
+
+	if($end['meridian']=='pm' && $end['hour']!=12){ 
+	   	$hour_end=$hour_end+12;
+		} 
+ 	elseif($end['meridian']=='am' && $end['hour']==12){ 
+	   	$hour_end='00';
+	}
+
+	 $start = $start['year'].'-'.$start['month'].'-'.$start['day'].' '.$hour_start.':'.$start['min'].':00';
+     	 $end   = $end['year'].'-'.$end['month'].'-'.$end['day'].' '.$hour_end.':'.$end['min'].':00';
+
+
+      	 $start_epoch = strtotime($start);
+      	 $end_epoch = strtotime($end);
+
+	 $param = array('Cdr.epoch >=' => $start_epoch, 'Cdr.epoch <=' => $end_epoch);
+    	 $this->set('data', $this->Cdr->deleteAll($param)); 
+
+	 $this->redirect(array('action' => 'index'));
+	 }
+	 else {
+	 
+		$this->render();
+	 }           
+  }
 
 }
 ?>

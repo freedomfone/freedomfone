@@ -47,12 +47,13 @@ class AppController extends Controller {
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time','Paginator','Formatting');
 
 
+function beforeRender(){
 
+        date_default_timezone_set(Configure::read('Config.timezone'));
+
+        }
 
  function beforeFilter() {
-
-
- 	  	date_default_timezone_set($this->Session->read('Config.timezone'));
 
     	     	$locale = Configure::read('Config.language');
 

@@ -32,6 +32,8 @@ class MonitorIvrController extends AppController{
 
       function index(){
 
+
+
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/cdr/refresh');
@@ -67,8 +69,8 @@ class MonitorIvrController extends AppController{
 
       function refresh(){
 
+
       $this->autoRender = false;
- 
       $this->MonitorIvr->Cdr->refresh();
 
       }
@@ -96,6 +98,7 @@ class MonitorIvrController extends AppController{
     }
 
       function export(){
+
 
     	     $this->render();  
   
@@ -149,6 +152,8 @@ class MonitorIvrController extends AppController{
 
 
     function delete(){
+
+
 
       if ($this->data['MonitorIvr']){
       	 $start	  = $this->data['MonitorIvr']['start_time'];

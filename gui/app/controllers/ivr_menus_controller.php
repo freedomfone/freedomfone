@@ -265,7 +265,9 @@ class IvrMenusController extends AppController{
 
     function delete ($id){
 
-	     //Check if IVR is parent
+
+	     
+             //Check if IVR is parent
     	     $isParent = $this->IvrMenu->isParent($id);
 
 	     

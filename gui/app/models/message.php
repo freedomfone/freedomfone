@@ -54,6 +54,7 @@ class Message extends AppModel {
 
       $this->autoRender = false;
 
+
       $array = Configure::read('lm_in');
 
 	      

@@ -45,6 +45,7 @@ class PollsController extends AppController{
 
       function index(){
 
+
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/polls/refresh');
@@ -76,6 +77,7 @@ class PollsController extends AppController{
    function add(){
 
       $this->pageTitle = 'Create new poll';
+ 
 
       //Render empty form
       if (empty($this->data)){
@@ -173,6 +175,7 @@ class PollsController extends AppController{
 
 
    function edit($id = null){
+
 
    $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
 

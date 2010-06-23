@@ -37,10 +37,14 @@ echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' 
 echo $form->end();
 
 
-
 echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
+
+echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));
+echo $html->div('frameRight',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
 
 echo "<h1>".__('Call Data Records',true)."</h1>";
      if ($cdr){
@@ -81,7 +85,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/del/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
 
 
 

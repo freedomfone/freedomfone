@@ -35,40 +35,6 @@
 </li>
 
 
-<li><?php echo __("Freedom Fone",true);?>
-<ul>
-
-<li>
-<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("About",true),'/about'); ?>
-<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Architecture",true),'/architecture'); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Functionality",true),'/functionality'); ?>
-</li>
-
-
-<li>
-<?php echo $html->link(__("Download",true),'http://www.freedomfone.org/page/downloads',array('target'=>'blank')); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Read more",true),'http://www.freedomfone.org',array('target'=>'blank')); ?>
-</li>
-
-
-<li class='last'>
-<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
-<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
-<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
-</ul>
-</li>
 
 
 <li><?php echo __("Poll",true);?>
@@ -186,6 +152,9 @@
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("Language",true),'/settings/'); ?>
+</li>
 
 <li>
 <?php echo $html->link(__("Software",true),'/processes/software'); ?>
@@ -207,23 +176,6 @@
 
 
 
-<li><?php echo __("Settings",true);?>
-<ul>
-
-<li>
-<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Environment",true),'/settings/'); ?>
-<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
-</li>
-
-
-<li class='last'>
-<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
-<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
-<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
-</ul>
-</li>
 
 
 <li><?php echo __("System data",true);?>
@@ -242,7 +194,7 @@
 
 
 <li>
-<?php echo $html->link(__("Data mining",true),'/cdr/general'); ?>
+<?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
 </li>
 
 
@@ -256,8 +208,48 @@
 </li>
 
 
+
+<li><?php echo __("Help",true);?>
+<ul>
+
 <li>
-<a href='https://dev.freedomfone.org/' target='_blank'><?php echo $html->image('menu/menu_mid_svn.png',array('style'=>'float:left'));?></a>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Architecture",true),'/architecture'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("Functionality",true),'/functionality'); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("Downloads",true),'http://www.freedomfone.org/page/downloads',array('target'=>'blank')); ?>
+</li>
+
+
+
+<li>
+<?php echo $html->link(__("Website",true),'http://www.freedomfone.org',array('target'=>'blank')); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Feedback",true),'http://www.freedomfone.org/page/feedback',array('target'=>'blank')); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("About",true),'/about'); ?>
+</li>
+
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
 </li>
 
 

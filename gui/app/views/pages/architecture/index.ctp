@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 $this->pageTitle = __('Architecture',true);           
-echo "<h1>".__('Freedom Fone v1.5 Architecture',true)."</h1>";
+echo "<h1>".__('Freedom Fone',true)." ".VERSION." ".__('architecture',true)."</h1>";
 echo $html->para(null,__("Please select one of the alternatives below, to read about each component's architecture."));
 
 echo "<ul>";

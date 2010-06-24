@@ -46,7 +46,6 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
     <?php echo $html->charset('UTF-8'); ?>
 
     <?=$html->css('customise');?>    		<!-- joomla template -->
-    <?=$html->css('layout');?>	     		<!-- joomla template -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
     <?=$html->css('domcollapse');?>  		<!-- Hide/collapse elements -->
@@ -65,6 +64,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
     <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
+    <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
 
 </head>
 
@@ -85,7 +85,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer">Lycaon Pictus Lupinus 1.6</div>
+	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?></div>
 </div>										<!--wrapper end-->
 </body>
 </html>

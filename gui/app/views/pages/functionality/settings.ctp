@@ -1,7 +1,7 @@
-<?php
+<?php 
 /****************************************************************************
- * version.ctp	- Version page 
- * version 	- 1.0.354
+ * settings.ctp		- Describes the Settings functionality
+ * version 		- 1.0.425
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,19 @@
  *
  ***************************************************************************/
 
+$this->pageTitle = __('Functionality',true)." : ".__('Settings',true);           
+echo $this->element('menu_next',array('back_text'=>__('System Data',true),'back_link'=>'/functionality/system_data','div'=>'frameRight'));
 
-echo "<h1>".__("Freedom Fone Version",true)."</h1>";
-echo "<h4>".__('Release',true)."</h4>".__('Freedom Fone',true)." ".VERSION." <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a></i></p>";
+echo "<h1>".__('Functionality',true)." : ".__('Settings',true)."</h1>";
+echo __("<p>Set system wide settings.",true);
+
+echo "<h3>".__("Language",true)."</h3>";
+echo __("<p>Set language of GUI. Available languages are English, Spanish and Swahili.</p>",true);
+
+
+echo "<h3>".__("Timezone",true)."</h3>";
+echo __("<p>Set timezone of system.</p>",true);
+
 
 
 

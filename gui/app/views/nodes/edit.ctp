@@ -32,13 +32,14 @@ $ivr = Configure::read('IVR_SETTINGS');
 		$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$this->data['Node']['id']}",null, null, false);
 
 
-		$session->flash();
+
 		echo $form->create('Node', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 		echo $form->input('file_old',array('type'=>'hidden','value'=>$this->data['Node']['file']));
-
+		echo $form->input('id',array('type'=>'hidden','value'=>$this->data['Node']['id']));
 		echo "<table border=0>";
 		echo $html->tableCells(array (
      		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
+		     $session->flash();
 		echo $html->tableCells(array (
      		     array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
      		     array(array(__("If you select a file, the previous one will be deleted. Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));

@@ -46,6 +46,7 @@ class Cdr extends AppModel{
 
 	$mapping = Configure::read('EXT_MAPPING');
 
+
            //** Fetch CDR from spooler **//
       	      $array = Configure::read('cdr');
 	      $obj = new ff_event($array);	       
@@ -80,7 +81,6 @@ class Cdr extends AppModel{
 
 
 		  foreach($mapping as $app => $reg){
-
 		       preg_match($reg,$ext,$matches);
 		         if($matches){	
 	 	        	$application = $app;
@@ -91,14 +91,14 @@ class Cdr extends AppModel{
 
 		     //LAM: fetch length of file from Messages
 		     if ($application == 'lam' && $channel_state=='CS_ROUTING'){
-
 		     	$this->bindModel(array('hasOne' => array(
 		     					      	 'Message' => array(
 								 'foreignKey' => false,
 								 'conditions'=>array('Message.file'=>$call_id)))));
-								
+						
 		        $message = $this->Message->findByFile($call_id);
 		        $this->set('length',$message['Message']['length']);
+		        $this->set('title', LAM_DEFAULT);
 		     } 
 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
@@ -109,7 +109,6 @@ class Cdr extends AppModel{
 		     		$this->set('length',$length);
 		     		}
 		     }
-
 
 		     $this->set('application', $application);
 		     $this->create($this->data);
@@ -166,7 +165,7 @@ class Cdr extends AppModel{
 		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
 		     	        $this->User->create();
 		     	        $this->User->save($user);
-				debug("add contact");
+				
 			    }
 			}
 
@@ -187,13 +186,14 @@ class Cdr extends AppModel{
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
+
 		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
 	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('node_id',$entry['FF-IVR-IVR-Node-Unique-ID']);
-	       	  $this->MonitorIvr->set('caller_number', $entry['FF-IVR-Caller-ID-Number']);
+	       	  $this->MonitorIvr->set('caller_number', urldecode($entry['FF-IVR-Caller-ID-Number']));
 	       	  $this->MonitorIvr->set('extension', $entry['FF-IVR-Destination-Number']);
 		  $this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  $this->MonitorIvr->set('type', __('tag',true));
@@ -202,15 +202,14 @@ class Cdr extends AppModel{
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
 
 		  //Save IVR title to CDR
+
+                  
 		  $this->id = $cdr['Cdr']['id'];
 		  $this->saveField('title',urldecode($entry['FF-IVR-IVR-Name']));
 
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 
 	      }
-
-
-
 
 
 

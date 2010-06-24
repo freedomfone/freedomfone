@@ -265,7 +265,9 @@ class IvrMenusController extends AppController{
 
     function delete ($id){
 
-	     //Check if IVR is parent
+
+	     
+             //Check if IVR is parent
     	     $isParent = $this->IvrMenu->isParent($id);
 
 	     
@@ -290,6 +292,34 @@ class IvrMenusController extends AppController{
 
 	  	$this->redirect(array('action' => '/index'));
       }
+
+
+  function download ($id,$type) {
+
+    	Configure::write('debug', 0);
+	
+	$file = $id.'_file_'.$type.'.mp3';
+	$url  = 'webroot/freedomfone/ivr/'.IID.'/ivr';
+
+        $this->view = 'Media';
+
+    	$params = array(
+		'id' => $file,
+ 		'name' => $type,
+ 		'download' => true,
+ 		'cache' => true,
+ 		'extension' => 'mp3',
+ 		'path' => APP . $url . DS
+ 		);
+	$this->set($params);
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+  	$this->render();    
+
+
+    }
+
 
 
 }

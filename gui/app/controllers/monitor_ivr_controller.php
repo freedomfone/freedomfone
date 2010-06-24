@@ -32,6 +32,8 @@ class MonitorIvrController extends AppController{
 
       function index(){
 
+
+
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/cdr/refresh');
@@ -50,7 +52,7 @@ class MonitorIvrController extends AppController{
 	     }
 
 
-    function delete ($id){
+    function del ($id){
 
    	     $call_id = $this->MonitorIvr->getCallId($id);
 
@@ -67,8 +69,8 @@ class MonitorIvrController extends AppController{
 
       function refresh(){
 
+
       $this->autoRender = false;
- 
       $this->MonitorIvr->Cdr->refresh();
 
       }
@@ -82,7 +84,7 @@ class MonitorIvrController extends AppController{
     	      foreach ($entries as $key => $id){
     	     	    if ($id) {
 		       $this->MonitorIvr->id = $id;
-		       if ($action == __('Delete',true)){
+		       if ($action == __('Delete selected',true)){
     	     	       	   $call_id = $this->MonitorIvr->getCallId($id);
      	       	  	   if ($this->MonitorIvr->del($id)){
 	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "monitor_ivr"); 
@@ -96,6 +98,7 @@ class MonitorIvrController extends AppController{
     }
 
       function export(){
+
 
     	     $this->render();  
   
@@ -148,7 +151,9 @@ class MonitorIvrController extends AppController{
     }
 
 
-    function erase(){
+    function delete(){
+
+
 
       if ($this->data['MonitorIvr']){
       	 $start	  = $this->data['MonitorIvr']['start_time'];

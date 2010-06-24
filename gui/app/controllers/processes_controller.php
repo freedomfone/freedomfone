@@ -40,8 +40,9 @@ class ProcessesController extends AppController{
 	$version[1]   = $this->Process->fsCommand("version");
 	$uptime       = $this->Process->fsCommand("status");
 
+        $epoch        = $this->Process->getEpoch("dispatcher_in");
 	$uptime = $this->Process->uptime($uptime);
-	$this->set(compact('version','uptime'));
+	$this->set(compact('version','uptime','epoch'));
       	$this->set('data',$this->Process->findAllByType('run'));
 
       }

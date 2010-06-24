@@ -1,14 +1,3 @@
-/**
-*** A Free Template by joomlajunkie.com
-*** @version 1.0
-*** @copyright (C) 2005-2006 by - Joomla Junkie
-*** @web http://www.joomlajunkie.com
-**/
-
-/***This css file seperates the actual styling 
-from the layout, it contains all colors, links and
-specific Joomla styling***/
-
 
 body {
 background: #eee url(../img/html_bg.gif) repeat-x;
@@ -69,11 +58,76 @@ table {
 
 
 /*General link Styling*/
-a:link, a:active, a:visited, a:visited:hover, a:hover  {
-font-size: 12px; 
-color: #f89843; 
-text-decoration: none;
+
+a:link, a:visited, a:hover, a:active ,a:visited:hover{
+	font-size: 12px; 
+	color: #f89843; 
+	text-decoration: none;
 }
+
+a:hover {
+	font-size: 12px; 
+	color: #000; 
+	text-decoration: none;
+}
+
+
+
+th {
+       height: 25px;
+       background: #bbb;
+}
+
+
+th a:link, a:visited, a:hover, a:visited:hover, a:active {
+     	color: #000;
+
+}
+
+td {
+     font-size: 12px;
+     font-weight: normal;
+     background-color: #fff;
+     padding: 5px;
+     color: #000;
+}
+
+td a:link, a:visited, a:active {
+    color: #000; 
+}
+
+
+td a:hover, a:visited:hover {
+    color: #f89843;
+}
+
+
+tr.darker td {
+
+     background-color: #eee;
+}
+
+tr.lighter td {
+
+     background-color: #fff;
+}
+tr.main td {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+td.main  {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+tr.middle td {
+     background-color: #fff;
+     text-align: center;
+}
+
 
 
 #top_shadow {
@@ -187,7 +241,7 @@ color: #AEBF33;
 
 a.pagenav:hover {
 /* as above but specifically when the links are hovered over */color: #FF9900;
-color: #666;
+color: #ff0;
 }
 
 .pagenav_prev a {

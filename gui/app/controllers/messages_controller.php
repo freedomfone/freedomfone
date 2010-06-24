@@ -168,21 +168,16 @@ class MessagesController extends AppController{
 	if($this->Message->save($this->data['Message'])){
 
 		$this->Message->save($this->data['Tag']);
-		$this->Session->setFlash('Your message has been updated');
+		$this->Session->setFlash('The entry has been updated');
     	     
 		$submit   = $this->params['data']['Submit'];
 
-		if ($submit == __('Save »',true) ){
-		   $redirect = 'edit/'.$this->data['Message']['prev'];
-		}  elseif ($submit == __('« Save',true) ){
-		   $redirect = 'edit/'.$this->data['Message']['next'];
-		}  elseif ($submit == __('Save',true) ){
-		   $redirect = $this->data['Message']['source'];
+		if ($submit == __('Save',true) ){		   
+                    $redirect = 'edit/'.$id;
+                   }
 		}
 
 		$this->redirect(array('action' => $redirect));
-		}
-
 	}
     }
 

@@ -47,23 +47,24 @@ $sort  = $session->read('messages_sort');
 
 
      if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
-	  $prev = $html->link(__("Next »",true),"edit/".$prev,array('class'=>'subTitles'));
+	  $prev = $html->link(__("« Older message",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
 
      if ($next = $neighbors[$Next]['Message']['id']){
-     	$next = $html->link(__("« Previous",true),"edit/".$next);
+     	$next = $html->link(__("Newer message »",true),"edit/".$next);
      }
 
 
 
 
      echo "<div class='frameRight'>";
-     if ($prev && $next){ echo $next." | ".$prev;}
+     if ($prev && $next){ echo $prev." | ".$next;}
         elseif ($prev) { echo $prev;}
         elseif ($next) { echo $next;}
         echo "</div>";
 
      echo "<h1>".__("Edit Message",true)."</h1>";
+     $session->flash();
      echo "<fieldset>";
      echo "<div class='frameLeft'>";
   
@@ -84,19 +85,9 @@ $sort  = $session->read('messages_sort');
      ));
      echo "</table>";
 
-	if ($next){
-            $button[] = $form->submit(__('« Save',true),   array('name' =>'data[Submit]','title'=>__('Save and go to previous message',true), 'class' => 'button'));
-            }
-        $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save and go to inbox',true),'class' => 'button'));
-
-	if ($prev){
-            $button[] = $form->submit(__('Save »',true),   array('name' =>'data[Submit]', 'title'=>__('Save and go to next message',true), 'class' => 'button'));
-	}
        
-      $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
-
-
-
+     $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save and go to inbox',true),'class' => 'button'));
+     $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
      echo "<table>";
      echo $html->tableCells(array($button));
      echo "</table>";

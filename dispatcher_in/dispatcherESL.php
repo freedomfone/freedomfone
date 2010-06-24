@@ -117,13 +117,15 @@ $mypid = getmypid();
       $int = fwrite($handleV,Version);
       fclose($handleV);
 
-     //1. Connect to FreeSWITCH
-     $sock = new ESLconnection($host, $port, $pass);
 
      //Eternal loop, until the server crashes!
      while(1){
 
-	sleep(5);
+     //1. Connect to FreeSWITCH
+     $sock = new ESLconnection($host, $port, $pass);
+
+
+
        	set_time_limit(0); // Remove the PHP time limit of 30 seconds for completion due to loop watching events
 
 
@@ -191,6 +193,7 @@ $mypid = getmypid();
 	logESL("Failed to connect to FreeSWITCH","ERROR",1); 
 	}
 
+	sleep(15);
 	
      } //while
 

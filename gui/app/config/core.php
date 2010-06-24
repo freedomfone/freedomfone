@@ -233,6 +233,7 @@
 define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
+define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
@@ -241,11 +242,15 @@ $config['VERSION'] = array(
 
 /********** ********** ********** **********
  * CONFIG: Change localhost for the visible IP address of your server
- *         Configure language: eng (english) swa (swahili) 
  *         Set the correct time zone http://php.net/manual/en/timezones.php
  ********** ********** ********** **********/
 
-define ('MY_DOMAIN','http://192.168.1.10/freedomfone/');
+define ('MY_DOMAIN','http://192.168.1.10:8887/freedomfone16/');
+define ('VERSION','v1.6.5');
+define ('VERSION_NAME','Lycaon Pictus Lupinus');
+define ('LAM_DEFAULT','Default LAM');
+Configure::write('Config.timezone', 'America/Chicago');  
+date_default_timezone_set(Configure::read('Config.timezone'));
 
 
 /********** ********** ********** **********

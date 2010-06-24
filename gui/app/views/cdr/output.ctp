@@ -23,8 +23,6 @@
  ***************************************************************************/
 
 
-
-
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
 		$csv->addRow($line);
 
@@ -48,9 +46,10 @@
 		}
 
 	}
-		$prefix=date('Y-m-d_');
-		echo $csv->render($prefix.__('CDR',true).'.csv');  
+		$prefix=date('Y-m-d');
+		echo $csv->render($prefix."_".__('CDR',true)."_".$select_option);  
 		$csv->render(false);
+
 
 
 

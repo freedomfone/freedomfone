@@ -31,6 +31,7 @@ class SettingsController extends AppController {
 
       		$this->pageTitle = 'Environment settings';
 
+
 		//process data
 		if (!empty($this->data)) {
 		  
@@ -61,9 +62,44 @@ class SettingsController extends AppController {
 
 		}
 
-		$data = $this->Setting->findAllByType('env');
- 		$this->set(compact('data'));
+	}
+
+	function env() {
+	
+
+      		$this->pageTitle = 'Environment settings';
+
+
+
+		
+                //Fetch form data and process
+		if (!empty($this->data)) {
+
+
+                  $data = $this->data;		
+	    
+		  Configure::write('Config.language', $data['Setting']['language']);
+		  $this->Session->write('Config.language', $data['Setting']['language']);		 
+  	         
+		 
+                 Configure::write('Config.timezone', $data['Setting']['timezone']);  
+                 $bool = date_default_timezone_set(Configure::read('Config.timezone'));
+                 
+
+                 $this->Session->write('Config.timezone', $data['Setting']['timezone']);		 
+
+                  $this->Setting->save($data);  		
+ 
+
+
+		}
+
+                //Display form data                
+		$this->set('data',$this->Setting->find('first'));   
 		$this->render();		
+
+
+
 	}
 
 

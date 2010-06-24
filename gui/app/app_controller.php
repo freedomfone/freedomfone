@@ -49,8 +49,9 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
 
 function beforeRender(){
 
-        date_default_timezone_set(Configure::read('Config.timezone'));
 
+        date_default_timezone_set(Configure::read('Config.timezone'));
+        
         }
 
  function beforeFilter() {

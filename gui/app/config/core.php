@@ -249,7 +249,8 @@ define ('MY_DOMAIN','http://192.168.1.10:8887/freedomfone16/');
 define ('VERSION','v1.6.5');
 define ('VERSION_NAME','Lycaon Pictus Lupinus');
 define ('LAM_DEFAULT','Default LAM');
-Configure::write('Config.timezone', 'America/Chicago');  
+
+//Configure::write('Config.timezone', 'America/Chicago');  
 date_default_timezone_set(Configure::read('Config.timezone'));
 
 

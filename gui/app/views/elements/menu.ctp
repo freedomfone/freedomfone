@@ -208,6 +208,38 @@
 </li>
 
 
+<li><?php echo __("Under construction",true);?>
+<ul>
+
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Users",true),'/users'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("Phone book",true),'/phone_books'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Environment",true),'/settings/env'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Audio",true),'/settings/audio'); ?>
+</li>
+
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
+</li>
+
+
 
 <li><?php echo __("Help",true);?>
 <ul>

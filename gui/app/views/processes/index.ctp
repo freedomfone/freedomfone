@@ -38,17 +38,26 @@ echo "<h1>".__('Processes',true)."</h1>";
 
       foreach ($data as $key => $entry){
 
-      if( $entry['Process']['last_seen']) { 
-      	$last=$time->niceShort($entry['Process']['last_seen']); 
+
+       if( $last_db = $entry['Process']['last_seen']){
+      	$last=$time->niceShort($last_db); 
 	} else {
 	$last =__('N/A',true); 
 	}
+
+        $running = $entry['Process']['start_time'];
+        if ($epoch > $running){
+          $running = $epoch;}
+
+	$start_time = __("Running since",true).": ".$time->niceShort($running);
+
+
 
 
       	$status	    =  $this->element('process_status',array('status'=>$entry['Process']['status'],'mode'=>'image'));
 	$title      = $entry['Process']['title'];
 	$last_seen  = __("Last seen",true).": ".$last;
-	$start_time = __("Running since",true).": ".$time->niceShort($entry['Process']['start_time']);
+
 
 	if(!$interupt=$entry['Process']['interupt']){ $interupt=false;}
 

@@ -39,7 +39,7 @@ if($session->check('Message.flash')){
 		}  
 
 echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button.",true)."</div>";
+echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 
@@ -69,34 +69,31 @@ $input6_3 = $input6_4 = false;
 $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
 
+     //Checkbox for not using uploaded files
+     echo $form->hidden('lmUseText',array('value'=>0));
+     echo $form->input('lmUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
 
      // ** Welcome **//
      echo "<fieldset><legend>".__('Step 1: Welcome message',true)."</legend>";
      $input1_1 = $form->input('LmMenuFile.lmWelcome', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
      $input1_2 = array($this->element('player',array('host'=>$lm_settings['host'],'path'=>$path,'file'=>'lmWelcome','title'=>__('Welcome Message',true),'id'=>'welcome')),array('valign'=>'bottom'));
      $input1_5 = $form->input('lmWelcomeMessage',array('type'=>'textarea','rows' => '2','cols'=>'100%','label'=>__('Fallback text',true),'after' => $commentWelcome,'between'=>'<br />' )); 
-
      $lines1[0] = array(array($input1_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
-
-
   
-      if (file_exists($path.'/lmWelcome.mp3')){ 
+      if (file_exists($path.'/lmWelcome.mp3')){      	    
       	    $input1_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Welcome",null, null, false);
-	    $input1_4 = $form->input('modeWelcome',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-     	    
       } 
 
-     $lines1[1] = array($input1_1,$input1_2, $input1_3);
-     $lines1[2] = array(array($input1_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
+
+
+     $lines1[1] = array($input1_1,array($input1_3,array('valign'=>'bottom','width'=>'25')), $input1_2);
+     
 
 
      echo "<table>";
      echo $html->tableCells($lines1);
      echo "</table>";
      echo "</fieldset>";
-
-
-
 
 
      // ** Record **//
@@ -109,14 +106,11 @@ $input8_3 = $input8_4 = false;
 
       if (file_exists($path.'/lmInform.mp3')){ 
       	    $input2_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
-	    $input2_4 = $form->input('modeInform',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-     	    
-      } 
+	    $input2_4 = $form->input('lmInformUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));     	      
+       } 
 
-     $lines2[1] = array($input2_1,$input2_2,$input2_3); 
-     $lines2[2] = array(array($input2_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
-     
-
+     $lines2[1] = array($input2_1,array($input2_3,array('valign'=>'bottom','width'=>'25')), $input2_2);
+    
  
      echo "<table>";
      echo $html->tableCells($lines2);
@@ -128,6 +122,7 @@ $input8_3 = $input8_4 = false;
      echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
      echo $html->div();
 
+     echo "<div class ='instruction'>".__("The Advanced Leave-a-Message service requires the caller to Press 1 to Save, 0 to Delete, or * to Listen to its message The additional prompts beölow (Step 3 - 8) facilitate this functionality.",true)."</div>";
 
      // ** Invalid **//
      echo "<fieldset><legend>".__('Step 3: Invalid message',true)."</legend>";
@@ -138,14 +133,12 @@ $input8_3 = $input8_4 = false;
      $lines3[0] = array(array($input3_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmInvalid.mp3')){ 
-	    $input3_4 = $form->input('modeInvalid',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
 	    $input3_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
-
       } 
 
-     $lines3[1] = array($input3_1,$input3_2,$input3_3);
-     $lines3[2] = array(array($input3_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
+     $lines3[1] = array($input3_1,array($input3_3,array('valign'=>'bottom','width'=>'25')), $input3_2);
+     
      echo "<table>";
      echo $html->tableCells($lines3);
      echo "</table>";
@@ -162,14 +155,13 @@ $input8_3 = $input8_4 = false;
 
       if (file_exists($path.'/lmLong.mp3')){ 
             $input4_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
-	    $input4_4 = $form->input('modeLong',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-
+	
      } 
 
 
-     $lines4[1] = array($input4_1,$input4_2,$input4_3);
-     $lines4[2] = array(array($input4_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));         
-     
+
+     $lines4[1] = array($input4_1,array($input4_3,array('valign'=>'bottom','width'=>'25')), $input4_2);
+          
      echo "<table>"; 
      echo $html->tableCells($lines4);
      echo "</table>";
@@ -185,14 +177,11 @@ $input8_3 = $input8_4 = false;
      $lines5[0] = array(array($input5_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
       if (file_exists($path.'/lmSelect.mp3')){ 
       	 $input5_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);	
-    	 $input5_4 = $form->input('modeSelect',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-	 
       } 
 
 
-     $lines5[1] = array($input5_1,$input5_2,$input5_3);
-     $lines5[2] = array(array($input5_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));	 
-
+     $lines5[1] = array($input5_1,array($input5_3,array('valign'=>'bottom','width'=>'25')), $input5_2);
+    
      echo "<table>";
      echo $html->tableCells($lines5);
      echo "</table>";
@@ -209,13 +198,12 @@ $input8_3 = $input8_4 = false;
 
       if (file_exists($path.'/lmDelete.mp3')){ 
       	 $input6_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);	
-    	 $input6_4 = $form->input('modeDelete',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-
+    	 $input6_4 = $form->input('lmDeleteUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
       } 
 
-     $lines6[1] = array($input6_1,$input6_2,$input6_3);
-     $lines6[2] = array(array($input6_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));      
 
+     $lines6[1] = array($input6_1,array($input6_3,array('valign'=>'bottom','width'=>'25')), $input6_2);
+     
      echo "<table>";
      echo $html->tableCells($lines6);
      echo "</table>";
@@ -232,12 +220,11 @@ $input8_3 = $input8_4 = false;
 
       if (file_exists($path.'/lmSave.mp3')){
       	    $input7_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false); 
-	    $input7_4 = $form->input('modeSave',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-
       } 
 
-     $lines7[1] = array($input7_1,$input7_2,$input7_3);
-     $lines7[2] = array(array($input7_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
+
+     $lines7[1] = array($input7_1,array($input7_3,array('valign'=>'bottom','width'=>'25')), $input7_2);
+     
 
      echo "<table>";
      echo $html->tableCells($lines7);
@@ -255,14 +242,11 @@ $input8_3 = $input8_4 = false;
 
       if (file_exists($path.'/lmGoodbye.mp3')){ 
             $input8_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
-	    $input8_4 = $form->input('modeGoodbye',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
-     	    
       } 
 
 
-     $lines8[1] = array($input8_1,$input8_2,$input8_3);
-     $lines8[2] = array(array($input8_4,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
-     
+     $lines8[1] = array($input8_1,array($input8_3,array('valign'=>'bottom','width'=>'25')), $input8_2);
+          
      echo "<table>";
      echo $html->tableCells($lines8);
      echo "</table>";

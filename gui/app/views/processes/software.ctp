@@ -22,15 +22,31 @@
  *
  ***************************************************************************/
 
-$session->flash();
+
+ $os = php_uname('s');
+
+$cmd1 = exec('/usr/bin/lsb_release -d');
+$cmd2 = exec('/usr/bin/lsb_release -a');
+$release = $lsb = false;
+
+if($cmd1){ $release = explode(':',$cmd1); }
+if($cmd2){ $lsb = explode(':',$cmd2); }
+
+
+ $string = $os.', '.$release[1].', '.$lsb[1];
 
      echo "<h1>".__("System software",true)."</h1>";
+     $row[] = array(__("Operating system",true).": ", $string); 
      $row[] = array(__("FreeSWITCH",true).": ", $version[1]); 
      $row[] = array(__("Web server",true).": ", apache_get_version());
      $row[] = array(__("MySQL",true).": ", mysql_get_server_info());
      $row[] = array(__("Dispatcher",true).": ", $version[0]);
 
-    echo "<table width='60%'>";
+    echo "<table width='70%'>";
     echo $html->tableCells($row);
     echo "</table>"; 
  
+
+
+
+

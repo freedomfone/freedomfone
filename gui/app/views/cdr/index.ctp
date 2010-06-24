@@ -23,6 +23,9 @@
  ***************************************************************************/
 
 $session->flash();
+
+$msg = 'return confirmSubmit("'.__("Are you sure that you want to delete the selected entries?",true).'")';
+
 echo $javascript->includeScript('toggle');
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'index'));
@@ -34,22 +37,27 @@ echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' 
 echo $form->end();
 
 
-
 echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
 echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
+
+echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));
+echo $html->div('frameRight',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
 
 echo "<h1>".__('Call Data Records',true)."</h1>";
      if ($cdr){
 
      echo $html->div("",$paginator->counter(array('format' => __("CDR:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('Cdr',array('type' => 'post','action'=> 'process','name'  => 'Cdr'));
+
      
      ?>
      <input type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.Cdr)">
      <input type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.Cdr)">
      <?
-
+     echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg));
 
      echo "<table width='100%'>";
      echo $html->tableHeaders(array(
@@ -77,7 +85,10 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/delete/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
+	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/del/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
+
+
+
 
      $row[$key] = array($id,
      		$date,
@@ -97,8 +108,6 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
      echo "<table>";
      echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-
      $paginator->numbers()));
      echo "</table>";
      echo $form->end();
@@ -109,6 +118,9 @@ echo $html->link('50','index/limit:50',null, null, false)." | ";
 echo $html->link('100','index/limit:100',null, null, false)." | ";
 echo $html->link('250','index/limit:250',null, null, false);
 echo "</span>";
+     } else {
+
+	     echo $html->div('feedback',__('No records found',true));
      }
 
 ?>

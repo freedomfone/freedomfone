@@ -50,7 +50,7 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Last modified",true), 'modified'),
  	$paginator->sort(__("Length",true), 'length'),
 	__("Edit",true),
-	__("Delete",true),
+	__("Download",true),
 	__("Listen",true)));
 
 
@@ -77,7 +77,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$message['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
+	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
 
 	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
@@ -91,7 +91,7 @@ echo $form->hidden('source',array('value'=>'archive'));
 		$modified,
 		array($length,array('align'=>'center')),
 		array($edit,array('align'=>'center')),
-		array($delete,array('align'=>'center')),
+		array($download,array('align'=>'center')),
 		array($listen,array('align'=>'center')));
 		
 

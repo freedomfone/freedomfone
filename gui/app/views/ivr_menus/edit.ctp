@@ -54,7 +54,6 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 echo $form->input('id',array('type'=>'hidden'));
-
 $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 echo "<fieldset><legend>".__('Name',true)."</legend>";
@@ -65,33 +64,99 @@ echo "<fieldset>";
 echo "<legend>".__('Menu Instructions',true)."</legend>";
 
 $box=array(false,false,false,false);
-
-echo "<h3>1. ".__('Welcome',true)."</h3>";
-echo $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' ));
-echo $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_long','title'=>__('Welcome Message',true),'id'=>'long'))));
-if($ivrMenu['file_long']){$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));}
-echo $html->div("boxMarginDown",$box[0]);
+$step1[3]=false; $step2[3]=false;$step3[3]=false; $step4[3]=false;
 
 
-echo "<h3>2. ".__('Instructions',true)."</h3>";
-echo $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'after' => $FallbackShort,'between'=>'<br />' ));
-echo $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_short','title'=>__('Instructions Message',true),'id'=>'short'))));
-if($ivrMenu['file_short']){$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));}
-echo $html->div("boxMarginDown",$box[1]);
+//**** 1. Welcome ****//
+
+$step1[0] = "<h3>1. ".__('Welcome',true)."</h3>";
+$step1[1] = $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' ));
+$step1[2] = $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
+$step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_long','title'=>__('Welcome Message',true),'id'=>'long'));
+
+if($ivrMenu['file_long']){
+	$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));
+	$step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/long",null, null, false);				  
+}
+
+ echo "<table>";
+ echo $html->tableCells(array(
+		array(array($step1[0],array('colspan'=>3))),	
+		array(array($step1[1],array('colspan'=>3))),	
+		array($step1[2],array($step1[3],array('valign'=>'bottom')),array($step1[4],array('valign'=>'bottom'))),
+		array(array($box[0],array('colspan'=>3))),
+		array(array("<hr>",array('colspan'=>3)))	
+		));
 
 
-echo "<h3>3. ".__('Goodbye',true)."</h3>";
-echo $form->input('message_exit',array('type'=>'text','size' => '93','label' => false,'after' => $FallbackExit, 'between'=>'<br />' ));
-echo $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_exit','title'=>__('Exit Message',true),'id'=>'exit'))));
-if($ivrMenu['file_exit']){$box[2] = $form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));}
-echo $html->div("boxMarginDown",$box[2]);
+//**** 2. Instructions ****//
+
+$step2[0] = "<h3>2. ".__('Instructions',true)."</h3>";
+$step2[1] = $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentShort, 'after' => $FallbackShort, 'between'=>'<br />' ));
+$step2[2] = $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
+$step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_short','title'=>__('Instructions Message',true),'id'=>'short'));
+
+if($ivrMenu['file_short']){
+	$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));
+	$step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/short",null, null, false);
+	}
+
+ echo "<table>";
+ echo $html->tableCells(array(
+		array(array($step2[0],array('colspan'=>3))),	
+		array(array($step2[1],array('colspan'=>3))),	
+		array($step2[2],array($step2[3],array('valign'=>'bottom')),array($step2[4],array('valign'=>'bottom'))),
+		array(array($box[1],array('colspan'=>3))),
+		array(array("<hr>",array('colspan'=>3)))	
+		));
 
 
-echo "<h3>4. ".__('Invalid',true)."</h3>";
-echo $form->input('message_invalid',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackInvalid, 'between'=>'<br />' ));
-echo $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true),'after'=> $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'))));
-if($ivrMenu['file_invalid']){$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));}
-echo $html->div("boxMarginDown",$box[3]);
+//**** 3. Goodbye ****//
+
+$step3[0] = "<h3>3. ".__('Goodbye',true)."</h3>";
+$step3[1] = $form->input('message_exit',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentExit, 'after' => $FallbackExit, 'between'=>'<br />' ));
+$step3[2] = $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
+$step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_exit','title'=>__('Goodbye Message',true),'id'=>'exit'));
+
+if($ivrMenu['file_exit']){
+	$box[2] = $form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));
+	$step3[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/exit",null, null, false);
+	}
+
+ echo "<table>";
+ echo $html->tableCells(array(
+		array(array($step3[0],array('colspan'=>3))),	
+		array(array($step3[1],array('colspan'=>3))),	
+		array($step3[2],array($step3[3],array('valign'=>'bottom')),array($step3[4],array('valign'=>'bottom'))),
+		array(array($box[2],array('colspan'=>3))),
+		array(array("<hr>",array('colspan'=>3)))	
+		));
+
+
+
+//**** 4. Invalid ****//
+
+$step4[0] = "<h3>4. ".__('Invalid',true)."</h3>";
+$step4[1] = $form->input('message_invalid',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentInvalid, 'after' => $FallbackInvalid, 'between'=>'<br />' ));
+$step4[2] = $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
+$step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_invalid','title'=>__('Invalid Message',true),'id'=>'short'));
+
+if($ivrMenu['file_invalid']){
+	$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));
+	$step4[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/invalid",null, null, false);
+	}
+
+ echo "<table>";
+ echo $html->tableCells(array(
+		array(array($step4[0],array('colspan'=>3))),	
+		array(array($step4[1],array('colspan'=>3))),	
+		array($step4[2],array($step4[3],array('valign'=>'bottom')),array($step4[4],array('valign'=>'bottom'))),
+		array(array($box[3],array('colspan'=>3))),
+		array(array("<hr>",array('colspan'=>3)))	
+		));
+ echo "</table>";
+
+
 
 echo "</fieldset>";
 

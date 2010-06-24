@@ -49,6 +49,7 @@
 
       }
 
+
      if($check==1){ 
 
         $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';

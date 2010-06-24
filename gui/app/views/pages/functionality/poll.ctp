@@ -22,10 +22,10 @@
  *
  ***************************************************************************/
  
-$this->pageTitle = __('Functionality : Poll ',true);           
+$this->pageTitle = __('Functionality',true)." : ".__('Poll',true);           
 echo $this->element('menu_next',array('fwd_text'=>__('Leave-a-message',true),'fwd_link'=>'/functionality/leave-a-message','div'=>'frameRight')); 
 
-echo "<h1>".__('Functionality: Poll',true)."</h1>";
+echo "<h1>".__('Functionality',true)." : ".__('Poll',true)."</h1>";
 echo __("<p>The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone.",true);
 echo __("<p>The Freedom Fone administrator has the ability to <a href='/freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit and delete</a> polls. A poll is composed using the following parameters:",true);
 
@@ -52,6 +52,7 @@ echo __("<p>Invalid vote totals are provided to give deployers an idea of how SM
 
 echo __("<p><b>Incorrect vote: </b>Non-matching poll code",true);
 echo __("<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under “Other SMS”. The SMS will be classified as “Unclassified”.",true);
+echo __("<p>A valid/invalid/incorrect poll answer must consist of exactly <b>two words</b>. A poll answer consisting of one word, or more than two words, is automatically classified as “Unclassified“.</p>",true);
 
 echo "<h3>".__("Practical example",true)."</h3>";
 echo __("<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' will all be interpreted as a YES. The same logic applies to the SMS code.</p>",true);
@@ -62,3 +63,5 @@ echo __("<p>The timestamp used to determine whether or not a vote is in time for
 echo __("<p>Example: The administrator creates a poll with the following parameters:<ul><li>Question: Would you like to deploy Freedom Fone in your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: 08:00 AM, January 31, 2010</li></ul></p>",true);
 
 echo __("<p>To participate in the poll, the end user needs to send an SMS (after  08:00 AM the 1st of January, and before 08:00 AM the 31st of January 2010) with one of the following messages: </p><pre>freedomfone yes\nfreedomfone no\nfreedomfone maybe</pre>",true);
+
+echo __("<p>An SMS containing <pre>freedomfone is a great software</pre></p><p>is classified as “Unclassified“ (not incorrect or invalid)</p>",true);

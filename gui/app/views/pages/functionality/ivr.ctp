@@ -22,10 +22,11 @@
  *
  ***************************************************************************/
 
-$this->pageTitle = __('Functionality : Voice Menus',true);           
+$this->pageTitle = __('Functionality',true)." : ".__('Voice Menus',true);           
 
 echo $this->element('menu_next',array('back_text'=>__('Leave-a-message',true),'back_link'=>'/functionality/leave-a-message','fwd_text'=>__('Dashboard',true),'fwd_link'=>'/functionality/dashboard','div'=>'frameRight'));
-echo "<h1>".__('Functionality: Voice menus',true)."</h1>";
+
+echo "<h1>".__('Functionality',true)." : ".__('Voice menus',true)."</h1>";
 echo $html->div('frameRight',$html->image('illustrations/FF_IVR_design.png', array('title' => __('Freedon Fone v.1 Voice Menu design',true),'border'=>'0')));
 
 echo __("<p>The administrator is able to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.<p>",true);

@@ -41,12 +41,14 @@
 	      } else {
 	      $check=0;
 	    }
+	    
 
       if (!isset($host)){ $host = MY_DOMAIN;}
 
       $song_url = $host.$path.$file.'.mp3';
 
       }
+
 
      if($check==1){ 
 

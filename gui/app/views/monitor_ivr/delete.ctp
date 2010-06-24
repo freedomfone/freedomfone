@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * version.ctp	- Version page 
- * version 	- 1.0.354
+ * delete.ctp	- Display form for deleting IVR monitoring data.
+ * version 	- 1.0.353
  * 
  * Version: MPL 1.1
  *
@@ -22,11 +22,15 @@
  *
  ***************************************************************************/
 
+echo "<h1>".__("Delete monitoring data",true)."</h1>";
+echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'delete'));
 
-echo "<h1>".__("Freedom Fone Version",true)."</h1>";
-echo "<h4>".__('Release',true)."</h4>".__('Freedom Fone',true)." ".VERSION." <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a></i></p>";
-
-
+echo "<table>";
+echo $html->tableCells(array (
+     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15))),
+     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' =>15)))
+      ));
+echo "</table>";
+echo $form->end(__('Delete',true));
 
 ?>
-

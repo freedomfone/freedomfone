@@ -267,6 +267,7 @@ gui/app/views/ivr_menus/add.ctp -text
 gui/app/views/ivr_menus/edit.ctp -text
 gui/app/views/ivr_menus/index.ctp -text
 gui/app/views/layouts/default.ctp -text
+gui/app/views/layouts/flash_error.ctp -text
 gui/app/views/layouts/js/empty -text
 gui/app/views/layouts/rss/empty -text
 gui/app/views/layouts/xml/empty -text
@@ -274,6 +275,7 @@ gui/app/views/lm_menus/settings.ctp -text
 gui/app/views/messages/archive.ctp -text
 gui/app/views/messages/edit.ctp -text
 gui/app/views/messages/index.ctp -text
+gui/app/views/monitor_ivr/delete.ctp -text
 gui/app/views/monitor_ivr/erase.ctp -text
 gui/app/views/monitor_ivr/export.ctp -text
 gui/app/views/monitor_ivr/index.ctp -text
@@ -293,6 +295,8 @@ gui/app/views/pages/functionality/index.ctp -text
 gui/app/views/pages/functionality/ivr.ctp -text
 gui/app/views/pages/functionality/leave-a-message.ctp -text
 gui/app/views/pages/functionality/poll.ctp -text
+gui/app/views/pages/functionality/settings.ctp -text
+gui/app/views/pages/functionality/system_data.ctp -text
 gui/app/views/pages/home.ctp -text
 gui/app/views/phone_books/add.ctp -text
 gui/app/views/phone_books/edit.ctp -text

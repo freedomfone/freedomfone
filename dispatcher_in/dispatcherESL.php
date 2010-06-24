@@ -117,6 +117,11 @@ $mypid = getmypid();
       $int = fwrite($handleV,Version);
       fclose($handleV);
 
+      //Write epoch  to file
+      $handleE = fopen(EpochFile,'w');
+      $int = fwrite($handleE,time());
+      fclose($handleE);
+
 
      //Eternal loop, until the server crashes!
      while(1){

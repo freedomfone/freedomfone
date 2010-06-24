@@ -381,6 +381,7 @@ gui/app/webroot/index.php -text
 gui/app/webroot/js/addRemoveElements.js -text
 gui/app/webroot/js/audio-player.js -text
 gui/app/webroot/js/cluetip.js -text
+gui/app/webroot/js/confirmSubmit.js -text
 gui/app/webroot/js/corner.js -text
 gui/app/webroot/js/domcollapse.js -text
 gui/app/webroot/js/jquery.cluetip.js -text

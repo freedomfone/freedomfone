@@ -274,14 +274,7 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  `lmWelcomeUseText` tinyint(4) default '0',
-  `lmInformUseText` tinyint(4) default '0',
-  `lmInvalidUseText` tinyint(4) default '0',
-  `lmLongUseText` tinyint(4) default '0',
-  `lmSelectUseText` tinyint(4) default '0',
-  `lmDeleteUseText` tinyint(4) default '0',
-  `lmSaveUseText` tinyint(4) default '0',
-  `lmGoodbyeUseText` tinyint(4) default '0',
+  `lmUseText` tinyint(4) default '0',
   `title` varchar(50) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
@@ -294,7 +287,8 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `lm_menus` WRITE;
 /*!40000 ALTER TABLE `lm_menus` DISABLE KEYS */;
-INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,0,0,0,0,0,0,0,'Default LAM');
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,'Default LAM');
+
 /*!40000 ALTER TABLE `lm_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 

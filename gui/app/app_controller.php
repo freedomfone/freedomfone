@@ -47,12 +47,13 @@ class AppController extends Controller {
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time','Paginator','Formatting');
 
 
+function beforeRender(){
 
+        date_default_timezone_set(Configure::read('Config.timezone'));
+
+        }
 
  function beforeFilter() {
-
-
- 	  	date_default_timezone_set($this->Session->read('Config.timezone'));
 
     	     	$locale = Configure::read('Config.language');
 
@@ -116,7 +117,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		break;	       
 
 	       case 'mp3':
-	       	$permitted = array('audio/mpeg');
+	       	$permitted = array('audio/mpeg','audio/mp3');
 		$ext = 'mp3';
 		break;	       
 
@@ -126,7 +127,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		break;	       
 
 	       case 'audio':
-	       	$permitted = array('audio/mpeg','audio/x-wav','audio/wav');
+	       	$permitted = array('audio/mpeg','audio/x-wav','audio/wav','audio/mp3');
 		break;	       
 
 

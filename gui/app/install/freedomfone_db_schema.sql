@@ -259,7 +259,6 @@ SET character_set_client = @saved_cs_client;
 --
 -- Table structure for table `lm_menus`
 --
-
 DROP TABLE IF EXISTS `lm_menus`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
@@ -275,18 +274,11 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  `modeWelcome` tinyint(4) default '0',
-  `modeInform` tinyint(4) default '0',
-  `modeInvalid` tinyint(4) default '0',
-  `modeLong` tinyint(4) default '0',
-  `modeSelect` tinyint(4) default '0',
-  `modeDelete` tinyint(4) default '0',
-  `modeSave` tinyint(4) default '0',
-  `modeGoodbye` tinyint(4) default '0',
+  `lmUseText` tinyint(4) default '0',
   `title` varchar(50) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -295,7 +287,8 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `lm_menus` WRITE;
 /*!40000 ALTER TABLE `lm_menus` DISABLE KEYS */;
-INSERT INTO `lm_menus` VALUES (1,1,'Welcome to my message service.','Record your message after the beep. To finish, press #.','','Get to the point!','','','','',100,0,0,0,0,0,0,0,0,'Default LAM');
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,'Default LAM');
+
 /*!40000 ALTER TABLE `lm_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,6 +453,13 @@ CREATE TABLE `processes` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+LOCK TABLES `processes` WRITE;
+/*!40000 ALTER TABLE `processes` DISABLE KEYS */;
+INSERT INTO `processes` VALUES (1,'dispatcher_in',0,'dispatcher_in/dispatcherESL.php --log=/var/tmp/dispatcher_in.log > /dev/null 2>&1 & echo $!',100,'Incoming dispatcher',0,0,'','run','/usr/bin/php'),(2,'dispatcher_out',0,'dispatcher_out/dispatcher_out.php > /dev/null 2>&1 & echo $!',100,'Outgoing dispatcher',0,0,'','run','/usr/bin/php'),(3,'dispatcher_in_version',NULL,'dispatcher_in/dispatcherESL.php -V',100,'Incoming dispatcher version',0,0,NULL,'version','/usr/bin/php');
+/*!40000 ALTER TABLE `processes` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `settings`

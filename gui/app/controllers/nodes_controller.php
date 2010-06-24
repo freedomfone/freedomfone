@@ -105,7 +105,7 @@ class NodesController extends AppController{
 		elseif(array_key_exists('errors', $fileOK)) {
 		
 		      //Flash messsage, log error
-		      $this->Session->setFlash($fileOK['errors'][0], 'default',array('class' => 'error-message'));
+		      $this->Session->setFlash($fileOK['errors'][0], 'flash-error');
 
 		}
 		else {
@@ -164,76 +164,100 @@ class NodesController extends AppController{
    	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$iid."/".$ivr_settings['dir_node'];
+        $_titleOK = $_fileOK = true;
+
 
 	// Non-existing id, or empty form
-
 	  if (!$id && empty($this->data)){
-
 	     $this->Session->setFlash(__('Invalid audio file', true)); 
 	     $this->redirect(array('action'=>'index')); 
 	  }
-
+          
+          // Retrieve data from database and display 
     	  elseif(empty($this->data['Node'])){
 
 		$this->Node->id = $id;
 		$this->data = $this->Node->read(null,$id);
-   	   	//$this->Node->set( $this->data );
-
           }
-
-
+          
+          //Fetch form data 
 	  else {
 
 
-	       $files = array();
 
+          $this->Node->set( $this->data );	       
+          $this->data['Node']['instance_id'] = $iid;		
+
+          //If title is ok, save
+          if ($this->Node->validates(array('fieldList' => array('title')))){
+
+            $this->Node->save($this->data,array('fieldList'=>array('title','modified'),'validate'=>true));
+            
+          } else {
+
+              $this->Session->setFlash('Title is not correct (unique and min 3 characters','flash_error');
+              $_titleOK = false;
+          }
+
+          //$this->data['Node']['file'] =  $this->data['Node']['file_old'];		
+
+
+          //Fetch file and attempt to upload
+
+	       $files = array();
 	       $files[0] = $this->data['Node']['file'];
 
+               //If file is selected
 	       if ($files[0]['size']){
 
+               //Attempt to upload file
 	       $fileOK = $this->uploadFiles($path, $files ,false,'audio', false, false);
-	       
+
+                       //If file upload OK
 		       	if(array_key_exists('urls', $fileOK)) {
 
-
+                                //Set file info
 				$this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
-				$this->data['Node']['instance_id'] = $iid;		
+
 				$this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');	
-			        //$this->Node->save($this->data);
 
-     				$this->Node->save($this->data, array('validate' => false));
+                                //Save file data to db
+                                $this->Node->save($this->data,array('fieldList'=>array('file','modified'),'validate'=>false));
 
+
+
+                                //Delete old audio file
 				$this->Node->deleteAudio($this->data['Node']['file_old'],$path,array('mp3','wav'));
 
+                                //Flash message
 				$this->Session->setFlash(__('The settings has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				
 
-
+                                
 			 }
 
 			elseif(array_key_exists('errors', $fileOK)) {
-
+                                 $_fileOK= true;
 				$this->log('Msg: NODE UPLOAD ERROR; Type: '.$fileOK['errors'][0], 'ivr');
-				$this->Node->save($this->data,array('fieldList'=>array('title','modified')));	
-				$this->Session->setFlash($fileOK['errors'][0]);
+				$this->Session->setFlash($fileOK['errors'][0],'flash_error');
 			 }
+                  } // if file is selected
 
+          if($_titleOK && $_fileOK) {  $this->redirect(array('action'=>'index')); }    
+          else {
 
-		}
+               $this->Node->id = $id;
+		$this->data = $this->Node->read(null,$id);
 
-		//no file to upload, save text
+                }
 
-		else {
+          } //fetch form data
 
-		    $this->Node->save($this->data,array('fieldList'=>array('title','modified'),'validate'=>true));
-		    $this->redirect(array('action'=>'index'));
+          
 
-
-		}
-
-		}
-
-	}
+		
+         // $this->Node->set( $this->data );	       
+}
 
 
   function download ($id) {

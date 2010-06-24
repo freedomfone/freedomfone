@@ -187,7 +187,7 @@ public $ext;
 	   }
 
 
-	   function write_entry($type,$id,$digit,$key,$created){
+	   function write_entry($type,$id,$digit,$key,$title){
 
 	            	switch ($type){
 
@@ -220,7 +220,7 @@ public $ext;
 
 			if($monitor){
 				$action= "menu-exec-app";
-				$param = "javascript $this->ivr_monitor \${uuid} '$created' '$digit' '$id' \${caller_id_number} \${destination_number}";
+				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' \${caller_id_number} \${destination_number}";
 
 		        	$entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
       				$entry -> addAttribute("action",$action);

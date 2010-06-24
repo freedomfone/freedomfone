@@ -41,12 +41,38 @@ class CdrController extends AppController{
 
       function general($action = null){
 
+
+
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
+      $this->pageTitle = __('Reporting',true);
+
+
+      if(isset($this->params['named']['limit'])) { 
+	$this->Session->write('cdr_limit',$this->params['named']['limit']);
+	}
+	elseif($this->Session->check('cdr_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('cdr_limit');
+	}	
+
+            //User arrived from other page, reset session variables
+            if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
+
+            $this->Session->write('cdr_start', strtotime('1 January 2010'));
+            $this->Session->write('cdr_end',time());
+
+            }
+
 
 
       $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+
+      if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
+      if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
+
       $app   = $this->data['Cdr']['application'];
+      if ($app) {$this->Session->write('cdr_app',$app);}
+
       $title=false;
 
       if($app =='ivr'){ 
@@ -62,41 +88,49 @@ class CdrController extends AppController{
       //Fetch All CDR
       if(!$title){
 
-	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+	      $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))));
+	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$this->Session->read('cdr_limit'))));
+
+//	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+	      $this->set('select_option','all');
 
       } else {
       //Fetch CDR by Title
         
-         $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app,'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+         $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+         $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+	 $this->set('select_option','selected');
 
       }
 
 
+
       //Fetch list of all IVR (id and title)
 	$data   = $this->Cdr->query('select id,title from ivr_menus');
-	foreach ($data as $key => $entry){
+        if ($data){
+	   foreach ($data as $key => $entry){
 		$ivr[$entry['ivr_menus']['title']] = $entry['ivr_menus']['title'];
-	}
+	   }
+        } else {
+        $ivr = array();
+        } 
 
-      //Fetch list of all LAM (id and title)
-	/*
-	$data   = $this->Cdr->query('select id,title from lm_menus');
-	foreach ($data as $key => $entry){
-		$lam[$entry['lm_menus']['title']] = $entry['lm_menus']['title'];
-	}*/
+
 	$lam=array();
+	$application = $this->data['Cdr']['application'];
+        $this->set(compact('ivr','lam','cdr','count','application','select_option'));
 
-        $this->set(compact('ivr','lam','cdr'));
-
+	//Export data
         if(isset($this->params['form']['action'])) {	
 	     if ($this->params['form']['action']==__('Export',true)){
-	     	     
-  	     Configure::write('debug', 0);
-    	     $this->layout = null;
-    	     $this->autoLayout = false;
-    	     $this->render();    
-	      }	   
-       } 
+     
+  	       Configure::write('debug', 0);
+    	       $this->layout = null;
+    	       $this->autoLayout = false;
+    	       $this->render();   
+	     }	   
+         } 
              //$this->render();  
 
       }
@@ -111,10 +145,7 @@ class CdrController extends AppController{
                    }
        }
 
-
-
-      $this->pageTitle = 'Call Data Records';
-
+      $this->pageTitle = __('Call Data Records',true);
       $this->Session->write('Cdr.source', 'index');
 
       if(isset($this->params['named']['sort'])) { 
@@ -132,15 +163,13 @@ class CdrController extends AppController{
 	}	
 
 	     $this->Cdr->recursive = 0; 
-
    	     $data = $this->paginate('Cdr');
-
 	     $this->set('cdr',$data);  
 
 	     }
 
 
-    function delete ($id){
+    function del ($id){
 
     	     $call_id = $this->Cdr->getCallId($id);
 
@@ -163,7 +192,7 @@ class CdrController extends AppController{
 	      $entries = $this->params['form']['cdr'];
     	      $action = $this->params['data']['Submit'];
  
-              if ($action == __('Delete',true)){
+              if ($action == __('Delete selected',true)){
 
    	        foreach ($entries as $key => $id){
     	     	    if ($id) {
@@ -186,15 +215,14 @@ class CdrController extends AppController{
 
     function output (){
 
-     if(key_exists('selected',$this->params['form'])){
-     debug($this->params['form']);
 
-     }
 
       if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
       	 $end 	  = $this->data['Cdr']['end_time'];
- 
+	 $this->set('select_option','selected');	   
+
+
 	$hour_start = $start['hour'];
 	$hour_end   = $end['hour'];
 
@@ -223,25 +251,29 @@ class CdrController extends AppController{
     	 $this->set('data', $this->Cdr->find('all',$param)); 
 	 } 
 	 else {
-
     	   $this->set('data', $this->Cdr->findAll()); 
+	   $this->set('select_option','all');	   
 	 }
 
+
+         $this->set(compact('select_option'));
+
   	     Configure::write('debug', 0);
- 	 
     	     $this->layout = null;
     	     $this->autoLayout = false;
-    	     $this->render();    
+    	     $this->render();   
     }
 
 
       function export(){
+
 
     	     $this->render();  
        }
 
 
       function overview(){
+
 
        	$this->pageTitle = 'Call Data Records : Overview';
 
@@ -262,6 +294,50 @@ class CdrController extends AppController{
   $this->render();  
       }
 
+
+
+    function delete(){
+
+
+      if ($this->data['Cdr']){
+      	 $start	  = $this->data['Cdr']['start_time'];
+      	 $end 	  = $this->data['Cdr']['end_time'];
+ 
+
+	$hour_start = $start['hour'];
+	$hour_end   = $end['hour'];
+
+	if($start['meridian']=='pm' && $start['hour']!=12){ 
+	   	$hour_start=$hour_start+12;
+		} 
+ 	elseif($start['meridian']=='am' && $start['hour']==12){ 
+	   	$hour_start='00';
+	}
+
+	if($end['meridian']=='pm' && $end['hour']!=12){ 
+	   	$hour_end=$hour_end+12;
+		} 
+ 	elseif($end['meridian']=='am' && $end['hour']==12){ 
+	   	$hour_end='00';
+	}
+
+	 $start = $start['year'].'-'.$start['month'].'-'.$start['day'].' '.$hour_start.':'.$start['min'].':00';
+     	 $end   = $end['year'].'-'.$end['month'].'-'.$end['day'].' '.$hour_end.':'.$end['min'].':00';
+
+
+      	 $start_epoch = strtotime($start);
+      	 $end_epoch = strtotime($end);
+
+	 $param = array('Cdr.epoch >=' => $start_epoch, 'Cdr.epoch <=' => $end_epoch);
+    	 $this->set('data', $this->Cdr->deleteAll($param)); 
+
+	 $this->redirect(array('action' => 'index'));
+	 }
+	 else {
+	 
+		$this->render();
+	 }           
+  }
 
 }
 ?>

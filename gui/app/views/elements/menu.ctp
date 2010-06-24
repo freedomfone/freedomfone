@@ -248,11 +248,6 @@
 </li>
 
 
-<li>
-<a href='https://dev.freedomfone.org/' target='_blank'><?php echo $html->image('menu/menu_mid_svn.png',array('style'=>'float:left'));?></a>
-</li>
-
-
 <li class='logo'>
 <?php echo $html->image('menu/menu_right_long.png',array('style'=>'float:left'));?>
 </li>

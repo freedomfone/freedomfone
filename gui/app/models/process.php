@@ -80,6 +80,30 @@ class Process extends AppModel{
 
 
 /*
+ * Read epochfrom file
+ *  
+ * @return int $epoch
+ *
+ */
+
+ function getEpoch($name){
+
+ 	  $file = EPOCH_URI.$name;
+
+
+	  if(file_exists($file)){
+
+		$handle = fopen($file,'r');
+	  	$epoch =fgets($handle);
+	  	fclose($handle);
+	  	return $epoch;
+	  } else {
+	      return false;
+	  }
+	  
+}
+
+/*
  * Read pid from file
  *  
  * @return int $pid
@@ -179,6 +203,7 @@ class Process extends AppModel{
 	       return $version;
 
       }
+
 
 /*
  * Check if process is running

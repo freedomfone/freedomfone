@@ -1,5 +1,5 @@
 // * file_name    - Leave a Message for Freedom Fone 
-// * version      - 1.0.573 
+// * version      - 1.0.730 
  
 // * ***** BEGIN LICENSE BLOCK *****
 // * Version: MPL 1.1
@@ -222,12 +222,15 @@ function lm42FeedBackInput (session, type, digits, arg) {
     } 
 }
 
-// We play an audio file if exists, if not we use TTS with the speak macro
+// We use TTS if forced by variable or we play an audio file if exists, if not we use TTS
 function lm42PlayFreedom(lmFeedbackAudio,lmFeedbackMessage) {
-    var lmFeedbackAudioFile = new File(lmFeedbackAudio);
-    if (lmFeedbackAudioFile.isFile) { session.streamFile(lmFeedbackAudio, lm42FeedBackInput); } 
-    else { 
+    if (lmForceTTS) { session.sayPhrase("speak", lmFeedbackMessage, "en"); } 
+    else {
+    	var lmFeedbackAudioFile = new File(lmFeedbackAudio);
+	if (lmFeedbackAudioFile.isFile) { session.streamFile(lmFeedbackAudio, lm42FeedBackInput); } 
+    	else { 
 	session.sayPhrase("speak", lmFeedbackMessage, "en"); 
+    	}	
     }	
 }
 

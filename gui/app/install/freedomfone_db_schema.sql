@@ -274,7 +274,7 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  `lmUseText` tinyint(4) default '0',
+  `lmForceTTS` tinyint(4) default '0',
   `title` varchar(50) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)

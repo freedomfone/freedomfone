@@ -70,8 +70,8 @@ $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
 
      //Checkbox for not using uploaded files
-     echo $form->hidden('lmUseText',array('value'=>0));
-     echo $form->input('lmUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
+     echo $form->hidden('lmForeceTTS',array('value'=>0));
+     echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
 
      // ** Welcome **//
      echo "<fieldset><legend>".__('Step 1: Welcome message',true)."</legend>";

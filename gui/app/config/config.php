@@ -99,7 +99,7 @@ $config['LM_DEFAULT']=	array(
 		'lmDeleteMessage'  => 'Your message has been deleted!',
 		'lmSaveMessage'    => 'Thank you!',
 		'lmGoodbyeMessage' => 'Goodbye',
-                'lmUseText'        => false
+                'lmForceTTS'        =>  false
                 );
 
 

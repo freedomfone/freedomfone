@@ -143,6 +143,35 @@
 </li>
 !-->
 
+<li><?php echo __("System data",true);?>
+<ul>
+
+
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Call data records",true),'/cdr/'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
+</li>
+
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</li>
+</ul>
+</li>
+
 <li><?php echo __("Dashboard",true);?>
 <ul>
 
@@ -173,40 +202,6 @@
 </li>
 </ul>
 </li>
-
-
-
-
-
-<li><?php echo __("System data",true);?>
-<ul>
-
-
-<li>
-<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Call data records",true),'/cdr/'); ?>
-<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
-</li>
-
-
-<li>
-<?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
-</li>
-
-
-<li class='last'>
-<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
-<?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
-<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
-</li>
-</ul>
-</li>
-
 
 
 <li><?php echo __("Help",true);?>

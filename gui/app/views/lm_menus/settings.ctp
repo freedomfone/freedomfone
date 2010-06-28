@@ -39,7 +39,7 @@ if($session->check('Message.flash')){
 		}  
 
 echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each of the eight messages. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
+echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each of message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 
@@ -70,7 +70,8 @@ $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
 
      //Checkbox for not using uploaded files
-     echo $form->hidden('lmForeceTTS',array('value'=>0));
+     echo $form->hidden('lmForceTTS',array('value'=>0));
+     echo $form->hidden('lmOnHangup',array('value'=>'accept'));
      echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
 
      // ** Welcome **//

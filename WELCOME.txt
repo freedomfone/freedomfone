@@ -8,7 +8,7 @@ This is the third official release of Freedom Fone after 18 months of continous 
 - Freedom Fone v1.6 is built at the top of Ubuntu 8.04.4 LTS and kernel 2.6.24-17. 
   At the end of 2010, our future releases will run in Ubuntu 10.04
 
-- Software and security updates applied until 1 June 2010
+- Software and security updates applied until 1 July 2010
 
 - Freeswitch has been also updated from 1.0.5 to 1.0.6 and we have included the recently upstreamed gsmopen channel
   http://www.gsmopen.org
@@ -39,6 +39,8 @@ The USB modems are available at: http://www.mobigater.bg/. Without any special U
 You can verify that the USB modems are detected and available by issuing the command:
 
 #/etc/init.d/gsmopen devices
+
+Note: # represents the command line prompt 
 
 root@lupinus:/home/lupinus# /etc/init.d/gsmopen devices
 Audio Devices List

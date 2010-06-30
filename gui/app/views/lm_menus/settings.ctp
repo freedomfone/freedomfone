@@ -106,8 +106,7 @@ $input8_3 = $input8_4 = false;
      $lines2[0] = array(array($input2_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmInform.mp3')){ 
-      	    $input2_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
-	    $input2_4 = $form->input('lmInformUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));     	      
+      	    $input2_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Inform",null, null, false);
        } 
 
      $lines2[1] = array($input2_1,array($input2_3,array('valign'=>'bottom','width'=>'25')), $input2_2);
@@ -134,7 +133,7 @@ $input8_3 = $input8_4 = false;
      $lines3[0] = array(array($input3_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmInvalid.mp3')){ 
-	    $input3_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
+	    $input3_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Invalid",null, null, false);
       } 
 
 
@@ -155,7 +154,7 @@ $input8_3 = $input8_4 = false;
      $lines4[0] = array(array($input4_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmLong.mp3')){ 
-            $input4_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
+            $input4_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Long",null, null, false);
 	
      } 
 
@@ -177,7 +176,7 @@ $input8_3 = $input8_4 = false;
 
      $lines5[0] = array(array($input5_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
       if (file_exists($path.'/lmSelect.mp3')){ 
-      	 $input5_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);	
+      	 $input5_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Select",null, null, false);	
       } 
 
 
@@ -198,8 +197,7 @@ $input8_3 = $input8_4 = false;
      $lines6[0] = array(array($input6_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmDelete.mp3')){ 
-      	 $input6_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);	
-    	 $input6_4 = $form->input('lmDeleteUseText',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded file',true)));
+      	 $input6_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Delete",null, null, false);	
       } 
 
 
@@ -220,7 +218,7 @@ $input8_3 = $input8_4 = false;
      $lines7[0] = array(array($input7_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmSave.mp3')){
-      	    $input7_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false); 
+      	    $input7_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Save",null, null, false); 
       } 
 
 
@@ -242,7 +240,7 @@ $input8_3 = $input8_4 = false;
      $lines8[0] = array(array($input8_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmGoodbye.mp3')){ 
-            $input8_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}",null, null, false);
+            $input8_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Goodbye",null, null, false);
       } 
 
 

@@ -1,26 +1,18 @@
-Freedom Fone http://www.freedomfone.org 
+(c) 2009-2010 Freedom Fone 
+http://www.freedomfone.org 
 1.0 Lycaon Pictus Pictus November 2009
 1.5 Lycaon Pictus Lupinus March 2010
+1.6 Lycaon Pictus Lupinus July 2010
 
-- Louise Berthilson (louise@it46.se)
-	cake php MVC GUI
-	dispatcher
-	dialer
-	esl
-	
-- Giovanni Maruzzelli (gmaruzz@gmail.com)
-	gsmopen
-	skypeopen 
+---------------------------------------------------------
 
-- Alberto Escudero-Pascual (aep@it46.se)
-	project architecture
-	system integration
-	freeswitch scripts/javascript
-	installer
-	xml_curl
+Freedom Fone code is written under the MPL 1.1 license by IT46 AB
+Louise Berthilson (louise@it46.se), Alberto Escudero-Pascual (aep@it46.se)
 
-- Brenda Burrell (bren@kubatana.net)
-	Renowned Bug tracker
+Gsmopen is now part of Freeswitch and is written under the MPL 1.1 license by:
+Giovanni Maruzzelli (gmaruzz@gmail.com)
+
+The Audio Player is a WordPress plugin developed by Martin Laine under MIT license
 
 ---------------------------------------------------------
 

@@ -36,11 +36,11 @@ echo __("<p>Call data records (CDR) of all incoming calls and SMS (from Leave-a-
 
 
 echo "<h3>".__("Statistics",true)."</h3>";
-echo __("<p>Statisitcs of incoming calls and SMS to the various services are displayed.",true);
+echo __("<p>Statistics of incoming calls and SMS to the various services are displayed.",true);
 
 
-echo "<h3>".__("Data mining",true)."</h3>";
-echo __("<p>Data mining of Call Data Records (CDR) based on service (Leave-a-message or Voice Menu) and start/end time. The result of the CDR data mining, is displayed on screen and can be exported to CVS.",true);
+echo "<h3>".__("Reporting",true)."</h3>";
+echo __("<p>Reporting of Leave-a-message and Voice Menu usage based on Call Data Records (CDR). The result of the CDR reporting, is displayed on screen and can be exported to CSV.",true);
 
 ?>
 

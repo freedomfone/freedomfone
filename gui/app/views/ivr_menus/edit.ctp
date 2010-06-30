@@ -139,7 +139,7 @@ if($ivrMenu['file_exit']){
 $step4[0] = "<h3>4. ".__('Invalid',true)."</h3>";
 $step4[1] = $form->input('message_invalid',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentInvalid, 'after' => $FallbackInvalid, 'between'=>'<br />' ));
 $step4[2] = $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-$step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_invalid','title'=>__('Invalid Message',true),'id'=>'short'));
+$step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'));
 
 if($ivrMenu['file_invalid']){
 	$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));

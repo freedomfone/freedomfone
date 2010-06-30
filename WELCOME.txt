@@ -10,6 +10,8 @@ This is the third official release of Freedom Fone after 18 months of continous 
 
 - Software and security updates applied until 1 July 2010
 
+- Firefox updated to version 3.6.6 
+
 - Freeswitch has been also updated from 1.0.5 to 1.0.6 and we have included the recently upstreamed gsmopen channel
   http://www.gsmopen.org
 

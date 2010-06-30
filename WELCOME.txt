@@ -5,7 +5,7 @@
 
 This is the third official release of Freedom Fone after 18 months of continous development.
 
-- Freedom Fone v1.6 is built at the top of Ubuntu 8.04.4 LTS and kernel 2.6.24-17. 
+- Freedom Fone v1.6 is built at the top of Ubuntu 8.04.4 LTS and kernel 2.6.24-28. 
   At the end of 2010, our future releases will run in Ubuntu 10.04
 
 - Software and security updates applied until 1 July 2010

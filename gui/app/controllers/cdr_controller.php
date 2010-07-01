@@ -32,8 +32,8 @@ class CdrController extends AppController{
 
       function refresh(){
 
+      $this->requestAction('/messages/refresh');
       $this->autoRender = false;
- 
       $this->Cdr->refresh();
 
 
@@ -42,6 +42,7 @@ class CdrController extends AppController{
       function general($action = null){
 
 
+      date_default_timezone_set(Configure::read('Config.timezone'));
 
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
@@ -88,17 +89,31 @@ class CdrController extends AppController{
       //Fetch All CDR
       if(!$title){
 
-	      $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))));
-	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$this->Session->read('cdr_limit'))));
+	      $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
+	  	      
+	      $this->set('count', $count);
 
-//	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+
+	      //Limit is set
+	      $limit = $this->Session->read('cdr_limit');
+	      if(!empty($limit)){
+		$pageCount = $limithis->Session->read('cdr_limit');
+		} else {
+		  if ($count){ $pageCount = $count;}
+		  else { $pageCount = 1;}
+	      }
+
+
+	      $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
+
 	      $this->set('select_option','all');
 
       } else {
       //Fetch CDR by Title
         
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
-         $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+         $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
 
 	 $this->set('select_option','selected');
 
@@ -119,7 +134,13 @@ class CdrController extends AppController{
 
 	$lam=array();
 	$application = $this->data['Cdr']['application'];
+
+        $data = $this->paginate('Cdr');
+	$this->set('cdr',$data);  
+
         $this->set(compact('ivr','lam','cdr','count','application','select_option'));
+
+
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
@@ -138,6 +159,7 @@ class CdrController extends AppController{
 
       function index(){
 
+      $this->requestAction('/messages/refresh');
 
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
@@ -167,6 +189,7 @@ class CdrController extends AppController{
 	     $this->set('cdr',$data);  
 
 	     }
+
 
 
     function del ($id){
@@ -274,6 +297,7 @@ class CdrController extends AppController{
 
       function overview(){
 
+      $this->requestAction('/cdr/refresh');
 
        	$this->pageTitle = 'Call Data Records : Overview';
 

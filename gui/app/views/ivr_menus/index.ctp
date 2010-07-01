@@ -43,8 +43,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
      echo $html->tableHeaders(array(
      	__("Default",true),
  	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Greeting",true), 'message_long'),
- 	$paginator->sort(__("IVR code",true), 'modified'),
+ 	$paginator->sort(__("Created",true), 'created'),
  	$paginator->sort(__("Last modified",true), 'modified'),
 	__("Edit",true),
 	__("Delete",true)));
@@ -66,8 +65,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
         $default = $form->radio('parent',$options,$attributes);
 
 	$title         = $ivr_menu['IvrMenu']['title'];
-	$message_long  = $ivr_menu['IvrMenu']['message_long'];
-	$ivr_code      = $ivr_menu['IvrMenu']['modified'];
+	$created      = $time->niceShort($ivr_menu['IvrMenu']['created']);
 	$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
@@ -75,8 +73,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
      	$row[$key] = array(
 		$default,
 		array($title,array('width'=>'100px')),
-		$message_long,
-		$ivr_code,		
+		$created,		
 		$modified,
 		array($edit,array('align'=>'center')),
 		array($delete,array('align'=>'center')));

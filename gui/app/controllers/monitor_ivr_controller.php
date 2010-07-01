@@ -110,6 +110,7 @@ class MonitorIvrController extends AppController{
       	 $start	  = $this->data['MonitorIvr']['start_time'];
       	 $end 	  = $this->data['MonitorIvr']['end_time'];
  
+	 $this->set('select_option','selected');	   
 
 	$hour_start = $start['hour'];
 	$hour_end   = $end['hour'];
@@ -140,9 +141,11 @@ class MonitorIvrController extends AppController{
 
 	 } else {
 
-    	   $this->set('data', $this->MonitorIvr->findAll()); 
+    	   $this->set('data', $this->MonitorIvr->findAll());
+	   $this->set('select_option','all');	    
 	 }
 
+        $this->set(compact('select_option'));
 
   	     Configure::write('debug', 0);
     	     $this->layout = null;

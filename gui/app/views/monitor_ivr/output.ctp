@@ -55,8 +55,8 @@
 		}
 
 	}
-		$prefix=date('Y-m-d_');
-		echo $csv->render($prefix.__('MonitorIvr',true).'.csv');  
+		$prefix=date('Y-m-d');
+	        echo $csv->render($prefix."_".__('MonitorIvr',true)."_".$select_option);  
 		$csv->render(false);
 
 

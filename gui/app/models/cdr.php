@@ -59,6 +59,7 @@ class Cdr extends AppModel{
 
 	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];
+	      	  $answer_state = $entry['Answer-State'];
 		  $call_id = $entry['Unique-ID'];
 		  $application='';
 		  $start='';
@@ -71,6 +72,12 @@ class Cdr extends AppModel{
 		  $this->set('caller_name', urldecode($entry['Caller-Caller-ID-Name']));
     	       	  $this->set('caller_number',urldecode($entry['Caller-Caller-ID-Number']));
 	       	  $this->set('extension', $ext);
+
+
+		  //FIXME! //Create custom event for CS_ROUTING CDR
+		  $ivr_parent = $this->query('select title from ivr_menus where parent = true');
+	       	  $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
+
 
 		  //Determine sender protocol (skype,gsm,sip)
 		  $proto=false;		 
@@ -87,6 +94,17 @@ class Cdr extends AppModel{
 		         }
 		   }
 
+
+		   //Flag messages that should not be inserted
+		   if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		     $insert = false;
+		  // } elseif ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && !$matches){
+		   } elseif ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && !$application){
+		     $insert = false;
+		   } else {
+		   $insert= true;
+		   }
+
 		   //Calculate length of LAM and IVR calls
 
 		     //LAM: fetch length of file from Messages
@@ -95,7 +113,8 @@ class Cdr extends AppModel{
 		     					      	 'Message' => array(
 								 'foreignKey' => false,
 								 'conditions'=>array('Message.file'=>$call_id)))));
-						
+					
+
 		        $message = $this->Message->findByFile($call_id);
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('title', LAM_DEFAULT);
@@ -111,13 +130,17 @@ class Cdr extends AppModel{
 		     }
 
 		     $this->set('application', $application);
-		     $this->create($this->data);
-	  	     $this->save($this->data);
-		
-		  if($start){
-		     $this->id = $start['Cdr']['id'];
-		     $this->saveField('length',$length);
-		     }
+
+		     if($insert){
+		     
+			$this->create($this->data);
+	  	     	$this->save($this->data);
+
+		        if($start){
+		           $this->id = $start['Cdr']['id'];
+		           $this->saveField('length',$length);
+		        }
+		   
 
 
 		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
@@ -169,9 +192,11 @@ class Cdr extends AppModel{
 			    }
 			}
 
-		}
+		} 
 
-	      }
+		  } //insert into CDR		
+
+	      }  //while
 
               //** Fetch MONITOR_IVR from spooler **//
       	      $array = Configure::read('monitor_ivr');
@@ -202,10 +227,10 @@ class Cdr extends AppModel{
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
 
 		  //Save IVR title to CDR
-
-                  
+		    
 		  $this->id = $cdr['Cdr']['id'];
 		  $this->saveField('title',urldecode($entry['FF-IVR-IVR-Name']));
+
 
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 

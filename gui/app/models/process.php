@@ -58,7 +58,7 @@ class Process extends AppModel{
 			
 			$update = $this->data['Process']['data'][$key];
 			$this->save($update);
-    			 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
+    			 $this->log('UNEXPECTED INTERRUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
 
 		       } elseif (!$this->isRunning($pid) && $status) {
 		       //Process is NOT running but status = ON
@@ -68,7 +68,7 @@ class Process extends AppModel{
 				 $entry['last_seen'] = time();
 				 $entry['interupt'] = __('Unmanaged',true);
 				 $this->save($entry);
-    		      		 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
+    		      		 $this->log('UNEXPECTED INTERRUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
 		       }
 
 
@@ -78,6 +78,30 @@ class Process extends AppModel{
 
       }
 
+
+/*
+ * Read epochfrom file
+ *  
+ * @return int $epoch
+ *
+ */
+
+ function getEpoch($name){
+
+ 	  $file = EPOCH_URI.$name;
+
+
+	  if(file_exists($file)){
+
+		$handle = fopen($file,'r');
+	  	$epoch =fgets($handle);
+	  	fclose($handle);
+	  	return $epoch;
+	  } else {
+	      return false;
+	  }
+	  
+}
 
 /*
  * Read pid from file
@@ -173,13 +197,13 @@ class Process extends AppModel{
       	       $start = $this->data['Process']['start_cmd'];
 	       $script = $this->data['Process']['script'];
 	       $cmd=$script.' '.BASE_DIR.$start;
-	       
 	       $op = array();
 	       exec($cmd,$op);
                $version = $op[0];
 	       return $version;
 
       }
+
 
 /*
  * Check if process is running

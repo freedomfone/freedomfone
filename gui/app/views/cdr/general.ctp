@@ -139,7 +139,7 @@ $session->flash();
 
 
              echo "<table>";
-             echo $html->tableCells(array(__('Page',true).": ",$paginator->numbers()));
+             echo $html->tableCells(array($paginator->numbers()));
              echo "</table>";
 
 	     echo "<span>".__("No of entries per page: ",true);

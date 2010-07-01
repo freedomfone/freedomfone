@@ -91,16 +91,19 @@ class CdrController extends AppController{
       if(!$title){
 
 	      $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))));
-	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$this->Session->read('cdr_limit'))));
+	      
 
-//	      $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$epoch['end'],'epoch > '=>$epoch['start'],'application'=>$app),'order'=>array('Cdr.epoch desc'))));
+	      $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$this->Session->read('cdr_limit'));
+
+
 	      $this->set('select_option','all');
 
       } else {
       //Fetch CDR by Title
         
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
-         $this->set('cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+         $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
 
 	 $this->set('select_option','selected');
 
@@ -121,7 +124,13 @@ class CdrController extends AppController{
 
 	$lam=array();
 	$application = $this->data['Cdr']['application'];
+
+        $data = $this->paginate('Cdr');
+	$this->set('cdr',$data);  
+
         $this->set(compact('ivr','lam','cdr','count','application','select_option'));
+
+
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
@@ -169,6 +178,7 @@ class CdrController extends AppController{
 	     $this->set('cdr',$data);  
 
 	     }
+
 
 
     function del ($id){

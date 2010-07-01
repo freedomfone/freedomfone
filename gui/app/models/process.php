@@ -58,7 +58,7 @@ class Process extends AppModel{
 			
 			$update = $this->data['Process']['data'][$key];
 			$this->save($update);
-    			 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
+    			 $this->log('UNEXPECTED INTERRUPT; Type: '.$name.'; Msg: Process running but status = OFF', 'process');
 
 		       } elseif (!$this->isRunning($pid) && $status) {
 		       //Process is NOT running but status = ON
@@ -68,7 +68,7 @@ class Process extends AppModel{
 				 $entry['last_seen'] = time();
 				 $entry['interupt'] = __('Unmanaged',true);
 				 $this->save($entry);
-    		      		 $this->log('UNEXPECTED INTERUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
+    		      		 $this->log('UNEXPECTED INTERRUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
 		       }
 
 

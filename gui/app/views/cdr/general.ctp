@@ -137,6 +137,11 @@ $session->flash();
 	     echo $html->tableCells($rows);
 	     echo "</table>";
 
+
+             echo "<table>";
+             echo $html->tableCells(array(__('Page',true).": ",$paginator->numbers()));
+             echo "</table>";
+
 	     echo "<span>".__("No of entries per page: ",true);
 	     echo $html->link('10','general/view/limit:10',null, null, false)." | ";
 	     echo $html->link('50','general/view/limit:50',null, null, false)." | ";

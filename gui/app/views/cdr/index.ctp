@@ -107,8 +107,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo "</table>";
 
      echo "<table>";
-     echo $html->tableCells(array(
-     $paginator->numbers()));
+     echo $html->tableCells(array($paginator->numbers()));
      echo "</table>";
      echo $form->end();
 

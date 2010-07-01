@@ -34,7 +34,6 @@ class CdrController extends AppController{
 
       $this->requestAction('/messages/refresh');
       $this->autoRender = false;
- 
       $this->Cdr->refresh();
 
 
@@ -90,11 +89,22 @@ class CdrController extends AppController{
       //Fetch All CDR
       if(!$title){
 
-	      $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))));
-	      
+	      $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
+	  	      
+	      $this->set('count', $count);
 
-	      $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$this->Session->read('cdr_limit'));
 
+	      //Limit is set
+	      $limit = $this->Session->read('cdr_limit');
+	      if(!empty($limit)){
+		$pageCount = $limithis->Session->read('cdr_limit');
+		} else {
+		  if ($count){ $pageCount = $count;}
+		  else { $pageCount = 1;}
+	      }
+
+
+	      $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
 
 	      $this->set('select_option','all');
 
@@ -149,6 +159,7 @@ class CdrController extends AppController{
 
       function index(){
 
+      $this->requestAction('/messages/refresh');
 
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
@@ -286,6 +297,7 @@ class CdrController extends AppController{
 
       function overview(){
 
+      $this->requestAction('/cdr/refresh');
 
        	$this->pageTitle = 'Call Data Records : Overview';
 

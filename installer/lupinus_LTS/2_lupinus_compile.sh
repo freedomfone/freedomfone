@@ -123,10 +123,13 @@ cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
 cp $SVNROOT/init.d/gsmopen /etc/init.d/
 cp $SVNROOT/init.d/iwatch /etc/init.d/
 cp $SVNROOT/init.d/etc/default/iwatch /etc/default
+#cp $SVNROOT/skype/init.d/skypopen /etc/init.d/
 chmod 0755 /etc/init.d/freeswitch
 chmod 0755 /etc/init.d/dispatcher_in
 chmod 0755 /etc/init.d/iwatch
 chmod 0755 /etc/init.d/gsmopen
+#chmod 0755 /etc/init.d/skypopen
+cd /etc/init.d; update-rc.d skypopen defaults 89 
 cd /etc/init.d; update-rc.d freeswitch defaults 90
 cd /etc/init.d; update-rc.d dispatcher_in defaults 91
 cd /etc/init.d; update-rc.d gsmopen defaults 92

@@ -1,0 +1,76 @@
+#!/bin/bash
+SKYPE=/usr/local/skype-2.0.0.72/skype
+XVFB=/usr/bin/Xvfb
+FREEDOMFONE=/usr/local/freedomfone
+test -x $SKYPE || exit 0
+test -x $XVFB || exit 0
+
+START_DAEMON=true
+DEBIANCONFIG=/etc/default/skypopen
+test -f $DEBIANCONFIGFILE && source $DEBIANCONFIG
+
+
+source /lib/lsb/init-functions
+
+start_skype() {
+	UUSER=$1
+	PASSWORD=$2
+	DISPLAY=$3
+	DBPATH=$FREEDOMFONE/skyopen/multi/$4
+	SLEEP=2
+
+#echo "Starting skype user USER$COUNTER at display $3"
+	/usr/bin/Xvfb :$DISPLAY -ac >/dev/null 2>&1 &
+	sleep $SLEEP
+	/bin/echo '$USER $PASSWORD' | DISPLAY=:$DISPLAY $SKYPE --dbpath=$DBPATH --pipelogin >/dev/null 2>&1 & 
+	sleep $SLEEP
+}
+
+is_true()
+{
+  case "${1:-}" in
+    [Yy]es|[Yy]|1|[Tt]|[Tt]rue) return 0;;
+    *) return 1;
+  esac
+}
+##############################################################################
+ACTIVELIST1="1 2 3 4"
+
+case "$1" in
+  start)
+        if is_true $START_DAEMON; then
+	source $CONFIGFILE
+        	log_daemon_msg "Starting skype clients in Xvfb" "skypopen"
+		for i in $ACTIVELIST1; do
+			start_skype $[UUSER${i}] $PASSWORD $[DISPLAY${i}]  $[DISPLAY${i}]	
+		done 
+	else
+          	log_warning_msg "Skype clients are deactivated via /etc/default/skypopen.conf"
+      fi
+      ;;
+  stop)
+	SKYPEPIDS=`/bin/pidof skype`
+	XVFBPIDS=`/bin/pidof Xvfb`	
+		log_daemon_msg "Stoping skype and xvfb processes $SKYPEPIDS $XVFBPIDS"
+	
+	for j in $SKYPEPIDS; do
+        kill -9 $j
+	done
+
+		
+
+	for k in $XVFBPIDS; do
+   	kill -9 $k 
+        done 
+
+	
+	;;
+  status)
+        SKYPEPIDS=`/bin/pidof skype`
+        XVFBPIDS=`/bin/pidof Xvfb`
+                log_daemon_msg "Skype [$SKYPEPIDS] Xvfb [$XVFBPIDS] running"  
+	;;
+  *)
+	echo "Usage: skype {start|stop|status}" >&2
+	;;
+esac

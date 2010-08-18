@@ -94,5 +94,12 @@ echo "You need the root password of mysql, hopefully ENTER will do!"
 stop
 
 step "GUI Fixing perms"
+echo "Fixing permissions"
 bash $SVNROOT/extras/fix_perms_gui.sh
 bash $SVNROOT/extras/fix_perms_fs.sh
+stop
+
+step "GUI: Timezone"
+echo "Checking OS timezone"
+dpkg-reconfigure tzdata
+stop

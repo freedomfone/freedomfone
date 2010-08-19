@@ -1,5 +1,5 @@
 #!/bin/bash
-#Version 1.6 for LTS
+#Version 1.6-02 for LTS
 SKYPE=/usr/local/skype-2.0.0.72/skype
 XVFB=/usr/bin/Xvfb
 FREEDOMFONE=/usr/local/freedomfone
@@ -21,7 +21,6 @@ start_skype() {
 	DBPATH=$FREEDOMFONE/skypopen/multi/$4
 	SLEEP=2
 	
-#echo "Starting skype user $1 : $3 : $DBPATH"
 	/usr/bin/Xvfb :$DISPLAY -ac >/dev/null 2>&1 &
 	sleep $SLEEP
 	/bin/echo $SKYPEUSER $PASSWORD | DISPLAY=:$DISPLAY $SKYPE --dbpath=$DBPATH --pipelogin >/dev/null 2>&1 & 

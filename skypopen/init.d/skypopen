@@ -6,6 +6,7 @@ FREEDOMFONE=/usr/local/freedomfone
 test -x $SKYPE || exit 0
 test -x $XVFB || exit 0
 
+DEBUG=no
 START_DAEMON=true
 DEBIANCONFIG=/etc/default/skypopen
 test -f $DEBIANCONFIGFILE && source $DEBIANCONFIG
@@ -44,10 +45,16 @@ case "$1" in
         	log_daemon_msg "Starting skype clients in Xvfb" "skypopen"
 		for i in $ACTIVELIST1; do
 			eval SKYPEACCOUNT=\$UUSER$i
-			#DEBUG
-			#echo $SKYPEACCOUNT $PASSWORD $[DISPLAY${i}]  $[DISPLAY${i}]
+			if [ "$DEBUG" = "yes" ]; then 
+			echo $SKYPEACCOUNT $PASSWORD $[DISPLAY${i}]  $[DISPLAY${i}]
+			fi	
 			start_skype $SKYPEACCOUNT $PASSWORD $[DISPLAY${i}] $[DISPLAY${i}]	
 		done 
+    	set +e
+        RC=$?
+        set -e
+        log_end_msg $RC
+
 	else
           	log_warning_msg "Skype clients are deactivated via /etc/default/skypopen.conf"
       fi
@@ -61,12 +68,14 @@ case "$1" in
         kill -9 $j
 	done
 
-		
-
 	for k in $XVFBPIDS; do
    	kill -9 $k 
         done 
 
+	set +e
+        RC=$?
+        set -e
+        log_end_msg $RC
 	
 	;;
   status)

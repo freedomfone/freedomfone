@@ -65,6 +65,11 @@ echo
 cat /etc/apache2/mods-enabled/rewrite.load
 stop
 
+step "Basic Authentication"
+mv /etc/apache2/envvars /etc/apache2/envvars.bak
+cp $SVNROOT/apache2/envvars /etc/apache2/envvars
+stop 
+
 step "GUI Apache: Reaload Apache"
 /etc/init.d/apache2 reload
 stop

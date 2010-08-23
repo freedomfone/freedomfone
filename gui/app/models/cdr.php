@@ -185,6 +185,7 @@ class Cdr extends AppModel{
  		 		$this->User->save($this->data);
 
 		            } else {
+			        $created = time();
 		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
 		     	        $this->User->create();
 		     	        $this->User->save($user);

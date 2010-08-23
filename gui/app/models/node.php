@@ -22,6 +22,7 @@
  *
  ***************************************************************************/
 
+App::import('mp3file');  
 
 class Node extends AppModel{
 
@@ -158,6 +159,7 @@ function __construct($id = false, $table = null, $ds = null) {
     }
 
 
-}
 
+
+}
 ?>

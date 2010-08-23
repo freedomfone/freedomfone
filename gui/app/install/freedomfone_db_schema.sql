@@ -372,6 +372,7 @@ CREATE TABLE `nodes` (
   `instance_id` int(6) NOT NULL,
   `title` varchar(200) NOT NULL,
   `file` varchar(100) NOT NULL,
+  `duration` int(11) unsigned default '0',
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
   PRIMARY KEY  (`id`),

@@ -30,6 +30,13 @@ class Node extends AppModel{
 
 //      var $belongsTo = array('IvrMenu');
 
+
+	var $hasMany = array('MonitorIvr' => array(
+                        	       'order' => 'MonitorIvr.id ASC',
+                        	       'dependent' => true)
+				       );
+
+
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 

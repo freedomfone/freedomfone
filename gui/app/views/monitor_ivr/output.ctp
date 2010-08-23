@@ -25,7 +25,7 @@
 
 
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Digit',true),__('Caller number',true),__('Type',true));
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Title',true),__('Digit',true),__('Caller number',true),__('Type',true));
 		$csv->addRow($line);
 
 	if($data){
@@ -45,6 +45,7 @@
 			       $entry['MonitorIvr']['call_id'],
 			       $entry['MonitorIvr']['ivr_code'],
 			       $entry['MonitorIvr']['node_id'],
+			       $entry['Node']['title'],
 			       $entry['MonitorIvr']['digit'],
 			       $entry['MonitorIvr']['caller_number'],
 			       $type

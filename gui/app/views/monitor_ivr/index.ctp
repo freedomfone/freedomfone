@@ -70,6 +70,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
  	$paginator->sort(__("IVR Code",true), 'ivr_code'),
  	$paginator->sort(__("Digit",true), 'digit'),
  	$paginator->sort(__("Node ID",true), 'node_id'),
+ 	$paginator->sort(__("Title",true), 'node_id'),
  	$paginator->sort(__("Caller number",true), 'caller_number'),
  	$paginator->sort(__("Type",true), 'type'),
 	__("Delete",true)));
@@ -80,14 +81,14 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
       foreach ($data as $key => $entry){
 
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
-
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
 	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
-	$ivr_code     = $entry['MonitorIvr']['ivr_code'];
+	$ivr_code    = $entry['MonitorIvr']['ivr_code'];
 	$call_id     = $entry['MonitorIvr']['call_id'];
-	$digit     = $entry['MonitorIvr']['digit'];
+	$digit       = $entry['MonitorIvr']['digit'];
 	$node_id     = $entry['MonitorIvr']['node_id'];
-	$caller_number     = $entry['MonitorIvr']['caller_number'];
+	$title       = $text->truncate($entry['Node']['title'],13,'...',true,false);
+	$caller_number  = $entry['MonitorIvr']['caller_number'];
 	//$extension = $entry['MonitorIvr']['extension'];
 
 	$type = $entry['MonitorIvr']['type'];
@@ -112,6 +113,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 		$ivr_code,
 		array($digit,array('align'=>'center')),
 		array($node_id,array('align'=>'center')),
+		$title,
 		$caller_number,
 		array($type,array('align'=>'center')),
 		array($delete,array('align'=>'center'))

@@ -26,11 +26,12 @@ class MonitorIvrController extends AppController{
 
       var $name = 'MonitorIvr';
 
-      var $helpers = array('Csv','Javascript');
+      var $helpers = array('Csv','Javascript','Text');
 
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'MonitorIvr.epoch desc','MonitorIvr.call_id'));       
 
       function index(){
+
 
 
 
@@ -41,12 +42,11 @@ class MonitorIvrController extends AppController{
        }
 
 
-      $this->pageTitle = 'Voice Menus: Monitor';
+	     $this->pageTitle = 'Voice Menus: Monitor';
 
+    	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
 	     $this->MonitorIvr->recursive = 0; 
-
    	     $data = $this->paginate('MonitorIvr');
-
 	     $this->set('data',$data);  
 
 	     }

@@ -31,7 +31,11 @@ class MonitorIvr extends AppModel{
       	  'Cdr' => array(
  	  	 'className' => 'Cdr',
  		 'foreignKey' => 'cdr_id'
- 		 ));
+ 		 ),
+      	  'Node' => array(
+ 	  	 'className' => 'Node',
+ 		 'foreignKey' => 'node_id'
+		 ));
 		 
 
 /*

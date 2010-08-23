@@ -259,6 +259,7 @@ SET character_set_client = @saved_cs_client;
 --
 -- Table structure for table `lm_menus`
 --
+
 DROP TABLE IF EXISTS `lm_menus`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
@@ -274,8 +275,9 @@ CREATE TABLE `lm_menus` (
   `lmSaveMessage` text,
   `lmGoodbyeMessage` text,
   `instance_id` int(6) NOT NULL,
-  `lmUseText` tinyint(4) default '0',
+  `lmForceTTS` tinyint(4) default '0',
   `title` varchar(50) default NULL,
+  `lmOnHangup` varchar(20) default 'accept',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -287,7 +289,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `lm_menus` WRITE;
 /*!40000 ALTER TABLE `lm_menus` DISABLE KEYS */;
-INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,'Default LAM');
+INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,'Default LAM','accept');
 
 /*!40000 ALTER TABLE `lm_menus` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -370,6 +372,7 @@ CREATE TABLE `nodes` (
   `instance_id` int(6) NOT NULL,
   `title` varchar(200) NOT NULL,
   `file` varchar(100) NOT NULL,
+  `duration` int(11) unsigned default '0',
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
   PRIMARY KEY  (`id`),

@@ -22,6 +22,7 @@
  *
  ***************************************************************************/
 
+App::import('mp3file');  
 
 class Node extends AppModel{
 
@@ -36,8 +37,13 @@ function __construct($id = false, $table = null, $ds = null) {
       'title' => array(
                         'minLength' => array(
                                        'rule' => array('minLength', 3),
-                                       'message' => __('Alphabets and numbers only',true)
+                                       'message' => __('Minimum 3 characters.',true)
                                        ),
+                        'isUnique' => array(
+                                       'rule' => 'isUnique',
+                                       'message' => __('This title is already in use.',true)
+                                       ),
+
                         'validText' => array(
                                        'rule' => array('validText','title'),
                                        'message' => __('No hyperlinks allowed.',true)
@@ -90,7 +96,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	$type = $data['file']['type'];
 
 	//allowed file types
-	$types = array('audio/x-wav','audio/wav','audio/mpeg');
+	$types = array('audio/x-wav','audio/wav','audio/mpeg','audio/mp3');
 
 	if(in_array($type,$types)){ return true;}
 	else { return false;}
@@ -153,6 +159,7 @@ function __construct($id = false, $table = null, $ds = null) {
     }
 
 
-}
 
+
+}
 ?>

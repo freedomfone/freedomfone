@@ -23,6 +23,7 @@
 ***************************************************************************/
 
 $ivr = Configure::read('IVR_SETTINGS');
+
 	if($this->data){
 
 		echo "<h1>".__("Edit Menu Option",true)."</h1>";
@@ -48,10 +49,9 @@ $ivr = Configure::read('IVR_SETTINGS');
 		echo "<table border=0>";
 		echo $html->tableCells(array (
      		     array(array(__('Listen',true),array('width'=>'50')), array($download,array('valign'=>'middle','width'=>'25')), $listen)
-
-
 		     ));
-
+		echo $html->tableCells(array (
+     		     array(__("Duration",true),	'', $formatting->epochToWords($this->data['Node']['duration']))));
 		echo "</table>";
 		echo $form->end(__('Save',true));
 

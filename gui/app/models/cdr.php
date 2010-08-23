@@ -152,7 +152,7 @@ class Cdr extends AppModel{
 	       	  	$this->MonitorIvr->set('ivr_code', '');
 		  	$this->MonitorIvr->set('digit', '');
     	       	  	$this->MonitorIvr->set('node_id','');
-	       	  	$this->MonitorIvr->set('caller_number', $entry['Caller-Caller-ID-Number']);
+	       	  	$this->MonitorIvr->set('caller_number', urldecode($entry['Caller-Caller-ID-Number']));
 	       	  	$this->MonitorIvr->set('extension', $entry['Caller-Destination-Number']);
 		  	//$this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  	$this->MonitorIvr->set('type', $channel_state);

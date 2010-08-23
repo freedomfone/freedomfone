@@ -84,9 +84,14 @@ class NodesController extends AppController{
 		if(array_key_exists('urls', $fileOK)){
 
 		      //Set db fields
-	              $this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
+		      $filename = $this->getFilename($fileOK['files'][0]);
+	              $this->data['Node']['file']        = $filename;
 		      $this->data['Node']['instance_id'] = $iid;
-	      	
+			      
+		      $duration = $this->wavDuration('node',$filename,'wav');
+		      $this->data['Node']['duration'] = $this->wavDuration('node',$filename,'wav');
+
+
 		      //Save node in db
 
 		      $this->Node->save($this->data, array('validate' => false));
@@ -176,8 +181,10 @@ class NodesController extends AppController{
           // Retrieve data from database and display 
     	  elseif(empty($this->data['Node'])){
 
+
 		$this->Node->id = $id;
 		$this->data = $this->Node->read(null,$id);
+
           }
           
           //Fetch form data 
@@ -187,6 +194,8 @@ class NodesController extends AppController{
 
           $this->Node->set( $this->data );	       
           $this->data['Node']['instance_id'] = $iid;		
+
+
 
           //If title is ok, save
           if ($this->Node->validates(array('fieldList' => array('title')))){
@@ -217,12 +226,17 @@ class NodesController extends AppController{
 		       	if(array_key_exists('urls', $fileOK)) {
 
                                 //Set file info
-				$this->data['Node']['file']        = $this->getFilename($fileOK['files'][0]);
+				$filename = $this->getFilename($fileOK['files'][0]);
+				$this->data['Node']['file'] = $filename;        
+
+	  			$duration = $this->wavDuration('node',$filename,'wav');
+	  			$this->data['Node']['duration'] = $this->wavDuration('node',$filename,'wav');
+
 
 				$this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');	
 
                                 //Save file data to db
-                                $this->Node->save($this->data,array('fieldList'=>array('file','modified'),'validate'=>false));
+                                $this->Node->save($this->data,array('fieldList'=>array('file','modified','duration'),'validate'=>false));
 
 
 

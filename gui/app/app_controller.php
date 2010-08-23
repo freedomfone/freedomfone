@@ -39,6 +39,7 @@
 
 App::import("Vendor", "ff_event", false, null, 'spooler_ff.php'); 
 App::import("Vendor", "ESL", false, null, 'ESL.php'); 
+App::import("Vendor", "mp3file", false, null, 'mp3file.php'); 
 
 App::import('Core','L10n');
 
@@ -49,9 +50,8 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
 
 function beforeRender(){
 
-
         date_default_timezone_set(Configure::read('Config.timezone'));
-        
+
         }
 
  function beforeFilter() {
@@ -276,6 +276,55 @@ return $result;
       	passthru($cmd);
   	}
      }
+
+
+
+
+/*
+ * Returns duration (in seconds) of wav file
+ *  
+ * @param string $type type of media content (node, ivr_menu) 
+ * @param string $filename name of file without extension
+ * @param string $ext extension (wav/mp3) 
+ * @return int $duration
+ *
+ * Source: http://snipplr.com/view/285/read-wav-header-and-calculate-duration/
+ *
+ */
+
+  function wavDuration($type,$filename,$ext) {
+
+  	   $path= false;
+
+	   sleep(2);
+  	   switch ($type){
+
+    	     case 'node':
+	     $path = BASE_DIR.'/freeswitch/scripts/freedomfone/ivr/'.IID.'/nodes/';
+	     break;
+
+	    }
+
+	    $file = $path.$filename.".".$ext;
+
+            $fp = fopen($file, 'r');
+
+     	    if (fread($fp,4) == "RIFF") {
+    	       fseek($fp, 20);
+    	       $rawheader = fread($fp, 16);
+    	       $header = unpack('vtype/vchannels/Vsamplerate/Vbytespersec/valignment/vbits',$rawheader);
+    	       $pos = ftell($fp);
+    	         while (fread($fp,4) != "data" && !feof($fp)) {
+      	       	     $pos++;
+      		     fseek($fp,$pos);
+    		 }
+    	        $rawheader = fread($fp, 4);
+    		$data = unpack('Vdatasize',$rawheader);
+    		$sec = $data['datasize']/$header['bytespersec'];
+    		return round($sec);
+  	    }
+   }
+
 
 
      function getExt($file){

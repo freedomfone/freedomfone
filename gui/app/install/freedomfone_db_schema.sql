@@ -355,7 +355,6 @@ CREATE TABLE `monitor_ivr` (
   `caller_number` varchar(50) default NULL,
   `extension` smallint(6) default NULL,
   `type` varchar(10) default NULL,
-  `title` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

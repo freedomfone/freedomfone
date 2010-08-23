@@ -60,9 +60,9 @@ public $ext;
 	$this->inter_digit_timout   = 2000;
 	$this->timeout 	      	    = 3000;			  
 	$this->inter_digit_timeout  = 2000;
-	$this->max_failures 	    = 3;
+	$this->max_failures 	    = 10;
 	$this->max_timeouts 	    = 4;
-	$this->digit_len	    = 4;
+	$this->digit_len	    = 1;
 	$this->tts_engine	    = 'cepstral';
 	$this->tts_voice	    = 'allison';
 	$this->ext		    = $ext;
@@ -187,18 +187,36 @@ public $ext;
 	   }
 
 
-	   function write_entry($type,$id,$digit,$key,$title){
+
+	   function write_entry($type,$id,$digit,$key,$title,$file_invalid){
 
 	            	switch ($type){
 
-		      	   //Node
+		      	   //Node::interrupt
 			   case 'node':
+
+		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	   $arr = mysql_fetch_array($obj);
+			   $action = "menu-exec-app";
+
+
+
+			   $param  = 'play_and_get_digits 1 1 1 36000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
+			   break;
+
+
+
+
+		      	   //Node::non-interrupt
+			   Case 'node-non-interrupt':
 
 		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
 		       	   $arr = mysql_fetch_array($obj);
 			   $action = "menu-play-sound";
 			   $param  = $this->node_path.$arr['file'].'.wav';
 			   break;
+
+
 
 		      	   //Leave-a-message
 			   case 'lam':
@@ -220,8 +238,7 @@ public $ext;
 
 			if($monitor){
 				$action= "menu-exec-app";
-				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' \${caller_id_number} \${destination_number}";
-
+				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' '\${caller_id_number}' '\${destination_number}'";
 		        	$entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
       				$entry -> addAttribute("action",$action);
 		        	$entry -> addAttribute("digits",$digit);
@@ -269,6 +286,8 @@ public $ext;
 		 fclose($this->handle);
 
 	  }
+
+
 
 }
 ?>

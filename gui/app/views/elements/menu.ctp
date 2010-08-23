@@ -230,6 +230,11 @@
 </li>
 
 <li>
+<?php echo $html->link(__("Wiki/SVN",true),'http://dev.freedomfone.org/wiki',array('target'=>'blank')); ?>
+</li>
+
+
+<li>
 <?php echo $html->link(__("Feedback",true),'http://www.freedomfone.org/page/feedback',array('target'=>'blank')); ?>
 </li>
 

@@ -150,4 +150,5 @@ cd $FS_SRC/libs/esl; make; make phpmod; make phpmod-install
 #FIXME! LTS 10.04 Finetune memory for PHP.INI
 sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/cli/php.ini
 sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/apache2/php.ini
+sed -i 's/memory_limit = 16M/memory_limit = 64M/' /etc/php5/apache2/php.ini
 stop

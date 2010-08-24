@@ -32,6 +32,7 @@ echo $form->end();
 
 echo "<h1>".__('Audio Messages',true)."</h1>";
 
+//mimeTypes = navigator.mimeTypes; 
 
      if ($messages){
 

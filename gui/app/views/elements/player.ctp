@@ -54,9 +54,8 @@
 
      if($check==1){ 
 
-        echo $javascript->includeScript('detectFlash');        
         $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';
-	echo $html->para(null,null,array('id'=>'audio_player_'.$id));
+	echo $html->para(false,__("No Flash plugin installed",true),array('id'=>'audio_player_'.$id));
 	echo $javascript->codeBlock($script,array('safe'=>false));
 
 	}

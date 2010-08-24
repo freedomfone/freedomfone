@@ -387,6 +387,7 @@ gui/app/webroot/js/audio-player.js -text
 gui/app/webroot/js/cluetip.js -text
 gui/app/webroot/js/confirmSubmit.js -text
 gui/app/webroot/js/corner.js -text
+gui/app/webroot/js/detectFlash.js -text
 gui/app/webroot/js/domcollapse.js -text
 gui/app/webroot/js/jquery.cluetip.js -text
 gui/app/webroot/js/jquery.corner.js -text

@@ -78,14 +78,9 @@ class Cdr extends AppModel{
 		  $ivr_parent = $this->query('select title from ivr_menus where parent = true');
 	       	  $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
 
-
 		  //Determine sender protocol (skype,gsm,sip)
-		  $proto=false;		 
-		  if(stripos($channel,'skypiax')===0){ $proto = 'skype';}
-	          elseif(stripos($channel,'gsmopen')===0){ $proto = 'gsm';}
-	          elseif(stripos($channel,'sofia')===0){ $proto = 'sip';}
+	 	  $proto = $this->getProto($channel);
        	          $this->set('proto',$proto);
-
 
 		  foreach($mapping as $app => $reg){
 		       preg_match($reg,$ext,$matches);
@@ -94,16 +89,8 @@ class Cdr extends AppModel{
 		         }
 		   }
 
-
-		   //Flag messages that should not be inserted
-		   if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
-		     $insert = false;
-		  // } elseif ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && !$matches){
-		   } elseif ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && !$application){
-		     $insert = false;
-		   } else {
-		   $insert= true;
-		   }
+		   //Determine whether entry should be stored or not
+		   $insert = $this->insertCDR($proto,$channel_state,$answer_state);
 
 		   //Calculate length of LAM and IVR calls
 
@@ -122,7 +109,6 @@ class Cdr extends AppModel{
 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
 		     elseif ($channel_state =='CS_DESTROY'){
-
 		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'CHANNEL_STATE' =>'CS_ROUTING','application'=>'ivr')))){
 		     	    	$length = $epoch - $start['Cdr']['epoch'];
 		     		$this->set('length',$length);
@@ -152,7 +138,7 @@ class Cdr extends AppModel{
 	       	  	$this->MonitorIvr->set('ivr_code', '');
 		  	$this->MonitorIvr->set('digit', '');
     	       	  	$this->MonitorIvr->set('node_id','');
-	       	  	$this->MonitorIvr->set('caller_number', $entry['Caller-Caller-ID-Number']);
+	       	  	$this->MonitorIvr->set('caller_number', urldecode($entry['Caller-Caller-ID-Number']));
 	       	  	$this->MonitorIvr->set('extension', $entry['Caller-Destination-Number']);
 		  	//$this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  	$this->MonitorIvr->set('type', $channel_state);
@@ -185,6 +171,7 @@ class Cdr extends AppModel{
  		 		$this->User->save($this->data);
 
 		            } else {
+			        $created = time();
 		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
 		     	        $this->User->create();
 		     	        $this->User->save($user);
@@ -294,6 +281,62 @@ class Cdr extends AppModel{
 	 return $epoch;
 
 	 }
+
+
+/*
+ * Determine channel used for incoming call (Skype/SIP/GSM)
+ *
+ *
+ */
+	 function getProto($channel){
+
+		  $proto=false;	
+
+		  if(stripos($channel,'skypopen')===0){ 
+		  	$proto = 'skype';
+		  } elseif(stripos($channel,'gsmopen')===0){ 
+		    	$proto = 'gsm';
+		  } elseif(stripos($channel,'sofia')===0){ 
+		        $proto = 'sip';
+		  }
+		  return $proto;
+	  }
+
+
+
+/*
+ * Determine whether CDR should be saved or not
+ *
+ *
+ */
+
+	function insertCDR($proto,$channel_state,$answer_state){
+
+		   $insert = true;
+		   switch ($proto){
+
+		    case 'gsm':
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		         $insert = false;
+		    } 
+		    break;
+
+		    case 'sip':
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		         $insert = false;
+		    }
+		    break;
+	
+
+		    case 'skype':
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing'){
+		         $insert = false;
+		    }
+		    break;
+		   }
+
+		   return $insert;
+		   }
 
 }
 

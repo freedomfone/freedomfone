@@ -65,7 +65,7 @@ class Message extends AppModel {
 	       }
 
 	      if (!$mode){ $mode = 'manual'; }
-	      $this->log("Method: message; Mode: ".$mode, "refresh"); 
+	      $this->log("Message; Mode: ".$mode, "refresh"); 
 
 
  	       while ($entry = $obj->getNext('update')){

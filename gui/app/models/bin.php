@@ -54,7 +54,7 @@ class Bin extends AppModel{
         	  }
 
 	      if (!$mode){ $mode = 'manual'; }
-	      $this->log("Method: bin; Mode: ".$mode, "refresh"); 
+	      $this->log("Bin; Mode: ".$mode, "refresh"); 
 
 
      	    while ($entry = $obj->getNext('update')){

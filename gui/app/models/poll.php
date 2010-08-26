@@ -192,7 +192,7 @@ function checkDate($data,$field){
 	       }
 
 	      if (!$mode){ $mode = 'manual'; }
-	      $this->log("Method: poll; Mode: ".$mode, "refresh"); 
+	      $this->log("Poll; Mode: ".$mode, "refresh"); 
 
       	    while ($entry = $obj->getNext('update')){
 

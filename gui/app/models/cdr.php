@@ -56,8 +56,8 @@ class Cdr extends AppModel{
 	      }
 
 	      if (!$mode){ $mode = 'manual'; }
-	      $this->log("Method: cdr; Mode: ".$mode, "refresh"); 
-	      $this->log("Method: monitor_ivr; Mode: ".$mode, "refresh"); 
+	      $this->log("Cdr; Mode: ".$mode, "refresh"); 
+	      $this->log("Monitor_ivr; Mode: ".$mode, "refresh"); 
 
       	      while ($entry = $obj->getNext('update')){
 

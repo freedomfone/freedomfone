@@ -41,7 +41,7 @@ class Bin extends AppModel{
  *
  */
 
-    function refresh(){
+    function refresh($mode = null){
 
       $array = Configure::read('bin');
       $instance_id = IID;
@@ -52,6 +52,10 @@ class Bin extends AppModel{
        	   if ($obj -> auth != true) {
   	       	  die(printf("Unable to authenticate\r\n"));
         	  }
+
+	      if (!$mode){ $mode = 'manual'; }
+	      $this->log("Method: bin; Mode: ".$mode, "refresh"); 
+
 
      	    while ($entry = $obj->getNext('update')){
 

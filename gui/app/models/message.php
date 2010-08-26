@@ -50,7 +50,7 @@ class Message extends AppModel {
 
 
 
-      function refresh(){
+      function refresh($mode = null){
 
       $this->autoRender = false;
 
@@ -63,6 +63,9 @@ class Message extends AppModel {
 	       if ($obj -> auth != true) {
     	       die(printf("Unable to authenticate\r\n"));
 	       }
+
+	      if (!$mode){ $mode = 'manual'; }
+	      $this->log("Method: message; Mode: ".$mode, "refresh"); 
 
 
  	       while ($entry = $obj->getNext('update')){

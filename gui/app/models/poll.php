@@ -178,7 +178,7 @@ function checkDate($data,$field){
  *
  */
 
-     function refresh(){
+     function refresh($mode = null){
 
       $array = Configure::read('poll_in');
  
@@ -190,6 +190,9 @@ function checkDate($data,$field){
 
     	       	  die(printf("Unable to authenticate\r\n"));
 	       }
+
+	      if (!$mode){ $mode = 'manual'; }
+	      $this->log("Method: poll; Mode: ".$mode, "refresh"); 
 
       	    while ($entry = $obj->getNext('update')){
 

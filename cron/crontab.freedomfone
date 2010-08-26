@@ -12,4 +12,6 @@
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh/cron  >/dev/null 2>&1
 # App: GSMOPEN 
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh/cron  >/dev/null 2>&1
+# App: Other SMS - The Bin 
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
 #########################################################################################################

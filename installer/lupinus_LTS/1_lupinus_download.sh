@@ -70,7 +70,7 @@ stop
 #10.04 LTS mailx is now bsd-mailx
 step "DEVEL: Downloading Development Environment"
 apt-get install autoconf automake1.9 libtool build-essential libncurses5-dev \
-vim subversion openssh-server vim wireshark \
+wget vim subversion openssh-server vim wireshark \
 apache2 php5 php5-curl php5-cli php5-mysql php5-xsl mysql-server libapache2-mod-php5 \
 bsd-mailx iwatch lame libgsmme-dev \
 libnspr4-dev gettext libasound2-dev libx11-dev libspandsp-dev

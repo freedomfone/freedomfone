@@ -37,6 +37,7 @@ class MessagesController extends AppController{
 
 
       $this->requestAction('/messages/refresh');
+      $this->requestAction('/cdr/refresh');
 
       $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
       $this->Session->write('Message.source', 'index');

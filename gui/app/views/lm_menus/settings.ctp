@@ -122,7 +122,7 @@ $input8_3 = $input8_4 = false;
      echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
      echo $html->div();
 
-     echo "<div class ='instruction'>".__("The Advanced Leave-a-Message service requires the caller to Press 1 to Save, 0 to Delete, or * to Listen to its message The additional prompts beölow (Step 3 - 8) facilitate this functionality.",true)."</div>";
+     echo "<div class ='instruction'>".__("The Advanced Leave-a-Message service requires the caller to Press 1 to Save, 0 to Delete, or * to Listen to its message The additional prompts below (Step 3 - 8) facilitate this functionality.",true)."</div>";
 
      // ** Invalid **//
      echo "<fieldset><legend>".__('Step 3: Invalid message',true)."</legend>";

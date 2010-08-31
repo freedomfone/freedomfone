@@ -118,7 +118,8 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		break;	       
 
 	       case 'mp3':
-	       	$permitted = array('audio/mpeg','audio/mp3');
+	      
+	       	$permitted = array('audio/mpeg','audio/mp3','audio/mpg');
 		$ext = 'mp3';
 		break;	       
 
@@ -128,7 +129,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		break;	       
 
 	       case 'audio':
-	       	$permitted = array('audio/mpeg','audio/x-wav','audio/wav','audio/mp3');
+	       	$permitted = array('audio/mpeg','audio/x-wav','audio/wav','audio/mp3','audio/mpg');
 		break;	       
 
 

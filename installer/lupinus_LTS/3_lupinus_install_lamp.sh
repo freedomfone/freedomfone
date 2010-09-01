@@ -67,7 +67,7 @@ stop
 
 step "Basic Authentication"
 mv /etc/apache2/envvars /etc/apache2/envvars.bak
-cp $SVNROOT/apache2/envvars /etc/apache2/envvars
+cp $SVNROOT/gui/apache2/envvars /etc/apache2/envvars
 stop 
 
 step "GUI Apache: Reaload Apache"

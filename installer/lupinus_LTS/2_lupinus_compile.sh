@@ -6,7 +6,7 @@
 # STEP 2 - Compile and install Cepstral, Freeswitch, ESL SWIG 
 #####################################################################################
 
-OS=64
+OS=32
 FREESWITCH=1.0.6
 RELEASE=lupinus
 TAG=10.04-LTS
@@ -136,7 +136,7 @@ cd /etc/init.d; update-rc.d gsmopen defaults 92
 stop
 
 step "FS APP: Adding user freeswitch"
-useradd freeswitch
+useradd freeswitch -s /bin/false
 adduser freeswitch dialout
 adduser freeswitch audio 
 stop

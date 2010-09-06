@@ -258,11 +258,11 @@ class MessagesController extends AppController{
     }
 
 
-      function refresh(){
+      function refresh($method = null){
 
 
       $this->autoRender = false;
- 
+      $this->logRefresh('message',$method); 
       $this->Message->refresh();
 
       }

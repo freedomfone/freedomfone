@@ -158,12 +158,13 @@ class ProcessesController extends AppController{
 
 
 
-      function refresh(){
+      function refresh($method = null){
 
       $this->Session->write('Process.refresh', time());
    
       $this->autoRender = false;
  
+      $this->logRefresh('processes',$method); 
       $this->Process->refresh();
 
       }

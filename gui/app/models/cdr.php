@@ -42,7 +42,7 @@ class Cdr extends AppModel{
  *
  */
 
-	function refresh($mode = null){
+	function refresh(){
 
 	$mapping = Configure::read('EXT_MAPPING');
 
@@ -55,9 +55,6 @@ class Cdr extends AppModel{
     	       	  die(printf("Unable to authenticate\r\n"));
 	      }
 
-	      if (!$mode){ $mode = 'manual'; }
-	      $this->log("Cdr; Mode: ".$mode, "refresh"); 
-	      $this->log("Monitor_ivr; Mode: ".$mode, "refresh"); 
 
       	      while ($entry = $obj->getNext('update')){
 

@@ -330,21 +330,27 @@ return $result;
 
      function getExt($file){
 
-     return strrchr($file,'.');
+       return strrchr($file,'.');
 
      }
 
 
      function getFilename($file){
 
-
-     $pos =strripos ($file,'.');
-
-     return substr($file,0,$pos);
-
+       $pos =strripos ($file,'.');
+       return substr($file,0,$pos);
 
      }
 
+
+     function logRefresh($model,$method = null){
+
+	if (!$method){ 
+	   $method = 'manual'; 
+	   }
+	$this->log( $model."; Mode: ".$method, "refresh"); 
+
+     }
 
 }
 ?>

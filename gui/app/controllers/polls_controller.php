@@ -33,11 +33,13 @@ class PollsController extends AppController{
 
 
 
-      function refresh(){
+      function refresh($method = null){
 
       $this->autoRender = false;
- 
+
+      $this->logRefresh('poll',$method); 
       $this->Poll->refresh();
+
 
       }
 

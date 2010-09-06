@@ -57,7 +57,7 @@ stop
 
 step "CEPSTRAL: Register Cepstral"
 #Keep this commented if you do not have license. You should!
-swift --reg-voice 
+/usr/local/bin/swift --reg-voice 
 stop
 
 ###########################################################################
@@ -121,7 +121,7 @@ step "Fixing init.d scripts"
 cp $SVNROOT/init.d/freeswitch /etc/init.d/
 cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
 cp $SVNROOT/init.d/gsmopen /etc/init.d/
-cp $SVNROOT/init.d/iwatch /etc/init.d/
+cp $SVNROOT$SVNROOT/init.d/iwatch /etc/init.d/
 cp $SVNROOT/init.d/etc/default/iwatch /etc/default
 #cp $SVNROOT/skype/init.d/skypopen /etc/init.d/
 chmod 0755 /etc/init.d/freeswitch
@@ -145,6 +145,7 @@ step "Fixing ESL CLI dynamic load"
 #FIXME! LTS 10.04
 #Disable -Wall in Makefile libs/esl
 #http://jira.freeswitch.org/browse/ESL-31;jsessionid=4781C2CD1D4B3F30A0C026A615C12AEE
+cp $SVNROOT/installer/lupinus_LTS/extras/libs/esl/Makefile $FS_SRC/libs/esl/Makefile 
 cd $FS_SRC/libs/esl; make; make phpmod; make phpmod-install 
 ##cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
 #FIXME! LTS 10.04 Finetune memory for PHP.INI

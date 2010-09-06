@@ -13,7 +13,7 @@
 
 
 
-OS=64
+OS=32
 FREESWITCH=1.0.6
 RELEASE=lupinus
 TAG=10.04-LTS
@@ -25,8 +25,10 @@ SVNROOT=$SVNPREFIX/freedomfone
 
 if [ "$OS" = "64" ]; then
 CEPSTRALPACK="http://downloads.cepstral.com/cepstral/x86-64-linux/Cepstral_Allison_x86-64-linux_5.1.0.tar.gz"
+CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_x86-64-linux_5.1.0"
 else
 CEPSTRALPACK="http://downloads.cepstral.com/cepstral/i386-linux/Cepstral_Allison_i386-linux_5.1.0.tar.gz"
+CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_i386-linux_5.1.0"
 fi
 
 TIMESTAMP=`date +%s` 
@@ -99,9 +101,9 @@ cd $DOWNLOAD; wget http://files.freeswitch.org/freeswitch-$FREESWITCH.tar.gz
 cd $DOWNLOAD; wget $CEPSTRALPACK
 #It forces us to go trough the donation page! Please Donate!
 cd $DOWNLOAD; wget "http://cakeforge.org/frs/download.php/734/cake_1.2.5.tar.gz/donation=complete" -O cake_1.2.5.tar.gz
-cd $DOWNLOAD; tar zxvf $CEPSTRALPACK.tar.gz
+cd $DOWNLOAD; tar zxvf $CEPSTRALSRC.tar.gz
 cd $DOWNLOAD; tar zxvf cake_1.2.5.tar.gz
-cd $DOWNLOAD; tar zxvf freeswitch-1.0.5-latest.tar.gz
+cd $DOWNLOAD; tar zxvf freeswitch-$FREESWITCH.tar.gz
 stop
 
 echo "Download completed! Fix freeswitch download link if needed!!"

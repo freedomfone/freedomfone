@@ -54,6 +54,7 @@ class Message extends AppModel {
 
       $this->autoRender = false;
 
+
       $array = Configure::read('lm_in');
 
 	      
@@ -62,7 +63,6 @@ class Message extends AppModel {
 	       if ($obj -> auth != true) {
     	       die(printf("Unable to authenticate\r\n"));
 	       }
-
 
  	       while ($entry = $obj->getNext('update')){
 

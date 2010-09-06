@@ -27,27 +27,7 @@ class Setting extends AppModel{
 
       var $name = 'Setting';
 
-
-function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
-
-    $this->validate = array(
-      'ip_address' => array(
-                        'ip' => array(
-                                       'rule' => 'ip',
-                                       'message' => __('Please supply a valid IP address.',true)
-                                       )),
-                       
-      'domain' => array(
-			'domain' =>array(
-					'rule' => 'url',
-					'message' => __('Please supply a valid URL.',true)
-					))
-                                        );
-
-
-
-}
+//      var $useTable = false;
 
 
 }

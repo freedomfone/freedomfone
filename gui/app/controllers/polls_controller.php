@@ -33,17 +33,20 @@ class PollsController extends AppController{
 
 
 
-      function refresh(){
+      function refresh($method = null){
 
       $this->autoRender = false;
- 
+
+      $this->logRefresh('poll',$method); 
       $this->Poll->refresh();
+
 
       }
 
 
 
       function index(){
+
 
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
@@ -76,6 +79,7 @@ class PollsController extends AppController{
    function add(){
 
       $this->pageTitle = 'Create new poll';
+ 
 
       //Render empty form
       if (empty($this->data)){
@@ -173,6 +177,7 @@ class PollsController extends AppController{
 
 
    function edit($id = null){
+
 
    $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
 

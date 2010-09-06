@@ -109,11 +109,11 @@ class BinController extends AppController{
 
 
 
-      function refresh(){
+      function refresh($method = null){
 
       $this->autoRender = false;
- 
-      $this->Bin->refresh();
+      $this->logRefresh('bin',$method); 
+      $this->Bin->refresh($method);
 
       }
 

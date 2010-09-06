@@ -55,6 +55,7 @@ class Cdr extends AppModel{
     	       	  die(printf("Unable to authenticate\r\n"));
 	      }
 
+
       	      while ($entry = $obj->getNext('update')){
 
 	          $channel = $entry['Channel-Name'];
@@ -73,10 +74,6 @@ class Cdr extends AppModel{
     	       	  $this->set('caller_number',urldecode($entry['Caller-Caller-ID-Number']));
 	       	  $this->set('extension', $ext);
 
-
-		  //FIXME! //Create custom event for CS_ROUTING CDR
-		  $ivr_parent = $this->query('select title from ivr_menus where parent = true');
-	       	  $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
 
 		  //Determine sender protocol (skype,gsm,sip)
 	 	  $proto = $this->getProto($channel);
@@ -106,14 +103,21 @@ class Cdr extends AppModel{
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('title', LAM_DEFAULT);
 		     } 
-
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
-		     elseif ($channel_state =='CS_DESTROY'){
+		     elseif ($application == 'ivr' && $channel_state =='CS_DESTROY'){
 		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'CHANNEL_STATE' =>'CS_ROUTING','application'=>'ivr')))){
 		     	    	$length = $epoch - $start['Cdr']['epoch'];
 		     		$this->set('length',$length);
 		     		}
 		     }
+
+
+		     //Set IVR title
+	       	      //FIXME! //Create custom event for CS_ROUTING CDR	
+	     	      elseif ($application == 'ivr' && $channel_state == 'CS_ROUTING'){
+			       $ivr_parent = $this->query('select title from ivr_menus where parent = true');
+	       	       	       $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
+		      }
 
 		     $this->set('application', $application);
 
@@ -148,6 +152,7 @@ class Cdr extends AppModel{
 
 		  	$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
+
 
 			//Check if user is registered
 

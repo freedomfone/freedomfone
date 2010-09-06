@@ -39,11 +39,12 @@ class ChannelsController extends AppController{
 
 
 
-      function refresh(){
+      function refresh($method = null){
 
            date_default_timezone_set(Configure::read('Config.timezone'));
       	   $this->Session->write('Channel.refresh', time());
            $this->autoRender = false;
+      	   $this->logRefresh('channels',$method); 
        	   $this->Channel->refresh();
 
       }

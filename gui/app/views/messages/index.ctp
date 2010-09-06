@@ -25,14 +25,16 @@
 $session->flash();
 echo $javascript->includeScript('toggle');
 
+
+
+
 echo $form->create('Message',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'index', 'class' => 'button')));
 echo $form->end();
 
 
 echo "<h1>".__('Audio Messages',true)."</h1>";
 
-//mimeTypes = navigator.mimeTypes; 
 
      if ($messages){
 

@@ -46,13 +46,24 @@ class LmMenu extends AppModel {
     	    foreach ($lm_default as $key => $default){
 
 	    	    $text = $this->data['LmMenu'][$key];
+                 
+                    if($key == 'lmForceTTS'){
+
+                      if(!$text) {
+    	    	        $line = "var ".$key." = false;\n";
+                       } else {
+                        $line = "var ".$key." = true;\n";
+                       }
+                     } else {
 
 	    	    if (!$text){
 		       $text = $default;
 		    }
-    	    	    $line = "var ".$key." = \"".$text."\";\n";
-	    	    fwrite($handle, $line);
 
+    	    	    $line = "var ".$key." = \"".$text."\";\n";
+	    	   
+                    }
+                    fwrite($handle, $line);
 	    }
 	    
 	    fclose($handle);
@@ -60,26 +71,6 @@ class LmMenu extends AppModel {
     return true;
     }
 
-   // DEMO FIX
-    function demoReset(){
-
-
-        $lm_default  = Configure::read('LM_DEFAULT');
-
-            $data = file("http://localhost/freedomfone/app/webroot/defaults/lm/conf/100.conf");
-
-            foreach($data as $line){
-
-            $_line = explode(";",$line);
-
-            $this->data['LmMenu'][$_line[0]]= $_line[1];
-
-            }
-            $this->data['LmMenu']['id']= 1;
-
-            $this->updateAll($this->data['LmMenu']);
-    return true;
-    }
 
 
 }

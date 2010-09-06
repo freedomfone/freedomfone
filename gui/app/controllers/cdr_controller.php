@@ -30,10 +30,13 @@ class CdrController extends AppController{
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.id' => 'desc')); 
 
 
-      function refresh(){
+      function refresh($method = null){
 
-      $this->requestAction('/messages/refresh');
+      $this->requestAction('/messages/refresh/'.$method);
       $this->autoRender = false;
+
+      $this->logRefresh('cdr',$method); 
+
       $this->Cdr->refresh();
 
 

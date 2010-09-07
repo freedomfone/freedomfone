@@ -32,6 +32,11 @@ $info = __('Voice Menu| This component allows you to build a variety of personal
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
+
+
 echo "<h1>".__('Voice menus',true)."</h1>";
 
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";

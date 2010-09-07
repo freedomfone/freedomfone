@@ -28,33 +28,58 @@ $session->flash();
 echo $form->create('Setting',array('type' => 'post','action'=> 'env'));
 
 
-	  $languages = Configure::read('LANGUAGES');
-	  $timezones = DateTimeZone::listIdentifiers();
+	foreach ($data as $key => $unit){
 
+	  $entry = $unit['Setting'];
+
+	  if ($entry['name']=='language'){
+
+	     $lang_selected = $entry['value_string'];
+	     $languages = Configure::read('LANGUAGES');
+	     $rows[] = array(__("Language",true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+	     
+
+	  } elseif ($entry['name']=='timezone'){
+
+
+	  
+	  $timezones = DateTimeZone::listIdentifiers();
 	    foreach ($timezones as $timezone){
 	       if (preg_match( '/^(Africa|America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $timezone)){ $zones[$timezone] = $timezone;}
 	    }
 
-        echo $form->input('id',array('type'=>'hidden','value'=>1));
+
+	     $rows[] = array(__("Time zone",true),$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$entry['value_string'])));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 
 
-	  $rows[] = array(__("Language",true), $form->input('language',array('type'=>'select',  'options'=>$languages,'label'=>false,'selected'=>$data['Setting']['language'])));
-	  $rows[] = array(__("Time zone",true),$form->input('timezone', array('type'=>'select', 'options'=>$zones,'label'=>false,'selected'=>$data['Setting']['timezone'])));
-	  $rows[] = array(__("Domain",true),$form->input('domain',array('type'=>'text','label'=>false,'size'=>30,'value'=>$data['Setting']['domain'])));
-	  $rows[] = array(__("IP address",true),$form->input('ip_address',array('type'=>'text','label'=>false,'size'=>30,'value'=>$data['Setting']['ip_address'])));
-	  $rows[] = array(__("Overwrite event",true),$form->input('overwrite_event', array('type'=>'checkbox','label'=>false,'checked'=>$data['Setting']['overwrite_event'])));
-	  $rows[] = array(array($form->end(__('Save',true)),array('colspan'=>2,'align'=>'center')));
+	  }    elseif ($entry['name']=='domain'){
+	
+	     $rows[] = array(__("Domain",true),$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>$entry['value_string'],'size'=>30)));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));	
+
+	  }   elseif ($entry['name']=='ip_address'){
+	
+	     $rows[] = array(__("IP address",true),$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>$entry['value_string'],'size'=>30)));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+
+
+	  }   elseif ($entry['name']=='overwrite_event'){
+	      $checked = false;
+	      if($entry['value_int']){ $checked = 'checked';}
+	     $rows[] = array(__("Overwrite event",true),$form->input($entry['id'].'.value',array('type'=>'checkbox','label'=>false,'checked'=>$checked)));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_int'));
+	  }   
+
+	}
+
+	$rows[] = array(array($form->end(__('Save',true)),array('colspan'=>2,'align'=>'center')));
+
 
 	echo "<table>";
 	echo $html->tableCells($rows);
 	echo "</table>";
-
-     echo "<table>";
-     $lines[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>100,'valign'=>'bottom')));
-     $lines[] = array(__('Current time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time()));
-     echo $html->tableCells($lines);
-     echo "</table>"; 
-
 
 
 ?>

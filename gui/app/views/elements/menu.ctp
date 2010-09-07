@@ -181,9 +181,11 @@
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
+
 <li>
-<?php echo $html->link(__("Language",true),'/settings/'); ?>
+<?php echo $html->link(__("Settings",true),'/settings'); ?>
 </li>
+
 
 <li>
 <?php echo $html->link(__("Software",true),'/processes/software'); ?>

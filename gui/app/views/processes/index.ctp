@@ -22,10 +22,9 @@
  *
  ***************************************************************************/
 
-date_default_timezone_set(Configure::read('Config.timezone'));
-
 $session->flash();
 $generated  = $session->read('Process.refresh');
+
 
 echo $form->create('Process',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));

@@ -90,11 +90,9 @@ esl/php/fs_sock.php -text
 extras/blacklist.pl2303 -text
 extras/fix_perms_fs.sh -text
 extras/fix_perms_gui.sh -text
-extras/lame397 -text
 extras/php.ini -text
 extras/php2twitter.php -text
 extras/setmixers -text
-extras/sources.list.debian5 -text
 freeswitch/conf/autoload_configs/README -text
 freeswitch/conf/autoload_configs/asound.conf -text
 freeswitch/conf/autoload_configs/gsmopen.conf.xml -text

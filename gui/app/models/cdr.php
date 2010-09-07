@@ -87,6 +87,7 @@ class Cdr extends AppModel{
 		   }
 
 		   //Determine whether entry should be stored or not
+		   
 		   $insert = $this->insertCDR($proto,$channel_state,$answer_state);
 
 		   //Calculate length of LAM and IVR calls
@@ -321,7 +322,7 @@ class Cdr extends AppModel{
 		   switch ($proto){
 
 		    case 'gsm':
-		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing'){
 		         $insert = false;
 		    } 
 		    break;

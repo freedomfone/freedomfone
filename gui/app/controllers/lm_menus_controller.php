@@ -62,46 +62,41 @@ class LmMenusController extends AppController{
 				$file['fileName']=$key;
 				$fileData[] = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-			       $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'default',array('class' => 'error-message'));							
+			       $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');							
 			   }	
 		   }
 
 		     //Upload one ore more wav files
 		       $fileOK = $this->uploadFiles($lm_settings['path'].IID."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
-	     		$this->data['LmMenu']['instance_id']=$iid;
-                         $this->LmMenu->id = $this->data['LmMenu']['id'];
 
+	     		$this->data['LmMenu']['instance_id']=$iid;
+                        $this->LmMenu->id = $this->data['LmMenu']['id'];
 
 			if ($this->LmMenu->save($this->data['LmMenu'])) {
 					
-			if(array_key_exists('urls', $fileOK)) {
+			  if(array_key_exists('urls', $fileOK)) {
 
-
-				   foreach ($fileOK['urls'] as $url ){
+				   foreach ($fileOK['urls'] as $key =>  $url ){
 					   $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
+					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
 					
 				}
 
-				elseif(array_key_exists('errors', $fileOK)) {
+			if(array_key_exists('errors', $fileOK)) {
 
 				   foreach ($fileOK['errors'] as $key => $error ){
 				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
-					   $this->Session->setFlash($errors, 'default',array('class' => 'error-message'));							
+					   $this->_flash($error, 'error');
+
 				    }
 				}
-
-
-
-
-		              // $this->Session->setFlash(__('Your data has been saved',true));							
-			       
-
+			      
 
 			}
 			else {
 			
-				$this->Session->setFlash(__('Your data could not be saved. Please, try again.',true));
+				$this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
 			}
 		}
 		

@@ -109,7 +109,7 @@ class IvrMenusController extends AppController{
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-			       $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'default',array('class' => 'error-message'));							
+			       $this->_flash(__('Failure (filesize)',true).' : '.$file['name'], 'error');							
 			   }			  		   
 		   }
 
@@ -130,17 +130,26 @@ class IvrMenusController extends AppController{
    			                   $field=substr($part,1,strlen($part));
                                            $this->IvrMenu->saveField($field,$name);
 		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
+					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
 					
 				}
+
+			if(array_key_exists('errors', $fileOK)) {
+
+				   foreach ($fileOK['errors'] as $key => $error ){
+				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
+					   $this->_flash($error, 'error');
+
+				    }
+			}
+
                  }
 
 		 $this->IvrMenu->setParent($id);
 
 	        //Recreate ivr.xml
 		$this->IvrMenu->writeIVR();
-		//Flash message and redirect to index
-	 	$this->Session->setFlash(__("The voice menu has been created!",true));
 	 	$this->redirect(array('action' => 'index'));
 
 
@@ -162,7 +171,7 @@ class IvrMenusController extends AppController{
    	    //Invalid id
 	  if (!$id && empty($this->data)){
 
-	     $this->Session->setFlash(__('Invalid option', true)); 
+	     $this->_flash(__('Invalid option', true),'warning'); 
   	     $this->log("Msg: WARNING; Action: IVR edit; Type: incorrect id; Code: ".$id, "ivr");	
 	     $this->redirect(array('action'=>'index')); 
 	  }
@@ -222,6 +231,7 @@ class IvrMenusController extends AppController{
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part));
                                            $this->IvrMenu->saveField($field,$name);
+					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 
                                            // Update database field correponding to file 
 
@@ -231,12 +241,11 @@ class IvrMenusController extends AppController{
 			}
 
 
-
 			if(array_key_exists('errors',$fileOK)){
 
 				foreach ($fileOK['errors'] as $key => $error){
-					$flashMsg = $flashMsg."<br/>".$error;
-					
+					$this->_flash(__('Success',true).' : '.$error, 'error');												
+
 				}
 			}
 
@@ -252,8 +261,7 @@ class IvrMenusController extends AppController{
 	 //Update IVR xml file
 	 $this->IvrMenu->writeIVR();
 
-	//Flash message and redirect to index
-	 $this->Session->setFlash($flashMsg, 'default',array('class' => 'error-message'));
+	//Redirect to index
 	    $this->redirect(array('action' => 'index'));
 
 

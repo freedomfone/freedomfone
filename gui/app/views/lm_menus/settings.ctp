@@ -31,12 +31,12 @@ $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight di
 
 
 
-echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
 
-if($session->check('Message.flash')){
-                  $session->flash();
-		}  
+      echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
 echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";

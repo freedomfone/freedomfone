@@ -26,46 +26,75 @@ class SettingsController extends AppController {
 
     var $name = 'Settings';
 
+
 	function index() {
-	
 
-      		$this->pageTitle = 'Environment settings';
+              $this->pageTitle = 'Environment settings';
+	      
+	      //Fetch form data and process
+              if (!empty($this->data)) {
+				
+		  if(array_key_exists('Setting', $this->data)){
+		     $ip_radio = $this->data['Setting']['ip_radio'];
+		     unset($this->data['Setting']);
+		     }
 
-		//process data
-		if (!empty($this->data)) {
-		  
-		   foreach($this->data as $id => $entry){
+		      $i=false;	
+		 foreach ($this->data as $id => $entry){
 
+		 if ($id==1){ $lang = $entry['value'];}
+		 if ($id==6){ $timezone = $entry['value'];}
 
-		    $data['id'] = $id; 
-		    $data[$entry['field']]=$entry['value']; 
- 		    $this->Setting->set( $data );
-		    $this->Setting->save();
-		    unset($data);
+		 //IP address
+		 if ($id==5 ) {
+		      if ( !$entry['value']){
+		      $entry['value'] = $ip_radio;
+		     }
+		     $ip_addr = $entry['value'];
+		     
 
-		      //Language setting
-		      if($id == 1) { 
-			  Configure::write('Config.language', $entry['value']);
-			  $this->Session->write('Config.language', $entry['value']);		 
-  	              }
+		 }
 
-		      //Timezone setting
-		      elseif($id == 6) { 
+		 $data[$id]= array('id'=>$id,'value_string'=>$entry['value']);
 
-		      $this->Session->write('Config.timezone', $entry['value']);		 
+		 }
 
-  	              }
+		 $data= array('Settings' => $data);
+
+	           Configure::write('Config.language', $lang);
+                   $this->Session->write('Config.language', $lang);         
+             
+                   Configure::write('Config.timezone', $timezone); 
+                   $bool = date_default_timezone_set(Configure::read('Config.timezone'));
+                   $this->Session->write('Config.timezone', $timezone); 
+
+		   if($this->Setting->validIP($ip_addr)){
+
+		   $file = new File(APP.'/config/ip_addr.php',true);
+		   $string = "<?php \$config['Setting']['ip_addr']= '$ip_addr'; ?>";
+		   $file->write($string);
+		   $file->close();
+
+		   } else {
+
+		   unset($data['Settings'][5]);
+		   $this->Session->setFlash('Invalid IP address. Please try again.','flash_error');
 		   }
 
-		$this->redirect(array('action' =>'/')); 
+		   $this->Setting->saveAll($data['Settings']);															            
 
 		}
+		 
+              //Display form data               
 
-		$data = $this->Setting->findAllByType('env');
- 		$this->set(compact('data'));
-		$this->render();		
-	}
+	      $external = $this->Setting->getIP('external');
+	      $internal = $this->Setting->getIP('internal');
 
+	      $this->set('data',$this->Setting->findAllByType('env'));
+ 	      $this->set(compact('external','internal'));
+	      $this->render();       
+         
+	 }
 
 }
 ?>

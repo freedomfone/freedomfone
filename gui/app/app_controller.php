@@ -47,26 +47,34 @@ class AppController extends Controller {
 
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time','Paginator','Formatting');
 
-
-function beforeRender(){
-
-        date_default_timezone_set(Configure::read('Config.timezone'));
-
-        }
-
- function beforeFilter() {
-
-    	     	$locale = Configure::read('Config.language');
+function beforeFilter() {
 
 
-     	     if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {
-		     	
-			// e.g. use /app/views/fre/pages/tos.ctp instead of /app/views/pages/tos.ctp
-			$this->viewPath = $locale . DS . $this->viewPath;
-	      }
+
+                date_default_timezone_set($this->Session->read('Config.timezone'));
+                $locale = Configure::read('Config.language');
+
+
+             if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {
+
+                        // e.g. use /app/views/fre/pages/tos.ctp instead of /app/views/pages/tos.ctp
+                        $this->viewPath = $locale . DS . $this->viewPath;
+              }
 
     }
 
+
+function _flash($message,$type='message') {
+  $messages = (array)$this->Session->read('Message.multiFlash');
+  $messages[] = array(
+	  'message'=>$message, 
+          'layout'=>'default',
+          'element'=>'default',
+	  'params'=>array('class'=>$type),
+	  );
+	  $this->Session->write('Message.multiFlash', $messages);
+ }
+							
 
 
 /**
@@ -151,7 +159,8 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		     $filename = time().'_'.str_replace(' ', '_', $file['name']);
 		}
 
-		$result['files'][]=$filename;
+		$result['files'][$key]=$filename;
+		$result['original'][$key]=$file['name'];
 
 		// assume filetype is false
 		$typeOK = false;
@@ -184,7 +193,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 				
 					} else {
 						// create unique filename and upload file
-						ini_set('date.timezone', 'Europe/London');
+						//ini_set('date.timezone', 'Europe/London');
 						$now = date('Y-m-d-His');
 						$full_url = $folder_url.'/'.$now.$filename;
 						$url = $rel_url.'/'.$now.$filename;
@@ -200,43 +209,44 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 						umask($old);
 
 						// save the url of the file
-						$result['urls'][] = $url;
+						$result['urls'][$key] = $url;
 					} else {
-						$result['errors'][] = "The file could not be uploaded. Please contact the system administrator.";
+						$result['urls'][$key] = false;
+						$result['errors'][$key] = "The file could not be uploaded. Please contact the system administrator.";
 						$this->log("Msg: ERROR; Action: file upload; Type: move_uploaded_file; Code: N/A","ivr");
 											}
 					break;
 				case 1:
 					// an error occured
-					$result['errors'][] = "Error uploading $filename. The file is too large.";
+					$result['errors'][$key] = "Error uploading $filename. The file is too large.";
 					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: filesize php.ini; Code: ".$file['error'],"ivr");
 
 					break;
 
 				case 2:
 					// an error occured
-					$result['errors'][] = "Error uploading $filename. The file is too large.";
+					$result['errors'][$key] = "Error uploading $filename. The file is too large.";
 					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: filesize html; Code: ".$file['error'],"ivr");
 					break;
 
 
 				case 3:
 					// an error occured
-					$result['errors'][] = "Error uploading $filename. The file was only partially uploaded.";
+					$result['errors'][$key] = "Error uploading $filename. The file was only partially uploaded.";
 					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: partial upload; Code: ".$file['error'],"ivr");
 					break;
 
 
 				case 4:
 					// an error occured
-					$result['errors'][] = "No file selected. Please try again.";
+					$result['errors'][$key] = "No file selected. Please try again.";
 					$this->log("Msg: ERROR; Action: file upload; Type: no file selected; Code: ".$file['error'],"ivr");
 					break;
 
 
 				default:
 					// an error occured
-					$result['errors'][] = "System error uploading $filename. Please contact the system administrator.";
+					$result['errors'][$key] = "System error uploading $filename. Please contact the system administrator.";
 					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: Unknown; Code: ".$file['error'],"ivr");
 					break;
 			} //switch
@@ -244,7 +254,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		
 
 		} elseif ($file['error']==4){
-			$result['errors'][] = __("No file selected. Please try again.",true);
+			$result['errors'][$key] = __("No file selected. Please try again.",true);
 			$this->log("Msg: ERROR; Action: file upload; Type: no file selected; Code: ".$file['error'],"ivr");
 			
 		}
@@ -252,7 +262,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		else {
 			// unacceptable file type
 
-			$result['errors'][] = __('The following file could not be uploaded due to invalid file type:',true).' '.$file['name'];
+			$result['errors'][] = __('Failure (invalid file type)',true).' : '.$file['name'];
 			$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: invalid file type; Code: ".$file['error'],"ivr");
 		}
 	} //foreach
@@ -352,5 +362,20 @@ return $result;
 
      }
 
+
+     function checkMyIp(){
+
+	$op_internal = array();
+	$op_external = array();
+
+        //$pid = (int)$op[0]; 
+
+     $external = exec("/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo ",$op_internal);
+     $internal = exec("/sbin/ip addr show dev eth0 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d'" ,$op_external);
+
+     return array($op_internal[0], $op_external[0]);
+
+
+     }
 }
 ?>

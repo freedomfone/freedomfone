@@ -38,7 +38,7 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'env'));
 	     $languages = Configure::read('LANGUAGES');
 	     $rows[] = array(__("Language",true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
-
+	     
 
 	  } elseif ($entry['name']=='timezone'){
 

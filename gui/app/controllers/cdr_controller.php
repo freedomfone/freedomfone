@@ -45,8 +45,6 @@ class CdrController extends AppController{
       function general($action = null){
 
 
-      date_default_timezone_set(Configure::read('Config.timezone'));
-
       $this->requestAction('/messages/refresh');
       $this->requestAction('/cdr/refresh');
       $this->pageTitle = __('Reporting',true);

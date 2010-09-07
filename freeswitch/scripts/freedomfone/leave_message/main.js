@@ -1,5 +1,5 @@
 // * file_name    - Leave a Message for Freedom Fone 
-// * version      - 1.0.730 
+// * version      - 1.0.800 
  
 // * ***** BEGIN LICENSE BLOCK *****
 // * Version: MPL 1.1
@@ -66,7 +66,9 @@
 //             <action application="set" data="on_quick_hangup=accept"/>  
 //             <action application="javascript" data="freedomfone/leave_message2/main.js ${instance_id} ${on_quick_hangup}"/>
 
-
+//LTS Zero conf version
+//Now we are fetching the IP address from the file storage from Freeswitch, the assumption is that $${local_ip_v4} is the
+//IP where the LAM files are stored. This variable is passed to LAM as argv[1]
 
 
 // Needed for the Beep(). Can we avoid it?
@@ -75,8 +77,8 @@ use("TeleTone");
 // Allows to personalize TTS message in the Leave Message State Machine.
 var lmId = argv[0];
 
-// What to do after quick hangup if we have a file recorded but no DTMF received 
-var lmOnHangup = argv[1];
+//  Fetching the Freeswitch local IP for the LAM event 
+var lmIP = argv[1]; 
 
 // TTS texts are loaded here. File generated from GUI
 //
@@ -88,7 +90,7 @@ include("freedomfone/leave_message/" + lmId + "/conf/" + lmId + "_core.conf");
 
 var lmDirRoot = new File(lmDirBaseDir  + "/freeswitch/scripts/freedomfone/leave_message/");
 var lmDir = new File(lmDirRoot + "/" + lmId); 
-var lmURI = lmURIRoot + "/freedomfone/leave_message/" + lmId + "/" + "messages/"; 
+var lmURI = "http://" + lmIP + "/" + lmURIRoot + "/freedomfone/leave_message/" + lmId + "/" + "messages/"; 
 
 var lmWelcomeAudio = lmDir + "/audio_menu/lmWelcome.wav";
 var lmInformAudio = lmDir + "/audio_menu/lmInform.wav";
@@ -172,6 +174,7 @@ if (session.ready()) {
 	lmState = STATE_ANSWER;
 	lm42Logger("STATE_ANSWER",lmState);
 	lm42Logger("STATE_ANSWER",  lm_uuid + " " + lm_ani + " " + lm_dialplan + " " + lm_state + " " + lmOnHangup);   
+	lm42Logger("STATE_ANSWER",  lmIP + " " + lmURI);   
 
 
 // We  play  welcome message.  If  audio  file  is not  available,  we

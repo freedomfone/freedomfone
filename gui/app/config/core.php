@@ -240,6 +240,9 @@ $config['VERSION'] = array(
 		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
 		   );
 
+Configure::load('ip_addr'); 
+define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
+
 define ('MY_DOMAIN','http://localhost/freedomfone/');
 define ('VERSION','v1.6.5-01');
 define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');

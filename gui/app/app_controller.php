@@ -50,8 +50,11 @@ var $helpers = array('Html','Form','Ajax','Javascript','Session','Number','Time'
 function beforeFilter() {
 
 
+	 if(!$timezone = $this->Session->read('Config.timezone')){
+		$timezone = $this->getTimezone();
+	 }
 
-                date_default_timezone_set($this->Session->read('Config.timezone'));
+                date_default_timezone_set($timezone);
                 $locale = Configure::read('Config.language');
 
 
@@ -362,6 +365,16 @@ return $result;
 
      }
 
+     function getTimezone(){
+
+
+        if (!isset($this->Setting)) {
+     	    $this->loadModel('Setting');   
+     	    $this->Setting =& new Setting();
+         }
+    	 $entry = $this->Setting->findByName('timezone');
+	 return $entry['Setting']['value_string'];
+     }
 
      function checkMyIp(){
 

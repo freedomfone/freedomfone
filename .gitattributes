@@ -173,6 +173,7 @@ gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text
 gui/app/controllers/channels_controller.php -text
 gui/app/controllers/components/empty -text
+gui/app/controllers/components/simplepie.php -text
 gui/app/controllers/ivr_menus_controller.php -text
 gui/app/controllers/lm_menus_controller.php -text
 gui/app/controllers/messages_controller.php -text

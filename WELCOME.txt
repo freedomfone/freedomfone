@@ -49,7 +49,7 @@ address and make sure that your router port-forwards port
 80 to your internal server.
 
 - QUICK FEEDBACKS: Our Leave-a-message (LAM) application now
-  supports a basi and advance mode. In basic mode users can
+  supports a basic and advance mode. In basic mode users can
 just hang the phone without having to listen to their
 recorded message. This option will help in countries with
 very noisy lines where DTMF tones are difficult to detect.
@@ -161,7 +161,7 @@ recommended to fix a IP address in your installation.
 Audio files are streamed to the web browser, fixing an IP
 address will ensure that streaming works smoothly.
 
-Go to Dashboard > Settings and select the appropiate IP for
+Go to Dashboard > Settings and select the appropriate IP for
 your setup.
 
 Freedomfone supports three different setups:

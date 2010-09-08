@@ -1,48 +1,98 @@
-		----------------------------------------------------
-		W E L C O M E  T O   F R E E D O M F O N E  v 1 . 6 
-		P I C T U S    L U P I N U S 
-		----------------------------------------------------
+-------------------------------------------------------
+  W E L C O M E  T O  F R E E D O M F O N E  v 1 . 6 . 5
+           P I C T U S    L U P I N U S    L T S
+-------------------------------------------------------
 
-This is the third official release of Freedom Fone after 18 months of continous development.
+This is the forth official release of Freedom Fone after 20
+months of continous development.
+Pictus Lupinus LTS is a long term support release.
 
-- Freedom Fone v1.6 is built at the top of Ubuntu 8.04.4 LTS and kernel 2.6.24-28. 
-  At the end of 2010, our future releases will run in Ubuntu 10.04
+Localizers have now a chance to translate freedomfone.org
+without string changes.
 
-- Software and security updates applied until 1 July 2010
+- Freedom Fone v1.6.5 is built at the top of Ubuntu 10.04-01
+  LTS and kernel 2.6.32-24.
 
-- Firefox updated to version 3.6.6 
+- Software and security updates applied until 8 September
+  2010
 
-- Freeswitch has been also updated from 1.0.5 to 1.0.6 and we have included the recently upstreamed gsmopen channel
+- Firefox updated to version 3.6.8
+
+- Freeswitch 1.0.6 with the recently upstreamed gsmopen
+  channel
   http://www.gsmopen.org
 
 
+Thanks for your feedback! As a result of it, this version
+includes a few cool requested features:
 
-Thanks for your feedback! As a result of it, this version includes a few cool requested features:
+- BETTER LISTENING: We have updated the flash player and
+  include the new audio flash player from the Word Press
+community, Code thanks to Martin Laine
+http://wpaudioplayer.com
+  Flash support detection will warn users without Flash
+plugin in their browser
 
-- BETTER LISTENING: We have updated the flash player and include the new audio flash player from the Word Press community, Code thanks to Martin Laine http://wpaudioplayer.com 
+- INTERRUPTABLE IVRs: Users can now interrupt a file played
+  in an IVR by pressing any key.
 
-- QUICK FEEDBACKS: Our Leave-a-message (LAM) application now supports a basic and advance mode. In basic mode users can just hang the phone without having to listen to their recorded message. This option will help in countries with very noisy lines where DTMF tones are difficult to detect. In the advance version, LAM users that decide to finish their message with the # key, can still play, delete and save their messages.
+- NEWS ALERTS CHANNEL: We have include a RSS reader that
+  connects to our development channel so you can keep
+updated of bug fixes and security updates!
 
-- EXPORTING AUDIO: Both the files uploaded and received by LAM can be played with the new built-in flash media player. Now, all files can be downloaded out of Freedom Fone so you can add them to your favourite player or broadcast them using any third party application. 
+- NETWORKING AUTODETECION: New section in the Dashboard to
+  help you setup the IP configuration of Freedomfone.
+Freedomfone autodetects the local and external IP
+address  of your network. If you want to make Freedomfone
+available to the outside world, select the external IP
+address and make sure that your router port-forwards port
+80 to your internal server.
 
-- MORE LOCALIZATION: Localization of Freedom Fone includes English, Swahili and Spanish and a language switcher to set your favourite language.
+- QUICK FEEDBACKS: Our Leave-a-message (LAM) application now
+  supports a basi and advance mode. In basic mode users can
+just hang the phone without having to listen to their
+recorded message. This option will help in countries with
+very noisy lines where DTMF tones are difficult to detect.
+In the advance version, LAM users that decide to finish
+their message with the # key, can still play, delete and
+save their messages.
+
+- EXPORTING AUDIO: Both the files uploaded and received by
+  LAM can be played with the new built-in flash media player. 
+Now, all files can be downloaded out of Freedom Fone so you
+can add them to your favourite player or broadcast them
+using any third party application.
+
+- MORE LOCALIZATION: Localization of Freedom Fone includes
+  English, Swahili and Spanish and a language switcher to
+set your favourite language.
+
+ A Localization portal http://pootle.freedomfone.org is
+ready to receive more translations! Register and localize
+freedomfone!
 
 - MORE AND BETTER DATA: Data mining of Call data Records
 
-- BUGS FIXED: Lots of bug fixed and hopefully less bugs introduced. :)
+
+- BUGS FIXED: Lots of bug fixed and hopefully less bugs
+  introduced. :)
 
 
 GET YOUR MODEMS READY!
 ======================
 
-Of the shelf Freedom Fone is ready to receive calls from low cost GSM modems and SIP VoIP devices.
-The USB modems are available at: http://www.mobigater.bg/. Without any special USB hub, you can plug three USB modems to your PC.
+Of the shelf Freedom Fone is ready to receive calls from low
+cost GSM modems and SIP VoIP devices.
+The USB modems are available at: http://www.mobigater.bg/.
+Without any special USB hub, you can plug three USB modems
+to your PC.
 
-You can verify that the USB modems are detected and available by issuing the command:
+You can verify that the USB modems are detected and
+available by issuing the command:
 
 #/etc/init.d/gsmopen devices
 
-Note: # represents the command line prompt 
+Note: # represents the command line prompt
 
 root@lupinus:/home/lupinus# /etc/init.d/gsmopen devices
 Audio Devices List
@@ -53,56 +103,83 @@ card 0: V8237 [VIA 8237], device 0: VIA 8237 [VIA 8237]
 card 0: V8237 [VIA 8237], device 1: VIA 8237 [VIA 8237]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
-card 1: default [C-Media USB Headphone Set  ], device 0: USB Audio [USB Audio]
+card 1: default [C-Media USB Headphone Set  ], device 0: USB
+Audio [USB Audio]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 Serial Devices List
-crw-rw---- 1 root dialout 166, 0 2010-05-31 16:32 /dev/ttyACM0
+crw-rw---- 1 root dialout 166, 0 2010-05-31 16:32
+/dev/ttyACM0
 
-This output tell us that we have one GSM modem connected at the serial port /dev/ttyACM0 and that the modem built-in sound card is available as card 1.
+This output tell us that we have one GSM modem connected at
+the serial port /dev/ttyACM0 and that the modem built-in
+sound card is available as card 1.
 
-There is plenty of information available about your GSM modems by issuing the command:
+There is plenty of information available about your GSM
+modems by issuing the command:
 
 root@lupinus:/home/lupinus# /etc/init.d/gsmopen status
-Alternatively you can check the file /var/tmp/gsmopen_boot.log
+Alternatively you can check the file
+/var/tmp/gsmopen_boot.log
 
 SIP gateways and Freedom Fone
 =============================
 
-If you want to have plenty of GSM channels you can consider using a SIP based GSM gateway
-like the 2N Telecommunications Voice Blue Lite. http://www.2n.cz/en/products/gsm-gateways/voip/voiceblue-lite/
+If you want to have plenty of GSM channels you can consider
+using a SIP based GSM gateway
+like the 2N Telecommunications Voice Blue Lite.
+http://www.2n.cz/en/products/gsm-gateways/voip/voiceblue-lite/
 
-Freedom Fone has left the internal extensions 1000 to 1019 with password 1234 pre-configured so you can register external SIP gateways.
+Freedom Fone has left the internal extensions 1000 to 1019
+with password 1234 pre-configured so you can register
+external SIP gateways.
 
 
 SSH server
 ==========
 
-For security reasons this distribution does not have the SSH server activated, to activate the ssh server open a Terminal and run the command:
+For security reasons this distribution does not have the SSH
+server activated, to activate the ssh server open a Terminal
+and run the command:
 
 #dpkg-reconfigure openssh-server
 
-The dpkg-reconfigure command will create unique cryptographic keys for your server.
-
-Listening to the audio files from a remote server
-=================================================
-
-When you select an audio file via Freedom Fone GUI interface, the file is streamed to your browser. The default installation assumes that you are using the local browser to listen to the files. If you want to listen to the audio files from another server, you need to edit the files:
-
-/usr/local/freedomfone/config/leave_message_100_core.conf
-/usr/local/freedomfone/config/gui_config_core.php
-
-Change the string "localhost" and "127.0.0.1" for your server IP in the following variables:
-
-var lmURIRoot = "http://localhost/freedomfone/";
-define ('MY_DOMAIN','http://127.0.0.1/freedomfone/');
-
-Check the IP address of your server by running:
-
-#ifconfig eth0 
-
-If your IP is 192.168.1.120, you will edit the variables as follows:
-var lmURIRoot = "http://192.168.1.120/freedomfone/";
-define ('MY_DOMAIN','http://192.168.1.120/freedomfone/');
+The dpkg-reconfigure command will create unique
+cryptographic keys for your server.
 
 
+Network Auto-detection
+======================
+
+From version 1.6.5 you do not need to edit any configuration
+files.
+
+Freedomfone tries to auto-detect your network configuration.
+Freedomfone runs DHCP client by default but it is highly
+recommended to fix a IP address in your installation.
+
+Audio files are streamed to the web browser, fixing an IP
+address will ensure that streaming works smoothly.
+
+Go to Dashboard > Settings and select the appropiate IP for
+your setup.
+
+Freedomfone supports three different setups:
+
+ * Standalone
+The audio files can only be played from the local machine:
+Select 127.0.0.1
+
+ * LAN setup
+The audio files are available to any computer in your local
+network:
+Select your internal IP (typically 192.168.x.x or 10.x.x.x)
+
+ * WAN setup (public internet)
+The audio files are available to any computer in the world!
+Select your external IP (autodetected) and make sure that
+your router
+is port forwarding port 80 to your internal IP address
+
+
+Enjoy ff!

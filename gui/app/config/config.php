@@ -91,11 +91,11 @@ $config['LM_SETTINGS'] = array(
 		);
 
 $config['LM_DEFAULT']=	array(
-	        'lmWelcomeMessage' => 'Welcome to Freedom Fone Leave a Message Service!',
-     	        'lmInformMessage'  => 'Record your message after the beep. To Finish, Press #',
+	        'lmWelcomeMessage' => 'Welcome to Freedom Fone Leave a Message Service.',
+     	        'lmInformMessage'  => 'Record your message after the beep. To Finish, hang up.',
                 'lmInvalidMessage' => 'No, No! No! Wrong key!',
 		'lmLongMessage'    => 'Your message is too long, to the point, please!',
-		'lmSelectMessage'  => 'To Play... press *. To Delete... press 0. To Save... press 1',
+		'lmSelectMessage'  => 'To Play... press *. To Delete... press 0. To Save... press 1.',
 		'lmDeleteMessage'  => 'Your message has been deleted!',
 		'lmSaveMessage'    => 'Thank you!',
 		'lmGoodbyeMessage' => 'Goodbye',
@@ -158,6 +158,9 @@ $config['LANGUAGES'] = array(
                             'swa' => __('Swahili',true),
                             'esp' => __('Spanish',true)
                                                   );
+
+$config['RSS']	= array(
+	      'path' =>'https://dev.freedomfone.org/timeline?ticket=on&changeset=on&milestone=on&wiki=on&max=5&daysback=365&format=rss');
 
 
 ?>

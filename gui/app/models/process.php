@@ -39,7 +39,7 @@ class Process extends AppModel{
 
       function refresh(){
 
-               date_default_timezone_set(Configure::read('Config.timezone'));
+
       	       $this->set('data',$this->findAllByType('run'));
 	       
       	       foreach ($this->data['Process']['data'] as $key =>  $process){
@@ -265,7 +265,7 @@ class Process extends AppModel{
 
       	   if($string){
       
-		date_default_timezone_set(Configure::read('Config.timezone'));
+
 		$raw=explode(',',$string);
 
       		$line0	=explode(' ',$raw[0]);

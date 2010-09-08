@@ -27,6 +27,12 @@ $ivr = Configure::read('IVR_SETTINGS');
 	if($this->data){
 
 		echo "<h1>".__("Edit Menu Option",true)."</h1>";
+		
+
+   	  	if ($messages = $session->read('Message.multiFlash')) {
+                   foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+         	   }
+
 
       		$path = $ivr['path'].$this->data['Node']['instance_id']."/".$ivr['dir_node'];
 		$listen =  $this->element('player',array('path'=>$path,'file'=>$this->data['Node']['file'],'title'=>$this->data['Node']['title'],'id'=>$this->data['Node']['id']));
@@ -40,7 +46,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 		echo "<table border=0>";
 		echo $html->tableCells(array (
      		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
-		     $session->flash();
+		     
 		echo $html->tableCells(array (
      		     array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
      		     array(array(__("If you select a file, the previous one will be deleted. Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));

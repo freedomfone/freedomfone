@@ -25,28 +25,73 @@
 
  $os = php_uname('s');
 
-$cmd1 = exec('/usr/bin/lsb_release -d');
-$cmd2 = exec('/usr/bin/lsb_release -a');
-$release = $lsb = false;
+ $cmd1 = exec('/usr/bin/lsb_release -d');
+ $cmd2 = exec('/usr/bin/lsb_release -a');
+ $release = $lsb = false;
 
-if($cmd1){ $release = explode(':',$cmd1); }
-if($cmd2){ $lsb = explode(':',$cmd2); }
+ if($cmd1){ 
+ 	    $release = explode(':',$cmd1); 
+ }
 
+ if($cmd2){ 
+ 	    $lsb = explode(':',$cmd2); 
+  }
 
  $string = $os.', '.$release[1].', '.$lsb[1];
 
-     echo "<h1>".__("System software",true)."</h1>";
-     $row[] = array(__("Operating system",true).": ", $string); 
-     $row[] = array(__("FreeSWITCH",true).": ", $version[1]); 
-     $row[] = array(__("Web server",true).": ", apache_get_version());
-     $row[] = array(__("MySQL",true).": ", mysql_get_server_info());
-     $row[] = array(__("Dispatcher",true).": ", $version[0]);
 
-    echo "<table width='70%'>";
-    echo $html->tableCells($row);
-    echo "</table>"; 
+   foreach($settings as $key => $entry){
+
+     switch ($entry['settings']['name']){
+
+     	    case 'language':
+	    $language = $entry['settings']['value_string'];
+	    break;
+
+     	    case 'timezone':
+	    $timezone = $entry['settings']['value_string'];
+	    break;
+
+     	    case 'ip_address':
+	    $ip_address = $entry['settings']['value_string'];
+	    break;
  
+     }
+   }
+
+     echo "<h1>".__("System",true)."</h1>";
+
+
+     echo "<h2>".__("Software",true)."</h2>";
+     $row1[] = array(__("Operating system",true).": ", $string); 
+     $row1[] = array(__("FreeSWITCH",true).": ", $version[1]); 
+     $row1[] = array(__("Web server",true).": ", apache_get_version());
+     $row1[] = array(__("MySQL",true).": ", mysql_get_server_info());
+     $row1[] = array(__("Dispatcher",true).": ", $version[0]);
+    echo "<table width='70%'>";
+    echo $html->tableCells($row1);
+    echo "</table>"; 
+
+
+     echo "<h2>".__("Environment",true)."</h2>";
+      $row2[] = array(__("IP address",true).": ", $ip_address); 
+      $row2[] = array(__("Language",true).": ", $language); 
+      $row2[] = array(__("Timezone",true).": ", $timezone); 
+    echo "<table width='50%'>";
+    echo $html->tableCells($row2);
+    echo "</table>"; 
 
 
 
+    if ($items){
+      echo "<h2>".__("Latest news",true)."</h2>";
+      foreach($items as $key => $item) {
+	  if($key<5){	  echo $html->div('news',$html->link($item->get_title(), $item->get_permalink()));
+	    //echo $text->truncate($item->get_description());  
+	  }
+      }
+    }	  
 
+
+
+?>

@@ -27,7 +27,40 @@ class Setting extends AppModel{
 
       var $name = 'Setting';
 
-//      var $useTable = false;
+	function getIP($type){
+	
+	  switch($type){
+
+	    case 'internal':
+     	    //$cmd = "/usr/bin/python /var/tmp/mylocalip.py";
+	    
+	    $ip = gethostbyname(trim(`hostname`));
+	    break;
+
+	    case 'external':
+	    $cmd = "/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo";
+  	    $op = array();
+	    exec($cmd,$op);
+	    $ip = $op[0]; 
+	    break;
+
+	  }
+
+	  return $ip;
+
+	  }
+
+	function validIP($ip) {
+
+	     $cIP = ip2long($ip);
+	     $fIP = long2ip($cIP);
+
+	     if($fIP=='0.0.0.0'){ 
+	 	return false;
+		} else { 
+		return true;
+		}
+	}
 
 
 }

@@ -21,9 +21,11 @@ font-weight: bold;
 }
 
 h2 {
-color: #f89843; 
+color: #333; 
 font-size: 1.3em; 
 font-weight: bold;
+border-bottom: 1px solid #333;
+width: 70%;
 }
 
 h3 {

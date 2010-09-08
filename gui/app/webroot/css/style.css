@@ -155,6 +155,19 @@ padding: 10px;
      font-color: #000;
 }
 
+.news {
+     font-size: 13px;
+     font-weight: normal;
+     padding: 5px;
+     font-color: #000;
+}
+
+.news a:link, a:visited, a:hover, a:visited:hover, a:active {
+     font-color: #000;
+
+}
+
+
 .message {
      font-size: 14px;
      font-weight: bold;

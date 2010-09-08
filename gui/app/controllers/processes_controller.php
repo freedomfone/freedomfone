@@ -25,7 +25,8 @@
 class ProcessesController extends AppController{
 
       var $name = 'Processes';
-      var $helpers = array('Time','Html', 'Session','Form', 'Javascript');
+      var $helpers = array('Time','Html', 'Session','Form', 'Javascript','Text');
+      var $components = array('Simplepie');
 
       var $scaffold;
 
@@ -49,12 +50,21 @@ class ProcessesController extends AppController{
 
 
       function software(){
+
+      	       if($rss = Configure::read('RSS.path')){
+	            $items = $this->Simplepie->feed($rss);
+	       } else {
+	       	    $items = false;
+	       }
+
+
       	$this->pageTitle = __('System Software',true);
 
  	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
 
-	$this->set(compact('version'));
+	$settings = $this->Process->query("select * from settings");
+	$this->set(compact('version','items','settings'));
 	$this->render();
 
       }

@@ -78,7 +78,7 @@ class SettingsController extends AppController {
 		   } else {
 
 		   unset($data['Settings'][5]);
-		   $this->Session->setFlash('Invalid IP address. Please try again.','flash_error');
+		   $this->_flash(__('Invalid IP address. Please try again.',true),'error');
 		   }
 
 		   $this->Setting->saveAll($data['Settings']);															            

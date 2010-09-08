@@ -22,8 +22,13 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Environment settings",true)."</h1>";
+echo "<h1>".__("System settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
+
+
+ 	if ($messages = $session->read('Message.multiFlash')) {
+            foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+   	   }
 
 
 	foreach ($data as $key => $unit){
@@ -43,10 +48,9 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 	  } 
 
 	  elseif ($entry['name']=='timezone'){
-
-
 	  
 	  $timezones = DateTimeZone::listIdentifiers();
+	  
 	    foreach ($timezones as $timezone){
 	       if (preg_match( '/^(Africa|America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $timezone)){ $zones[$timezone] = $timezone;}
 	    }
@@ -54,7 +58,7 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 	     $rows[] = array("Time zone",$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$entry['value_string'])));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
-	     $rows[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>10,'valign'=>'bottom')));
+	    
 
 	  } 
 
@@ -67,14 +71,20 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 	   elseif ($entry['name']=='ip_address'){
 
-	   $radio[] = array(array($html->div('instruction',__('Select the IP address of your installation. If you state an alternative IP address (Other) in the text field, your option overrides the selected radio button. To select one of the radio buttons, leave the text field empty.',true)),array('colspan'=>2,'height'=>10,'valign'=>'bottom')));
+
+
+
 
 	   $options1 = array($external => ' '.__('External IP address',true));	
 	   $options2 = array($internal => ' '.__('Internal IP address',true));	
 	   $options3 = array('127.0.0.1'=>' '.__('Localhost',true));	
 
 	   $default_ext = $default_int = $default_local = false;
-	   $value = $entry['value_string'];
+	   $current_IP = $entry['value_string'];
+
+
+	   $radio[] = array($html->div('instruction',__('Your current IP address is',true).': '.$current_IP));
+
 	   if($entry['value_string'] == $external) { $default_ext = true; $value = false;}
 	   elseif($entry['value_string'] == $internal) { $default_int = true; $value = false;}
 	   elseif($entry['value_string'] == '127.0.0.1') { $default_local = true; $value = false;}
@@ -83,10 +93,8 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 	    if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),'['.$external.']');}
 	    if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),'['.$internal.']');}
 	    $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),'[127.0.0.1]');
-	    $radio[] = array("Other:",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>$value,'size'=>30)));
+	    $radio[] = array("Other:",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>false,'size'=>30)));
 	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
-	    $radio[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>10,'valign'=>'bottom')));
-
 
 
 
@@ -102,12 +110,14 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
      
 	//Display language and timezone table
+	echo "<h2>".__("Environment settings",true)."</h2>";
 	echo "<table>";
 	echo $html->tableCells($rows);
 	echo "</table>";
 
 
 	//Display IP address table
+	echo "<h2>".__("Network settings",true)."</h2>";
 	$session->flash();
 	echo "<table>";
 	echo $html->tableCells($radio);

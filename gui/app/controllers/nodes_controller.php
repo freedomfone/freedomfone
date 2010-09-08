@@ -53,7 +53,7 @@ class NodesController extends AppController{
 
    function add(){
 
-      	     $this->pageTitle = 'Voice menus : Audio files : Add';           
+      	$this->pageTitle = 'Voice menus : Audio files : Add';           
 
    	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
@@ -62,22 +62,16 @@ class NodesController extends AppController{
 	// Form data exist, save and redirect to Index
 	if (!empty($this->data)) {
 
-
-
 	   //Fetch form data
 	   $files = array();
-
-
 	   $files[0] = $this->data['Node']['file'];
            $title = $this->data['Node']['title'];
 	   
 
 	   //If title exists, upload file (wav)
-
    	   $this->Node->set( $this->data );
 
   	   if ($this->Node->validates()){
-
              $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
 		//File upload OK
@@ -86,23 +80,19 @@ class NodesController extends AppController{
 		      //Set db fields
 		      $filename = $this->getFilename($fileOK['files'][0]);
 	              $this->data['Node']['file']        = $filename;
-		      $this->data['Node']['instance_id'] = $iid;
-			      
+		      $this->data['Node']['instance_id'] = $iid;		      
 		      $duration = $this->wavDuration('node',$filename,'wav');
 		      $this->data['Node']['duration'] = $this->wavDuration('node',$filename,'wav');
 
-
 		      //Save node in db
-
 		      $this->Node->save($this->data, array('validate' => false));
 		
 		      //Log new node
 		      $this->log('Msg: NEW NODE AUDIO FILE; File: '.$fileOK['files'][0], 'ivr');
 		      
 		      //Flash message and redirect	
-		      $this->Session->setFlash(__('The voice menu node has been created.', true));
+		      $this->_flash(__('The menu option has been created.', true),'success');
 		      $this->redirect(array('action'=>'index'));
-
 
 		}
 
@@ -110,13 +100,11 @@ class NodesController extends AppController{
 		elseif(array_key_exists('errors', $fileOK)) {
 		
 		      //Flash messsage, log error
-		      $this->Session->setFlash($fileOK['errors'][0], 'flash-error');
-
+		      $this->_flash($fileOK['errors'][0], 'error');
 		}
+
 		else {
-	
-	         $this->Session->setFlash(__('No file selected', true));
-		 $this->log("Msg: ERROR; Action: file upload; Type: no file; Code: ".$fileOK['errors'][0],"ivr");
+		     $this->log("Msg: ERROR; Action: file upload; Type: no file; Code: ".$fileOK['errors'][0],"ivr");
    	         
 	         }
 	    }
@@ -204,11 +192,9 @@ class NodesController extends AppController{
             
           } else {
 
-              $this->Session->setFlash('Title is not correct (unique and min 3 characters','flash_error');
+              $this->_flash('Title is not correct (unique and min 3 characters)','error');
               $_titleOK = false;
           }
-
-          //$this->data['Node']['file'] =  $this->data['Node']['file_old'];		
 
 
           //Fetch file and attempt to upload
@@ -239,29 +225,26 @@ class NodesController extends AppController{
                                 $this->Node->save($this->data,array('fieldList'=>array('file','modified','duration'),'validate'=>false));
 
 
-
                                 //Delete old audio file
 				$this->Node->deleteAudio($this->data['Node']['file_old'],$path,array('mp3','wav'));
-
-                                //Flash message
-				$this->Session->setFlash(__('The settings has been saved', true));
 				
-
-                                
+     				$this->_flash(__('Success',true).' : '.$fileOK['original'][0], 'success');							
+  			
 			 }
 
 			elseif(array_key_exists('errors', $fileOK)) {
-                                 $_fileOK= true;
+                                 $_fileOK= false;
 				$this->log('Msg: NODE UPLOAD ERROR; Type: '.$fileOK['errors'][0], 'ivr');
-				$this->Session->setFlash($fileOK['errors'][0],'flash_error');
+				$this->_flash($fileOK['errors'][0],'error');
 			 }
                   } // if file is selected
 
-          if($_titleOK && $_fileOK) {  $this->redirect(array('action'=>'index')); }    
-          else {
-
-               $this->Node->id = $id;
-		$this->data = $this->Node->read(null,$id);
+          if($_titleOK && $_fileOK) {  
+	  	       $this->_flash(__('Your changes have been saved.',true), 'success');							
+	  	       $this->redirect(array('action'=>'index')); 
+		      }  else {
+               	       $this->Node->id = $id;
+		       $this->data = $this->Node->read(null,$id);
 
                 }
 

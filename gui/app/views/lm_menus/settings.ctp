@@ -29,14 +29,11 @@ $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
 $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.",true);
 
-
-
+      echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
         }
-
-      echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
 echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
@@ -122,7 +119,9 @@ $input8_3 = $input8_4 = false;
      echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
      echo $html->div();
 
-     echo "<div class ='instruction'>".__("The Advanced Leave-a-Message service requires the caller to Press 1 to Save, 0 to Delete, or * to Listen to its message The additional prompts below (Step 3 - 8) facilitate this functionality.",true)."</div>";
+     echo $html->div('instruction', __("The Advanced Leave-a-Message service requires the caller to Press 1 to Save, Press 0 to Delete, or Press * to Listen to its message.",true));
+     echo $html->div('instruction', __("The Record Message Instruction (Step 2) should now be changed to something similar to <i>Record your message after the beep. To Finish, Press #</i> (instead of hanging up).",true));
+     echo $html->div('instruction', __("The additional prompts below (Step 3 - 8) facilitate this functionality.",true));
 
      // ** Invalid **//
      echo "<fieldset><legend>".__('Step 3: Invalid message',true)."</legend>";

@@ -22,8 +22,6 @@
  *
  ***************************************************************************/
 
-$session->flash();
-
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -31,64 +29,60 @@ echo $form->end();
 $info = __('Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components associated with telephony keypad selections.',true);
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+echo "<h1>".__('Voice menus',true)."</h1>";
+
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
         }
 
 
-echo "<h1>".__('Voice menus',true)."</h1>";
+	echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
+     	if ($ivr_menus){
 
-echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
-     if ($ivr_menus){
+     	   echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
+     	   echo "<table width=100%>";
+     	   echo $html->tableHeaders(array(
+     	   	__("Default",true),
+ 		$paginator->sort(__("Title",true), 'title'),
+ 		$paginator->sort(__("Created",true), 'created'),
+ 		$paginator->sort(__("Last modified",true), 'modified'),
+		__("Edit",true),
+		__("Delete",true)));
 
-     echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
-
-     echo "<table width=100%>";
-     echo $html->tableHeaders(array(
-     	__("Default",true),
- 	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Created",true), 'created'),
- 	$paginator->sort(__("Last modified",true), 'modified'),
-	__("Edit",true),
-	__("Delete",true)));
-
-	echo $form->hidden('source',array('value'=>'index'));
+          echo $form->hidden('source',array('value'=>'index'));
 
 	//Find parent
-      foreach ($ivr_menus as $key => $ivr_menu){
+      	foreach ($ivr_menus as $key => $ivr_menu){
       	   if ($ivr_menu['IvrMenu']['parent']==1){
 	      $parent = $ivr_menu['IvrMenu']['id'];
 	      }
-      }
+      	}
  
-      foreach ($ivr_menus as $key => $ivr_menu){
-      $options=array($ivr_menu['IvrMenu']['id']=>'');
+	foreach ($ivr_menus as $key => $ivr_menu){
+      		$options=array($ivr_menu['IvrMenu']['id']=>'');
+        	$attributes=array('legend'=>false,'default'=>$parent);
+        	$default = $form->radio('parent',$options,$attributes);
+
+		$title         = $ivr_menu['IvrMenu']['title'];
+		$created      = $time->niceShort($ivr_menu['IvrMenu']['created']);
+		$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
+		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
+		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
+
+     		$row[$key] = array(
+			   $default,
+			   array($title,array('width'=>'100px')),
+			   $created,		
+			   $modified,
+			   array($edit,array('align'=>'center')),
+			   array($delete,array('align'=>'center')));
+			   }
 
 
-        $attributes=array('legend'=>false,'default'=>$parent);
-        $default = $form->radio('parent',$options,$attributes);
-
-	$title         = $ivr_menu['IvrMenu']['title'];
-	$created      = $time->niceShort($ivr_menu['IvrMenu']['created']);
-	$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
-	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
-
-     	$row[$key] = array(
-		$default,
-		array($title,array('width'=>'100px')),
-		$created,		
-		$modified,
-		array($edit,array('align'=>'center')),
-		array($delete,array('align'=>'center')));
-	}
-
-
-     echo $html->tableCells($row,array('class'=>'darker'));
-     echo "</table>";
-
-     echo $form->end(__('Update default',true));
+     		echo $html->tableCells($row,array('class'=>'darker'));
+     		echo "</table>";
+     		echo $form->end(__('Update default',true));
      }
 
 ?>

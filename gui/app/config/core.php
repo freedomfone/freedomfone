@@ -240,23 +240,10 @@ $config['VERSION'] = array(
 		   'dispatcher_out' => '/freedomfone/system/version/dispatcher_out'
 		   );
 
-/********** ********** ********** **********
- * CONFIG: Change localhost for the visible IP address of your server
- *         Set the correct time zone http://php.net/manual/en/timezones.php
- ********** ********** ********** **********/
-
 define ('MY_DOMAIN','http://localhost/freedomfone/');
 define ('VERSION','v1.6.5-01');
 define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');
 define ('LAM_DEFAULT','Default LAM');
-
-
-/********** ********** ********** **********
- * END CONFIG: 
- ********** ********** ********** **********/
-
-
-
 
 
 

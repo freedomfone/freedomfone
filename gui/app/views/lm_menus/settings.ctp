@@ -119,9 +119,9 @@ $input8_3 = $input8_4 = false;
      echo $html->tag('h3', __('advanced options',true),array('class'=> 'trigger'));
      echo $html->div();
 
-     echo $html->div('instruction', __("The Advanced Leave-a-Message service should ask the caller to Press 1 to Save, Press 0 to Delete, or Press * to Listen to its message.",true));
-     echo $html->div('instruction', __("Change the Record Message Instruction (Step 2) to <i>Record your message after the beep. To Finish, Press #</i> (instead of hanging up).",true));
-     //echo $html->div('instruction', __("The additional prompts below (Step 3 - 8) facilitate this functionality.",true));
+
+     echo $html->div('instruction', __("If you choose to enable the advanced Leave-a-Message service, you should ask the caller to finish the call by pressing # instead of hanging up.",true));
+
 
      // ** Invalid **//
      echo "<fieldset><legend>".__('Step 3: Invalid message',true)."</legend>";

@@ -32,9 +32,10 @@ class Setting extends AppModel{
 	  switch($type){
 
 	    case 'internal':
-     	    //$cmd = "/usr/bin/python /var/tmp/mylocalip.py";
-	    
-	    $ip = gethostbyname(trim(`hostname`));
+     	    //FIXME! Do you know a better way to deal with this problem?
+	    //$cmd = "/usr/bin/python /var/tmp/mylocalip.py";
+	    //$ip = gethostbyname(trim(`hostname`));
+            $ip =  $_SERVER['SERVER_ADDR'];  	    
 	    break;
 
 	    case 'external':

@@ -233,6 +233,9 @@ gui/app/vendors/dialout.php -text
 gui/app/vendors/ivr_xml.php -text
 gui/app/vendors/shells/tasks/empty -text
 gui/app/vendors/shells/templates/empty -text
+gui/app/vendors/simplepie/LICENSE.txt -text
+gui/app/vendors/simplepie/README.txt -text
+gui/app/vendors/simplepie/simplepie.php -text
 gui/app/vendors/spooler_ff.php -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text

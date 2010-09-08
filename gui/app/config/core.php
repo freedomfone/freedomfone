@@ -234,7 +234,6 @@ define ('IID', '100');
 define ('BASE_DIR', '/usr/local/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
-define ('INTERFACE','venet0:0');
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',
@@ -246,11 +245,9 @@ $config['VERSION'] = array(
  *         Set the correct time zone http://php.net/manual/en/timezones.php
  ********** ********** ********** **********/
 
-Configure::load('ip_addr');
-define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/');
-
-define ('VERSION','v1.6.5');
-define ('VERSION_NAME','Lycaon Pictus Lupinus');
+define ('MY_DOMAIN','http://localhost/freedomfone/');
+define ('VERSION','v1.6.5-01');
+define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');
 define ('LAM_DEFAULT','Default LAM');
 
 

@@ -242,8 +242,6 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-
-define ('MY_DOMAIN','http://localhost/freedomfone/');
 define ('VERSION','v1.6.5-01');
 define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');
 define ('LAM_DEFAULT','Default LAM');

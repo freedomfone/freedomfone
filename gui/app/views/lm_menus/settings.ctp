@@ -120,7 +120,7 @@ $input8_3 = $input8_4 = false;
      echo $html->div();
 
 
-     echo $html->div('instruction', __("If you choose to enable the advanced Leave-a-Message service, you should ask the caller to finish the call by pressing # instead of hanging up.",true));
+     echo $html->div('instruction', __("If you choose to enable the advanced Leave-a-Message service, you should ask the caller to finish the call by pressing # instead of hanging up (in Step 2).",true));
 
 
      // ** Invalid **//

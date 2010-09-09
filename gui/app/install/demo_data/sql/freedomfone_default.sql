@@ -17,3 +17,16 @@ INSERT INTO `messages` VALUES (1,'555123456','Cholera report',4,'2b896460-bb8f-1
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
+LOCK TABLES `polls` WRITE;
+/*!40000 ALTER TABLE `polls` DISABLE KEYS */;
+INSERT INTO `polls` VALUES (1,'Which Freedomfone service is the best?','rateff',1284043434,'2010-09-09 16:42:00','2011-09-09 16:42:00',1,0,0,0,0);
+/*!40000 ALTER TABLE `polls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `votes` WRITE;
+/*!40000 ALTER TABLE `votes` DISABLE KEYS */;
+INSERT INTO `votes` VALUES (1,1,'poll',0,0,0),(2,1,'voicemenu',0,0,0),(3,1,'lam',0,0,0);
+/*!40000 ALTER TABLE `votes` ENABLE KEYS */;
+UNLOCK TABLES;
+

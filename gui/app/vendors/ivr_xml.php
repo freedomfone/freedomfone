@@ -200,8 +200,8 @@ public $ext;
 			   $action = "menu-exec-app";
 
 
-
-			   $param  = 'play_and_get_digits 1 1 1 36000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
+			   //We wait 1 second after playing the file to return to head IVR
+			   $param  = 'play_and_get_digits 1 1 1 1000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
 			   break;
 
 

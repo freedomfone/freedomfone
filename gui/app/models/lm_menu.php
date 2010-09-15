@@ -40,11 +40,14 @@ class LmMenu extends AppModel {
 
     	$lm_default  = Configure::read('LM_DEFAULT');
      	$lm_settings = Configure::read('LM_SETTINGS');
+        $iid = $this->data['LmMenu']['instance_id'];
 
-	    $handle = fopen($lm_settings['path'].IID."/conf/".IID.".conf","w");
+	    $handle = fopen($lm_settings['path'].$iid."/conf/".$iid.".conf","w");
 
     	    foreach ($lm_default as $key => $default){
 
+                if(array_key_exists($key , $this->data['LmMenu'])){
+            
 	    	    $text = $this->data['LmMenu'][$key];
                  
                     if($key == 'lmForceTTS'){
@@ -64,13 +67,44 @@ class LmMenu extends AppModel {
 	    	   
                     }
                     fwrite($handle, $line);
-	    }
+
+                } //if key exists	
+    }
 	    
 	    fclose($handle);
 
     return true;
     }
 
+    function nextInstance(){
+
+     	    $lm_settings = Configure::read('LM_SETTINGS');
+            $data =  $this->findAll();
+            foreach ($data as $key => $entry){
+                    $taken[] = $entry['LmMenu']['instance_id'];
+            }
+
+            $next = false;
+            $id = false;
+
+            for ($i = $lm_settings['instance_min']; $i<= $lm_settings['instance_max'] ; $i++){
+
+                if(!in_array($i,$taken) && !$next){
+                        $next = $i;
+                        $this->set('instance_id',$next);
+                        $this->save();
+	                $id = $this->getLastInsertId();
+                        break;
+                }
+
+            }
+
+            return array('id'=>$id,'instance_id'=>$next);
+
+
+      }
+
+    
 
 
 }

@@ -1,6 +1,6 @@
-e<?php
+<?php
 /****************************************************************************
- * settings.ctp	- Default Leave-a-message menu
+ * edit.ctp	- Edit Leave-a-message IVR menu
  * version 	- 1.0.362
  * 
  * Version: MPL 1.1
@@ -51,10 +51,8 @@ $commentSave     = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
 
 
-
-
-echo $form->create('LmMenu', array('type' => 'post', 'action' => 'settings','enctype' => 'multipart/form-data') );
-$path = $lm_settings['path'].IID."/".$lm_settings['dir_menu'];
+echo $form->create('LmMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+$path = $lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'];
 echo $form->hidden('id');
 
 
@@ -66,6 +64,9 @@ $input5_3 = $input5_4 = false;
 $input6_3 = $input6_4 = false;
 $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
+
+
+    echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
 
      //Checkbox for not using uploaded files
      echo $form->hidden('lmForceTTS',array('value'=>0));

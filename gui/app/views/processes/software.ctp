@@ -59,6 +59,9 @@
      }
    }
 
+     $lang = Configure::read('LANGUAGES.'.$language);
+
+
      echo "<h1>".__("System",true)."</h1>";
 
 
@@ -75,8 +78,8 @@
 
      echo "<h2>".__("Environment",true)."</h2>";
       $row2[] = array(__("IP address",true).": ", $ip_address); 
-      $row2[] = array(__("Language",true).": ", $language); 
-      $row2[] = array(__("Timezone",true).": ", $timezone); 
+      $row2[] = array(__("Language",true).": ", $lang); 
+      $row2[] = array(__("System time",true).": ", date('Y-m-d H:i A').' ('.$timezone.')'); 
     echo "<table width='50%'>";
     echo $html->tableCells($row2);
     echo "</table>"; 

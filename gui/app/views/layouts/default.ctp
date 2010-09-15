@@ -27,7 +27,8 @@
  * 
  ***************************************************************************/
 
-$player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf", {  
+$rand = rand();
+$player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcount='.$rand.'", { 
 	         width: "200",
 		 transparentpagebg: "yes",
 		 leftbg: "CCCCCC",  

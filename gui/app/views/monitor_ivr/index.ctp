@@ -69,11 +69,13 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
  	$paginator->sort(__("Call ID",true), 'call_id'),
  	$paginator->sort(__("IVR Code",true), 'ivr_code'),
  	$paginator->sort(__("Digit",true), 'digit'),
- 	$paginator->sort(__("Node ID",true), 'node_id'),
- 	$paginator->sort(__("Title",true), 'node_id'),
+ 	$paginator->sort(__("Title",true), 'title'),
  	$paginator->sort(__("Caller number",true), 'caller_number'),
  	$paginator->sort(__("Type",true), 'type'),
 	__("Delete",true)));
+
+
+
 
 	$call_id_old=false;
 	$class='lighter';
@@ -86,7 +88,6 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	$ivr_code    = $entry['MonitorIvr']['ivr_code'];
 	$call_id     = $entry['MonitorIvr']['call_id'];
 	$digit       = $entry['MonitorIvr']['digit'];
-	$node_id     = $entry['MonitorIvr']['node_id'];
 	$title       = $text->truncate($entry['Node']['title'],13,'...',true,false);
 	$caller_number  = $entry['MonitorIvr']['caller_number'];
 	//$extension = $entry['MonitorIvr']['extension'];
@@ -112,7 +113,6 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 		$call_id,
 		$ivr_code,
 		array($digit,array('align'=>'center')),
-		array($node_id,array('align'=>'center')),
 		$title,
 		$caller_number,
 		array($type,array('align'=>'center')),

@@ -81,7 +81,11 @@
 </li>
 
 <li>
-<?php echo $html->link(__("IVR Menu",true),'/lm_menus/settings'); ?>
+<?php echo $html->link(__("All LAM",true),'/lm_menus/index'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Add LAM",true),'/lm_menus/add'); ?>
 </li>
 
 
@@ -146,7 +150,6 @@
 <li><?php echo __("System data",true);?>
 <ul>
 
-
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
 <?php echo $html->link(__("Call data records",true),'/cdr/'); ?>
@@ -167,7 +170,6 @@
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
 <?php echo $html->image('menu/dot.gif',array('class'=>'middle'));?>
 <?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
 </li>
 </ul>
 </li>

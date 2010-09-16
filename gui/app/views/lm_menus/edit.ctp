@@ -22,7 +22,6 @@
  *
  ***************************************************************************/
 
-
 if($this->data){
 
 $lm_settings = Configure::read('LM_SETTINGS');
@@ -30,15 +29,19 @@ $lm_default  = Configure::read('LM_DEFAULT');
 
 $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.",true);
 
-      echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
+
+     echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
         }
 
-echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
-echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
+
+
+         echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+         echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
+         echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
+
 
 
 $commentWelcome  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";
@@ -53,7 +56,7 @@ $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 
 echo $form->create('LmMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 $path = $lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'];
-echo $form->hidden('id');
+
 
 
 $input1_3 = $input1_4 = false;
@@ -66,12 +69,20 @@ $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
 
 
-    echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
+echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
 
-     //Checkbox for not using uploaded files
-     echo $form->hidden('lmForceTTS',array('value'=>0));
-     echo $form->hidden('lmOnHangup',array('value'=>'accept'));
-     echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
+     
+        //Checkbox for not using uploaded files
+        echo $form->hidden('lmForceTTS',array('value'=>0));
+        echo $form->hidden('lmOnHangup',array('value'=>'accept'));
+        echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
+
+
+     // ** Title **//
+     echo "<fieldset><legend>".__('Title',true)."</legend>";
+     echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Name of your Leave-a-message IVR menu.',true)));
+     echo "</fieldset>";
+
 
      // ** Welcome **//
      echo "<fieldset><legend>".__('Step 1: Welcome message',true)."</legend>";

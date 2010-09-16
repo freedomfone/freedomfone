@@ -22,11 +22,12 @@
  *
  ***************************************************************************/
 
-echo $form->create('LmMenu',array('type' => 'post','action'=> 'add'));
+echo $form->create('LmMenu',array('type' => 'post','action'=> 'create'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 echo "<h1>".__('Leave-a-message IVR Menus',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
+
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

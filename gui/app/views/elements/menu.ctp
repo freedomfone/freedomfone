@@ -84,8 +84,9 @@
 <?php echo $html->link(__("All LAM",true),'/lm_menus/index'); ?>
 </li>
 
+
 <li>
-<?php echo $html->link(__("Add LAM",true),'/lm_menus/add'); ?>
+<?php echo $html->link(__("Language switcher",true),'/language_switchers'); ?>
 </li>
 
 

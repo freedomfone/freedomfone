@@ -36,9 +36,9 @@ class LmMenu extends AppModel {
  *
  */
 
-    function beforeSave(){
+     function beforeSave(){
 
-    	$lm_default  = Configure::read('LM_DEFAULT');
+     	$lm_default  = Configure::read('LM_DEFAULT');
      	$lm_settings = Configure::read('LM_SETTINGS');
         $iid = $this->data['LmMenu']['instance_id'];
 
@@ -76,36 +76,172 @@ class LmMenu extends AppModel {
     return true;
     }
 
+/*
+ * Provides next idle $instance_id
+ *  
+ *
+ * @return array(int $id, int $instance_id)
+ *
+ */
     function nextInstance(){
 
      	    $lm_settings = Configure::read('LM_SETTINGS');
             $data =  $this->findAll();
-            foreach ($data as $key => $entry){
-                    $taken[] = $entry['LmMenu']['instance_id'];
+
+          //LAM entries exist  
+          if ($data){
+
+                   //Collect all occupied instance_id into $taken[] 
+                   foreach ($data as $key => $entry){
+                           $taken[] = $entry['LmMenu']['instance_id'];
+                   }
+            
+
+                   $next = false;
+                   $id = false;
+
+                   //Loop through all possible (idle/occupied) instance_id, select the first idle one
+
+
+                         for ($i = $lm_settings['instance_min']; $i<= $lm_settings['instance_max'] ; $i++){
+
+                             if(!in_array($i,$taken) && !$next){
+                                  $next = $i;
+                                  $this->set('instance_id',$next);
+                                  $this->save();
+	                          $id = $this->getLastInsertId();
+
+                                  
+                              }
+
+                 }
             }
 
-            $next = false;
-            $id = false;
+            else {
 
-            for ($i = $lm_settings['instance_min']; $i<= $lm_settings['instance_max'] ; $i++){
 
-                if(!in_array($i,$taken) && !$next){
-                        $next = $i;
-                        $this->set('instance_id',$next);
-                        $this->save();
-	                $id = $this->getLastInsertId();
-                        break;
-                }
+              $next = $lm_settings['instance_min'];
+              $this->set('instance_id',$next);
+              $this->save();
+	      $id = $this->getLastInsertId();
+
 
             }
+
 
             return array('id'=>$id,'instance_id'=>$next);
 
 
       }
 
-    
 
+/*
+ * deleteLAM: Deletes LAM with $id, and unlinks associated audio files.
+ *
+ * @param int $id
+ * @return boolean $result 
+ *
+ */
+    
+    function deleteLAM($id){
+
+
+
+	   //Delete LAM
+    	   if($this->delete($id,true)){
+
+		   $this->log("Msg: INFO; Action: LAM deleted; Id: ".$id."; Code: N/A", "lam");
+		   //
+                   return true;
+
+           } else {
+
+           return false;
+
+           }
+
+      }
+
+/*
+ * emptyDir: Delete all files in the given directory 
+ *
+ * @param string $dir
+ * @return boolean result
+ *
+ */
+      function emptyDir($dir){
+
+          $handle=opendir($dir);
+          $result = true;
+
+          if($dir && $handle){
+               while (($file = readdir($handle))!==false) {
+               
+                        if(is_file($dir.'/'.$file)){
+                    
+                               $result = unlink($dir.'/'.$file);
+
+                       }
+               }
+	       $this->log("Msg: INFO; Action: LAM audio files deleted; Dir: ".$dir."; lam");
+               closedir($handle);
+
+           }
+               return $result;
+      }
+
+
+
+
+/*
+ * getInstanceID: Return instance id corresponsing to $id
+ *
+ * @param int $id
+ * @return int $instance_id
+ *
+ */
+  
+      function getInstanceID($id){
+
+               $data = $this->findById($id);
+
+               return $data['LmMenu']['instance_id'];
+      }
+
+
+
+/*
+ * restoreConf: Restore LAM conf file with default text messages.
+ *
+ * @param string $instance_id
+ * @return boolean $result
+ *
+ */
+
+     function restoreConf($instance_id){
+
+     	$lm_default  = Configure::read('LM_DEFAULT');
+     	$lm_settings = Configure::read('LM_SETTINGS');
+
+        if(($handle = fopen($lm_settings['path'].$instance_id.'/'.$lm_settings['dir_conf'].'/'.$instance_id.'.conf','w')) === false) { 
+  
+                return false;
+
+        } else {
+
+	    //$handle = fopen($lm_settings['path'].$iid."/conf/".$iid.".conf","w");
+
+    	    foreach ($lm_default as $key => $default){
+	    	   
+    	    	    $line = "var ".$key." = \"".$default."\";\n";
+	    	    fwrite($handle, $line);
+
+             }
+	    
+	  fclose($handle);
+          return true;
+       }
+    }
 
 }
 ?>

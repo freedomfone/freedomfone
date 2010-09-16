@@ -22,7 +22,6 @@
  *
  ***************************************************************************/
 
-
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
 
@@ -53,8 +52,8 @@ $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 echo $form->create('LmMenu', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
 echo $form->hidden('lmOnHangup',array('value'=>'accept'));
 echo $form->hidden('lmForceTTS',array('value'=>0));
-echo $form->hidden('id',array('value'=>$entry['id']));
-echo $form->hidden('instance_id',array('value'=>$entry['instance_id']));
+echo $form->hidden('id',array('value'=>$this->data['LmMenu']['id']));
+echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
 
      // ** Title **//
      echo "<fieldset><legend>".__('Title',true)."</legend>";

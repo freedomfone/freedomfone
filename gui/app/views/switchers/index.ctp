@@ -37,27 +37,29 @@ echo "<h1>".__('Languge switchers',true)."</h1>";
 
      	   echo "<table width=100%>";
      	   echo $html->tableHeaders(array(
-     	   	__("Default",true),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Type",true), 'type'),
  		$paginator->sort(__("Created",true), 'created'),
+ 		$paginator->sort(__("Modified",true), 'created'),
 		__("Edit",true),
 		__("Delete",true)));
+          
+		
 
 	foreach ($switchers as $key => $switcher){
 
-		$title         = $switcher['Switcher']['title'];
-		$title         = $switcher['Switcher']['title'];
+		$title        = $switcher['Switcher']['title'];
+		$type         = $switcher['Switcher']['type'];
 		$created      = $time->niceShort($switcher['Switcher']['created']);
-		$modified      = $time->niceShort($switcher['Switcher']['modified']);
-		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/switchers/edit/{$ivr_menu['Switcher']['id']}",null, null, false);
-		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/switchers/delete/{$ivr_menu['Switcher']['id']}",null, __("Are you sure you want to delete this language switcher?",true),false);
+		$modified     = $time->niceShort($switcher['Switcher']['modified']);
+		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/switchers/edit/{$switcher['Switcher']['id']}",null, null, false);
+		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/switchers/delete/{$switcher['Switcher']['id']}",null, __("Are you sure you want to delete this language switcher?",true),false);
 
      		$row[$key] = array(
 			   array($title,array('width'=>'100px')),
 			   array($type,array('width'=>'100px')),
 			   $created,		
-			   $modified,
+                           $modified,		
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));
 			   }

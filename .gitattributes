@@ -323,6 +323,7 @@ gui/app/views/settings/index.ctp -text
 gui/app/views/settings/lam.ctp -text
 gui/app/views/settings/set.ctp -text
 gui/app/views/switchers/add.ctp -text
+gui/app/views/switchers/edit.ctp -text
 gui/app/views/switchers/index.ctp -text
 gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text

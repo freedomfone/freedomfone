@@ -85,10 +85,30 @@ function ajax_get_user_pages() {
 
         function add(){
 
-                 debug($this->data);
+      	$this->pageTitle = 'Language switcher : Add';           
 
-                 $this->render();
+            if (empty($this->data)){
+
+	       $lam = $this->Switcher->query('select * from lm_menus');
+	       $ivr = $this->Switcher->query('select * from ivr_menus');
+               $this->set(compact('lam','ivr'));
+	       $this->render();
+            } else {
+
+            //Save data
+
+/*
+	$this->data['SwitcherFile']['file_instruction'] = $this->data['Switcher']['file_instruction'];
+	$this->data['SwitcherFile']['file_invalid'] = $this->data['Switcher']['file_invalid']; 
+
+	$this->unset(data['Switcher']['file_instruction']);
+	$this->unset(data['Switcher']['file_invalid']);*/
+
+	$this->Switcher->save($this->data);
+
+        $this->redirect(array('action' => '/'));   
          }
+}
 
 
 /*   function add(){
@@ -161,7 +181,7 @@ function ajax_get_user_pages() {
                                            $part = strstr($filename,'_');
    			                   $field=substr($part,1,strlen($part));
                                            $this->IvrMenu->saveField($field,$name);
-		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
+		   			   $this->log("INFO; Action: Switcher edit; Type: new audio file : ".$url, "ivr");
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
 					
@@ -192,114 +212,131 @@ function ajax_get_user_pages() {
   
    }*/
 
-/*   function edit($id = null){
 
-      	$this->pageTitle = 'Voice menus : Edit';           
+/*
+ *
+ * @param int $id
+ *
+ * Updates database entry, and uploads new files.
+ *
+ */
 
-            $ivr_settings = Configure::read('IVR_SETTINGS');
-            $ivr_default  = Configure::read('IVR_DEFAULT');
+
+   function edit($id = null){
+
+      	$this->pageTitle = 'Language switcher : Edit';           
+
+            $settings = Configure::read('SWITCHER_SETTINGS');
 
 
    	    //Invalid id
 	  if (!$id && empty($this->data)){
 
 	     $this->_flash(__('Invalid option', true),'warning'); 
-  	     $this->log("Msg: WARNING; Action: IVR edit; Type: incorrect id; Code: ".$id, "ivr");	
+  	     $this->log("WARNING; Action: Edit; Type: Incorrect id (".$id.")", "switcher");	
 	     $this->redirect(array('action'=>'index')); 
 	  }
 
 
 	  //No submitted form data. Fetch data from db and display
-    	  elseif(empty($this->data['IvrMenu'])){
+    	  elseif(empty($this->data['Switcher'])){
 
 		//Set id
-		$this->IvrMenu->id = $id;
+		$this->Switcher->id = $id;
 
 		//Fetch list of all nodes
-		$nodes['title']   = $this->IvrMenu->Node->find('list');
-		$nodes['file']    = $this->IvrMenu->Node->find('list', array('fields' => array('Node.file')));
+	       $lam = $this->Switcher->query('select * from lm_menus');
+	       $ivr = $this->Switcher->query('select * from ivr_menus');
+               $this->set(compact('lam','ivr'));
+
 	
-
-        	$this->set(compact('nodes'));
-
-		//Unbind association with nodes
-		$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-		
 		//Fetch single record, and render view
-		$this->data = $this->IvrMenu->findById($id);
+		$this->data = $this->Switcher->findById($id);
 		$this->render();
 
 
           }
 
 
-
 	  //Save submitted data.
 	  else {
 
-		$flashMsg ='';
-		   foreach($this->data['IvrMenuFile'] as $key => $file){
 
+		   foreach($this->data['SwitcherFile'] as $key => $file){
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
 			}  elseif ($file['error']==1 && !$file['size']) {
-			   $flashMsg = $flashMsg."<br/>".__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'];			
+			        $this->log("ERROR; Action: Upload file; Type: filesize (".$file['size'].")", "switcher");								
+                                $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'],'error');			
 		        }		  
 		   }
+		 
+                    //If file(s) exists -> upload 
+                    if(isset($fileData)){
+                        
+                         $fileOK = $this->uploadFiles($settings['path'].$settings['dir_menu'], $fileData ,false,'audio',true,true);
 
-                 if(isset($fileData)){
-
-		  //Upload one ore more wav files
-		  $fileOK = $this->uploadFiles($ivr_settings['path'].IID."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
-
-                        //If file upload is ok		      
+                        //If file upload OK -> save to database		      
                         if(array_key_exists('urls', $fileOK)) {
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                           $filename = $this->getFilename($fileOK['files'][$key]);
-					   $name= $fileData[$key]['name'];
-                                           $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part));
-                                           $this->IvrMenu->saveField($field,$name);
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
-
-                                           // Update database field correponding to file 
-
-					   $this->log("Msg: INFO; Action: Edit menu; Type: ".$url."; Code: N/A", "ivr");
+					   $this->log("INFO; Action: Edit switcher; Type: ".$url, "switcher");
 				   }
 					
 			}
 
-
+                        //If errors exists -> flash
 			if(array_key_exists('errors',$fileOK)){
 
 				foreach ($fileOK['errors'] as $key => $error){
-					$this->_flash(__('Success',true).' : '.$error, 'error');												
-
+					$this->_flash(__('Success',true).' : '.$error, 'error');				
+					$this->log("ERROR; Action: Upload file; Type: ".$error, "switcher");								
 				}
 			}
 
                      }
 
 
+	$file_instruction = $this->data['SwitcherFile']['file_instruction']; 
+	$file_invalid     = $this->data['SwitcherFile']['file_invalid']; 
 
-          //Save text based form data
+        //unset($this->data['Switcher']['file_instruction']); 
+        //unset($this->data['Switcher']['file_invalid']);
 
-        // $this->IvrMenu->save($this->data);
-	$this->IvrMenu->customizeSave($this->data);
+
+        $this->data['Switcher']['file_instruction'] = $file_instruction['name'];
+        $this->data['Switcher']['file_invalid'] = $file_invalid['name'];
+
+
+        $model = $this->data['Switcher']['type'];
+        $this->data['Switcher']['id_1']= $this->data['Services'][$model][1];
+        $this->data['Switcher']['id_2']= $this->data['Services'][$model][2];
+        $this->data['Switcher']['id_3']= $this->data['Services'][$model][3];
+
+
+        $this->Switcher->save($this->data['Switcher']);
+
+
+
+         //Save text based form data
+
+	 //$this->IvrMenu->customizeSave($this->data);
 
 	 //Update IVR xml file
-	 $this->IvrMenu->writeIVR();
+	 //$this->IvrMenu->writeIVR();
 
-	//Redirect to index
-	    $this->redirect(array('action' => 'index'));
+	 //Redirect to index
+
+	 $this->redirect(array('action' => 'index'));
 
 
 	 } 
 
-   }*/
+   }
+
 
 
 /*    function delete ($id){
@@ -313,7 +350,7 @@ function ajax_get_user_pages() {
 	   //Delete IVR
 
     	     	if($this->IvrMenu->delete($id,true)){
-		   $this->log("Msg: INFO; Action: IVR deleted; Type: ".$id."; Code: N/A", "ivr");
+		   $this->log("INFO; Action: Switcher delete; Type: ".$id.", "ivr");
 		   $this->Session->setFlash(__('The voice menu has been deleted.',true),'default',array('class'=>'message_success'));
 		 }
 

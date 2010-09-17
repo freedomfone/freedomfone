@@ -88,8 +88,8 @@ $config['LM_SETTINGS'] = array(
 		'dir_messages'     =>  'messages/',
 		'dir_menu'         =>  'audio_menu/',
 		'dir_conf'         =>  'conf/',
-                'instance_min'     => '100',
-                'instance_max'     => '103',
+                'instance_min'     => 100,
+                'instance_max'     => 109,
 		);
 
 $config['LM_DEFAULT']=	array(
@@ -113,6 +113,13 @@ $config['IVR_SETTINGS'] = array(
 		'dir_node'        =>  'nodes/',
 		'dir_menu'         =>  'ivr/',
 		'dir_conf'         =>  'conf/'
+		);
+
+$config['SWITCHER_SETTINGS'] = array(
+		'host'	           => MY_DOMAIN,
+		'path'             => 'freedomfone/switcher/',
+		'dir_menu'        =>  'audio_menu/',
+		'dir_xml'         =>  'xml/'
 		);
 
 

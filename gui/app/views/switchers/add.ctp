@@ -22,9 +22,6 @@
  *
  ***************************************************************************/
 
-debug($this->data);
-debug($names);
-
 echo "<h1>".__("Create language switcher",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
@@ -33,14 +30,14 @@ echo "<h1>".__("Create language switcher",true)."</h1>";
 
 	
 $commentTitle   = "<span class='formHelp'>".__("Name of language switcher",true)."</span>";
-$commentInstruction    = "<span class='formHelp'>".__("Brief instruction how to reach each language manu.",true)."</span>";
+$commentInstruction    = "<span class='formHelp'>".__("Brief instruction how to reach each language menu.",true)."</span>";
 $commentInvalid = "<span class='formHelp'>".__("Warning that the user has pressed an invalid option.",true)."</span>";
 
 
 echo $form->create('Switcher', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/formdata') );
 
 ?>
-<!--
+
 <fieldset>
 <legend><?php __('Title');?> </legend>
 <?php echo $form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle)); ?>
@@ -60,11 +57,11 @@ echo $form->create('Switcher', array('type' => 'post', 'action' => 'add','enctyp
 </fieldset>
 
 <fieldset>
-<legend><?php __('Menu entries');?> </legend> -->
+<legend><?php __('Menu entries');?> </legend> 
 
 <?php
 
-//echo $form->create( 'Switcher' );
+/*echo $form->create( 'Switcher' );
 
 echo "<div id='typediv'>";
 
@@ -78,24 +75,43 @@ echo $ajax->observeField( 'SwitcherType',
                                 'frequency' => 0.2));
 
 echo "</div>";  
-/*
-     for($i=1;$i<=8;$i++){
+*/
 
-     	$options1=array('node' =>'');
-     	$options2=array('lam' =>'');
-        $attributes=array('legend'=>false,'default'=>'node');
-        $radio1 = $form->radio('option'.$i.'_type',$options1,$attributes);
-	$radio2 = $form->radio('option'.$i.'_type',$options2,$attributes);
 
-        $row[$i-1]=array( array("<h3>".__('Press',true)." ".$i."</h3>",array('width'=>'100')), $radio1, $form->input('option'.$i.'_id',array('type'=>'select','options' => $nodes,'label'=>'','empty'=>'- '.__('Select menu option',true).' -' )),$radio2,__('Leave-a-message',true));
+     foreach($ivr as $key => $entry){
+
+        $_ivr[$entry['ivr_menus']['id']] = $entry['ivr_menus']['title'];
+
+     }
+
+     foreach($lam as $key => $entry){
+
+        $_lam[$entry['lm_menus']['id']] = $entry['lm_menus']['title'];
+
+     }
+
+     	$options1=array('ivr' =>'  '.__('Voice Menu',true));
+     	$options2=array('lam' =>'  '.__('Leave-a-message',true));
+        $attributes=array('legend'=>false,'default'=>'ivr');
+
+        $radio1 = $form->radio('type',$options1,$attributes);
+	$radio2 = $form->radio('type',$options2,$attributes);
+        $row[] = array("",$radio1,$radio2);
+
+
+     for($i=1;$i<=3;$i++){
+
+        $row[]=array( array("<h3>".__('Press',true)." ".$i."</h3>", array('width'=>'100')), 
+                      $form->input('ivr'.$i,array('type'=>'select','options' => $_ivr,'label'=>'','empty'=>'- '.__('Select voice menu',true).' -' )), 
+                      $form->input('lam'.$i,array('type'=>'select','options' => $_lam,'label'=>'','empty'=>'- '.__('Select Leave-a-message menu',true).' -' )));
      }
 
      echo "<table width='700px'>";
      echo $html->tableCells($row);
      echo "</table>";
-*/
+
 
 echo "</fieldset>";
-//echo $form->end(__('Save',true)); 
+echo $form->end(__('Save',true)); 
 
 ?>

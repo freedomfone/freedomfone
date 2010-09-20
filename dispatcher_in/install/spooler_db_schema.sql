@@ -164,7 +164,7 @@ CREATE TABLE `monitor_ivr` (
   `FreeSWITCH-IPv4` varchar(200) default NULL,
   `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `FF-IVR-Unique-ID` varchar(100) default NULL,
-  `FF-IVR-IVR-Name` varchar(50) default NULL,
+  `FF-IVR-IVR-Name` varchar(200) default NULL,
   `FF-IVR-IVR-Node-Digit` smallint(6) default '0',
   `FF-IVR-IVR-Node-Unique-ID` smallint(6) default '0',
   `FF-IVR-Caller-ID-Number` varchar(50) default NULL,

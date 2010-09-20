@@ -349,7 +349,7 @@ CREATE TABLE `monitor_ivr` (
   `cdr_id` int(10) unsigned default NULL,
   `epoch` int(10) unsigned default NULL,
   `call_id` varchar(100) NOT NULL,
-  `ivr_code` varchar(100) NOT NULL,
+  `ivr_code` varchar(200) NOT NULL,
   `digit` smallint(6) default NULL,
   `node_id` int(10) unsigned default NULL,
   `caller_number` varchar(50) default NULL,

@@ -170,7 +170,7 @@ class MessagesController extends AppController{
 	if($this->Message->save($this->data['Message'])){
 
 		$this->Message->save($this->data['Tag']);
-		$this->Session->setFlash('The entry has been updated');
+		$this->_flash(__('The entry has been updated',true),'success');
     	     
 		$submit   = $this->params['data']['Submit'];
 

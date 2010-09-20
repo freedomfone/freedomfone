@@ -76,12 +76,12 @@ $sort  = $session->read('messages_sort');
      echo $form->hidden('source',array('value'=>$source));
 
      echo $html->tableCells(array (
-     array(__("Title",true),	$form->input('title',array('label'=>false))),
+     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'60'))),
      array(__("Status",true),	$form->input('status',$options_status)),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
-     array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false))),
+     array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>50))),
      ));
      echo "</table>";
 

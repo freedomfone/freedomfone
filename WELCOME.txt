@@ -1,7 +1,7 @@
--------------------------------------------------------
-  W E L C O M E  T O  F R E E D O M F O N E  v 1 . 6 . 5
+--------------------------------------------------------
+  W E L C O M E  T O  F R E E D O M   F O N E  v 1 . 6 . 5
            P I C T U S    L U P I N U S    L T S
--------------------------------------------------------
+--------------------------------------------------------
 
 This is the forth official release of Freedom Fone after 20
 months of continous development.
@@ -41,9 +41,9 @@ plugin in their browser
 updated of bug fixes and security updates!
 
 - NETWORKING AUTODETECION: New section in the Dashboard to
-  help you setup the IP configuration of Freedomfone.
-Freedomfone autodetects the local and external IP
-address  of your network. If you want to make Freedomfone
+  help you setup the IP configuration of Freedom Fone.
+Freedom Fone autodetects the local and external IP
+address  of your network. If you want to make Freedom Fone
 available to the outside world, select the external IP
 address and make sure that your router port-forwards port
 80 to your internal server.
@@ -154,8 +154,8 @@ Network Auto-detection
 From version 1.6.5 you do not need to edit any configuration
 files.
 
-Freedomfone tries to auto-detect your network configuration.
-Freedomfone runs DHCP client by default but it is highly
+Freedom Fone tries to auto-detect your network configuration.
+Freedom Fone runs DHCP client by default but it is highly
 recommended to fix a IP address in your installation.
 
 Audio files are streamed to the web browser, fixing an IP
@@ -164,7 +164,7 @@ address will ensure that streaming works smoothly.
 Go to Dashboard > Settings and select the appropriate IP for
 your setup.
 
-Freedomfone supports three different setups:
+Freedom Fone supports three different setups:
 
  * Standalone
 The audio files can only be played from the local machine:

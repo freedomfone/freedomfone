@@ -55,6 +55,7 @@ dispatcher_in/templates/gsmopen.xsl -text
 dispatcher_in/templates/lmsm.xsl -text
 dispatcher_in/templates/message.xsl -text
 dispatcher_in/templates/monitor_ivr.xsl -text
+dispatcher_in/templates/officeroute.xsl -text
 dispatcher_in/templates/tickle.xsl -text
 dispatcher_in/tests/sendSMS.php -text
 dispatcher_out/config.php -text

@@ -1,4 +1,39 @@
 <?php
+/****************************************************************************
+ * pop3_daemon.php	- Connects to Officeroute device, and POPs incoming SMS. 
+ * 			  A custom event (subclass: officeroute) is created and sent 
+ *			  to FreeSWITCH using the ESL library (bgapi).
+ *
+ *			- pop3_daemon.php should run as a cronjob every x minutes.
+ *
+ * version 		- 1.0
+ * 
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ *
+ * The Initial Developer of the Original Code is
+ *   Louise Berthilson <louise@it46.se>
+ *
+ * Manual connection to FreeSWITCH:
+ *
+ * telnet localhost 8021
+ * auth ClueCon
+ * events plain officeroute
+ * 
+ * 
+ ***************************************************************************/
+
+
 include_once('pop3.php');
 include_once('config.php');
 require_once(ESLPath);
@@ -8,22 +43,15 @@ $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
 
-
-////////////////
-$_HostPOP = '192.168.46.109';
-$_UserPOP = 'Admin';
-$_PassPOP = '2n';
-
-//$_UserPOP = '100';
-//$_PassPOP = '1234';
-
-$_PortPOP = '110';
+$_HostPOP = $_OfficerouteParam['host'];
+$_UserPOP = $_OfficerouteParam['user'];
+$_PassPOP = $_OfficerouteParam['pass'];
+$_PortPOP = $_OfficerouteParam['port'];
 
 
-/*global $_HostPOP;
-global $_PortPOP;
-global $_UserPOP;
-global $_PassPOP;*/
+
+$handle = fopen(LogFile,'a');
+
 
 	$pop3=new pop3_class;
 	$pop3->hostname=$_HostPOP;
@@ -38,68 +66,43 @@ global $_PassPOP;*/
 	$pop3->debug=1;                          /* Output debug information                    */
 	$pop3->html_debug=1;                     /* Debug information is in HTML                */
 	$pop3->join_continuation_header_lines=1; /* Concatenate headers split in multiple lines */
-
+	
+	$messages = false;
 
 	if(($error=$pop3->Open())=="")  {
 		if(($error=$pop3->Login($user,$password,$apop))=="") {
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
-				for($i=1;$i<=$msg_no;$i++){
-					if(($error=$pop3->RetrieveMessage($i,$headers,$body,-1))==""){
-						for($line=0;$line<count($headers);$line++){
+				for($i=0;$i<$msg_no;$i++){
+					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
 
-							$string = $headers[$line];
+						$messages[$i] = parseData($headers,$body,$i);
 
-							if (ereg("From:",$string)){
-						   	   
-							   $var = strstr($string, '@', true); 
-							   $sender = trim(strstr($var, ':'),': '); 							   
-							   $messages[$i]['sender'] = $sender;
+			   		} else {
+					  
+						logPOP($error,'FOO',1);
 
-							}  elseif (ereg("Date",$string)){
-
-							   $var = trim(strstr($string, ':'),': '); 
-							   $date = strtotime($var);
-							   $messages[$i]['date'] = $date;
-							   //$date3 = date('l jS \of F Y h:i:s A',$date2);
-							}
-						
-				       		} // for: lines headers
-			
-						$message = false;
-						for($line=0; $line<count($body); $line++){
-
-							$message = $message.$body[$line];
-
-
-				       		} 
-
-						//FIXME!
-						$messages[$i]['receiver'] = "1000";
-						$messages[$i]['body'] = $message;
-			   		  } //if: retreive message
-                     		  } // for iteration
+					}
+                     		  }
 		 	}  else {	
-				$error=$result;
-			} //stat
+				logPOP($error,'ERROR',1);
+			} 
 
 		} else { 
 	
-		$error=$result;
+		   logPOP($error,'ERROR',1);
 	
-		} //loging
+		} 
  
 	} else {	
-		//$error=$result;
-	} //login
+		logPOP($error,'ERROR',1);
+	} 
 
 
-
-	//FIXME: log error
 
 	//****************************************//
 	//*  Connect to Freeswitch via ESL       *//
-	//*  and create custom event for SMS     *//
-	//*                                      *//
+	//*  and create custom event for         *//
+	//*  incoming SMS from Officeroute       *//
 	//*                                      *//
 	//****************************************//
 
@@ -107,59 +110,73 @@ global $_PassPOP;*/
 
      if($sock->connected()){
 
+	if ($messages){
 
-	foreach ($messages as $message){
-       $cmd = "jsrun freedomfone/sms/createSMS.js '".$message['sender']."' '".$message['receiver']."' '".$message['date']."' '".$message['body']."'";
-
-       echo $cmd." \n";
-
-       $sock->bgapi($cmd);
+	   foreach ($messages as $key => $message){
+       	   	   $cmd = "jsrun freedomfone/sms/createSMS.js '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."' '".$message[$key]['body']."'";
+       		   echo $cmd." \n";
+       		   $sock->bgapi($cmd);
+		   logPOP("BGAPI: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
+           }
        }
+     } else {
+
+	$sock->disconnect();
+	logPOP("Failed to connect to FreeSWITCH","ERROR",1); 
+
+     }
 
 
-       }
-/*
-	if ($obj -> auth != true) {
-    	   die(printf("Unable to authenticate\r\n"));
-	  
+     function parseData($headers,$body,$i){
+
+
+     	for($line=0;$line<count($headers);$line++){
+
+		$string = $headers[$line];
+
+		if (ereg("From:",$string)){
+						   	   
+			$var = strstr($string, '@', true); 
+	   		$sender = trim(strstr($var, ':'),': '); 							   
+	   		$messages[$i]['sender'] = $sender;
+
+		}  elseif (ereg("Date",$string)){
+
+	   	   	$var = trim(strstr($string, ':'),': '); 
+	   		$date = strtotime($var);
+	   		$messages[$i]['date'] = $date;
+		}
+
+						
+	} 
+	$message = false;
+	
+	for($line=0; $line<count($body); $line++){
+
+		     $message = $message.$body[$line];
+
 	} 
 
-	if (!$obj -> subscribe_events('custom message')) {
-    	   die(printf("Unable to subscribe to events"));
-	   
-	}
-
-	foreach ($messages as $message){
-       $cmd = "jsrun freedomfone/sms/createSMS.js '".$message['sender']."' '".$message['receiver']."' '".$message['date']."' '".$message['body']."'";
-
-       echo $cmd." \n";
-       }
-       
-     
-		$bg_return = $obj -> bgapi_command($cmd);
-    		$obj -> debug($bg_return);
-    		$output[] = $obj -> wait_for_event(time());
-		$obj -> sock_close(); 
-
-*/
-
-
-
-
-function print_message($values,$i){
-
-
-	 echo $values[0]." \n";
-	 echo $values[1]." \n";
-	 echo $values[2]." \n";
-	 echo $values[3]." \n";
-
+	//FIXME!
+	$messages[$i]['receiver'] = "1000";
+	$messages[$i]['body'] = $message;
 	
-	 }
+	return $messages;
 
+     }
 
+   function logPOP($msg,$type,$level){
 
+   global $handle;
+   
 
-?>
+   	  if($level <= LogLevel){
+   	    $string = date('M d H:i:s')." pop3_daemon ".$type." ". $msg."\n";
+	    fwrite($handle, $string);
+	  }
 
+   }
 
+?>						
+
+			

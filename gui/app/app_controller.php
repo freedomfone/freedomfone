@@ -178,8 +178,9 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		}		
 				
 		// if file type ok upload the file
-		if($typeOK) 
-			    {
+		if($typeOK)  {
+
+
 			// switch based on error code
 			switch($file['error']) {
 	

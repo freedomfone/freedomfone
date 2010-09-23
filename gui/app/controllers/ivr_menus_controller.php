@@ -105,11 +105,13 @@ class IvrMenusController extends AppController{
 
 		foreach($this->data['IvrMenuFile'] as $key => $file){
 
+
 			if ($file['size']){
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-			       $this->_flash(__('Failure (filesize)',true).' : '.$file['name'], 'error');							
+       	       		   $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           	
+		       	   
 			   }			  		   
 		   }
 
@@ -162,6 +164,8 @@ class IvrMenusController extends AppController{
 
    function edit($id = null){
 
+
+
       	$this->pageTitle = 'Voice menus : Edit';           
 
             $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -197,7 +201,6 @@ class IvrMenusController extends AppController{
 		$this->data = $this->IvrMenu->findById($id);
 		$this->render();
 
-
           }
 
 
@@ -205,15 +208,16 @@ class IvrMenusController extends AppController{
 	  //Save submitted data.
 	  else {
 
-		$flashMsg ='';
-		   foreach($this->data['IvrMenuFile'] as $key => $file){
 
-			if ($file['size']){
+		foreach($this->data['IvrMenuFile'] as $key => $file){
+
+			if ($file['error']==1 && !$file['size']) {
+                       	        $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           
+			   
+		        } elseif ($file['size']) {
 				$file['fileName']=$id."_".$key;
 				$fileData[] = $file;
-			}  elseif ($file['error']==1 && !$file['size']) {
-			   $flashMsg = $flashMsg."<br/>".__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'];			
-		        }		  
+			}  		  
 		   }
 
                  if(isset($fileData)){

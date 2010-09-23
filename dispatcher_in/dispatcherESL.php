@@ -3,9 +3,9 @@
  * dispatcherESL.php	- Incoming dispatcher based on FreeSWITCH ESL. Manages events from FreeSWITCH to spooler (db).
  *       	   	  Subscribes to the following events:
  *                             message CHANNEL_STATE
- *      	   	       custom message tickle leave_a_message monitor_ivr gsmopen::dump_event
+ *      	   	       custom message tickle leave_a_message monitor_ivr gsmopen::dump_event officeroute
  *
- * version 		- 1.0.3
+ * version 		- 1.0.4
  * 
  * Version: MPL 1.1
  *
@@ -31,7 +31,7 @@
  * 
  * How to run dispatcher:
  * 
- * php dispatcher.php -v --debug={true|false} --log={logfile} -p /tmp/dispatcher_in.pid
+ * php dispatcherESL.php -v --debug={true|false} --log={logfile} -p /tmp/dispatcher_in.pid
  * 
  * Verbose mode (-v) will print to stdout
  * Debug mode will write to logfile. If all arguments are left out, verbose = false, debug = true
@@ -146,7 +146,7 @@ $mypid = getmypid();
 		
 	         //3. Subscribe to events
        	   	   $sock->sendRecv("event xml message CHANNEL_STATE");
-       	   	   $sock->sendRecv("event xml custom message tickle leave_a_message monitor_ivr gsmopen::dump_event");
+       	   	   $sock->sendRecv("event xml custom message officeroute tickle leave_a_message monitor_ivr gsmopen::dump_event");
 		   logESL("Successfully subscribed to events","INFO",1); 
 
 		   //4. Wait for events
@@ -281,6 +281,11 @@ function applyXSL($event){
 	                    case 'gsmopen%3A%3Adump_event':
 	                    $xsl= DirXSL.'gsmopen.xsl';
 	                    break;
+
+
+	                    case 'officeroute':
+	                    $xsl= DirXSL.'officeroute.xsl';
+	                    break;
                      }
                  }
 
@@ -354,7 +359,7 @@ function applyRules($string){
 	
                          case 'message':
 			 $application[] = analyzeBody($body);
-			 logESL("Application match: poll (custom)","INFO",2); 
+			 logESL("Application match: poll/bin (custom)","INFO",2); 
 	                 break;
 
 	                 case 'monitor_ivr':
@@ -365,6 +370,11 @@ function applyRules($string){
 	                 case 'gsmopen%3A%3Adump_event':
 	                 $application[]='gsmopen';
 			 logESL("Application match: gsmopen (custom)","INFO",2); 
+	 	         break;
+
+	                 case 'officeroute':
+	                 $application[]= analyzeBody($body);
+			 logESL("Application match: poll/bin (custom)","INFO",2); 
 	 	         break;
 
 	               }

@@ -25,6 +25,11 @@
 $session->flash();
 echo "<h1>".__("Create Menu Option",true)."</h1>";
 
+   	  if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+         }
+
+
 echo $form->create('Node', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
 
 

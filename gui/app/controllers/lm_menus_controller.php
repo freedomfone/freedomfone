@@ -62,7 +62,9 @@ class LmMenusController extends AppController{
 				$file['fileName']=$key;
 				$fileData[] = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-			       $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');							
+
+                       	        $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           
+
 			   }	
 		   }
 

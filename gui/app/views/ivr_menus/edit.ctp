@@ -33,9 +33,10 @@ echo "<h1>".__("Edit voice menu",true)."</h1>";
 $ivr_default  = Configure::read('IVR_DEFAULT');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 
-  if($session->check('Message.flash')){
-      $session->flash();
-      }  
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
+
 
 $commentTitle   = "<span class='formHelp'>".__("Name of IVR",true)."</span>";
 $commentLong   = "<span class='formHelp'>".__("Long greeting message:include a brief description of the services offered and the menu alternatives.",true)."</span>";
@@ -54,6 +55,9 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 echo $form->input('id',array('type'=>'hidden'));
+//echo $form->input('MAX_FILE_SIZE',array('type'=>'hidden','value'=>200000000));
+
+
 $path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
 
 echo "<fieldset><legend>".__('Name',true)."</legend>";
@@ -71,7 +75,7 @@ $step1[3]=false; $step2[3]=false;$step3[3]=false; $step4[3]=false;
 
 $step1[0] = "<h3>1. ".__('Welcome',true)."</h3>";
 $step1[1] = $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' ));
-$step1[2] = $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
+$step1[2] = $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','Label'=>__('Audio file',true)));
 $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_long','title'=>__('Welcome Message',true),'id'=>'long'));
 
 if($ivrMenu['file_long']){

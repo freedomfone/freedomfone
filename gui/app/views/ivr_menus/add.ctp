@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * add.ctp	- Create new IVR menu
+ * index.ctp	- List processes
  * version 	- 1.0.360
  * 
  * Version: MPL 1.1

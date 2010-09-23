@@ -67,15 +67,22 @@ class NodesController extends AppController{
 	   $files[0] = $this->data['Node']['file'];
            $title = $this->data['Node']['title'];
 	   
-
 	   //If title exists, upload file (wav)
+	   
+	   unset($this->data['Node']['file']);
    	   $this->Node->set( $this->data );
 
   	   if ($this->Node->validates()){
-             $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
 
-		//File upload OK
-		if(array_key_exists('urls', $fileOK)){
+              if ($files[0]['error']==1 && !$files[0]['size']) {
+                       $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$files[0]['name'], 'error');                           
+	       }  elseif ($files[0]['size']){
+
+
+               	    $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
+
+	            //File upload OK
+		    if(array_key_exists('urls', $fileOK)){
 
 		      //Set db fields
 		      $filename = $this->getFilename($fileOK['files'][0]);
@@ -94,32 +101,27 @@ class NodesController extends AppController{
 		      $this->_flash(__('The menu option has been created.', true),'success');
 		      $this->redirect(array('action'=>'index'));
 
-		}
+		      }
 
-		//File upload NOT OK
-		elseif(array_key_exists('errors', $fileOK)) {
+		      //File upload NOT OK
+		      elseif(array_key_exists('errors', $fileOK)) {
 		
-		      //Flash messsage, log error
-		      $this->_flash($fileOK['errors'][0], 'error');
-		}
+			//Flash messsage, log error
+		      	$this->_flash($fileOK['errors'][0], 'error');
+		      } else {
 
-		else {
 		     $this->log("Msg: ERROR; Action: file upload; Type: no file; Code: ".$fileOK['errors'][0],"ivr");
    	         
-	         }
+	              }
+
+		 }
 	    }
 
 
 	}
+
+$this->render();    
 			
-
-      //Render empty form
-      if (empty($this->data)){
-
-
-	 }
-
-
 }
 
 
@@ -136,14 +138,14 @@ class NodesController extends AppController{
 
     	     	if($this->Node->delete($id,true)){
 
-			$this->Session->setFlash(__('The selected voice menu node has been deleted.',true),'default',array('class'=>'message_success'));
+			$this->_flash(__('The selected voice menu node has been deleted.',true),'success');
 	     		$this->log('Msg: Node deleted, ID: '.$id, 'node');	
 	     		$this->redirect(array('action' => '/index'));
 	     		}
 	     }
 
 	     else {
-		$this->Session->setFlash(__('The selected voice menu node could not be deleted as it is present in one or more Voice menus.',true),'default',array('class'=>'message_success'));
+		$this->_flash(__('The selected voice menu node could not be deleted as it is present in one or more Voice menus.',true),'warning');
 		$this->redirect(array('action' => '/index'));
 	     }
 
@@ -199,11 +201,12 @@ class NodesController extends AppController{
 
           //Fetch file and attempt to upload
 
-	       $files = array();
+	       $files = array(); 
 	       $files[0] = $this->data['Node']['file'];
 
-               //If file is selected
-	       if ($files[0]['size']){
+              if ($files[0]['error']==1 && !$files[0]['size']) {
+                       $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$files[0]['name'], 'error');                           
+	       }  elseif ($files[0]['size']){
 
                //Attempt to upload file
 	       $fileOK = $this->uploadFiles($path, $files ,false,'audio', false, false);
@@ -237,7 +240,7 @@ class NodesController extends AppController{
 				$this->log('Msg: NODE UPLOAD ERROR; Type: '.$fileOK['errors'][0], 'ivr');
 				$this->_flash($fileOK['errors'][0],'error');
 			 }
-                  } // if file is selected
+                } // if file is selected
 
           if($_titleOK && $_fileOK) {  
 	  	       $this->_flash(__('Your changes have been saved.',true), 'success');							

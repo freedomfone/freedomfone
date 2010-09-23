@@ -42,15 +42,16 @@ $host = $_SocketParam['host'];
 $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
-
-$_HostPOP = $_OfficerouteParam['host'];
-$_UserPOP = $_OfficerouteParam['user'];
-$_PassPOP = $_OfficerouteParam['pass'];
-$_PortPOP = $_OfficerouteParam['port'];
-
-
-
 $handle = fopen(LogFile,'a');
+
+
+
+  foreach ($_OfficerouteParam as $instance){
+
+	$_HostPOP = $instance['host'];
+	$_UserPOP = $instance['user'];
+	$_PassPOP = $instance['pass'];
+	$_PortPOP = $instance['port'];
 
 
 	$pop3=new pop3_class;
@@ -89,7 +90,8 @@ $handle = fopen(LogFile,'a');
 
 		} else { 
 	
-		   logPOP($error,'ERROR',1);
+		   logPOP($error.'('.$_HostPOP.':'.$_UserPOP.':'.$_PassPOP.':'.$_PortPOP.')','ERROR',1);
+		   
 	
 		} 
  
@@ -110,15 +112,37 @@ $handle = fopen(LogFile,'a');
 
      if($sock->connected()){
 
+
 	if ($messages){
 
 	   foreach ($messages as $key => $message){
+
        	   	   $cmd = "jsrun freedomfone/sms/createSMS.js '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."' '".$message[$key]['body']."'";
-       		   echo $cmd." \n";
-       		   $sock->bgapi($cmd);
-		   logPOP("BGAPI: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
+       		   $result = $sock->api($cmd);
+
+		   logPOP("SENDING: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
+
+		   if (preg_match('/OK/i', $result->getBody())){
+
+		      logPOP('SENDING OK','INFO',2);
+
+		      if ($result = $pop3->DeleteMessage($key+1)==''){
+		      	 logPOP('DELETE FAILED '.$result,'ERROR',2);
+		      } else {
+	 	         logPOP('DELETE OK,'ERROR',2);
+		      }
+
+		   } else {
+
+		    logPOP('SENDING FAILED': ,'ERROR',2);
+
+		   }
+
            }
+
+	      $pop3->Close();
        }
+
      } else {
 
 	$sock->disconnect();
@@ -126,6 +150,7 @@ $handle = fopen(LogFile,'a');
 
      }
 
+  }
 
      function parseData($headers,$body,$i){
 

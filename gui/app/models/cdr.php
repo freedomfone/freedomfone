@@ -86,6 +86,7 @@ class Cdr extends AppModel{
 		         }
 		   }
 
+
 		   //Determine whether entry should be stored or not
 		   
 		   $insert = $this->insertCDR($proto,$channel_state,$answer_state);
@@ -105,8 +106,8 @@ class Cdr extends AppModel{
 		        $this->set('title', LAM_DEFAULT);
 		     } 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
-		     elseif ($application == 'ivr' && $channel_state =='CS_DESTROY'){
-		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'CHANNEL_STATE' =>'CS_ROUTING','application'=>'ivr')))){
+		     elseif ($channel_state =='CS_DESTROY'){
+		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'channel_state' =>'CS_ROUTING','application'=>'ivr')))){
 		     	    	$length = $epoch - $start['Cdr']['epoch'];
 		     		$this->set('length',$length);
 		     		}

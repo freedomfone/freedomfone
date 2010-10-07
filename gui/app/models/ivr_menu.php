@@ -292,6 +292,167 @@ function __construct($id = false, $table = null, $ds = null) {
 
       }
 
+
+
+/*
+ * Provides next idle $instance_id
+ *  
+ *
+ * @return array(int $id, int $instance_id)
+ *
+ */
+    function nextInstance($ivr_type){
+
+     	    $ivr_settings = Configure::read('IVR_SETTINGS');
+
+	    $this->unbindModel(array('hasMany' => array('Node')));   
+            $data =  $this->findAll();
+
+
+          //IVR entries exist  
+          if ($data){
+
+                   //Collect all occupied instance_id into $taken[] 
+                   foreach ($data as $key => $entry){
+                           $taken[] = $entry['IvrMenu']['instance_id'];
+                   }
+            
+
+                   $next = false;
+                   $id = false;
+
+                   //Loop through all possible (idle/occupied) instance_id, select the first idle one
+
+                         for ($i = $ivr_settings['instance_min']; $i<= $ivr_settings['instance_max'] ; $i++){
+
+                             if(!in_array($i,$taken) && !$next){
+                                  $next = $i;
+                                  $this->set('instance_id',$next);
+                                  $this->set('ivr_type',$ivr_type);
+
+                                  switch($ivr_type){
+
+                                  case 'ivr':
+
+                                  $this->set('switcher_type',false);
+                                  $this->set('title','IVR '.$next);
+                                  $this->set('option1_type','node');
+                                  $this->set('option2_type','node');
+                                  $this->set('option3_type','node');
+                                  $this->set('option4_type','node');
+                                  $this->set('option5_type','node');
+                                  $this->set('option6_type','node');
+                                  $this->set('option7_type','node');
+                                  $this->set('option8_type','node');
+                                  $this->set('option9_type','node');
+                                  break;
+
+                                  case 'switcher':
+                                  $this->set('switcher_type','ivr');
+                                  $this->set('title','SWITCHER '.$next);
+                                  break;
+
+                                  }
+
+                                  $this->save();
+	                          $id = $this->getLastInsertId();
+
+                                  
+                              }
+
+                 }
+            }
+
+            else {
+
+
+              $next = $ivr_settings['instance_min'];
+              $this->set('instance_id',$next);
+              $this->save();
+	      $id = $this->getLastInsertId();
+
+
+            }
+
+
+            return array('id'=>$id,'instance_id'=>$next);
+
+
+      }
+
+
+/*
+ * emptyDir: Delete all files in the given directory 
+ *
+ * @param string $dir
+ * @return boolean result
+ *
+ */
+      function emptyDir($dir){
+
+          $handle=opendir($dir);
+          $result = true;
+
+          if($dir && $handle){
+               while (($file = readdir($handle))!==false) {
+               
+                        if(is_file($dir.'/'.$file)){
+                    
+                               $result = unlink($dir.'/'.$file);
+
+                       }
+               }
+	       $this->log("Msg: INFO; Action: IVR audio files deleted; Dir: ".$dir."; lam");
+               closedir($handle);
+
+           }
+               return $result;
+      }
+
+
+
+/*
+ * getInstanceID: Return instance id corresponsing to $id
+ *
+ * @param int $id
+ * @return int $instance_id
+ *
+ */
+  
+      function getInstanceID($id){
+
+               $this->unbindModel(array('hasMany' => array('Node')));      
+               $data = $this->findById($id);
+               return $data['IvrMenu']['instance_id'];
+      }
+
+
+
+/*
+ * deleteIVR: Deletes IVR with $id
+ *
+ * @param int $id
+ * @return boolean $result 
+ *
+ */
+    
+    function deleteIVR($id){
+
+           $this->unbindModel(array('hasMany' => array('Node')));
+   
+    	   if($this->delete($id,true)){
+
+		   $this->log("Msg: INFO; Action: IVR deleted; Id: ".$id."; Code: N/A", "ivr");
+                   return true;
+
+           } else {
+
+                  return false;
+
+           }
+
+      }
+
 }
 
 ?>

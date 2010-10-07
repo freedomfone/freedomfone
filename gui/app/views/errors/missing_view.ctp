@@ -23,5 +23,5 @@
  ***************************************************************************/
 
 
-echo "<h3>".__('This page does not exist.',true)."</h3>";
+echo "<h3>".__('This view does not exist.',true)."</h3>";
 ?>

@@ -55,10 +55,11 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 echo $form->input('id',array('type'=>'hidden'));
-//echo $form->input('MAX_FILE_SIZE',array('type'=>'hidden','value'=>200000000));
+echo $form->input('instance_id',array('type'=>'hidden','value'=>$ivrMenu['instance_id']));
 
 
-$path = $ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
+
+$path = $ivr_settings['path'].$this->data['IvrMenu']['instance_id']."/".$ivr_settings['dir_menu'];
 
 echo "<fieldset><legend>".__('Name',true)."</legend>";
 echo $form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle));
@@ -168,7 +169,7 @@ echo "</fieldset>";
 echo "<fieldset>";
 echo "<legend>".__('Menu Options',true)."</legend>";
 
-$path = $ivr['path'].IID."/".$ivr['dir_node'];
+$path = $ivr['path'].$ivr['dir_node'];
 
      for($i=0;$i<8;$i++){
 

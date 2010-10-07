@@ -112,8 +112,11 @@ $config['IVR_SETTINGS'] = array(
 		'curl'             => 'xml_curl/',
 		'dir_node'        =>  'nodes/',
 		'dir_menu'         =>  'ivr/',
-		'dir_conf'         =>  'conf/'
+		'dir_conf'         =>  'conf/',
+                'instance_min'     => 100,
+                'instance_max'     => 110,
 		);
+
 
 $config['SWITCHER_SETTINGS'] = array(
 		'host'	           => MY_DOMAIN,
@@ -124,7 +127,7 @@ $config['SWITCHER_SETTINGS'] = array(
 
 
 $config['IVR_DEFAULT']=	array(
-	        'parent_ivr'       => 'freedomfone_ivr_'.IID,
+	        'parent_ivr'       => 'freedomfone_ivr_100',
                 'ivrIndexMessage'  => 'To repeat the menu, press 9.',
                 'ivrLongMessage'   => 'Hello and Welcome to Freedom Fone',
 		'ivrShortMessage'  => 'Navigate through the menu by pressing any number between 1 and 8.',

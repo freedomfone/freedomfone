@@ -315,7 +315,7 @@ return $result;
   	   switch ($type){
 
     	     case 'node':
-	     $path = BASE_DIR.'/freeswitch/scripts/freedomfone/ivr/'.IID.'/nodes/';
+	     $path = BASE_DIR.'/freeswitch/scripts/freedomfone/ivr/nodes/';
 	     break;
 
 	    }

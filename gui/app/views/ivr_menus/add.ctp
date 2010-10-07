@@ -49,7 +49,7 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
-
+echo $form->input('ivr_type',array('type'=>'hidden','value'=>'ivr'));
 
 ?>
 

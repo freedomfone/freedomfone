@@ -86,7 +86,7 @@
 
 
 <li>
-<?php echo $html->link(__("Language switcher",true),'/language_switchers'); ?>
+<?php echo $html->link(__("Language switcher",true),'/ivr_menus/switchers'); ?>
 </li>
 
 

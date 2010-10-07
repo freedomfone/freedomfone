@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
+echo $form->create('IvrMenu',array('type' => 'post','action'=> 'reserve/ivr'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
@@ -43,7 +43,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      	   echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
      	   echo "<table width=100%>";
      	   echo $html->tableHeaders(array(
-     	   	__("Default",true),
+     	   	__("Instance",true),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Created",true), 'created'),
  		$paginator->sort(__("Last modified",true), 'modified'),
@@ -52,26 +52,25 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 
           echo $form->hidden('source',array('value'=>'index'));
 
-	//Find parent
+
+/*
       	foreach ($ivr_menus as $key => $ivr_menu){
       	   if ($ivr_menu['IvrMenu']['parent']==1){
 	      $parent = $ivr_menu['IvrMenu']['id'];
 	      }
-      	}
+      	}*/
  
 	foreach ($ivr_menus as $key => $ivr_menu){
-      		$options=array($ivr_menu['IvrMenu']['id']=>'');
-        	$attributes=array('legend'=>false,'default'=>$parent);
-        	$default = $form->radio('parent',$options,$attributes);
-
-		$title         = $ivr_menu['IvrMenu']['title'];
-		$created      = $time->niceShort($ivr_menu['IvrMenu']['created']);
-		$modified      = $time->niceShort($ivr_menu['IvrMenu']['modified']);
-		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
+      		$options    = array($ivr_menu['IvrMenu']['id']=>'');
+                $instance   = $ivr_menu['IvrMenu']['instance_id'];
+		$title      = $ivr_menu['IvrMenu']['title'];
+		$created    = $time->niceShort($ivr_menu['IvrMenu']['created']);
+		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
+		$edit       = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
+		$delete     = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
 
      		$row[$key] = array(
-			   $default,
+			   $instance,
 			   array($title,array('width'=>'100px')),
 			   $created,		
 			   $modified,

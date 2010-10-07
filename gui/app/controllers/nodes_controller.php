@@ -55,9 +55,8 @@ class NodesController extends AppController{
 
       	$this->pageTitle = 'Voice menus : Audio files : Add';           
 
-   	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
-	$path = $ivr_settings['path'].$iid."/".$ivr_settings['dir_node'];
+	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
 	// Form data exist, save and redirect to Index
 	if (!empty($this->data)) {
@@ -87,7 +86,7 @@ class NodesController extends AppController{
 		      //Set db fields
 		      $filename = $this->getFilename($fileOK['files'][0]);
 	              $this->data['Node']['file']        = $filename;
-		      $this->data['Node']['instance_id'] = $iid;		      
+		      
 		      $duration = $this->wavDuration('node',$filename,'wav');
 		      $this->data['Node']['duration'] = $this->wavDuration('node',$filename,'wav');
 
@@ -127,9 +126,9 @@ $this->render();
 
     function delete ($id){
 
-      	     $iid = IID;
+
     	     $ivr_settings = Configure::read('IVR_SETTINGS');
-      	     $path = '/'.$ivr_settings['path'].$iid."/".$ivr_settings['dir_node'];
+      	     $path = '/'.$ivr_settings['path'].$ivr_settings['dir_node'];
 
 	     if(!$this->Node->isActive($id)){
 	     
@@ -156,9 +155,8 @@ $this->render();
    function edit($id=null){
 
       	$this->pageTitle = 'Voice menus : Audio files : Edit';           
-   	$iid = IID;
    	$ivr_settings = Configure::read('IVR_SETTINGS');
-	$path = $ivr_settings['path'].$iid."/".$ivr_settings['dir_node'];
+	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
         $_titleOK = $_fileOK = true;
 
 
@@ -183,7 +181,7 @@ $this->render();
 
 
           $this->Node->set( $this->data );	       
-          $this->data['Node']['instance_id'] = $iid;		
+
 
 
 
@@ -270,7 +268,7 @@ $this->render();
 	
 	$file = $data['Node']['file'].'.mp3';
 	$name = $data['Node']['title'];
-	$url  = 'webroot/freedomfone/ivr/'.IID.'/nodes';
+	$url  = 'webroot/freedomfone/ivr/nodes';
 
         $this->view = 'Media';
 

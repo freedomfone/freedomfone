@@ -59,7 +59,7 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
       foreach ($nodes as $key => $node){
 
-       	      $path = $ivr['path'].$node['Node']['instance_id']."/".$ivr['dir_node'];
+       	      $path = $ivr['path'].$ivr['dir_node'];
 	      $title    = $node['Node']['title'];
 	      //$category = $node['Category']['name'];
 	      $created  = $time->niceShort($node['Node']['created']);

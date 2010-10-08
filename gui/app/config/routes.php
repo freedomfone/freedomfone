@@ -42,16 +42,8 @@ Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'
 
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
 
-
 Router::connect('/about', array('controller' => 'pages', 'action' => 'display', 'about'));
 
-
-Router::connect('/architecture', array('controller' => 'pages', 'action' => 'display', 'architecture/index'));
-Router::connect('/architecture/*', array('controller' => 'pages', 'action' => 'display', 'architecture'));
-
-
-Router::connect('/functionality', array('controller' => 'pages', 'action' => 'display', 'functionality/index'));
-Router::connect('/functionality/*', array('controller' => 'pages', 'action' => 'display', 'functionality'));
 
 
 

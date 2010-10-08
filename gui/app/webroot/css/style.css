@@ -239,7 +239,7 @@ width: 900px;
 padding: 0;
 margin: 0;
 line-height: 33px;
-background-color: #111;
+background-color: #000;
 }
 
 #top_a_left {
@@ -356,7 +356,7 @@ width: 900px;
 }
 
 .footer  {
-background-color: #111;
+background-color: #000;
 width: 900px;
 height: 33px;
 text-align: center;

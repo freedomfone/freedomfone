@@ -137,8 +137,8 @@ class IvrMenusController extends AppController{
 
 
 			if ($file['size']){
-				$file['fileName']=$id."_".$key;
-				$fileData[] = $file;
+				$file['fileName'] = $key;
+				$fileData[]       = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
        	       		   $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           	
 		       	   
@@ -245,8 +245,8 @@ class IvrMenusController extends AppController{
                        	        $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           
 			   
 		        } elseif ($file['size']) {
-				$file['fileName']=$id."_".$key;
-				$fileData[] = $file;
+				$file['fileName'] = $key;
+				$fileData[]       = $file;
 			}  		  
 		   }
 
@@ -289,14 +289,14 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
-        // $this->IvrMenu->save($this->data);
-	$this->IvrMenu->customizeSave($this->data);
+         $this->IvrMenu->save($this->data);
+	//$this->IvrMenu->customizeSave($this->data);
 
 	 //Update IVR xml file
 	 $this->IvrMenu->writeIVR();
 
 	//Redirect to index
-	    $this->redirect(array('action' => 'index'));
+	$this->redirect(array('action' => 'index'));
 
 
 	 } 
@@ -304,19 +304,32 @@ class IvrMenusController extends AppController{
    }
 
 
-    function delete ($id){
+    function delete ($id,$type){
          
          if($id){
 
-             $ivr_settings = Configure::read('IVR_SETTINGS');
+             $settings = Configure::read('IVR_SETTINGS');                
+
+             switch($type){
+
+                case 'ivr':               
+                $redirect = 'index';
+                break;
+
+                case 'switcher':               
+                $redirect = 'switchers';
+                break;
+
+             }
+
              $instance_id = $this->IvrMenu->getInstanceID($id); 
-             $dir = WWW_ROOT.$ivr_settings['path'].$instance_id.'/'.$ivr_settings['dir_menu'];
+             $dir = WWW_ROOT.$settings['path'].$instance_id.'/'.$settings['dir_menu'];
 
 
              //FIXME ! Check if IVR is active
              $isActive = false; 
 
-             //LAM is not active -> delete
+             //IVR is not active -> delete
              if (!$isActive){
 
                 //Delete action OK -> success flash
@@ -341,7 +354,7 @@ class IvrMenusController extends AppController{
 
            }
            
-           $this->redirect(array('action' => '/index'));
+           $this->redirect(array('action' => $redirect));
       }
 
 
@@ -431,6 +444,7 @@ class IvrMenusController extends AppController{
 
             //Save data
 
+debug($this->data);
 /*
 	$this->data['SwitcherFile']['file_long'] = $this->data['Switcher']['file_long'];
 	$this->data['SwitcherFile']['file_invalid'] = $this->data['Switcher']['file_invalid']; 
@@ -475,6 +489,8 @@ class IvrMenusController extends AppController{
 	  //No submitted form data. Fetch data from db and display
     	  elseif(empty($this->data['IvrMenu'])){
 
+
+
 		//Set id
 		$this->IvrMenu->id = $id;
                 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
@@ -482,7 +498,7 @@ class IvrMenusController extends AppController{
 		//Fetch list of all nodes
 
 	       $lam = $this->IvrMenu->query('select * from lm_menus');
-	       $ivr = $this->IvrMenu->findByIvrType('ivr');
+	       $ivr = $this->IvrMenu->findAllByIvrType('ivr');
                $this->set(compact('lam','ivr'));
 
 
@@ -504,8 +520,8 @@ class IvrMenusController extends AppController{
 
 		   foreach($this->data['SwitcherFile'] as $key => $file){
 			if ($file['size']){
-				$file['fileName']=$id."_".$key;
-				$fileData[] = $file;
+				$file['fileName'] = $key;
+				$fileData[]       = $file;
 			}  elseif ($file['error']==1 && !$file['size']) {
 			        $this->log("ERROR; Action: Upload file; Type: filesize (".$file['size'].")", "switcher");								
                                 $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'],'error');			
@@ -515,7 +531,7 @@ class IvrMenusController extends AppController{
                     //If file(s) exists -> upload 
                     if(isset($fileData)){
                         
-                         $fileOK = $this->uploadFiles($settings['path'].$settings['dir_menu'], $fileData ,false,'audio',true,true);
+                         $fileOK = $this->uploadFiles($settings['path'].$this->data['IvrMenu']['instance_id'].'/'.$settings['dir_menu'], $fileData ,false,'audio',true,true);
 
                         //If file upload OK -> save to database		      
                         if(array_key_exists('urls', $fileOK)) {
@@ -524,6 +540,15 @@ class IvrMenusController extends AppController{
 
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 					   $this->log("INFO; Action: Edit switcher; Type: ".$url, "switcher");
+
+
+                                           $filename = $this->getFilename($fileOK['files'][$key]);
+					   $name= $fileData[$key]['name'];
+                                           $part = strstr($filename,'_');
+   			                   $field=substr($part,1,strlen($part));
+                                           $this->IvrMenu->saveField($field,$name);
+
+
 				   }
 					
 			}
@@ -540,37 +565,28 @@ class IvrMenusController extends AppController{
                      }
 
 
-	$file_long = $this->data['SwitcherFile']['file_long']; 
+/*	$file_long        = $this->data['SwitcherFile']['file_long']; 
 	$file_invalid     = $this->data['SwitcherFile']['file_invalid']; 
-
-        //unset($this->data['Switcher']['file_long']); 
-        //unset($this->data['Switcher']['file_invalid']);
 
 
         $this->data['IvrMenu']['file_long'] = $file_long['name'];
-        $this->data['IvrMenu']['file_invalid'] = $file_invalid['name'];
+        $this->data['IvrMenu']['file_invalid'] = $file_invalid['name'];*/
 
 
-        $model = $this->data['Switcher']['type'];
-        $this->data['IvrMenu']['id_1']= $this->data['Services'][$model][1];
-        $this->data['IvrMenu']['id_2']= $this->data['Services'][$model][2];
-        $this->data['IvrMenu']['id_3']= $this->data['Services'][$model][3];
+        $model = $this->data['IvrMenu']['switcher_type'];
+        $this->data['IvrMenu']['option1_id']= $this->data['Services'][$model][1];
+        $this->data['IvrMenu']['option2_id']= $this->data['Services'][$model][2];
+        $this->data['IvrMenu']['option3_id']= $this->data['Services'][$model][3];
+
+        
+       $this->IvrMenu->save($this->data['IvrMenu']);
 
 
-        $this->IvrMenu->save($this->data['Switcher']);
-
-
-
-         //Save text based form data
-
-	 //$this->IvrMenu->customizeSave($this->data);
-
-	 //Update IVR xml file
 	 //$this->IvrMenu->writeIVR();
 
-	 //Redirect to index
-
 	 $this->redirect(array('action' => 'switchers'));
+
+
 
 
 	 } 

@@ -67,7 +67,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 		$created    = $time->niceShort($ivr_menu['IvrMenu']['created']);
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 		$edit       = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-		$delete     = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}",null, __("Are you sure you want to delete this voice menu?",true),false);
+		$delete     = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}/ivr",null, __("Are you sure you want to delete this voice menu?",true),false);
 
      		$row[$key] = array(
 			   $instance,

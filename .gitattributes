@@ -272,8 +272,11 @@ gui/app/views/helpers/flash.php -text
 gui/app/views/helpers/formatting.php -text
 gui/app/views/helpers/menulight.php -text
 gui/app/views/ivr_menus/add.ctp -text
+gui/app/views/ivr_menus/add_switcher.ctp -text
 gui/app/views/ivr_menus/edit.ctp -text
+gui/app/views/ivr_menus/edit_switcher.ctp -text
 gui/app/views/ivr_menus/index.ctp -text
+gui/app/views/ivr_menus/switchers.ctp -text
 gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text
 gui/app/views/layouts/js/empty -text

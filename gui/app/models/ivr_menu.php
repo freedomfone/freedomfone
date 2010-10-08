@@ -11,7 +11,7 @@
  * http://www.mozilla.org/MPL/
  *
  * Software distributed under the License is distributed on an "AS IS" basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * WITHOUT WARRANTY OF ANY KIND, either expres or implied. See the License
  * for the specific language governing rights and limitations under the
  * License.
  *
@@ -348,7 +348,7 @@ function __construct($id = false, $table = null, $ds = null) {
                                   break;
 
                                   case 'switcher':
-                                  $this->set('switcher_type','ivr');
+                                  $this->set('switcher_type','ivr_menus');
                                   $this->set('title','SWITCHER '.$next);
                                   break;
 

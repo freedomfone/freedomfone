@@ -77,7 +77,7 @@ $step1[3]=false; $step2[3]=false;$step3[3]=false; $step4[3]=false;
 $step1[0] = "<h3>1. ".__('Welcome',true)."</h3>";
 $step1[1] = $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' ));
 $step1[2] = $form->input('IvrMenuFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','Label'=>__('Audio file',true)));
-$step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_long','title'=>__('Welcome Message',true),'id'=>'long'));
+$step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_long','title'=>__('Welcome Message',true),'id'=>'long'));
 
 if($ivrMenu['file_long']){
 	$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));
@@ -99,7 +99,7 @@ if($ivrMenu['file_long']){
 $step2[0] = "<h3>2. ".__('Instructions',true)."</h3>";
 $step2[1] = $form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentShort, 'after' => $FallbackShort, 'between'=>'<br />' ));
 $step2[2] = $form->input('IvrMenuFile.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-$step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_short','title'=>__('Instructions Message',true),'id'=>'short'));
+$step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=> 'file_short','title'=>__('Instructions Message',true),'id'=>'short'));
 
 if($ivrMenu['file_short']){
 	$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));
@@ -121,7 +121,7 @@ if($ivrMenu['file_short']){
 $step3[0] = "<h3>3. ".__('Goodbye',true)."</h3>";
 $step3[1] = $form->input('message_exit',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentExit, 'after' => $FallbackExit, 'between'=>'<br />' ));
 $step3[2] = $form->input('IvrMenuFile.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-$step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_exit','title'=>__('Goodbye Message',true),'id'=>'exit'));
+$step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=> 'file_exit','title'=>__('Goodbye Message',true),'id'=>'exit'));
 
 if($ivrMenu['file_exit']){
 	$box[2] = $form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));
@@ -144,7 +144,7 @@ if($ivrMenu['file_exit']){
 $step4[0] = "<h3>4. ".__('Invalid',true)."</h3>";
 $step4[1] = $form->input('message_invalid',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentInvalid, 'after' => $FallbackInvalid, 'between'=>'<br />' ));
 $step4[2] = $form->input('IvrMenuFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-$step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>$this->data['IvrMenu']['id'].'_file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'));
+$step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'));
 
 if($ivrMenu['file_invalid']){
 	$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));

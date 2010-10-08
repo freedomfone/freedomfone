@@ -118,14 +118,6 @@ $config['IVR_SETTINGS'] = array(
 		);
 
 
-$config['SWITCHER_SETTINGS'] = array(
-		'host'	           => MY_DOMAIN,
-		'path'             => 'freedomfone/switcher/',
-		'dir_menu'        =>  'audio_menu/',
-		'dir_xml'         =>  'xml/'
-		);
-
-
 $config['IVR_DEFAULT']=	array(
 	        'parent_ivr'       => 'freedomfone_ivr_100',
                 'ivrIndexMessage'  => 'To repeat the menu, press 9.',

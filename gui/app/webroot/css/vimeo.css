@@ -4,12 +4,12 @@
 		margin:0px; padding:0px; list-style:none; color:#FE911C; line-height:30px; display:inline-block; float:left; 
 		z-index:1000;}
         #menu a { color:#FE911C; text-decoration:none; }
-        #menu > li {background:#111; none repeat scroll 0 0; cursor:pointer; float:left; position:relative;padding:0px 5px; list-style-type: none; margin:0px; }
+        #menu > li {background:#000; none repeat scroll 0 0; cursor:auto; float:left; position:relative;padding:0px 5px; list-style-type: none; margin:0px; }
         #menu > li a:hover {color:#fff;}
         #menu .logo {background:transparent none repeat scroll 0% 0%; padding:0px; background-color:Transparent;}
         /* sub-menus*/
         #menu ul { padding:0px; margin:0px; display:block; display:inline;}
-        #menu li ul { position:absolute; left:-10px; top:0px; margin-top:30px; width:120px; line-height:16px; background-color:#111; color:#0395CC; /* for IE */ display:none; }
+        #menu li ul { position:absolute; left:-10px; top:0px; margin-top:30px; width:120px; line-height:16px; background-color:#000; color:#0395CC; /* for IE */ display:none; }
         #menu li:hover ul { display:block;}
         #menu li ul li{ display:block; margin:5px 20px; padding: 3px 0px;  border-top: dotted 1px #606060; list-style-type:none; }
         #menu li ul li:first-child { border-top: none; }

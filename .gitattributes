@@ -286,6 +286,8 @@ gui/app/views/lm_menus/add.ctp -text
 gui/app/views/lm_menus/edit.ctp -text
 gui/app/views/lm_menus/index.ctp -text
 gui/app/views/lm_menus/settings.ctp -text
+gui/app/views/logs/disp.ctp -text
+gui/app/views/logs/index.ctp -text
 gui/app/views/messages/archive.ctp -text
 gui/app/views/messages/edit.ctp -text
 gui/app/views/messages/index.ctp -text

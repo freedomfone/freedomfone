@@ -206,6 +206,7 @@ gui/app/models/channel.php -text
 gui/app/models/datasources/empty -text
 gui/app/models/ivr_menu.php -text
 gui/app/models/lm_menu.php -text
+gui/app/models/log.php -text
 gui/app/models/message.php -text
 gui/app/models/monitor_ivr.php -text
 gui/app/models/node.php -text

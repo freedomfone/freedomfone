@@ -67,8 +67,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
     <?=$javascript->link('domcollapse');?>        <!-- Hide/collapse elements -->
 
-    <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
-    <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
+
     <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
 
     <?php echo $javascript->link('prototype');?>

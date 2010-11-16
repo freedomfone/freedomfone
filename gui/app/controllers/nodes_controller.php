@@ -34,6 +34,7 @@ class NodesController extends AppController{
 
 
       	     $this->pageTitle = 'Voice menus : Audio files';           
+             $this->layout ='jquery';
              $this->paginate['limit'] = 10;
 	     $this->Node->recursive = 0; 
 

@@ -37,7 +37,16 @@ echo $form->end();
 
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+
+?>
+
+
+<?
 echo "<h1>".__("Polls",true)."</h1>";
+
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
 
 
   if ($polls){

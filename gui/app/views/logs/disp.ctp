@@ -39,7 +39,7 @@
 	}
       } else {
 
-      echo $html->div('warning',__('No log file of this type exists',true));
+      echo $html->div('info',__('No log file of this type exists.',true));
 
       }
 

@@ -46,7 +46,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Other SMS",true),'/bin/'); ?>
+<?php echo $html->link(__("SMS Incoming",true),'/bin/'); ?>
 </li>
 
 
@@ -59,16 +59,16 @@
 </li>
 
 
-<li><?php echo __("Leave-a-Message",true);?>
+<li><?php echo __("Message Centre",true);?>
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Inbox",true),'/messages/'); ?>
+<?php echo $html->link(__("Inboxes",true),'/messages/'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Archive",true),'/messages/archive'); ?>
+<?php echo $html->link(__("Archives",true),'/messages/archive'); ?>
 </li>
 
 
@@ -81,8 +81,10 @@
 </li>
 
 <li>
-<?php echo $html->link(__("IVR Menu",true),'/lm_menus/settings'); ?>
+<?php echo $html->link(__("Settings",true),'/lm_menus/index'); ?>
 </li>
+
+
 
 
 <li class='last'>
@@ -95,22 +97,49 @@
 
 
 
-<li><?php echo __("Voice menus",true);?>
+<li><?php echo __("IVR Centre",true);?>
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Language selector",true),'/ivr_menus/switchers'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+
+<li>
 <?php echo $html->link(__("Voice menus",true),'/ivr_menus'); ?>
+</li>
+
+
+<li>
+<?php echo $html->link(__("Content",true),'/nodes/index'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Settings",true),'/settings'); ?>
+</li>
+
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
+</li>
+
+
+<li><?php echo __("User Management",true);?>
+<ul>
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Phone books",true),'/phone_books'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Menu options",true),'/nodes/index'); ?>
+<?php echo $html->link(__("Users",true),'/users'); ?>
 </li>
-
-<li>
-<?php echo $html->link(__("Monitoring",true),'/monitor_ivr'); ?>
-</li>
-
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -119,6 +148,7 @@
 </li>
 </ul>
 </li>
+
 
 
 <!--
@@ -146,7 +176,6 @@
 <li><?php echo __("System data",true);?>
 <ul>
 
-
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
 <?php echo $html->link(__("Call data records",true),'/cdr/'); ?>
@@ -157,6 +186,9 @@
 <?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("Monitoring",true),'/monitor_ivr'); ?>
+</li>
 
 <li>
 <?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
@@ -167,7 +199,6 @@
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
 <?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>
 <?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
 </li>
 </ul>
 </li>
@@ -193,6 +224,10 @@
 
 <li>
 <?php echo $html->link(__("GSM channels",true),'/channels'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("System Logs",true),'/logs'); ?>
 </li>
 
 

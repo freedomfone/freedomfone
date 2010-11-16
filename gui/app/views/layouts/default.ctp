@@ -28,7 +28,7 @@
  ***************************************************************************/
 
 $rand = rand();
-$player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcount='.$rand.'", {  
+$player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcount='.$rand.'", { 
 	         width: "200",
 		 transparentpagebg: "yes",
 		 leftbg: "CCCCCC",  
@@ -54,9 +54,12 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$html->css('jquery.cluetip');?>	     	<!-- JQuery Cluetip -->
     <?=$html->meta('icon');?>
 
+
+
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
-    <?=$javascript->link('prototype');?>		
+
+
     <?=$javascript->link('jquery');?>		
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
@@ -67,6 +70,11 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
     <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
     <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
+
+    <?php echo $javascript->link('prototype');?>
+    <?php echo $javascript->link('scriptaculous');?>
+
+
 
 </head>
 

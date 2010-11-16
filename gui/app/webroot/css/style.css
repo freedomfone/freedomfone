@@ -240,6 +240,11 @@ padding: 0;
 margin: 0;
 line-height: 33px;
 background-color: #000;
+border-top-right-radius: 8px;
+-moz-border-radius-topright: 8px;
+border-top-left-radius: 8px;
+-moz-border-radius-topleft: 8px;
+
 }
 
 #top_a_left {
@@ -363,6 +368,11 @@ text-align: center;
 padding-top: 8px;
 color: #fe911c;
 font-style: italic;
+border-bottom-right-radius: 8px;
+-moz-border-radius-bottomright: 8px;
+border-bottom-left-radius: 8px;
+-moz-border-radius-bottomleft: 8px;
+
 }
 
 

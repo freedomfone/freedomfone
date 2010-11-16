@@ -59,6 +59,7 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
       foreach ($nodes as $key => $node){
 
+              $download = false;
        	      $path = $ivr['path'].IID."/".$ivr['dir_node'];
 	      $title    = $node['Node']['title'];
 	      //$category = $node['Category']['name'];
@@ -66,7 +67,9 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	      $duration = $formatting->epochToWords($node['Node']['duration']);
 	      $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/nodes/edit/{$node['Node']['id']}",null, null, false);
 	      $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
-	      $download = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$node['Node']['id']}",null, null, false);
+              if(file_exists($path.$node['Node']['file'].'.mp3')){
+	        $download = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$node['Node']['id']}",null, null, false);
+              }
 	      $listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
 
      	      $row[$key] = array(

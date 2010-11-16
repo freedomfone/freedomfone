@@ -5,6 +5,8 @@
     background-repeat: no-repeat;
     background-position: 10px left;
     font-size: 100%;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
 
 }
 .info {

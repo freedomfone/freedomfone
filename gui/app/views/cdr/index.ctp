@@ -47,6 +47,9 @@ echo $form->end();
 
 
 echo "<h1>".__('Call Data Records',true)."</h1>";
+
+
+
      if ($cdr){
 
      echo $html->div("",$paginator->counter(array('format' => __("CDR:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));

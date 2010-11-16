@@ -2,7 +2,8 @@
 body {
 background: #eee url(../img/html_bg.gif) repeat-x;
 color: #000;
-font: 12px Verdana, Helvetica, sans-serif;
+font-family:  Helvetica Neue, Verdana, Helvetica, sans-serif;
+font-size: 12px;
 margin-top: 13px;
 
 }
@@ -274,7 +275,7 @@ color: #fff;
 .small {
 /* a symantic style to allow you to add text with this class, that
 is used for small text, like date/written by etc */
-font-family: Verdana, Helvetica, sans-serif;
+font-family: Helvetica Neue, Verdana, Helvetica, sans-serif;
 font-size: 9px;
 color: #999;
 letter-spacing: 0.1em;
@@ -285,19 +286,29 @@ font-weight: normal;
 }
 
 .button {
-/* button style for Joomla component, form and module buttons*/
-background: url(../img/button_bg.gif) repeat-x;
-border: 1px solid #f89843;
-color: #fff;
-margin: 4px;
-font-weight: normal;
-text-align: center;
-padding: 1px 0 3px 0;
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font: 12px/100% Helvetica Neue, sans-serif;
+        padding: .2em .2em .2em .2em;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        -webkit-border-radius: .10em;
+        -moz-border-radius: .10em;
+        border-radius: .10em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+              text-decoration: none;
+}
+.button:active {
+               position: relative;
+               top: 1px;
 }
 
-button a {
-color: #fff;
-}
 
 .inputbox {
 /* the look of input boxes in forms */

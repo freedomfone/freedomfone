@@ -34,7 +34,7 @@ $ivr = Configure::read('IVR_SETTINGS');
          	   }
 
 
-      		$path = $ivr['path'].$this->data['Node']['instance_id']."/".$ivr['dir_node'];
+      		$path = $ivr['path'].IID."/".$ivr['dir_node'];
 		$listen =  $this->element('player',array('path'=>$path,'file'=>$this->data['Node']['file'],'title'=>$this->data['Node']['title'],'id'=>$this->data['Node']['id']));
 		$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$this->data['Node']['id']}",null, null, false);
 

@@ -1,15 +1,19 @@
 #########################################################################################################
-# Freedom Fone 2010, refresh methods for spoolers
+# Freedom Fone 2010, refresh/cron methods for spoolers
+# App: OfficeRoute pop3 daemon
+*/1 * * * * root /usr/bin/php /usr/local/freedomfone/office_route/pop3_daemon.php  >/dev/null 2>&1
 # App: SMS/Skype polls 
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh/cron  >/dev/null 2>&1
 # App: Leave a message
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/messages/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/messages/refresh/cron  >/dev/null 2>&1
 # App: Call/Event data records
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh/cron  >/dev/null 2>&1
 # App: Datamining of IVR options
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh/cron  >/dev/null 2>&1
 # App: System Health
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh/cron  >/dev/null 2>&1
 # App: GSMOPEN 
-*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh  >/dev/null 2>&1
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh/cron  >/dev/null 2>&1
+# App: Other SMS - The Bin 
+*/5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
 #########################################################################################################

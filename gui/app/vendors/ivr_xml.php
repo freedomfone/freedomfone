@@ -49,56 +49,66 @@ public $ext;
      $ext 	   = Configure::read('EXTENSIONS');
      
 
-     $this->node_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_node'];
-     $this->menu_path	   = '$${base_dir}/scripts/'.$ivr_settings['path'].IID."/".$ivr_settings['dir_menu'];
+     $this->ivr_path = $ivr_settings['path'];
+     $this->ivr_dir_node = $ivr_settings['dir_node'];
+     $this->ivr_dir_menu = $ivr_settings['dir_menu'];
+
+     $this->node_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
+
      $this->file	   = WWW_ROOT.$ivr_settings['curl']."ivr.xml";
      $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
 
 
+     $this->inter_digit_timout      = 2000;
+     $this->timeout 	      	    = 3000;			  
+     $this->inter_digit_timeout     = 2000;
+     $this->max_failures 	    = 10;
+     $this->max_timeouts 	    = 4;
+     $this->digit_len	    	    = 1;
+     $this->tts_engine	    	    = 'cepstral';
+     $this->tts_voice	    	    = 'allison';
+     $this->ext		    	    = $ext;
+     $this->open_file();
 
-	$this->inter_digit_timout   = 2000;
-	$this->timeout 	      	    = 3000;			  
-	$this->inter_digit_timeout  = 2000;
-	$this->max_failures 	    = 10;
-	$this->max_timeouts 	    = 4;
-	$this->digit_len	    = 1;
-	$this->tts_engine	    = 'cepstral';
-	$this->tts_voice	    = 'allison';
-	$this->ext		    = $ext;
-
-	$this->open_file();
-	}
-
-
-	function ivr_header(){
-
-      	      $xmltext = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document></document>";	
-	      $xml = simplexml_load_string($xmltext);
-     	      $xml -> addAttribute("type", "freeswitch/xml");
-      	      $sec   = $xml -> addChild("section");
-      	      $sec -> addAttribute("name", "configuration");
-      	      $con   = $sec -> addChild("configuration");
-      	      $con -> addAttribute("name","ivr.conf");
-      	      $con -> addAttribute("description","IVR menus");
-      	      $menus   = $con -> addChild("menus");
-	      $this->body  = $xml;
-      }
+  }
 
 
-	function write_menu($data){
+/*
+ * Writes XML header
+ * 
+ *
+ */
+
+  function ivr_header(){
+
+       $xmltext = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document></document>";	
+       $xml = simplexml_load_string($xmltext);
+       $xml -> addAttribute("type", "freeswitch/xml");
+       $sec   = $xml -> addChild("section");
+       $sec -> addAttribute("name", "configuration");
+       $con   = $sec -> addChild("configuration");
+       $con -> addAttribute("name","ivr.conf");
+       $con -> addAttribute("description","IVR menus");
+       $menus   = $con -> addChild("menus");
+       $this->body  = $xml;
+  }
+
+/*
+ * Writes IVR menu
+ * 
+ * @params array $data ivr_menus object
+ *
+ */
+
+  function write_ivr_menu($data){
 
 
-	$ivr_default = Configure::read('IVR_DEFAULT');
-
-
-	//Parent IVR is named ivr_menu. Other menus are named {id}_{title}
-	if ($data['parent']==1){ $name = $ivr_default['parent_ivr'];}
-	else {
-	$name = $data['id']."_".$data['title'];
-	      }
+     $ivr_default = Configure::read('IVR_DEFAULT');
+     $this->menu_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
 	  
-
+	   $comment	    = "type: ".$data['ivr_type'];
+	   $name            = 'freedomfone_ivr_'.$data['instance_id'];
 	   $title           = $data['title'];
            $message_long    = $data['message_long'];
            $message_short   = $data['message_short'];
@@ -130,18 +140,19 @@ public $ext;
 
 
 	   if($data['file_long'] && !$data['mode_long']){
-		$greet_long = $this->menu_path.$data['id'].'_file_long.wav';
+		$greet_long = 'file_long.wav';
 		}
 	   elseif (trim($message_long)) {
 	   	$greet_long = "say: ".$message_long;
 	   } else {
 	     $greet_long = "say: ".$ivr_default['ivrLongMessage'];
 	   }
+
 	   $menus -> addAttribute ("greet-long",$greet_long);
 
 
 	   if($data['file_short'] && !$data['mode_short']){
-		$greet_short = $this->menu_path.$data['id'].'_file_short.wav';
+		$greet_short = 'file_short.wav';
 		}
 	   elseif (trim($message_short)) {
 	   	$greet_short = "say: ".$message_short;
@@ -152,7 +163,7 @@ public $ext;
 
 
 	   if($data['file_invalid'] && !$data['mode_invalid']){
-		$invalid = $this->menu_path.$data['id'].'_file_invalid.wav';
+		$invalid = 'file_invalid.wav';
 		}
 	   elseif(trim($message_invalid)){
 		$invalid = "say: ".$message_invalid;
@@ -164,7 +175,7 @@ public $ext;
 
 
 	   if($data['file_exit'] && !$data['mode_exit']){
-		$exit = $this->menu_path.$data['id'].'_file_exit.wav';
+		$exit = 'file_exit.wav';
 		}
 	   elseif($message_exit){
 		$exit = "say: ".$message_exit;
@@ -186,9 +197,91 @@ public $ext;
 
 	   }
 
+  function write_switcher_menu($data){
 
 
-	   function write_entry($type,$id,$digit,$key,$title,$file_invalid){
+     $ivr_default = Configure::read('IVR_DEFAULT');
+     $this->menu_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
+	  
+	   $comment	    = "type: ".$data['ivr_type'];
+	   $name            = 'freedomfone_ivr_'.$data['instance_id'];
+	   $title           = $data['title'];
+           $message_long    = $data['message_long'];
+           $message_invalid = $data['message_invalid'];
+
+           $option1_id    = $data['option1_id'];
+           $option2_id    = $data['option2_id'];
+           $option3_id    = $data['option3_id'];
+  
+
+	   $menus = $this->body -> section-> configuration-> menus->addChild('menu');
+	   $menus -> addAttribute ("name",$name);  //Unique name {id}_{title}
+	   $menus -> addAttribute ("tts-engine",$this->tts_engine);  //Text-to-speach setings
+	   $menus -> addAttribute ("tts-voice",$this->tts_voice);  
+
+
+	   if($data['file_long'] && !$data['mode_long']){
+		$greet_long = 'file_long.wav';
+		}
+	   elseif (trim($message_long)) {
+	   	$greet_long = "say: ".$message_long;
+	   } else {
+	     $greet_long = "say: ".$ivr_default['ivrLongMessage'];
+	   }
+
+	   $menus -> addAttribute ("greet-long",$greet_long);
+
+
+	   if($data['file_invalid'] && !$data['mode_invalid']){
+		$invalid = 'file_invalid.wav';
+		}
+	   elseif(trim($message_invalid)){
+		$invalid = "say: ".$message_invalid;
+	   }
+	   else {
+	   	$invalid = "say: ".$ivr_default['ivrInvalidMessage'];
+
+	   }
+
+
+	    $menus -> addAttribute ("invalid-sound",$invalid);
+	   $menus -> addAttribute ("timeout",$this->timeout);					 
+	   $menus -> addAttribute ("inter-digit-timeout",$this->inter_digit_timeout);			 
+           $menus -> addAttribute ("max-failures",$this->max_failures);					 
+           $menus -> addAttribute ("max-timeouts",$this->max_timeouts);						 
+ 	   $menus -> addAttribute ("digit-len",$this->digit_len);							  
+
+
+	   }
+
+function write_switcher_entry($ivr, $digit ,$key ){
+
+
+        $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+
+	 if($ivr['switcher_type']=='ivr_menus'){
+
+		$action  = "menu_sub";
+		$param   = "freedomfone_ivr_".$ivr['option'.$digit.'_id'];
+
+	}
+	 elseif($ivr['switcher_type']=='lm_menus'){
+
+
+		$action  = "menu-exec-app";
+		$param   = "transfer 2".$ivr['option'.$digit.'_id']." XML default";
+
+	 }
+
+
+		$entry -> addAttribute("action",$action);
+		$entry -> addAttribute("digits",$digit);
+		$entry -> addAttribute("param",$param);
+
+
+}
+
+	   function write_ivr_entry($type,$id,$digit,$key,$title,$file_invalid){
 
 	            	switch ($type){
 
@@ -267,7 +360,7 @@ public $ext;
 	  function write_file(){
 
 	  	 $dom = dom_import_simplexml($this->body)->ownerDocument;
-     		 $dom->formatOutput = true;
+    		 $dom->formatOutput = true;
      		 $xml = $dom->saveXML();
 
 		 fwrite($this->handle,$xml);
@@ -275,18 +368,29 @@ public $ext;
 	
 	  }
 
-	  function open_file(){
 
-		 $this->handle = fopen($this->file,'w');
+/*
+ * Opens file ivr.xml for writing 
+ * 
+ *
+ */
 
-	  }
+ function open_file(){
 
-	  function close_file(){
+   	$this->handle = fopen($this->file,'w');
 
-		 fclose($this->handle);
+ }
 
-	  }
+/*
+ * Closes file ivr.xml for writing 
+ * 
+ *
+ */
+ function close_file(){
 
+       fclose($this->handle);
+
+ }
 
 
 }

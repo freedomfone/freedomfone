@@ -62,8 +62,11 @@ $session->flash();
      if(!$all){ $all=1;}
 
 
-     $count_new =0;
-     foreach($messages as $key => $message){
+     $message_new = $message_total = false;
+     $rows= array();
+     if($messages){
+
+      foreach($messages as $key => $message){
 
         if ($message['Message']['new']){ 
         
@@ -72,16 +75,13 @@ $session->flash();
                        $time->niceShort($message['Message']['created']), 
                        $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false)
                        );
-             $count_new +=1; 
+
 
         }
-
-
-
      }
         $message_new = sizeof($rows);
         $message_total = sizeof($messages);
-
+    }
   
     ///*** HERE STARTS HTML CODE ***///
 
@@ -104,13 +104,15 @@ $session->flash();
  
      ///*** NEW MESSAGES ***///
      echo "<h1>".__('New Messages',true)."</h1>";
+     if ($message_new){
      echo "<table width='300px'>";
      echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('View',true)));
      echo $html->tableCells($rows);
      echo "</table>";
+     }
 
-    echo $html->div('instructions',__('Number of new messages',true).": ".$message_new);
-    echo $html->div('instructions',__('Total number of messages',true).": ".$message_total);
+    echo $html->div('instructions',__('New messages',true).": ".$message_new);
+    echo $html->div('instructions',__('Total ',true).": ".$message_total);
 
 
     //*** POLLS *** ///

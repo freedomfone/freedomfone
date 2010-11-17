@@ -34,13 +34,9 @@ class BinController extends AppController{
       function index(){
 
       	    $this->pageTitle = 'Unclassified SMS';
+	    $this->requestAction('/bin/refresh');
+   	    $this->requestAction('/polls/refresh');
 
-     	if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-	   	   $this->requestAction('/bin/refresh');
-   	   	   $this->requestAction('/polls/refresh');
-     	   	   }
-	}	   
 
             if(isset($this->params['named']['sort'])) { 
       		

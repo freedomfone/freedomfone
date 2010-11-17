@@ -49,7 +49,7 @@ class ProcessesController extends AppController{
       }
 
 
-      function software(){
+      function system(){
 
           $max = Configure::read('RSS.max');
 

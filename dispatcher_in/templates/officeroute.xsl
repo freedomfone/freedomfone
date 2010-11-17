@@ -8,9 +8,9 @@
      <headers>
         <Event-Subclass><xsl:value-of select="event/headers/Event-Subclass"/></Event-Subclass>
         <FreeSWITCH-IPv4><xsl:value-of select="event/headers/FreeSWITCH-IPv4"/></FreeSWITCH-IPv4>
-        <Event-Date-Timestamp><xsl:value-of select="event/headers/Event-Date-Timestamp"/></Event-Date-Timestamp>
+        <Event-Date-Timestamp><xsl:value-of select="event/headers/epoch"/></Event-Date-Timestamp>
         <Proto><xsl:value-of select="event/headers/proto"/></Proto>
-        <From><xsl:value-of select="event/headers/from"/></From>
+        <From><xsl:value-of select="event/headers/FF-SMS-Sender-Number"/></From>
        <body><xsl:value-of select="event/body"/></body>
      </headers>
        </event> 

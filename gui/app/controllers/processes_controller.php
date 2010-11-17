@@ -51,12 +51,21 @@ class ProcessesController extends AppController{
 
       function software(){
 
+          $max = Configure::read('RSS.max');
+
+          if($this->isConnected()){
       	       if($rss = Configure::read('RSS.path')){
-	            $items = $this->Simplepie->feed($rss);
+
+               $items = $this->Simplepie->feed($rss,$max);
+
 	       } else {
 	       	    $items = false;
 	       }
 
+           } else {
+
+             $items = false;
+           }
 
       	$this->pageTitle = __('System Software',true);
 

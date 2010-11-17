@@ -391,5 +391,21 @@ return $result;
 
 
      }
+
+    function isConnected(){
+
+        $cmd = "/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo";
+        $op = array();
+        exec($cmd,$op);
+
+
+        if ($op){ 
+           return true;
+           } else { 
+              return false;
+        }
+
+    }
+
 }
 ?>

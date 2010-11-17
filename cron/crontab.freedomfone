@@ -1,5 +1,7 @@
 #########################################################################################################
 # Freedom Fone 2010, refresh/cron methods for spoolers
+# App: OfficeRoute pop3 daemon
+*/1 * * * * root /usr/bin/php /usr/local/freedomfone/office_route/pop3_daemon.php  >/dev/null 2>&1
 # App: SMS/Skype polls 
 */5 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh/cron  >/dev/null 2>&1
 # App: Leave a message

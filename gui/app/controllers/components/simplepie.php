@@ -19,7 +19,7 @@ class SimplepieComponent extends Object {
     $this->cache = CACHE . 'rss' . DS;
   }
 
-  function feed($feed_url) {
+  function feed($feed_url, $max) {
     
     //make the cache dir if it doesn't exist
     if (!file_exists($this->cache)) {
@@ -39,7 +39,7 @@ class SimplepieComponent extends Object {
     $feed->init();
 
     //get the feed items
-    $items = $feed->get_items();
+    $items = $feed->get_items(0,$max);
 
     //return
     if ($items) {

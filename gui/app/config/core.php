@@ -247,5 +247,4 @@ define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');
 define ('LAM_DEFAULT','Default LAM');
 
 
-
 ?>

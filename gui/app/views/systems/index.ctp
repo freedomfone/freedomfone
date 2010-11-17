@@ -21,15 +21,28 @@
  *
  *
  ***************************************************************************/
-
+//Georgia
 
 	echo "<h1>".__("System Overview",true)."</h1>";
 
+        echo "<div id = 'header'>";
+        echo $html->tag('span', 'Question',array('class' => 'header_start'));
+        echo $html->tag('span', 'SMS code',array('class' => 'header_mid'));
+        echo $html->tag('span', 'Votes',array('class' => 'header_end'));
+        echo "</div>";        
 
-        debug($bin);
-        debug($poll);
-        debug($message);
-        debug($ivr);
+        foreach ($polls as $poll){
+
+$votes  = 5;
+        echo "<div id = 'header'>";
+        echo $html->tag('span', $poll['Poll']['question'],array('class' => 'body_mid'));
+        echo $html->tag('span', $poll['Poll']['code'] ,array('class' => 'body_mid'));
+        echo $html->tag('span', $votes,array('class' => 'body_mid'));
+        echo "</div>";
+
+
+
+        }
 
 
 ?>

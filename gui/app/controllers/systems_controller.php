@@ -39,16 +39,16 @@ class SystemsController extends AppController{
                 $ivr = $this->IvrMenu->find('all');
 
                 $this->loadModel('Message');
-                $message = $this->Message->find('all');
+                $messages = $this->Message->find('all');
 
                 $this->loadModel('Bin');
                 $bin = $this->Bin->find('all');
 
                 $this->loadModel('Poll');
                 $this->Poll->unbindModel(array('hasMany' => array('Vote')));   
-                $poll = $this->Poll->find('all');
+                $polls = $this->Poll->find('all');
 
-                $this->set(compact('message','bin','poll','ivr'));
+                $this->set(compact('messages','bin','polls','ivr'));
 
 
 	}

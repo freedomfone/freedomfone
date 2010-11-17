@@ -29,6 +29,10 @@ echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
+
+$data =  snmprealwalk( '192.168.1.46' , 'public' , false);
+debug($data);
+
 echo "<h1>".__('GSM channels',true)."</h1>";
 
 

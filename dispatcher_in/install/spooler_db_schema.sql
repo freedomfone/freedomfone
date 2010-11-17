@@ -142,7 +142,7 @@ CREATE TABLE `lm_in` (
   `FF-URI` varchar(150) default NULL,
   `FF-InstanceID` smallint(6) default NULL,
   `FF-FileID` varchar(200) default NULL,
-  `FF-CallerID` tinyint(5) default '0',
+  `FF-CallerID` varchar(50) default NULL,
   `FF-CallerName` varchar(50) default NULL,
   `FF-StartTimeEpoch` bigint(20) unsigned default NULL,
   `FF-FinishTimeEpoch` bigint(20) unsigned default NULL,

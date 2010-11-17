@@ -154,7 +154,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
+<?php echo $html->link(__("Statistics",true),'/cdr/statistics'); ?>
 </li>
 
 
@@ -188,7 +188,7 @@
 
 
 <li>
-<?php echo $html->link(__("Software",true),'/processes/software'); ?>
+<?php echo $html->link(__("System",true),'/processes/system'); ?>
 </li>
 
 <li>

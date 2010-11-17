@@ -24,12 +24,6 @@
 
 $session->flash();
 
-echo "<h1>".__('CDR Statistics',true)."</h1>";
-
-echo $form->create('Cdr',array('type' => 'post','action'=> 'overview'));
-echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
      //Calculate stats for CDR
      $pollCount  = 0;
      $lamCount   = 0;
@@ -38,10 +32,9 @@ echo $form->end();
 
      if($cdr){
 
-     foreach ($cdr as $key => $entry){
-    
+        foreach ($cdr as $key => $entry){
 
-     $app = $entry['Cdr']['application'];
+             $app = $entry['Cdr']['application'];
 
   	     switch($app){
 
@@ -61,9 +54,7 @@ echo $form->end();
 	     $otherCount = $otherCount + 1;
 	     break;
 	     }
-     }
-
-
+        }
     }
 
      $all=$lamCount+$ivrCount+$pollCount+$otherCount;
@@ -71,29 +62,90 @@ echo $form->end();
      if(!$all){ $all=1;}
 
 
-     echo $form->create('Cdr',array('type' => 'post','action'=> 'overview'));
+     $count_new =0;
+     foreach($messages as $key => $message){
+
+        if ($message['Message']['new']){ 
+        
+             $rows[] = array(
+                       $message['Message']['sender'],
+                       $time->niceShort($message['Message']['created']), 
+                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false)
+                       );
+             $count_new +=1; 
+
+        }
+
+
+
+     }
+        $message_new = sizeof($rows);
+        $message_total = sizeof($messages);
+
   
-     echo "<table width='300px'>";
-     echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
+    ///*** HERE STARTS HTML CODE ***///
+
+
+
+     ///*** SYSTEM OVERVIEW *** ///
+     echo "<h1>".__('System Overview',true)."</h1>";
      $stat[] = array(__('Leave-a-message',true), array($lamCount,array('align'=>'center')),array(round(100*$lamCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Voice menus',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Poll',true),		 array($pollCount,array('align'=>'center')),array(round(100*$pollCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Other SMS',true),	 array($otherCount,array('align'=>'center')),array(round(100*$otherCount/$all).' %',array('align'=>'center')));
      $stat[] = array(array($html->div('empty_line'),array('colspan'=>'3')));
      $stat[] = array(__('All',true),	 array($total,array('align'=>'center')),'');
-  
+
+     echo "<table>";
+     echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      echo $html->tableCells($stat);
      echo "</table>";
 
-     echo "<table>";
-     echo $html->tableCells(array (
-     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime','interval'=>15))),
-     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval'=>15)))
-      ));
-      echo "</table>"; 
+ 
+     ///*** NEW MESSAGES ***///
+     echo "<h1>".__('New Messages',true)."</h1>";
+     echo "<table width='300px'>";
+     echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('View',true)));
+     echo $html->tableCells($rows);
+     echo "</table>";
+
+    echo $html->div('instructions',__('Number of new messages',true).": ".$message_new);
+    echo $html->div('instructions',__('Total number of messages',true).": ".$message_total);
 
 
-     echo $form->end(__('View',true));
+    //*** POLLS *** ///
 
+    if ($polls){
+     echo "<h1>".__('Polls',true)."</h1>";
+
+     foreach ($polls as $key => $poll){
+
+     	     $votes=0;
+    	     foreach($poll['Vote'] as $option){
+		$votes = $votes + $option['chvotes'];     
+	     }
+
+	   $question = $html->link($poll['Poll']['question'],"/polls/view/{$poll['Poll']['id']}");
+	   $code     = $poll['Poll']['code'];
+	   $start    = $time->niceShort($poll['Poll']['start_time']);
+	   $end      = $time->niceShort($poll['Poll']['end_time']);
+
+
+           $row[$key] = array(
+     		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),
+		$question,array($code,array('align'=>'left')),
+		array($votes,array('align' =>'center')),
+		$start,
+		$end);
+
+
+     }
+
+     echo "<table width='60%'>";
+     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true)));
+     echo $html->tableCells($row);
+     echo "</table>";
+
+ }
 
 ?>

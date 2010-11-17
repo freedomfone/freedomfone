@@ -44,9 +44,7 @@ $pass = $_SocketParam['pass'];
 
 $handle = fopen(LogFile,'a');
 
-
-
-  foreach ($_OfficerouteParam as $instance){
+  foreach ($_OfficerouteParamSingle as $instance){
 
 	$_HostPOP = $instance['host'];
 	$_UserPOP = $instance['user'];
@@ -72,11 +70,13 @@ $handle = fopen(LogFile,'a');
 
 	if(($error=$pop3->Open())=="")  {
 		if(($error=$pop3->Login($user,$password,$apop))=="") {
+
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
 				for($i=0;$i<$msg_no;$i++){
 					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
 
 						$messages[$i] = parseData($headers,$body,$i);
+                                                
 
 			   		} else {
 					  
@@ -117,7 +117,8 @@ $handle = fopen(LogFile,'a');
 
 	   foreach ($messages as $key => $message){
 
-       	   	   $cmd = "jsrun freedomfone/sms/createSMS.js '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."' '".$message[$key]['body']."'";
+
+       	   	   $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
 		   logPOP("SENDING: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
@@ -126,15 +127,19 @@ $handle = fopen(LogFile,'a');
 
 		      logPOP('SENDING OK','INFO',2);
 
-		      if ($result = $pop3->DeleteMessage($key+1)==''){
-		      	 logPOP('DELETE FAILED '.$result,'ERROR',2);
+
+
+		      if (! $result = $pop3->DeleteMessage($key+1)){
+                         logPOP('DELETE OK','INFO',2);		      	 
 		      } else {
-	 	         logPOP('DELETE OK,'ERROR',2);
+	 	         logPOP('DELETE FAILED '.$result,'ERROR',2);
+
 		      }
+
 
 		   } else {
 
-		    logPOP('SENDING FAILED': ,'ERROR',2);
+		    logPOP('SENDING FAILED' ,'ERROR',2);
 
 		   }
 
@@ -160,16 +165,18 @@ $handle = fopen(LogFile,'a');
 		$string = $headers[$line];
 
 		if (ereg("From:",$string)){
-						   	   
-			$var = strstr($string, '@', true); 
-	   		$sender = trim(strstr($var, ':'),': '); 							   
+						
+                        	   
+                        $start = strrpos( $string,': ');
+                        $end   = strpos( $string,'@');
+	   		$sender = trim(substr($string,$start+2,$end-$start-2));
 	   		$messages[$i]['sender'] = $sender;
 
 		}  elseif (ereg("Date",$string)){
 
 	   	   	$var = trim(strstr($string, ':'),': '); 
 	   		$date = strtotime($var);
-	   		$messages[$i]['date'] = $date;
+	   		$messages[$i]['date'] = $date*1000000;
 		}
 
 						

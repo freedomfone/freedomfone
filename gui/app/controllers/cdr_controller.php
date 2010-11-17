@@ -296,7 +296,7 @@ class CdrController extends AppController{
        }
 
 
-      function overview(){
+      function statistics(){
 
       $this->requestAction('/cdr/refresh');
 
@@ -363,6 +363,38 @@ class CdrController extends AppController{
 		$this->render();
 	 }           
   }
+
+
+
+      function overview(){
+
+        $this->requestAction('/cdr/refresh');
+       	$this->pageTitle = __('System Overview',true);
+
+
+	$this->set('cdr',$this->Cdr->find('all')); 
+
+                //Fetch data from unassociated models
+                $this->loadModel('IvrMenu');
+                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
+                $ivr = $this->IvrMenu->find('all');
+
+                $this->loadModel('Message');
+                $messages = $this->Message->find('all');
+
+                $this->loadModel('Bin');
+                $bin = $this->Bin->find('all');
+
+                $this->loadModel('Poll');
+                //$this->Poll->unbindModel(array('hasMany' => array('Vote')));   
+                $polls = $this->Poll->find('all');
+
+                $this->set(compact('messages','bin','polls','ivr'));
+
+
+                $this->render();  
+      }
+
 
 }
 ?>

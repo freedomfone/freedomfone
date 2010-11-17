@@ -32,7 +32,7 @@
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 
-	Router::connect('/', array('controller' => 'processes', 'action' => 'software'));
+	Router::connect('/', array('controller' => 'cdr', 'action' => 'overview'));
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.

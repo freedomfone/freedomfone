@@ -160,7 +160,9 @@ $config['LANGUAGES'] = array(
                                                   );
 
 $config['RSS']	= array(
-	      'path' =>'https://dev.freedomfone.org/timeline?ticket=on&changeset=on&milestone=on&wiki=on&max=5&daysback=365&format=rss');
+	      'path' =>'http://freedomfone.org/rss.xml',
+              'max'  => 3
+                        );
 
 
 ?>

@@ -70,10 +70,17 @@ $session->flash();
 
         if ($message['Message']['new']){ 
         
+	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
+
+
              $rows[] = array(
                        $message['Message']['sender'],
                        $time->niceShort($message['Message']['created']), 
-                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false)
+                       $formatting->epochToWords($message['Message']['length']),
+                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
+                       $download,
+                       $listen
                        );
 
 
@@ -103,15 +110,14 @@ $session->flash();
 
  
      ///*** NEW MESSAGES ***///
-     echo "<h1>".__('New Messages',true)."</h1>";
+     echo "<h1>".__('New Messages',true)." (".$message_new.") </h1>";
      if ($message_new){
-     echo "<table width='300px'>";
-     echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('View',true)));
+     echo "<table width='600px'>";
+     echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));
      echo $html->tableCells($rows);
      echo "</table>";
      }
 
-    echo $html->div('instructions',__('New messages',true).": ".$message_new);
     echo $html->div('instructions',__('Total ',true).": ".$message_total);
 
 
@@ -131,20 +137,21 @@ $session->flash();
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->niceShort($poll['Poll']['start_time']);
 	   $end      = $time->niceShort($poll['Poll']['end_time']);
-
+           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 
            $row[$key] = array(
      		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),
 		$question,array($code,array('align'=>'left')),
 		array($votes,array('align' =>'center')),
 		$start,
-		$end);
+		$end,
+                $edit);
 
 
      }
 
      echo "<table width='60%'>";
-     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true)));
+     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Edit',true)));
      echo $html->tableCells($row);
      echo "</table>";
 

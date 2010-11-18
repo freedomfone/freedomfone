@@ -43,11 +43,15 @@ $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
 $handle = fopen(LogFile,'a');
-
-
 $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamMulti if multiple users are used
 
-  foreach ($_OfficerouteParam as $instance){
+$sock = new ESLconnection($host, $port, $pass);
+
+   if($sock->connected()){
+
+     logPOP('200 Connection success','INFO','ESL',3);
+
+      foreach ($_OfficerouteParam as $instance){
 
 	$_HostPOP = $instance['host'];
 	$_UserPOP = $instance['user'];
@@ -73,7 +77,7 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 	if(($error=$pop3->Open())=="")  {
 
 		if(($error=$pop3->Login($user,$password,$apop))=="") {
-                     logPOP('200 Connection established','INFO','POP3',3);
+                     logPOP('200 Connection success','INFO','POP3',3);
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
                           logPOP('200 Messages available ('.$msg_no.')','INFO','POP3',3);
 				for($i=0;$i<$msg_no;$i++){
@@ -98,24 +102,11 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 		logPOP($error,'ERROR','POP3',1);
 	} 
 
-
-
-
-	//****************************************//
-	//*  Connect to Freeswitch via ESL       *//
-	//*  and create custom event for         *//
-	//*  incoming SMS from Officeroute       *//
-	//*                                      *//
-	//****************************************//
-
+     } //foreach
 
      if ($messages){
 
-     $sock = new ESLconnection($host, $port, $pass);
 
-     if($sock->connected()){
-
-        logPOP('200 Connection success','INFO','ESL',3);
 
 	   foreach ($messages as $key => $message){
 
@@ -127,13 +118,14 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 		   if (preg_match('/OK/i', $result->getBody())){
 
 		      logPOP('200 Command success','INFO','ESL',3);
-/*
+
+
 		      if (! $result = $pop3->DeleteMessage($key+1)){
                          logPOP('200 Delete success','INFO','POP3',3);		      	 
 		      } else {
 	 	         logPOP('500 Delete failed: '.$result,'ERROR','POP3',1);
 
-		      }*/
+		      }
 
 
 		   } else {
@@ -141,9 +133,14 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 		    logPOP('500 Command failed' ,'ERROR','ESL',1);
 
 		   }
-
            }
-       
+       }  //messages
+
+	      $pop3->Close();
+	      logPOP('200 Connection closed','INFO', 'POP3',3); 
+  
+              $sock->disconnect();
+              logPOP('200 Connection closed','INFO', 'ESL',3); 
 
      } else {
 
@@ -152,11 +149,6 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 
      }
 
-   }
-
-	      $pop3->Close();
-	      logPOP('200 Connection closed','INFO', 'POP3',3); 
-  }
 
 /*
  * Parse POP3 data and return a multi-dimensional array with sender, receiver,date and body
@@ -197,7 +189,9 @@ $_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamM
 
 	} 
 
-	//FIXME!
+
+
+	//FIXME! $array[3] = "To: Admin@2n.cz"
 	$messages[$i]['receiver'] = "1000";
 	$messages[$i]['body'] = $message;
 	

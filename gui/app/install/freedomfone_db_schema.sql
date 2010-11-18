@@ -349,7 +349,7 @@ CREATE TABLE `monitor_ivr` (
   `cdr_id` int(10) unsigned default NULL,
   `epoch` int(10) unsigned default NULL,
   `call_id` varchar(100) NOT NULL,
-  `ivr_code` varchar(100) NOT NULL,
+  `ivr_code` varchar(200) NOT NULL,
   `digit` smallint(6) default NULL,
   `node_id` int(10) unsigned default NULL,
   `caller_number` varchar(50) default NULL,
@@ -523,6 +523,7 @@ CREATE TABLE `users` (
   `organization` varchar(50) default NULL,
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
+  `count_bin` int(11) unsigned default NULL,
   `count_poll` int(11) unsigned default NULL,
   `count_ivr` int(11) unsigned default NULL,
   `count_lam` int(11) unsigned default NULL,
@@ -555,30 +556,6 @@ CREATE TABLE `votes` (
   `votes_early` int(10) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
---
--- Table structure for table `language_switchers`
---
-
-DROP TABLE IF EXISTS `switchers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `switchers` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `message_instruction` text,
-  `message_invalid` text,
-  `file_instruction` text,
-  `file_invalid` text,
-  `type` varchar(50) DEFAULT NULL,
-  `created` int(11) unsigned NOT NULL,
-  `modified` int(11) unsigned DEFAULT '0',
-  `id_1` int(11) DEFAULT NULL,
-  `id_2` int(11) DEFAULT NULL,
-  `id_3` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

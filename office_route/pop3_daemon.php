@@ -44,7 +44,10 @@ $pass = $_SocketParam['pass'];
 
 $handle = fopen(LogFile,'a');
 
-  foreach ($_OfficerouteParamSingle as $instance){
+
+$_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamMulti if multiple users are used
+
+  foreach ($_OfficerouteParam as $instance){
 
 	$_HostPOP = $instance['host'];
 	$_UserPOP = $instance['user'];
@@ -67,21 +70,17 @@ $handle = fopen(LogFile,'a');
 	$pop3->join_continuation_header_lines=1; /* Concatenate headers split in multiple lines */
 	
 	$messages = false;
-
 	if(($error=$pop3->Open())=="")  {
+            logPOP('Trying to open POP3 connection','INFO',3);
 		if(($error=$pop3->Login($user,$password,$apop))=="") {
-
+                     logPOP('POP3 connection established','INFO',3);
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
+                          logPOP('POP3 messages available ('.$msg_no.')','INFO',3);
 				for($i=0;$i<$msg_no;$i++){
 					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
-
-						$messages[$i] = parseData($headers,$body,$i);
-                                                
-
+						$messages[$i] = parseData($headers,$body,$i);                                             
 			   		} else {
-					  
-						logPOP($error,'FOO',1);
-
+						logPOP($error,'WARNING',1);
 					}
                      		  }
 		 	}  else {	
@@ -101,6 +100,7 @@ $handle = fopen(LogFile,'a');
 
 
 
+
 	//****************************************//
 	//*  Connect to Freeswitch via ESL       *//
 	//*  and create custom event for         *//
@@ -108,52 +108,54 @@ $handle = fopen(LogFile,'a');
 	//*                                      *//
 	//****************************************//
 
+
+     if ($messages){
+
      $sock = new ESLconnection($host, $port, $pass);
 
      if($sock->connected()){
 
-
-	if ($messages){
+        logPOP('ESL connection established','INFO',3);
 
 	   foreach ($messages as $key => $message){
-
 
        	   	   $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
-		   logPOP("SENDING: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
+		   logPOP("Sending cmd via ESL; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',3);
 
 		   if (preg_match('/OK/i', $result->getBody())){
 
-		      logPOP('SENDING OK','INFO',2);
-
-
+		      logPOP('ESL command successfully sent','INFO',3);
 
 		      if (! $result = $pop3->DeleteMessage($key+1)){
-                         logPOP('DELETE OK','INFO',2);		      	 
+                         logPOP('POP3 message deleted','INFO',3);		      	 
 		      } else {
-	 	         logPOP('DELETE FAILED '.$result,'ERROR',2);
+	 	         logPOP('POP3 delete action failed: '.$result,'ERROR',1);
 
 		      }
 
 
 		   } else {
 
-		    logPOP('SENDING FAILED' ,'ERROR',2);
+		    logPOP('ESL command failed' ,'ERROR',1);
 
 		   }
 
            }
 
 	      $pop3->Close();
-       }
+       
 
      } else {
 
 	$sock->disconnect();
-	logPOP("Failed to connect to FreeSWITCH","ERROR",1); 
+	logPOP('Failed to connect to FreeSWITCH','ERROR',1); 
 
      }
+
+   }
+
 
   }
 
@@ -201,7 +203,6 @@ $handle = fopen(LogFile,'a');
 
    global $handle;
    
-
    	  if($level <= LogLevel){
    	    $string = date('M d H:i:s')." pop3_daemon ".$type." ". $msg."\n";
 	    fwrite($handle, $string);
@@ -209,6 +210,4 @@ $handle = fopen(LogFile,'a');
 
    }
 
-?>						
-
-			
+?>

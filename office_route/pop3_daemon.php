@@ -43,8 +43,15 @@ $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
 $handle = fopen(LogFile,'a');
+$_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamMulti if multiple users are used
 
-  foreach ($_OfficerouteParamSingle as $instance){
+$sock = new ESLconnection($host, $port, $pass);
+
+   if($sock->connected()){
+
+     logPOP('200 Connection success','INFO','ESL',3);
+
+      foreach ($_OfficerouteParam as $instance){
 
 	$_HostPOP = $instance['host'];
 	$_UserPOP = $instance['user'];
@@ -67,95 +74,89 @@ $handle = fopen(LogFile,'a');
 	$pop3->join_continuation_header_lines=1; /* Concatenate headers split in multiple lines */
 	
 	$messages = false;
-
 	if(($error=$pop3->Open())=="")  {
-		if(($error=$pop3->Login($user,$password,$apop))=="") {
 
+		if(($error=$pop3->Login($user,$password,$apop))=="") {
+                     logPOP('200 Connection success','INFO','POP3',3);
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
+                          logPOP('200 Messages available ('.$msg_no.')','INFO','POP3',3);
 				for($i=0;$i<$msg_no;$i++){
 					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
-
-						$messages[$i] = parseData($headers,$body,$i);
-                                                
-
+						$messages[$i] = parseData($headers,$body,$i);                                             
 			   		} else {
-					  
-						logPOP($error,'FOO',1);
-
+						logPOP($error,'ERROR','POP3',1);
 					}
                      		  }
 		 	}  else {	
-				logPOP($error,'ERROR',1);
+				logPOP($error,'ERROR','POP3',1);
 			} 
 
 		} else { 
 	
-		   logPOP($error.'('.$_HostPOP.':'.$_UserPOP.':'.$_PassPOP.':'.$_PortPOP.')','ERROR',1);
+		   logPOP($error.'('.$_HostPOP.':'.$_UserPOP.':'.$_PassPOP.':'.$_PortPOP.')','ERROR','POP3',1);
 		   
 	
 		} 
  
 	} else {	
-		logPOP($error,'ERROR',1);
+		logPOP($error,'ERROR','POP3',1);
 	} 
 
+     } //foreach
+
+     if ($messages){
 
 
-	//****************************************//
-	//*  Connect to Freeswitch via ESL       *//
-	//*  and create custom event for         *//
-	//*  incoming SMS from Officeroute       *//
-	//*                                      *//
-	//****************************************//
-
-     $sock = new ESLconnection($host, $port, $pass);
-
-     if($sock->connected()){
-
-
-	if ($messages){
 
 	   foreach ($messages as $key => $message){
-
 
        	   	   $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
-		   logPOP("SENDING: Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO',2);
+		   logPOP("200 Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO','ESL',3);
 
 		   if (preg_match('/OK/i', $result->getBody())){
 
-		      logPOP('SENDING OK','INFO',2);
-
+		      logPOP('200 Command success','INFO','ESL',3);
 
 
 		      if (! $result = $pop3->DeleteMessage($key+1)){
-                         logPOP('DELETE OK','INFO',2);		      	 
+                         logPOP('200 Delete success','INFO','POP3',3);		      	 
 		      } else {
-	 	         logPOP('DELETE FAILED '.$result,'ERROR',2);
+	 	         logPOP('500 Delete failed: '.$result,'ERROR','POP3',1);
 
 		      }
 
 
 		   } else {
 
-		    logPOP('SENDING FAILED' ,'ERROR',2);
+		    logPOP('500 Command failed' ,'ERROR','ESL',1);
 
 		   }
-
            }
+       }  //messages
 
 	      $pop3->Close();
-       }
+	      logPOP('200 Connection closed','INFO', 'POP3',3); 
+  
+              $sock->disconnect();
+              logPOP('200 Connection closed','INFO', 'ESL',3); 
 
      } else {
 
 	$sock->disconnect();
-	logPOP("Failed to connect to FreeSWITCH","ERROR",1); 
+	logPOP('Connection failed','ERROR', 'ESL',1); 
 
      }
 
-  }
+
+/*
+ * Parse POP3 data and return a multi-dimensional array with sender, receiver,date and body
+ *  
+ *  @params array $headers, array $body, int $i
+ *  @return array[$i](string  $sender, string $date, string $receiver, string $body)
+ * 
+ */
 
      function parseData($headers,$body,$i){
 
@@ -165,8 +166,7 @@ $handle = fopen(LogFile,'a');
 		$string = $headers[$line];
 
 		if (ereg("From:",$string)){
-						
-                        	   
+						                        	   
                         $start = strrpos( $string,': ');
                         $end   = strpos( $string,'@');
 	   		$sender = trim(substr($string,$start+2,$end-$start-2));
@@ -189,7 +189,9 @@ $handle = fopen(LogFile,'a');
 
 	} 
 
-	//FIXME!
+
+
+	//FIXME! $array[3] = "To: Admin@2n.cz"
 	$messages[$i]['receiver'] = "1000";
 	$messages[$i]['body'] = $message;
 	
@@ -197,18 +199,26 @@ $handle = fopen(LogFile,'a');
 
      }
 
-   function logPOP($msg,$type,$level){
+/*
+ * Log events to LogFile
+ *
+ * $params string $msg, string $type, $protocol, $level
+ * 
+ * $msg      = Text message to be logged (including HTTP status code)
+ * $type     = INFO, WARNING or ERROR
+ * $protocol = POP3 or ESL
+ * $level    = 1, 2 or 3 (log level)
+ * 
+ */
+   function logPOP($msg,$type, $protocol, $level){
 
    global $handle;
    
-
    	  if($level <= LogLevel){
-   	    $string = date('M d H:i:s')." pop3_daemon ".$type." ". $msg."\n";
+   	    $string = date('M d H:i:s')." pop3_daemon ".$type." ".$protocol." ".$msg."\n";
 	    fwrite($handle, $string);
 	  }
 
    }
 
-?>						
-
-			
+?>

@@ -109,9 +109,9 @@ class ProcessesController extends AppController{
 			$this->data['Process']['status']= 1;		
 		        $this->data['Process']['interupt']= '';	
 			$this->Process->save($this->data);
-		      	$this->Session->setFlash($this->data['Process']['title']." ".__("started",true));
+		      	$this->_flash($this->data['Process']['title']." ".__("started",true),'success');
 		   } else {
-		   	$this->Session->setFlash($this->data['Process']['title']." ".__("is already running",true));
+		   	$this->_flash($this->data['Process']['title']." ".__("is already running",true),'warning');
 		   }
 	 	 } 
 
@@ -135,12 +135,12 @@ class ProcessesController extends AppController{
 			//Process is NOT running
 			if(!$this->Process->isRunning($pid)){
 
-				$this->Session->setFlash($this->data['Process']['title']." ".__("is not running",true));
+				$this->_flash($this->data['Process']['title']." ".__("is not running",true),'warning');
 
 				} else {
 		
 			if(!$this->Process->stop()){
-				$this->Session->setFlash(__("No pid found. Contact system admin.",true));
+				$this->_flash(__("No pid found. Contact system admin.",true),'error');
 				}
 				else {
 
@@ -151,14 +151,14 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['last_seen']= time();	
 		      		$this->data['Process']['interupt']= __('Manual',true);	
 	      	      		$this->Process->save($this->data);
-		      		$this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
+		      		$this->_flash($this->data['Process']['title']." ".__("stopped",true),'success');
 				}
 		  
 			} 
 		} elseif ($type=='esl'){
 
 		       if(!$this->Process->fsCommand()){
-				$this->Session->setFlash($this->data['Process']['title']." ".__("was already stopped",true));
+				$this->_flash($this->data['Process']['title']." ".__("was already stopped",true),'warning');
 			} else {
 			       $this->Process->fsCommand("fsctl shutdown");
 		      		$this->data['Process']['status']= 0;		
@@ -166,7 +166,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['last_seen']= time();	
 		      		$this->data['Process']['interupt']= _('Manual',true);	
 	      	      		$this->Process->save($this->data);
-			       $this->Session->setFlash($this->data['Process']['title']." ".__("stopped",true));
+			       $this->_flash($this->data['Process']['title']." ".__("stopped",true),'success');
 			}
 
 

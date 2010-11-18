@@ -118,7 +118,7 @@ $session->flash();
      echo "</table>";
      }
 
-    echo $html->div('instructions',__('Total ',true).": ".$message_total);
+    echo $html->div('instruction',__('Messages in Inbox',true).": ".$message_total);
 
 
     //*** POLLS *** ///

@@ -523,6 +523,7 @@ CREATE TABLE `users` (
   `organization` varchar(50) default NULL,
   `created` int(11) unsigned NOT NULL,
   `modified` int(11) unsigned default '0',
+  `count_bin` int(11) unsigned default NULL,
   `count_poll` int(11) unsigned default NULL,
   `count_ivr` int(11) unsigned default NULL,
   `count_lam` int(11) unsigned default NULL,

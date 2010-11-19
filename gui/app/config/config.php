@@ -164,5 +164,16 @@ $config['RSS']	= array(
               'max'  => 3
                         );
 
+$config['OR_MIB']= array( 
+                'sim_inserted' => array('Not insterted', 'Sim inserted'),
+                'network_registered' => array('Not registered', 'Registered to home network','Searching for network','Registration denied','Unknown','Registered roaming')
+                );
+
+$config['OR_SNMP']= array(
+                        array('ip_addr'   => '192.168.1.46' ,
+                              'community' => 'public' , 
+                              'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
+                              )
+                          );
 
 ?>

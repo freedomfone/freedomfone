@@ -570,19 +570,21 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `office_route` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `epoch` int(11) unsigned default NULL,
   `line_id` smallint(6) default NULL,
   `imei` varchar(100) default NULL,
   `signal_level` varchar(20) default NULL,
   `sim_inserted` varchar(50) default NULL,
   `network_registration` varchar(50) default NULL,
-  `imsi` varchar(100) default NULL,
   `operator_name` varchar(100) default NULL,
   `ip_addr` varchar(20) default NULL,
+  `created` int(11) unsigned default NULL,
+  `modified` int(11) unsigned default NULL,
+  `imsi` varchar(50) default NULL,
+  `title` varchar(50) default NULL,
+  `msisdn` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
-
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

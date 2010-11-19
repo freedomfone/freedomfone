@@ -121,7 +121,7 @@ step "Fixing init.d scripts"
 cp $SVNROOT/init.d/freeswitch /etc/init.d/
 cp $SVNROOT/init.d/dispatcher_in /etc/init.d/
 cp $SVNROOT/init.d/gsmopen /etc/init.d/
-cp $SVNROOT$SVNROOT/init.d/iwatch /etc/init.d/
+cp $SVNROOT/init.d/iwatch /etc/init.d/
 cp $SVNROOT/init.d/etc/default/iwatch /etc/default
 #cp $SVNROOT/skype/init.d/skypopen /etc/init.d/
 chmod 0755 /etc/init.d/freeswitch

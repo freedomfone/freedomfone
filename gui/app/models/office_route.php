@@ -41,28 +41,41 @@ class OfficeRoute extends AppModel{
 
     $or_mib    = Configure::read('OR_MIB');
     $snmp   = Configure::read('OR_SNMP');
-  
+
+
+ 
 
      //For each office route in use
      foreach($snmp as $key => $unit){
 
+    if($fp = fsockopen($unit['ip_addr'], 80, $errno, $errstr, 30)){
+
+         fclose($fp);
+
+
          for($i=0; $i<4; $i++){
 
-         $mib[$i]['id']                  =  $i + 1; 
-         $mib[$i]['line_id']             =  $this->get_entry($unit, 2, $i);
-         $mib[$i]['imei']                =  $this->get_entry($unit, 3, $i);
-         $mib[$i]['signal_level']        =  $this->get_entry($unit, 7, $i);
-         $mib[$i]['sim_inserted']        =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
-         $mib[$i]['network_registered']  =  $or_mib['network_registered'][$this->get_entry($unit, 10, $i)];
-         $mib[$i]['imsi']                =  $this->get_entry($unit, 12, $i);
-         $mib[$i]['operator_name']       =  $this->get_entry($unit, 14, $i);         
-         $mib[$i]['ip_addr']             =  $unit['ip_addr'];
+         $mib[$i]['id']                    =  $i + 1; 
+         $mib[$i]['line_id']               =  $this->get_entry($unit, 2, $i);
+         $mib[$i]['imei']                  =  $this->get_entry($unit, 3, $i);
+         $mib[$i]['signal_level']          =  $this->get_entry($unit, 7, $i);
+         $mib[$i]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
+         $mib[$i]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
+         $mib[$i]['imsi']                  =  $this->get_entry($unit, 12, $i);
+         $mib[$i]['operator_name']         =  $this->get_entry($unit, 14, $i);         
+         $mib[$i]['ip_addr']               =  $unit['ip_addr'];
         
-         }
+         } //for
 
      }
 
      return $mib; 
+
+
+     }
+     
+
+
 
 }
 
@@ -87,6 +100,9 @@ class OfficeRoute extends AppModel{
 
  }
 
+
+
+  
 
  }
 

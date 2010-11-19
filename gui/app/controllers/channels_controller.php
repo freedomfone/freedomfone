@@ -29,20 +29,20 @@ class ChannelsController extends AppController{
 
       function index(){
 
-      $mib = $this->Channel->refresh_OR();
+      $this->layout ='jquery';
+
+      $this->requestAction('/office_route/refresh');
 
       $this->loadModel('OfficeRoute');
-      $this->set('data',$this->Channel->findAll());
+      $this->set('data',$this->OfficeRoute->findAll());
 
-
-      debug($mib);
 
       	$this->Channel->fsCommand("gsmopen_dump list");
       	$this->pageTitle = __('System Health :: GSM channels',true);
 	$this->requestAction('/channels/refresh');
 
+       	$this->set('gsmopen',$this->Channel->findAll());
 
-       	$this->set('data',$this->Channel->findAll());
 
       }
 

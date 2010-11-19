@@ -34,14 +34,86 @@ class OfficeRouteController extends AppController{
 
       $data = $this->OfficeRoute->refresh();
 
+        //Create local db of old data
+        $db = $this->OfficeRoute->findAll(array('imsi !=' => ''));
+        foreach($db as $key => $entry){
+
+                    $prev[$entry['OfficeRoute']['imsi']]= array($entry['OfficeRoute']['title'], $entry['OfficeRoute']['msisdn']);
+
+        }
+
+
          foreach ($data as $key => $channel){
 
-                 $this->OfficeRoute->set('id',$channel['id']);
-                 $this->OfficeRoute->save($channel);
+                 //Does db entry with IMEI exist?
+                 $entry = $this->OfficeRoute->findByImei($channel['imei']);
+
+                        //If yes: update db entry
+                        if($entry){
+
+                                if($channel['imsi']){ 
+                                $channel['title'] = $prev[$channel['imsi']][0];
+                                $channel['msisdn'] = $prev[$channel['imsi']][1];
+                                } else {
+
+                                $channel['title'] = false;
+                                $channel['msisdn'] = false;
+                                }
+                               // $channel['slot'] = $key;
+                                $id = $entry['OfficeRoute']['id'];
+                                $this->OfficeRoute->set('id',$channel['id']);
+                                $this->OfficeRoute->save($channel);
+                     
+
+                        } 
+
+                        //If not: insert new entry
+                        else {
+
+                              // $channel['slot'] = $key;
+                               $this->OfficeRoute->save($channel);
+
+                        }
+
+
+              }  //foreach   
+
+
+              
 
          }
 
-      }
+
+   function edit($id ){
+
+      	$this->pageTitle = 'OfficeRoute : Edit';           
+
+
+	  // No id, or empty form
+	     if(!$id){	
+	     $this->_flash(__('Invalid option.', true),'warning'); 
+	     $this->redirect(array('action'=>'index')); 
+	  }
+          
+          // Retrieve data from database and display 
+    	  elseif(empty($this->data['OfficeRoute'])){
+
+		$this->OfficeRoute->id = $id;
+		$this->data = $this->OfficeRoute->read(null,$id);
+
+          }
+          
+          //Fetch form data 
+	  else {
+
+          $this->OfficeRoute->set( $this->data );	       
+          $this->OfficeRoute->save();
+  	  $this->redirect(array('controller' => 'channels', 'action' => 'index'));
+  
+          }           
+
+}
+
 
 }
 

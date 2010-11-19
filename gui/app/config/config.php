@@ -165,8 +165,8 @@ $config['RSS']	= array(
                         );
 
 $config['OR_MIB']= array( 
-                'sim_inserted' => array('Not insterted', 'Sim inserted'),
-                'network_registered' => array('Not registered', 'Registered to home network','Searching for network','Registration denied','Unknown','Registered roaming')
+                'sim_inserted' => array('No', 'Yes'),
+                'network_registration' => array('Not registered', 'Registered to home network','Searching for network','Registration denied','Unknown','Registered roaming')
                 );
 
 $config['OR_SNMP']= array(

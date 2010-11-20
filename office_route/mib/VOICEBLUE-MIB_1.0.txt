@@ -1,0 +1,479 @@
+VOICEBLUE-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, TimeTicks, NOTIFICATION-TYPE   FROM SNMPv2-SMI
+    OBJECT-GROUP, NOTIFICATION-GROUP          FROM SNMPv2-CONF
+    TruthValue, DateAndTime                   FROM SNMPv2-TC
+    tel2n                                     FROM TEL2N-MIB
+    RegularExpression, AdminDescription, GSMDevice, SIMCard, GSMRoutingService, Filename, PhoneNumber, LCRDestination, DaytimeInterval, LCRPath, TimeGroups, LCRPathPriority, TariffName, WeekDay, PhLib, PhoneNumberName      FROM VOICEBLUE-TC-MIB
+;
+
+voiceblue MODULE-IDENTITY
+    LAST-UPDATED "200710150000Z"
+    ORGANIZATION "2N TELEKOMUNIKACE a.s."
+    CONTACT-INFO    
+            "Modranska 621, 143 01 Praha 4"
+    DESCRIPTION
+	"VoiceBlue MIB objects"
+    REVISION     "200710150000Z"
+    DESCRIPTION
+	"2N VoiceBlueEnterprise ver. 1.0."
+    ::= { tel2n 4 }
+
+--
+-- top level structure
+--
+
+vbStates             OBJECT IDENTIFIER ::= { voiceblue 1 }
+vbPorts              OBJECT IDENTIFIER ::= { voiceblue 2 }
+vbNotif              OBJECT IDENTIFIER ::= { voiceblue 3 }
+
+--
+--  States
+--
+
+stsCallNumber OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of instant calls."
+    ::= { vbStates 1 }
+    
+stsCallTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF StsCallEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"A list of instant calls."
+    ::= { vbStates 2 }
+
+stsCallEntry  OBJECT-TYPE
+    SYNTAX      StsCallEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Detail information about an instan call."
+    INDEX   { stsCallIndex }
+    ::= { stsCallTable 1 }
+
+StsCallEntry ::= SEQUENCE {
+    stsCallIndex               INTEGER,
+    stsCallCallerPhLib         PhLib,
+    stsCallCallerHandle        INTEGER,
+    stsCallCallerLnNr          INTEGER,
+    stsCallCallerLnDescr       AdminDescription,
+    stsCallCaller              PhoneNumber,
+    stsCallCallerName          PhoneNumberName,
+    stsCallCalleePhLib         PhLib,
+    stsCallCalleeHandle        INTEGER,
+    stsCallCalleeLnNr          INTEGER,
+    stsCallCalleeLnDescr       AdminDescription,
+    stsCallCallee              PhoneNumber,
+    stsCallCalleeName          PhoneNumberName,
+    stsCallTime                TimeTicks,
+    stsCallState               INTEGER,
+    stsCallHoldState           INTEGER
+}
+
+stsCallIndex OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Zero based index of the entry in the instant call table."
+    ::= { stsCallEntry 1 }
+
+stsCallCallerPhLib OBJECT-TYPE
+    SYNTAX      PhLib
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 2 }
+
+stsCallCallerHandle OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 3 }
+
+stsCallCallerLnNr OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 4 }
+
+stsCallCallerLnDescr OBJECT-TYPE
+    SYNTAX      AdminDescription
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 5 }
+
+stsCallCaller OBJECT-TYPE
+    SYNTAX      PhoneNumber
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 6 }
+
+stsCallCallerName OBJECT-TYPE
+    SYNTAX      PhoneNumberName
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 7 }
+
+stsCallCalleePhLib OBJECT-TYPE
+    SYNTAX      PhLib
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 8 }
+
+stsCallCalleeHandle OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 9 }
+
+stsCallCalleeLnNr OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 10 }
+
+stsCallCalleeLnDescr OBJECT-TYPE
+    SYNTAX      AdminDescription
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 11 }
+
+stsCallCallee OBJECT-TYPE
+    SYNTAX      PhoneNumber
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 12 }
+
+stsCallCalleeName OBJECT-TYPE
+    SYNTAX      PhoneNumberName
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 13 }
+
+stsCallTime OBJECT-TYPE
+    SYNTAX      TimeTicks
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"The time (in hundredths of a seconf) since the call was connected."
+    ::= { stsCallEntry 14 }
+
+stsCallState OBJECT-TYPE
+    SYNTAX      INTEGER {
+			disconnected(1),
+			connecting(2),
+			connected(3),
+			disconnecting(4),
+			ringing(5)
+                }
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 15 }
+
+stsCallHoldState OBJECT-TYPE
+    SYNTAX      INTEGER {
+			nothold(0),
+			holding(1),
+			hold(2),
+			resuming(3),
+			other-side-hold(4)
+                }
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { stsCallEntry 16 }
+
+
+
+--
+--  Ports
+--
+
+gsmNumber OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of GSM modules."
+    ::= { vbPorts 1 }
+    
+gsmTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF GsmEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"A list of GSM modules."
+    ::= { vbPorts 2 }
+
+gsmEntry  OBJECT-TYPE
+    SYNTAX      GsmEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Detail information about a GSM module."
+    INDEX   { gsmIndex }
+    ::= { gsmTable 1 }
+
+GsmEntry ::= SEQUENCE {
+    gsmIndex                   INTEGER,
+    gsmLineNr                  INTEGER,
+    gsmIMEI                    OCTET STRING,
+    gsmType                    OCTET STRING,
+    gsmManufacturer            OCTET STRING,
+    gsmFirmware                OCTET STRING,
+    gsmSignal                  OCTET STRING,
+    gsmPINCounter              INTEGER,
+    gsmSimInserted             INTEGER,
+    gsmNetworkRegistration     INTEGER,
+    simSCID                    OCTET STRING,
+    simIMSI                    OCTET STRING,
+    simOperatorId              OCTET STRING,
+    simOperatorName            OCTET STRING,
+    simGPRSOn                  TruthValue,
+    simGPRSProvider            OCTET STRING,
+    simSCNumber                PhoneNumber
+}
+
+gsmIndex OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Zero based index of the GSM module."
+    ::= { gsmEntry 1 }
+
+gsmLineNr OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"Internal line number of the GSM module."
+    ::= { gsmEntry 2 }
+
+gsmIMEI OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"A GSM module's IMEI."
+    ::= { gsmEntry 3 }
+
+gsmType OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"A model type of the GSM module."
+    ::= { gsmEntry 4 }
+
+gsmManufacturer OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"A manufacturer name of the GSM module."
+    ::= { gsmEntry 5 }
+
+gsmFirmware OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"A GSM module's firmware information."
+    ::= { gsmEntry 6 }
+
+gsmSignal OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..32))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"Signal meter."
+    ::= { gsmEntry 7 }
+
+gsmPINCounter OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"???"
+    ::= { gsmEntry 8 }
+
+gsmSimInserted OBJECT-TYPE
+    SYNTAX      INTEGER {
+			not-inserted(0),
+			sim-inserted(1)
+		}
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "SIM card presence."
+    ::= { gsmEntry 9 }
+
+gsmNetworkRegistration OBJECT-TYPE
+    SYNTAX      INTEGER {
+			not-registered(0),
+			registered-to-home-network(1),
+			searching-for-network(2),
+			registration-denied(3),
+			unknown(4),
+			registered-roaming(5)
+                }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "Network registration status."
+    ::= { gsmEntry 10 }
+
+simSCID OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..64))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The SIM card identification number."
+    ::= { gsmEntry 11 }
+
+simIMSI OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..64))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The internatioal mobile subscriber identity."
+    ::= { gsmEntry 12 }
+    
+simOperatorId OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..32))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { gsmEntry 13 }
+    
+simOperatorName OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..128))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { gsmEntry 14 }
+    
+simGPRSOn OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { gsmEntry 15 }
+    
+simGPRSProvider OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE (0..256))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	""
+    ::= { gsmEntry 16 }
+    
+simSCNumber OBJECT-TYPE
+    SYNTAX      PhoneNumber
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"Service Center Number"
+    ::= { gsmEntry 17 }
+    
+
+--
+-- Notifications
+--
+
+trapCallDial NOTIFICATION-TYPE
+    OBJECTS { stsCallIndex, stsCallCallerPhLib, stsCallCallerHandle, stsCallCallerLnNr, stsCallCallerLnDescr, stsCallCaller, stsCallCallerName, stsCallCalleePhLib, stsCallCalleeHandle, stsCallCalleeLnNr, stsCallCalleeLnDescr, stsCallCallee, stsCallCalleeName, stsCallTime, stsCallState, stsCallHoldState }
+    STATUS  current
+    DESCRIPTION
+	"Dialing new call."
+    ::= { vbNotif 1 }
+
+trapCallHangup NOTIFICATION-TYPE
+    OBJECTS { stsCallIndex, stsCallCallerPhLib, stsCallCallerHandle, stsCallCallerLnNr, stsCallCallerLnDescr, stsCallCaller, stsCallCallerName, stsCallCalleePhLib, stsCallCalleeHandle, stsCallCalleeLnNr, stsCallCalleeLnDescr, stsCallCallee, stsCallCalleeName, stsCallTime, stsCallState, stsCallHoldState }
+    STATUS  current
+    DESCRIPTION
+	"Call hang up."
+    ::= { vbNotif 2 }
+
+trapCallConnect NOTIFICATION-TYPE
+    OBJECTS { stsCallIndex, stsCallCallerPhLib, stsCallCallerHandle, stsCallCallerLnNr, stsCallCallerLnDescr, stsCallCaller, stsCallCallerName, stsCallCalleePhLib, stsCallCalleeHandle, stsCallCalleeLnNr, stsCallCalleeLnDescr, stsCallCallee, stsCallCalleeName, stsCallTime, stsCallState, stsCallHoldState }
+    STATUS  current
+    DESCRIPTION
+	"Call connected."
+    ::= { vbNotif 3 }
+
+trapLCRFailed NOTIFICATION-TYPE
+    OBJECTS { stsCallIndex, stsCallCallerPhLib, stsCallCallerHandle, stsCallCallerLnNr, stsCallCallerLnDescr, stsCallCaller, stsCallCallerName }
+    STATUS  current
+    DESCRIPTION
+	"LCR failed - no LCR path, all lines busy or blacklisted call."
+    ::= { vbNotif 4 }
+
+trapGSMSimInserted NOTIFICATION-TYPE
+    OBJECTS { gsmSimInserted }
+    STATUS current
+    DESCRIPTION
+        "SIM card inserted or removed."
+    ::= { vbNotif 5 }
+
+trapGSMNetworkRegistration NOTIFICATION-TYPE
+    OBJECTS { GsmNetworkRegistration }
+    STATUS current
+    DESCRIPTION
+        "GSM network registration."
+    ::= { vbNotif 6 }
+
+trapGSMAtdNoResponse NOTIFICATION-TYPE
+    OBJECTS { gsmLineNr }
+    STATUS current
+    DESCRIPTION
+        "GSM module doesn't respond to ATD command."
+    ::= { vbNotif 7 }
+
+trapGSMAtdError NOTIFICATION-TYPE
+    OBJECTS { gsmLineNr }
+    STATUS current
+    DESCRIPTION
+        "GSM module respond ERROR to ATD command."
+    ::= { vbNotif 8 }
+
+
+END
+

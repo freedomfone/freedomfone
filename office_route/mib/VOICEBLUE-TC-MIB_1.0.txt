@@ -1,0 +1,133 @@
+VOICEBLUE-TC-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    TEXTUAL-CONVENTION FROM SNMPv2-TC;
+
+RegularExpression ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Regular expression."
+    SYNTAX       OCTET STRING (SIZE (1..64))
+
+AdminDescription ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Regular expression."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+TimeGroups ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Time groups."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+GSMDevice ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"GSM device."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+SIMCard ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"SIM card."
+    SYNTAX       OCTET STRING (SIZE (0..64))
+
+GSMRoutingService ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"GSM routing service."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+Filename ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Filename."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+PhoneNumber ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Phone number."
+    SYNTAX       OCTET STRING (SIZE (0..64))
+
+PhoneNumberName ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Phone number name."
+    SYNTAX       OCTET STRING (SIZE (0..256))
+
+LCRDestination ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"LCR destination name."
+    SYNTAX       OCTET STRING (SIZE (1..32))
+
+DaytimeInterval ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "1d:1d-1d:1d"
+    STATUS       current
+    DESCRIPTION
+	"A daytime specification.
+	field  octets  contents        range
+	-----  ------  --------        -----
+	  1       1    from (hour)     0..23
+	  2       2    from (minutes)  0..59
+	  3       3    to (hour)       0..23
+	  4       4    to (minutes)    0..59
+"
+    SYNTAX       OCTET STRING (SIZE (4))
+
+LCRPath ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"LCR path name."
+    SYNTAX       OCTET STRING (SIZE (1..256))
+
+LCRPathPriority ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"LCR path priotiry type."
+    SYNTAX       INTEGER { none(0), first-free(1), cycle(2), free-min(3) }
+
+TariffName ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"The name of the tariff definition."
+    SYNTAX       OCTET STRING (SIZE (1..32))
+
+WeekDay ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Weekdays."
+    SYNTAX       INTEGER { 
+			sunday(0),
+			monday(1),
+			tuesday(2),
+			wednesday(3),
+			thursday(4),
+			friday(5),
+			saturday(6)
+                 }
+
+PhLib ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+	"Subsystem codes."
+    SYNTAX       INTEGER { 
+			capi(1),
+			h323(2),
+			sip(3),
+			ip(4),
+			modem(5),
+			skinny(6),
+			dlgc(7),
+			qxj(8),
+			xapi(9),
+			csta(10),
+			gsm(11),
+			pbx(12),
+			disa(13),
+                 }
+
+END
+

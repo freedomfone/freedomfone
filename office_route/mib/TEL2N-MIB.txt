@@ -1,0 +1,34 @@
+TEL2N-MIB DEFINITIONS ::= BEGIN
+
+--
+-- Top-level infrastructure of the 2N enterprise MIB tree
+--
+
+IMPORTS
+    MODULE-IDENTITY, enterprises FROM SNMPv2-SMI;
+
+tel2n MODULE-IDENTITY
+    LAST-UPDATED "200411190000Z"
+    ORGANIZATION "www.2n.cz"
+    CONTACT-INFO    
+	 "postal:   2N TELEKOMUNIKACE a.s.
+                    Modranska 621
+                    Prague 14301
+                    Czech Republic
+
+          email:    helpdesk@2n.cz"
+    DESCRIPTION
+	"Top-level infrastructure of the 2N enterprise MIB tree"
+    REVISION     "200411190000Z"
+    DESCRIPTION
+	"First draft"
+    ::= { enterprises 6530}
+
+
+--
+--  2N enterprise-specific management objects
+--
+
+voiceblue            OBJECT IDENTIFIER ::= {tel2n 4}
+
+END

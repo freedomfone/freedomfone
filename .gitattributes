@@ -278,6 +278,7 @@ gui/app/views/helpers/formatting.php -text
 gui/app/views/helpers/menulight.php -text
 gui/app/views/ivr_menus/add.ctp -text
 gui/app/views/ivr_menus/add_switcher.ctp -text
+gui/app/views/ivr_menus/disp.ctp -text
 gui/app/views/ivr_menus/edit.ctp -text
 gui/app/views/ivr_menus/edit_switcher.ctp -text
 gui/app/views/ivr_menus/index.ctp -text

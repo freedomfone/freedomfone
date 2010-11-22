@@ -28,7 +28,7 @@ App::import("Xml");
 class IvrMenusController extends AppController{
 
 	var $name = 'IvrMenus';
-	var $helpers = array('Flash','Session','Ajax','Formatting');      
+	var $helpers = array('Flash','Session','Ajax','Formatting','Javascript');      
 
 
 
@@ -50,12 +50,9 @@ class IvrMenusController extends AppController{
 
     function update() {
 
-        $this->IvrMenu->id = $this->data['IvrMenu']['parent'];
-	$this->IvrMenu->updateParent();
-
-	//Recreate ivr.xml
+	$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
+        
 	$this->IvrMenu->writeIVR();
-
    	$this->redirect(array('action' => 'index'));
 
    }
@@ -202,6 +199,7 @@ class IvrMenusController extends AppController{
             $ivr_default  = Configure::read('IVR_DEFAULT');
 
 
+
    	    //Invalid id
 	  if (!$id && empty($this->data)){
 
@@ -293,6 +291,7 @@ class IvrMenusController extends AppController{
 	//$this->IvrMenu->customizeSave($this->data);
 
 	 //Update IVR xml file
+	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 	 $this->IvrMenu->writeIVR();
 
 	//Redirect to index
@@ -494,17 +493,6 @@ debug($this->data);
 		//Set id
 		$this->IvrMenu->id = $id;
                 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-
-		//Fetch list of all nodes
-
-	       $lam = $this->IvrMenu->query('select * from lm_menus');
-	       $ivr = $this->IvrMenu->findAllByIvrType('ivr');
-               $this->set(compact('lam','ivr'));
-
-
-		//Unbind association with nodes
-		$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-
 	
 		//Fetch single record, and render view
 		$this->data = $this->IvrMenu->findById($id);
@@ -564,23 +552,8 @@ debug($this->data);
 
                      }
 
-
-/*	$file_long        = $this->data['SwitcherFile']['file_long']; 
-	$file_invalid     = $this->data['SwitcherFile']['file_invalid']; 
-
-
-        $this->data['IvrMenu']['file_long'] = $file_long['name'];
-        $this->data['IvrMenu']['file_invalid'] = $file_invalid['name'];*/
-
-
-        $model = $this->data['IvrMenu']['switcher_type'];
-        $this->data['IvrMenu']['option1_id']= $this->data['Services'][$model][1];
-        $this->data['IvrMenu']['option2_id']= $this->data['Services'][$model][2];
-        $this->data['IvrMenu']['option3_id']= $this->data['Services'][$model][3];
-
         
        $this->IvrMenu->save($this->data['IvrMenu']);
-
 
 	 //$this->IvrMenu->writeIVR();
 
@@ -593,7 +566,39 @@ debug($this->data);
 
    }
 
+   function disp(){
 
+
+   $service = $this->data['IvrMenu']['switcher_type'];
+/*   $this->data['IvrMenu']['option1_id']=6;
+   $this->data['IvrMenu']['option2_id']=6;
+   $this->data['IvrMenu']['option3_id']=6;*/
+
+
+
+
+   if($service =='lam'){
+        
+	$data = $this->IvrMenu->query('select * from lm_menus');
+	$field = 'lm_menus';
+   
+   } else {
+
+	$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
+        $data = $this->IvrMenu->findAllByIvrType('ivr');
+	$field = 'IvrMenu';
+   }
+
+   unset($options);
+   foreach($data as $key => $id){
+
+   	$options[$id[$field]['id']] = $id[$field]['title'];
+
+   }
+
+   $this->set(compact('options'));
+
+   }
 
 }
 

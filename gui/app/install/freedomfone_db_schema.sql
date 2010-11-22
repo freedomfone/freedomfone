@@ -172,6 +172,8 @@ CREATE TABLE `channels` (
   `interface_state` int(6) default NULL,
   `phone_callflow` int(6) default NULL,
   `during-call` tinyint(1) default NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `msisdn` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

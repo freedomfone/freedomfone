@@ -103,61 +103,25 @@ echo "<h1>".__("Edit language switcher",true)."</h1>";
                 //** SERVICES **//
                 echo "<fieldset>";
                 echo "<legend>".__('Services',true)."</legend>";
-                
-                $_ivr = $_lam = false;
-
-                if($ivr){
-                        foreach($ivr as $key => $entry){
-
-                             $_ivr[$entry['IvrMenu']['id']] = $entry['IvrMenu']['title'];
-                        }
-                 }
-
-                 if($lam){
-                        foreach($lam as $key => $entry){
-
-                            $_lam[$entry['lm_menus']['id']] = $entry['lm_menus']['title'];
-                        }
-                 }
-
-     	         $options1    = array('ivr_menus' =>'  '.__('Voice Menu',true));
-     	         $options2   = array('lm_menus' =>'  '.__('Leave-a-message',true));
-                 $attributes = array('legend'=>false,'default'=>'ivr_menus');
-
-                 $radio1 = $form->radio('switcher_type',$options1,$attributes);
-	         $radio2 = $form->radio('switcher_type',$options2,$attributes);
-                 $row[] = array("",$radio1,$radio2);
-
-                 $model = $switcher['switcher_type'];
-
-                 $anti_model = 'lm_menus';
-                 if($model == 'lm_menus') { 
-                           $anti_model = 'ivr_menus';
-                 } 
-
-                 $this->data['Services'][$model][1]=$switcher['option1_id'];
-                 $this->data['Services'][$model][2]=$switcher['option2_id'];
-                 $this->data['Services'][$model][3]=$switcher['option3_id'];
-                 $this->data['Services'][$anti_model][1]=false;
-                 $this->data['Services'][$anti_model][2]=false;
-                 $this->data['Services'][$anti_model][3]=false;
-                 $services = $this->data['Services'];
 
 
-                 for($i=1;$i<=3;$i++){
 
-                        $row[]=array( array("<h3>".__('Press',true)." ".$i."</h3>", array('width'=>'100')), 
-                       
-                        $form->input('Services.ivr_menus.'.$i,array('type'=>'select','options' => $_ivr,'label'=>'','selected' => $services['ivr_menus'][$i], 'empty'=>'- '.__('Select voice menu',true).' -' )), 
-                        $form->input('Services.lm_menus.'.$i,array('type'=>'select','options' => $_lam,'label'=>'', 'selected' => $services['lm_menus'][$i],'empty'=>'- '.__('Select Leave-a-message menu',true).' -' )));
-                  }
+	echo $form->create("IvrMenu");
+	$opt = array('ivr'=>'Voice Menus','lam'=>'Leave-a-message');
+	echo $form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
 
-                  echo "<table width='700px'>";
-                  echo $html->tableCells($row);
-                  echo "</table>";
 
-                  echo $form->end(__('Save',true)); 
-                  echo "</fieldset>";
+	$opt = array(
+		"update" => "service_div",
+		"url" => "disp",
+		"frequency" => "0.1"
+	);
+
+	echo $ajax->observeField("ServiceType",$opt);
+	echo $form->end();
+
+	echo "<div id='service_div' style=''></div>";
+        echo "</fieldset>";
      }
 
      else {

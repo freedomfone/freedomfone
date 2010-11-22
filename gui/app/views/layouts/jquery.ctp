@@ -66,6 +66,8 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
 
+
+
     <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
     <?=$javascript->link('domcollapse');?>        <!-- Hide/collapse elements -->

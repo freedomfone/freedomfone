@@ -172,6 +172,8 @@ CREATE TABLE `channels` (
   `interface_state` int(6) default NULL,
   `phone_callflow` int(6) default NULL,
   `during-call` tinyint(1) default NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `msisdn` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -558,6 +560,35 @@ CREATE TABLE `votes` (
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+
+--
+-- Table structure for table `office_route`
+--
+
+
+DROP TABLE IF EXISTS `office_route`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `office_route` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `line_id` smallint(6) default NULL,
+  `imei` varchar(100) default NULL,
+  `signal_level` varchar(20) default NULL,
+  `sim_inserted` varchar(50) default NULL,
+  `network_registration` varchar(50) default NULL,
+  `operator_name` varchar(100) default NULL,
+  `ip_addr` varchar(20) default NULL,
+  `created` int(11) unsigned default NULL,
+  `modified` int(11) unsigned default NULL,
+  `imsi` varchar(50) default NULL,
+  `title` varchar(50) default NULL,
+  `msisdn` varchar(50) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

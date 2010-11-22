@@ -42,6 +42,7 @@ class OfficeRouteController extends AppController{
 
         }
 
+	if($data){
 
          foreach ($data as $key => $channel){
 
@@ -77,7 +78,7 @@ class OfficeRouteController extends AppController{
 
 
               }  //foreach   
-
+	   }
 
               
 

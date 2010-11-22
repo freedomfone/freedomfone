@@ -30,12 +30,25 @@ class ChannelsController extends AppController{
       function index(){
 
       $this->layout ='jquery';
+      $snmp   = Configure::read('OR_SNMP');
+      $data = false;
 
       $this->requestAction('/office_route/refresh');
-
       $this->loadModel('OfficeRoute');
-      $this->set('data',$this->OfficeRoute->findAll());
 
+
+     //For each office route in use
+     foreach($snmp as $key => $unit){
+
+     	if($this->OfficeRoute->is_alive($unit['ip_addr'])){
+
+         $data[] = $this->OfficeRoute->findAllByIpAddr($unit['ip_addr']);
+	
+	}
+
+     }
+
+      	$this->set('data',$data);
 
       	$this->Channel->fsCommand("gsmopen_dump list");
       	$this->pageTitle = __('System Health :: GSM channels',true);
@@ -51,13 +64,41 @@ class ChannelsController extends AppController{
 
       function refresh($method = null){
 
-           date_default_timezone_set(Configure::read('Config.timezone'));
-      	   $this->Session->write('Channel.refresh', time());
            $this->autoRender = false;
       	   $this->logRefresh('channels',$method); 
        	   $this->Channel->refresh();
 
       }
+
+   function edit($id ){
+
+      	$this->pageTitle = 'Mobigater : Edit';           
+
+
+	  // No id, or empty form
+	     if(!$id){	
+	     $this->_flash(__('Invalid option.', true),'warning'); 
+	     $this->redirect(array('action'=>'index')); 
+	  }
+          
+          // Retrieve data from database and display 
+    	  elseif(empty($this->data['Channel'])){
+
+		$this->Channel->id = $id;
+		$this->data = $this->Channel->read(null,$id);
+
+          }
+          
+          //Fetch form data 
+	  else {
+
+          $this->Channel->set( $this->data );	       
+          $this->Channel->save();
+  	  $this->redirect(array('action' => 'index'));
+  
+          }           
+
+}
 
 
 }

@@ -41,17 +41,12 @@ class OfficeRoute extends AppModel{
 
     $or_mib    = Configure::read('OR_MIB');
     $snmp   = Configure::read('OR_SNMP');
-
-
- 
+    $mib = false;
 
      //For each office route in use
      foreach($snmp as $key => $unit){
 
-    if($fp = fsockopen($unit['ip_addr'], 80, $errno, $errstr, 30)){
-
-         fclose($fp);
-
+       if($this->is_alive($unit['ip_addr'])){
 
          for($i=0; $i<4; $i++){
 
@@ -67,17 +62,15 @@ class OfficeRoute extends AppModel{
         
          } //for
 
-     }
-
-     return $mib; 
+     } //if
 
 
      }
-     
 
-
+     return $mib;
 
 }
+
 
  function get_entry($unit, $id, $i){
 
@@ -102,8 +95,26 @@ class OfficeRoute extends AppModel{
 
 
 
-  
+ function is_alive($cfgServer){
 
- }
+   $cfgPort    = 23;
+   $cfgTimeOut = 2;
+
+   $usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut);
+
+   if(!$usenet){
+
+	return false;
+	
+  	} else {   
+    
+	return true;
+
+ 	}
+}
+
+}
+
+
 
 ?>

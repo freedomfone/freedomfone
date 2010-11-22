@@ -181,6 +181,7 @@ gui/app/controllers/logs_controller.php -text
 gui/app/controllers/messages_controller.php -text
 gui/app/controllers/monitor_ivr_controller.php -text
 gui/app/controllers/nodes_controller.php -text
+gui/app/controllers/office_route_controller.php -text
 gui/app/controllers/phone_books_controller.php -text
 gui/app/controllers/polls_controller.php -text
 gui/app/controllers/processes_controller.php -text
@@ -210,6 +211,7 @@ gui/app/models/log.php -text
 gui/app/models/message.php -text
 gui/app/models/monitor_ivr.php -text
 gui/app/models/node.php -text
+gui/app/models/office_route.php -text
 gui/app/models/phone_book.php -text
 gui/app/models/poll.php -text
 gui/app/models/process.php -text
@@ -255,6 +257,7 @@ gui/app/views/cdr/general.ctp -text
 gui/app/views/cdr/index.ctp -text
 gui/app/views/cdr/output.ctp -text
 gui/app/views/cdr/overview.ctp -text
+gui/app/views/channels/edit.ctp -text
 gui/app/views/channels/index.ctp -text
 gui/app/views/elements/callback_status.ctp -text
 gui/app/views/elements/flash_message.ctp -text

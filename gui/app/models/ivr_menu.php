@@ -235,7 +235,7 @@ function __construct($id = false, $table = null, $ds = null) {
      function writeIVR(){
 
 
-	$data = $this->query("select * from ivr_menus where instance_id=100 order by parent desc");
+	$data = $this->find('all');
 
 	//Instanciate class	
 	 $obj = new ivr_xml();	       
@@ -246,25 +246,52 @@ function __construct($id = false, $table = null, $ds = null) {
 	//write each IVR
 	foreach($data as $key => $ivr){
 
-	      $ivr = $ivr['ivr_menus'];
+	      $ivr = $ivr['IvrMenu'];
+	      $type = $ivr['ivr_type'];
 
-	      //Create xml menu
-	      $obj->write_menu($ivr);
+	      switch ($type){
 
-	      for($i=1;$i<=9;$i++){
+	      	 case "ivr":
+
+	    	 
+	      	 $obj->write_ivr_menu($ivr);
+
+	      	 for($i=1;$i<=9;$i++){
 	      
-		$type ='option'.$i.'_type';
-		$id   ='option'.$i.'_id';
+			$type ='option'.$i.'_type';
+			$id   ='option'.$i.'_id';
 
-		if ($ivr[$type]=='node' && $ivr[$id]){ 
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
-		   } elseif ($ivr[$type] =='lam') {
-		      $obj->write_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
+			if ($ivr[$type]=='node' && $ivr[$id]){ 
+		      	   $obj->write_ivr_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
+		   	} elseif ($ivr[$type] =='lam') {
+		      	   $obj->write_ivr_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
+		   	}
+	         }
+	      	 
+            	 $obj->write_entry_common($key);
+		 break;
+		 
+
+	      	 case "switcher":
+
+	    	 
+	      	 $obj->write_switcher_menu($ivr);
+
+	      	 for($i=1;$i<=3;$i++){
+	      
+		  if ($ivr['option'.$i.'_id']){
+
+	      	   $obj->write_switcher_entry($ivr ,$i,$key);
+
 		   }
-	      }
-	      $obj->write_entry_common($key);
-	  
-	    }
+	
+	         }
+	      	 
+		 break;
+		  }
+
+
+	    } //foreach
 
     	    //Write to file
 	    $obj->write_file();

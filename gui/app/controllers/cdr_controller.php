@@ -296,7 +296,7 @@ class CdrController extends AppController{
        }
 
 
-      function overview(){
+      function statistics(){
 
       $this->requestAction('/cdr/refresh');
 
@@ -306,17 +306,18 @@ class CdrController extends AppController{
 		if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/cdr/refresh');
                    }
-         } 
+        } 
 
-         if($this->data){
+        if($this->data){
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
        		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end']));
        		$this->set('cdr', $this->Cdr->find('all',$param)); 
-          } else {
+        } else {
        	       $this->set('cdr',$this->Cdr->find('all'));  
-                 }
+        }
 
-  $this->render();  
+        $this->render();  
+
       }
 
 
@@ -364,5 +365,35 @@ class CdrController extends AppController{
 	 }           
   }
 
+
+                                                                                                                                                                                                   
+      function overview(){                                                                                                                                                                               
+                                                                                                                                                                                                         
+        $this->requestAction('/cdr/refresh');                                                                                                                                                            
+        $this->pageTitle = __('System Overview',true);                                                                                                                                                   
+                                                                                                                                                                                                         
+                                                                                                                                                                                                         
+        $this->set('cdr',$this->Cdr->find('all'));                                                                                                                                                       
+                                                                                                                                                                                                         
+                //Fetch data from unassociated models                                                                                                                                                    
+                $this->loadModel('IvrMenu');                                                                                                                                                             
+                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
+                $ivr = $this->IvrMenu->find('all');                                                                                                                                                      
+                                                                                                                                                                                                         
+                $this->loadModel('Message');                                                                                                                                                             
+                $messages = $this->Message->find('all');                                                                                                                                                 
+                                                                                                                                                                                                         
+                $this->loadModel('Bin');                                                                                                                                                                 
+                $bin = $this->Bin->find('all');                                                                                                                                                          
+                                                                                                                                                                                                         
+                $this->loadModel('Poll');                    
+                $polls = $this->Poll->find('all');                                                                                                                                                       
+                                                                                                                                                                                                         
+                $this->set(compact('messages','bin','polls','ivr'));                                                                                                                                     
+                                                                                                                                                                                                         
+                                                                                                                                                                                                         
+                $this->render();       
+
+        }
 }
 ?>

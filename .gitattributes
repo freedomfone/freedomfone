@@ -208,6 +208,7 @@ gui/app/models/datasources/empty -text
 gui/app/models/ivr_menu.php -text
 gui/app/models/lm_menu.php -text
 gui/app/models/log.php -text
+gui/app/models/mapping.php -text
 gui/app/models/message.php -text
 gui/app/models/monitor_ivr.php -text
 gui/app/models/node.php -text
@@ -285,6 +286,7 @@ gui/app/views/ivr_menus/index.ctp -text
 gui/app/views/ivr_menus/switchers.ctp -text
 gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text
+gui/app/views/layouts/jquery.ctp -text
 gui/app/views/layouts/js/empty -text
 gui/app/views/layouts/rss/empty -text
 gui/app/views/layouts/xml/empty -text
@@ -305,6 +307,7 @@ gui/app/views/monitor_ivr/output.ctp -text
 gui/app/views/nodes/add.ctp -text
 gui/app/views/nodes/edit.ctp -text
 gui/app/views/nodes/index.ctp -text
+gui/app/views/office_route/edit.ctp -text
 gui/app/views/pages/about.ctp -text
 gui/app/views/pages/home.ctp -text
 gui/app/views/phone_books/add.ctp -text

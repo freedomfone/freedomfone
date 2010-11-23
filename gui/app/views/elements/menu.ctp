@@ -183,7 +183,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Statistics",true),'/cdr/overview'); ?>
+<?php echo $html->link(__("Statistics",true),'/cdr/statistics'); ?>
 </li>
 
 <li>

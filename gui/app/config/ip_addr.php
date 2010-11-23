@@ -1,1 +1,1 @@
-<?php $config['Setting']['ip_addr']= '192.168.46.101'; ?>
+<?php $config['Setting']['ip_addr']= '192.168.1.10'; ?>

@@ -215,18 +215,26 @@ class IvrMenusController extends AppController{
 		//Set id
 		$this->IvrMenu->id = $id;
 
-		//Fetch list of all nodes
-		$nodes['title']   = $this->IvrMenu->Node->find('list');
-		$nodes['file']    = $this->IvrMenu->Node->find('list', array('fields' => array('Node.file')));
+		//Fetch list of all IVR
+		$voicemenu = $this->IvrMenu->find('list', array('conditions' => array('IvrMenu.ivr_type' => 'ivr')));
+
+
+	        //Fetch list of all nodes
+                $this->loadModel('Node');
+		$nodes['title']   = $this->Node->find('list');
+		$nodes['file']    = $this->Node->find('list', array('fields' => array('Node.file')));
+
+
+		//Fetch list of all lam
+                $this->loadModel('LmMenu');
+		$lam  = $this->LmMenu->find('list');
 	
-
-        	$this->set(compact('nodes'));
-
-		//Unbind association with nodes
-		$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-		
 		//Fetch single record, and render view
 		$this->data = $this->IvrMenu->findById($id);
+
+
+
+        	$this->set(compact('nodes','lam','voicemenu'));
 		$this->render();
 
           }
@@ -287,8 +295,32 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
-         $this->IvrMenu->save($this->data);
-	//$this->IvrMenu->customizeSave($this->data);
+                foreach($this->data['Mapping'] as $key => $entry){
+
+                   switch($entry['type']){
+
+                    case 'node':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+
+                    break;
+
+                    case 'lam':
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+                    break;
+
+                    case 'ivr':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+                    break;
+
+                   }
+
+                }
+
+
+         $this->IvrMenu->saveAll($this->data);
 
 	 //Update IVR xml file
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
@@ -443,7 +475,7 @@ class IvrMenusController extends AppController{
 
             //Save data
 
-debug($this->data);
+
 /*
 	$this->data['SwitcherFile']['file_long'] = $this->data['Switcher']['file_long'];
 	$this->data['SwitcherFile']['file_invalid'] = $this->data['Switcher']['file_invalid']; 
@@ -489,11 +521,27 @@ debug($this->data);
     	  elseif(empty($this->data['IvrMenu'])){
 
 
-
 		//Set id
 		$this->IvrMenu->id = $id;
                 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
+
+		//Fetch list of all IVR
+		$voicemenu = $this->IvrMenu->find('list', array('conditions' => array('IvrMenu.ivr_type' => 'ivr')));
+
+
+	        //Fetch list of all nodes
+                $this->loadModel('Node');
+		$nodes['title']   = $this->Node->find('list');
+		$nodes['file']    = $this->Node->find('list', array('fields' => array('Node.file')));
+
+
+		//Fetch list of all lam
+                $this->loadModel('LmMenu');
+		$lam  = $this->LmMenu->find('list');
 	
+        	$this->set(compact('nodes','lam','voicemenu'));
+		
+
 		//Fetch single record, and render view
 		$this->data = $this->IvrMenu->findById($id);
 		$this->render();
@@ -552,8 +600,32 @@ debug($this->data);
 
                      }
 
-        
-       $this->IvrMenu->save($this->data['IvrMenu']);
+                foreach($this->data['Mapping'] as $key => $entry){
+
+                   switch($entry['type']){
+
+                    case 'node':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+
+                    break;
+
+                    case 'lam':
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+                    break;
+
+                    case 'ivr':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+                    break;
+
+                   }
+
+                }
+
+
+       $this->IvrMenu->saveAll($this->data);
 
 	 //$this->IvrMenu->writeIVR();
 
@@ -570,33 +642,30 @@ debug($this->data);
 
 
    $service = $this->data['IvrMenu']['switcher_type'];
-/*   $this->data['IvrMenu']['option1_id']=6;
-   $this->data['IvrMenu']['option2_id']=6;
-   $this->data['IvrMenu']['option3_id']=6;*/
 
 
 
+   if($service =='ivr'){ 
 
-   if($service =='lam'){
-        
-	$data = $this->IvrMenu->query('select * from lm_menus');
-	$field = 'lm_menus';
-   
-   } else {
 
 	$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-        $data = $this->IvrMenu->findAllByIvrType('ivr');
-	$field = 'IvrMenu';
+	$data  = $this->Node->find('list');
+        
+   } elseif($service =='lam'){
+        
+        $this->loadModel('LmMenu');
+	$data  = $this->LmMenu->find('list');
+          
+
+   } else {
+
+        $this->loadModel('Node');
+	$data  = $this->Node->find('list');
+        $field = 'Node';
+
    }
 
-   unset($options);
-   foreach($data as $key => $id){
-
-   	$options[$id[$field]['id']] = $id[$field]['title'];
-
-   }
-
-   $this->set(compact('options'));
+  $this->set(compact('data'));
 
    }
 

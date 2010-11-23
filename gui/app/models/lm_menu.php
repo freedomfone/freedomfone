@@ -25,7 +25,8 @@
 class LmMenu extends AppModel {
 
 	var $name = 'LmMenu';
-	
+
+        var $hasMany = array('Mapping');	
 
 
 /*

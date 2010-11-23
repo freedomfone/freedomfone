@@ -25,7 +25,8 @@
 $ivr = Configure::read('IVR_SETTINGS');
 $session->flash();
 
-	if($this->data){
+	if($this->data && $this->data['IvrMenu']['ivr_type']=='ivr'){
+
 
 $ivrMenu = $this->data['IvrMenu'];
 echo "<h1>".__("Edit voice menu",true)."</h1>";
@@ -156,8 +157,7 @@ if($ivrMenu['file_invalid']){
 		array(array($step4[0],array('colspan'=>3))),	
 		array(array($step4[1],array('colspan'=>3))),	
 		array($step4[2],array($step4[3],array('valign'=>'bottom')),array($step4[4],array('valign'=>'bottom'))),
-		array(array($box[3],array('colspan'=>3))),
-		array(array("<hr>",array('colspan'=>3)))	
+		array(array($box[3],array('colspan'=>3)))
 		));
  echo "</table>";
 
@@ -171,35 +171,56 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 $path = $ivr['path'].$ivr['dir_node'];
 
-     for($i=0;$i<8;$i++){
+     for($i=0;$i<2;$i++){
 
-	$key = 'option'.($i+1).'_id';
-	$key_type = 'option'.($i+1).'_type';
-	$default = $this->data['IvrMenu'][$key_type];
+        echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
+        echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	
 
-     	$options1=array('node' =>'');
-     	$options2=array('lam' =>'');
+
+        $default = false;
+     	$options1=array('lam' =>'');
+     	$options2=array('ivr' =>'');
+     	$options3=array('node' =>'');
+
         $attributes=array('legend'=>false,'default'=>$default);
-        $radio1 = $form->radio('option'.($i+1).'_type',$options1,$attributes);
-	$radio2 = $form->radio('option'.($i+1).'_type',$options2,$attributes);
 
-	if ($option_id = $this->data['IvrMenu'][$key]){
-	
-	   $listen =  $this->element('player',array('path'=>$path,'file'=>$nodes['file'][$option_id],'title'=>$nodes['title'][$option_id],'id'=>$i));
-	}    
-	else {$listen=false;}
 
-       $row[$i]=array(
-	array("<h3>".__('Press',true)." ".($i+1)."</h3>",array('width'=>'100px')),
+        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,$attributes);
+	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
+       	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
+
+        $listen = false;
+
+        if($this->data['Mapping']){
+                if($this->data['Mapping'][$i]['type'] == 'node'){
+
+                   $id = $this->data['Mapping'][$i]['node_id'];
+                   $file = $nodes['file'][$id];
+                   $title = $nodes['title'][$id];
+      	           $path = $ivr['path'].$ivr['dir_node'];
+	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
+                }
+        }
+
+
+        $row[$i]=array(
+	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),
 	$radio1, 
-	$form->input('option'.($i+1).'_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select menu option',true).' -' )),
-	$listen,
+        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select Leave-a-message',true).' -' )),
 	$radio2, 
-	__("Leave-a-message",true)
+        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select Voice Menu',true).' -' )),
+	$radio3, 
+        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
+	$listen,
+
 	);
+
+
      }
 
-     echo "<table width='700px'>";
+
+
+     echo "<table width='100%'>";
      echo $html->tableCells($row);
      echo "</table>";
 
@@ -208,7 +229,7 @@ $path = $ivr['path'].$ivr['dir_node'];
      }
      else {
 
-         echo "<h1>".__("No IVR with this id exists",true)."</h1>";
+         echo "<h3>".__("This IVR does not exist.",true)."</h3>";
      }
 
 ?>

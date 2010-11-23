@@ -87,9 +87,7 @@ $config['LM_SETTINGS'] = array(
 		'path'             => 'freedomfone/leave_message/',
 		'dir_messages'     =>  'messages/',
 		'dir_menu'         =>  'audio_menu/',
-		'dir_conf'         =>  'conf/',
-                'instance_min'     => 100,
-                'instance_max'     => 109,
+		'dir_conf'         =>  'conf/'
 		);
 
 $config['LM_DEFAULT']=	array(
@@ -112,9 +110,7 @@ $config['IVR_SETTINGS'] = array(
 		'curl'             => 'xml_curl/',
 		'dir_node'        =>  'nodes/',
 		'dir_menu'         =>  'ivr/',
-		'dir_conf'         =>  'conf/',
-                'instance_min'     => 100,
-                'instance_max'     => 110,
+		'dir_conf'         =>  'conf/'
 		);
 
 
@@ -164,7 +160,24 @@ $config['LANGUAGES'] = array(
                                                   );
 
 $config['RSS']	= array(
-	      'path' =>'https://dev.freedomfone.org/timeline?ticket=on&changeset=on&milestone=on&wiki=on&max=5&daysback=365&format=rss');
+	      'path' =>'http://freedomfone.org/rss.xml',
+              'max'  => 3
+                        );
 
+$config['OR_MIB']= array( 
+                'sim_inserted' => array('No', 'Yes'),
+                'network_registration' => array('Not registered', 'Registered to home network','Searching for network','Registration denied','Unknown','Registered roaming')
+                );
+
+$config['OR_SNMP']= array(
+                        array('ip_addr'   => '192.168.1.46' ,
+                              'community' => 'public' , 
+                              'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
+                              ),
+                        array('ip_addr'   => '192.168.1.99' ,
+                              'community' => 'public' , 
+                              'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
+                              )
+                          );
 
 ?>

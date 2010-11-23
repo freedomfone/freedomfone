@@ -107,8 +107,6 @@ echo "<h1>".__("Edit language switcher",true)."</h1>";
                 echo "<legend>".__('Services',true)."</legend>";
 
 
-        $path_node = $settings['path'].$settings['dir_node'];
-
      for($i=0;$i<2;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
@@ -136,7 +134,7 @@ echo "<h1>".__("Edit language switcher",true)."</h1>";
                    $id = $this->data['Mapping'][$i]['node_id'];
                    $file = $nodes['file'][$id];
                    $title = $nodes['title'][$id];
-      	           $path = $ivr['path'].$ivr['dir_node'];
+      	           $path = $settings['path'].$settings['dir_node'];
 	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
                 }
         }

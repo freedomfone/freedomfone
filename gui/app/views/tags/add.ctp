@@ -1,3 +1,4 @@
+<?php
 /****************************************************************************
  * add.ctp	- Create new tag (used in Leave-a-message)
  * version 	- 1.0.362

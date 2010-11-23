@@ -32,7 +32,9 @@ $commentInvalid = "<span class='formHelp'>".__("Warning that the user has presse
 
 echo "<h1>".__("Edit language switcher",true)."</h1>";
 
-          if($this->data){
+
+	if($this->data && $this->data['IvrMenu']['ivr_type']=='switcher'){
+
 
                 $switcher = $this->data['IvrMenu'];
 
@@ -105,28 +107,69 @@ echo "<h1>".__("Edit language switcher",true)."</h1>";
                 echo "<legend>".__('Services',true)."</legend>";
 
 
+        $path_node = $settings['path'].$settings['dir_node'];
 
-	echo $form->create("IvrMenu");
-	$opt = array('ivr'=>'Voice Menus','lam'=>'Leave-a-message');
-	echo $form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
+     for($i=0;$i<2;$i++){
+
+        echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
+        echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	
 
 
-	$opt = array(
-		"update" => "service_div",
-		"url" => "disp",
-		"frequency" => "0.1"
+
+        $default = false;
+     	$options1=array('lam' =>'');
+     	$options2=array('ivr' =>'');
+     	$options3=array('node' =>'');
+
+        $attributes=array('legend'=>false,'default'=>$default);
+
+
+        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,$attributes);
+	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
+       	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
+
+        $listen = false;
+
+        if($this->data['Mapping']){
+                if($this->data['Mapping'][$i]['type'] == 'node'){
+
+                   $id = $this->data['Mapping'][$i]['node_id'];
+                   $file = $nodes['file'][$id];
+                   $title = $nodes['title'][$id];
+      	           $path = $ivr['path'].$ivr['dir_node'];
+	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
+                }
+        }
+
+
+        $row[$i]=array(
+	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),
+	$radio1, 
+        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select Leave-a-message',true).' -' )),
+	$radio2, 
+        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select Voice Menu',true).' -' )),
+	$radio3, 
+        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
+	$listen,
+
 	);
 
-	echo $ajax->observeField("ServiceType",$opt);
-	echo $form->end();
 
-	echo "<div id='service_div' style=''></div>";
-        echo "</fieldset>";
+     }
+
+     echo "<table width='100%'>";
+     echo $html->tableCells($row);
+     echo "</table>";
+
+
+     echo "</fieldset>";
+     echo $form->end(__('Save',true)); 
+
      }
 
      else {
 
-         echo "<h1>".__("No languge switcher with this id exists",true)."</h1>";
+         echo "<h3>".__("No languge switcher with this id exists",true)."</h3>";
 
      }
 

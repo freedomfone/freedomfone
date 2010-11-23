@@ -101,7 +101,7 @@ class Channel extends AppModel{
 
 
       	  $array = Configure::read('gsmopen');
-          $instance_id = IID;
+       
           $obj = new ff_event($array);	       
 
 	  if ($obj -> auth != true) {

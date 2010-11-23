@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * disp.ctp	- Display Language Selector service options
- * version 	- 1.0.354
+ * mapping.php		- N/A
+ * version 		- 1.0.367
  * 
  * Version: MPL 1.1
  *
@@ -23,21 +23,26 @@
  ***************************************************************************/
 
 
-      echo $ajax->div("service_div");
+class Mapping extends AppModel{
 
+      var $name = 'Mapping';
 
-      for($i=1;$i<=3;$i++){
+      var $belongsTo = array(
+           'IvrMenu' => array(
+            'className' => 'IvrMenu',
+            'foreignKey' => 'ivr_menu_id',
+            ),
+           'LmMenu' => array(
+            'className' => 'LmMenu',
+            'foreignKey' => 'lm_menu_id',
+            ),
+           'Node' => array(
+            'className' => 'Node',
+            'foreignKey' => 'node_id',
+            )
+           );
 
-       $row[]=array( array("<h3>".__('Press',true)." ".$i."</h3>", array('width'=>'100')),             
-      $form->input('IvrMenu.option'.$i.'_id',array('type'=>'select','options' => $data, 'label' => false,'empty'=>'-- '.__('Select entry',true).' --' ))
-      );  
-                  }
-
-         echo "<table width='700px'>";
-         echo $html->tableCells($row);
-         echo "</table>";
-         echo $form->end(__('Save',true));
-         echo $ajax->divEnd("service_div");
-	
+      var $hasOne = array('Node');
+}
 
 ?>

@@ -27,7 +27,8 @@ class IvrMenu extends AppModel{
 
       var $name = 'IvrMenu';
 
-      var $hasMany = array('Node');
+      var $hasMany = array('Mapping');	
+
 
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
@@ -279,9 +280,14 @@ function __construct($id = false, $table = null, $ds = null) {
 
 	      	 for($i=1;$i<=3;$i++){
 	      
-		  if ($ivr['option'.$i.'_id']){
+		  if ($id = $ivr['option'.$i.'_id']){
 
-	      	   $obj->write_switcher_entry($ivr ,$i,$key);
+                     if($ivr['switcher_type']=='ivr'){ $table = 'ivr_menus';}
+                     else { $table = 'lm_menus';}
+
+                  $tmp = $this->query("select * from $table where id = $id");
+                  $instance_id = $tmp[0][$table]['instance_id'];
+	      	   $obj->write_switcher_entry($ivr ,$i,$key,$instance_id);
 
 		   }
 	

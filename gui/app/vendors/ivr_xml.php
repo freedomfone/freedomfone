@@ -254,22 +254,23 @@ public $ext;
 
 	   }
 
-function write_switcher_entry($ivr, $digit ,$key ){
+function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 
 
         $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
 
-	 if($ivr['switcher_type']=='ivr_menus'){
+	 if($ivr['switcher_type']=='ivr'){
 
-		$action  = "menu_sub";
-		$param   = "freedomfone_ivr_".$ivr['option'.$digit.'_id'];
+		$action  = "menu-sub";
+		//$param   = "freedomfone_ivr_".$ivr['option'.$digit.'_id'];
+	        $param   = "freedomfone_ivr_".$instance_id;
 
 	}
-	 elseif($ivr['switcher_type']=='lm_menus'){
+	 elseif($ivr['switcher_type']=='lam'){
 
 
 		$action  = "menu-exec-app";
-		$param   = "transfer 2".$ivr['option'.$digit.'_id']." XML default";
+		$param   = "transfer 2".$instance_id." XML default";
 
 	 }
 

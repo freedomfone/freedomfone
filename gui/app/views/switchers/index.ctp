@@ -27,7 +27,7 @@ echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' 
 echo $form->end();
 
 
-echo "<h1>".__('Languge switchers',true)."</h1>";
+echo "<h1>".__('Languge selectors',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

@@ -28,13 +28,16 @@ class Node extends AppModel{
 
       var $name = 'Node';
 
-//      var $belongsTo = array('IvrMenu');
 
-
-	var $hasMany = array('MonitorIvr' => array(
+	var $hasMany = array(
+                        'MonitorIvr' => array(
                         	       'order' => 'MonitorIvr.id ASC',
-                        	       'dependent' => true)
-				       );
+                        	       'dependent' => true,
+                                       ),			      
+                        'Mapping' => array(
+                        	       'order' => 'Mapping.id ASC',
+                        	       'dependent' => true,
+				       ));
 
 
 function __construct($id = false, $table = null, $ds = null) {

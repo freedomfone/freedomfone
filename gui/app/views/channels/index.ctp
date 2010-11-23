@@ -88,9 +88,11 @@ echo "<h1>".__('GSM channels',true)."</h1>";
    }
 
 
+    echo "<h3>".__('Mobigater',true)."</h3>";
+
      if ($gsmopen){
 
-    echo "<h3>".__('Mobigater',true)."</h3>";
+
     	 unset($row);
     
       foreach ($gsmopen as $key => $entry){

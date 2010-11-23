@@ -167,7 +167,7 @@ echo "<h1>".__("Edit language switcher",true)."</h1>";
 
      else {
 
-         echo "<h3>".__("No languge switcher with this id exists",true)."</h3>";
+         echo "<h3>".__("This language selector does not exist.",true)."</h3>";
 
      }
 

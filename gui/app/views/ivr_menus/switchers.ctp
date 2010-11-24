@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * index.ctp	- List language switchers
- * version 	- 1.0.359
+ * selectors.ctp	- List language selectors
+ * version 	        - 1.0.359
  * 
  * Version: MPL 1.1
  *
@@ -27,11 +27,13 @@ echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' 
 echo $form->end();
 
 
-echo "<h1>".__('Languge switchers',true)."</h1>";
+echo "<h1>".__('Languge selectors',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
+
+     $types = array('lam' => __('Leave-a-message',true),'ivr' => __('IVR',true), 'node' => __('Content',true));
 
      $switchers = $ivr_menus;
      	if ($switchers){
@@ -50,7 +52,7 @@ echo "<h1>".__('Languge switchers',true)."</h1>";
 	foreach ($switchers as $key => $switcher){
 
 		$title        = $switcher['IvrMenu']['title'];
-		$type         = $switcher['IvrMenu']['switcher_type'];
+		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$created      = $time->niceShort($switcher['IvrMenu']['created']);
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
 		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit_switcher/{$switcher['IvrMenu']['id']}",null, null, false);
@@ -70,7 +72,7 @@ echo "<h1>".__('Languge switchers',true)."</h1>";
      		echo "</table>";
      }   else {
 
-     echo $html->div('instruction',__("There are no language switchers created",true));
+     echo $html->div('instruction',__("There are no language selectors created",true));
 
      }
 

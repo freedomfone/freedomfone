@@ -24,13 +24,13 @@
 
 $settings = Configure::read('IVR_SETTINGS');
 
-$commentTitle   = "<span class='formHelp'>".__("Name of language switcher",true)."</span>";
+$commentTitle   = "<span class='formHelp'>".__("Name of language selector",true)."</span>";
 $commentLong    = "<span class='formHelp'>".__("Brief instruction how to reach each language menu.",true)."</span>";
 $commentInvalid = "<span class='formHelp'>".__("Warning that the user has pressed an invalid option.",true)."</span>";
 
 
 
-echo "<h1>".__("Edit language switcher",true)."</h1>";
+echo "<h1>".__("Edit language selector",true)."</h1>";
 
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='switcher'){

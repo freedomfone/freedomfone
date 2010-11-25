@@ -48,14 +48,6 @@ class IvrMenusController extends AppController{
 
 	}
 
-    function update() {
-
-	$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-        
-	$this->IvrMenu->writeIVR();
-   	$this->redirect(array('action' => 'index'));
-
-   }
 
 
     function reserve($ivr_type) {
@@ -70,7 +62,7 @@ class IvrMenusController extends AppController{
 
 
              if($ivr_type=='ivr'){ $method = 'edit/';}
-             elseif ($ivr_type=='switcher'){ $method = 'edit_switcher/';}
+             elseif ($ivr_type=='switcher'){ $method = 'edit_selector/';}
 
              if(!$entry['id']){
                     $this->_flash(__('There are no idle instance for a new Voice menu. Please delete an existing Voice  menu, and try again. Maximum Voice menus: 10.',true), 'warning');
@@ -178,7 +170,7 @@ class IvrMenusController extends AppController{
 		 $this->IvrMenu->setParent($id);
 
 	        //Recreate ivr.xml
-		$this->IvrMenu->writeIVR();
+		$this->IvrMenu->writeIVR($id);
 	 	$this->redirect(array('action' => 'index'));
 
 
@@ -228,10 +220,10 @@ class IvrMenusController extends AppController{
 		//Fetch list of all lam
                 $this->loadModel('LmMenu');
 		$lam  = $this->LmMenu->find('list');
-	
+
+
 		//Fetch single record, and render view
 		$this->data = $this->IvrMenu->findById($id);
-
 
 
         	$this->set(compact('nodes','lam','voicemenu'));
@@ -297,6 +289,8 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
+
+
                    switch($entry['type']){
 
                     case 'node':
@@ -308,11 +302,13 @@ class IvrMenusController extends AppController{
                     case 'lam':
 	            $this->data['Mapping'][$key]['node_id']= false;
 	            $this->data['Mapping'][$key]['ivr_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
                     break;
 
                     case 'ivr':
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
                     break;
 
                    }
@@ -324,7 +320,7 @@ class IvrMenusController extends AppController{
 
 	 //Update IVR xml file
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-	 $this->IvrMenu->writeIVR();
+	 $this->IvrMenu->writeIVR($id);
 
 	//Redirect to index
 	$this->redirect(array('action' => 'index'));
@@ -447,9 +443,9 @@ class IvrMenusController extends AppController{
     }
 
 
-   function switchers(){
+   function selectors(){
 
-      	$this->pageTitle = 'Switchers';           
+      	$this->pageTitle = __('Language Selectors',true);           
         $this->IvrMenu->recursive = 0; 
    	$ivr_menus = $this->paginate('IvrMenu', array('IvrMenu.ivr_type' => 'switcher'));
 	$this->set('ivr_menus',$ivr_menus);
@@ -501,9 +497,9 @@ class IvrMenusController extends AppController{
  */
 
 
-   function edit_switcher($id = null){
+   function edit_selector($id = null){
 
-      	$this->pageTitle = 'Language switcher : Edit';           
+      	$this->pageTitle = 'Language Selector : Edit';           
 
             $settings = Configure::read('IVR_SETTINGS');
 
@@ -513,7 +509,7 @@ class IvrMenusController extends AppController{
 
 	     $this->_flash(__('Invalid option', true),'warning'); 
   	     $this->log("WARNING; Action: Edit; Type: Incorrect id (".$id.")", "switcher");	
-	     $this->redirect(array('action'=>'switchers')); 
+	     $this->redirect(array('action'=>'selector')); 
 	  }
 
 
@@ -627,9 +623,9 @@ class IvrMenusController extends AppController{
 
        $this->IvrMenu->saveAll($this->data);
 
-	 //$this->IvrMenu->writeIVR();
+	 //$this->IvrMenu->writeIVR($id);
 
-	 $this->redirect(array('action' => 'switchers'));
+	 $this->redirect(array('action' => 'selectors'));
 
 
 

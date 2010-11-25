@@ -233,47 +233,42 @@ function __construct($id = false, $table = null, $ds = null) {
  * All existing IVRs for an instance is written. The default IVR is set to parent.
  *
  */
-     function writeIVR(){
+     function writeIVR($id){
 
+        $data = $this->findById($id);
+        $instance_id = $data['IvrMenu']['instance_id'];
 
-	$data = $this->find('all');
 
 	//Instanciate class	
-	 $obj = new ivr_xml();	       
+	$obj = new ivr_xml($instance_id);	       
 
-	 //Create header
+	//Create header
 	$obj->ivr_header();      
 
-	//write each IVR
-	foreach($data as $key => $ivr){
+	switch ($data['IvrMenu']['ivr_type']){
 
-	      $ivr = $ivr['IvrMenu'];
-	      $type = $ivr['ivr_type'];
+	case "ivr":
 
-	      switch ($type){
+	$obj->write_ivr_menu($data);
 
-	      	 case "ivr":
+           foreach($data['Mapping'] as $key => $entry){
+	   
+                $type = $entry['type'];
+		$id   = $entry[$type.'_id'];
 
-	    	 
-	      	 $obj->write_ivr_menu($ivr);
+		if ( $type && $id){ 
 
-	      	 for($i=1;$i<=9;$i++){
-	      
-			$type ='option'.$i.'_type';
-			$id   ='option'.$i.'_id';
+		      	   $obj->write_ivr_entry($type,$id,$entry['digit'],0,$data['IvrMenu']['title'],$data['IvrMenu']['file_invalid'],$entry['instance_id']);
 
-			if ($ivr[$type]=='node' && $ivr[$id]){ 
-		      	   $obj->write_ivr_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
-		   	} elseif ($ivr[$type] =='lam') {
-		      	   $obj->write_ivr_entry($ivr[$type],$ivr[$id],$i,$key,$ivr['title'],$ivr['file_invalid']);
-		   	}
-	         }
+	        }
 	      	 
-            	 $obj->write_entry_common($key);
-		 break;
+
+            }
+           $obj->write_entry_common(0);
+	    break;
 		 
 
-	      	 case "switcher":
+	    /*case "switcher":
 
 	    	 
 	      	 $obj->write_switcher_menu($ivr);
@@ -293,11 +288,11 @@ function __construct($id = false, $table = null, $ds = null) {
 	
 	         }
 	      	 
-		 break;
-		  }
+		 break;*/
+		
+  }
 
 
-	    } //foreach
 
     	    //Write to file
 	    $obj->write_file();
@@ -452,11 +447,20 @@ function __construct($id = false, $table = null, $ds = null) {
  *
  */
   
-      function getInstanceID($id){
+      function getInstanceID($id, $type = null){
 
+       if ($type == 'lam'){
+
+          $data = $this->query('select instance_id from lm_menus where id = '.$id);
+          return $data[0]['lm_menus']['instance_id'];
+
+        } else {
                $this->unbindModel(array('hasMany' => array('Node')));      
                $data = $this->findById($id);
-               return $data['IvrMenu']['instance_id'];
+               return   $data['IvrMenu']['instance_id'];
+
+       }
+
       }
 
 
@@ -485,6 +489,10 @@ function __construct($id = false, $table = null, $ds = null) {
            }
 
       }
+
+
+
+
 
 }
 

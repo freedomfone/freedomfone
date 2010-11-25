@@ -42,7 +42,7 @@ public $file;
 public $ext;
 
 
- function ivr_xml(){
+ function ivr_xml($instance_id){
 
      $ivr_settings = Configure::read('IVR_SETTINGS');
      $ivr_monitor  = Configure::read('IVR_MONITOR');
@@ -55,7 +55,7 @@ public $ext;
 
      $this->node_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
 
-     $this->file	   = WWW_ROOT.$ivr_settings['curl']."ivr.xml";
+     $this->file	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
      $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
 
@@ -69,7 +69,7 @@ public $ext;
      $this->tts_engine	    	    = 'cepstral';
      $this->tts_voice	    	    = 'allison';
      $this->ext		    	    = $ext;
-     $this->open_file();
+
 
   }
 
@@ -101,7 +101,11 @@ public $ext;
  *
  */
 
-  function write_ivr_menu($data){
+  function write_ivr_menu($ivr){
+
+  $data      = $ivr['IvrMenu'];
+  $mappings  = $ivr['Mapping'];
+
 
 
      $ivr_default = Configure::read('IVR_DEFAULT');
@@ -115,23 +119,6 @@ public $ext;
            $message_exit    = $data['message_exit'];
            $message_invalid = $data['message_invalid'];
 
-	   $option1_type  = $data['option1_type'];
-           $option1_id    = $data['option1_id'];
-           $option2_type  = $data['option2_type'];
-           $option2_id    = $data['option2_id'];
-           $option3_type  = $data['option3_type'];
-           $option3_id    = $data['option3_id'];
-           $option4_type  = $data['option4_type'];
-           $option4_id    = $data['option4_id'];
-           $option5_type  = $data['option5_type'];
-           $option5_id    = $data['option5_id'];
-           $option6_type  = $data['option6_type'];
-           $option6_id    = $data['option6_id'];
-           $option7_type  = $data['option7_type'];
-           $option7_id    = $data['option7_id'];
-           $option8_type  = $data['option8_type'];
-           $option8_id    = $data['option8_id'];
-  
 
 	   $menus = $this->body -> section-> configuration-> menus->addChild('menu');
 	   $menus -> addAttribute ("name",$name);  //Unique name {id}_{title}
@@ -282,7 +269,7 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 
 }
 
-	   function write_ivr_entry($type,$id,$digit,$key,$title,$file_invalid){
+	   function write_ivr_entry($type,$id,$digit,$key,$title,$file_invalid,$instance_id){
 
 	            	switch ($type){
 
@@ -299,8 +286,6 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 			   break;
 
 
-
-
 		      	   //Node::non-interrupt
 			   Case 'node-non-interrupt':
 
@@ -315,11 +300,20 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 		      	   //Leave-a-message
 			   case 'lam':
 
-			   $ext = $this->ext['lam'];
+			   $ext = $this->ext['lam'].$instance_id;
 			   $action = "menu-exec-app";
 			   $param  = "transfer ".$ext." XML default";
 			   $id='lam';
 			   break;
+
+
+		      	   //Leave-a-message
+			   case 'ivr':
+
+		           $action  = "menu-sub";
+		           $param   = "freedomfone_ivr_".$instance_id;
+                           break;
+
           		   }
 				
 		        $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
@@ -360,6 +354,7 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 
 	  function write_file(){
 
+                 $this->open_file();
 	  	 $dom = dom_import_simplexml($this->body)->ownerDocument;
     		 $dom->formatOutput = true;
      		 $xml = $dom->saveXML();
@@ -377,6 +372,7 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
  */
 
  function open_file(){
+
 
    	$this->handle = fopen($this->file,'w');
 

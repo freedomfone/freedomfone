@@ -42,7 +42,7 @@ public $file;
 public $ext;
 
 
- function ivr_xml($instance_id){
+ function ivr_xml($instance_id = null){
 
      $ivr_settings = Configure::read('IVR_SETTINGS');
      $ivr_monitor  = Configure::read('IVR_MONITOR');
@@ -55,7 +55,11 @@ public $ext;
 
      $this->node_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
 
-     $this->file	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
+     $this->file_individual	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
+     $this->file_common	           = WWW_ROOT.$ivr_settings['curl']."ivr.xml"; 
+
+
+
      $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
 
@@ -184,8 +188,11 @@ public $ext;
 
 	   }
 
-  function write_switcher_menu($data){
+  function write_switcher_menu($ivr){
 
+
+  $data      = $ivr['IvrMenu'];
+  $mappings  = $ivr['Mapping'];
 
      $ivr_default = Configure::read('IVR_DEFAULT');
      $this->menu_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
@@ -196,10 +203,6 @@ public $ext;
            $message_long    = $data['message_long'];
            $message_invalid = $data['message_invalid'];
 
-           $option1_id    = $data['option1_id'];
-           $option2_id    = $data['option2_id'];
-           $option3_id    = $data['option3_id'];
-  
 
 	   $menus = $this->body -> section-> configuration-> menus->addChild('menu');
 	   $menus -> addAttribute ("name",$name);  //Unique name {id}_{title}
@@ -241,33 +244,56 @@ public $ext;
 
 	   }
 
-function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
+       function write_switcher_entry($switcher_type, $digit , $id,  $file_invalid, $instance_id){
 
 
-        $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+                $entry = $this->body -> section-> configuration-> menus -> menu[0] -> addChild("entry");
 
-	 if($ivr['switcher_type']=='ivr'){
+	 
+                switch($switcher_type){
 
-		$action  = "menu-sub";
-		//$param   = "freedomfone_ivr_".$ivr['option'.$digit.'_id'];
-	        $param   = "freedomfone_ivr_".$instance_id;
+                        case 'ivr':
 
-	}
-	 elseif($ivr['switcher_type']=='lam'){
+		        $action  = "menu-sub";
+	                $param   = "freedomfone_ivr_".$instance_id;
+                        break;
+
+                        case 'lam':
+
+		        $action  = "menu-exec-app";
+		        $param   = "transfer 2".$instance_id." XML default";
+                        break;
+
+		      	//Node::interrupt
+			case 'node':
+
+		       	$obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	$arr = mysql_fetch_array($obj);
+			$action = "menu-exec-app";
+
+			//We wait 1 second after playing the file to return to head IVR
+			$param  = 'play_and_get_digits 1 1 1 1000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
+			break;
 
 
-		$action  = "menu-exec-app";
-		$param   = "transfer 2".$instance_id." XML default";
+		      	//Node::non-interrupt
+			Case 'node-non-interrupt':
 
-	 }
+		       	$obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	$arr = mysql_fetch_array($obj);
+			$action = "menu-play-sound";
+			$param  = $this->node_path.$arr['file'].'.wav';
+			break;
 
 
-		$entry -> addAttribute("action",$action);
-		$entry -> addAttribute("digits",$digit);
-		$entry -> addAttribute("param",$param);
+	         }
+
+		 $entry -> addAttribute("action",$action);
+		 $entry -> addAttribute("digits",$digit);
+		 $entry -> addAttribute("param",$param);
 
 
-}
+         }
 
 	   function write_ivr_entry($type,$id,$digit,$key,$title,$file_invalid,$instance_id){
 
@@ -354,7 +380,8 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 
 	  function write_file(){
 
-                 $this->open_file();
+
+   	         $this->handle = fopen($this->file_individual,'w');
 	  	 $dom = dom_import_simplexml($this->body)->ownerDocument;
     		 $dom->formatOutput = true;
      		 $xml = $dom->saveXML();
@@ -365,18 +392,15 @@ function write_switcher_entry($ivr, $digit ,$key ,$instance_id){
 	  }
 
 
-/*
- * Opens file ivr.xml for writing 
- * 
- *
- */
+          function write_all_ivr($contents){
 
- function open_file(){
+   	         $this->handle = fopen($this->file_common, 'w');
+		 fwrite($this->handle,$contents);
+                 fclose($this->handle);
+
+          }
 
 
-   	$this->handle = fopen($this->file,'w');
-
- }
 
 /*
  * Closes file ivr.xml for writing 

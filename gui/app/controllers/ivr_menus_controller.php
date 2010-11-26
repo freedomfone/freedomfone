@@ -321,6 +321,7 @@ class IvrMenusController extends AppController{
 	 //Update IVR xml file
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 	 $this->IvrMenu->writeIVR($id);
+	// $this->IvrMenu->writeIVRCommon);
 
 	//Redirect to index
 	$this->redirect(array('action' => 'index'));
@@ -596,34 +597,41 @@ class IvrMenusController extends AppController{
 
                      }
 
-                foreach($this->data['Mapping'] as $key => $entry){
 
-                   switch($entry['type']){
+                     if($this->data['Mapping']){ 
 
-                    case 'node':
-	            $this->data['Mapping'][$key]['lam_id']= false;
-	            $this->data['Mapping'][$key]['ivr_id']= false;
+	                 $this->data['IvrMenu']['switcher_type'] =  $this->data['Mapping'][0]['type'];
 
-                    break;
+                         foreach($this->data['Mapping'] as $key => $entry){
 
-                    case 'lam':
-	            $this->data['Mapping'][$key]['node_id']= false;
-	            $this->data['Mapping'][$key]['ivr_id']= false;
-                    break;
+                              switch($entry['type']){
 
-                    case 'ivr':
-	            $this->data['Mapping'][$key]['lam_id']= false;
-	            $this->data['Mapping'][$key]['node_id']= false;
-                    break;
+                              case 'node':
+	                      $this->data['Mapping'][$key]['lam_id']= false;
+	                      $this->data['Mapping'][$key]['ivr_id']= false;
+                              break;
 
-                   }
+                              case 'lam':
+	                      $this->data['Mapping'][$key]['node_id']= false;
+	                      $this->data['Mapping'][$key]['ivr_id']= false;
+	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
+                              break;
 
-                }
+                              case 'ivr':
+	                      $this->data['Mapping'][$key]['lam_id']= false;
+	                      $this->data['Mapping'][$key]['node_id']= false;
+	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+                              break;
+                              }
+                          }
+                      }
 
 
        $this->IvrMenu->saveAll($this->data);
 
-	 //$this->IvrMenu->writeIVR($id);
+	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
+	 $this->IvrMenu->writeIVR($id);
+
 
 	 $this->redirect(array('action' => 'selectors'));
 

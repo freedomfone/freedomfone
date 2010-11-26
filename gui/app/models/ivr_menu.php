@@ -247,56 +247,80 @@ function __construct($id = false, $table = null, $ds = null) {
 
 	switch ($data['IvrMenu']['ivr_type']){
 
-	case "ivr":
+	       case "ivr":
 
-	$obj->write_ivr_menu($data);
+	       $obj->write_ivr_menu($data);
 
-           foreach($data['Mapping'] as $key => $entry){
+               foreach($data['Mapping'] as $key => $entry){
 	   
-                $type = $entry['type'];
-		$id   = $entry[$type.'_id'];
+                        $type = $entry['type'];
+		        $id   = $entry[$type.'_id'];
 
-		if ( $type && $id){ 
+		        if ( $type && $id){ 
 
 		      	   $obj->write_ivr_entry($type,$id,$entry['digit'],0,$data['IvrMenu']['title'],$data['IvrMenu']['file_invalid'],$entry['instance_id']);
 
-	        }
-	      	 
-
-            }
-           $obj->write_entry_common(0);
-	    break;
+	                }
+                 }
+                 $obj->write_entry_common(0);
+	         break;
 		 
 
-	    /*case "switcher":
+	       case "switcher":
 
-	    	 
-	      	 $obj->write_switcher_menu($ivr);
+	       $obj->write_switcher_menu($data);
 
-	      	 for($i=1;$i<=3;$i++){
+               foreach($data['Mapping'] as $key => $entry){
 	      
-		  if ($id = $ivr['option'.$i.'_id']){
+                        $switcher_type = $data['IvrMenu']['switcher_type'];
+                        $digit = $entry['digit'];
+                        $instance_id =  $entry['instance_id'];
+                        $type = $entry['type'];
+		        $id   = $entry[$type.'_id'];
 
-                     if($ivr['switcher_type']=='ivr'){ $table = 'ivr_menus';}
-                     else { $table = 'lm_menus';}
+	      	        $obj->write_switcher_entry($switcher_type, $digit, $id, $data['IvrMenu']['file_invalid'], $instance_id );
 
-                  $tmp = $this->query("select * from $table where id = $id");
-                  $instance_id = $tmp[0][$table]['instance_id'];
-	      	   $obj->write_switcher_entry($ivr ,$i,$key,$instance_id);
+		}
+                $obj->write_entry_common(0);
+                break;	
 
-		   }
-	
-	         }
+	    }
 	      	 
-		 break;*/
-		
-  }
-
-
-
     	    //Write to file
 	    $obj->write_file();
 	    $obj->close_file();
+		 
+
+    }
+
+
+
+      function writeIVRCommon(){
+
+	//Instanciate class	
+	$obj = new ivr_xml();	       
+
+	//Create header
+	$obj->ivr_header();      
+
+        $ivr_settings = Configure::read('IVR_SETTINGS');
+               
+
+          $data =  $this->find('all');
+
+          foreach ($data['IvrMenu'] as $key => $ivr){
+
+                  $instance_id = $ivr['instance_id'];
+                  $filename	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
+                  $handle = fopen($filename, "r");
+                  $contents[] = fread($handle, filesize($filename));
+                  fclose($handle);
+
+          }
+
+
+//          $obj->write_all_ivr($contents);
+
 
       }	    
 

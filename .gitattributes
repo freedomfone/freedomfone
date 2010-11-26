@@ -281,8 +281,10 @@ gui/app/views/ivr_menus/add.ctp -text
 gui/app/views/ivr_menus/add_switcher.ctp -text
 gui/app/views/ivr_menus/disp.ctp -text
 gui/app/views/ivr_menus/edit.ctp -text
+gui/app/views/ivr_menus/edit_selector.ctp -text
 gui/app/views/ivr_menus/edit_switcher.ctp -text
 gui/app/views/ivr_menus/index.ctp -text
+gui/app/views/ivr_menus/selectors.ctp -text
 gui/app/views/ivr_menus/switchers.ctp -text
 gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text

@@ -105,7 +105,7 @@ $path = $ivr['path'].$ivr['dir_node'];
         $attributes=array('legend'=>false,'default'=>$default);
 
 
-        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,$attributes);
+        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,array('legend' => false, 'default' => true));
 	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
        	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
 

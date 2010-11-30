@@ -30,6 +30,7 @@ class IvrMenu extends AppModel{
       var $hasMany = array('Mapping');	
 
 
+
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 
@@ -128,7 +129,7 @@ function __construct($id = false, $table = null, $ds = null) {
  * 
  *
  */
-    function setParent($id){
+/*    function setParent($id){
 
 	 $count = $this->find('count', array('conditions' => array('IvrMenu.parent' => '1')));     
 
@@ -140,7 +141,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	 }    	 
 
 	 return true;
-	 }
+	 }*/
 
 
 /*
@@ -229,15 +230,15 @@ function __construct($id = false, $table = null, $ds = null) {
 
 
 /**
- * Write IVR xml file (curl_xml)
- * All existing IVRs for an instance is written. The default IVR is set to parent.
+ * Write IVR xml file for selected ivr (/webroot/freedomfone/ivr/{instance_id}/conf/ivr.xml)
+
+ * @params int $id: id of ivr
  *
  */
      function writeIVR($id){
 
         $data = $this->findById($id);
         $instance_id = $data['IvrMenu']['instance_id'];
-
 
 	//Instanciate class	
 	$obj = new ivr_xml($instance_id);	       
@@ -250,99 +251,66 @@ function __construct($id = false, $table = null, $ds = null) {
 	       case "ivr":
 
 	       $obj->write_ivr_menu($data);
-
-               foreach($data['Mapping'] as $key => $entry){
-	   
-                        $type = $entry['type'];
-		        $id   = $entry[$type.'_id'];
-
-		        if ( $type && $id){ 
-
-		      	   $obj->write_ivr_entry($type,$id,$entry['digit'],0,$data['IvrMenu']['title'],$data['IvrMenu']['file_invalid'],$entry['instance_id']);
-
-	                }
-                 }
-                 $obj->write_entry_common(0);
-	         break;
-		 
+               break;
 
 	       case "switcher":
 
 	       $obj->write_switcher_menu($data);
+               break;
 
-               foreach($data['Mapping'] as $key => $entry){
-	      
-                        $switcher_type = $data['IvrMenu']['switcher_type'];
-                        $digit = $entry['digit'];
-                        $instance_id =  $entry['instance_id'];
+        }
+
+       foreach($data['Mapping'] as $key => $entry){
+
+                        $ivr_type = $data['IvrMenu']['ivr_type'];	      
                         $type = $entry['type'];
-		        $id   = $entry[$type.'_id'];
+                        $digit = $entry['digit'];
+	                $id   = $entry[$type.'_id'];        
+                        $instance_id =  $entry['instance_id'];
 
-	      	        $obj->write_switcher_entry($switcher_type, $digit, $id, $data['IvrMenu']['file_invalid'], $instance_id );
+		      	$obj->write_ivr_entry($ivr_type, $type, $digit, $id, $instance_id, $data['IvrMenu']['title'] , $data['IvrMenu']['file_invalid'] );
 
 		}
-                $obj->write_entry_common(0);
-                break;	
+       
+       $obj->write_entry_common(0);
 
-	    }
-	      	 
-    	    //Write to file
-	    $obj->write_file();
-	    $obj->close_file();
+        //Write to file
+	$obj->write_file_individual();
+	
 		 
 
     }
 
 
 
+/* Composes ivr.xml (/webroot/xml_curl/ivr.xml) based on all existing IVR menus
+ *  
+ *
+ */
       function writeIVRCommon(){
 
 	//Instanciate class	
 	$obj = new ivr_xml();	       
 
 	//Create header
-	$obj->ivr_header();      
+	//$obj->ivr_header();      
 
         $ivr_settings = Configure::read('IVR_SETTINGS');
-               
+           
+        $data =  $this->find('all');
 
-          $data =  $this->find('all');
-
-          foreach ($data['IvrMenu'] as $key => $ivr){
-
-                  $instance_id = $ivr['instance_id'];
-                  $filename	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
-                  $handle = fopen($filename, "r");
-                  $contents[] = fread($handle, filesize($filename));
-                  fclose($handle);
+          foreach ($data as $key => $entry){
+          
+                  $instance_id = $entry['IvrMenu']['instance_id'];
+                  $filename[]	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";         
 
           }
 
-
-//          $obj->write_all_ivr($contents);
-
+        //Write one or more individual Menus to the common ivr.xml
+        $obj->write_menu($filename);
 
       }	    
 
-      function customizeSave($data){
-
-      	   for($i=1;$i<=8;$i++){
-		unset($type);
-		unset($id);
-		$id   = 'option'.$i.'_id';
-		$type = 'option'.$i.'_type';
-		if ($data['IvrMenu'][$type] == 'lam'){
-		   $data['IvrMenu'][$id]='';
-		}
-      
-	}
-
-        $this->save($data);
-
-
-	return true;
-
-      }
 
 
 

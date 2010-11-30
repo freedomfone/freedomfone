@@ -22,7 +22,9 @@
  *
  ***************************************************************************/
 
+
 class ivr_xml {
+
 
 public $body;
 public $inter_digit_timout;
@@ -49,19 +51,15 @@ public $ext;
      $ext 	   = Configure::read('EXTENSIONS');
      
 
-     $this->ivr_path = $ivr_settings['path'];
+     $this->ivr_path     = $ivr_settings['path'];
      $this->ivr_dir_node = $ivr_settings['dir_node'];
      $this->ivr_dir_menu = $ivr_settings['dir_menu'];
-
-     $this->node_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
+     $this->node_path	 = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
+     $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
      $this->file_individual	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
      $this->file_common	           = WWW_ROOT.$ivr_settings['curl']."ivr.xml"; 
-
-
-
-     $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
-
+     $this->file_core              = WWW_ROOT.$ivr_settings['curl']."core.xml"; 
 
 
      $this->inter_digit_timout      = 2000;
@@ -79,7 +77,7 @@ public $ext;
 
 
 /*
- * Writes XML header
+ * Write XML header (same content as in core.xml)
  * 
  *
  */
@@ -109,7 +107,6 @@ public $ext;
 
   $data      = $ivr['IvrMenu'];
   $mappings  = $ivr['Mapping'];
-
 
 
      $ivr_default = Configure::read('IVR_DEFAULT');
@@ -176,9 +173,8 @@ public $ext;
 	   }
 
 
-	    $menus -> addAttribute ("invalid-sound",$invalid);
-	    $menus -> addAttribute ("exit-sound",$exit);
-
+	   $menus -> addAttribute ("invalid-sound",$invalid);
+	   $menus -> addAttribute ("exit-sound",$exit);
 	   $menus -> addAttribute ("timeout",$this->timeout);					 
 	   $menus -> addAttribute ("inter-digit-timeout",$this->inter_digit_timeout);			 
            $menus -> addAttribute ("max-failures",$this->max_failures);					 
@@ -187,6 +183,13 @@ public $ext;
 
 
 	   }
+
+/*
+ * Writes switcher menu
+ * 
+ * @params array $data ivr_menus object
+ *
+ */
 
   function write_switcher_menu($ivr){
 
@@ -244,7 +247,14 @@ public $ext;
 
 	   }
 
-       function write_switcher_entry($switcher_type, $digit , $id,  $file_invalid, $instance_id){
+/*
+ * Write switcher entry in IVR
+ * 
+ * @params array 
+ *
+ */
+
+/*       function write_switcher_entry($switcher_type, $digit , $id,  $file_invalid, $instance_id){
 
 
                 $entry = $this->body -> section-> configuration-> menus -> menu[0] -> addChild("entry");
@@ -293,9 +303,9 @@ public $ext;
 		 $entry -> addAttribute("param",$param);
 
 
-         }
+         }*/
 
-	   function write_ivr_entry($type,$id,$digit,$key,$title,$file_invalid,$instance_id){
+	   function write_ivr_entry($ivr_type, $type,$digit,$id, $instance_id,$title,$file_invalid){
 
 	            	switch ($type){
 
@@ -342,7 +352,7 @@ public $ext;
 
           		   }
 				
-		        $entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+		        $entry = $this->body -> section-> configuration-> menus -> menu -> addChild("entry");
       			$entry -> addAttribute("action",$action);
 		        $entry -> addAttribute("digits",$digit);
 			$entry -> addAttribute("param",$param);
@@ -353,7 +363,7 @@ public $ext;
 			if($monitor){
 				$action= "menu-exec-app";
 				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' '\${caller_id_number}' '\${destination_number}'";
-		        	$entry = $this->body -> section-> configuration-> menus -> menu[$key] -> addChild("entry");
+		        	$entry = $this->body -> section-> configuration-> menus -> menu -> addChild("entry");
       				$entry -> addAttribute("action",$action);
 		        	$entry -> addAttribute("digits",$digit);
 				$entry -> addAttribute("param",$param);
@@ -378,7 +388,13 @@ public $ext;
 	  }
 
 
-	  function write_file(){
+/*
+ * Opens file (file_individual), writes XML content, and closes file.
+ * 
+ *
+ */
+
+	  function write_file_individual(){
 
 
    	         $this->handle = fopen($this->file_individual,'w');
@@ -387,31 +403,44 @@ public $ext;
      		 $xml = $dom->saveXML();
 
 		 fwrite($this->handle,$xml);
-
+                 fclose($this->handle);
 	
 	  }
 
-
-          function write_all_ivr($contents){
-
-   	         $this->handle = fopen($this->file_common, 'w');
-		 fwrite($this->handle,$contents);
-                 fclose($this->handle);
-
-          }
-
-
-
 /*
- * Closes file ivr.xml for writing 
+ * Writes all IVR instances to ivr.xml 
  * 
  *
  */
- function close_file(){
 
-       fclose($this->handle);
+          function write_menu($filename){
 
- }
+   	         $this->handle = fopen($this->file_common, 'w');
+
+                 //Create new DOM for writing
+                 $newdoc = new DOMDocument;
+                 $newdoc->formatOutput = true;
+                 $newdoc->load($this->file_core);
+
+                 foreach ($filename as $key => $file){
+
+                         //Fetch XML code from instance
+                         $menu = new DOMDocument;
+                         $menu->load($file);
+                         $node = $menu->getElementsByTagName("menu")->item(0);
+
+                         $node = $newdoc->importNode($node, true);
+                         $tag = $newdoc->getElementsByTagName("menus")->item(0);
+                         $tag->appendChild($node);
+
+                 }
+
+                $xml =  $newdoc->saveXML();
+		fwrite($this->handle,$xml);
+                fclose($this->handle);
+
+          }
+
 
 
 }

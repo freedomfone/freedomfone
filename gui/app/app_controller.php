@@ -40,6 +40,8 @@
 App::import("Vendor", "ff_event", false, null, 'spooler_ff.php'); 
 App::import("Vendor", "ESL", false, null, 'ESL.php'); 
 App::import("Vendor", "mp3file", false, null, 'mp3file.php'); 
+App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php'); 
+
 
 App::import('Core','L10n');
 
@@ -391,5 +393,49 @@ return $result;
 
 
      }
+
+
+/*
+ * getInstance: Get instance id for IVR and LAM
+ *
+ * @param array $data
+ * @return int $instance_id 
+ *
+ */
+ function getInstance($data){
+
+          switch($data['type']){
+
+          case 'lam':
+          $model = 'LmMenu';       
+          $table = 'lm_menus';       
+          $field = 'lam_id';       
+          break;
+
+          case 'ivr':
+          $model = 'IvrMenu';       
+          $table = 'ivr_menus';
+          $field = 'ivr_id';       
+          break;
+
+          case 'node':
+          $table = false;
+          break;
+
+          }
+
+          if ($table){
+                $this->loadModel($model);   
+                $data = $this->$model->findById($data[$field]);
+                return $data[$model]['instance_id'];
+
+          } else {
+
+            return false;
+
+          }
+
+     }
+
 }
 ?>

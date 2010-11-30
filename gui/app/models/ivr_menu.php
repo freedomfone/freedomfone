@@ -124,24 +124,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
    }
 
-/*
- * Check if parent exist. If not, set current to parent
- * 
- *
- */
-/*    function setParent($id){
 
-	 $count = $this->find('count', array('conditions' => array('IvrMenu.parent' => '1')));     
-
-	 if (!$count){
-
-	 $this->unbindModel(array('hasMany' => array('Node')));   
-	 $this->saveField('parent', 1);
-
-	 }    	 
-
-	 return true;
-	 }*/
 
 
 /*
@@ -166,67 +149,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
 }
 
-/*
- * Update parent status of IVR menus. 
- * update ivr_menus set status = 0;
- * update ivr_menus set status = 1 where id = $id
- *
- */
-    function updateParent(){
-    
-    	     $this->updateAll(array('IvrMenu.parent' => 0));
-    	     $this->saveField('parent', 1);
-    }
 
-
-/*
- * Check if IVR is parent
- * return true| false
- *
- */
-    function isParent($id){
-
-	 $this->unbindModel(array('hasMany' => array('Node')));   
-    	 $data = $this->findByParent(1);     
-    	 
-	 if($data['IvrMenu']['id']==$id){
-	    return 1;
-	  }
-	   else {
-	    return 0;
-	  }
-    	    
-    }
-
-
-
-/**
- * Fetch next IVR that is not parent(order by id)
- * return $id 
- *
- */
-    function nextEntry(){
-
-    $this->unbindModel(array('hasMany' => array('Node')));      
-    $data= $this->find('first', array('conditions' => array('IvrMenu.instance_id' => IID)));
-    $id = $data['IvrMenu']['id'];
-
-    return $id;
-
-    }
-
-
-/**
- * Set parent flag =1 of selected IVR
- * update ivr_menus set parent = 1 where id = $id
- *
- */
-    function setNewParent(){
-
-    $this->unbindModel(array('hasMany' => array('Node')));   
-    $this->saveField('parent',1);
-
-    }
 
 
 /**
@@ -262,6 +185,8 @@ function __construct($id = false, $table = null, $ds = null) {
 
        foreach($data['Mapping'] as $key => $entry){
 
+            if($entry['type']){
+
                         $ivr_type = $data['IvrMenu']['ivr_type'];	      
                         $type = $entry['type'];
                         $digit = $entry['digit'];
@@ -269,8 +194,8 @@ function __construct($id = false, $table = null, $ds = null) {
                         $instance_id =  $entry['instance_id'];
 
 		      	$obj->write_ivr_entry($ivr_type, $type, $digit, $id, $instance_id, $data['IvrMenu']['title'] , $data['IvrMenu']['file_invalid'] );
-
-		}
+              } 
+        }
        
        $obj->write_entry_common(0);
 
@@ -283,7 +208,8 @@ function __construct($id = false, $table = null, $ds = null) {
 
 
 
-/* Composes ivr.xml (/webroot/xml_curl/ivr.xml) based on all existing IVR menus
+/* 
+ * Composes ivr.xml (/webroot/xml_curl/ivr.xml) based on all existing IVR menus
  *  
  *
  */
@@ -404,38 +330,6 @@ function __construct($id = false, $table = null, $ds = null) {
         }
 
 
-/*
- * emptyDir: Delete all files in the given directory 
- *
- * @param string $dir
- * @return boolean result
- *
- */
-      function deleteDirXZXX($instance_id){
-
-          $dir = WWW_ROOT.$settings['path'].$instance_id.'/'.$settings['dir_menu'];
-
-          $handle=opendir($dir);
-          $result = true;
-
-
-
-          if($dir && $handle){
-               while (($file = readdir($handle))!==false) {
-               
-                        if(is_file($dir.'/'.$file)){
-                    
-                               $result = unlink($dir.'/'.$file);
-
-                       }
-               }
-	       $this->log("Msg: INFO; Action: IVR audio files deleted; Dir: ".$dir."; lam");
-               closedir($handle);
-
-           }
-               return $result;
-      }
-
 
 
 /*
@@ -475,15 +369,10 @@ function __construct($id = false, $table = null, $ds = null) {
     function deleteIVR($id, $instance_id){
 
 
-        $settings = Configure::read('IVR_SETTINGS');
-
-         if($id && $instance_id){
-
-          $dir = WWW_ROOT.$settings['path'].$instance_id;
-         
-          $this->deleteDir($dir);
+          if($id && $instance_id){
 
            //FIXME: delete all mapping to the IVR
+
            /* foreach($this->data['Mapping'] as $key => $mapping){
 
     	   $this->Mapping->delete($mapping['id']);
@@ -492,7 +381,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
 //    	   $this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
    
-    	   if($this->deleteAll($id,true)){
+    	   if($this->delete($id,true)){
 
 		   $this->log("Msg: INFO; Action: IVR deleted; Id: ".$id."; Code: N/A", "ivr");
                    return true;
@@ -510,45 +399,6 @@ function __construct($id = false, $table = null, $ds = null) {
            }
 
       }
-
-
-
-      function deleteDir($directory ){
-
-               if(substr($directory,-1) == "/") {
-                      $directory = substr($directory,0,-1);
-                }
-
-                if(!file_exists($directory) || !is_dir($directory)) {
-                           return false;
-                } elseif(!is_readable($directory)) {
-                          return false;
-                } else {
-                          $directoryHandle = opendir($directory);
-       
-                while ($contents = readdir($directoryHandle)) {
-                      if($contents != '.' && $contents != '..') {
-                                   $path = $directory . "/" . $contents;
-              
-                        if(is_dir($path)) {
-                             deleteDir($path);
-                        } else {
-                        unlink($path);
-                        }
-                      }
-                }
-       
-                closedir($directoryHandle);
-
-                if($empty == false) {
-                          if(!rmdir($directory)) {
-                          return false;
-                          }             
-                }
-       
-                return true;
-              }
-     } 
 
 
 

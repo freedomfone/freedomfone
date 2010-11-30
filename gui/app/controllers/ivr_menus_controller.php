@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * ivr_menus_controller.php	- Controller for IVR menus. Manages CRUD operations. Creating ivr.xml file.
+ * ivr_menus_controller.php	- Controller for IVR menus. Manages CRUD operations. Creating ivr.xml files.
  * version 		 	- 1.0.368
  * 
  * Version: MPL 1.1
@@ -32,6 +32,12 @@ class IvrMenusController extends AppController{
 	var $helpers = array('Flash','Session','Ajax','Formatting','Javascript');      
 
 
+/*
+ * Lists all IVR (Voice Menus)
+ *
+ * 
+ *
+ */
 
    function index(){
 
@@ -51,34 +57,13 @@ class IvrMenusController extends AppController{
 	}
 
 
+
 /*
-    function reserve($ivr_type) {
-
-         $lm_settings = Configure::read('IVR_SETTINGS');
-         $fileData = array();
-
-         //Show form
-         if  (empty($this->data)) {
-
-             $entry = $this->IvrMenu->nextInstance($ivr_type);
-
-
-             if($ivr_type=='ivr'){ $method = 'edit/';}
-             elseif ($ivr_type=='switcher'){ $method = 'edit_selector/';}
-
-             if(!$entry['id']){
-                    $this->_flash(__('There are no idle instance for a new Voice menu. Please delete an existing Voice  menu, and try again. Maximum Voice menus: 10.',true), 'warning');
-                    $this->redirect(array('action' =>'/'));
-              } else {
- 
-                    $this->redirect(array('action' => $method.$entry['id']));
-                   
-              }
-         } 
-      }
-*/
-
-
+ * Create new IVR (Voice Menu)
+ *
+ * 
+ *
+ */
    function add(){
 
       	$this->pageTitle = 'Voice menus : Add';           
@@ -111,6 +96,7 @@ class IvrMenusController extends AppController{
 
 	//Render view
 	$this->render();
+
       }
 
 
@@ -137,7 +123,10 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
+
                 foreach($this->data['Mapping'] as $key => $entry){
+
+                if($entry['id']){
 
                    switch($entry['type']){
 
@@ -161,7 +150,18 @@ class IvrMenusController extends AppController{
 
                    }
 
+                  } else {
+
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= false;
+	            $this->data['Mapping'][$key]['type']= false;
+
+
+                  }
+
                 }
+
 
         if ($this->IvrMenu->saveAll($this->data )){
 
@@ -228,6 +228,14 @@ class IvrMenusController extends AppController{
   
    }
 
+
+/*
+ * Edit IVR (Voice Menu)
+ *
+ * 
+ *
+ */
+  
    function edit($id = null){
 
 
@@ -307,13 +315,10 @@ class IvrMenusController extends AppController{
 
                                            $filename = $this->getFilename($fileOK['files'][$key]);
 					   $name= $fileData[$key]['name'];
-                                           $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part));
+                                           $field = $fileData[$key]['fileName'];
+   
                                            $this->IvrMenu->saveField($field,$name);
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
-
-                                           // Update database field correponding to file 
-
 					   $this->log("Msg: INFO; Action: Edit menu; Type: ".$url."; Code: N/A", "ivr");
 				   }
 					
@@ -323,6 +328,7 @@ class IvrMenusController extends AppController{
 			if(array_key_exists('errors',$fileOK)){
 
 				foreach ($fileOK['errors'] as $key => $error){
+
 					$this->_flash(__('Success',true).' : '.$error, 'error');												
 
 				}
@@ -334,14 +340,22 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
+
+
                 foreach($this->data['Mapping'] as $key => $entry){
+
+                    if (!$entry[$entry['type'].'_id'] ) {
+
+                    unset($this->data['Mapping'][$key]);
+
+                    } else {
 
                    switch($entry['type']){
 
                     case 'node':
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['ivr_id']= false;
-
+	            $this->data['Mapping'][$key]['instance_id']= false;
                     break;
 
                     case 'lam':
@@ -357,8 +371,11 @@ class IvrMenusController extends AppController{
                     break;
 
                    }
+                  } 
 
                 }
+
+debug($this->data);
 
          $this->IvrMenu->saveAll($this->data);
 
@@ -376,6 +393,13 @@ class IvrMenusController extends AppController{
    }
 
 
+/*
+ * Delete IVR (Voice Menu and Language Switcher) and correspondent web directories (webroot/freedomfone/ivr/{instance_id})
+ *
+ * @param int $id, string $type {ivr,switcher}
+ *
+ */
+  
     function delete ($id,$type){
          
          if($id && $type){
@@ -411,13 +435,21 @@ class IvrMenusController extends AppController{
 
                 //Delete action OK -> success flash
 
+
+                if($id && $instance_id && $settings['path']){
+
+                       $dir = WWW_ROOT.$settings['path'].$instance_id;         
+                       $this->delete_dir($dir);
+
+
                 if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
 
                    $this->_flash(__('The selected entry has been deleted.',true),'success');
-                   $result = $this->IvrMenu->deleteDir($instance_id);
+                  
 
                 }
 
+                }
              //LAM is active -> warning flash
              } else {
 
@@ -436,42 +468,19 @@ class IvrMenusController extends AppController{
       }
 
 
-    function delete_old ($id){
 
-
-	     
-             //Check if IVR is parent
-    	     $isParent = $this->IvrMenu->isParent($id);
-
-	     
-	   //Delete IVR
-
-    	     	if($this->IvrMenu->delete($id,true)){
-		   $this->log("Msg: INFO; Action: IVR deleted; Type: ".$id."; Code: N/A", "ivr");
-		   $this->Session->setFlash(__('The voice menu has been deleted.',true),'default',array('class'=>'message_success'));
-		 }
-
-		 //If IVR was parent
-		 if($isParent && !$this->IvrMenu->lastIVR()){
-
-			//Get id of new parent (first in the list)       	   
-			$this->IvrMenu->id = $this->IvrMenu->nextEntry();
-		
-			//Set new parent
-	     		$this->IvrMenu->setNewParent();
-		}	
-
-	  
-
-	  	$this->redirect(array('action' => '/index'));
-      }
-
-
-  function download ($id,$type) {
+/*
+ * Download IVR (Voice Menu or Language Selector) instruction files
+ *
+ *  @param int $instance_id, string $type {long,short, exit, invalid}
+ *
+ */
+  
+  function download ($instance_id,$type) {
 
     	Configure::write('debug', 0);
 	
-	$file = $id.'_file_'.$type.'.mp3';
+	$file = 'file_'.$type.'.mp3';
 	$url  = 'webroot/freedomfone/ivr/'.$instance_id.'/ivr';
 
         $this->view = 'Media';
@@ -494,6 +503,13 @@ class IvrMenusController extends AppController{
     }
 
 
+/*
+ *
+ * List all IVR (Language selectors
+ *
+ *
+ */
+
    function selectors(){
 
       	$this->pageTitle = __('Language Selectors',true);           
@@ -505,6 +521,13 @@ class IvrMenusController extends AppController{
 
 	}
 
+
+/*
+ *
+ * Create new language selector
+ *
+ *
+ */
 
     function add_switcher(){
 
@@ -539,14 +562,13 @@ class IvrMenusController extends AppController{
 
 
 
+
 /*
  *
- * @param int $id
+ * Edit language selector
  *
- * Updates database entry, and uploads new files.
  *
  */
-
 
    function edit_selector($id = null){
 
@@ -688,6 +710,13 @@ class IvrMenusController extends AppController{
 	 } 
 
    }
+
+/*
+ *
+ * AJAX drop-down menu for Menu Options
+ *
+ *
+ */
 
    function disp(){
 

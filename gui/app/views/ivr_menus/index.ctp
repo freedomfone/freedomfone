@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- List processes
+ * index.ctp	- List all IVR Voice Menus
  * version 	- 1.0.359
  * 
  * Version: MPL 1.1
@@ -52,13 +52,6 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 
           echo $form->hidden('source',array('value'=>'index'));
 
-
-/*
-      	foreach ($ivr_menus as $key => $ivr_menu){
-      	   if ($ivr_menu['IvrMenu']['parent']==1){
-	      $parent = $ivr_menu['IvrMenu']['id'];
-	      }
-      	}*/
  
 	foreach ($ivr_menus as $key => $ivr_menu){
       		$options    = array($ivr_menu['IvrMenu']['id']=>'');

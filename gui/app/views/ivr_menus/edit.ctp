@@ -83,7 +83,7 @@ $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_long']){
 	$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));
-	$step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/long",null, null, false);				  
+	$step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/long",null, null, false);				  
 }
 
  echo "<table>";
@@ -105,7 +105,7 @@ $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_short']){
 	$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));
-	$step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/short",null, null, false);
+	$step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	}
 
  echo "<table>";
@@ -127,7 +127,7 @@ $step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_exit']){
 	$box[2] = $form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));
-	$step3[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/exit",null, null, false);
+	$step3[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/exit",null, null, false);
 	}
 
  echo "<table>";
@@ -150,7 +150,7 @@ $step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_invalid']){
 	$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));
-	$step4[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/invalid",null, null, false);
+	$step4[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/invalid",null, null, false);
 	}
 
  echo "<table>";
@@ -172,6 +172,7 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 $path = $ivr['path'].$ivr['dir_node'];
 
+
      for($i=0;$i<2;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
@@ -186,23 +187,30 @@ $path = $ivr['path'].$ivr['dir_node'];
         $attributes=array('legend'=>false,'default'=>$default);
 
 
-        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,$attributes);
+
+        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,array('legend' => false, 'default' => true));
 	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
        	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
 
         $listen = false;
 
-        if($this->data['Mapping']){
-                if($this->data['Mapping'][$i]['type'] == 'node'){
+        if($mappings = $this->data['Mapping']){
 
-                   $id = $this->data['Mapping'][$i]['node_id'];
+
+
+          if(array_key_exists($i,$mappings)){
+            
+              if($mappings[$i]['type'] == 'node'){
+
+                   $id = $mappings[$i]['node_id'];
                    $file = $nodes['file'][$id];
                    $title = $nodes['title'][$id];
       	           $path = $ivr['path'].$ivr['dir_node'];
 	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
                 }
-        }
 
+           }
+        }
 
         $row[$i]=array(
 	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),

@@ -71,7 +71,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step1[4] = $this->element('player',array('host'=>$settings['host'],'path'=>$path,'file'=>'file_long','title'=>__('Instructions Message',true),'id'=>'short'));
 
                  if($switcher['file_long']){
-	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/short",null, null, false);
+	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	         }
 
                  echo "<table>";
@@ -89,7 +89,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step2[4] = $this->element('player',array('host'=>$settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'short'));
 
                  if($switcher['file_invalid']){
-	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['id']}/short",null, null, false);
+	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	         }
 
                  echo "<table>";
@@ -123,7 +123,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
         $attributes=array('legend'=>false,'default'=>$default);
 
 
-        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,$attributes);
+        $radio1 = $form->radio('Mapping.'.$i.'.type',$options1,array('legend' => false, 'default' => true));
 	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
        	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
 

@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $form->create('IvrMenu',array('type' => 'post','action'=> 'reserve/switcher'));
+echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_switcher'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
@@ -56,7 +56,7 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
 		$created      = $time->niceShort($switcher['IvrMenu']['created']);
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
 		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/selectors/edit/{$switcher['IvrMenu']['id']}",null, null, false);
-		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/selectors/delete/{$switcher['IvrMenu']['id']}/switcher",null, __("Are you sure you want to delete this language switcher?",true),false);
+		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/selectors/delete/{$switcher['IvrMenu']['id']}/switcher",null, __("Are you sure you want to delete this language selector?",true),false);
 
      		$row[$key] = array(
 			   array($title,array('width'=>'100px')),

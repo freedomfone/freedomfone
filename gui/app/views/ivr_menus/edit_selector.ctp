@@ -47,6 +47,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit_selector','enctype' => 'multipart/form-data') );
                 echo $form->input('id',array('type'=>'hidden'));
                 echo $form->input('instance_id',array('type'=>'hidden','value'=>$switcher['instance_id']));
+
                 
                 //** TITLE **///
                 echo "<fieldset>";

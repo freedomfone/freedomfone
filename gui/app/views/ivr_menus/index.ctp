@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $form->create('IvrMenu',array('type' => 'post','action'=> 'reserve/ivr'));
+echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 

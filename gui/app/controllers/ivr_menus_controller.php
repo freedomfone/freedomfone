@@ -25,6 +25,7 @@
 App::import("Vendor", "ivr_xml", false, null, 'ivr_xml.php'); 
 App::import("Xml");
 
+
 class IvrMenusController extends AppController{
 
 	var $name = 'IvrMenus';
@@ -321,7 +322,7 @@ class IvrMenusController extends AppController{
 	 //Update IVR xml file
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 	 $this->IvrMenu->writeIVR($id);
-	// $this->IvrMenu->writeIVRCommon);
+	 $this->IvrMenu->writeIVRCommon();
 
 	//Redirect to index
 	$this->redirect(array('action' => 'index'));
@@ -345,7 +346,7 @@ class IvrMenusController extends AppController{
                 break;
 
                 case 'switcher':               
-                $redirect = 'switchers';
+                $redirect = 'selectors';
                 break;
 
              }
@@ -363,7 +364,7 @@ class IvrMenusController extends AppController{
                 //Delete action OK -> success flash
                 if ($result = $this->IvrMenu->deleteIVR($id)){
 
-                   $this->_flash(__('The selected menu has been deleted.',true),'success');
+                   $this->_flash(__('The selected entry has been deleted.',true),'success');
                    $result = $this->IvrMenu->emptyDir($dir);
 
                 }
@@ -371,7 +372,7 @@ class IvrMenusController extends AppController{
              //LAM is active -> warning flash
              } else {
 
-               $this->_flash(__('The selected menu could not be deleted since it is a member of another IVR.',true),'warning');
+               $this->_flash(__('The selected entry could not be deleted since it is a member of another Voice Menu.',true),'warning');
             
              }
 
@@ -627,15 +628,12 @@ class IvrMenusController extends AppController{
                       }
 
 
-       $this->IvrMenu->saveAll($this->data);
-
+         $this->IvrMenu->saveAll($this->data);
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 	 $this->IvrMenu->writeIVR($id);
-
+	 $this->IvrMenu->writeIVRCommon();
 
 	 $this->redirect(array('action' => 'selectors'));
-
-
 
 
 	 } 
@@ -646,7 +644,6 @@ class IvrMenusController extends AppController{
 
 
    $service = $this->data['IvrMenu']['switcher_type'];
-
 
 
    if($service =='ivr'){ 

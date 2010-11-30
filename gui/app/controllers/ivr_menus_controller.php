@@ -47,10 +47,11 @@ class IvrMenusController extends AppController{
 	$this->set('ivr_menus',$ivr_menus);
 
 
+
 	}
 
 
-
+/*
     function reserve($ivr_type) {
 
          $lm_settings = Configure::read('IVR_SETTINGS');
@@ -75,7 +76,7 @@ class IvrMenusController extends AppController{
               }
          } 
       }
-
+*/
 
 
    function add(){
@@ -87,9 +88,22 @@ class IvrMenusController extends AppController{
             $ivr_default  = Configure::read('IVR_DEFAULT');
 
       
-	//List all nodes
-	$nodes = $this->IvrMenu->Node->find('list');
-        $this->set(compact('nodes'));
+		//Fetch list of all IVR
+		$voicemenu = $this->IvrMenu->find('list', array('conditions' => array('IvrMenu.ivr_type' => 'ivr')));
+
+
+	        //Fetch list of all nodes
+                $this->loadModel('Node');
+		$nodes['title']   = $this->Node->find('list');
+		$nodes['file']    = $this->Node->find('list', array('fields' => array('Node.file')));
+
+
+		//Fetch list of all lam
+                $this->loadModel('LmMenu');
+		$lam  = $this->LmMenu->find('list');
+
+
+        	$this->set(compact('nodes','lam','voicemenu'));
 
 
       //Render empty form
@@ -103,9 +117,12 @@ class IvrMenusController extends AppController{
       //Form data exists. Validate and save form data
       else{
 
-        //set instance_id
+        //Get instance id
+        $instance_id =$this->IvrMenu->nextInstance();
+	$this->data['IvrMenu']['instance_id']= $instance_id;
 
-
+        //Make dir structure for new IVR
+        $this->IvrMenu->makeDir($instance_id);
 
 	$this->data['IvrMenuFile']['file_long'] = $this->data['IvrMenu']['file_long'];
 	$this->data['IvrMenuFile']['file_short'] = $this->data['IvrMenu']['file_short'];
@@ -118,7 +135,36 @@ class IvrMenusController extends AppController{
 	$this->data['IvrMenu']['file_invalid']= false;
 
 
-	if ($this->IvrMenu->save($this->data['IvrMenu'] )){
+          //Save text based form data
+
+                foreach($this->data['Mapping'] as $key => $entry){
+
+                   switch($entry['type']){
+
+                    case 'node':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+
+                    break;
+
+                    case 'lam':
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
+                    break;
+
+                    case 'ivr':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+                    break;
+
+                   }
+
+                }
+
+        if ($this->IvrMenu->saveAll($this->data )){
+
 
 	   //Retrieve id of saved poll
 	   $id = $this->IvrMenu->getLastInsertId();
@@ -138,7 +184,7 @@ class IvrMenusController extends AppController{
                  if(isset($fileData)){
 
 	          //Upload one or more wav files
-		  $fileOK = $this->uploadFiles($ivr_settings['path'].$instace_id."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
+		  $fileOK = $this->uploadFiles($ivr_settings['path'].$instance_id."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
 
 
                         //If file upload is ok		      
@@ -168,10 +214,10 @@ class IvrMenusController extends AppController{
 
                  }
 
-		 $this->IvrMenu->setParent($id);
 
 	        //Recreate ivr.xml
 		$this->IvrMenu->writeIVR($id);
+		$this->IvrMenu->writeIVRCommon();
 	 	$this->redirect(array('action' => 'index'));
 
 
@@ -290,8 +336,6 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
-
-
                    switch($entry['type']){
 
                     case 'node':
@@ -316,7 +360,6 @@ class IvrMenusController extends AppController{
 
                 }
 
-
          $this->IvrMenu->saveAll($this->data);
 
 	 //Update IVR xml file
@@ -335,7 +378,7 @@ class IvrMenusController extends AppController{
 
     function delete ($id,$type){
          
-         if($id){
+         if($id && $type){
 
              $settings = Configure::read('IVR_SETTINGS');                
 
@@ -351,21 +394,27 @@ class IvrMenusController extends AppController{
 
              }
 
+	    $this->IvrMenu->id = $id;
+            $this->data = $this->IvrMenu->read();
+
+
              $instance_id = $this->IvrMenu->getInstanceID($id); 
-             $dir = WWW_ROOT.$settings['path'].$instance_id.'/'.$settings['dir_menu'];
+
 
 
              //FIXME ! Check if IVR is active
              $isActive = false; 
 
+
              //IVR is not active -> delete
              if (!$isActive){
 
                 //Delete action OK -> success flash
-                if ($result = $this->IvrMenu->deleteIVR($id)){
+
+                if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
 
                    $this->_flash(__('The selected entry has been deleted.',true),'success');
-                   $result = $this->IvrMenu->emptyDir($dir);
+                   $result = $this->IvrMenu->deleteDir($instance_id);
 
                 }
 

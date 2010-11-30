@@ -318,87 +318,90 @@ function __construct($id = false, $table = null, $ds = null) {
  * Provides next idle $instance_id
  *  
  *
- * @return array(int $id, int $instance_id)
+ * @return int $instance_id
  *
  */
-    function nextInstance($ivr_type){
+    function nextInstance(){
 
      	    $ivr_settings = Configure::read('IVR_SETTINGS');
 
 	    $this->unbindModel(array('hasMany' => array('Node')));   
             $data =  $this->findAll();
 
+            $i = $ivr_settings['instance_start'];
+            $instance_id = false;
 
-          //IVR entries exist  
-          if ($data){
+            //IVR entries exist  
+            if ($data){
 
                    //Collect all occupied instance_id into $taken[] 
                    foreach ($data as $key => $entry){
                            $taken[] = $entry['IvrMenu']['instance_id'];
                    }
             
+                   while(!$instance_id){
 
-                   $next = false;
-                   $id = false;
+                        if(!in_array($i,$taken)){
 
-                   //Loop through all possible (idle/occupied) instance_id, select the first idle one
+                           $instance_id = $i;
 
-                         for ($i = $ivr_settings['instance_min']; $i<= $ivr_settings['instance_max'] ; $i++){
+                        }
 
-                             if(!in_array($i,$taken) && !$next){
-                                  $next = $i;
-                                  $this->set('instance_id',$next);
-                                  $this->set('ivr_type',$ivr_type);
+                        $i++;
 
-                                  switch($ivr_type){
+                   }
 
-                                  case 'ivr':
+                   return $instance_id;
 
-                                  $this->set('switcher_type',false);
-                                  $this->set('title','IVR '.$next);
-                                  $this->set('option1_type','node');
-                                  $this->set('option2_type','node');
-                                  $this->set('option3_type','node');
-                                  $this->set('option4_type','node');
-                                  $this->set('option5_type','node');
-                                  $this->set('option6_type','node');
-                                  $this->set('option7_type','node');
-                                  $this->set('option8_type','node');
-                                  $this->set('option9_type','node');
-                                  break;
+            } else {
 
-                                  case 'switcher':
-                                  $this->set('switcher_type','ivr_menus');
-                                  $this->set('title','SWITCHER '.$next);
-                                  break;
-
-                                  }
-
-                                  $this->save();
-	                          $id = $this->getLastInsertId();
-
-                                  
-                              }
-
-                 }
-            }
-
-            else {
-
-
-              $next = $ivr_settings['instance_min'];
-              $this->set('instance_id',$next);
-              $this->save();
-	      $id = $this->getLastInsertId();
-
+              return $i;
 
             }
-
-
-            return array('id'=>$id,'instance_id'=>$next);
-
-
+                
       }
+
+
+/*
+ * makeDir: Create directory for new IVR instance
+ *
+ * @param string int $instance_id
+ * @return boolean result
+ *
+ */
+
+        function makeDir($instance_id){
+
+        $ivr_settings = Configure::read('IVR_SETTINGS');
+
+                 $old = umask(0);
+
+                 $dir_root =  WWW_ROOT.$ivr_settings['path'].'/'.$instance_id;
+                 $dir_conf =  $dir_root.'/conf';
+                 $dir_ivr =   $dir_root.'/ivr';
+
+                 if(!is_dir($dir_root)){
+
+                       $status =  mkdir($dir_conf,0755,true);
+                       
+                       if($status){
+                        
+                        mkdir($dir_ivr, 0755,true);
+                        umask($old); 
+                        return true;
+
+                        } else {
+ 
+                       return false;
+
+                        }
+
+                 } else {
+
+                 return false;
+                 
+                 }
+        }
 
 
 /*
@@ -408,10 +411,14 @@ function __construct($id = false, $table = null, $ds = null) {
  * @return boolean result
  *
  */
-      function emptyDir($dir){
+      function deleteDirXZXX($instance_id){
+
+          $dir = WWW_ROOT.$settings['path'].$instance_id.'/'.$settings['dir_menu'];
 
           $handle=opendir($dir);
           $result = true;
+
+
 
           if($dir && $handle){
                while (($file = readdir($handle))!==false) {
@@ -465,11 +472,27 @@ function __construct($id = false, $table = null, $ds = null) {
  *
  */
     
-    function deleteIVR($id){
+    function deleteIVR($id, $instance_id){
 
-           $this->unbindModel(array('hasMany' => array('Node')));
+
+        $settings = Configure::read('IVR_SETTINGS');
+
+         if($id && $instance_id){
+
+          $dir = WWW_ROOT.$settings['path'].$instance_id;
+         
+          $this->deleteDir($dir);
+
+           //FIXME: delete all mapping to the IVR
+           /* foreach($this->data['Mapping'] as $key => $mapping){
+
+    	   $this->Mapping->delete($mapping['id']);
+
+           }*/
+
+//    	   $this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
    
-    	   if($this->delete($id,true)){
+    	   if($this->deleteAll($id,true)){
 
 		   $this->log("Msg: INFO; Action: IVR deleted; Id: ".$id."; Code: N/A", "ivr");
                    return true;
@@ -479,10 +502,53 @@ function __construct($id = false, $table = null, $ds = null) {
                   return false;
 
            }
+           } else{
+
+
+           return false;
+
+           }
 
       }
 
 
+
+      function deleteDir($directory ){
+
+               if(substr($directory,-1) == "/") {
+                      $directory = substr($directory,0,-1);
+                }
+
+                if(!file_exists($directory) || !is_dir($directory)) {
+                           return false;
+                } elseif(!is_readable($directory)) {
+                          return false;
+                } else {
+                          $directoryHandle = opendir($directory);
+       
+                while ($contents = readdir($directoryHandle)) {
+                      if($contents != '.' && $contents != '..') {
+                                   $path = $directory . "/" . $contents;
+              
+                        if(is_dir($path)) {
+                             deleteDir($path);
+                        } else {
+                        unlink($path);
+                        }
+                      }
+                }
+       
+                closedir($directoryHandle);
+
+                if($empty == false) {
+                          if(!rmdir($directory)) {
+                          return false;
+                          }             
+                }
+       
+                return true;
+              }
+     } 
 
 
 

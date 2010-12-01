@@ -108,7 +108,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                 echo "<legend>".__('Services',true)."</legend>";
 
 
-     for($i=0;$i<2;$i++){
+     for($i=0;$i<9;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	

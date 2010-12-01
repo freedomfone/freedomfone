@@ -229,6 +229,151 @@ class IvrMenusController extends AppController{
    }
 
 
+
+/*
+ * Create new IVR (Voice Menu)
+ *
+ * 
+ *
+ */
+   function add_selector(){
+
+      	$this->pageTitle = 'Language Selector : Add';           
+	
+
+        $ivr_settings = Configure::read('IVR_SETTINGS');
+        $ivr_default  = Configure::read('IVR_DEFAULT');
+
+     
+        if (empty($this->data)){
+
+	   $this->render();
+
+        }  else {
+
+         //Form data exists. Validate and save form data
+
+        //Get instance id
+        $instance_id =$this->IvrMenu->nextInstance();
+	$this->data['IvrMenu']['instance_id']= $instance_id;
+
+        //Make dir structure for new IVR
+        $this->IvrMenu->makeDir($instance_id);
+
+	$this->data['IvrMenuFile']['file_long'] = $this->data['IvrMenu']['file_long'];
+	$this->data['IvrMenuFile']['file_invalid'] = $this->data['IvrMenu']['file_invalid']; 
+	$this->data['IvrMenu']['file_long']= false;
+	$this->data['IvrMenu']['file_invalid']= false;
+
+
+          //Save text based form data
+
+
+                foreach($this->data['Mapping'] as $key => $entry){
+
+                if($entry['id']){
+
+                   switch($entry['type']){
+
+                    case 'node':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+
+                    break;
+
+                    case 'lam':
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['ivr_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
+                    break;
+
+                    case 'ivr':
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+                    break;
+
+                   }
+
+                  } else {
+
+	            $this->data['Mapping'][$key]['lam_id']= false;
+	            $this->data['Mapping'][$key]['node_id']= false;
+	            $this->data['Mapping'][$key]['instance_id']= false;
+	            $this->data['Mapping'][$key]['type']= false;
+
+
+                  }
+
+                }
+
+
+        if ($this->IvrMenu->saveAll($this->data )){
+
+
+	   //Retrieve id of saved poll
+	   $id = $this->IvrMenu->getLastInsertId();
+
+		foreach($this->data['IvrMenuFile'] as $key => $file){
+
+
+			if ($file['size']){
+				$file['fileName'] = $key;
+				$fileData[]       = $file;
+			} elseif ($file['error']==1 && !$file['size']) {
+       	       		   $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           	
+		       	   
+			   }			  		   
+		   }
+
+                 if(isset($fileData)){
+
+	          //Upload one or more wav files
+		  $fileOK = $this->uploadFiles($ivr_settings['path'].$instance_id."/".$ivr_settings['dir_menu'], $fileData ,false,'audio',true,true);
+
+
+                        //If file upload is ok		      
+                        if(array_key_exists('urls', $fileOK)) {
+
+                                foreach ($fileOK['urls'] as $key => $url ){
+
+                                           $filename = $this->getFilename($fileOK['files'][$key]);
+					   $name= $fileData[$key]['name'];
+                                           $part = strstr($filename,'_');
+   			                   $field=substr($part,1,strlen($part));
+                                           $this->IvrMenu->saveField($field,$name);
+		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
+					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
+				   }
+					
+				}
+
+			if(array_key_exists('errors', $fileOK)) {
+
+				   foreach ($fileOK['errors'] as $key => $error ){
+				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
+					   $this->_flash($error, 'error');
+
+				    }
+			}
+
+                 }
+
+
+	        //Recreate ivr.xml
+		$this->IvrMenu->writeIVR($id);
+		$this->IvrMenu->writeIVRCommon();
+	 	$this->redirect(array('action' => 'index'));
+
+
+         }
+
+	 } 
+
+  
+   }
+
+
 /*
  * Edit IVR (Voice Menu)
  *
@@ -375,7 +520,7 @@ class IvrMenusController extends AppController{
 
                 }
 
-debug($this->data);
+
 
          $this->IvrMenu->saveAll($this->data);
 
@@ -420,42 +565,33 @@ debug($this->data);
 
 	    $this->IvrMenu->id = $id;
             $this->data = $this->IvrMenu->read();
-
-
-             $instance_id = $this->IvrMenu->getInstanceID($id); 
-
-
-
-             //FIXME ! Check if IVR is active
-             $isActive = false; 
+            $instance_id = $this->IvrMenu->getInstanceID($id); 
 
 
              //IVR is not active -> delete
-             if (!$isActive){
+             if (!$this->isActive($id,'ivr')){
+
 
                 //Delete action OK -> success flash
-
-
                 if($id && $instance_id && $settings['path']){
 
                        $dir = WWW_ROOT.$settings['path'].$instance_id;         
                        $this->delete_dir($dir);
 
+                       if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
 
-                if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
-
-                   $this->_flash(__('The selected entry has been deleted.',true),'success');
-                  
-
-                }
+                          $this->_flash(__('The selected entry has been deleted.',true),'success');
+                   
+                       }
 
                 }
-             //LAM is active -> warning flash
-             } else {
+             
+                //LAM is active -> warning flash
+                } else {
 
-               $this->_flash(__('The selected entry could not be deleted since it is a member of another Voice Menu.',true),'warning');
+                  $this->_flash(__('The selected entry could not be deleted since it is a member of another Voice Menu.',true),'warning');
             
-             }
+                }
 
 
            } else {
@@ -520,46 +656,6 @@ debug($this->data);
 
 
 	}
-
-
-/*
- *
- * Create new language selector
- *
- *
- */
-
-    function add_switcher(){
-
-      	$this->pageTitle = 'Language switcher : Add';           
-
-            if (empty($this->data)){
-
-               $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-	       $lam = $this->IvrMenu->query('select * from lm_menus');
-	       $ivr = $this->IvrMenu->findByIvrType('ivr');
-               $this->set(compact('lam','ivr'));
-	       $this->render();
-
-            } else {
-
-            //Save data
-
-
-/*
-	$this->data['SwitcherFile']['file_long'] = $this->data['Switcher']['file_long'];
-	$this->data['SwitcherFile']['file_invalid'] = $this->data['Switcher']['file_invalid']; 
-
-	$this->unset(data['IvrMenu']['file_long']);
-	$this->unset(data['IvrMenu']['file_invalid']);*/
-
-	$this->IvrMenu->save($this->data);
-
-        $this->redirect(array('action' => '/'));   
-         }
-
-        }
-
 
 
 
@@ -726,9 +822,10 @@ debug($this->data);
 
    if($service =='ivr'){ 
 
-
 	$this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
-	$data  = $this->Node->find('list');
+	$data = $voicemenu = $this->IvrMenu->find('list', array('conditions' => array('IvrMenu.ivr_type' => 'ivr')));
+
+
         
    } elseif($service =='lam'){
         
@@ -744,7 +841,7 @@ debug($this->data);
 
    }
 
-  $this->set(compact('data'));
+  $this->set(compact('data','service'));
 
    }
 

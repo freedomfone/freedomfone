@@ -134,24 +134,6 @@ function __construct($id = false, $table = null, $ds = null) {
      }
 
 
-/*
- * Checks if a node is active in an existig IVR.
- *  
- * @param int $id
- * @return bool
- *
- */
-
-      function isActive($id){
-
-	  $data = $this->query("select * from ivr_menus where option1_id= $id or option2_id=$id or option3_id=$id or option4_id=$id or option5_id=$id or option6_id=$id or option7_id=$id or option8_id=$id or option9_id=$id");
-
-	   if (sizeof($data)){
-	      return true;
-	      } else {
-	      return false;
-	      }
-      }
 
 
 /*

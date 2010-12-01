@@ -91,7 +91,7 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 $path = $ivr['path'].$ivr['dir_node'];
 
-     for($i=0;$i<2;$i++){
+     for($i=0;$i<9;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	

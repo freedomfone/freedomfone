@@ -130,7 +130,7 @@ $this->render();
     	     $ivr_settings = Configure::read('IVR_SETTINGS');
       	     $path = '/'.$ivr_settings['path'].$ivr_settings['dir_node'];
 
-	     if(!$this->Node->isActive($id)){
+	     if(!$this->isActive($id,'node')){
 	     
 		$this->data = $this->Node->findById($id);
   	     	$this->Node->deleteAudio($this->data['Node']['file'],$path,array('mp3','wav'));

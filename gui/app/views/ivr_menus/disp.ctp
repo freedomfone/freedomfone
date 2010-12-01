@@ -26,10 +26,15 @@
       echo $ajax->div("service_div");
 
 
-      for($i=1;$i<=3;$i++){
+      for($i=1;$i<=9;$i++){
 
-       $row[]=array( array("<h3>".__('Press',true)." ".$i."</h3>", array('width'=>'100')),             
-      $form->input('IvrMenu.option'.$i.'_id',array('type'=>'select','options' => $data, 'label' => false,'empty'=>'-- '.__('Select entry',true).' --' ))
+        echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i));	
+        echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	
+        echo $form->input('Mapping.'.$i.'.type',array('type'=>'hidden','value' => $service));	
+
+
+       $row[]=array( array("<h3>".__('#',true)." ".$i."</h3>", array('width'=>'100')),             
+      $form->input('Mapping.'.$i.'.'.$service.'_id',array('type'=>'select','options' => $data, 'label' => false,'empty'=>'-- '.__('Select entry',true).' --' ))
       );  
                   }
 

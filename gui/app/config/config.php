@@ -108,9 +108,10 @@ $config['IVR_SETTINGS'] = array(
 		'host'	           => MY_DOMAIN,
 		'path'             => 'freedomfone/ivr/',
 		'curl'             => 'xml_curl/',
-		'dir_node'        =>  'nodes/',
+		'dir_node'         =>  'nodes/',
 		'dir_menu'         =>  'ivr/',
-		'dir_conf'         =>  'conf/'
+		'dir_conf'         =>  'conf/',
+                'instance_start'   => '100',
 		);
 
 
@@ -144,8 +145,8 @@ $config['ESL']	= array(
 	      'path' =>BASE_DIR."esl/native/ESL.php");
 
 $config['EXTENSIONS'] = array(
-		      'lam' => '2100',
-		      'ivr' => '4100',
+		      'lam' => '2',
+		      'ivr' => '4',
 		      );
 
 $config['EXT_MAPPING'] = array(

@@ -59,6 +59,12 @@ table {
 }
 
 
+.table_sub_header {
+    font-size: 1.5em;   
+    font-weight: bold;
+    color: #f89843; 
+}
+
 /*General link Styling*/
 
 a:link, a:visited, a:hover, a:active ,a:visited:hover{

@@ -5,6 +5,10 @@
     background-repeat: no-repeat;
     background-position: 10px left;
     font-size: 100%;
+    border-radius: 8px;        
+    -moz-border-radius: 8px;
+    display:inline-block;
+
 }
 .info {
     /* color: #00529B; */

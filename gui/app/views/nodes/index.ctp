@@ -68,7 +68,6 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	      $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this Menu Option?",true),false);
 	      $download = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$node['Node']['id']}",null, null, false);
 	      $listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
-
      	      $row[$key] = array(
 		array($title,array('align'=>'left')),
 		array($created,array('align'=>'left','width'=>'125px')),

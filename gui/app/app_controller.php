@@ -337,7 +337,12 @@ return $result;
     		 }
     	        $rawheader = fread($fp, 4);
     		$data = unpack('Vdatasize',$rawheader);
-    		$sec = $data['datasize']/$header['bytespersec'];
+
+                if($header['bytespersec']){
+                        $sec = $data['datasize']/$header['bytespersec'];
+                 } else {
+                        $sec = false;
+                 }
     		return round($sec);
   	    }
    }
@@ -436,6 +441,30 @@ return $result;
           }
 
      }
+
+/*
+ * Checks if a node/ivr/lam is active in an existig IVR.
+ *  
+ * @param int $id, string $type {node,ivr,lam}
+ * @return bool
+ *
+ */
+
+      function isActive($id, $type){
+
+
+               $this->loadModel('Mapping');
+               $this->Mapping->unbindModel(array('belongsTo' => array('Node'), 'hasOne' => array('Node'), 'belongsTo' => array('IvrMenu'), 'belongsTo' => array('LmMenu')));      
+               if ($this->Mapping->find('count', array('conditions' => array('Mapping.type' => $type, 'Mapping.'.$type.'_id' => $id)))){
+
+	          return true;
+	    
+               } else {
+	      
+                 return false;
+	      
+              }
+      }
 
 
 

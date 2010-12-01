@@ -45,8 +45,9 @@ Router::connect('/contact', array('controller' => 'pages', 'action' => 'display'
 Router::connect('/about', array('controller' => 'pages', 'action' => 'display', 'about'));
 
 
+Router::connect('/selectors/', array('controller' => 'ivr_menus', 'action' => 'selectors'));
 
+Router::connect('selectors/edit/*', array('controller' => 'ivr_menus', 'action' => 'edit_selector'));
+Router::connect('selectors/delete/*', array('controller' => 'ivr_menus', 'action' => 'delete'));
 
-//Callback
-Router::connect('/callback/*', array('controller' => 'callback_in', 'action' => '', 'index'));
 ?>

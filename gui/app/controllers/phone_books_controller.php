@@ -48,10 +48,10 @@ class PhoneBooksController extends AppController {
 		if (!empty($this->data)) {
 			$this->PhoneBook->create();
 			if ($this->PhoneBook->save($this->data)) {
-				$this->Session->setFlash(__('The phone book has been created', true));
+				$this->_flash(__('The phone book has been created', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The phone book could not be saved. Please, try again.', true));
+				$this->_flash(__('The phone book could not be saved. Please, try again.', true),'error');
 			}
 		}
 	}
@@ -67,10 +67,10 @@ class PhoneBooksController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->PhoneBook->save($this->data)) {
-				$this->Session->setFlash(__('The phone book has been updated.', true));
+				$this->_flash(__('The phone book has been updated.', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The data could not be saved. Please, try again.', true));
+				$this->_flash(__('The data could not be saved. Please, try again.', true),'error');
 			}
 		}
 		if (empty($this->data)) {
@@ -88,9 +88,9 @@ class PhoneBooksController extends AppController {
 
     function delete ($id){
 
-    	     if($this->PhoneBook->delete($id,true))
-	     {
-    	     $this->Session->setFlash(__('The selected phone book has been deleted.',true),'default',array('class'=>'message_success'));
+    	     if($this->PhoneBook->delete($id,true)) {
+
+    	     $this->_flash(__('The selected phone book has been deleted.',true),'success');
 	     $this->redirect(array('action' => '/index'));
 
 	     }

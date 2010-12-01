@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-$session->flash();
+
 echo $javascript->includeScript('toggle');
 
 echo $form->create('User',array('type' => 'post','action'=> 'index'));
@@ -35,6 +35,10 @@ echo $form->end();
 
 
 echo "<h1>".__('Contacts',true)."</h1>";
+
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+     }
 
 
      if ($users){
@@ -58,8 +62,7 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Email",true), 'email'),
 	$paginator->sort(__("Skype",true), 'skype'),
  	$paginator->sort(__("Acl",true), 'Acl.name'),
- 	$paginator->sort(__("Phone",true), 'phone1'),
- 	$paginator->sort(__("Country",true), 'Country.name_en'),
+ 	$paginator->sort(__("Phone",true), 'phone'),
 	__("Edit",true),
 	__("Delete",true)));
 
@@ -79,12 +82,30 @@ echo $html->tableHeaders(array(
 	$email     = $text->autoLinkEmails($user['User']['email']);
 	$skype     = $user['User']['skype'];
 	$acl       = $user['Acl']['name'];
-	$phone1     = $user['User']['phone1'];
-	$country     = $user['Country']['name_en'];
 
+        $phone = false;
+        $phone_numbers = false;
+
+        if($phone_numbers  = sizeof($user['PhoneNumber'])){
+                $phone     = $user['PhoneNumber'][0]['number'];
+                               
+        } 
+
+
+        $popup = false;
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/users/edit/{$user['User']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/users/delete/{$user['User']['id']}",null, __("Are you sure you want to delete this user?",true),false);
+        if ($phone_numbers > 1) { 
+        $info = __('Phone numbers',true).'|';
 
+             foreach($user['PhoneNumber'] as  $number){
+ 
+               $info = $info.$number['number'].'|';
+              
+           }
+
+        $phone = $html->div('frameInfoLeft', $phone.' '.$html->link($html->image('icons/plus.png',array('alt'=>__('Alternative phone numbers',true))),'#',array('class'=>'infobox','title'=>$info),null,false));
+        }
 
         $row[$key] = array($id,
      		array($status,array('align'=>'center')),
@@ -93,8 +114,7 @@ echo $html->tableHeaders(array(
 		$email,
 		$skype,
 		$acl,
-		$phone1,		
-		$country,
+		$phone,		
 		$edit,
 		$delete);
 	}

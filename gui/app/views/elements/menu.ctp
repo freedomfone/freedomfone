@@ -101,7 +101,7 @@
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Language selector",true),'/ivr_menus/switchers'); ?>
+<?php echo $html->link(__("Language selectors",true),'/selectors'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 

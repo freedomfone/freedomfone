@@ -67,10 +67,8 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
     <?=$javascript->link('domcollapse');?>        <!-- Hide/collapse elements -->
 
-    <?=$javascript->link('jquery.corner');?>	<!-- Rounded corner -->
-    <?=$javascript->includeScript('corner');?>  <!-- Rounded corner -->
-    <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
 
+    <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
     <?php echo $javascript->link('prototype');?>
     <?php echo $javascript->link('scriptaculous');?>
 
@@ -91,11 +89,14 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 	 <div id="content_wrap">
 		<div id="main_content">
-    		<?php echo $content_for_layout; ?>  
+    		<?php 
+                echo $content_for_layout; ?>  
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
 	 
-	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?></div>
+	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?>
+         <?php echo "( Memory: ".round(memory_get_peak_usage()/1000000).' MB)'; ?>         
+         </div>
 </div>										<!--wrapper end-->
 </body>
 </html>

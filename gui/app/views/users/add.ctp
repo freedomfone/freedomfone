@@ -40,7 +40,6 @@
      array(__("Skype",true),			$skype = $form->input('skype',array('label'=>false))),
      array(__("Phone number",true),		$phone1 = $form->input('phone1',array('label'=>false))),
      array(__("Organization",true),		$form->input('organization',array('label'=>false))),
-     array(__("Country",true),			$form->input('country_id',array('type'=>'select','options'=>$countries, 'empty'=>'- '.__('Select country',true).' -','label'=>false))),
      array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=>$acls, 'label'=>false))),
      array($form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button')),'')
      ));

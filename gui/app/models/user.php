@@ -26,9 +26,9 @@ class User extends AppModel {
 
 	var $name = 'User';
 	
-	var $belongsTo = array('Acl','Country'); 
+	var $belongsTo = array('Acl'); 
 
-	var $hasMany = array('Message','Cdr');
+	var $hasMany = array('Message','Cdr','PhoneNumber');
 
 	var $hasAndBelongsToMany = array('PhoneBook');
 

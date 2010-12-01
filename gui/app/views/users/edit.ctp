@@ -23,7 +23,8 @@
  ***************************************************************************/
 
 
-      if($data){
+ if($data = $this->data){
+
 
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 
@@ -33,28 +34,53 @@
 
      echo $form->create('User',array('type' => 'post','action'=> 'edit'));
      echo $form->hidden('new',array('value'=>0));
+     echo $form->hidden('id');
+     echo $form->hidden('created');
+     echo $form->hidden('first_app');
+     echo $form->hidden('last_app');
+     echo $form->hidden('count_bin');
+     echo $form->hidden('count_poll');
+     echo $form->hidden('count_lam');
+     echo $form->hidden('count_ivr');
+     echo $form->hidden('last_seen');
+     echo $form->hidden('last_epoch');
+
+     $skype = $form->input('skype',array('label'=>false));
 
 
-     if(! $skype = $data['User']['skype']){ $skype = $form->input('skype',array('label'=>false));}
-     if(! $phone1 = $data['User']['phone1']){ $phone1 = $form->input('phone1',array('label'=>false));}
-     if (! $last_seen = $data['User']['last_epoch']){ $last_seen= __('Never',true);}
+     $last_seen = __('Never',true);
+        if($value = $data['User']['last_epoch']) {
+                  $last_seen = $value;
+         }
+   
+
 
      echo "<div class='frameLeft'>";
+
+     $row[] = array(array($html->div('table_sub_header',__('User data',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')));
+     $row[] = array(__("Name",true),			$form->input('name',array('label'=>false)));
+     $row[] = array(__("Surname",true),			$form->input('surname',array('label'=>false)));
+     $row[] = array(__("Email",true),			$form->input('email',array('label'=>false)));
+     $row[] = array(__("Skype",true),			$skype);
+     $row[] = array(__("Organization",true),		$form->input('organization',array('label'=>false)));
+     $row[] = array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
+     $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
+ 
+     foreach($data['PhoneNumber'] as $key => $number){
+
+         echo $form->input('PhoneNumber.'.$key.'.id',array('type'=>'hidden','value' => $number['id']));
+         $row[] = array (__('Phone number',true).' '.($key+1), $form->input('PhoneNumber.'.$key.'.number',array('label'=>false,'value' => $number['number'])));
+
+     }
+
+    $row[] = array( $button,'');
+
+    
      echo "<table>";
-     echo $html->tableCells(array (
-     array(array($html->div('table_sub_header',__('User data',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
-     array(__("Name",true),			$form->input('name',array('label'=>false))),
-     array(__("Surname",true),			$form->input('surname',array('label'=>false))),
-     array(__("Email",true),			$form->input('email',array('label'=>false))),
-     array(__("Skype",true),			$skype),
-     array(__("Phone number",true),		$phone1),
-     array(__("Organization",true),		$form->input('organization',array('label'=>false))),
-     array(__("Country",true),			$form->input('country_id',array('type'=>'select','options'=>$countries, 'empty'=>'- '.__('Select country',true).' -','label'=>false))),
-     array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=>$acls, 'label'=>false))),
-     array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false))),
-     array( $button,'')
-     ));
+     echo $html->tableCells($row);
      echo "</table>";
+
+
      echo $form->end(); 
      echo "</div>";
 
@@ -65,13 +91,14 @@
      echo $html->tableCells(array (
      array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
-     array(__("Last seen",true),		$last_seen),
+     array(__("Last seen",true),		date('Y-m-d',$last_seen)),
      array(__("First application",true),	$formatting->appMatch($data['User']['first_app'])),
      array(__("Last application",true),	     	$formatting->appMatch($data['User']['last_app'])),
      array(array($html->div('table_sub_header',__('Activity',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("Poll",true),			$data['User']['count_poll']),
      array(__("Voice Menu",true),		$data['User']['count_ivr']),
-     array(__("Leave-a-message",true),		$data['User']['count_lam'])
+     array(__("Leave-a-message",true),		$data['User']['count_lam']),
+     array(__("SMS",true),		        $data['User']['count_bin'])
      ));
      echo "</table>";
      echo "</div>";

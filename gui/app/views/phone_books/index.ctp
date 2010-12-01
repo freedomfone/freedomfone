@@ -30,8 +30,13 @@ echo $form->end();
 
 echo "<h1>".__("PhoneBook",true)."</h1>";
 
+   if ($messages = $session->read('Message.multiFlash')) {
+   
+       foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+   
+   }
 
-$session->flash();
+
 
    if ($data){
 

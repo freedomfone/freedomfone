@@ -39,10 +39,8 @@ class UsersController extends AppController{
 
       function index(){
 
-
-
-
       $this->pageTitle = 'Contact : Inbox';
+      $this->layout ='jquery';
 
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
@@ -68,9 +66,8 @@ class UsersController extends AppController{
 	}	
 
 	
-         $this->User->recursive = 0; 
+         $this->User->recursive = 1; 
 	 $data = $this->paginate('User');
-
 	 $this->set('users',$data);  
 	     }
 
@@ -81,6 +78,7 @@ class UsersController extends AppController{
 
 
     	     $this->pageTitle = 'Contact : Edit';   
+
 
 	     //No id specified
 	     if(!$id){
@@ -99,17 +97,22 @@ class UsersController extends AppController{
 		$acls 	    	    = $this->User->Acl->find('list');
  		$phonebook 	    = $this->User->PhoneBook->find('list');
 
- 		$countries 	    = $this->User->Country->find('list',array('fields' => array('Country.id','Country.name_en')));
- 		$this->set(compact('acls','phonebook','countries'));
+ 		$this->set(compact('acls','phonebook'));
 		}
 
 		//Save form data
 		else {
 
-		     if($this->User->save($this->data)){
-				 $this->Session->setFlash('The entry has been updated');
+		     if($this->User->saveAll($this->data)){
+				 $this->_flash(__('The entry has been updated',true),'success');
     	     		 	 $this->redirect(array('action' => '/'));
-			 }
+	              } else {
+
+                                $acls 	    	    = $this->User->Acl->find('list');
+ 		                $phonebook 	    = $this->User->PhoneBook->find('list');
+ 		                $this->set(compact('acls','phonebook'));
+
+                      }
 
 		}
     }
@@ -119,7 +122,7 @@ class UsersController extends AppController{
     function delete ($id){
 
     	     if($this->User->del($id)) {
-	     $this->Session->setFlash(__('Selected user has been deleted.',true));
+	     $this->_flash(__('Selected user has been deleted.',true),'success');
 	     }
              $this->redirect(array('action' => 'index'));
     }
@@ -159,18 +162,18 @@ class UsersController extends AppController{
 
     	$this->pageTitle = 'Contacts : Add';
 		$acls 	    	    = $this->User->Acl->find('list');
- 		$countries 	    = $this->User->Country->find('list',array('fields' => array('Country.id','Country.name_en')));
- 		$this->set(compact('acls','countries'));
+
+ 		$this->set(compact('acls'));
 
           //Fetch form data and save
 		if (!empty($this->data)) {
 
 		   	$this->User->set( $this->data );
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('New contact has been added', true));
+				$this->_flash(__('New contact has been added', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The contact could not be added. Please, try again.', true));
+				$this->_flash(__('The contact could not be added. Please, try again.', true),'error');
 			}
 		} else {
 

@@ -214,6 +214,7 @@ gui/app/models/monitor_ivr.php -text
 gui/app/models/node.php -text
 gui/app/models/office_route.php -text
 gui/app/models/phone_book.php -text
+gui/app/models/phone_number.php -text
 gui/app/models/poll.php -text
 gui/app/models/process.php -text
 gui/app/models/setting.php -text

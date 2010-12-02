@@ -26,10 +26,10 @@ class UsersController extends AppController{
 
       var $name = 'Users';
 
-      var $helpers = array('Flash','Formatting','Session','Text');      
+      var $helpers = array('Flash','Formatting','Session','Text','Ajax');      
 
-      var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'desc')); 
-
+      var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
+      var $components = array('RequestHandler');
 
       function refresh(){
 
@@ -40,9 +40,8 @@ class UsersController extends AppController{
       function index(){
 
 
-      $this->pageTitle = 'Contact : Inbox';
-      $this->layout ='jquery';
-
+      $this->pageTitle = 'Users';
+      
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/users/refresh');
@@ -66,10 +65,17 @@ class UsersController extends AppController{
 	$this->paginate['limit'] = $this->Session->read('users_limit');
 	}	
 
+
+   $this->loadModel('PhoneBook');
+   $options[0] = __('All phone books',true);   
+   $options = $this->PhoneBook->find('list');
+   $options[0] = __('All phone books',true);   
+
 	
-         $this->User->recursive = 1; 
-	 $data = $this->paginate('User');
-	 $this->set('users',$data);  
+        $this->User->recursive = 1; 
+	$data = $this->paginate('User');
+	$this->set('users',$data);  
+        $this->set(compact('options'));
 	     }
 
 
@@ -130,8 +136,6 @@ class UsersController extends AppController{
 
     function process (){
 
-
-
 	    //One or more users selected
 	    if(array_key_exists('user',$this->params['form'])){
 
@@ -154,20 +158,20 @@ class UsersController extends AppController{
 
 
                        case __('Merge',true): 
-                       
-		       $this->User->id = $entries[0]['User'];
+
+		       $this->User->id = $entries[0];
+                       $this->User->unbindModel(array('hasMany' => array('Cdr','Message')));   
 		       $core = $this->User->read();
-                       debug($core['PhoneNumber']);
+                       
+
                        unset($entries[0]);
- 
 
     	     	        foreach ($entries as $key => $user){
 
 
-                           $id = $user['User'];
+                           $id = $user;
 			   $this->User->id = $id;
                            $tmp = $this->User->read();
-                           debug($tmp);	     	           
 
                            $core['User']['name'].= $tmp['User']['name'];
                            $core['User']['surname'].= $tmp['User']['surname'];
@@ -189,11 +193,28 @@ class UsersController extends AppController{
                            $core['User']['last_epoch'] = max(array($core['User']['last_epoch'],$tmp['User']['last_epoch']));
                            $core['User']['acl_id'] = max(array($core['User']['acl_id'],$tmp['User']['acl_id']));
 
+                           $j = sizeof($core['PhoneNumber']);
+                           if($tmp['PhoneNumber']){
+                                foreach($tmp['PhoneNumber'] as $i => $phone_number){
+                           
+                                        $core['PhoneNumber'][$j+$i+1]['user_id'] = $core['User']['id'];
+                                        $core['PhoneNumber'][$j+$i+1]['number'] = $phone_number['number'];
+                         
+                                }
+                           }
+                           if($tmp['PhoneBook']){
+                                foreach($tmp['PhoneBook'] as $i => $phone_book){
+  
+                                        $phone_book['PhoneBooksUser']['user_id'] = $core['User']['id'];     
+                                        unset($phone_book['PhoneBooksUser']['id'] );
+                                        $core['PhoneBook'][] = $phone_book;
+                                 } 
                            }
 
+                        }
 
-
-                           $this->User->save($core);
+                      $this->User->saveAll($core);
+                      $this->User->PhoneBook->save($core['PhoneBook']);
 
 
 
@@ -232,6 +253,36 @@ class UsersController extends AppController{
 
 	}
 
+
+    function disp (){
+
+  	   Configure::write('debug', 0);
+
+          if( $phone_book_id = $this->data['User']['phone_book_id']){
+
+             if ($data = $this->User->PhoneBook->findById($phone_book_id)){
+
+
+                foreach ($data['User'] as $key => $user){
+
+                     $user_id[] = $user['id'];
+                }
+
+
+                $users = $this->User->find('all', array('conditions' => array('User.id' => $user_id)));
+                $this->set(compact('users'));    
+              }
+            
+             } else {
+
+             $users = $this->User->find('all');
+             $this->set(compact('users'));    
+
+             }
+
+     }
+
+	       
 
 
 

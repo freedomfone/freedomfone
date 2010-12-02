@@ -32,6 +32,10 @@
 
      echo "<h1>".__("Edit contact",true)."</h1>";
 
+     echo "<div id='page'>";
+
+     echo "</div>";
+
      echo $form->create('User',array('type' => 'post','action'=> 'edit'));
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('id');
@@ -64,12 +68,22 @@
      $row[] = array(__("Skype",true),			$skype);
      $row[] = array(__("Organization",true),		$form->input('organization',array('label'=>false)));
      $row[] = array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
-     $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
- 
+     $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
+
+
      foreach($data['PhoneNumber'] as $key => $number){
 
+$href = array( 'controller' => 'users', 'action' => 'disp/'.$data['User']['id'].'/'.$number['id'] );
+$opt = array( 'update' => 'page' );
+$delete = $ajax->link('Delete Post', $href, $opt , 'Do you want to delete this post?' ); 
+
+
+
+
+
          echo $form->input('PhoneNumber.'.$key.'.id',array('type'=>'hidden','value' => $number['id']));
-         $row[] = array (__('Phone number',true).' '.($key+1), $form->input('PhoneNumber.'.$key.'.number',array('label'=>false,'value' => $number['number'])));
+         $row[] = array (__('Phone number',true).' '.($key+1), $form->input('PhoneNumber.'.$key.'.number',array('label'=>false,'value' => $number['number'])).$delete);
+         
 
      }
 
@@ -81,8 +95,9 @@
      echo "</table>";
 
 
-     echo $form->end(); 
-     echo "</div>";
+     echo $form->end();
+echo "</div>"; 
+
 
 
 

@@ -49,8 +49,12 @@ echo "<h1>".__("PhoneBook",true)."</h1>";
       		   $title 	= $phone_book['PhoneBook']['name'];
       		   $description = $phone_book['PhoneBook']['description'];		   
   		   $edit 	= $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/phone_books/edit/{$phone_book['PhoneBook']['id']}",null, null, false);
-      		   $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/phone_books/delete/{$phone_book['PhoneBook']['id']}",null, __("Are you sure you want to delete this phone book?",true),false);
+      		   $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/phone_books/delete/{$phone_book['PhoneBook']['id']}",array('class'=>'confirm_delete'), __("Are you sure you want to delete this phone book?",true),false);
       		   
+
+
+
+
 
      $row[$key] = array($title, $description,$edit,$delete);
 

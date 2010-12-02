@@ -26,10 +26,10 @@ class PhoneBooksController extends AppController {
 
     var $name = 'PhoneBooks';
 
-    var $scaffold;
-
-
+      var $scaffold;
       var $helpers = array('Csv');
+
+
 	function index() {
 
       		$this->pageTitle = 'Phone books';
@@ -112,6 +112,7 @@ class PhoneBooksController extends AppController {
     	     $this->autoLayout = false;
     	     $this->render();    
     }
+
 
 
 }

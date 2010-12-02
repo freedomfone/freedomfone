@@ -41,18 +41,36 @@ echo "<h1>".__('Contacts',true)."</h1>";
      }
 
 
-     if ($users){
 
+          echo $form->create("User");
+          echo $form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --'));
 
-echo $html->div("",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+                         $opt = array(
+                                "update" => "service_div",
+                                "url" => "disp",
+                                "frequency" => "0.1"
+                                     );
 
+                         echo $ajax->observeField("ServiceType",$opt);
+                         echo $form->end();
+                                                                                                 
+                       echo "<div id='service_div' style=''></div>";  
 ?>
 <input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)">
 <input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)">
 <?
 
 
+     if ($users){
+
+
+
+echo $html->div("",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+//echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+
+
+
+/*
 echo "<table width='100%'>";
 echo $html->tableHeaders(array(
 	'',
@@ -65,7 +83,6 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Phone",true), 'phone'),
 	__("Edit",true),
 	__("Delete",true)));
-
 
  
       foreach ($users as $key => $user){
@@ -120,15 +137,8 @@ echo $html->tableHeaders(array(
 	}
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
+*/
 
- 
-    echo "<table>";
-     echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-     $paginator->numbers()));
-     echo "</table>";
-     echo $form->end();
 
 $count = $this->params['paging']['User']['count'];
 echo "<span>".__("No of users per page: ",true);

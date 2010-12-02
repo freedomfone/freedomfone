@@ -183,6 +183,7 @@ gui/app/controllers/monitor_ivr_controller.php -text
 gui/app/controllers/nodes_controller.php -text
 gui/app/controllers/office_route_controller.php -text
 gui/app/controllers/phone_books_controller.php -text
+gui/app/controllers/phone_numbers_controller.php -text
 gui/app/controllers/polls_controller.php -text
 gui/app/controllers/processes_controller.php -text
 gui/app/controllers/settings_controller.php -text
@@ -333,6 +334,7 @@ gui/app/views/tags/add.ctp -text
 gui/app/views/tags/edit.ctp -text
 gui/app/views/tags/index.ctp -text
 gui/app/views/users/add.ctp -text
+gui/app/views/users/disp.ctp -text
 gui/app/views/users/edit.ctp -text
 gui/app/views/users/index.ctp -text
 gui/app/webroot/.htaccess -text

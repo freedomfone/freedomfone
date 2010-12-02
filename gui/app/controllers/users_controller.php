@@ -39,6 +39,7 @@ class UsersController extends AppController{
 
       function index(){
 
+
       $this->pageTitle = 'Contact : Inbox';
       $this->layout ='jquery';
 
@@ -129,28 +130,75 @@ class UsersController extends AppController{
 
     function process (){
 
+
+
 	    //One or more users selected
 	    if(array_key_exists('user',$this->params['form'])){
 
 		$entries = $this->params['form']['user'];
     	    	$action = $this->params['data']['Submit'];
 
-		//Loop through users
-    	     	foreach ($entries as $key => $user){
-	     	     if ($user) {
-		     	$id = $user['User'];
-			   $this->User->id = $id; 
-			   if ($action == __('Delete',true)){
+                switch($action){
 
-		     	       $data = $this->User->getIdentifier($id);
-		     	       if ($this->User->del($id)){
-				     $this->log('Message: User deleted; Id: '.$id."; Key: ".$data['key']."; Value: ".$data['value']."; Timestamp: ".time(), 'user');
-			        }
-			    }
-		        }
-	             } //foreach
-		     
-		 } //array_key_exists 
+                        case __('Delete',true): 
+
+    	     	        foreach ($entries as $key => $user){
+	     	           $id = $user['User'];
+			   $this->User->id = $id;
+		     	   $data = $this->User->getIdentifier($id);
+		     	   if ($this->User->del($id)){
+				$this->log('Message: User deleted; Id: '.$id."; Key: ".$data['key']."; Value: ".$data['value']."; Timestamp: ".time(), 'user');
+			   }
+                        }
+                           break;
+
+
+                       case __('Merge',true): 
+                       
+		       $this->User->id = $entries[0]['User'];
+		       $core = $this->User->read();
+                       debug($core['PhoneNumber']);
+                       unset($entries[0]);
+ 
+
+    	     	        foreach ($entries as $key => $user){
+
+
+                           $id = $user['User'];
+			   $this->User->id = $id;
+                           $tmp = $this->User->read();
+                           debug($tmp);	     	           
+
+                           $core['User']['name'].= $tmp['User']['name'];
+                           $core['User']['surname'].= $tmp['User']['surname'];
+                           $core['User']['skype'].= $tmp['User']['skype'];
+                           $core['User']['organization'].= $tmp['User']['organization'];
+
+                           $core['User']['count_poll'] += $tmp['User']['count_poll'];
+                           $core['User']['count_ivr']  += $tmp['User']['count_ivr'];
+                           $core['User']['count_lam']  += $tmp['User']['count_lam'];
+                           $core['User']['count_bin']  += $tmp['User']['count_bin'];
+                           $core['User']['new'] = 0;
+
+                           if(!$core['User']['email']){ $core['User']['email'] = $tmp['User']['count_bin'];}
+                           if(!$core['User']['first_app']){ $core['User']['first_app'] = $tmp['User']['first_app'];}
+                           if(!$core['User']['last_app']){ $core['User']['last_app'] = $tmp['User']['last_app'];}
+                           $core['User']['created'] = min(array($core['User']['created'],$tmp['User']['created']));
+                           $core['User']['modified'] = max(array($core['User']['modified'],$tmp['User']['modified']));
+                           $core['User']['first_epoch'] = min(array($core['User']['first_epoch'],$tmp['User']['first_epoch']));
+                           $core['User']['last_epoch'] = max(array($core['User']['last_epoch'],$tmp['User']['last_epoch']));
+                           $core['User']['acl_id'] = max(array($core['User']['acl_id'],$tmp['User']['acl_id']));
+
+                           }
+
+
+
+                           $this->User->save($core);
+
+
+
+                 } //switch		     
+              }     //array_key_exists 
 		 
 
 	     $this->redirect(array('action' => 'index'));

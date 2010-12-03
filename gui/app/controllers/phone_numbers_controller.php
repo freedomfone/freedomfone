@@ -27,41 +27,50 @@ class PhoneNumbersController extends AppController {
     var $name = 'PhoneNumbers';
 
     var $helpers = array('Csv','Ajax');
+    var $components = array('RequestHandler');
+
+    function add(){
+
+    Configure::write('debug', 0);
+  
+       if(!empty($this->data)){
+
+                $this->PhoneNumber->create();
+                if ($this->PhoneNumber->save($this->data)){
+                   $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $this->data['PhoneNumber']['user_id']), 'recursive' => -1));
+                   $user = $this->data['PhoneNumber']['user_id'];
+                   $this->set(compact('phonenumbers','user'));
+                   $this->render('add_success','ajax');
+                } else {
+                  $this->render('add_failure','ajax');
+                }
+           }
+    }
+
+    function delete($id, $user_id){
+
+    Configure::write('debug', 0);
+
+       if($id && $user_id){
+                
+                if ($this->PhoneNumber->del($id)){
+               
+                   $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $user_id), 'recursive' => -1));
+                   $user = $user_id;
+                   $this->set(compact('phonenumbers','user'));
+                   $this->render('add_success','ajax');
+                } else {
+                  $this->render('add_failure','ajax');
+                }
+       } else {
+
+
+       }
+    }
 
 
 
- function index($user_id = null) {
- 
-        if ($user_id) {
- 
-        $this->set('user_id', $user_id);
-        $this->PhoneNumber->recursive = 0;
-        $this->set('phoneNumbers', $this->paginate('PhoneNumber', array('user_id' => intval($user_id))));
 
-        } else {
-
-    $this->Session->setFlash(__('shit happens', true));
-
-        } 
-
-}
-
-
-
-    function delete ($user_id, $id){
-
-         if ($id && $user_id){
-
-    	     if($this->PhoneNumber->del($id)) {
-
-             $this->log($user_id.' '.$id,'foo');
-
-             $this->Session->setFlash(__('Phone number deleted', true));
-
-	     }
-
-         }
-     }
 
 
 }

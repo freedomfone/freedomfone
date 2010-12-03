@@ -95,20 +95,16 @@ class UsersController extends AppController{
              //Fetch data from db     
     	     elseif(empty($this->data['User'])){
 
-		$this->referer();
-		$this->User->id = $id;
-		$this->data = $this->User->read();
-		$this->set('data',$this->User->read());       
+		$this->data = $this->User->read(null,$id);
+		$phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
 
-		//$tags 	    = $this->User->Tag->find('list');
 		$acls 	    	    = $this->User->Acl->find('list');
- 		$phonebook 	    = $this->User->PhoneBook->find('list');
+ 		$phonebook 	    = $this->User->PhoneBook->find('list');               
+ 		$this->set(compact('acls','phonebook','phonenumbers'));
+              }
 
- 		$this->set(compact('acls','phonebook'));
-		}
-
-		//Save form data
-		else {
+	      //Save form data
+	      else {
 
 		     if($this->User->saveAll($this->data)){
 				 $this->_flash(__('The entry has been updated',true),'success');
@@ -121,7 +117,7 @@ class UsersController extends AppController{
 
                       }
 
-		}
+	      }
     }
 
 
@@ -230,28 +226,27 @@ class UsersController extends AppController{
     function add() {
 
     	$this->pageTitle = 'Contacts : Add';
-		$acls 	    	    = $this->User->Acl->find('list');
+	$acls = $this->User->Acl->find('list');
+ 	$this->set(compact('acls'));
 
- 		$this->set(compact('acls'));
+        //Fetch form data and save
+	if (!empty($this->data)) {
 
-          //Fetch form data and save
-		if (!empty($this->data)) {
-
-		   	$this->User->set( $this->data );
-			if ($this->User->save($this->data)) {
-				$this->_flash(__('New contact has been added', true),'success');
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->_flash(__('The contact could not be added. Please, try again.', true),'error');
-			}
+		$this->User->set( $this->data );
+		if ($this->User->save($this->data)) {
+			$this->_flash(__('New contact has been added', true),'success');
+			$this->redirect(array('action'=>'index'));
 		} else {
+			$this->_flash(__('The contact could not be added. Please, try again.', true),'error');
+		}
+	} else {
 
 		//Show empty form
       	 	$this->render();
-		}
-
-
 	}
+
+
+    }
 
 
     function disp (){

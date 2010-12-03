@@ -25,16 +25,11 @@
 
  if($data = $this->data){
 
-
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 
      echo "<fieldset>";
-
      echo "<h1>".__("Edit contact",true)."</h1>";
 
-     echo "<div id='page'>";
-
-     echo "</div>";
 
      echo $form->create('User',array('type' => 'post','action'=> 'edit'));
      echo $form->hidden('new',array('value'=>0));
@@ -51,17 +46,13 @@
 
      $skype = $form->input('skype',array('label'=>false));
 
-
      $last_seen = __('Never',true);
-        if($value = $data['User']['last_epoch']) {
-                  $last_seen = $value;
-         }
+     if($value = $data['User']['last_epoch']) {
+                  $last_seen = date('Y-m-d',$value);
+     }
    
-
-
      echo "<div class='frameLeft'>";
-
-     $row[] = array(array($html->div('table_sub_header',__('User data',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')));
+     $row[] = array($html->div('table_sub_header',__('User data',true)), array($button,''));
      $row[] = array(__("Name",true),			$form->input('name',array('label'=>false)));
      $row[] = array(__("Surname",true),			$form->input('surname',array('label'=>false)));
      $row[] = array(__("Email",true),			$form->input('email',array('label'=>false)));
@@ -69,34 +60,34 @@
      $row[] = array(__("Organization",true),		$form->input('organization',array('label'=>false)));
      $row[] = array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
      $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
-
-
-     foreach($data['PhoneNumber'] as $key => $number){
-
-$href = array( 'controller' => 'users', 'action' => 'disp/'.$data['User']['id'].'/'.$number['id'] );
-$opt = array( 'update' => 'page' );
-$delete = $ajax->link('Delete Post', $href, $opt , 'Do you want to delete this post?' ); 
-
-
-
-
-
-         echo $form->input('PhoneNumber.'.$key.'.id',array('type'=>'hidden','value' => $number['id']));
-         $row[] = array (__('Phone number',true).' '.($key+1), $form->input('PhoneNumber.'.$key.'.number',array('label'=>false,'value' => $number['number'])).$delete);
-         
-
-     }
-
-    $row[] = array( $button,'');
-
-    
+     
+     
      echo "<table>";
      echo $html->tableCells($row);
      echo "</table>";
-
-
      echo $form->end();
-echo "</div>"; 
+
+    
+
+     echo "<div id ='numbers'>";  
+     echo "<table>";
+     foreach ($phonenumbers as $key => $number){
+
+             $delete = $ajax->link($html->image("icons/delete.png"),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
+             echo $html->tableCells(array(__('Phone number',true).' '.($key+1),$number['PhoneNumber']['number'], $delete));
+
+     }
+     echo "</table>";
+     echo "</div>";
+
+
+     echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
+     echo $html->tag('span', $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)));
+     echo $html->tag('span', $form->end('Add phone number') );
+     echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
+     echo "</div>"; 
+
+
 
 
 
@@ -106,12 +97,12 @@ echo "</div>";
      echo $html->tableCells(array (
      array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
-     array(__("Last seen",true),		date('Y-m-d',$last_seen)),
+     array(__("Last seen",true),		$last_seen),
      array(__("First application",true),	$formatting->appMatch($data['User']['first_app'])),
      array(__("Last application",true),	     	$formatting->appMatch($data['User']['last_app'])),
      array(array($html->div('table_sub_header',__('Activity',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("Poll",true),			$data['User']['count_poll']),
-     array(__("Voice Menu",true),		$data['User']['count_ivr']),
+    array(__("Voice Menu",true),		$data['User']['count_ivr']),
      array(__("Leave-a-message",true),		$data['User']['count_lam']),
      array(__("SMS",true),		        $data['User']['count_bin'])
      ));

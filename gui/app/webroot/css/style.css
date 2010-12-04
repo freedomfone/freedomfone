@@ -207,6 +207,11 @@ border-bottom: 1px solid #aaa;
 padding: 0px;
 }
 
+.space {
+
+height: 10px;
+
+ }
 
 .long {
       width: 400px;
@@ -383,5 +388,4 @@ width: 780px;
 margin: 0;
 padding: 0;
 }
-
 

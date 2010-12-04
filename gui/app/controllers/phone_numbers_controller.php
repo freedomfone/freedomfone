@@ -26,7 +26,7 @@ class PhoneNumbersController extends AppController {
 
     var $name = 'PhoneNumbers';
 
-    var $helpers = array('Csv','Ajax');
+    var $helpers = array('Csv','Ajax','Flash');
     var $components = array('RequestHandler');
 
     function add(){
@@ -35,15 +35,29 @@ class PhoneNumbersController extends AppController {
   
        if(!empty($this->data)){
 
+             if($this->data['PhoneNumber']['number']){
+
                 $this->PhoneNumber->create();
                 if ($this->PhoneNumber->save($this->data)){
-                   $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $this->data['PhoneNumber']['user_id']), 'recursive' => -1));
-                   $user = $this->data['PhoneNumber']['user_id'];
-                   $this->set(compact('phonenumbers','user'));
-                   $this->render('add_success','ajax');
+                
+                   $view = 'add_success';
+
                 } else {
-                  $this->render('add_failure','ajax');
+
+                   $view = 'add_failure';
+
                 }
+             } else {
+
+                   $view = 'add_failure';
+
+
+             }
+
+                $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $this->data['PhoneNumber']['user_id']), 'recursive' => -1));
+                $user = $this->data['PhoneNumber']['user_id'];
+                $this->set(compact('phonenumbers','user'));
+                $this->render($view,'ajax');
            }
     }
 

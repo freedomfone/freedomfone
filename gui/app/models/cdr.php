@@ -117,7 +117,7 @@ class Cdr extends AppModel{
 		     //Set IVR title
 	       	      //FIXME! //Create custom event for CS_ROUTING CDR	
 	     	      elseif ($application == 'ivr' && $channel_state == 'CS_ROUTING'){
-			       $ivr_parent = $this->query('select title from ivr_menus where parent = true');
+			       $ivr_parent = $this->query('select title from ivr_menus where instance_id = '.$matches[1]);
 	       	       	       $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
 		      }
 
@@ -162,14 +162,27 @@ class Cdr extends AppModel{
 			if($entry['Channel-State']=='CS_ROUTING'){
 
 			$value = urldecode($entry['Caller-Caller-ID-Number']);
-			$field = 'phone1';
 
-		  	if( $proto == 'skype') { $field = 'skype';}
-		  	elseif( $proto == 'gsm') { $field = 'phone1';}
-			elseif( $proto == 'sip') { $field = 'phone1';}
-			
+                        $field = false;
+		  	if( $proto == 'skype') { $field = 'User.skype';}
+		  	elseif( $proto == 'gsm') { $field = 'PhoneNumber.number';}
+			elseif( $proto == 'sip') { $field = 'PhoneNumber.number';}
 
-			    if ($userData = $this->User->find('first',array('conditions' => array('User.'.$field => $value)))){ 
+
+
+                        if ($proto == 'sip' || $proto == 'gsm'){
+
+                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
+
+                        } elseif ($proto == 'skype'){
+
+                           $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
+
+                        }
+
+
+
+			if ($userData){
 
 		 		$count_ivr = $userData['User']['count_ivr']+1;
 				$id = 	$userData['User']['id'];
@@ -178,13 +191,29 @@ class Cdr extends AppModel{
  		 		$this->User->save($this->data);
 
 		            } else {
-			        $created = time();
-		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
-		     	        $this->User->create();
-		     	        $this->User->save($user);
+
+			      $created = time();
+		 	      $this->User->create();
+
+                              if($proto == 'sip' || $proto == 'gsm'){
+
+                                 $user =array('created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                                 $user_id = $this->User->getLastInsertId();
+                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
+                                 $this->User->PhoneNumber->saveAll($phonenumber);
+
+                              } elseif ($proto == 'skype'){
+
+                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                              }
+
+
+		     	        
 				
-			    }
 			}
+	}
 
 		} 
 

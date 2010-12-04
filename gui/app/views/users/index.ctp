@@ -34,53 +34,41 @@ echo $html->div('frameRight',$form->submit(__('Add contact',true),  array('name'
 echo $form->end();
 
 
-echo "<h1>".__('Contacts',true)."</h1>";
+     echo "<h1>".__('Contacts',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
 
+     echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
+     echo "<table>";
+     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit'))));
+     echo "</table>";
+     echo $form->end();
 
-
-          echo $form->create("User");
-          echo $form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --'));
-
-                         $opt = array(
-                                "update" => "service_div",
-                                "url" => "disp",
-                                "frequency" => "0.1"
-                                     );
-
-                         echo $ajax->observeField("ServiceType",$opt);
-                         echo $form->end();
-                                                                                                 
-                       echo "<div id='service_div' style=''></div>";  
-?>
-<input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)">
-<input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)">
-<?
-
+     echo $html->div('space',false);
 
      if ($users){
 
 
+     ?>
+     <input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)">
+     <input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)">
+     <?
+     echo $html->div('space', false);
+     echo $html->div("",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+     echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
-echo $html->div("",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-//echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
-
-
-
-/*
-echo "<table width='100%'>";
-echo $html->tableHeaders(array(
+     echo "<table width='100%'>";
+     echo $html->tableHeaders(array(
 	'',
-	$paginator->sort(__("New",true), 'new'),
- 	$paginator->sort(__("Name",true), 'name'),
- 	$paginator->sort(__("Surname",true), 'surname'),
- 	$paginator->sort(__("Email",true), 'email'),
-	$paginator->sort(__("Skype",true), 'skype'),
+	$paginator->sort(__("New",true), 'User.new'),
+ 	$paginator->sort(__("Name",true), 'User.name'),
+ 	$paginator->sort(__("Surname",true), 'User.surname'),
+ 	$paginator->sort(__("Email",true), 'User.email'),
+	$paginator->sort(__("Skype",true), 'User.skype'),
  	$paginator->sort(__("Acl",true), 'Acl.name'),
- 	$paginator->sort(__("Phone",true), 'phone'),
+ 	$paginator->sort(__("Phone",true), 'User.phone'),
 	__("Edit",true),
 	__("Delete",true)));
 
@@ -113,15 +101,15 @@ echo $html->tableHeaders(array(
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/users/edit/{$user['User']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/users/delete/{$user['User']['id']}",null, __("Are you sure you want to delete this user?",true),false);
         if ($phone_numbers > 1) { 
-        $info = __('Phone numbers',true).'|';
+           $info = __('Phone numbers',true).'|';
 
              foreach($user['PhoneNumber'] as  $number){
  
                $info = $info.$number['number'].'|';
               
-           }
+             }
 
-        $phone = $html->div('frameInfoLeft', $phone.' '.$html->link($html->image('icons/plus.png',array('alt'=>__('Alternative phone numbers',true))),'#',array('class'=>'infobox','title'=>$info),null,false));
+             $phone = $html->div('frameInfoLeft', $phone.' '.$html->link($html->image('icons/plus.png',array('alt'=>__('Alternative phone numbers',true))),'#',array('class'=>'infobox','title'=>$info),null,false));
         }
 
         $row[$key] = array($id,
@@ -135,19 +123,26 @@ echo $html->tableHeaders(array(
 		$edit,
 		$delete);
 	}
-     echo $html->tableCells($row,array('class'=>'darker'));
-     echo "</table>";
-*/
+     
+       echo $html->tableCells($row,array('class'=>'darker'));
+       echo "</table>";
 
+       echo "<table>";
+       echo $html->tableCells(array(
+       $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
+       $form->submit( __('Merge',true), array('name' =>'data[Submit]', 'class' => 'button')), 
+       $paginator->numbers()));
+       echo "</table>";
+       echo $form->end();
 
-$count = $this->params['paging']['User']['count'];
-echo "<span>".__("No of users per page: ",true);
-echo $html->link('10','index/limit:10',null, null, false)." | ";
-echo $html->link('25','index/limit:25',null, null, false)." | ";
-echo $html->link('50','index/limit:50',null, null, false)." | " ;
-echo $html->link(__('All',true),'index/limit:'.$count,null, null, false) ;
+       $count = $this->params['paging']['User']['count'];
+       echo "<span>".__("No of users per page: ",true);
+       echo $html->link('10','index/limit:10',null, null, false)." | ";
+       echo $html->link('25','index/limit:25',null, null, false)." | ";
+       echo $html->link('50','index/limit:50',null, null, false)." | " ;
+       echo $html->link(__('All',true),'index/limit:'.$count,null, null, false) ;
+       echo "</span>";
 
-echo "</span>";
      }
 
 ?>

@@ -374,6 +374,7 @@ gui/app/webroot/img/icons/new.png -text
 gui/app/webroot/img/icons/notepad.png -text
 gui/app/webroot/img/icons/off.png -text
 gui/app/webroot/img/icons/on.png -text
+gui/app/webroot/img/icons/plus.png -text
 gui/app/webroot/img/icons/reject.png -text
 gui/app/webroot/img/icons/space.png -text
 gui/app/webroot/img/icons/star.png -text

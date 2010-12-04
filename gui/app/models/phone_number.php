@@ -28,5 +28,29 @@ class PhoneNumber extends AppModel {
 
     var $belongsTo = array('User');
 
+
+ function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+      $this->validate = array(
+	              'number' => array(
+ 				       'rule' => 'phoneFormat',
+ 				       'message' => __('Invalid phone number format (numbers and plus (+) sign allowed).',true),
+		   		       'allowEmpty' => true
+ 				                )
+                             );
+	
+  }
+
+  function phoneFormat($check) {
+
+           //May start with a plus sign. Then 4-25 digits
+           $value = array_values($check);
+           $value = trim($value[0]);
+           return preg_match('/^[+]{0,1}[0-9]{4,25}$/', $value);
+
+  }
+
+
 }
 ?>

@@ -37,46 +37,65 @@ class UsersController extends AppController{
 
       }
 
+
       function index(){
 
-
+      $this->layout = 'jquery';
       $this->pageTitle = 'Users';
-      
-        if(isset($this->params['form']['submit'])) {
+
+      $this->User->recursive = 1;         
+
+      if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/users/refresh');
-                   }
+           }
        }
-
 
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('users_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		}
-	elseif($this->Session->check('users_sort')) { 
-		   $this->paginate['order'] = $this->Session->read('users_sort');
+      } elseif($this->Session->check('users_sort')) { 
+	                      
+               $this->paginate['order'] = $this->Session->read('users_sort');
 
-	} 
+      } 
 
       if(isset($this->params['named']['limit'])) { 
 
 	$this->Session->write('users_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('users_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('users_limit');
-	}	
-
-
-   $this->loadModel('PhoneBook');
-   $options[0] = __('All phone books',true);   
-   $options = $this->PhoneBook->find('list');
-   $options[0] = __('All phone books',true);   
-
+    
+      } elseif($this->Session->check('users_limit')) { 
 	
-        $this->User->recursive = 1; 
-	$data = $this->paginate('User');
-	$this->set('users',$data);  
-        $this->set(compact('options'));
-	     }
+        $this->paginate['limit'] = $this->Session->read('users_limit');
+      
+      }	
+
+
+      if(isset($this->params['form']['submit']) && $phone_book_id = $this->data['User']['phone_book_id']) { 
+            
+             if ($data = $this->User->PhoneBook->findById($phone_book_id)){
+
+                foreach ($data['User'] as $key => $user){
+
+                     $user_id[] = $user['id'];
+                }
+
+                $users = $this->paginate('User', array('User.id' => $user_id));
+                $this->set(compact('users'));    
+              }
+            
+       } else {
+
+             $users = $this->paginate('User');
+             $this->set(compact('users'));    
+
+       }
+
+        $this->loadModel('PhoneBook');
+        $options = $this->PhoneBook->find('list');
+        $options[0] = __('All users',true);
+        $this->set(compact('options','users'));
+
+	}
 
 
 
@@ -84,7 +103,7 @@ class UsersController extends AppController{
     function edit($id = null)    {  
 
 
-    	     $this->pageTitle = 'Contact : Edit';   
+    	     $this->pageTitle = 'User : Edit';   
 
 
 	     //No id specified
@@ -107,9 +126,11 @@ class UsersController extends AppController{
 	      else {
 
 		     if($this->User->saveAll($this->data)){
-				 $this->_flash(__('The entry has been updated',true),'success');
+                                 $this->log("INFO EDIT {ID: ".$id."; NAME: ".$this->data['User']['name']." ".$this->data['User']['surname']."}", "user");                       
+                		 $this->_flash(__('The entry has been updated',true),'success');
     	     		 	 $this->redirect(array('action' => '/'));
 	              } else {
+
 
                                 $acls 	    	    = $this->User->Acl->find('list');
  		                $phonebook 	    = $this->User->PhoneBook->find('list');
@@ -125,13 +146,17 @@ class UsersController extends AppController{
     function delete ($id){
 
     	     if($this->User->del($id)) {
-	     $this->_flash(__('Selected user has been deleted.',true),'success');
+	           $this->_flash(__('Selected user has been deleted.',true),'success');
+	           $data = $this->User->getIdentifier($id);
+	           $this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['User']['name']." ".$data['User']['surname']."}", "user");
+
 	     }
+
              $this->redirect(array('action' => 'index'));
     }
 
     function process (){
-
+   
 	    //One or more users selected
 	    if(array_key_exists('user',$this->params['form'])){
 
@@ -142,12 +167,11 @@ class UsersController extends AppController{
 
                         case __('Delete',true): 
 
-    	     	        foreach ($entries as $key => $user){
-	     	           $id = $user['User'];
-			   $this->User->id = $id;
+    	     	        foreach ($entries as $key => $id){
+
 		     	   $data = $this->User->getIdentifier($id);
 		     	   if ($this->User->del($id)){
-				$this->log('Message: User deleted; Id: '.$id."; Key: ".$data['key']."; Value: ".$data['value']."; Timestamp: ".time(), 'user');
+				$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['User']['name']." ".$data['User']['surname']."}", "user");
 			   }
                         }
                            break;
@@ -155,12 +179,10 @@ class UsersController extends AppController{
 
                        case __('Merge',true): 
 
-		       $this->User->id = $entries[0];
+		       $this->User->id = array_pop($entries);
                        $this->User->unbindModel(array('hasMany' => array('Cdr','Message')));   
 		       $core = $this->User->read();
-                       
-
-                       unset($entries[0]);
+                       $this->log("INFO MERGE {ID: ".$core['User']['id']."; NAME: ".$core['User']['name']." ".$core['User']['surname']."}", "user");                       
 
     	     	        foreach ($entries as $key => $user){
 
@@ -168,7 +190,8 @@ class UsersController extends AppController{
                            $id = $user;
 			   $this->User->id = $id;
                            $tmp = $this->User->read();
-
+                           $this->log("INFO MERGE {ID: ".$tmp['User']['id']."; NAME: ".$tmp['User']['name']." ".$tmp['User']['surname']."}", "user");                       
+                           
                            $core['User']['name'].= $tmp['User']['name'];
                            $core['User']['surname'].= $tmp['User']['surname'];
                            $core['User']['skype'].= $tmp['User']['skype'];
@@ -207,6 +230,7 @@ class UsersController extends AppController{
                                  } 
                            }
 
+                           $this->User->del($tmp['User']['id']);
                         }
 
                       $this->User->saveAll($core);
@@ -225,19 +249,24 @@ class UsersController extends AppController{
 
     function add() {
 
-    	$this->pageTitle = 'Contacts : Add';
+    	$this->pageTitle = 'User : Add';
 	$acls = $this->User->Acl->find('list');
  	$this->set(compact('acls'));
 
         //Fetch form data and save
 	if (!empty($this->data)) {
 
+
 		$this->User->set( $this->data );
-		if ($this->User->save($this->data)) {
-			$this->_flash(__('New contact has been added', true),'success');
+		if ($this->User->save($this->data['User'])) {
+
+                        $id = $this->User->getLastInsertId();
+                        $this->data['PhoneNumber']['user_id'] = $id;
+                        $this->User->PhoneNumber->saveAll($this->data['PhoneNumber']);
+			$this->_flash(__('New user has been added', true),'success');
 			$this->redirect(array('action'=>'index'));
 		} else {
-			$this->_flash(__('The contact could not be added. Please, try again.', true),'error');
+			$this->_flash(__('The user could not be added. Please, try again.', true),'error');
 		}
 	} else {
 

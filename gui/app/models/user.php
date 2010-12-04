@@ -54,7 +54,7 @@ function __construct($id = false, $table = null, $ds = null) {
 				     ),
 
  		),
-	'phone1' => array(
+	'phone' => array(
 			'alphaNumeric' => array(
  				       'rule' => 'phoneFormat',
  				       'message' => __('Please sypply a valid phone number (numbers and plus (+) signed allowed).',true),
@@ -92,6 +92,13 @@ function phoneFormat($check) {
   
   }
 
+
+function getIdentifier($id){
+
+         return  $this->findById($id);
+  
+
+}
 
 }
 ?>

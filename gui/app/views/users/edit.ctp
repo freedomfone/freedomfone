@@ -67,14 +67,15 @@
      echo "</table>";
      echo $form->end();
 
-    
 
      echo "<div id ='numbers'>";  
      echo "<table>";
+     echo   $html->tableCells(array(array(array($html->div('table_sub_header',__('Phone numbers',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')))));
+
      foreach ($phonenumbers as $key => $number){
 
              $delete = $ajax->link($html->image("icons/delete.png"),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
-             echo $html->tableCells(array(__('Phone number',true).' '.($key+1),$number['PhoneNumber']['number'], $delete));
+             echo $html->tableCells(array(__('Phone number',true), $number['PhoneNumber']['number'], $delete));
 
      }
      echo "</table>";
@@ -82,8 +83,15 @@
 
 
      echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
-     echo $html->tag('span', $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)));
-     echo $html->tag('span', $form->end('Add phone number') );
+   
+     //echo $html->tag('span', $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)));
+     //echo $html->tag('span', $form->end('Add phone number') );
+
+     echo "<table><tr><td>";
+     echo $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false));
+     echo "</td><td>";
+     echo $html->tag('span', $form->end('Add') );
+     echo "</td></tr></table>";
      echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
      echo "</div>"; 
 

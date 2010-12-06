@@ -350,6 +350,7 @@ gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
 gui/app/webroot/freedomfone -text
+gui/app/webroot/img/bg.jpg -text
 gui/app/webroot/img/bg.png -text
 gui/app/webroot/img/branding_head.gif -text
 gui/app/webroot/img/branding_head.png -text
@@ -365,6 +366,8 @@ gui/app/webroot/img/icons/bulb.png -text
 gui/app/webroot/img/icons/clock.png -text
 gui/app/webroot/img/icons/delete.png -text
 gui/app/webroot/img/icons/edit.png -text
+gui/app/webroot/img/icons/export-16.png -text
+gui/app/webroot/img/icons/export-24.png -text
 gui/app/webroot/img/icons/export.png -text
 gui/app/webroot/img/icons/listen.png -text
 gui/app/webroot/img/icons/lock.png -text

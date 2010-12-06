@@ -76,7 +76,7 @@ $sort  = $session->read('messages_sort');
      echo $form->hidden('source',array('value'=>$source));
 
      echo $html->tableCells(array (
-     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'60'))),
+     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))),
      array(__("Status",true),	$form->input('status',$options_status)),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),

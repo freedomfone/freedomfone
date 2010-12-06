@@ -42,7 +42,7 @@ var $helpers = array('Flash','Session','Javascript');
    }
 
 
-        function create() {
+   function create() {
 
                  $this->pageTitle = 'Leave-a-Message : IVR';           
                  $lm_settings = Configure::read('LM_SETTINGS');
@@ -66,74 +66,65 @@ var $helpers = array('Flash','Session','Javascript');
          }
 
 
-function add($id) {
+    function add($id) {
 
-                 $this->pageTitle = 'Leave-a-Message : IVR';           
+         $this->pageTitle = 'Leave-a-Message : IVR';           
          $lm_settings = Configure::read('LM_SETTINGS');
+         $instance_id=$this->data['LmMenu']['instance_id'];
+         $fileData = array();
 
- $instance_id=$this->data['LmMenu']['instance_id'];
- $fileData = array();
-
-                 //Incorrect id -> redirect to index
+         //Incorrect id -> redirect to index
          if(!$id){
+               $this->redirect(array('action' =>'/'));
+ 
+        }  elseif  ($id && empty($this->data)) { 
+           //Id OK, no form data -> display data
+                   
+           $this->set(compact($lm_settings));
+           $this->LmMenu->unbindModel(array('hasMany' => array('Mapping')));   
+           $this->data = $this->LmMenu->findById($id);
 
-                        $this->redirect(array('action' =>'/'));
-         } 
-                 //Id OK, no form data -> display data
-                 elseif  ($id && empty($this->data)) {
-
-       $this->set(compact($lm_settings));
-       $this->data = $this->LmMenu->findById($id);
-
-         }  else {
+        }  else {
          //Id OK, form data OK -> Save and redirect to Index
 
-   foreach($this->data['LmMenuFile'] as $key => $file){
+              foreach($this->data['LmMenuFile'] as $key => $file){
 
-if ($file['size']){
-$file['fileName']=$key;
-$fileData[] = $file;
-} elseif ($file['error']==1 && !$file['size']) {
-$this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
-}
-   }
+                   if ($file['size']){
+                      $file['fileName']=$key;
+                      $fileData[] = $file;
+                   } elseif ($file['error']==1 && !$file['size']) {
+                      $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
+                   }
+              }
 
-     //Upload one ore more wav files
-       $fileOK = $this->uploadFiles($lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
+              //Upload one ore more wav files
+              $fileOK = $this->uploadFiles($lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
+              $this->LmMenu->id = $this->data['LmMenu']['id'];
 
-//$this->data['LmMenu']['instance_id']=$id;
-                        $this->LmMenu->id = $this->data['LmMenu']['id'];
+              if ($this->LmMenu->save($this->data['LmMenu'])) {
 
-if ($this->LmMenu->save($this->data['LmMenu'])) {
+                 if(array_key_exists('urls', $fileOK)) {
 
-  if(array_key_exists('urls', $fileOK)) {
+                      foreach ($fileOK['urls'] as $key =>  $url ){
+                              $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
+                              $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
+                      }
+                 }
 
-   foreach ($fileOK['urls'] as $key =>  $url ){
-   $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-$this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
-   }
+                 if(array_key_exists('errors', $fileOK)) {
 
-   }
+                      foreach ($fileOK['errors'] as $key => $error ){
+                              $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');
+                              $this->_flash($error, 'error');
+                       }
+                 }
+              } else {
+                     $this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
+              }
 
-   if(array_key_exists('errors', $fileOK)) {
-
-   foreach ($fileOK['errors'] as $key => $error ){
-$this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');
-   $this->_flash($error, 'error');
-
-    }
-   }
-      
-
-}
-else {
-$this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
-}
-
-           $this->redirect(array('action' => '/'));
-           } //else
-
-
+              $this->redirect(array('action' => '/'));
+         
+         } 
    }
 
 
@@ -153,57 +144,49 @@ $this->_flash(__('Your data could not be saved. Please, try again.',true),'warni
                  //Id OK, no form data -> display data
                  elseif  ($id && empty($this->data)) {
 
-                        $this->set(compact($lm_settings));
-                               $this->data = $this->LmMenu->findById($id);
+                        $this->set(compact($lm_settings));       
+                        $this->LmMenu->unbindModel(array('hasMany' => array('Mapping')));   
+                        $this->data = $this->LmMenu->findById($id);
 
-                                        }  else {
-                                                 //Id OK, form data OK -> Save and redirect to Index
-
-                                                    foreach($this->data['LmMenuFile'] as $key => $file){
+                 }  else {
+                         //Id OK, form data OK -> Save and redirect to Index
+                         foreach($this->data['LmMenuFile'] as $key => $file){
                                                     
-                                                    if ($file['size']){
-                                                    $file['fileName']=$key;
-                                                    $fileData[] = $file;
-                                                    } elseif ($file['error']==1 && !$file['size']) {
-                                                    $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
-                                                    }
-                                                       }
+                             if ($file['size']){
+                                 $file['fileName']=$key;
+                                 $fileData[] = $file;
+                             } elseif ($file['error']==1 && !$file['size']) {
+                                 $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
+                             }
+                          }
 
-                                                            //Upload one ore more wav files
-                                                                   $fileOK = $this->uploadFiles($lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
+                          //Upload one ore more wav files
+                          $fileOK = $this->uploadFiles($lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'], $fileData ,false,'audio',true,true);
+                          $this->LmMenu->id = $id;
 
-
-                        $this->LmMenu->id = $id;
-
-                        if ($this->LmMenu->save($this->data['LmMenu'])) {
+                          if ($this->LmMenu->save($this->data['LmMenu'])) {
                         
-                          if(array_key_exists('urls', $fileOK)) {
+                                 if(array_key_exists('urls', $fileOK)) {
 
-                             foreach ($fileOK['urls'] as $key =>  $url ){
-                                $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-                                $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
-                                   }
-                                   
-                                      }
+                                        foreach ($fileOK['urls'] as $key =>  $url ){
+                                            $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
+                                            $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
+                                        }
+                                  }
 
-                                         if(array_key_exists('errors', $fileOK)) {
+                                 if(array_key_exists('errors', $fileOK)) {
 
-                                            foreach ($fileOK['errors'] as $key => $error ){
+                                        foreach ($fileOK['errors'] as $key => $error ){
                                             $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');
-                                               $this->_flash($error, 'error');
-
-                                                   }
-                                                      }
+                                            $this->_flash($error, 'error');
+                                        }
+                                 }
                                                             
-
-                                                      }
-                                                      else {
-                                                      $this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
-                                                      }
-
-           $this->redirect(array('action' => '/'));
-           } //else
-
+                         }  else {
+                                $this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
+                         }
+                        $this->redirect(array('action' => '/'));
+                 } //else
 
    }
 
@@ -248,15 +231,11 @@ $this->_flash(__('Your data could not be saved. Please, try again.',true),'warni
 
              $lm_settings = Configure::read('LM_SETTINGS');
              $instance_id = $this->LmMenu->getInstanceID($id);
-  
              $dir = WWW_ROOT.$lm_settings['path'].$instance_id.'/'.$lm_settings['dir_menu'];
 
 
-             //FIXME ! Check if IVR is active
-                  $isActive = false; 
-
              //LAM is not active -> delete
-             if (!$isActive){
+             if (!$this->isActive($id, 'lam')){
 
                 //Delete action OK -> success flash
                 if ($result = $this->LmMenu->delete($this->data)){
@@ -270,31 +249,40 @@ $this->_flash(__('Your data could not be saved. Please, try again.',true),'warni
 
                      if(! $this->LmMenu->restoreConf($instance_id)){
                           debug($instance_id);
-                                    $this->_flash(__('The default conf file could not be restored. Please check file permissions.',true),'warning');
+                         $this->_flash(__('The default conf file could not be restored. Please check file permissions.',true),'warning');
 
                      }
-
 
                    }
 
                  } else {
                 //Delete/unlink action failed -> error flash
                 
-              $this->_flash(__('No entry with this id exist. Please try again.',true),'error');
+                        $this->_flash(__('No entry with this id exist. Please try again.',true),'error');
 
                 }
 
              //LAM is active -> warning flash
              } else {
 
-   $this->_flash(__('The selected menu could not be deleted since it is a member of another IVR.',true),'warning');
+                $this->_flash(__('The selected menu could not be deleted since it is a member of another IVR.',true),'warning');
             
              }
 
-           $this->redirect(array('action' => '/add'));
            }
    
-           $this->redirect(array('action' => '/delete'));
+           $this->redirect(array('action' => 'index'));
+      }
+
+      function export($id){
+
+
+               Configure::write('debug', 0);
+    	       $this->layout = null;
+    	       $this->autoLayout = false;
+    	       $this->render();   
+	
+
       }
 
 

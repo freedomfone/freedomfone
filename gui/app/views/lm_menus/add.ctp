@@ -38,7 +38,7 @@ echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array
 echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
-
+$min = ' '.__('min',true);
 $commentWelcome  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";
 $commentInform   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInformMessage']."</div>";
 $commentInvalid  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInvalidMessage']."</div>";
@@ -48,6 +48,11 @@ $commentDelete   = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 $commentSave     = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSaveMessage']."</div>";
 $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
 
+$commentTitle     = $html->div('formComment', __('Name of this Leave-a-message IVR menu.',true));
+$commentMaxreclen = $html->div('formComment', __('Maximum duration of voice message left by user.',true));
+$commentForceTTS  = $html->div('formComment', __('Check the box to force Text-to-speach (ignore uploaded files)',true));
+$options          = array('60' => '1'.$min, '120' => '2'.$min, '180' => '3'.$min, '240' => '4'.$min , '300' => '5'.$min, '900' => __('Unlimited',true)); 
+
 
 echo $form->create('LmMenu', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
 echo $form->hidden('lmOnHangup',array('value'=>'accept'));
@@ -55,10 +60,17 @@ echo $form->hidden('lmForceTTS',array('value'=>0));
 echo $form->hidden('id',array('value'=>$this->data['LmMenu']['id']));
 echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
 
-     // ** Title **//
-     echo "<fieldset><legend>".__('Title',true)."</legend>";
-     echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Name of your Leave-a-message IVR menu.',true)));
+     // ** General settings **//
+     echo "<fieldset><legend>".__('General settings',true)."</legend>";
+      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Title',true),'after' => $commentTitle));
+     echo $form->input('LmMenu.lmMaxreclen', array('between'=>'<br />','type'=>'select', 'options' => $options, 'label'=>__('Message duration',true),'after' => $commentMaxreclen));
+     echo $form->hidden('lmForceTTS',array('value'=>0));
+     echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'before' => __('Do not use uploaded files',true).' '));    	    
+     echo $form->hidden('lmOnHangup',array('value'=>'accept'));
+     echo $commentForceTTS;
      echo "</fieldset>";
+
+
 
      // ** Welcome **//
      echo "<fieldset><legend>".__('Step 1: Welcome message',true)."</legend>";

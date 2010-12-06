@@ -126,7 +126,8 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
-                if($entry['id']){
+
+                if($entry['type']){
 
                    switch($entry['type']){
 
@@ -145,7 +146,7 @@ class IvrMenusController extends AppController{
                     case 'ivr':
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['node_id']= false;
-	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id'],'ivr');                
                     break;
 
                    }
@@ -363,7 +364,7 @@ class IvrMenusController extends AppController{
 	        //Recreate ivr.xml
 		$this->IvrMenu->writeIVR($id);
 		$this->IvrMenu->writeIVRCommon();
-	 	$this->redirect(array('action' => 'index'));
+	 	$this->redirect(array('action' => 'selectors'));
 
 
          }
@@ -768,9 +769,16 @@ class IvrMenusController extends AppController{
 
                      if($this->data['Mapping']){ 
 
-	                 $this->data['IvrMenu']['switcher_type'] =  $this->data['Mapping'][0]['type'];
+                         
+	                 $this->data['IvrMenu']['switcher_type'] = $this->data['Mapping'][0]['type'];
 
                          foreach($this->data['Mapping'] as $key => $entry){
+
+                            if (!$entry[$entry['type'].'_id'] ) {
+
+                                unset($this->data['Mapping'][$key]);
+
+                            } else {
 
                               switch($entry['type']){
 
@@ -788,9 +796,11 @@ class IvrMenusController extends AppController{
                               case 'ivr':
 	                      $this->data['Mapping'][$key]['lam_id']= false;
 	                      $this->data['Mapping'][$key]['node_id']= false;
-	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id'],'ivr');                
                               break;
+                             
                               }
+                            }
                           }
                       }
 

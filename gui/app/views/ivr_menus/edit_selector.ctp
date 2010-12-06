@@ -129,7 +129,9 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
         $listen = false;
 
-        if($this->data['Mapping']){
+        if($this->data['Mapping'][$i] ){
+
+//          if( array_key_exists('type', $this->data['Mapping'][$i])){
                 if($this->data['Mapping'][$i]['type'] == 'node'){
 
                    $id = $this->data['Mapping'][$i]['node_id'];
@@ -138,6 +140,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
       	           $path = $settings['path'].$settings['dir_node'];
 	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
                 }
+  //         }
         }
 
 

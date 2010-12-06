@@ -91,11 +91,10 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 $path = $ivr['path'].$ivr['dir_node'];
 
+
      for($i=0;$i<9;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
-        echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	
-
 
         $default = false;
      	$options1=array('lam' =>'');
@@ -109,19 +108,6 @@ $path = $ivr['path'].$ivr['dir_node'];
 	$radio2 = $form->radio('Mapping.'.$i.'.type',$options2,$attributes);
        	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
 
-        $listen = false;
-
-        if($this->data['Mapping']){
-                if($this->data['Mapping'][$i]['type'] == 'node'){
-
-                   $id = $this->data['Mapping'][$i]['node_id'];
-                   $file = $nodes['file'][$id];
-                   $title = $nodes['title'][$id];
-      	           $path = $ivr['path'].$ivr['dir_node'];
-	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
-                }
-        }
-
 
         $row[$i]=array(
 	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),
@@ -131,7 +117,6 @@ $path = $ivr['path'].$ivr['dir_node'];
         $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select Voice Menu',true).' -' )),
 	$radio3, 
         $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
-	$listen,
 
 	);
 

@@ -368,38 +368,42 @@ function __construct($id = false, $table = null, $ds = null) {
     
     function deleteIVR($id, $instance_id){
 
+    	   Configure::write('debug', 0);
 
           if($id && $instance_id){
 
-           //FIXME: delete all mapping to the IVR
+            $this->Mapping->unbindModel(array('belongsTo' => array('Node'), 'hasOne' => array('Node'), 'belongsTo' => array('LmMenu')));     
 
-           /* foreach($this->data['Mapping'] as $key => $mapping){
 
-    	   $this->Mapping->delete($mapping['id']);
+            //FIXME   
+    	    //$this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
+            foreach($this->data['Mapping'] as $key => $mapping){
 
-           }*/
+    	       $this->Mapping->delete($mapping['id']);
 
-//    	   $this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
+            }
+
+                $this->log("INFO; DELETE MAPPINGS, {Id:".$id."}", "ivr");
+                   
    
-    	   if($this->delete($id,true)){
+                if($this->delete($id,true)){
 
-		   $this->log("Msg: INFO; Action: IVR deleted; Id: ".$id."; Code: N/A", "ivr");
+
+		   $this->log("INFO; DELETE IVR {Id: ".$id."}", "ivr");
                    return true;
 
-           } else {
+                } else {
 
                   return false;
+                }
 
-           }
            } else{
 
-
-           return false;
+                return false;
 
            }
 
       }
-
 
 
 }

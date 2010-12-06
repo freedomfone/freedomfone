@@ -22,13 +22,10 @@
  *
  ***************************************************************************/
 
-
-echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-
-echo "<h1>".__("PhoneBook",true)."</h1>";
+   echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
+   echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+   echo $form->end();
+   echo "<h1>".__("PhoneBook",true)."</h1>";
 
    if ($messages = $session->read('Message.multiFlash')) {
    
@@ -37,36 +34,30 @@ echo "<h1>".__("PhoneBook",true)."</h1>";
    }
 
 
-
    if ($data){
 
       echo "<table width='100%'>";
-      echo $html->tableHeaders(array(__('PhoneBook',true),__('Description',true),__('Edit',true),__('Delete',true)));
+      echo $html->tableHeaders(array(__('PhoneBook',true),__('Description',true),__('Edit',true),__('Delete',true),__('Export',true)));
 
 
       	   foreach ($data as $key => $phone_book){
 
-      		   $title 	= $phone_book['PhoneBook']['name'];
-      		   $description = $phone_book['PhoneBook']['description'];		   
-  		   $edit 	= $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/phone_books/edit/{$phone_book['PhoneBook']['id']}",null, null, false);
-      		   $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/phone_books/delete/{$phone_book['PhoneBook']['id']}",array('class'=>'confirm_delete'), __("Are you sure you want to delete this phone book?",true),false);
-      		   
+      	      $title 	= $phone_book['PhoneBook']['name'];
+      	      $description = $phone_book['PhoneBook']['description'];		   
+  	      $edit 	= $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/phone_books/edit/{$phone_book['PhoneBook']['id']}",null, null, false);
+      	      $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/phone_books/delete/{$phone_book['PhoneBook']['id']}",array('class'=>'confirm_delete'), __("Are you sure you want to delete this phone book?",true),false);
+	      $export 	= $html->link($html->image("icons/export-16.png", array("title" => __("Export",true))),"/phone_books/export/{$phone_book['PhoneBook']['id']}",null, null, false);
+              $row[$key] = array($title, $description,$edit,$delete, $export);
 
+         }
 
+         echo $html->tableCells($row,array('class'=>'darker'));
+         echo "</table>";
 
-
-
-     $row[$key] = array($title, $description,$edit,$delete);
-
-      		   }
-
-     echo $html->tableCells($row,array('class'=>'darker'));
-      echo "</table>";
-
-      }
-      else {
+   }   else {
+      
       echo "<div class='instruction'>".__("No phone books exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
 
-      }
+   }
 
 ?>

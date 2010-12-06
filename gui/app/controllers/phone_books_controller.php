@@ -66,7 +66,9 @@ class PhoneBooksController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->PhoneBook->save($this->data)) {
+
+			if ($this->PhoneBook->saveAll($this->data)) {
+
 				$this->_flash(__('The phone book has been updated.', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
@@ -75,7 +77,6 @@ class PhoneBooksController extends AppController {
 		}
 		if (empty($this->data)) {
 			$this->data = $this->PhoneBook->read(null, $id);
-
 
 			$users   = $this->PhoneBook->User->find('list');
 

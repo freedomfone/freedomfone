@@ -43,15 +43,17 @@
 			  	        'class'=>'formTitleDefault'));
 
       echo $form->create('PhoneBook',array('type' => 'post','action'=> 'edit'));
-			  		
+      echo $form->hidden('id');
 
      echo "<table>";
      echo $html->tableCells(array (
      	  array(__("Name",true),	        $form->input('name',$options_name)),
      	  array(__("Description",true),		$form->input('description',$options_longname)),
-     	  array(__("Use in",true),		$form->input('Users',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	  array(__("Use in",true),		$form->input('User',array('type'=>'select','multiple'=>'true','options' => $users,'label'=>false,'empty'=>__('-- Use in none --',true)))),
      	  array('',	$form->end(__('Save',true)))
      	  ));
+
+
     echo "</table>";
 
     }

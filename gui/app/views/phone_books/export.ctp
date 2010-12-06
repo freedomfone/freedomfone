@@ -23,13 +23,19 @@
  ***************************************************************************/
 
 
+     $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Phone',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
+     $csv->addRow($line);
+     $filename = __('PhoneBook',true).'_'.$data['PhoneBook']['name'].'.csv';
 
+     if (!$entry['last_epoch']) {
 
+        $last_epoch = __('Never',true);
 
-		$line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Phone',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
-		$csv->addRow($line);
+     } else {
 
-$filename = __('PhoneBook',true).'_'.$data['PhoneBook']['name'].'.csv';
+       $last_epoch = date('Y-m-d H:i:s',$entry['last_epoch']);
+     }
+
 
 	if($data){
 
@@ -40,7 +46,7 @@ $filename = __('PhoneBook',true).'_'.$data['PhoneBook']['name'].'.csv';
 		      $entry['surname'],
 		      $entry['email'],
 		      $entry['skype'],
-		      $entry['phone1'],
+		      false,
 		      $entry['organization'],
 		      date('Y-m-d H:i:s',$entry['created']),
 		      $entry['count_poll'],
@@ -48,7 +54,7 @@ $filename = __('PhoneBook',true).'_'.$data['PhoneBook']['name'].'.csv';
 		      $entry['count_lam'],
 		      $entry['first_app'],
 		      $entry['last_app'],
-		      date('Y-m-d H:i:s',$entry['last_epoch'])
+                      $last_epoch,
 		      );
 
 		$csv->addRow($line);

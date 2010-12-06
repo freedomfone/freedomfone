@@ -153,7 +153,7 @@ class CdrController extends AppController{
     	       $this->render();   
 	     }	   
          } 
-             //$this->render();  
+            
 
       }
 
@@ -290,7 +290,6 @@ class CdrController extends AppController{
 
 
       function export(){
-
 
     	     $this->render();  
        }

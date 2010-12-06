@@ -87,7 +87,9 @@ $config['LM_SETTINGS'] = array(
 		'path'             => 'freedomfone/leave_message/',
 		'dir_messages'     =>  'messages/',
 		'dir_menu'         =>  'audio_menu/',
-		'dir_conf'         =>  'conf/'
+		'dir_conf'         =>  'conf/',
+                'instance_min'     => '100',
+                'instance_max'     => '109'
 		);
 
 $config['LM_DEFAULT']=	array(
@@ -100,7 +102,8 @@ $config['LM_DEFAULT']=	array(
 		'lmSaveMessage'    => 'Thank you!',
 		'lmGoodbyeMessage' => 'Goodbye',
                 'lmOnHangup'       => 'delete',
-                'lmForceTTS'       =>  false
+                'lmForceTTS'       =>  false,
+                'lmMaxreclen'      => 120
                 );
 
 

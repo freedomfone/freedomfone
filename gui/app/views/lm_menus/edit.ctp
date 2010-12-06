@@ -43,21 +43,21 @@ $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight di
          echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 
+$min = ' '.__('min',true);
+$commentWelcome   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";
+$commentInform    = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInformMessage']."</div>";
+$commentInvalid   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInvalidMessage']."</div>";
+$commentLong      = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmLongMessage']."</div>";
+$commentSelect    = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSelectMessage']."</div>";
+$commentDelete    = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmDeleteMessage']."</div>";
+$commentSave      = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSaveMessage']."</div>";
+$commentGoodbye   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
 
-$commentWelcome  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";
-$commentInform   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInformMessage']."</div>";
-$commentInvalid  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmInvalidMessage']."</div>";
-$commentLong     = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmLongMessage']."</div>";
-$commentSelect   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSelectMessage']."</div>";
-$commentDelete   = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmDeleteMessage']."</div>";
-$commentSave     = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmSaveMessage']."</div>";
-$commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmGoodbyeMessage']."</div>";
-
-
-echo $form->create('LmMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+$commentTitle     = $html->div('formComment', __('Name of this Leave-a-message IVR menu.',true));
+$commentMaxreclen = $html->div('formComment', __('Maximum duration (seconds) of voice message left by user.',true));
+$commentForceTTS  = $html->div('formComment', __('Check the box to force Text-to-speach (ignore uploaded files)',true));
+$options          = array('60' => '1'.$min, '120' => '2'.$min, '180' => '3'.$min, '240' => '4'.$min , '300' => '5'.$min, '900' => __('Unlimited',true)); 
 $path = $lm_settings['path'].$this->data['LmMenu']['instance_id']."/".$lm_settings['dir_menu'];
-
-
 
 $input1_3 = $input1_4 = false;
 $input2_3 = $input2_4 = false;
@@ -69,18 +69,21 @@ $input7_3 = $input7_4 = false;
 $input8_3 = $input8_4 = false;
 
 
-echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
+     echo $form->create('LmMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+     echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
 
      
-        //Checkbox for not using uploaded files
-        echo $form->hidden('lmForceTTS',array('value'=>0));
-        echo $form->hidden('lmOnHangup',array('value'=>'accept'));
-        echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'after' =>' '.__('Do not use uploaded files',true)));    	    
+     
 
 
-     // ** Title **//
-     echo "<fieldset><legend>".__('Title',true)."</legend>";
-     echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Name of your Leave-a-message IVR menu.',true)));
+     // ** General settings **//
+     echo "<fieldset><legend>".__('General settings',true)."</legend>";
+      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Title',true),'after' => $commentTitle));
+     echo $form->input('LmMenu.lmMaxreclen', array('between'=>'<br />','type'=>'select', 'options' => $options, 'label'=>__('Message duration',true),'after' => $commentMaxreclen));
+     echo $form->hidden('lmForceTTS',array('value'=>0));
+     echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'before' => __('Do not use uploaded files',true).' '));    	    
+     echo $form->hidden('lmOnHangup',array('value'=>'accept'));
+     echo $commentForceTTS;
      echo "</fieldset>";
 
 

@@ -48,25 +48,27 @@ class LmMenu extends AppModel {
     	    foreach ($lm_default as $key => $default){
 
                 if(array_key_exists($key , $this->data['LmMenu'])){
-            
+
+
 	    	    $text = $this->data['LmMenu'][$key];
                  
                     if($key == 'lmForceTTS'){
 
-                      if(!$text) {
+                     if(!$text) {
     	    	        $line = "var ".$key." = false;\n";
                        } else {
                         $line = "var ".$key." = true;\n";
                        }
                      } else {
 
-	    	    if (!$text){
-		       $text = $default;
-		    }
+	    	       if (!$text){
+		          $text = $default;
+		       }
 
-    	    	    $line = "var ".$key." = \"".$text."\";\n";
+    	    	       $line = "var ".$key." = \"".$text."\";\n";
 	    	   
                     }
+
                     fwrite($handle, $line);
 
                 } //if key exists	
@@ -87,6 +89,7 @@ class LmMenu extends AppModel {
     function nextInstance(){
 
      	    $lm_settings = Configure::read('LM_SETTINGS');
+            $this->unbindModel(array('hasMany' => array('Mapping')));   
             $data =  $this->findAll();
 
           //LAM entries exist  
@@ -204,6 +207,7 @@ class LmMenu extends AppModel {
   
       function getInstanceID($id){
 
+            $this->unbindModel(array('hasMany' => array('Mapping')));   
                $data = $this->findById($id);
 
                return $data['LmMenu']['instance_id'];

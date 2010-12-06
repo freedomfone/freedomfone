@@ -67,14 +67,17 @@ $session->flash();
      if($messages){
 
       foreach($messages as $key => $message){
-
-        if ($message['Message']['new']){ 
         
-	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
-	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
+         if ($message['Message']['new']){ 
+        
+                $message_new = $message_new + 1;
 
+                if(sizeof($rows)<5){
 
-             $rows[] = array(
+	        $download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+	        $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
+
+                 $rows[] = array(
                        $message['Message']['sender'],
                        $time->niceShort($message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
@@ -82,11 +85,10 @@ $session->flash();
                        $download,
                        $listen
                        );
-
-
+                 }
         }
      }
-        $message_new = sizeof($rows);
+//        $message_new = sizeof($rows);
         $message_total = sizeof($messages);
     }
   

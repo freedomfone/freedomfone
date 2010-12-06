@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * output.ctp	- Create cvs file 
+ * export.ctp	- Export phone book to cvs file 
  * version 	- 1.0.353
  * 
  * Version: MPL 1.1
@@ -23,23 +23,28 @@
  ***************************************************************************/
 
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
-		$csv->addRow($line);
+	$line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('Poll count',true),__('IVR count',true),__('Leave-a-message count',true),__('SMS count',true),__('First application',true),__('Last application',true),__('First seen',true),__('Last seen',true),__('ACL',true));
+	$csv->addRow($line);
 
 	if($data){
 
+
 		foreach($data as $entry){
 	
-		$line = array( date('Y-m-d',$entry['Cdr']['epoch']),
-		               date('Y',$entry['Cdr']['epoch']),
-		      	       date('m',$entry['Cdr']['epoch']),
-			       date('d',$entry['Cdr']['epoch']),
-			       date('H:i:s',$entry['Cdr']['epoch']),
-			       $entry['Cdr']['channel_state'],
-			       $entry['Cdr']['call_id'],
-			       $entry['Cdr']['caller_number'],
-			       $entry['Cdr']['application'],
-			       $entry['Cdr']['proto']);
+		$line = array( $entry['PhoneBook']['name'],
+			       $entry['PhoneBook']['surname'],
+			       $entry['PhoneBook']['email'],
+			       $entry['PhoneBook']['skype'],
+                               $entry['PhoneBook']['organization'],
+                               $entry['PhoneBook']['count_poll'],
+			       $entry['PhoneBook']['count_ivr'],
+			       $entry['PhoneBook']['count_lam'],
+			       $entry['PhoneBook']['count_bin'],
+			       $entry['PhoneBook']['first_app'],
+			       $entry['PhoneBook']['last_app'],
+			       $entry['PhoneBook']['first_epoch'],
+			       $entry['PhoneBook']['last_epoch']);
+ 
 
 		$csv->addRow($line);
 
@@ -47,11 +52,8 @@
 
 	}
 		$prefix=date('Y-m-d');
-		echo $csv->render($prefix."_".__('CDR',true)."_".$select_option);  
+		echo $csv->render($prefix."_".__('PhoneBook',true));  
 		$csv->render(false);
-
-
-
 
 
 ?>

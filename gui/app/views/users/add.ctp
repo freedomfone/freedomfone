@@ -31,7 +31,7 @@
 
 
      echo "<div class='frameLeft'>";
-     echo "<table>";
+     echo "<table width='500px' cellspacing='0'>";
      echo $html->tableCells(array (
      array(__("Name",true),			$form->input('name',array('label'=>false))),
      array(__("Surname",true),			$form->input('surname',array('label'=>false))),
@@ -41,7 +41,7 @@
      array(__("Organization",true),		$form->input('organization',array('label'=>false))),
      array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=>$acls, 'label'=>false))),
      array($form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button')),'')
-     ));
+     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
      echo $form->end(); 
      echo "</div>";

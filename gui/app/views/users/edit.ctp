@@ -22,13 +22,16 @@
  *
  ***************************************************************************/
 
+ 
 
  if($data = $this->data){
 
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 
-     echo "<fieldset>";
+
      echo "<h1>".__("Edit contact",true)."</h1>";
+     
+     echo $html->div('content_wrap_inline');
 
 
      echo $form->create('User',array('type' => 'post','action'=> 'edit'));
@@ -62,32 +65,31 @@
      $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
      
      
-     echo "<table>";
-     echo $html->tableCells($row);
+     echo "<table width='400px' cellspacing='0'>";
+     echo $html->tableCells($row,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
      echo $form->end();
+     unset($row);
 
 
      echo "<div id ='numbers'>";  
-     echo "<table>";
-     echo   $html->tableCells(array(array(array($html->div('table_sub_header',__('Phone numbers',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')))));
+     echo "<table width='400px' cellspacing='0'>";
+     $row[] = array(array($html->div('table_sub_header',__('Phone numbers',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')));
 
      foreach ($phonenumbers as $key => $number){
 
              $delete = $ajax->link($html->image("icons/delete.png"),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
-             echo $html->tableCells(array(__('Phone number',true), $number['PhoneNumber']['number'], $delete));
+             $row[] = array(__('Phone number',true), $number['PhoneNumber']['number'], $delete);
 
      }
+     echo $html->tableCells($row, array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
      echo "</div>";
 
 
      echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
-   
-     //echo $html->tag('span', $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)));
-     //echo $html->tag('span', $form->end('Add phone number') );
-
-     echo "<table><tr><td>";
+  
+     echo "<table width='400px' cellspacing='0' class='none'><tr class = 'none'><td>";
      echo $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false));
      echo "</td><td>";
      echo $html->tag('span', $form->end('Add') );
@@ -97,11 +99,8 @@
 
 
 
-
-
-
      echo "<div class='frameRight'>";
-     echo "<table>";
+     echo "<table width='300px' cellspacing='0'>";
      echo $html->tableCells(array (
      array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
@@ -113,11 +112,13 @@
     array(__("Voice Menu",true),		$data['User']['count_ivr']),
      array(__("Leave-a-message",true),		$data['User']['count_lam']),
      array(__("SMS",true),		        $data['User']['count_bin'])
-     ));
+     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
      echo "</div>";
 
-    echo "</fieldset>";
+    echo "</div>";
+
+
     }
     else {
 

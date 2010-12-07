@@ -40,26 +40,28 @@ echo $form->end();
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
 
-     echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
-     echo "<table>";
-     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit'))));
-     echo "</table>";
-     echo $form->end();
-
-     echo $html->div('space',false);
+   
 
      if ($users){
 
+     echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
+     echo "<table cellspacing = '0' class='none'>";
+     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit'))), array('class' => 'none'));
 
+     
      ?>
-     <input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)">
-     <input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)">
+     <tr class='none'><td><input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></td>
+     <td><input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></td></tr>
      <?
+     echo "</table>";
+     echo $form->end();
+
+
      echo $html->div('space', false);
      echo $html->div("",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
-     echo "<table width='100%'>";
+     echo "<table width='800px' class='collapsed' cellspacing=0>";
      echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'User.new'),
@@ -127,11 +129,12 @@ echo $form->end();
        echo $html->tableCells($row,array('class'=>'darker'));
        echo "</table>";
 
-       echo "<table>";
+
+       echo "<table cellspacing = '0' class='none'>";
        echo $html->tableCells(array(
        $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
        $form->submit( __('Merge',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-       $paginator->numbers()));
+       $paginator->numbers()),array('class' =>'none'),array('class' =>'none'));
        echo "</table>";
        echo $form->end();
 

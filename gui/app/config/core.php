@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 /**
  * Application wide charset encoding
  */
@@ -242,7 +242,7 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','v1.6.5-02');
+define ('VERSION','v1.6.5-03 OR');
 define ('VERSION_NAME','Lycaon Pictus Lupinus LTS');
 define ('LAM_DEFAULT','Default LAM');
 

@@ -345,7 +345,6 @@ gui/app/webroot/css/customise.css -text
 gui/app/webroot/css/domcollapse.css -text
 gui/app/webroot/css/flash_messages.css -text
 gui/app/webroot/css/jquery.cluetip.css -text
-gui/app/webroot/css/layout.css -text
 gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text

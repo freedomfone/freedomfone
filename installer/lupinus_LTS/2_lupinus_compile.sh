@@ -1,13 +1,15 @@
 #!/bin/bash
 #####################################################################################
 # Alberto Escudero Pascual for Freedom Fone <aep@it46.se>
-# LUPINUS 1.6.X for Ubuntu LTS 10.04
+# LUPINUS 1.6.X for Ubuntu LTS 10.04 FS git and 32 bits
 # Source code builder
 # STEP 2 - Compile and install Cepstral, Freeswitch, ESL SWIG 
 #####################################################################################
 
 OS=32
-FREESWITCH=1.0.6
+#FREESWITCH=-1.0.6
+#Git build no version
+FREESWITCH=
 RELEASE=lupinus
 TAG=10.04-LTS
 
@@ -25,7 +27,9 @@ CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_i386-linux_5.1.0"
 fi
 
 TIMESTAMP=`date +%s`
-FS_SRC=/usr/local/src/freeswitch-$FREESWITCH
+#FS_SRC=/usr/local/src/freeswitch-$FREESWITCH
+#Source path for git build
+FS_SRC=/usr/local/src/freeswitch
 FS_INSTALL=/usr/local/freeswitch
 TIMESTAMP=`date +%s` 
 C=0
@@ -73,7 +77,9 @@ cat $SVNROOT/extras/blacklist.pl2303 >> /etc/modprobe.d/blacklist-freedomfone.co
 stop
 
 step "FS: Enabling extra FS modules"
-cp $SVNROOT/freeswitch/modules-$FREESWITCH.conf $FS_SRC/modules.conf
+#FIXME! Copying 1.0.6 modules.conf to git build
+#cp $SVNROOT/freeswitch/modules-$FREESWITCH.conf $FS_SRC/modules.conf
+cp $SVNROOT/freeswitch/modules-1.0.6.conf $FS_SRC/modules.conf
 stop
 
 step "FS: First Freeswitch compilation (this can take 1h)"
@@ -94,6 +100,7 @@ step "FS: Adding autoload_config files... enabling modules, adding confs"
 #FIXME! Function to move from SVN to code!
 cp $SVNROOT/freeswitch/conf/autoload_configs/modules.conf.xml $FS_INSTALL/conf/autoload_configs/
 cp $SVNROOT/freeswitch/conf/autoload_configs/xml_curl.conf.xml $FS_INSTALL/conf/autoload_configs/
+cp $SVNROOT/freeswitch/conf/sip_profiles/officeroute.xml $FS_INSTALL/conf/sip_profiles/
 #FIXME! Installing config files from gsmopen
 cp $SVNROOT/freeswitch/conf/autoload_configs/gsmopen.conf.xml $FS_INSTALL/conf/autoload_configs/
 cp $SVNROOT/freeswitch/etc/asound.conf /etc
@@ -147,9 +154,11 @@ step "Fixing ESL CLI dynamic load"
 #http://jira.freeswitch.org/browse/ESL-31;jsessionid=4781C2CD1D4B3F30A0C026A615C12AEE
 cp $SVNROOT/installer/lupinus_LTS/extras/libs/esl/Makefile $FS_SRC/libs/esl/Makefile 
 cd $FS_SRC/libs/esl; make; make phpmod; make phpmod-install 
-##cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
+#cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
 #FIXME! LTS 10.04 Finetune memory for PHP.INI
 sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/cli/php.ini
 sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/apache2/php.ini
 sed -i 's/memory_limit = 16M/memory_limit = 64M/' /etc/php5/apache2/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 5M/' /etc/php5/apache2/php.ini
+
 stop

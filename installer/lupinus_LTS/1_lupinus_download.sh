@@ -5,12 +5,8 @@
 # Source code builder
 # STEP 1 - Download all code 
 #####################################################################################
-# Check: 32 or 64 bits (default: 64) 
-# Check: FS version  (default: 1.0.6)
-
-
-
-
+# Check: 32 or 64 bits (default: 32) 
+# Check: FS version  (default: git)
 
 
 OS=32
@@ -81,11 +77,12 @@ stop
 
 step "DEVEL: Downloading Development Environment (II)"
 #FIXME!
+#Adobe Flash support is needed if you use a Desktop version
 #http://www.ubuntugeek.com/fix-for-firefox-crashes-on-flash-contents-when-using-libflashsupport-in-hardy.html
 #http://www.ubuntugeek.com/how-to-install-adobe-flash-player-10-in-ubuntu-804-hardy-heron.html
-#
+#10.04 Desktop
+#apt-get install flashplugin-installer
 #apt-get install libflashsupport
-#for skypiax in 1.0.6 makefile
 apt-get install git-core 
 stop
 
@@ -94,16 +91,19 @@ apt-get install libxml2-dev libpcre3-dev libcurl4-openssl-dev libgmp3-dev libasp
 stop
 
 step "DEVEL: Downloading all the code (FS, Cesptral, Cake, Freedom Fone SVN"
-#Building release instead of trunk
-cd $DOWNLOAD; wget http://files.freeswitch.org/freeswitch-$FREESWITCH.tar.gz 
-##cd $SVNROOT; svn co http://svn.freeswitch.org:/svn/freeswitch/trunk freeswitch.trunk 
-##cd $DOWNLOAD; wget http://downloads.cepstral.com/cepstral/i386-linux/$CEPSTRALPACK32.tar.gz
+#Building 1.06
+#cd $DOWNLOAD; wget http://files.freeswitch.org/freeswitch-$FREESWITCH.tar.gz 
+#Building from SVN 
+#cd $SVNROOT; svn co http://svn.freeswitch.org:/svn/freeswitch/trunk freeswitch.trunk 
+#Building from GIT (default) 
+cd $DOWNLOAD; git clone git://git.freeswitch.org/freeswitch.git 
 cd $DOWNLOAD; wget $CEPSTRALPACK
 #It forces us to go trough the donation page! Please Donate!
 cd $DOWNLOAD; wget "http://cakeforge.org/frs/download.php/734/cake_1.2.5.tar.gz/donation=complete" -O cake_1.2.5.tar.gz
 cd $DOWNLOAD; tar zxvf $CEPSTRALSRC.tar.gz
 cd $DOWNLOAD; tar zxvf cake_1.2.5.tar.gz
-cd $DOWNLOAD; tar zxvf freeswitch-$FREESWITCH.tar.gz
+#Unpack Freeswitch if you fetch the tar ball
+#cd $DOWNLOAD; tar zxvf freeswitch-$FREESWITCH.tar.gz
 stop
 
 echo "Download completed! Fix freeswitch download link if needed!!"

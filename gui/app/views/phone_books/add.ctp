@@ -30,13 +30,15 @@ $options	  = array('label' => false);
 
 
 echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
-echo "<table>";
+echo "<table width='500px' cellspacing='0'>";
+
+
 
 echo $html->tableCells(array (
      array(__("Name",true),	        $form->input('name',$options)),
      array(__("Description",true),	$form->input('description',$options)),
      array('',	$form->end(__('Save',true)))
-     ));
+     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 echo "</table>";
 
 ?>

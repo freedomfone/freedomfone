@@ -33,29 +33,26 @@ class ChannelsController extends AppController{
       $snmp   = Configure::read('OR_SNMP');
       $data = false;
 
+      //Refresh OfficeRoute
       $this->requestAction('/office_route/refresh');
       $this->loadModel('OfficeRoute');
 
-
-     //For each office route in use
-     foreach($snmp as $key => $unit){
+      //For each office route in use
+       foreach($snmp as $key => $unit){
 
      	if($this->OfficeRoute->is_alive($unit['ip_addr'])){
 
-         $data[] = $this->OfficeRoute->findAllByIpAddr($unit['ip_addr']);
+           $data[] = $this->OfficeRoute->findAllByIpAddr($unit['ip_addr']);
 	
 	}
+       }
 
-     }
+      $this->set('data',$data);
 
-      	$this->set('data',$data);
-
-      	$this->Channel->fsCommand("gsmopen_dump list");
-      	$this->pageTitle = __('System Health :: GSM channels',true);
-	$this->requestAction('/channels/refresh');
-
-       	$this->set('gsmopen',$this->Channel->findAll());
-
+      $this->Channel->fsCommand("gsmopen_dump list");
+      $this->pageTitle = __('System Health :: GSM channels',true);
+      $this->requestAction('/channels/refresh');
+      $this->set('gsmopen',$this->Channel->findAll());
 
       }
 
@@ -63,6 +60,7 @@ class ChannelsController extends AppController{
 
 
       function refresh($method = null){
+
 
            $this->autoRender = false;
       	   $this->logRefresh('channels',$method); 

@@ -72,4 +72,22 @@ if (isSet($modified)){
 
 
 }
+
+if(isSet($quickHangup)){
+
+	if ($quickHangup == 'true'){
+
+	   echo __("Yes",true); 
+
+	}
+
+	else {
+
+	   echo __("No",true); 
+
+
+	}
+
+}
+
 ?>

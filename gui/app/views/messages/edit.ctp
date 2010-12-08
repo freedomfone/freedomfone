@@ -65,49 +65,49 @@ $sort  = $session->read('messages_sort');
 
      echo "<h1>".__("Edit Message",true)."</h1>";
      $session->flash();
-     echo "<fieldset>";
+
      echo "<div class='frameLeft'>";
-  
-     echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
-     echo "<table>";
+       echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
+     echo "<table cellspacing= 0 class ='stand-alone'>";
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('next',array('value'=>$neighbors[$Next]['Message']['id']));
      echo $form->hidden('prev',array('value'=>$neighbors[$Prev]['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
 
      echo $html->tableCells(array (
-     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))),
+     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'45'))),
      array(__("Status",true),	$form->input('status',$options_status)),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
-     array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>50))),
-     ));
+     array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),
+     ),array('class' => 'stand-alone'), array('class' => 'stand-alone'));
      echo "</table>";
 
        
      $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save and go to inbox',true),'class' => 'button'));
      $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
-     echo "<table>";
-     echo $html->tableCells(array($button));
+     echo "<table class= 'none' cellspacing = 0>";
+     echo $html->tableCells(array($button),array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
 
      echo $form->end(); 
      echo "</div>";
 
      echo "<div class='frameRight'>";
-     echo "<table>";
+     echo "<table cellspacing =0 class ='stand-alone'>";;
      echo $html->tableCells(array (
      array(__("Created",true),	$time->nice($data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
-     array(__("Author",true),   $data['Message']['sender']),
+     array(__("Sender",true),   $data['Message']['sender']),
+     array(__("Quick hangup",true), $this->element('message_status',array('quickHangup' => $data['Message']['quick_hangup']))),
      array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
-     ));
+     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
      echo "</div>";
-    echo "</fieldset>";
+
 }
     else {
 

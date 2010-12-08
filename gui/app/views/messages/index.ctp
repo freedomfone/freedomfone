@@ -49,15 +49,15 @@ echo $form->hidden('source',array('value'=>'index'));
 <?
 
 
-echo "<table width='100%'>";
+echo "<table width='800px' cellspacing  = '0'>";
 echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'new'),
  	$paginator->sort(__("Title",true), 'title'),
+ 	$paginator->sort(__("Sender",true), 'sender'),
  	$paginator->sort(__("Rate",true), 'rate'),
  	$paginator->sort(__("Category",true), 'Category.name'),
- 	$paginator->sort(__("Created",true), 'created'),
- 	$paginator->sort(__("Last modified",true), 'modified'),
+ 	$paginator->sort(__("Income",true), 'created'),
  	$paginator->sort(__("Length",true), 'length'),
 	__("Edit",true),
 	__("Download",true),
@@ -70,17 +70,15 @@ echo $html->tableHeaders(array(
       $status='';
 	$id = "<input name='message[$key]['Message']' type='checkbox' value='".$message['Message']['id']."' id='check' class='check'>";
 
-	//$id = $form->input($message['Message']['id'],array('type'=>'checkbox','label'=>false,'checked'=>$checked,'div'=>'vote'));
-
 	if($message['Message']['new']){
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
 	$title    = $message['Message']['title'];
+	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
 	$created  = $time->niceShort($message['Message']['created']);
-	$modified = $this->element('message_status',array('modified'=>$message['Message']['modified']));
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
 
@@ -93,10 +91,10 @@ echo $html->tableHeaders(array(
      $row[$key] = array($id,
      		array($status,array('align'=>'center')),
 		$title,
+                $sender,
 		array($rate,array('align'=>'center')),
 		array($category,array('align'=>'center')),
 		$created,		
-		$modified,
 		array($length,array('align'=>'center')),
 		array($edit,array('align'=>'center')),
 		array($download,array('align'=>'center')),
@@ -106,14 +104,14 @@ echo $html->tableHeaders(array(
 	}
 
 
-     echo $html->tableCells($row,array('class'=>'darker'));
+     echo $html->tableCells($row);
      echo "</table>";
 
-     echo "<table>";
+     echo "<table cellspacing = 0 class = 'none'>";
      echo $html->tableCells(array(
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
      $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-     $paginator->numbers()));
+     $paginator->numbers()), array('class' => 'none'), array('class' => 'none'));
      echo "</table>";
      echo $form->end();
 

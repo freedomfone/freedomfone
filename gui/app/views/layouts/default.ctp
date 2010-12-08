@@ -61,6 +61,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 
     <?=$javascript->link('jquery');?>		
+    <?=$javascript->link('jquery.tableCorners');?>     <!-- Cluetip -->
     <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
     <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
 
@@ -79,13 +80,8 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 <body>
 <div id="wrapper">
-	 <div id="top_shadow"></div>
-	 <div class="top_a">
-		 <div id="top_a_left"></div>
-		 <div id="top_a_right"><?php echo $html->link(__('Freedom Fone',true), 'http://www.freedomfone.org',array('target' => '_blank','title' =>__("Visit the Freedom Fone website",true))); ?></div>
+	 <div class="header"></div>
 
-	 </div>
-	 <div id="branding_header"></div>					<!-- banner -->
 	 <div id="top_nav"><?php echo $this->element('menu'); ?></div>		<!-- horizonal menu -->
 
 	 <div id="content_wrap">

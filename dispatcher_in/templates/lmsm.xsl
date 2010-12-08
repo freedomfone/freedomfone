@@ -20,6 +20,7 @@
         <FF-FileID><xsl:value-of select="FF-FileID"/></FF-FileID>
 	<FF-CallerID><xsl:value-of select="FF-CallerID"/></FF-CallerID>
 	<FF-CallerName><xsl:value-of select="FF-CallerName"/></FF-CallerName>
+	<FF-OnQuickHangup><xsl:value-of select="FF-OnQuickHangup"/></FF-OnQuickHangup>
 	<FF-StartTimeEpoch><xsl:value-of select="FF-StartTimeEpoch"/></FF-StartTimeEpoch>
 	<FF-FinishTimeEpoch><xsl:value-of select="FF-FinishTimeEpoch"/></FF-FinishTimeEpoch>
      </headers>

@@ -52,19 +52,19 @@ class CdrController extends AppController{
 
       if(isset($this->params['named']['limit'])) { 
 	$this->Session->write('cdr_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('cdr_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('cdr_limit');
-	}	
 
-            //User arrived from other page, reset session variables
-            if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
+      } elseif($this->Session->check('cdr_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('cdr_limit');
+
+      }	
+
+      //User arrived from other page, reset session variables
+      if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
 
             $this->Session->write('cdr_start', strtotime('1 January 2010'));
             $this->Session->write('cdr_end',time());
 
-            }
-
+      }
 
 
       $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
@@ -121,26 +121,20 @@ class CdrController extends AppController{
       }
 
 
-
-      //Fetch list of all IVR (id and title)
-	$data   = $this->Cdr->query('select id,title from ivr_menus');
-        if ($data){
-	   foreach ($data as $key => $entry){
-		$ivr[$entry['ivr_menus']['title']] = $entry['ivr_menus']['title'];
-	   }
-        } else {
-        $ivr = array();
-        } 
+        $this->loadModel('IvrMenu');
+        $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
+        $ivr = $this->IvrMenu->find('list');
 
 
-	$lam=array();
+        $this->loadModel('LmMenu');
+        $lam = $this->LmMenu->find('list');
+	
 	$application = $this->data['Cdr']['application'];
 
         $data = $this->paginate('Cdr');
 	$this->set('cdr',$data);  
 
         $this->set(compact('ivr','lam','cdr','count','application','select_option'));
-
 
 
 	//Export data

@@ -73,14 +73,23 @@ class Message extends AppModel {
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
-	       if ( $mode == 0){
-	         $field = 'skype'; 
-		 } else {
-		 $field = 'phone1';
-		 }
+
+                        $field = false;
+		  	if( $mode == 0) { 
+
+                            $field = 'User.skype';
+                            $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
+
+                        } else { 
+
+                            $field = 'PhoneNumber.number';
+                            $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
+                        }
+		
 
 		 //if user already exist: update status fields
-		 if ($userData = $this->User->find('first',array('conditions' => array('User.'.$field => $value)))){
+
+                 if($userData){ 
 
 		 $id = $userData['User']['id'];
 		 $count_lam = $userData['User']['count_lam']+1;
@@ -91,19 +100,35 @@ class Message extends AppModel {
 
 		 } else {  //add user
 
-		 $user =array($field => $value,'created'=> $created,'new'=>1,'count_lam'=>1,'first_app'=>'lam','first_epoch' => $created, 'last_app'=>'lam','last_epoch'=>$created,'acl_id'=>1);
-		     $this->User->create();
-		     $this->User->save($user);
+
+			      $created = time();
+		 	      $this->User->create();
+
+                              if($mode == 0){
+
+                                 $user =array('created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                                 $user_id = $this->User->getLastInsertId();
+                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
+                                 $this->User->PhoneNumber->saveAll($phonenumber);
+
+                              } else {
+
+                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                              }
 
 		 }
 
-	       $data= array ( 'sender'  =>$entry['FF-CallerID'],
-	       	      	      'file'    =>$entry['FF-FileID'],
-	       	      	      'created' =>$created,
-			      'length'  =>$length,
-	       		      'url'     => $entry['FF-URI']);
+	       $data= array ( 'sender'          =>$entry['FF-CallerID'],
+	       	      	      'file'            =>$entry['FF-FileID'],
+	       	      	      'created'         =>$created,
+			      'length'          =>$length,
+	       		      'url'             => $entry['FF-URI'],
+      			      'quick_hangup'    => $entry['FF-OnQuickHangup'],
+                              );
 
-	      $this->log('Msg: NEW Message', 'leave_message');	
+	      $this->log('INFO: NEW MESSAGE {sender: '.$entry['FF-CallerID'].'}', 'leave_message');	
 
 	       $this->create();
 	       $this->save($data);

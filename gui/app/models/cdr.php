@@ -103,6 +103,7 @@ class Cdr extends AppModel{
 
 		        $message = $this->Message->findByFile($call_id);
 		        $this->set('length',$message['Message']['length']);
+		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
 		        $this->set('title', LAM_DEFAULT);
 		     } 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY

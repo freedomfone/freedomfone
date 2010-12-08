@@ -95,27 +95,26 @@ $session->flash();
 	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam,'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
 	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All IVR',true).' -'));
 
-	    echo "<table>";
+	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (
      	    	 array(__('Application',true),$radio1,$menu_lam,$radio2,$menu_ivr)
-      		 ));
+      		 ),array('class' => 'none'), array('class' => 'none'));
             echo "</table>";
 
-
-	    echo "<table>";
+	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (
      	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$session->read('cdr_start')))),
      		 array(__("End time",true),	$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$session->read('cdr_end')))),
-      		 ));
+      		 ),array('class' => 'none'),array('class' => 'none'));
 	    echo "</table>";
 
-	    echo "<table>";
+	    echo "<table cellspacing = 0 class = 'none'>";
 	    $buttons=array();
 	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));
      	    if($cdr){ 
 	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
              }
-	     echo $html->tableCells($buttons);
+	     echo $html->tableCells($buttons,array('class' => 'none'),array('class' => 'none'));
 	     echo "</table>";
 	     echo $form->end();
 	     //** END: Search form **/
@@ -123,23 +122,24 @@ $session->flash();
 
 	    //** START: List CDR **/
     	    if($cdr){
-	    
+
+          	    
 	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
-	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
+	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']),$this->element('message_status',array('quickHangup' => $data['quick_hangup'])));
 	     		     }
 
-	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true));
-	     echo "<table>";
+	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true),__('Quick hangup',true));
+	     echo "<table cellspacing = 0>";
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);
 	     echo "</table>";
 
 
-             echo "<table>";
-             echo $html->tableCells(array($paginator->numbers()));
+             echo "<table class = 'none' cellspacing = 0>";
+             echo $html->tableCells(array($paginator->numbers()),array('class' => 'none'),array('class' => 'none'));
              echo "</table>";
 
 	     echo "<span>".__("No of entries per page: ",true);

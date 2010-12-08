@@ -36,12 +36,11 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
 
      	if ($lm_menus){
 
-     	   echo "<table width=100%>";
+     	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
  		$paginator->sort(__("Instance",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Created",true), 'created'),
- 		$paginator->sort(__("Last modified",true), 'modified'),
 		__("Edit",true),
 		__("Delete",true)));
 
@@ -50,7 +49,6 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
   		$instance_id      = $lm_menu['LmMenu']['instance_id'];
 		$title         = $lm_menu['LmMenu']['title'];
 		$created       = $time->niceShort($lm_menu['LmMenu']['created']);
-		$modified      = $time->niceShort($lm_menu['LmMenu']['modified']);
 		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/lm_menus/edit/{$lm_menu['LmMenu']['id']}",null, null, false);
 		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/lm_menus/delete/{$lm_menu['LmMenu']['id']}",null, __("Are you sure you want to delete this Leave-a-message IVR menu?",true),false);
         
@@ -60,7 +58,6 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
                            $instance_id,
 			   array($title,array('width'=>'100px')),
 			   $created,		
-			   $modified,
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));
 	   }

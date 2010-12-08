@@ -104,8 +104,8 @@ $input8_3 = $input8_4 = false;
      
 
 
-     echo "<table>";
-     echo $html->tableCells($lines1);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines1,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -125,8 +125,8 @@ $input8_3 = $input8_4 = false;
      $lines2[1] = array($input2_1,array($input2_3,array('valign'=>'bottom','width'=>'25')), $input2_2);
     
  
-     echo "<table>";
-     echo $html->tableCells($lines2);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines2,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -154,8 +154,8 @@ $input8_3 = $input8_4 = false;
 
      $lines3[1] = array($input3_1,array($input3_3,array('valign'=>'bottom','width'=>'25')), $input3_2);
      
-     echo "<table>";
-     echo $html->tableCells($lines3);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines3,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -177,8 +177,8 @@ $input8_3 = $input8_4 = false;
 
      $lines4[1] = array($input4_1,array($input4_3,array('valign'=>'bottom','width'=>'25')), $input4_2);
           
-     echo "<table>"; 
-     echo $html->tableCells($lines4);
+     echo "<table cellspacing = 0 class= 'none'>"; 
+     echo $html->tableCells($lines4,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -197,8 +197,8 @@ $input8_3 = $input8_4 = false;
 
      $lines5[1] = array($input5_1,array($input5_3,array('valign'=>'bottom','width'=>'25')), $input5_2);
     
-     echo "<table>";
-     echo $html->tableCells($lines5);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines5,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -217,9 +217,9 @@ $input8_3 = $input8_4 = false;
 
 
      $lines6[1] = array($input6_1,array($input6_3,array('valign'=>'bottom','width'=>'25')), $input6_2);
-     
-     echo "<table>";
-     echo $html->tableCells($lines6);
+
+     echo "<table cellspacing = 0 class= 'none'>";     
+     echo $html->tableCells($lines6,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -240,8 +240,8 @@ $input8_3 = $input8_4 = false;
      $lines7[1] = array($input7_1,array($input7_3,array('valign'=>'bottom','width'=>'25')), $input7_2);
      
 
-     echo "<table>";
-     echo $html->tableCells($lines7);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines7,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 
@@ -261,8 +261,8 @@ $input8_3 = $input8_4 = false;
 
      $lines8[1] = array($input8_1,array($input8_3,array('valign'=>'bottom','width'=>'25')), $input8_2);
           
-     echo "<table>";
-     echo $html->tableCells($lines8);
+     echo "<table cellspacing = 0 class= 'none'>";
+     echo $html->tableCells($lines8,array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
      echo "</fieldset>";
 

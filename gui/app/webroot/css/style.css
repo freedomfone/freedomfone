@@ -142,9 +142,11 @@ padding: 5px;
 
 fieldset {
 
-width: 95%;
+border-radius: 10px;
+-moz-border-radius: 10px;
 border: 1px solid #aaa;
 padding: 10px;
+margin: 10px;
 
 }
 
@@ -243,6 +245,11 @@ border-top-left-radius: 20px;
 
 }
 
+.button_center {
+
+margin-left: 30px;
+
+               }
 #header_left {
 float: left;
 margin-left: 10px;

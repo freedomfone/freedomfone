@@ -18,21 +18,21 @@ h1,h2,h3,h4,h5,h6,p,blockquote,form,label,ul,ol,dl,fieldset,address { margin: 0.
 h1 {
 padding:5px 0px 0px 0px;
 margin: 10px 0px 0px 0px;
-color: #f89843; 
+color: #f79743; 
 font-size: 24px;
 font-weight: bold;
 }
 
 h2 {
-color: #333; 
+color: #a2b84b;
 font-size: 1.3em; 
 font-weight: bold;
-border-bottom: 1px solid #333;
+
 width: 70%;
 }
 
 h3 {
-color: #f89843;  
+color: #f79743;  
 font-size: 1.2em; 
 font-weight: bold;
 }
@@ -64,7 +64,7 @@ table {
       border:#ccc 1px solid;
       -moz-border-radius:10px;
       -webkit-border-radius:10px;
-      border-radius:10px
+      border-radius:10px;
       }
 
 table.none {
@@ -72,6 +72,11 @@ table.none {
            border:none;
 
       }
+
+table.stand-alone{
+      padding-top:10px;
+      padding-bottom:10px;
+}
       
 table th {padding:4px 10px}
 
@@ -83,7 +88,7 @@ table tr.stand-alone td{
        border-top-left-radius:10px;  
        -moz-border-radius-topright:10px;
        border-top-right-radius:10px;
-
+       
        }
 
 table tr.none td{

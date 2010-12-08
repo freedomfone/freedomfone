@@ -25,11 +25,11 @@
 echo "<h1>".__("Export CDR",true)."</h1>";
 echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
 
-echo "<table>";
+echo "<table cellspacing = 0 class= 'stand-alone'>";
 echo $html->tableCells(array (
      array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15))),
      array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15)))
-      ));
+      ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 echo "</table>";
 echo $form->end(__('Export',true));
 

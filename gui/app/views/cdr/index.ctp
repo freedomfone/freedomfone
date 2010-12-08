@@ -59,7 +59,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      <?
      echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg));
 
-     echo "<table width='100%'>";
+     echo "<table width='800px' cellspacing = 0>";
      echo $html->tableHeaders(array(
 	'',
  	$paginator->sort(__("Date (YMD)",true), 'epoch'),

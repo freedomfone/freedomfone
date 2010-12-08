@@ -25,6 +25,7 @@
 echo "<h1>".__("System settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
+$msgNetwork = __('Your Freedom Fone server has two or more IP addresses (external, internal, and localhost). By selecting one or another, you are setting the access level of the audio content of your system. <br/>If you want the content to be available over the Internet (to computers outside your local network), then select the <i>External IP address</i>.<br/>If you want the audio content to be accessible from any computer on the same network as your Freedom Fone server, select the <i>Internal IP address</i>.<br/> If you want to restrict acces to the audio files to only the machine that runs Freedom Fone, then select <i>localhost</i>.',true);
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -39,17 +40,14 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 	    $lang_selected = $entry['value_string'];
 	    $languages = Configure::read('LANGUAGES');
-
 	    $rows[] = array('Language', $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
-
-	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	     
-
 	  } 
 
 	  elseif ($entry['name']=='timezone'){
 	  
-	  $timezones = DateTimeZone::listIdentifiers();
+	    $timezones = DateTimeZone::listIdentifiers();
 	  
 	    foreach ($timezones as $timezone){
 	       if (preg_match( '/^(Africa|America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $timezone)){ $zones[$timezone] = $timezone;}
@@ -61,13 +59,6 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 	    
 
 	  } 
-
-	  /*   elseif ($entry['name']=='domain'){
-	
-	     $rows[] = array("Domain",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>$entry['value_string'],'size'=>30)));
-	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));	
-
-	  }  */ 
 
 	   elseif ($entry['name']=='ip_address'){
 
@@ -113,26 +104,20 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
      
 	//Display language and timezone table
 	echo "<h2>".__("Environment settings",true)."</h2>";
-	echo "<table>";
-	echo $html->tableCells($rows);
+	echo "<table cellspacing=0 class='stand-alone'>";
+	echo $html->tableCells($rows,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 	echo "</table>";
 
 
 	//Display IP address table
-	echo "<h2>".__("Network settings",true)."</h2>";
+	echo "<h2>".__("Network settings",true)." (".__("advanced",true).")</h2>";
 	$session->flash();
-	echo "<table ";
-	echo $html->tableCells($radio);
+        echo $html->div('instruction', $msgNetwork);
+	echo "<table cellspacing=0 class='stand-alone'>";
+	echo $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
         echo "</table>";
 
-
-
-	//Display Submit button
-	$submit = array($form->end(__('Save',true),array('colspan'=>2,'align'=>'center')));
-	echo "<table>";
-	echo $html->tableCells($submit);
-	echo "</table>";
-
-
+        //Dispaly Save button
+	echo $html->div('button_center', $form->end(__('Save',true)));
 
 ?>

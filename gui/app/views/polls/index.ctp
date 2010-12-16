@@ -42,8 +42,6 @@ echo "<h1>".__("Polls",true)."</h1>";
 
   if ($polls){
 
-  echo "<table width='100%'>";
-  echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__("Edit",true),__("Delete",true)));
 
 
      foreach ($polls as $key => $poll){
@@ -75,16 +73,12 @@ echo "<h1>".__("Polls",true)."</h1>";
 
      }
 
-    echo $html->tableCells($row,array('class'=>'darker'));
+    echo "<table width='90%' cellspacing =0>";
+    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__("Edit",true),__("Delete",true)));
+    echo $html->tableCells($row);
     echo "</table>";
 
-
-     echo "<table>";
-     $lines[] = array(array($html->div('empty_line',''),array('colspan'=>2,'height'=>50,'valign'=>'bottom')));
-     $lines[] = array(__('System time',true).' :', $time->format('H:i:s A (e \G\M\T O)',time()));
-     echo $html->tableCells($lines);
-     echo "</table>"; 
-
+     echo $html->div('system_time',__('System time',true).' : '.$time->format('H:i:s A (e \G\M\T O)',time()));
 
    }
 

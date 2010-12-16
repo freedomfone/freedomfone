@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+$msgAccessLevel =  __('This settings determines the access level of the streaming audio content of your Freedom Fone installation.',true);
+
+
+
 echo "<h1>".__("System settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
@@ -75,27 +79,23 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 
 
-	   $options1 = array($external => ' '.__('External IP address',true));	
-	   $options2 = array($internal => ' '.__('Internal IP address',true));	
-	   $options3 = array('127.0.0.1'=>' '.__('Localhost',true));	
+	   $options1 = array($external => ' '.__('Public access',true));	
+	   $options2 = array($internal => ' '.__('Local access',true));	
+	   $options3 = array('127.0.0.1'=>' '.__('Private access',true));	
 
 	   $default_ext = $default_int = $default_local = false;
 	   $current_IP = $entry['value_string'];
 
-
-	   $radio[] = array(array($html->div('instruction', __('Your current IP address is',true).': '.$current_IP),array('colspan'=>2)));
-
 	   if($entry['value_string'] == $external) { $default_ext = true; $value = false;}
 	   elseif($entry['value_string'] == $internal) { $default_int = true; $value = false;}
 	   elseif($entry['value_string'] == '127.0.0.1') { $default_local = true; $value = false;}
+   
 
-	   
 
-
-	    if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),$external.' ('.gethostbyaddr($external).')');}
-	    if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),$internal);}
-	    $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),'127.0.0.1');
-	    $radio[] = array("Other:",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>false,'size'=>30)));
+	    if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),__('No restriction',true).' ('.__('accessible from ',true).$external.')');}
+	    if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),__('Access from Local Area Nework only',true).' ('.__('accessible from ',true).$internal.')');}
+	    $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),__('Access from local machine only',true).' ('.__('accessible from 127.0.0.1',true).')');
+	    //$radio[] = array("Other:",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>false,'size'=>30)));
 	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 
 
@@ -119,7 +119,8 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 
 	//Display IP address table
-	echo "<h2>".__("Network settings",true)."</h2>";
+	echo "<h2>".__("Access level",true)."</h2>";
+        echo $html->div('instruction', $msgAccessLevel);
 	$session->flash();
 	echo "<table ";
 	echo $html->tableCells($radio);

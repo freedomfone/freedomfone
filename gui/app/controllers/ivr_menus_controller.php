@@ -299,6 +299,10 @@ class IvrMenusController extends AppController{
 		
 			//Set new parent
 	     		$this->IvrMenu->setNewParent();
+
+	                //Recreate ivr.xml
+	                $this->IvrMenu->writeIVR();
+
 		}	
 
 	  

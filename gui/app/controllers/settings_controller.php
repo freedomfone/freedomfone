@@ -30,7 +30,7 @@ class SettingsController extends AppController {
 	function index() {
 
               $this->pageTitle = 'Environment settings';
-	      
+
 	      //Fetch form data and process
               if (!empty($this->data)) {
 				
@@ -42,17 +42,18 @@ class SettingsController extends AppController {
 		      $i=false;	
 		 foreach ($this->data as $id => $entry){
 
+
 		 if ($id==1){ $lang = $entry['value'];}
 		 if ($id==6){ $timezone = $entry['value'];}
 
 		 //IP address
 		 if ($id==5 ) {
-		      if ( !$entry['value']){
-		      $entry['value'] = $ip_radio;
+
+		     if ( !isset($entry['value'])){
+		        $entry['value'] = $ip_radio;
 		     }
 		     $ip_addr = $entry['value'];
 		     
-
 		 }
 
 		 $data[$id]= array('id'=>$id,'value_string'=>$entry['value']);

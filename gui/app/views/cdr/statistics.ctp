@@ -71,7 +71,7 @@ echo $form->end();
      if(!$all){ $all=1;}
 
 
-     echo $form->create('Cdr',array('type' => 'post','action'=> 'overview'));
+     echo $form->create('Cdr',array('type' => 'post','action'=> 'statistics'));
   
      echo "<table width='300px'>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));

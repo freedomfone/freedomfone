@@ -62,7 +62,7 @@ $session->flash();
      if(!$all){ $all=1;}
 
 
-     $message_new = $message_total = false;
+     $message_new = $message_total = 0;
      $rows= array();
      if($messages){
 

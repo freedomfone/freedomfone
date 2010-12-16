@@ -123,26 +123,42 @@ $session->flash();
 
 	    //** START: List CDR **/
     	    if($cdr){
-	    
-	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
+	   
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
 	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
 	     		     }
 
-	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true));
+
+             $headers = array(
+ 	             $paginator->sort(__("Title",true), 'title'),
+ 	             $paginator->sort(__("Date",true), 'epoch'),
+ 	             $paginator->sort(__("Time",true), 'epoch'),
+ 	             $paginator->sort(__("Caller",true), 'caller_number'),
+ 	             $paginator->sort(__("Protocol",true), 'proto'),
+	             $paginator->sort(__("Length",true), 'length'));
+
+
+             $row[] = array($paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+
+             if($paginator->counter(array('format' => '%pages%'))>1){
+
+                $row[] = array(__('Pages',true).' '.$paginator->numbers());
+
+             }
+             echo "<table>";
+             echo $html->tableCells($row);
+             echo "</table>";
+
+
 	     echo "<table>";
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);
 	     echo "</table>";
 
 
-             echo "<table>";
-             echo $html->tableCells(array($paginator->numbers()));
-             echo "</table>";
-
-	     echo "<span>".__("No of entries per page: ",true);
+	     echo "<span>".__("Entries per page ",true);
 	     echo $html->link('10','general/view/limit:10',null, null, false)." | ";
 	     echo $html->link('50','general/view/limit:50',null, null, false)." | ";
 	     echo $html->link('100','general/view/limit:100',null, null, false)." | ";

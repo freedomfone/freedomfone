@@ -52,7 +52,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
      if ($cdr){
 
-     echo $html->div("",$paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+     echo $html->div('paginator',$paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('Cdr',array('type' => 'post','action'=> 'process','name'  => 'Cdr'));
 
      
@@ -91,8 +91,6 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/del/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
 
 
-
-
      $row[$key] = array($id,
      		$date,
 		$time,
@@ -109,23 +107,15 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo $html->tableCells($row,array('class'=>'darker'));
      echo "</table>";
 
-
-     $first = $html->link(__('First',true), '/cdr/index/page:1');
-     $last  = $html->link(__('Last',true), '/cdr/index/page:'.$paginator->counter(array('format' => '%pages%')));
-
-
-     echo "<table>";
-     echo $html->tableCells(array(__('Pages',true),$paginator->numbers()));
-      echo "</table>";
      echo $form->end();
 
 
+     if($paginator->counter(array('format' => '%pages%'))>1){
+         echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));  
 
-     echo "<span>".__("Entries per page ",true);
-     echo $html->link('50','index/limit:50',null, null, false)." | ";   
-     echo $html->link('100','index/limit:100',null, null, false)." | ";
-     echo $html->link('250','index/limit:250',null, null, false);
-     echo "</span>";
+     }
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('50','index/limit:50',null, null, false)." | ".$html->link('100','index/limit:100',null, null, false)." | ".$html->link('250','index/limit:250',null, null, false));
+
      
      } else {
 

@@ -39,7 +39,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
      if ($messages){
 
 
-echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+echo $html->div("paginator",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 echo $form->hidden('source',array('value'=>'index'));
 
@@ -112,19 +112,15 @@ echo $html->tableHeaders(array(
      echo "<table>";
      echo $html->tableCells(array(
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-     $paginator->numbers()));
+     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))));
      echo "</table>";
      echo $form->end();
 
-$count = $this->params['paging']['Message']['count'];
-echo "<span>".__("No of messages per page: ",true);
-echo $html->link('10','index/limit:10',null, null, false)." | ";
-echo $html->link('25','index/limit:25',null, null, false)." | ";
-echo $html->link('50','index/limit:50',null, null, false)." | " ;
-echo $html->link(__('All',true),'index/limit:'.$count,null, null, false) ;
+     if($paginator->counter(array('format' => '%pages%'))>1){
+           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));  
+     }
+     echo $html->div('paginator', __("Messages per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
 
-echo "</span>";
      }
 
 ?>

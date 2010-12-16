@@ -140,17 +140,8 @@ $session->flash();
 	             $paginator->sort(__("Length",true), 'length'));
 
 
-             $row[] = array($paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-
-             if($paginator->counter(array('format' => '%pages%'))>1){
-
-                $row[] = array(__('Pages',true).' '.$paginator->numbers());
-
-             }
-             echo "<table>";
-             echo $html->tableCells($row);
-             echo "</table>";
-
+             echo $html->div('paginator', $paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+             
 
 	     echo "<table>";
 	     echo $html->tableHeaders($headers);
@@ -158,15 +149,13 @@ $session->flash();
 	     echo "</table>";
 
 
-	     echo "<span>".__("Entries per page ",true);
-	     echo $html->link('10','general/view/limit:10',null, null, false)." | ";
-	     echo $html->link('50','general/view/limit:50',null, null, false)." | ";
-	     echo $html->link('100','general/view/limit:100',null, null, false)." | ";
-	     echo $html->link('250','general/view/limit:250',null, null, false);
-	     echo "</span>";
+             if($paginator->counter(array('format' => '%pages%'))>1){
 
+                   echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));  
 
+             }
 
+             echo $html->div('paginator', __("Entries per page ",true).$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false)." | ".$html->link('250','general/limit:250',null, null, false));
 
 
 	     }	  else {

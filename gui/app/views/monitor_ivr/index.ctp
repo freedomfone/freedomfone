@@ -52,7 +52,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
      if ($data){
 
-     echo $html->div("",$paginator->counter(array('format' => __("Entries:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+     echo $html->div('paginator', $paginator->counter(array('format' => __("Entry",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'process','name'  => 'MonitorIvr'));
      
      ?>
@@ -126,20 +126,16 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
      echo "</table>";
-
-     echo "<table>";
-     echo $html->tableCells(array(
-     $paginator->numbers()));
-     echo "</table>";
-
      echo $form->end();
 
+     if($paginator->counter(array('format' => '%pages%'))>1){
+          echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));  
 
-echo "<span>".__("No of entries per page: ",true);
-echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false)." | ";
-echo $html->link('250','index/limit:250',null, null, false);
-echo "</span>";
+      }
+
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('50','index/limit:50',null, null, false)." | ".$html->link('100','index/limit:100',null, null, false)." | ".$html->link('250','index/limit:250',null, null, false));
+
+
      }
 
 ?>

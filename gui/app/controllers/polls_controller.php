@@ -108,9 +108,9 @@ class PollsController extends AppController{
 	//Validate data (poll and vote)
 	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 
+
 	 //Save poll data
 	  $this->Poll->save($this->data['Poll']);
-
 
 
 	 //Retrieve id of saved poll
@@ -127,10 +127,18 @@ class PollsController extends AppController{
 	 //Save vote data
 	 $this->Poll->Vote->create($this->data['Vote']);
 	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => false));
-
-
 	
-	 $this->_flash(__("The poll has been created.",true),'success');
+
+         if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){ 
+            $this->_flash(__("The poll has been created. Please note that the poll's closing time has already passed.",true),'warning');
+         } else {
+
+	 $this->_flash(__("The poll has successfully been created.",true),'success');
+
+         }
+
+
+
 	 $this->redirect(array('action' => 'index'));
         }
       }
@@ -249,8 +257,15 @@ class PollsController extends AppController{
 	$this->Poll->Vote->create($this->data['Vote']);
 	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));
 
+         if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){ 
+            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');
+         } else {
+
+	 $this->_flash(__("The poll has been updated.",true),'success');
+
+         }
 	
-	 $this->Session->setFlash(__("The poll has been edited.",true));
+
 	 $this->redirect(array('action' => 'index'));
        }
 

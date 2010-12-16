@@ -34,19 +34,19 @@ echo $javascript->link('addRemoveElements');
    	   echo $form->input('invalid_early',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_early']));
 	   echo $form->input('invalid_closed',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_closed']));
 
-	   echo "<table>";
+	   echo "<table cellspacing='0'>";
 	   echo $html->tableCells(array (
      	   	array(__("Question",true),	$form->input('question',array('label'=>false,'size' => 70))),
      		array(array(__("Define a concrete question using simple language",true),"colspan='2' class='formComment'")),
      		array(__("SMS Code",true),	$form->input('code',array('label'=>false))),
     		array(array(__("Alpha-numeric characters only (maximum 10)",true),"colspan='2' class='formComment'")),
-     		));
+     		),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 	  echo "</table>";
 
-	  echo "<div class='formTitleAlone'>".__("Poll options",true)."</div>";
+	  echo "<h2>".__("Poll options",true)."</h2>";
 	  echo "<div class='formComment'>".__("Alpha-numeric characters only (maximum 10)",true)."</div>";
 
-	  echo "<table>";
+	  echo "<table cellspacing ='0'>";
 	  $rows=array();
 
 		foreach ($this->data['Vote'] as $key =>$vote) {
@@ -63,8 +63,8 @@ echo $javascript->link('addRemoveElements');
     			}
 
 
-	echo $html->tableCells($rows);
-	echo "</table>";
+	echo $html->tableCells($rows,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+        echo "</table>";	
 
 	?>
 	<div id="doc">
@@ -74,14 +74,15 @@ echo $javascript->link('addRemoveElements');
 	<?
 
 
-	echo "<div class='formTitleAlone'>".__("Start and end time",true)."</div>";
+
+	echo "<h2>".__("Start and end time",true)."</h2>";
 	echo "<div class='formComment'>".__("When would you like to open and close the poll?",true)."</div>";
 
-	echo "<table>";
+	echo "<table cellspacing ='0'>";
 	echo $html->tableCells(array (
      	     array(__("Start time",true),	$form->input('start_time',array('label'=>false))),
      	     array(__("End time",true),		$form->input('end_time',array('label'=>false)))
-      	     ));
+      	     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 	echo "</table>";
 	echo $form->end(__('Save',true)); 
 

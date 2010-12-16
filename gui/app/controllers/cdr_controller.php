@@ -374,7 +374,7 @@ class CdrController extends AppController{
                 $ivr = $this->IvrMenu->find('all');                                                                                                                                                      
                                                                                                                                                                                                          
                 $this->loadModel('Message');                                                                                                                                                             
-                $messages = $this->Message->find('all');                                                                                                                                                 
+                $messages = $this->Message->find('all', array('order' => array('Message.created DESC')));  
                                                                                                                                                                                                          
                 $this->loadModel('Bin');                                                                                                                                                                 
                 $bin = $this->Bin->find('all');                                                                                                                                                          

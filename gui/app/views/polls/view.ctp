@@ -53,12 +53,12 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
 
 	//echo $html->div('box',__("Please hit the refresh button to refresh the poll result.",true));
-	echo $html->div('formTitleAlone',__("Result",true));
+	echo "<h2>".__("Result",true)."</h2>";
       
         $total =  0;
         $total_early =  0;
         $total_closed =  0;
-        echo "<table width='400px'>";
+        echo "<table width='400px' cellspacing=0>";
         echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Early votes',true),__('Late votes',true)));
 
 	$votes = $data['Vote'];
@@ -99,22 +99,22 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
 	 
   	      $rows[] = array('"'.__('Invalid',true).'"',array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_early,array('align'=>'center')), array($invalid_closed,array('align'=>'center')));
-	      $rows[] =array(array($html->div('empty_line'),array('colspan'=>5)));
+
 	      echo $html->tableCells($rows);
 
-  	      $final = array(__('Total',true),array($total,array('align'=>'center')),array('',array('align'=>'center')),array($total_early,array('align'=>'center')), array($total_closed,array('align'=>'center')));
+  	      $final = array(__('Total',true),$total,'', $total_early, $total_closed);
 	      
-	      echo $html->tableCells($final);
+	      echo $html->tableHeaders($final);
 	      echo "</table>";
 
 
 	      //Poll information
-     	      echo "<div class='formTitleAlone'>".__("Poll information",true)."</div>";
-     	      echo "<table>";
+     	      echo "<h2>".__("Poll information",true)."</h2>";
+     	      echo "<table cellspacing=0 class='stand-alone'>";
 	      echo $html->tableCells(array (
      	      	   array(__("Status",true),	  $this->element('poll_status',array('status'=>$data['Poll']['status'],'mode'=>'text'))),
      		   array(__("Start time",true), $data['Poll']['start_time']),
-     		   array(__("End time",true),	  $data['Poll']['end_time'])));
+     		   array(__("End time",true),	  $data['Poll']['end_time'])),array('class'=>'stand-alone'),array('class'=>'stand-alone'));
      	      echo "</table>";
 
 	      }     

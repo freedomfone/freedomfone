@@ -88,7 +88,7 @@ $session->flash();
                  }
         }
      }
-//        $message_new = sizeof($rows);
+
         $message_total = sizeof($messages);
     }
   
@@ -102,25 +102,31 @@ $session->flash();
      $stat[] = array(__('Voice menus',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Poll',true),		 array($pollCount,array('align'=>'center')),array(round(100*$pollCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Other SMS',true),	 array($otherCount,array('align'=>'center')),array(round(100*$otherCount/$all).' %',array('align'=>'center')));
-     $stat[] = array(array($html->div('empty_line'),array('colspan'=>'3')));
-     $stat[] = array(__('All',true),	 array($total,array('align'=>'center')),'');
+     //$stat[] = array(array($html->div('empty_line'),array('colspan'=>'3')));
+     //$stat[] = array(__('All',true),	 array($total,array('align'=>'center')),'');
 
-     echo "<table>";
+     echo "<table cellspacing=0>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      echo $html->tableCells($stat);
+     echo $html->tableHeaders(array(__('Total',true), $total,''));
+
      echo "</table>";
 
  
      ///*** NEW MESSAGES ***///
      echo "<h1>".__('New Messages',true)." (".$message_new.") </h1>";
+     echo $html->div('instruction',__('Total number of messages',true).": ".$message_total);
      if ($message_new){
-     echo "<table width='600px'>";
-     echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));
-     echo $html->tableCells($rows);
-     echo "</table>";
+        if($message_new >=5) { 
+             echo $html->div('instruction', __('The table below shows the five most recent new messages',true));
+        }
+        echo "<table width='600px' cellspacing=0>";
+        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));
+        echo $html->tableCells($rows);
+        echo "</table>";
      }
 
-    echo $html->div('instructions',__('Total ',true).": ".$message_total);
+
 
 
     //*** POLLS *** ///
@@ -152,7 +158,7 @@ $session->flash();
 
      }
 
-     echo "<table width='60%'>";
+     echo "<table width='80%' cellspacing=0>";
      echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Edit',true)));
      echo $html->tableCells($row);
      echo "</table>";

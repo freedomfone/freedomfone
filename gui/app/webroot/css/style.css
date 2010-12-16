@@ -382,3 +382,29 @@ width: 780px;
 margin: 0;
 padding: 0;
 }
+
+
+.PrevPg {
+  margin-right: 10px;
+}
+
+.NextPg{
+  margin-left: 10px;
+}
+
+.DisabledPgLk{
+  width: 100px;
+  display: inline;
+}
+
+.current{
+
+   font-weight: bold;
+
+ }
+
+.paginator{
+
+    margin: 10px;
+
+}

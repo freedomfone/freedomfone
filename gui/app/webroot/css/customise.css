@@ -227,19 +227,6 @@ border: 1px solid #ccc;
 }
 
 
-
-.back_button  {
-background: #97C932;
-padding: 1px 0 2px 7px;
-width: 39px;
-margin: 5px 0 5px 0;
-color: #fff;
-} 
-
-.back_button a  {
-color: #fff;
-}
-
 .small {
 /* a symantic style to allow you to add text with this class, that
 is used for small text, like date/written by etc */
@@ -253,19 +240,31 @@ text-decoration: none;
 font-weight: normal;
 }
 
-.button {
-background: url(../img/button_bg.gif) repeat-x;
-border: 1px solid #f89843;
-color: #fff;
-margin: 4px;
-font-weight: normal;
-text-align: center;
-padding: 1px 0 3px 0;
-}
+.button {                                                                                                                                                                                                                                                      
+        display: inline-block;                                                                                                                                                                                                                                 
+        outline: none;                                                                                                                                                                                                                                         
+        cursor: pointer;                                                                                                                                                                                                                                       
+        text-align: center;                                                                                                                                                                                                                                    
+        text-decoration: none;                                                                                                                                                                                                                                 
+        font: 11px/100% Helvetica Neue, sans-serif;                                                                                                                                                                                                            
+        padding: .2em .2em .2em .2em;                                                                                                                                                                                                                          
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);                                                                                                                                                                                                                 
+        -webkit-border-radius: .10em;                                                                                                                                                                                                                          
+        -moz-border-radius: .10em;                                                                                                                                                                                                                             
+        border-radius: .10em;                                                                                                                                                                                                                                  
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                          
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                             
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                                  
+}                                                                                                                                                                                                                                                              
 
-button a {
-color: #fff;
-}
+.button:hover {                                                                                                                                                                                                                                                
+              text-decoration: none;                                                                                                                                                                                                                           
+}                                                                                                                                                                                                                                                              
+.button:active {                                                                                                                                                                                                                                               
+               position: relative;                                                                                                                                                                                                                             
+               top: 1px;                                                                                                                                                                                                                                       
+}  
+
 
 .inputbox {
 /* the look of input boxes in forms */

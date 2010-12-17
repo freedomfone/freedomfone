@@ -44,8 +44,8 @@ echo $form->create('Message',array('type' => 'post','action'=> 'process','name' 
 echo $form->hidden('source',array('value'=>'index'));
 
 ?>
-<input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
-<input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)">
+<input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
+<input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)">
 <?
 
 
@@ -110,19 +110,18 @@ echo $html->tableHeaders(array(
      echo "<table cellspacing = 0 class = 'none'>";
      echo $html->tableCells(array(
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button')), 
-     $paginator->numbers()), array('class' => 'none'), array('class' => 'none'));
+     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
      echo "</table>";
      echo $form->end();
 
-$count = $this->params['paging']['Message']['count'];
-echo "<span>".__("No of messages per page: ",true);
-echo $html->link('10','index/limit:10',null, null, false)." | ";
-echo $html->link('25','index/limit:25',null, null, false)." | ";
-echo $html->link('50','index/limit:50',null, null, false)." | " ;
-echo $html->link(__('All',true),'index/limit:'.$count,null, null, false) ;
+     if($paginator->counter(array('format' => '%pages%'))>1){
+           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+     }
 
-echo "</span>";
+
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
+
+
      }
 
 ?>

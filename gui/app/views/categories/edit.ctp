@@ -31,14 +31,14 @@
       $options_category = array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true));
 
       echo $form->create('Category',array('type' => 'post','action'=> 'edit'));
-      echo "<table>";
+      echo "<table cellspacing = 0 class='stand-alone'>";
 
       echo $html->tableCells(array (
       	   array(__("Category",true),	        $form->input('name',$options)),
      	   array(__("Description",true),	$form->input('longname',$options)),
      	   array(__("Use in message",true),	$form->input('Message',$options_category)),
      	   array('',	$form->end(__('Save',true)))
-     ));
+     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";
 
      }

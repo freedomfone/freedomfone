@@ -28,12 +28,13 @@ echo $form->end();
 
 echo "<h1>".__("Manage Categories",true)."</h1>";
 
-
-$session->flash();
+     if ($messages = $session->read('Message.multiFlash')) {                                                     
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  
+        }  
 
    if ($categories){
 
-      echo "<table width='100%'>";
+      echo "<table width='500px' cellspacing=0 >";
       echo $html->tableHeaders(array(__('Category',true),__('Description',true),__('Edit',true),__('Delete',true)));
 
 
@@ -49,7 +50,7 @@ $session->flash();
 
       		   }
 
-     echo $html->tableCells($row,array('class'=>'darker'));
+     echo $html->tableCells($row);
       echo "</table>";
 
       }

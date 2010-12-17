@@ -40,7 +40,7 @@
 
 
       echo "<table width='500px' class='collapsed' cellspacing=0>";
-      echo $html->tableHeaders(array(__('PhoneBook',true),__('Description',true),__('Edit',true),__('Delete',true),__('Export',true)));
+      echo $html->tableHeaders(array(__('Phone book',true),__('Description',true),__('Edit',true),__('Delete',true),__('Export',true)));
 
       	   foreach ($data as $key => $phone_book){
 

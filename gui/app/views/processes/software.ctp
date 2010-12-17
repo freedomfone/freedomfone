@@ -71,8 +71,8 @@
      $row1[] = array(__("Web server",true).": ", apache_get_version());
      $row1[] = array(__("MySQL",true).": ", mysql_get_server_info());
      $row1[] = array(__("Dispatcher",true).": ", $version[0]);
-    echo "<table width='70%'>";
-    echo $html->tableCells($row1);
+    echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
+    echo $html->tableCells($row1,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
     echo "</table>"; 
 
 
@@ -80,8 +80,9 @@
       $row2[] = array(__("IP address",true).": ", $ip_address); 
       $row2[] = array(__("Language",true).": ", $lang); 
       $row2[] = array(__("System time",true).": ", date('Y-m-d H:i A').' ('.$timezone.')'); 
-    echo "<table width='50%'>";
-    echo $html->tableCells($row2);
+
+    echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
+    echo $html->tableCells($row2,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
     echo "</table>"; 
 
 

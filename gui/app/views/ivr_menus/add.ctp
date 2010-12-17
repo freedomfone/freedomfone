@@ -96,6 +96,7 @@ $path = $ivr['path'].$ivr['dir_node'];
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
 
+
         $default = false;
      	$options1=array('lam' =>'');
      	$options2=array('ivr' =>'');
@@ -118,6 +119,7 @@ $path = $ivr['path'].$ivr['dir_node'];
 	$radio3, 
         $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
 
+
 	);
 
 
@@ -125,8 +127,8 @@ $path = $ivr['path'].$ivr['dir_node'];
 
 
 
-     echo "<table width='100%'>";
-     echo $html->tableCells($row);
+     echo "<table width='95%' cellspacing = 0 class='none'>";
+     echo $html->tableCells($row,array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 
      echo "</fieldset>";

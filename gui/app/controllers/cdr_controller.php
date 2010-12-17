@@ -98,7 +98,7 @@ class CdrController extends AppController{
 	      //Limit is set
 	      $limit = $this->Session->read('cdr_limit');
 	      if(!empty($limit)){
-		$pageCount = $limithis->Session->read('cdr_limit');
+		$pageCount = $this->Session->read('cdr_limit');
 		} else {
 		  if ($count){ $pageCount = $count;}
 		  else { $pageCount = 1;}

@@ -54,8 +54,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
      
      ?>
-     <input type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.Cdr)">
-     <input type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.Cdr)">
+     <input type="button" name="CheckAll" class="button" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.Cdr)">
+     <input type="button" name="UnCheckAll" class="button" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.Cdr)">
      <?
      echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg));
 
@@ -103,21 +103,19 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	}
 
 
-     echo $html->tableCells($row,array('class'=>'darker'));
-     echo "</table>";
-
-     echo "<table>";
-     echo $html->tableCells(array(
-     $paginator->numbers()));
+     echo $html->tableCells($row);
      echo "</table>";
      echo $form->end();
 
+     if($paginator->counter(array('format' => '%pages%'))>1){
+           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+     }
 
-echo "<span>".__("No of CDR per page: ",true);
-echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false)." | ";
-echo $html->link('250','index/limit:250',null, null, false);
-echo "</span>";
+
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false)." | ".$html->link('100','index/limit:100',null, null, false));
+
+
+
      } else {
 
 	     echo $html->div('feedback',__('No records found',true));

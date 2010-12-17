@@ -38,8 +38,8 @@
       );  
                   }
 
-         echo "<table width='700px'>";
-         echo $html->tableCells($row);
+         echo "<table width='700px' cellspacing = 0 class='none'>";
+         echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));
          echo "</table>";
          echo $form->end(__('Save',true));
          echo $ajax->divEnd("service_div");

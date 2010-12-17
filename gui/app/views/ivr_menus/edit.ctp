@@ -86,14 +86,13 @@ if($ivrMenu['file_long']){
 	$step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/long",null, null, false);				  
 }
 
- echo "<table>";
+ echo "<table cellspacing=0 class='none'>";
  echo $html->tableCells(array(
 		array(array($step1[0],array('colspan'=>3))),	
 		array(array($step1[1],array('colspan'=>3))),	
 		array($step1[2],array($step1[3],array('valign'=>'bottom')),array($step1[4],array('valign'=>'bottom'))),
 		array(array($box[0],array('colspan'=>3))),
-		array(array("<hr>",array('colspan'=>3)))	
-		));
+		),array('class' =>'none'),array('class' =>'none'));
 
 
 //**** 2. Instructions ****//
@@ -108,14 +107,13 @@ if($ivrMenu['file_short']){
 	$step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	}
 
- echo "<table>";
+ echo "<table cellspacing=0 class='none'>";
  echo $html->tableCells(array(
 		array(array($step2[0],array('colspan'=>3))),	
 		array(array($step2[1],array('colspan'=>3))),	
 		array($step2[2],array($step2[3],array('valign'=>'bottom')),array($step2[4],array('valign'=>'bottom'))),
 		array(array($box[1],array('colspan'=>3))),
-		array(array("<hr>",array('colspan'=>3)))	
-		));
+		),array('class' =>'none'),array('class' =>'none'));
 
 
 //**** 3. Goodbye ****//
@@ -130,14 +128,13 @@ if($ivrMenu['file_exit']){
 	$step3[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/exit",null, null, false);
 	}
 
- echo "<table>";
+ echo "<table cellspacing=0 class='none'>";
  echo $html->tableCells(array(
 		array(array($step3[0],array('colspan'=>3))),	
 		array(array($step3[1],array('colspan'=>3))),	
 		array($step3[2],array($step3[3],array('valign'=>'bottom')),array($step3[4],array('valign'=>'bottom'))),
 		array(array($box[2],array('colspan'=>3))),
-		array(array("<hr>",array('colspan'=>3)))	
-		));
+		),array('class' =>'none'),array('class' =>'none'));
 
 
 
@@ -153,13 +150,13 @@ if($ivrMenu['file_invalid']){
 	$step4[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/invalid",null, null, false);
 	}
 
- echo "<table>";
+ echo "<table cellspacing=0 class='none'>";
  echo $html->tableCells(array(
 		array(array($step4[0],array('colspan'=>3))),	
 		array(array($step4[1],array('colspan'=>3))),	
 		array($step4[2],array($step4[3],array('valign'=>'bottom')),array($step4[4],array('valign'=>'bottom'))),
 		array(array($box[3],array('colspan'=>3)))
-		));
+		),array('class' =>'none'),array('class' =>'none'));
  echo "</table>";
 
 
@@ -229,8 +226,8 @@ $path = $ivr['path'].$ivr['dir_node'];
 
 
 
-     echo "<table width='100%'>";
-     echo $html->tableCells($row);
+     echo "<table width='95%' cellspacing=0 class='none'>";
+     echo $html->tableCells($row,array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 
      echo "</fieldset>";

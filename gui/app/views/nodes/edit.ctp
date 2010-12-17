@@ -26,7 +26,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 	if($this->data){
 
-		echo "<h1>".__("Edit Menu Option",true)."</h1>";
+		echo "<h1>".__("Edit Content",true)."</h1>";
 		
 
    	  	if ($messages = $session->read('Message.multiFlash')) {
@@ -43,22 +43,17 @@ $ivr = Configure::read('IVR_SETTINGS');
 		echo $form->create('Node', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 		echo $form->input('file_old',array('type'=>'hidden','value'=>$this->data['Node']['file']));
 		echo $form->input('id',array('type'=>'hidden','value'=>$this->data['Node']['id']));
-		echo "<table border=0>";
-		echo $html->tableCells(array (
-     		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
-		     
-		echo $html->tableCells(array (
-     		     array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
-     		     array(array(__("If you select a file, the previous one will be deleted. Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));
+
+                $row[] = array(__("Title",true),	array($form->input('title',array('label'=>false,'size'=>'50')),"colspan=2"));
+	        $row[] = array(__("Audio file",true),	array($form->input('file',array('label'=>false,'type'=>'file')),"colspan=2"));
+                $row[] = array(array(__("If you select a file, the previous one will be deleted. Valid formats: wav and mp3",true),"colspan='3' class='formComment'"));
+                $row[] = array(__("Duration",true), array($formatting->epochToWords($this->data['Node']['duration']),"colspan= 2"));
+                $row[] = array(array(__('Listen',true),array('width'=>'75')), array($download,array('valign'=>'middle','width'=>'25')), $listen);
+
+		echo "<table width='500px' class='stand-alone'>";
+                echo $html->tableCells($row,array('class'=>'stand-alone'),array('class'=>'stand-alone'));
 		echo "</table>";
 
-		echo "<table border=0>";
-		echo $html->tableCells(array (
-     		     array(array(__('Listen',true),array('width'=>'50')), array($download,array('valign'=>'middle','width'=>'25')), $listen)
-		     ));
-		echo $html->tableCells(array (
-     		     array(__("Duration",true),	'', $formatting->epochToWords($this->data['Node']['duration']))));
-		echo "</table>";
 		echo $form->end(__('Save',true));
 
 		}

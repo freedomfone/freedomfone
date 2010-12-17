@@ -47,7 +47,7 @@ class SettingsController extends AppController {
 
 		 //IP address
 		 if ($id==5 ) {
-		      if ( !$entry['value']){
+		      if ( !isset($entry['value'])){
 		      $entry['value'] = $ip_radio;
 		     }
 		     $ip_addr = $entry['value'];

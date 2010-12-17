@@ -41,11 +41,10 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      	if ($ivr_menus){
 
      	   echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
-     	   echo "<table width=100%>";
+     	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
      	   	__("Instance",true),
  		$paginator->sort(__("Title",true), 'title'),
- 		$paginator->sort(__("Created",true), 'created'),
  		$paginator->sort(__("Last modified",true), 'modified'),
 		__("Edit",true),
 		__("Delete",true)));
@@ -57,7 +56,6 @@ echo "<h1>".__('Voice menus',true)."</h1>";
       		$options    = array($ivr_menu['IvrMenu']['id']=>'');
                 $instance   = $ivr_menu['IvrMenu']['instance_id'];
 		$title      = $ivr_menu['IvrMenu']['title'];
-		$created    = $time->niceShort($ivr_menu['IvrMenu']['created']);
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 		$edit       = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
 		$delete     = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}/ivr",null, __("Are you sure you want to delete this voice menu?",true),false);
@@ -65,16 +63,15 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      		$row[$key] = array(
 			   $instance,
 			   array($title,array('width'=>'100px')),
-			   $created,		
 			   $modified,
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));
 			   }
 
 
-     		echo $html->tableCells($row,array('class'=>'darker'));
+     		echo $html->tableCells($row);
      		echo "</table>";
-     		echo $form->end(__('Update default',true));
+
      }
 
 ?>

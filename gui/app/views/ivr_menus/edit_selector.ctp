@@ -74,11 +74,11 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	         }
 
-                 echo "<table>";
+                 echo "<table cellspacing=0 class='none'>";
                  echo $html->tableCells(array(
 		      array(array($step1[0],array('colspan'=>3))),	
 		      array(array($step1[1],array('colspan'=>3))),	
-		      array($step1[2],array($step1[3],array('valign'=>'bottom')),array($step1[4],array('valign'=>'bottom')))));
+		      array($step1[2],array($step1[3],array('valign'=>'bottom')),array($step1[4],array('valign'=>'bottom')))),array('class' =>'none'),array('class' =>'none'));
                  echo "</table>";
 
 
@@ -92,11 +92,11 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
 	         }
 
-                 echo "<table>";
+                 echo "<table cellspacing=0 class='none'>";
                  echo $html->tableCells(array(
 		      array(array($step2[0],array('colspan'=>3))),	
 		      array(array($step2[1],array('colspan'=>3))),	
-		      array($step2[2],array($step2[3],array('valign'=>'bottom')),array($step2[4],array('valign'=>'bottom')))));
+		      array($step2[2],array($step2[3],array('valign'=>'bottom')),array($step2[4],array('valign'=>'bottom')))),array('class' =>'none'),array('class' =>'none'));
                  echo "</table>";
 	
 
@@ -159,8 +159,8 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
      }
 
-     echo "<table width='100%'>";
-     echo $html->tableCells($row);
+     echo "<table width='95%' cellspacing=0 class='none'>";
+     echo $html->tableCells($row, array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 
 

@@ -128,9 +128,13 @@ class PollsController extends AppController{
 	 $this->Poll->Vote->create($this->data['Vote']);
 	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => false));
 
-
+         if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
+            $this->_flash(__("The poll has been created. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
+         } else {                                                                                                                                                                                                                                                              
+          $this->_flash(__("The poll has successfully been created.",true),'success');                                                                                                                                                                                          
+         }        
 	
-	 $this->_flash(__("The poll has been created.",true),'success');
+
 	 $this->redirect(array('action' => 'index'));
         }
       }
@@ -249,8 +253,13 @@ class PollsController extends AppController{
 	$this->Poll->Vote->create($this->data['Vote']);
 	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));
 
+
+        if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
+            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
+         } else {                                                                                                                                                                                                                                                              
+         $this->_flash(__("The poll has been updated.",true),'success');                                                                                                                                                                                                       
+         }    
 	
-	 $this->Session->setFlash(__("The poll has been edited.",true));
 	 $this->redirect(array('action' => 'index'));
        }
 

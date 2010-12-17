@@ -87,16 +87,14 @@ echo "<h1>".__('Processes',true)."</h1>";
 	}
     	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
-     echo "<table width='80%'>";
+     echo "<table width='80%' cellspacing = 0>";
      echo $html->tableHeaders(array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true)));
      echo $html->tableCells($row);
      echo "</table>"; 
 
-     echo "<table>";
-     $lines[] = array(array($html->div('empty_line'),array('colspan'=>2,'height'=>100,'valign'=>'bottom')));
-     $lines[] = array(__('Generated',true).' :', $time->format('H:i:s A (e \G\M\T O)',$generated));
-     echo $html->tableCells($lines);
-     echo "</table>"; 
+
+     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',$generated));
+
      }
 
 

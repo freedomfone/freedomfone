@@ -47,10 +47,10 @@ class TagsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->data)) {
-				$this->Session->setFlash(__('The tag has been saved', true));
+				$this->_flash(__('The tag has been saved', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The tag could not be saved. Please, try again.', true));
+				$this->_flash(__('The tag could not be saved. Please, try again.', true),'error');
 			}
 		}
 
@@ -63,15 +63,15 @@ class TagsController extends AppController {
       		$this->pageTitle = 'Leave-a-Message : Tags : Edit';
 
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Tag', true));
+			$this->_flash(__('Invalid Tag', true),'warning');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->Tag->save($this->data)) {
-				$this->Session->setFlash(__('The tag has been saved', true));
+				$this->_flash(__('The tag has been edited.', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The Tag could not be saved. Please, try again.', true));
+				$this->_flash(__('The tag could not be saved. Please, try again.', true),'error');
 			}
 		}
 		if (empty($this->data)) {
@@ -89,7 +89,7 @@ class TagsController extends AppController {
 
     	     if($this->Tag->delete($id,true))
 	     {
-    	     $this->Session->setFlash(__('The selected tag has been deleted.',true),'default',array('class'=>'message_success'));
+    	     $this->_flash(__('The selected tag has been deleted.',true),'success');
 	     $this->redirect(array('action' => '/index'));
 
 	     }

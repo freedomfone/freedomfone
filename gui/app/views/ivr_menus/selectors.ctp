@@ -38,12 +38,11 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
      $switchers = $ivr_menus;
      	if ($switchers){
 
-     	   echo "<table width=100%>";
+     	   echo "<table width='500px' cellspacing=0>";
      	   echo $html->tableHeaders(array(
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Type",true), 'type'),
- 		$paginator->sort(__("Created",true), 'created'),
- 		$paginator->sort(__("Modified",true), 'created'),
+ 		$paginator->sort(__("Last modified",true), 'modified'),
 		__("Edit",true),
 		__("Delete",true)));
           
@@ -53,7 +52,6 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
 
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
-		$created      = $time->niceShort($switcher['IvrMenu']['created']);
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
 		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/selectors/edit/{$switcher['IvrMenu']['id']}",null, null, false);
 		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/selectors/delete/{$switcher['IvrMenu']['id']}/switcher",null, __("Are you sure you want to delete this language selector?",true),false);
@@ -61,7 +59,6 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
      		$row[$key] = array(
 			   array($title,array('width'=>'100px')),
 			   array($type,array('width'=>'100px')),
-			   $created,		
                            $modified,		
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));

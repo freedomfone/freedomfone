@@ -126,8 +126,10 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
+                $index = $entry[$entry['type'].'_id'];
 
-                if($entry['type']){
+                if($index){
+
 
                    switch($entry['type']){
 
@@ -272,7 +274,10 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
-                if($entry['id']){
+                $index = $entry[$entry['type'].'_id'];
+
+                if($index){
+
 
                    switch($entry['type']){
 
@@ -297,6 +302,7 @@ class IvrMenusController extends AppController{
                    }
 
                   } else {
+
 
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['node_id']= false;

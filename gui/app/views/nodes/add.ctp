@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * add.ctp	- Add node (aka Menu Option for Voice Menus)
+ * add.ctp	- Add node (aka Content for Voice Menus and Selectors)
  * version 	- 1.0.475
  * 
  * Version: MPL 1.1
@@ -23,7 +23,7 @@
 ***************************************************************************/
 
 $session->flash();
-echo "<h1>".__("Create Menu Option",true)."</h1>";
+echo "<h1>".__("Upload Content",true)."</h1>";
 
    	  if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -33,18 +33,17 @@ echo "<h1>".__("Create Menu Option",true)."</h1>";
 echo $form->create('Node', array('type' => 'post', 'action' => 'add','enctype' => 'multipart/form-data') );
 
 
-echo "<table>";
-echo $html->tableCells(array (
-     array(__("Title",true),	$form->input('title',array('label'=>false,'size' =>'50')))));
 
 
-echo $html->tableCells(array (
-     array(__("Audio file",true),	$form->input('file',array('label'=>false,'type'=>'file'))),
-     array(array(__("Valid formats: wav and mp3",true),"colspan='2' class='formComment'"))));
+     $row[] = array(__("Title",true),	$form->input('title',array('label'=>false,'size' =>'50')));
+     $row[] = array(__("Audio file",true), $form->input('file',array('label'=>false,'type'=>'file')));
+     $row[] = array(array(__("Valid formats: wav and mp3",true),"colspan='2' class='formComment'"));
 
+     echo "<table cellspacing = 0 class='stand-alone'>";
+     echo $html->tableCells($row, array('class'=>'stand-alone'),array('class'=>'stand-alone'));
+     echo "</table>";
 
-echo "</table>";
-echo $form->end(__('Save',true));
+     echo $form->end(__('Save',true));
 
 
 

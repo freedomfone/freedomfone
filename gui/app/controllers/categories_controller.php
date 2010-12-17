@@ -41,10 +41,10 @@ class CategoriesController extends AppController {
 		  
 			$this->Category->create();
 			if ($this->Category->save($this->data)) {
-				$this->Session->setFlash(__('The category has been saved', true));
+				$this->_flash(__('The category has been saved', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The category could not be saved. Please, try again.', true));
+				$this->_flash(__('The category could not be saved. Please, try again.', true),'error');
 			}
 		}
 
@@ -64,7 +64,7 @@ class CategoriesController extends AppController {
       		$this->pageTitle = 'Leave-a-Message : Categories : Edit';
 
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Category', true));
+			$this->_flash(__('Invalid Category', true),'warning');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
@@ -99,10 +99,10 @@ class CategoriesController extends AppController {
 				}
 	
 			}
-			$this->Session->setFlash(__('The category has been saved', true));
+			$this->_flash(__('The category has been saved', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The category could not be saved. Please, try again.', true));
+				$this->_flash(__('The category could not be saved. Please, try again.', true),'error');
 			}
 		}
 		if (empty($this->data)) {
@@ -122,7 +122,7 @@ class CategoriesController extends AppController {
 
     	     if($this->Category->delete($id,true))
 	     {
-    	     $this->Session->setFlash(__('The selected category has been deleted.',true),'default',array('class'=>'message_success'));
+    	     $this->_flash(__('The category has been deleted.',true),'success');
 	     $this->redirect(array('action' => '/index'));
 
 	     }

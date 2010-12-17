@@ -30,12 +30,14 @@ echo $form->end();
 
 echo "<h1>".__("Manage Tags",true)."</h1>";
 
+     if ($messages = $session->read('Message.multiFlash')) {                                                     
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  
+        }  
 
-$session->flash();
 
    if ($tags){
 
-      echo "<table width='100%'>";
+      echo "<table width='400px' cellspacing = 0>";
       echo $html->tableHeaders(array(__('Tag',true),__('Description',true),__('Edit',true),__('Delete',true)));
 
 

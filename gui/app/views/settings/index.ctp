@@ -25,7 +25,9 @@
 echo "<h1>".__("System settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-$msgNetwork = __('Your Freedom Fone server has two or more IP addresses (external, internal, and localhost). By selecting one or another, you are setting the access level of the audio content of your system. <br/>If you want the content to be available over the Internet (to computers outside your local network), then select the <i>External IP address</i>.<br/>If you want the audio content to be accessible from any computer on the same network as your Freedom Fone server, select the <i>Internal IP address</i>.<br/> If you want to restrict acces to the audio files to only the machine that runs Freedom Fone, then select <i>localhost</i>.',true);
+$msgAccessLevel =  __('This settings determines the access level of the streaming audio content of your Freedom Fone installation.',true); 
+
+
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -62,13 +64,10 @@ $msgNetwork = __('Your Freedom Fone server has two or more IP addresses (externa
 
 	   elseif ($entry['name']=='ip_address'){
 
+           $options1 = array($external => ' '.__('Public access',true));
+           $options2 = array($internal => ' '.__('Local access',true));
+           $options3 = array('127.0.0.1'=>' '.__('Private access',true)); 
 
-
-
-
-	   $options1 = array($external => ' '.__('External IP address',true));	
-	   $options2 = array($internal => ' '.__('Internal IP address',true));	
-	   $options3 = array('127.0.0.1'=>' '.__('Localhost',true));	
 
 	   $default_ext = $default_int = $default_local = false;
 	   $current_IP = $entry['value_string'];
@@ -82,23 +81,15 @@ $msgNetwork = __('Your Freedom Fone server has two or more IP addresses (externa
 
 	   
 
+            if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),__('No restriction',true).' ('.__('accessible from ',true).$external.')');}
+            if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),__('Access from Local Area Nework only',true).' ('.__('accessible from ',true).$internal.')');}
+            $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),__('Access from local machine only',true).' ('.__('accessible from 127.0.0.1',true).')');
+            echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));                                                         
 
-	    if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),$external.' ('.gethostbyaddr($external).')');}
-	    if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),$internal);}
-	    $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),'127.0.0.1');
-	    $radio[] = array("Other:",$form->input($entry['id'].'.value',array('type'=>'text','label'=>false,'value'=>false,'size'=>30)));
-	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
-
-
-
-	  } /*  elseif ($entry['name']=='overwrite_event'){
-	      $checked = false;
-	      if($entry['value_int']){ $checked = 'checked';}
-	     $rows[] = array("Overwrite event",$form->input($entry['id'].'.value',array('type'=>'checkbox','label'=>false,'checked'=>$checked)));
-	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_int'));
-	  }   */
 
 	}
+
+}
 
 
      
@@ -110,9 +101,8 @@ $msgNetwork = __('Your Freedom Fone server has two or more IP addresses (externa
 
 
 	//Display IP address table
-	echo "<h2>".__("Network settings",true)." (".__("advanced",true).")</h2>";
-	$session->flash();
-        echo $html->div('instruction', $msgNetwork);
+        echo "<h2>".__("Access level",true)."</h2>";                                                                                                                                                                                                      
+        echo $html->div('instruction', $msgAccessLevel);
 	echo "<table cellspacing=0 class='stand-alone'>";
 	echo $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
         echo "</table>";

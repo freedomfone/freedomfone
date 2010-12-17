@@ -44,11 +44,11 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'Bin'));
 ?>
-<input type="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Bin)">
-<input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Bin)">
+<input type="button" class='button' name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Bin)">
+<input type="button" class='button' name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Bin)">
 <?
 
-echo "<table width='100%'>";
+echo "<table width='90%' cellspacing=0>";
 
 echo $html->tableHeaders(array(
 	'',
@@ -61,8 +61,6 @@ echo $html->tableHeaders(array(
 
       foreach ($data as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
-
-	//$id = $form->input($entry['Bin']['id'],array('id' => $entry['Bin']['id'], 'type'=>'checkbox','value'=>$entry['Bin']['id']));
 	$body     = $entry['Bin']['body'];
 	$created  = $time->niceShort($entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
@@ -72,27 +70,24 @@ echo $html->tableHeaders(array(
 
      	$row[$key] = array($id, $body, $created, $mode, $proto, $sender, array($delete,array('align'=>'center')));
 
-
 	}
 
 
-     echo $html->tableCells($row,array('class'=>'darker'));
+     echo $html->tableCells($row);
      echo "</table>"; 
 
-     echo "<table>";
-     echo $html->tableCells(array(
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $paginator->numbers()));
-     echo "</table>";
-     echo $form->end();
+
+     echo $html->div('',$form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')));
+
+     if($paginator->counter(array('format' => '%pages%'))>1){
+           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
      }
 
-echo "<span>".__("No of entries per page: ",true);
-echo $html->link('25','index/limit:25',null, null, false)." | ";
-echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false);
-//echo $html->link(__('All',true),'index/limit:all',null, null, false);
-echo "</span>";
+
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
+
+     echo $form->end();
+     }
 
 
 ?>

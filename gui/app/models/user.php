@@ -28,7 +28,16 @@ class User extends AppModel {
 	
 	var $belongsTo = array('Acl'); 
 
-	var $hasMany = array('Message','Cdr','PhoneNumber');
+//	var $hasMany = array('Message','Cdr');
+
+
+      var $hasMany = array('PhoneNumber' => array(
+                        	       'order' => 'PhoneNumber.id ASC',
+                        	       'dependent' => true),
+                           'Message','Cdr');
+
+			   
+
 
 	var $hasAndBelongsToMany = array('PhoneBook');
 

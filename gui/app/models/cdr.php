@@ -58,6 +58,7 @@ class Cdr extends AppModel{
 
       	      while ($entry = $obj->getNext('update')){
 
+
 	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];
 	      	  $answer_state = $entry['Answer-State'];
@@ -127,7 +128,8 @@ class Cdr extends AppModel{
 		     if($insert){
 		     
 			$this->create($this->data);
-	  	     	$this->save($this->data);
+	  	     	$this->save($this->data['Cdr']);
+
 
 		        if($start){
 		           $this->id = $start['Cdr']['id'];
@@ -157,18 +159,21 @@ class Cdr extends AppModel{
 		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
 
 
+
+		  }
+
+
+
 			//Check if user is registered
 
 			//Process only CS_ROUTING (start) messages
 			if($entry['Channel-State']=='CS_ROUTING'){
 
 			$value = urldecode($entry['Caller-Caller-ID-Number']);
-
                         $field = false;
 		  	if( $proto == 'skype') { $field = 'User.skype';}
 		  	elseif( $proto == 'gsm') { $field = 'PhoneNumber.number';}
 			elseif( $proto == 'sip') { $field = 'PhoneNumber.number';}
-
 
 
                         if ($proto == 'sip' || $proto == 'gsm'){
@@ -181,44 +186,60 @@ class Cdr extends AppModel{
 
                         }
 
+                        switch($application) {
+
+                             case 'ivr':
+                                $update='count_ivr';
+                                break;
+
+                             case 'lam':
+                               $update='count_lam';
+                               break;
+
+                         }
+
 
 
 			if ($userData){
 
-		 		$count_ivr = $userData['User']['count_ivr']+1;
+		 		$count = $userData['User'][$update]+1;
 				$id = 	$userData['User']['id'];
-	 			$this->User->set(array('id' => $id, 'count_ivr'=>$count_ivr,'last_app'=>'ivr','last_epoch'=>time()));
-				$this->User->id = $id;
- 		 		$this->User->save($this->data);
+                                $this->User->id = $id;
+	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
+				
+debug($userData);
+                                debug("updating user");
+                                debug($this->data);                      
+ 		 		$this->User->save();
 
-		            } else {
+		        } else {
 
 			      $created = time();
-		 	      $this->User->create();
+//		 	      $this->User->create();
+
 
                               if($proto == 'sip' || $proto == 'gsm'){
 
-                                 $user =array('created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
+                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+
+                                 debug("saving user: ");
+                                 debug($user);        
+                         $this->User->save($user);
                                  $user_id = $this->User->getLastInsertId();
                                  $phonenumber = array('user_id' => $user_id, 'number' => $value);
                                  $this->User->PhoneNumber->saveAll($phonenumber);
 
                               } elseif ($proto == 'skype'){
 
-                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
+                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
                                  $this->User->save($user);
-                              }
-
-
-		     	        
+                         $this->User->save($user);
+                              }        
 				
 			}
-	}
+	           } //user
 
-		} 
-
-		  } //insert into CDR		
+	        } //insert into CDR		
 
 	      }  //while
 
@@ -336,6 +357,7 @@ class Cdr extends AppModel{
 		  } elseif(stripos($channel,'sofia')===0){ 
 		        $proto = 'sip';
 		  }
+
 		  return $proto;
 	  }
 

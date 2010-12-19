@@ -54,6 +54,7 @@
                   $last_seen = date('Y-m-d',$value);
      }
    
+    //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
      $row[] = array($html->div('table_sub_header',__('User data',true)), array($button,''));
      $row[] = array(__("Name",true),			$form->input('name',array('label'=>false)));
@@ -65,15 +66,16 @@
      $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
      
      
-     echo "<table width='400px' cellspacing='0'>";
-     echo $html->tableCells($row,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+     echo "<table width='400px' cellspacing='0' class='blue'>";
+     echo $html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo $form->end();
      unset($row);
 
 
+     //** AJAX: Delete phone numbers **//
      echo "<div id ='numbers'>";  
-     echo "<table width='400px' cellspacing='0'>";
+     echo "<table width='400px' cellspacing='0' class='blue'>";
      $row[] = array(array($html->div('table_sub_header',__('Phone numbers',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')));
 
      foreach ($phonenumbers as $key => $number){
@@ -82,25 +84,29 @@
              $row[] = array(__('Phone number',true), $number['PhoneNumber']['number'], $delete);
 
      }
-     echo $html->tableCells($row, array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+     echo $html->tableCells($row, array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
-     echo "</div>";
-
-
-     echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
-  
-     echo "<table width='400px' cellspacing='0' class='none'><tr class = 'none'><td>";
-     echo $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false));
-     echo "</td><td>";
-     echo $html->tag('span', $form->end('Add') );
-     echo "</td></tr></table>";
      echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
-     echo "</div>"; 
+     echo "</div>";
+     //** END AJAX **//
 
 
+     //** AJAX: Add phone number **//
+     echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
+     echo "<table width='400px' cellspacing='0' class='blue'>";
+     $add[] = array(__('Add phone number',true), $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)), $form->end(__('Add',true)));
+     echo $html->tableCells($add,array('class' => 'blue'),array('class' => 'blue'));
+     echo "</table>";
+     echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
+     echo $form->end();
+     //** END AJAX **//
 
+     echo "</div>";
+     //END LEFT FRAME **//
+
+     //** START RIGHT FRAME **//
      echo "<div class='frameRight'>";
-     echo "<table width='300px' cellspacing='0'>";
+     echo "<table width='300px' cellspacing='0' class='blue'>";
      echo $html->tableCells(array (
      array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
      array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
@@ -112,9 +118,10 @@
     array(__("Voice Menu",true),		$data['User']['count_ivr']),
      array(__("Leave-a-message",true),		$data['User']['count_lam']),
      array(__("SMS",true),		        $data['User']['count_bin'])
-     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+     ),array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo "</div>";
+     //** END RIGHT FRAME **//
 
     echo "</div>";
 

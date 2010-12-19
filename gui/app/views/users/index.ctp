@@ -30,10 +30,13 @@ echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('nam
 echo $form->end();
 
 echo $form->create('User',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRight',$form->submit(__('Add user',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Add user',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-
+?>
+<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
+<div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></div>
+<?
      echo "<h1>".__('Users',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
@@ -47,12 +50,6 @@ echo $form->end();
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
      echo "<table cellspacing = '0' class='none'>";
      echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
-
-     
-     ?>
-     <tr class='none'><td><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></td>
-     <td><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></td></tr>
-     <?
      echo "</table>";
      echo $form->end();
 
@@ -131,7 +128,7 @@ echo $form->end();
 
 
        echo "<table cellspacing = '0' class='none'>";
-       echo $html->tableCells(array(
+       echo $html->tableCells(array(__('Perform action on selected',true).': ',
        $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
        $form->submit( __('Merge',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class'=>'none'),array('class'=>'none'));
        echo "</table>";

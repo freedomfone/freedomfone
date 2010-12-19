@@ -206,25 +206,16 @@ class Cdr extends AppModel{
 				$id = 	$userData['User']['id'];
                                 $this->User->id = $id;
 	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
-				
-debug($userData);
-                                debug("updating user");
-                                debug($this->data);                      
  		 		$this->User->save();
 
 		        } else {
 
 			      $created = time();
-//		 	      $this->User->create();
-
 
                               if($proto == 'sip' || $proto == 'gsm'){
 
                                  $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-
-                                 debug("saving user: ");
-                                 debug($user);        
-                         $this->User->save($user);
+                                 $this->User->save($user);
                                  $user_id = $this->User->getLastInsertId();
                                  $phonenumber = array('user_id' => $user_id, 'number' => $value);
                                  $this->User->PhoneNumber->saveAll($phonenumber);
@@ -233,7 +224,7 @@ debug($userData);
 
                                  $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
                                  $this->User->save($user);
-                         $this->User->save($user);
+                                 $this->User->save($user);
                               }        
 				
 			}

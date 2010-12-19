@@ -167,8 +167,7 @@ class MessagesController extends AppController{
 
 	else {
 
-
-	if($this->Message->saveAll()){
+	if($this->Message->saveAll($this->data)){
 
 		$this->Message->save($this->data['Tag']);
 		$this->_flash(__('The entry has been updated',true),'success');

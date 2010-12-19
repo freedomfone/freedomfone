@@ -26,12 +26,12 @@ $session->flash();
 echo $javascript->includeScript('toggle');
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 

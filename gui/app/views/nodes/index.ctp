@@ -26,7 +26,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 
 echo $form->create('Node',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRight',$form->submit(__('Upload new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Upload new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 

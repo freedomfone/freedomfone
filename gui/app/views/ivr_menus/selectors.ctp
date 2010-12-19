@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));
-echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 

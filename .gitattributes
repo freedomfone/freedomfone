@@ -340,6 +340,8 @@ gui/app/views/users/add.ctp -text
 gui/app/views/users/disp.ctp -text
 gui/app/views/users/edit.ctp -text
 gui/app/views/users/index.ctp -text
+gui/app/views/votes/add_failure.ctp -text
+gui/app/views/votes/add_success.ctp -text
 gui/app/webroot/.htaccess -text
 gui/app/webroot/css.php -text
 gui/app/webroot/css/customise.css -text

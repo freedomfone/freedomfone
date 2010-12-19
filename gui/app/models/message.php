@@ -73,53 +73,6 @@ class Message extends AppModel {
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
-
-                        $field = false;
-		  	if( $mode == 0) { 
-
-                            $field = 'User.skype';
-                            $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
-
-                        } else { 
-
-                            $field = 'PhoneNumber.number';
-                            $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
-                        }
-		
-
-		 //if user already exist: update status fields
-
-                 if($userData){ 
-
-		 $id = $userData['User']['id'];
-		 $count_lam = $userData['User']['count_lam']+1;
-
-		 $this->User->set(array('id' => $id, 'count_lam'=>$count_lam,'last_app'=>'lam','last_epoch'=>time()));
-		 $this->User->id = $id;
- 		 $this->User->save($this->data);
-
-		 } else {  //add user
-
-
-			      $created = time();
-		 	      $this->User->create();
-
-                              if($mode == 0){
-
-                                 $user =array('created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
-                                 $user_id = $this->User->getLastInsertId();
-                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
-                                 $this->User->PhoneNumber->saveAll($phonenumber);
-
-                              } else {
-
-                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
-                              }
-
-		 }
-
 	       $data= array ( 'sender'          =>$entry['FF-CallerID'],
 	       	      	      'file'            =>$entry['FF-FileID'],
 	       	      	      'created'         =>$created,

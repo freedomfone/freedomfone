@@ -24,7 +24,7 @@
 
 
 echo $form->create('Tag',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRight',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 

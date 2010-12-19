@@ -33,7 +33,8 @@ class UsersController extends AppController{
 
       function refresh(){
 
-      $this->redirect(array('action' =>'/'));
+      $this->requestAction('/cdr/refresh');
+      $this->redirect(array('action' =>'/users'));
 
       }
 
@@ -72,7 +73,8 @@ class UsersController extends AppController{
 
       if(isset($this->params['form']['submit']) && $phone_book_id = $this->data['User']['phone_book_id']) { 
             
-             if ($data = $this->User->PhoneBook->findById($phone_book_id)){
+             $data = $this->User->PhoneBook->findById($phone_book_id);
+             if ($data['User']){
 
                 foreach ($data['User'] as $key => $user){
 
@@ -145,7 +147,7 @@ class UsersController extends AppController{
 
     function delete ($id){
 
-    	     if($this->User->del($id)) {
+    	     if($this->User->delete($id,true)) {
 	           $this->_flash(__('Selected user has been deleted.',true),'success');
 	           $data = $this->User->getIdentifier($id);
 	           $this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['User']['name']." ".$data['User']['surname']."}", "user");

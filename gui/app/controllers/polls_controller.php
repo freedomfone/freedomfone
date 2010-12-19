@@ -27,9 +27,10 @@ class PollsController extends AppController{
 
       var $name = 'Polls';
 
-      var $helpers = array('Time','Html', 'Session','Form','Formatting');
+      var $helpers = array('Time','Html', 'Session','Form','Formatting','Ajax');
+      var $components = array('RequestHandler');
 
-      var $total;
+//      var $total;
 
 
 
@@ -150,7 +151,7 @@ class PollsController extends AppController{
      	     $title = $this->Poll->getTitle($id);
     	     if($this->Poll->delete($id,true))
 	     {
-    	     $this->Session->setFlash(__('The following poll has been deleted',true).': '.$title, 'default', array('class'=>'message_success'));
+    	     $this->_flash(__('The following poll has been deleted',true).': '.$title, 'success');
 	     $this->log('Msg: POLL DELETED; Id:title: '.$id.":".$title, 'poll');	
 	     $this->redirect(array('action' => '/index'));
 
@@ -174,7 +175,7 @@ class PollsController extends AppController{
 	     }
        } else {
 
-       $this->Session->setFlash(__('Poll option could not be deleted. A poll needs at least two options.',true),'default',array('class'=>'error-message'));
+       $this->_flash(__('Poll option could not be deleted. A poll needs at least two options.',true),'warning');
        $this->redirect(array('action' => '/edit/'.$poll_id));
        }
 
@@ -189,43 +190,31 @@ class PollsController extends AppController{
    $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
 
  
-		if (!$id && empty($this->data)){ 
+	   if (!$id && empty($this->data)){ 
 			$this->Session->setFlash(__('Invalid Poll', true)); 
 			$this->redirect(array('action'=>'index')); 
-		} 
+	    } 
 
 
-   	    if (empty($this->data)){ 
-
-		   $this->Poll->id = $id;
-		
-			//if entry with this id exists
-			if ($this->data = $this->Poll->read(null,$id)){
-			   $this->set('data',$this->data);       
-			   
-			   }
-			else {
-			   $this->Session->setFlash(__('Invalid Poll', true)); 
-			   $this->redirect(array('action'=>'index')); 
-
-			   }
-		}
+   	   elseif (empty($this->data['Poll'])){ 
 
 
-      //Validate and save form data
-      else{
+		$this->data = $this->Poll->read(null,$id);
+                $votes = $this->Poll->Vote->find('all',array('conditions' =>array('Poll.id' => $id)));
+		$this->set(compact('votes'));
+
+	   } else{
 
    
-        //Fetch form data
-	$this->Poll->set( $this->data );
+                //Fetch form data
+	        $this->Poll->set( $this->data );
 
-	foreach($this->data['Vote'] as $key => $option){
+/*	        foreach($this->data['Vote'] as $key => $option){
 
-		if(!$option['chtext'] && $key>1){
+		     if(!$option['chtext'] && $key>1){
 			unset($this->data['Vote'][$key]); 
-		}
-	
-	}
+		     }
+                }*/
 
 
 	//Validate data (poll and vote)
@@ -236,7 +225,7 @@ class PollsController extends AppController{
 	  $this->Poll->save($this->data['Poll']);
 
 	  //Get unique id for each vote,
-   	  $vote_id = $this->Poll->Vote->find('all', array('conditions' => array('Poll.id' => $id), 'order' => array('Vote.id asc')));
+   /*	  $vote_id = $this->Poll->Vote->find('all', array('conditions' => array('Poll.id' => $id), 'order' => array('Vote.id asc')));
 
 	  //Set id for each vote, and save data
    	   foreach($this->data['Vote'] as $key => $vote){
@@ -251,7 +240,7 @@ class PollsController extends AppController{
 	 //Save vote data
 
 	$this->Poll->Vote->create($this->data['Vote']);
-	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));
+	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));*/
 
 
         if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            

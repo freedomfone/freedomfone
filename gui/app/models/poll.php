@@ -182,7 +182,7 @@ function checkDate($data,$field){
 
       $array = Configure::read('poll_in');
  
-      $instance_id = IID;
+
 
 	       $obj = new ff_event($array);	       
 
@@ -282,7 +282,7 @@ function checkDate($data,$field){
 			 //ADD TO TRASH
 	   		 $mode=__("Unclassified",true);
 			 $application = 'bin';
-			 $result = $this->query("insert into bin (instance_id,body,sender,created,mode,proto)values ($instance_id,'$body','$sender','$created','$mode','$proto')");
+			 $result = $this->query("insert into bin (body,sender,created,mode,proto)values ('$body','$sender','$created','$mode','$proto')");
 	        }
 
   	//Add data to CDR

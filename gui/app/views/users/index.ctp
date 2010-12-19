@@ -34,8 +34,8 @@ echo $html->div('frameRightAlone',$form->submit(__('Add user',true),  array('nam
 echo $form->end();
 
 ?>
-<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
 <div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></div>
+<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
 <?
      echo "<h1>".__('Users',true)."</h1>";
 
@@ -45,7 +45,7 @@ echo $form->end();
 
    
 
-     if ($users){
+
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
      echo "<table cellspacing = '0' class='none'>";
@@ -53,8 +53,9 @@ echo $form->end();
      echo "</table>";
      echo $form->end();
 
+     if (isset($users)){
 
-     echo $html->div('space', false);
+
      echo $html->div("paginator'",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
@@ -70,6 +71,7 @@ echo $form->end();
  	$paginator->sort(__("Phone",true), 'User.phone'),
 	__("Edit",true),
 	__("Delete",true)));
+
 
  
       foreach ($users as $key => $user){
@@ -139,6 +141,10 @@ echo $form->end();
      }
 
      echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
+
+     } else {
+
+     echo $html->div('instruction',__('There are no users in the selected phone book.', true));
 
      }
 

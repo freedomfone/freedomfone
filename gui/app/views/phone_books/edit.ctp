@@ -26,7 +26,7 @@
 
       if($this->data){
 
-      echo "<h1>".__("Phone book : Edit",true)."</h1>";
+      echo "<h1>".__("Edit phone book",true)."</h1>";
       $session->flash();
 
       $options_name = array('label' =>  array('text'=>false,

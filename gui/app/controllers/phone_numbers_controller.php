@@ -32,7 +32,7 @@ class PhoneNumbersController extends AppController {
     function add(){
 
     Configure::write('debug', 0);
-  
+
        if(!empty($this->data)){
 
              if($this->data['PhoneNumber']['number']){

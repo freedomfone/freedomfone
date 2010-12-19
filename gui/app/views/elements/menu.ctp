@@ -115,10 +115,6 @@
 <?php echo $html->link(__("Content",true),'/nodes/index'); ?>
 </li>
 
-<li>
-<?php echo $html->link(__("Settings",true),'/settings'); ?>
-</li>
-
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -219,7 +215,7 @@
 
 
 <li>
-<?php echo $html->link(__("Software",true),'/processes/software'); ?>
+<?php echo $html->link(__("System",true),'/processes/system'); ?>
 </li>
 
 <li>

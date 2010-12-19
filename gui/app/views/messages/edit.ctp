@@ -57,22 +57,34 @@ $sort  = $session->read('messages_sort');
 
 
 
-     echo "<div class='frameRight'>";
+     echo "<div class='frameRightAlone'>";
      if ($prev && $next){ echo $prev." | ".$next;}
         elseif ($prev) { echo $prev;}
         elseif ($next) { echo $next;}
         echo "</div>";
 
      echo "<h1>".__("Edit Message",true)."</h1>";
-     $session->flash();
 
+
+
+
+     //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
-       echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
-     echo "<table cellspacing= 0 class ='stand-alone'>";
+
+
+   	  if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+         }
+
+
+     echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
+     echo "<table width='300px' cellspacing= 0 class ='blue'>";
      echo $form->hidden('new',array('value'=>0));
      echo $form->hidden('next',array('value'=>$neighbors[$Next]['Message']['id']));
      echo $form->hidden('prev',array('value'=>$neighbors[$Prev]['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
+     echo $form->input('id',array('type'=>'hidden','value'=>$this->data['Message']['id']));
+
 
      echo $html->tableCells(array (
      array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'45'))),
@@ -81,21 +93,22 @@ $sort  = $session->read('messages_sort');
      array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),
-     ),array('class' => 'stand-alone'), array('class' => 'stand-alone'));
+     ),array('class' => 'blue'), array('class' => 'blue'));
      echo "</table>";
 
-       
-     $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save and go to inbox',true),'class' => 'button'));
+     $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save',true),'class' => 'button'));
      $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
-     echo "<table class= 'none' cellspacing = 0>";
-     echo $html->tableCells(array($button),array('class'=>'none'),array('class'=>'none'));
+     echo "<table class= 'blue' cellspacing = 0>";
+     echo $html->tableCells(array($button),array('class'=>'blue'),array('class'=>'blue'));
      echo "</table>";
-
      echo $form->end(); 
      echo "</div>";
+     //** END LEFT FRAME **//
 
+
+     //** START RIGHT FRAME **//
      echo "<div class='frameRight'>";
-     echo "<table cellspacing =0 class ='stand-alone'>";;
+     echo "<table cellspacing =0 class ='blue'>";;
      echo $html->tableCells(array (
      array(__("Created",true),	$time->nice($data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
@@ -104,10 +117,10 @@ $sort  = $session->read('messages_sort');
      array(__("Quick hangup",true), $this->element('message_status',array('quickHangup' => $data['Message']['quick_hangup']))),
      array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
-     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+     ),array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo "</div>";
-
+     //** END RIGHT FRAME **//
 }
     else {
 

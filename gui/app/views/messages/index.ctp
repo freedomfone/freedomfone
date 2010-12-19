@@ -25,12 +25,14 @@
 $session->flash();
 echo $javascript->includeScript('toggle');
 
-
-
-
 echo $form->create('Message',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'index', 'class' => 'button')));
 echo $form->end();
+
+?>
+<div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)"></div>
+<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)"></div>
+<?
 
 
 echo "<h1>".__('Audio Messages',true)."</h1>";
@@ -43,10 +45,6 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
 echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 echo $form->hidden('source',array('value'=>'index'));
 
-?>
-<input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
-<input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)">
-<?
 
 
 echo "<table width='800px' cellspacing  = '0'>";
@@ -108,7 +106,7 @@ echo $html->tableHeaders(array(
      echo "</table>";
 
      echo "<table cellspacing = 0 class = 'none'>";
-     echo $html->tableCells(array(
+     echo $html->tableCells(array(__('Perform action on selected',true).': ',
      $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
      $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
      echo "</table>";

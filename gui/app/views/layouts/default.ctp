@@ -50,7 +50,6 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('flash_messages');?>	     	<!-- Flash messages -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
-    <?=$html->css('domcollapse');?>  		<!-- Hide/collapse elements -->
     <?=$html->css('jquery.cluetip');?>	     	<!-- JQuery Cluetip -->
     <?=$html->meta('icon');?>
 
@@ -67,7 +66,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
     <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
-    <?=$javascript->link('domcollapse');?>        <!-- Hide/collapse elements -->
+ 
 
 
     <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->

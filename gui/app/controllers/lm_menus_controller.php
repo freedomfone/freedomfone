@@ -25,7 +25,7 @@
 class LmMenusController extends AppController{
 
 var $name = 'LmMenus';
-var $helpers = array('Flash','Session','Javascript');      
+var $helpers = array('Flash','Session','Javascript','Ajax');      
 
 
 
@@ -130,11 +130,12 @@ var $helpers = array('Flash','Session','Javascript');
 
    function edit($id) {
 
-                 $this->pageTitle = 'Leave-a-Message : IVR';           
-                          $lm_settings = Configure::read('LM_SETTINGS');
 
-                           $instance_id=$this->data['LmMenu']['instance_id'];
-                            $fileData = array();
+                 $this->pageTitle = 'Leave-a-Message : IVR';           
+                 $lm_settings = Configure::read('LM_SETTINGS');
+
+                 $instance_id=$this->data['LmMenu']['instance_id'];
+                 $fileData = array();
 
                  //Incorrect id -> redirect to index
                           if(!$id){
@@ -248,7 +249,7 @@ var $helpers = array('Flash','Session','Javascript');
                      //Restore of config file OK
 
                      if(! $this->LmMenu->restoreConf($instance_id)){
-                          debug($instance_id);
+                          
                          $this->_flash(__('The default conf file could not be restored. Please check file permissions.',true),'warning');
 
                      }
@@ -282,9 +283,17 @@ var $helpers = array('Flash','Session','Javascript');
     	       $this->autoLayout = false;
     	       $this->render();   
 	
-
       }
 
+      function disp($id){
+
+              $lm_settings = Configure::read('LM_SETTINGS');
+              $this->set(compact($lm_settings));       
+              $this->LmMenu->unbindModel(array('hasMany' => array('Mapping')));   
+              $this->data = $this->LmMenu->findById($id);
+
+              $this->layout = "ajax";
+      }
 
 
 }

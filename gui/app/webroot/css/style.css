@@ -112,13 +112,21 @@ img.icon {
 
 }
 
-
 .frameRight {
-float: right;
-margin: 5px;
-padding: 5px;
-background-color : #fff;
+
+      float: right;
+      padding: 5px;
+      background:#d6efec;
+      margin:5px;
+      border:#ccc 1px solid;
+      -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+      border-radius:10px;
+
 }
+
+
+
 
 .frameRightAlone {
 float: right;
@@ -132,22 +140,28 @@ float:right;
 
 
 }
+
 .frameLeft {
 
-float: left;
-margin: 5px;
-padding: 5px;
+      float: left;
+      padding: 5px;
+      background:#d6efec;
+      margin:5px;
+      border:#ccc 1px solid;
+      -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+      border-radius:10px;
+
 }
 
 
 fieldset {
 
-border-radius: 10px;
--moz-border-radius: 10px;
-border: 1px solid #aaa;
-padding: 10px;
-margin: 10px;
-
+     border-radius: 10px;
+     -moz-border-radius: 10px;
+     border: 1px solid #aaa;
+     padding: 10px;
+     margin: 10px;
 }
 
 .instruction {

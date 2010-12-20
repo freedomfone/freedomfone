@@ -353,14 +353,8 @@ gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
 gui/app/webroot/freedomfone -text
 gui/app/webroot/img/bg.jpg -text
-gui/app/webroot/img/bg.png -text
-gui/app/webroot/img/branding_head.gif -text
-gui/app/webroot/img/branding_head.png -text
 gui/app/webroot/img/core/dog.png -text
 gui/app/webroot/img/core/ff_text.png -text
-gui/app/webroot/img/dark_input_bg.gif -text
-gui/app/webroot/img/footer_bg.gif -text
-gui/app/webroot/img/html_bg.gif -text
 gui/app/webroot/img/icons/accept.png -text
 gui/app/webroot/img/icons/add.png -text
 gui/app/webroot/img/icons/bulb.png -text
@@ -401,8 +395,6 @@ gui/app/webroot/img/menu/dot_blue.png -text
 gui/app/webroot/img/menu/menu_left.png -text
 gui/app/webroot/img/menu/menu_right.png -text
 gui/app/webroot/img/menu/menu_right_long.png -text
-gui/app/webroot/img/top_bg.gif -text
-gui/app/webroot/img/top_shadow.gif -text
 gui/app/webroot/index.php -text
 gui/app/webroot/js/addRemoveElements.js -text
 gui/app/webroot/js/audio-player.js -text

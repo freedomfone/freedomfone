@@ -73,6 +73,14 @@ table.none {
 
       }
 
+table.blue {
+           
+           background:#d6efec;
+           border:none;
+
+      }
+
+
 table.stand-alone{
       padding-top:10px;
       padding-bottom:10px;
@@ -94,6 +102,13 @@ table tr.stand-alone td{
 table tr.none td{
 
         background: #fff;
+        border: #000 0px solid;
+
+       }
+
+table tr.blue td{
+
+        background:#d6efec;
         border: #000 0px solid;
 
        }

@@ -345,7 +345,6 @@ gui/app/views/votes/add_success.ctp -text
 gui/app/webroot/.htaccess -text
 gui/app/webroot/css.php -text
 gui/app/webroot/css/customise.css -text
-gui/app/webroot/css/domcollapse.css -text
 gui/app/webroot/css/flash_messages.css -text
 gui/app/webroot/css/jquery.cluetip.css -text
 gui/app/webroot/css/style.css -text
@@ -409,7 +408,6 @@ gui/app/webroot/js/audio-player.js -text
 gui/app/webroot/js/cluetip.js -text
 gui/app/webroot/js/confirmSubmit.js -text
 gui/app/webroot/js/corner.js -text
-gui/app/webroot/js/domcollapse.js -text
 gui/app/webroot/js/jquery.cluetip.js -text
 gui/app/webroot/js/jquery.corner.js -text
 gui/app/webroot/js/jquery.js -text

@@ -353,8 +353,6 @@ gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
 gui/app/webroot/freedomfone -text
 gui/app/webroot/img/bg.jpg -text
-gui/app/webroot/img/core/dog.png -text
-gui/app/webroot/img/core/ff_text.png -text
 gui/app/webroot/img/icons/accept.png -text
 gui/app/webroot/img/icons/add.png -text
 gui/app/webroot/img/icons/bulb.png -text

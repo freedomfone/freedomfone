@@ -194,6 +194,7 @@ gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
 gui/app/install/freedomfone_db_createdb_user.sql -text
 gui/app/install/freedomfone_db_schema.sql -text
+gui/app/install/freedomfone_demo_data.sql -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
 gui/app/locale/gui.pot -text

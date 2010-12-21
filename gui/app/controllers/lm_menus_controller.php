@@ -25,7 +25,7 @@
 class LmMenusController extends AppController{
 
 	var $name = 'LmMenus';
-	var $helpers = array('Flash','Session','Javascript');      
+	var $helpers = array('Flash','Session','Javascript','Ajax');      
 
 
 	function demo_reset(){
@@ -39,7 +39,6 @@ class LmMenusController extends AppController{
 	function settings() {
 
         $this->pageTitle = 'Leave-a-Message : IVR';           
-        $this->layout ='jquery';
 
     	$lm_settings = Configure::read('LM_SETTINGS');
 
@@ -146,6 +145,17 @@ class LmMenusController extends AppController{
 
 
     }
+
+ function disp($id){
+
+
+              $lm_settings = Configure::read('LM_SETTINGS');
+              $this->set(compact($lm_settings));       
+              $this->LmMenu->unbindModel(array('hasMany' => array('Mapping'))); 
+              $this->data = $this->LmMenu->findById($id);
+              $this->layout = "ajax";
+
+      }
 
 
 

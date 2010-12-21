@@ -101,7 +101,7 @@ $sort  = $session->read('messages_sort');
      array(__("Created",true),	$time->nice($data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
-     array(__("Author",true),   $data['Message']['sender']),
+     array(__("Sender",true),   $data['Message']['sender']),
      array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
      ));

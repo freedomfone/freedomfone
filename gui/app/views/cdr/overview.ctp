@@ -66,26 +66,30 @@ $session->flash();
      $rows= array();
      if($messages){
 
-      foreach($messages as $key => $message){
+       foreach($messages as $key => $message){                                                                                                                                                                      
+                                                                                                                                                                                                                   
+         if ($message['Message']['new']){                                                                                                                                                                          
+                                                                                                                                                                                                                   
+                $message_new = $message_new + 1;                                                                                                                                                                   
+                                                                                                                                                                                                                   
+                if(sizeof($rows)<5){                                                                                                                                                                               
+                                                                                                                                                                                                                   
+                $download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);                               
+                $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));                 
+                                                                                                                                                                                                                   
+                 $rows[] = array(                                                                                                                                                                                  
+                       $message['Message']['sender'],                                                                                                                                                              
+                       $time->niceShort($message['Message']['created']),                                                                                                                                           
+                       $formatting->epochToWords($message['Message']['length']),                                                                                                                                   
+                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),                                              
+                       $download,                                                                                                                                                                                  
+                       $listen                                                                                                                                                                                     
+                       );                                                                                                                                                                                          
+                 }                                                                                                                                                                                                 
+        }                                                                                                                                                                                                          
+     }      
 
-        if ($message['Message']['new']){ 
-        
-	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
-	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
 
-
-             $rows[] = array(
-                       $message['Message']['sender'],
-                       $time->niceShort($message['Message']['created']), 
-                       $formatting->epochToWords($message['Message']['length']),
-                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
-                       $download,
-                       $listen
-                       );
-
-
-        }
-     }
         $message_new = sizeof($rows);
         $message_total = sizeof($messages);
     }
@@ -108,15 +112,21 @@ $session->flash();
      echo $html->tableCells($stat);
      echo "</table>";
 
- 
-     ///*** NEW MESSAGES ***///
-     echo "<h1>".__('New Messages',true)." (".$message_new.") </h1>";
-     if ($message_new){
-     echo "<table width='600px'>";
-     echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));
-     echo $html->tableCells($rows);
-     echo "</table>";
-     }
+
+   ///*** NEW MESSAGES ***///                                                                                                                                                    
+     echo "<h1>".__('New Messages',true)." (".$message_new.") </h1>";                                                                                                              
+     echo $html->div('instruction',__('Total number of messages',true).": ".$message_total);                                                                                       
+     if ($message_new){                                                                                                                                                            
+        if($message_new >=5) {                                                                                                                                                     
+             echo $html->div('instruction', __('The table below shows the five most recent new messages',true));                                                                   
+        }                                                                                                                                                                          
+        echo "<table width='600px' cellspacing=0>";                                                                                                                                
+        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));                               
+        echo $html->tableCells($rows);                                                                                                                                             
+        echo "</table>";                                                                                                                                                           
+     }                                                                                                                                                                             
+             
+
 
     echo $html->div('instruction',__('Messages in Inbox',true).": ".$message_total);
 

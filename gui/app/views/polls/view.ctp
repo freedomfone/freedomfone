@@ -35,13 +35,9 @@ Only "on-time" invalid votes are incorporated into the Total number of votes (in
 Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under "Other SMS". The SMS will be classified as "Unclassified".',true);
 
 
-
-
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
 echo $html->div('frameRight', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-
-echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
 
 
    if ($data){

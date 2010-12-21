@@ -29,7 +29,7 @@ class ChannelsController extends AppController{
 
       function index(){
 
-      $this->layout ='jquery';
+
       $snmp   = Configure::read('OR_SNMP');
       $data = false;
 

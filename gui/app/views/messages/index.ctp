@@ -57,7 +57,7 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Rate",true), 'rate'),
  	$paginator->sort(__("Category",true), 'Category.name'),
  	$paginator->sort(__("Created",true), 'created'),
- 	$paginator->sort(__("Last modified",true), 'modified'),
+ 	$paginator->sort(__("Sender",true), 'sender'),
  	$paginator->sort(__("Length",true), 'length'),
 	__("Edit",true),
 	__("Download",true),
@@ -80,7 +80,7 @@ echo $html->tableHeaders(array(
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
 	$created  = $time->niceShort($message['Message']['created']);
-	$modified = $this->element('message_status',array('modified'=>$message['Message']['modified']));
+	$sender   = $message['Message']['sender'];
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
 
@@ -96,7 +96,7 @@ echo $html->tableHeaders(array(
 		array($rate,array('align'=>'center')),
 		array($category,array('align'=>'center')),
 		$created,		
-		$modified,
+		$sender,
 		array($length,array('align'=>'center')),
 		array($edit,array('align'=>'center')),
 		array($download,array('align'=>'center')),

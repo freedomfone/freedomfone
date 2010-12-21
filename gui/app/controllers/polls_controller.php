@@ -47,7 +47,6 @@ class PollsController extends AppController{
 
       function index(){
 
-      $this->layout ='jquery';
 
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
@@ -64,7 +63,7 @@ class PollsController extends AppController{
 
      function view($id){
 
-        $this->layout = 'jquery';
+
       	$this->pageTitle = 'View poll: '.$this->Poll->getTitle($id);
 
      	if(isset($this->params['form']['submit'])) {

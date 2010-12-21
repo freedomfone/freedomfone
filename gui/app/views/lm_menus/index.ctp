@@ -25,7 +25,7 @@
 echo $form->create('LmMenu',array('type' => 'post','action'=> 'create'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-echo "<h1>".__('Leave-a-message IVR Menus',true)."</h1>";
+echo "<h1>".__('Leave-a-message Settings',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 
@@ -56,13 +56,13 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
 
                 $row[$key] = array(
                            $instance_id,
-			   array($title,array('width'=>'100px')),
+			   $title,
 			   $created,		
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));
 	   }
 
-     	   echo $html->tableCells($row,array('class'=>'darker'));
+     	   echo $html->tableCells($row);
      	   echo "</table>";
 
          }

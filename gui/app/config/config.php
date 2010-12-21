@@ -115,6 +115,7 @@ $config['IVR_SETTINGS'] = array(
 		'dir_menu'         =>  'ivr/',
 		'dir_conf'         =>  'conf/',
                 'instance_start'   => '100',
+                'instance_end'     => '102',
 		);
 
 

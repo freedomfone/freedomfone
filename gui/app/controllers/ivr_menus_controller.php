@@ -94,8 +94,19 @@ class IvrMenusController extends AppController{
       //Render empty form
       if (empty($this->data)){
 
-	//Render view
-	$this->render();
+        //Get instance id
+        $instance_id =$this->IvrMenu->nextInstance();
+
+        if($instance_id <= $ivr_settings['instance_end']){
+
+                //Render view
+	        $this->render();
+        
+        } else {
+       	       $this->_flash(__('There are no more Voice Menus available. Please delete an inactive Voice Menu, and try again.',true), 'warning');                           	
+	       $this->redirect(array('action' => 'index'));
+        }
+
 
       }
 
@@ -250,7 +261,20 @@ class IvrMenusController extends AppController{
      
         if (empty($this->data)){
 
-	   $this->render();
+           //Get instance id
+           $instance_id =$this->IvrMenu->nextInstance();
+
+           if($instance_id <= $ivr_settings['instance_end']){
+
+                //Render view
+	        $this->render();
+        
+            } else {
+       	       $this->_flash(__('There are no more Selectors available. Please delete an inactive Selector, and try again.',true), 'warning');                           	
+	       $this->redirect(array('action' => 'selectors'));
+           }
+
+
 
         }  else {
 
@@ -582,8 +606,11 @@ class IvrMenusController extends AppController{
                 //Delete action OK -> success flash
                 if($id && $instance_id && $settings['path']){
 
-                       $dir = WWW_ROOT.$settings['path'].$instance_id;         
-                       $this->delete_dir($dir);
+        
+                       //Empty directory of files (keep directories)
+                       $dir = WWW_ROOT.$settings['path'].$instance_id; 
+                       $this->emptyDir($dir,true,true);
+
 
                        if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
 
@@ -609,7 +636,6 @@ class IvrMenusController extends AppController{
            
            $this->redirect(array('action' => $redirect));
       }
-
 
 
 /*

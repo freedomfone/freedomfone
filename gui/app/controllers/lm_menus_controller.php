@@ -232,7 +232,8 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
              $lm_settings = Configure::read('LM_SETTINGS');
              $instance_id = $this->LmMenu->getInstanceID($id);
-             $dir = WWW_ROOT.$lm_settings['path'].$instance_id.'/'.$lm_settings['dir_menu'];
+             $dirMenu = WWW_ROOT.$lm_settings['path'].$instance_id.'/'.$lm_settings['dir_menu'];
+             $dirMsg = WWW_ROOT.$lm_settings['path'].$instance_id.'/'.$lm_settings['dir_messages'];
 
 
              //LAM is not active -> delete
@@ -244,7 +245,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                    $this->_flash(__('The selected menu has been deleted.',true),'success');
 
                    //Empty dir OK 
-                   if ($result = $this->LmMenu->emptyDir($dir)){
+                   if ($result = $this->LmMenu->emptyDirMulti(array($dirMenu,$dirMsg))){
 
                      //Restore of config file OK
 

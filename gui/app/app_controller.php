@@ -468,7 +468,15 @@ return $result;
 
 
 
-      function delete_dir($directory, $empty = null ){
+/*
+ * Deletes files in dir (and sub-directories) but keeps directories (used to delete IVR/LAM)
+ *  
+ * @param string $directory bool $empty, book $emptySubDir
+ * 
+ *
+ */
+
+      function emptyDir($directory, $empty = null, $emptySubDir= null){
 
                if(substr($directory,-1) == "/") {
                       $directory = substr($directory,0,-1);
@@ -485,9 +493,12 @@ return $result;
                       if($contents != '.' && $contents != '..') {
                                    $path = $directory . "/" . $contents;
               
+
                         if(is_dir($path)) {
-                             $this->delete_dir($path);
-                        } else {
+
+                             $this->emptyDir($path,$emptySubDir);
+                        } elseif (!is_dir($path)) {
+
                         unlink($path);
                         }
                       }

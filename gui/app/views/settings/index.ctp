@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-$msgAccessLevel =  __('This settings determines the access level of the streaming audio content of your Freedom Fone installation.',true);
+$msgAccessLevel =  __('This setting determines the access level of the streaming audio content of your Freedom Fone installation.',true);
 
 
 

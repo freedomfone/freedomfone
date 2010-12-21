@@ -287,7 +287,7 @@ class IvrMenusController extends AppController{
 
     	     	if($this->IvrMenu->delete($id,true)){
 		   $this->log("Msg: INFO; Action: IVR deleted; Type: ".$id."; Code: N/A", "ivr");
-		   $this->Session->setFlash(__('The voice menu has been deleted.',true),'default',array('class'=>'message_success'));
+		   $this->_flash(__('The voice menu has been deleted.',true),'success');
 		 }
 
 		 //If IVR was parent

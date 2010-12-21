@@ -134,7 +134,7 @@ class CdrController extends AppController{
         $data = $this->paginate('Cdr');
 	$this->set('cdr',$data);  
 
-        $this->set(compact('ivr','lam','cdr','count','application','select_option'));
+        $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
 
 
 	//Export data

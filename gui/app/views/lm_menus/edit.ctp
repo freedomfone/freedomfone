@@ -62,6 +62,12 @@ $input2_3 = $input2_4 = false;
 
      
 
+echo $form->hidden('lmInvalidMessage');                                                                                           
+echo $form->hidden('lmLongMessage');                                                                                              
+echo $form->hidden('lmSelectMessage');                                                                                            
+echo $form->hidden('lmDeleteMessage');                                                                                            
+echo $form->hidden('lmSaveMessage');                                                                                              
+echo $form->hidden('lmGoodbyeMessage'); 
 
      // ** General settings **//
      echo "<fieldset><legend>".__('General settings',true)."</legend>";

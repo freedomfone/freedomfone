@@ -128,26 +128,27 @@ $session->flash();
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
-	  		     $rows[]=array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']),$this->element('message_status',array('quickHangup' => $data['quick_hangup'])));
+	  		     $line = array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
+                               if($app == 'lam') { $line[] = $this->element('message_status',array('quickHangup' => $data['quick_hangup']));}
+                             $rows[] = $line;
 	     		     }
 
-	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true),__('Quick hangup',true));
+	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true));
+
+             if($app == 'lam') { $headers[] = __('Quick hangup',true); }
+
 	     echo "<table cellspacing = 0>";
 	     echo $html->tableHeaders($headers);
 	     echo $html->tableCells($rows);
 	     echo "</table>";
 
 
-             echo "<table class = 'none' cellspacing = 0>";
-             echo $html->tableCells(array($paginator->numbers()),array('class' => 'none'),array('class' => 'none'));
-             echo "</table>";
+             if($paginator->counter(array('format' => '%pages%'))>1){
+                     echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+              }
 
-	     echo "<span>".__("No of entries per page: ",true);
-	     echo $html->link('10','general/view/limit:10',null, null, false)." | ";
-	     echo $html->link('50','general/view/limit:50',null, null, false)." | ";
-	     echo $html->link('100','general/view/limit:100',null, null, false)." | ";
-	     echo $html->link('250','general/view/limit:250',null, null, false);
-	     echo "</span>";
+
+              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/view/limit:25',null, null, false)." | ".$html->link('50','general/view/limit:50',null, null, false)." | ".$html->link('100','general/view/limit:100',null, null, false));
 
 
 

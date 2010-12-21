@@ -62,7 +62,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 
      		$row[$key] = array(
 			   $instance,
-			   array($title,array('width'=>'100px')),
+			   $title,
 			   $modified,
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));

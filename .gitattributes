@@ -298,7 +298,6 @@ gui/app/views/layouts/xml/empty -text
 gui/app/views/lm_menus/add.ctp -text
 gui/app/views/lm_menus/advanced_add.ctp -text
 gui/app/views/lm_menus/advanced_edit.ctp -text
-gui/app/views/lm_menus/disp.ctp -text
 gui/app/views/lm_menus/edit.ctp -text
 gui/app/views/lm_menus/index.ctp -text
 gui/app/views/lm_menus/settings.ctp -text

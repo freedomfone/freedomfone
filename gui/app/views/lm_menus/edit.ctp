@@ -124,7 +124,7 @@ echo $form->hidden('lmGoodbyeMessage');
      echo "</fieldset>";
 
      // Show and collapse advanced menu.
-     echo $ajax->link("Advanced options","/lm_menus/disp/{$this->data['LmMenu']['id']}",array("update"   => "lm_advanced", null,1));
+     echo $ajax->link("Advanced options","/lm_menus/advanced_edit/{$this->data['LmMenu']['id']}",array("update"   => "lm_advanced", null,1));
      echo "<div id ='lm_advanced'></div>";
                              
 

@@ -1,0 +1,4 @@
+[ ] plymouth-splash is disable in upstart
+[ ] edit Makefile from libs/esl to disable -Werror flag 
+[ ] check that memory limit and max upload size are 128M and 5M
+- 

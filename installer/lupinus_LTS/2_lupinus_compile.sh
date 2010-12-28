@@ -19,11 +19,15 @@ SVNPREFIX=/usr/local/
 SVNROOT=$SVNPREFIX/freedomfone
 
 if [ "$OS" = "64" ]; then
-CEPSTRALPACK="http://downloads.cepstral.com/cepstral/x86-64-linux/Cepstral_Allison_x86-64-linux_5.1.0.tar.gz"
-CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_x86-64-linux_5.1.0"
+#CEPSTRALPACK="http://downloads.cepstral.com/cepstral/x86-64-linux/Cepstral_Allison_x86-64-linux_5.1.0.tar.gz"
+#CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_x86-64-linux_5.1.0"
+CEPSTRALPACK="http://downloads.cepstral.com/cepstral/x86-64-linux/Cepstral_Allison-8kHz_x86-64-linux_5.1.0.tar.gz"
+CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison-8kHz_x86-64-linux_5.1.0"
 else
-CEPSTRALPACK="http://downloads.cepstral.com/cepstral/i386-linux/Cepstral_Allison_i386-linux_5.1.0.tar.gz"
-CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_i386-linux_5.1.0"
+#CEPSTRALPACK="http://downloads.cepstral.com/cepstral/i386-linux/Cepstral_Allison_i386-linux_5.1.0.tar.gz"
+#CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison_i386-linux_5.1.0"
+CEPSTRALPACK="http://downloads.cepstral.com/cepstral/i386-linux/Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz"
+CEPSTRALSRC="$DOWNLOAD/Cepstral_Allison-8kHz_i386-linux_5.1.0"
 fi
 
 TIMESTAMP=`date +%s`
@@ -100,7 +104,7 @@ step "FS: Adding autoload_config files... enabling modules, adding confs"
 #FIXME! Function to move from SVN to code!
 cp $SVNROOT/freeswitch/conf/autoload_configs/modules.conf.xml $FS_INSTALL/conf/autoload_configs/
 cp $SVNROOT/freeswitch/conf/autoload_configs/xml_curl.conf.xml $FS_INSTALL/conf/autoload_configs/
-cp $SVNROOT/freeswitch/conf/sip_profiles/officeroute.xml $FS_INSTALL/conf/sip_profiles/
+cp $SVNROOT/freeswitch/conf/sip-profiles/officeroute.xml $FS_INSTALL/conf/sip_profiles/
 #FIXME! Installing config files from gsmopen
 cp $SVNROOT/freeswitch/conf/autoload_configs/gsmopen.conf.xml $FS_INSTALL/conf/autoload_configs/
 cp $SVNROOT/freeswitch/etc/asound.conf /etc
@@ -152,6 +156,7 @@ step "Fixing ESL CLI dynamic load"
 #FIXME! LTS 10.04
 #Disable -Wall in Makefile libs/esl
 #http://jira.freeswitch.org/browse/ESL-31;jsessionid=4781C2CD1D4B3F30A0C026A615C12AEE
+#CXXFLAGS=$(BASE_FLAGS) -Wall -Werror -Wno-unused-variable
 cp $SVNROOT/installer/lupinus_LTS/extras/libs/esl/Makefile $FS_SRC/libs/esl/Makefile 
 cd $FS_SRC/libs/esl; make; make phpmod; make phpmod-install 
 #cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
@@ -160,5 +165,6 @@ sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/cli/php.ini
 sed -i 's/enable_dl = Off/enable_dl = On/' /etc/php5/apache2/php.ini
 sed -i 's/memory_limit = 16M/memory_limit = 64M/' /etc/php5/apache2/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 5M/' /etc/php5/apache2/php.ini
-
+grep upload_max_filesize /etc/php5/apache2/php.ini
+grep memory_limit  /etc/php5/apache2/php.ini
 stop

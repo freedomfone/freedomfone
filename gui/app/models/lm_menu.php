@@ -173,10 +173,13 @@ class LmMenu extends AppModel {
  * @return boolean result
  *
  */
-      function emptyDir($dir){
+      function emptyDirMulti($directories){
+
+        foreach($directories as $dir){
 
           $handle=opendir($dir);
           $result = true;
+
 
           if($dir && $handle){
                while (($file = readdir($handle))!==false) {
@@ -191,7 +194,11 @@ class LmMenu extends AppModel {
                closedir($handle);
 
            }
-               return $result;
+        
+        }
+
+       return $result;
+
       }
 
 
@@ -235,8 +242,7 @@ class LmMenu extends AppModel {
 
         } else {
 
-	    //$handle = fopen($lm_settings['path'].$iid."/conf/".$iid.".conf","w");
-
+	   
     	    foreach ($lm_default as $key => $default){
 	    	   
     	    	    $line = "var ".$key." = \"".$default."\";\n";

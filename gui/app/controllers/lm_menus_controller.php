@@ -286,7 +286,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 	
       }
 
-      function disp($id){
+      function advanced_edit($id){
 
               $lm_settings = Configure::read('LM_SETTINGS');
               $this->set(compact($lm_settings));       
@@ -294,6 +294,12 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
               $this->data = $this->LmMenu->findById($id);
 
               $this->layout = "ajax";
+      }
+
+      function advanced_add(){
+
+              $this->layout = "ajax";
+      
       }
 
 

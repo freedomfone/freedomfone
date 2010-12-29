@@ -298,9 +298,27 @@ CREATE TABLE `messages` (
 SET character_set_client = @saved_cs_client;
 
 
+--                                                                                                                                                                                               
+-- Table structure for table `messages_tags`                                                                                                                                                     
+--                                                                                                                                                                                               
+                                                                                                                                                                                                 
+DROP TABLE IF EXISTS `messages_tags`;                                                                                                                                                            
+SET @saved_cs_client     = @@character_set_client;                                                                                                                                               
+SET character_set_client = utf8;                                                                                                                                                                 
+CREATE TABLE `messages_tags` (                                                                                                                                                                   
+  `id` int(11) unsigned NOT NULL auto_increment,                                                                                                                                                 
+  `message_id` int(11) unsigned default NULL,                                                                                                                                                    
+  `tag_id` int(11) unsigned default NULL,                                                                                                                                                        
+  PRIMARY KEY  (`id`)                                                                                                                                                                            
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;                                                                                                                                                            
+SET character_set_client = @saved_cs_client;    
+
+
 --
 -- Table structure for table `monitor_ivr`
 --
+
+
 
 DROP TABLE IF EXISTS `monitor_ivr`;
 SET @saved_cs_client     = @@character_set_client;

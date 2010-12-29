@@ -248,6 +248,7 @@ gui/.htaccess -text
 gui/apache2/envvars -text
 gui/apache2/freedomfone -text
 gui/apache2/freedomfone.nginx.nolog -text
+gui/apache2/index.html -text
 gui/apache2/nginx/sites-available/default -text
 gui/apache2/nginx/sites-enabled/freedomfone -text
 gui/app/.htaccess -text

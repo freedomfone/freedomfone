@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="freeswitch/xml">
+  <section name="configuration">
+    <configuration name="ivr.conf" description="IVR menus">
+      <menus>
+     </menus>
+    </configuration>
+  </section>
+</document>

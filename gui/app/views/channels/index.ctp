@@ -26,7 +26,7 @@ $session->flash();
 $generated  = $session->read('Channel.refresh');
 
 echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 
@@ -50,7 +50,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
       			$sim_inserted           = $entry['OfficeRoute']['sim_inserted'];
 			$imei                   = $entry['OfficeRoute']['imei'];
 			$imsi                   = $entry['OfficeRoute']['imsi'];
-			$signal_level           = $entry['OfficeRoute']['signal_level'];
+			$signal_level           = $this->element('channel_signal_level', array('signal' => $entry['OfficeRoute']['signal_level']));
 			$network_registration   = $entry['OfficeRoute']['network_registration'];
 			$operator_name          = $entry['OfficeRoute']['operator_name'];
 			//$created              = $time->niceShort($entry['OfficeRoute']['created']);
@@ -65,7 +65,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 	       }
 
 
-     	       echo "<table width='100%'>";
+     	       echo "<table width='95%' cellspacing=0>";
      	       echo $html->tableHeaders(array(
                         __('Slot',true),
                         __('Title',true),
@@ -115,7 +115,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
 
 
-     echo "<table>";
+     echo "<table cellspacing = 0>";
      echo $html->tableHeaders(array(
                         __('Interface id',true),
                         __('Title',true),

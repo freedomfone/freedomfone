@@ -90,7 +90,7 @@ class Cdr extends AppModel{
 
 		   //Determine whether entry should be stored or not
 		   
-		   $insert = $this->insertCDR($proto,$channel_state,$answer_state);
+		   $insert = $this->insertCDR($proto,$channel_state,$answer_state,$application);
 
 		   //Calculate length of LAM and IVR calls
 
@@ -100,12 +100,19 @@ class Cdr extends AppModel{
 		     					      	 'Message' => array(
 								 'foreignKey' => false,
 								 'conditions'=>array('Message.file'=>$call_id)))));
-					
+
+                        $instance_id = substr($ext,1);
+
+
 
 		        $message = $this->Message->findByFile($call_id);
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
-		        $this->set('title', LAM_DEFAULT);
+                               
+		        $lm_menu = $this->query("select * from lm_menus where instance_id = $instance_id ");
+
+		        $this->set('title',$lm_menu[0]['lm_menus']['title']);
+
 		     } 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
 		     elseif ($channel_state =='CS_DESTROY'){
@@ -140,6 +147,8 @@ class Cdr extends AppModel{
 
 		  //Add routing(start) and destroy(end) to monitor_ivr if application='Voice menu'
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
+
+
 
 		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);
@@ -243,7 +252,6 @@ class Cdr extends AppModel{
 	      }
 
       	      while ($entry = $obj->getNext('update')){
-
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
@@ -360,7 +368,7 @@ class Cdr extends AppModel{
  *
  */
 
-	function insertCDR($proto,$channel_state,$answer_state){
+	function insertCDR($proto,$channel_state,$answer_state, $application){
 
 		   $insert = true;
 		   switch ($proto){
@@ -372,7 +380,7 @@ class Cdr extends AppModel{
 		    break;
 
 		    case 'sip':
-		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered' && $application =='ivr'){
 		         $insert = false;
 		    }
 		    break;
@@ -388,6 +396,9 @@ class Cdr extends AppModel{
 		   return $insert;
 		   }
 
+
 }
+
+
 
 ?>

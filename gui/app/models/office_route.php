@@ -59,6 +59,9 @@ class OfficeRoute extends AppModel{
          $mib[$i]['imsi']                  =  $this->get_entry($unit, 12, $i);
          $mib[$i]['operator_name']         =  $this->get_entry($unit, 14, $i);         
          $mib[$i]['ip_addr']               =  $unit['ip_addr'];
+
+
+         if (trim($mib[$i]['sim_inserted']) == 'No') { $mib[$i]['signal_level']= false;}
         
          } //for
 
@@ -66,6 +69,7 @@ class OfficeRoute extends AppModel{
 
 
      }
+
 
      return $mib;
 

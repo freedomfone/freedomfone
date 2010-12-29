@@ -33,16 +33,16 @@ echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name
 echo $form->end();
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
-echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' =>'all', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Export all',true),  array('name' =>'all', 'class' => 'button')));
 echo $form->end();
 
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));
-echo $html->div('frameRight',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 
@@ -67,8 +67,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
  	$paginator->sort(__("Type",true), 'channel_state'),
  	$paginator->sort(__("Call ID",true), 'call_id'),
  	$paginator->sort(__("Caller",true), 'caller_number'),
- 	$paginator->sort(__("Application",true), 'application'),
- 	$paginator->sort(__("Protocol",true), 'proto')));
+ 	$paginator->sort(__("Application",true), 'application')));
+
 
 
  
@@ -81,7 +81,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$type	     = $entry['Cdr']['channel_state'];
 	$application = $formatting->appMatch($entry['Cdr']['application']);
 	$call_id     = $entry['Cdr']['call_id'];
-	$proto     = $entry['Cdr']['proto'];
+
 
 
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
@@ -96,8 +96,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 		$type,		
 		$call_id,
 		$caller_number,
-		$application,
-		$proto );
+		$application
+		);
 
 	
 	}

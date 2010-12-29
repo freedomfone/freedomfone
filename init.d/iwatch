@@ -40,7 +40,7 @@ case "${1:-}" in
       fi
 
       if is_true $START_DAEMON; then
-         log_daemon_msg "Starting iwatch daemon" "iwatch"
+         log_daemon_msg "Freedom Fone: Starting iwatch daemon" 
          set +e
          $IWATCHD -f $CONFIGFILE -p $PIDFILE -d -v
          RC=$?
@@ -53,7 +53,7 @@ case "${1:-}" in
 
     stop)
       if [ -f "$PIDFILE" ] ; then
-         log_daemon_msg "Stopping iwatch damon" "iwatch"
+         log_daemon_msg "Freedom Fome: Stopping iwatch daemon" 
          set +e
          start-stop-daemon -K -p $PIDFILE
          RC=$?

@@ -420,6 +420,7 @@ init.d/etc/default/iwatch -text
 init.d/freeswitch -text
 init.d/gsmopen -text
 init.d/iwatch -text
+init.d/rc.local -text
 installer/lupinus/0_lupinus_install_download.sh -text
 installer/lupinus/1_lupinus_install.sh -text
 installer/lupinus/2_lupinus_install.sh -text

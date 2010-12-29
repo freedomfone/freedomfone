@@ -51,7 +51,7 @@ case "${1:-}" in
       fi
 
       if is_true $START_DAEMON; then
-         log_daemon_msg "Starting Freedom Fone Dispatcher (incoming)" "dispatcher_in"
+         log_daemon_msg "Freedom Fone: Starting dispatcher" 
          set +e
          su - $DISPATCHERUSER -c "/usr/bin/php $DISPATCHER --log=$LOGFILE > /dev/null 2>&1 &"
          RC=$?
@@ -64,7 +64,7 @@ case "${1:-}" in
 
     stop)
       if [ -f "$PIDFILE" ] ; then
-         log_daemon_msg "Stopping dispatcher_in daemon" "dispatcher"
+         log_daemon_msg "Freedom Fone: Stopping dispatcher" 
          set +e
          start-stop-daemon -K -p $PIDFILE
          RC=$?

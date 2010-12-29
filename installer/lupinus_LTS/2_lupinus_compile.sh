@@ -162,7 +162,9 @@ step "Fixing ESL CLI dynamic load"
 #Disable -Wall in Makefile libs/esl
 #http://jira.freeswitch.org/browse/ESL-31;jsessionid=4781C2CD1D4B3F30A0C026A615C12AEE
 #CXXFLAGS=$(BASE_FLAGS) -Wall -Werror -Wno-unused-variable
-cp $SVNROOT/installer/lupinus_LTS/extras/libs/esl/Makefile $FS_SRC/libs/esl/Makefile 
+#cp $SVNROOT/installer/lupinus_LTS/extras/libs/esl/Makefile $FS_SRC/libs/esl/Makefile 
+echo "FIXME! FIXME! Remove the -Werror in libs/esl/Makefile"
+stop
 cd $FS_SRC/libs/esl; make; make phpmod; make phpmod-install 
 #cp $FS_SRC/libs/esl/php/ESL.so /usr/lib/php5/200*/ 
 #FIXME! LTS 10.04 Finetune memory for PHP.INI

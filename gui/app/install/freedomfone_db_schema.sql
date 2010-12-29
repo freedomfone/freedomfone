@@ -286,17 +286,6 @@ CREATE TABLE `lm_menus` (
 SET character_set_client = @saved_cs_client;
 
 --
--- Dumping data for table `lm_menus`
---
-
-LOCK TABLES `lm_menus` WRITE;
-/*!40000 ALTER TABLE `lm_menus` DISABLE KEYS */;
-INSERT INTO `lm_menus` VALUES (1,1,'','','','','','','','',100,0,'Default LAM','accept');
-
-/*!40000 ALTER TABLE `lm_menus` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `messages`
 --
 

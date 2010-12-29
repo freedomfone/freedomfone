@@ -284,7 +284,6 @@ gui/app/controllers/phone_numbers_controller.php -text
 gui/app/controllers/polls_controller.php -text
 gui/app/controllers/processes_controller.php -text
 gui/app/controllers/settings_controller.php -text
-gui/app/controllers/switchers_controller.php -text
 gui/app/controllers/tags_controller.php -text
 gui/app/controllers/users_controller.php -text
 gui/app/controllers/votes_controller.php -text

@@ -267,7 +267,6 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `lm_menus` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `trunk` smallint(6) NOT NULL,
   `lmWelcomeMessage` text,
   `lmInformMessage` text,
   `lmInvalidMessage` text,

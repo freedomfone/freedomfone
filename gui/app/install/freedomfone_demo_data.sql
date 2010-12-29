@@ -1,4 +1,4 @@
-INSERT INTO `lm_menus` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,100,'true','Test Leave-a-message','accept','1286471300','1286471300',120);
+INSERT INTO `lm_menus` VALUES (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,100,'true','Test Leave-a-message','accept');
 
 INSERT INTO `ivr_menus` VALUES (1,100,'Cholera','','','','','1. Welcome. cholera_menu_welcome.wav','2. Instructions. cholera_menu_options_160610_final.wav','3. Goodbye. cholera_goodbye.wav','4. Invalid. cholera_invalid_selection.wav',1,'node',2,'node',3,'node',4,'node',NULL,'lam',NULL,'node',NULL,'node',NULL,'node',NULL,NULL,1,1292924823,1292927669,0,0,0,0);
 

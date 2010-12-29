@@ -9,4 +9,6 @@
 [ ] Add deb http://www.geekconnection.org/remastersys/repository karmic/ 
 [ ] verify dialplan.xml 
 [ ] verify debug in Cake 
+[ ] add new boolean to firefox about:config network.manage-offline-status false 
+[ ] documentation, user guide 
 - 

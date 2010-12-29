@@ -11,4 +11,6 @@
 [ ] verify debug in Cake 
 [ ] add new boolean to firefox about:config network.manage-offline-status false 
 [ ] documentation, user guide 
-- 
+[ ] clean cake cache
+[ ] global config sortcuts for officeroute 
+ 

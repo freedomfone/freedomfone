@@ -34,15 +34,15 @@ echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name
 echo $form->end();
 
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'output'));
-echo $html->div('frameRight',$form->submit(__('Export all',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Export all',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRight',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'delete'));
-echo $html->div('frameRight',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 
@@ -61,7 +61,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
      <?
      echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete));
 
-     echo "<table width='100%'>";
+     echo "<table width='95%' cellspacing=0>";
      echo $html->tableHeaders(array(
 	'',
  	$paginator->sort(__("Date (YMD)",true), 'epoch'),
@@ -81,6 +81,8 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	$class='lighter';
 
       foreach ($data as $key => $entry){
+
+
 
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
@@ -126,20 +128,15 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
      echo "</table>";
-
-     echo "<table>";
-     echo $html->tableCells(array(
-     $paginator->numbers()));
-     echo "</table>";
-
      echo $form->end();
 
-
-echo "<span>".__("No of entries per page: ",true);
-echo $html->link('50','index/limit:50',null, null, false)." | ";
-echo $html->link('100','index/limit:100',null, null, false)." | ";
-echo $html->link('250','index/limit:250',null, null, false);
-echo "</span>";
+     if($paginator->counter(array('format' => '%pages%'))>1){
+           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
      }
 
+
+     echo $html->div('paginator', __("Entries per page ",true).$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false)." | ".$html->link('100','index/limit:100',null, null, false));
+
+
+     }
 ?>

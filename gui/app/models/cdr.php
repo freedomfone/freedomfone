@@ -88,8 +88,9 @@ class Cdr extends AppModel{
 
 
 		   //Determine whether entry should be stored or not
-		   
-		   $insert = $this->insertCDR($proto,$channel_state,$answer_state);
+
+		   $insert = $this->insertCDR($proto,$channel_state,$answer_state, $application);
+
 
 		   //Calculate length of LAM and IVR calls
 
@@ -155,36 +156,6 @@ class Cdr extends AppModel{
 		  	$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
 
-
-			//Check if user is registered
-
-			//Process only CS_ROUTING (start) messages
-			if($entry['Channel-State']=='CS_ROUTING'){
-
-			$value = urldecode($entry['Caller-Caller-ID-Number']);
-			$field = 'phone1';
-
-		  	if( $proto == 'skype') { $field = 'skype';}
-		  	elseif( $proto == 'gsm') { $field = 'phone1';}
-			elseif( $proto == 'sip') { $field = 'phone1';}
-			
-
-			    if ($userData = $this->User->find('first',array('conditions' => array('User.'.$field => $value)))){ 
-
-		 		$count_ivr = $userData['User']['count_ivr']+1;
-				$id = 	$userData['User']['id'];
-	 			$this->User->set(array('id' => $id, 'count_ivr'=>$count_ivr,'last_app'=>'ivr','last_epoch'=>time()));
-				$this->User->id = $id;
- 		 		$this->User->save($this->data);
-
-		            } else {
-			        $created = time();
-		 	        $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>'ivr','first_epoch' => $created, 'last_app'=>'ivr','last_epoch'=>$created,'acl_id'=>1);
-		     	        $this->User->create();
-		     	        $this->User->save($user);
-				
-			    }
-			}
 
 		} 
 
@@ -317,7 +288,7 @@ class Cdr extends AppModel{
  *
  */
 
-	function insertCDR($proto,$channel_state,$answer_state){
+	function insertCDR($proto,$channel_state,$answer_state, $application){
 
 		   $insert = true;
 		   switch ($proto){
@@ -329,9 +300,9 @@ class Cdr extends AppModel{
 		    break;
 
 		    case 'sip':
-		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered'){
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered' && $application == 'ivr'){
 		         $insert = false;
-		    }
+		    } 
 		    break;
 	
 

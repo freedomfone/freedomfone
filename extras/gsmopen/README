@@ -1,0 +1,7 @@
+MOD_GSMOPEN
+
+In some hardware configurations mod_gsmopen produces interlaced
+audio when two concurrent calls are placed in two Mobigaters.
+
+This library contains a gsmopen endpoint that is known not so
+exhibit this behaviour.

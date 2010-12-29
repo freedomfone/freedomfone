@@ -113,6 +113,8 @@ stop
 
 step "GUI: Configuring apache2 and enabling site (rewrite, override all)"
 cp $SVNROOT/gui/apache2/freedomfone /etc/apache2/sites-available/
+mv /var/www/index.html /var/www/index_bak.html
+cp $SVNROOT/gui/apache2/index.html /var/www/
 a2enmod rewrite
 a2dissite default
 a2ensite freedomfone

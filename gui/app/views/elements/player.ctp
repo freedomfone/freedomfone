@@ -56,7 +56,6 @@
       $search = $data[2];
       $song_url = str_replace($data[2],$ip_address,$song_url);
 
-
      if($check==1){ 
 
         $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';

@@ -574,6 +574,7 @@ installer/sekowei/demo/lam_ivr/lmSelect.mp3 -text
 installer/sekowei/demo/lam_ivr/lmSelect.wav -text
 installer/sekowei/demo/lam_ivr/lmWelcome.mp3 -text
 installer/sekowei/demo/lam_ivr/lmWelcome.wav -text
+installer/sekowei/extras/backup_officeroute_2.3.11.tgz -text
 installer/sekowei/extras/devices_creator.sh -text
 installer/sekowei/extras/install-flash_64bits.sh -text
 installer/sekowei/extras/libs/esl/Makefile -text

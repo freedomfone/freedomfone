@@ -47,27 +47,30 @@ CARD3_MIC=0
 
 case ${1:-} in
     start)
-	log_daemon_msg "Gsmopen, fixing audio levels" 
+	log_daemon_msg "Freedom Fone: Starting gsmopen, fixing audio levels" 
 	for i in $CARD_LIST; do
 		$AXIMER -c ${i}  -q set "Auto Gain Control" off >/dev/null 2>&1
 		#TTS Volume
 
 		#DEBUG: Reporting values	
-		echo " * Initializing Card ${i} to values (speaker/mic)  $[CARD${i}_SPEAKER] / $[CARD${i}_MIC]"
+		##echo " * Initializing Card ${i} to values (speaker/mic)  $[CARD${i}_SPEAKER] / $[CARD${i}_MIC]"
 		$AMIXER -c ${i}  -q set Speaker $[CARD${i}_SPEAKER]% unmute >/dev/null 2>&1
 		#Incoming audio gain. Has an impact in distorsion and DTMF detection
 		$AMIXER -c ${i}  -q set Mic cap mute $[CARD${i}_MIC]%  >/dev/null 2>&1 
 	done
-		sleep 60
-     	set +e
-	$PHP $APICLIENT "$STATUS" |grep "imei\|imsi\|interface_id\|interface_name\|got_signal"  
-	$PHP $APICLIENT "$STATUS" > $GSMOPEN_BOOT_LOG  
-        RC=$?
-        set -e
-        log_end_msg $RC
+	#sleep 60
+     	#set +e
+	#/usr/local/freeswitch/bin/fs_cli -x "gsmopen_dump list" |grep "imei\|imsi\|interface_id\|interface_name\|got_signal"  
+        #RC=$?
+        #set -e
+        log_end_msg 0 
     ;;
 
 
+    stop )
+	log_daemon_msg "Freedom Fone: Stopping gsmopen" 
+        log_end_msg 0 
+    ;;
     status)
 		$PHP $APICLIENT "$STATUS"  
     ;;

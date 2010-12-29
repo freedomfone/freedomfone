@@ -34,7 +34,8 @@ class Setting extends AppModel{
 	    case 'internal':
      	    //$cmd = "/usr/bin/python /var/tmp/mylocalip.py";
 	    
-	    $ip = gethostbyname(trim(`hostname`));
+	    //$ip = gethostbyname(trim(`hostname`));
+	    $ip = $_SERVER['HTTP_HOST'];
 	    break;
 
 	    case 'external':

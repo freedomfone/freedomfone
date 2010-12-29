@@ -51,7 +51,7 @@
 
 
       //Overwrite IP address from FreeSWITCH with system IP address
-      $ip_address = Configure::read('Setting.ip_addr').':8887';
+      $ip_address = Configure::read('Setting.ip_addr');
       $data = explode('/',$song_url);
       $search = $data[2];
       $song_url = str_replace($data[2],$ip_address,$song_url);

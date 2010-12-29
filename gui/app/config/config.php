@@ -170,8 +170,8 @@ $config['OR_MIB']= array(
                 );
 
 $config['OR_SNMP']= array(
-                        array('ip_addr'   => '192.168.1.46' ,
-                              'community' => 'public' , 
+                        array('ip_addr'   => '192.168.1.46',
+                              'community' => 'public', 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                               )
                           );

@@ -55,11 +55,13 @@ class Bin extends AppModel{
 
      	    while ($entry = $obj->getNext('update')){
 
+Configure::write('debug', 3);
+debug($entry);
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
 	      $sender	= urldecode($entry['from']);
 	      $proto   = $entry['proto'];
 
-      	      $data= array ( 'instance_id'  =>$instance_id, 'body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
+      	      $data= array ( 'instance_id'  => $instance_id, 'body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
 	      
 	      $this->create();
 	      $result = $this->save($data);

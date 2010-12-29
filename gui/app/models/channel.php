@@ -30,64 +30,7 @@ class Channel extends AppModel{
       var $name = 'Channel';
 
 
-/*
- * Refresh SNMP data for OfficeRoute units
- *  
- * 
- *
- */
 
-
- function refresh_OR(){
-
-    $or_mib    = Configure::read('OR_MIB');
-    $snmp   = Configure::read('OR_SNMP');
-  
-
-     //For each office route in use
-     foreach($snmp as $key => $unit){
-
-         for($i=0; $i<4; $i++){
-
-         $mib[$i]['line_id']             =  $this->get_entry($unit, 2, $i);
-         $mib[$i]['imei']                =  $this->get_entry($unit, 3, $i);
-         $mib[$i]['signal_strength']     =  $this->get_entry($unit, 7, $i);
-         $mib[$i]['sim_inserted']        =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
-         $mib[$i]['network_registered']  =  $or_mib['network_registered'][$this->get_entry($unit, 10, $i)];
-         $mib[$i]['imsi']                =  $this->get_entry($unit, 12, $i);
-         $mib[$i]['operator_name']       =  $this->get_entry($unit, 14, $i);         
-         $mib[$i]['ip_addr']             =  $unit['ip_addr'];
-        
-         }
-
-     }
-
-
-     return $mib; 
-
-
-}
-
- function get_entry($unit, $id, $i){
-
-      $snmp   = Configure::read('OR_SNMP');
-      $prefix = $unit['object_id'];
-
-      $data = snmpget( $unit['ip_addr'] , $unit['community'], $prefix.'.'.$id.'.'.$i);
-
-        if(preg_match('/:/',$data)){
-
-                   $string = explode(':',$data);
-                   $data = trim ($string[1], '" "');
-        } else {
-
-                   $data = false;
-
-        }       
-
-                   return $data;
-
- }
 
 
 /*
@@ -98,6 +41,7 @@ class Channel extends AppModel{
  */
 
       function refresh(){
+
 
 
       	  $array = Configure::read('gsmopen');

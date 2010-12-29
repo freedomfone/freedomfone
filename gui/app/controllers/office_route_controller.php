@@ -34,6 +34,7 @@ class OfficeRouteController extends AppController{
 
       $data = $this->OfficeRoute->refresh();
 
+
         //Create local db of old data
         $db = $this->OfficeRoute->findAll(array('imsi !=' => ''));
         foreach($db as $key => $entry){
@@ -52,6 +53,7 @@ class OfficeRouteController extends AppController{
                         //If yes: update db entry
                         if($entry){
 
+
                                 if($channel['imsi']){ 
                                 $channel['title'] = $prev[$channel['imsi']][0];
                                 $channel['msisdn'] = $prev[$channel['imsi']][1];
@@ -63,6 +65,7 @@ class OfficeRouteController extends AppController{
                                // $channel['slot'] = $key;
                                 $id = $entry['OfficeRoute']['id'];
                                 $this->OfficeRoute->set('id',$channel['id']);
+  
                                 $this->OfficeRoute->save($channel);
                      
 

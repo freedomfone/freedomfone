@@ -138,6 +138,7 @@ freeswitch/gateways/openbts/SIPEngine.cpp.patch -text
 freeswitch/gateways/openbts/SIPMessage.cpp.patch -text
 freeswitch/gateways/voiceblue/conf/README -text
 freeswitch/gateways/voiceblue/conf/voiceblue_lite_conf.ini -text
+freeswitch/modules-1.0.6.conf -text
 freeswitch/modules.conf -text
 freeswitch/scripts/freedomfone/dtmf/main.js -text
 freeswitch/scripts/freedomfone/echo/README.mon -text

@@ -20,6 +20,7 @@ chown -R www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone
 chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/1*/audio_menu
 chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/nodes
 chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/1*/ivr
+chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/1*/conf
 chown -Rf www-data:www-data /usr/local/freedomfone/xml_curl
 
 #Log folder is writable by all components

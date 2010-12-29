@@ -27,7 +27,7 @@ $generated  = $session->read('Process.refresh');
 
 
 echo $form->create('Process',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo "<h1>".__('Processes',true)."</h1>";

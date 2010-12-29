@@ -250,7 +250,7 @@ CREATE TABLE `lm_menus` (
   `lmOnHangup` varchar(20) default 'accept',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `instance_id` (`instance_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 --

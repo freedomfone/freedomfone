@@ -24,8 +24,7 @@
 
 $session->flash();
 $generated  = $session->read('Channel.refresh');
-$infoOR = __('The table below shows all GSM channels available for the OfficeRoute devices you have connected to your system. For each SIM card you have attached, you can edit its name and SIM number.',true);
-$infoOR .= __('The Signal Level shows the signal strength of each GSM channel of your OfficeRoute to the closest GSM base station of your operator.',true);
+
 echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRight',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -37,7 +36,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
      if ($data){
 
-     echo $html->div('instruction',$infoOR);
+
       foreach ($data as $no => $unit){
 
 

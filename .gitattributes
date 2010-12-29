@@ -121,6 +121,7 @@ freeswitch/conf/lang/ru/vm/tts.xml -text
 freeswitch/conf/sip-profiles/README -text
 freeswitch/conf/sip-profiles/external/2n.xml -text
 freeswitch/conf/sip-profiles/internal.xml.openbts -text
+freeswitch/conf/sip-profiles/officeroute.xml -text
 freeswitch/conf/vars.xml -text
 freeswitch/directory/default/openbts1.xml -text
 freeswitch/directory/default/openbts2.xml -text

@@ -105,10 +105,9 @@ class LmMenusController extends AppController{
 
 		if (empty($this->data)) {
 
-
 		       $this->set(compact($lm_settings));
-		       $this->data = $this->LmMenu->find('first', array('conditions' => array('instance_id' => $iid)));
-
+		       $this->data = $this->LmMenu->find('first');
+			
 		}
 
 

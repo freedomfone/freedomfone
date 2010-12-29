@@ -245,6 +245,7 @@ freeswitch/scripts/freedomfone/sms/main.js -text
 freeswitch/scripts/freedomfone/tickle/main.js -text
 freeswitch/src/mod/endpoints/README.GSMOPEN -text
 gui/.htaccess -text
+gui/apache2/envvars -text
 gui/apache2/freedomfone -text
 gui/apache2/freedomfone.nginx.nolog -text
 gui/apache2/nginx/sites-available/default -text

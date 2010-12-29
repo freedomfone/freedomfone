@@ -89,7 +89,7 @@ $config['LM_SETTINGS'] = array(
 		'dir_menu'         =>  'audio_menu/',
 		'dir_conf'         =>  'conf/',
                 'instance_min'     => '100',
-                'instance_max'     => '109'
+                'instance_max'     => '119'
 		);
 
 $config['LM_DEFAULT']=	array(
@@ -103,7 +103,7 @@ $config['LM_DEFAULT']=	array(
 		'lmGoodbyeMessage' => 'Goodbye',
                 'lmOnHangup'       => 'delete',
                 'lmForceTTS'       =>  false,
-                'lmMaxreclen'      => 120
+                'lmMaxreclen'      =>  120
                 );
 
 
@@ -115,7 +115,7 @@ $config['IVR_SETTINGS'] = array(
 		'dir_menu'         =>  'ivr/',
 		'dir_conf'         =>  'conf/',
                 'instance_start'   => '100',
-                'instance_end'     => '102',
+                'instance_end'     => '119',
 		);
 
 

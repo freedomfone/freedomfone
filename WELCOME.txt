@@ -13,13 +13,12 @@ without string changes.
 - Freedom Fone v1.6.5 is built at the top of Ubuntu 10.04-01
   LTS and kernel 2.6.32-24.
 
-- Software and security updates applied until 8 September
-  2010
+- Software and security updates applied until 29 December 2010
 
-- Firefox updated to version 3.6.8
+- Firefox updated to version 3.6.13
 
-- Freeswitch 1.0.6 with the recently upstreamed gsmopen
-  channel
+- FreeSWITCH Version 1.0.head (git-49a524b 2010-12-27 21-31-40 -0300)
+  with the recently upstreamed gsmopen channel
   http://www.gsmopen.org
 
 

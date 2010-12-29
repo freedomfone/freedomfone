@@ -7,12 +7,14 @@
 [X] create symbolic link to firefox and add logo 
 [X] create home page and sort cuts 
 [X] Add deb http://www.geekconnection.org/remastersys/repository karmic/ 
-[?] verify dialplan.xml 
-[?] verify debug in Cake 
+[X] verify dialplan.xml 
+[X] verify debug in Cake 
 [X] add new boolean to firefox about:config network.manage-offline-status false 
 [X] documentation, user guide 
 [?] clean cake cache
 [X] global config sortcuts for officeroute 
 []  clean subversion passwords
-[]  fix grub 
+[X]  clean deb packages 
+[X]  fix grub 
+[X]  check that 100.conf has good values 
  

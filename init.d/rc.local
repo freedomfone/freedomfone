@@ -1,41 +1,31 @@
-#! /bin/sh
-### BEGIN INIT INFO
-# Provides:          rc.local
-# Required-Start:    $remote_fs $syslog $all
-# Required-Stop:
-# Default-Start:     2 3 4 5
-# Default-Stop:
-# Short-Description: Run /etc/rc.local if it exist
-### END INIT INFO
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+###############################################################################
+# Freedom Fone rc.local        
+# FIXME!        
+
+echo "Freedom Fone: Waiting 10 seconds for network interface to settle"
+sleep 10
+/etc/init.d/dispatcher_in start
+
+# Village Telco bridge via 192.168.1.59 supernode
+#/sbin/route add -net 10.130.1.0 netmask 255.255.255.0 gw 192.168.1.59 
+
+# Interface Aliasing for OfficeRoute
+/sbin/ifconfig eth0:0 192.168.1.250 netmask 255.255.255.0 up
 
 
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
-
-. /lib/init/vars.sh
-. /lib/lsb/init-functions
-
-do_start() {
-	if [ -x /etc/rc.local ]; then
-	        [ "$VERBOSE" != no ] && log_begin_msg "Running local boot scripts (/etc/rc.local)"
-		/etc/rc.local
-		ES=$?
-		[ "$VERBOSE" != no ] && log_end_msg $ES
-		return $ES
-	fi
-}
-
-case "$1" in
-    start)
-	do_start
-        ;;
-    restart|reload|force-reload)
-        echo "Error: argument '$1' not supported" >&2
-        exit 3
-        ;;
-    stop)
-        ;;
-    *)
-        echo "Usage: $0 start|stop" >&2
-        exit 3
-        ;;
-esac
+/etc/init.d/freeswitch start
+/etc/init.d/gsmopen start
+###############################################################################
+exit 0

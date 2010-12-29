@@ -11,6 +11,8 @@ audio_bot/iwatch/iwatch_command.sh -text
 config/dispatcher_in_config.php -text
 config/gui_config_core.php -text
 config/locale -text
+config/officeroute_config.php -text
+config/officeroute_snmp_cake.php -text
 cron/crontab.freedomfone -text
 devel/demo/controllers/ivr_menus_controller.php -text
 devel/demo/controllers/messages_controller.php -text

@@ -1,0 +1,5 @@
+-105 to -100 = Bad/drop call
+-99 to -90 = Getting bad/signal may break up
+-89 to -80 = OK/shouldn't have problems, but maybe
+-79 to -65 = Good
+Over -65 = Excellent

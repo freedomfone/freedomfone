@@ -1,0 +1,16 @@
+[ ] plymouth-splash is disable in upstart
+[ ] edit Makefile from libs/esl to disable -Werror flag 
+[ ] check that memory limit and max upload size are 128M and 5M
+[ ] init freeswitch sets 192.168.1.250 as an alias of eth0 
+[ ] change version name in core.php
+[ ] create symbolic link to access fs_cli 
+[ ] create symbolic link to firefox and add logo 
+[ ] create home page and sort cuts 
+[ ] Add deb http://www.geekconnection.org/remastersys/repository karmic/ 
+[ ] verify dialplan.xml 
+[ ] verify debug in Cake 
+[ ] add new boolean to firefox about:config network.manage-offline-status false 
+[ ] documentation, user guide 
+[ ] clean cake cache
+[ ] global config sortcuts for officeroute 
+ 

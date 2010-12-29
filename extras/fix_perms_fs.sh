@@ -13,13 +13,13 @@ find /usr/local/freedomfone/freeswitch/scripts -type d | grep -v '\.svn' | xargs
 find /usr/local/freedomfone/freeswitch/scripts -type f -name main.js  | grep -v '\.svn' | xargs  chmod 600
 
 #Folders writable via FS 
-chown -R freeswitch:freeswitch /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/messages
-chown -R www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/conf
+chown -R freeswitch:freeswitch /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/1*/messages
+chown -R www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/1*/conf
 
 #Folders writable via GUI
-chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/100/audio_menu
-chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/nodes
-chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/100/ivr
+chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/leave_message/1*/audio_menu
+chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/nodes
+chown www-data:www-data /usr/local/freedomfone/freeswitch/scripts/freedomfone/ivr/1*/ivr
 chown -Rf www-data:www-data /usr/local/freedomfone/xml_curl
 
 #Log folder is writable by all components

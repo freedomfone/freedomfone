@@ -32,11 +32,11 @@ class UsersController extends AppController{
       var $components = array('RequestHandler');
 
 
-      function refresh(){
+      function refresh($redirect, $id = null){
 
 
       $this->requestAction('/cdr/refresh');
-      $this->redirect(array('controller' => 'users', 'action' =>'index'));
+      $this->redirect(array('controller' => 'users', 'action' => $redirect,$id));
 
       }
 
@@ -51,7 +51,7 @@ class UsersController extends AppController{
       if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
 
-                   $this->requestAction('/users/refresh');
+                   $this->requestAction('/users/refresh/index');
            }
        }
 
@@ -109,6 +109,13 @@ class UsersController extends AppController{
 
 
     	     $this->pageTitle = 'User : Edit';   
+
+             if(isset($this->params['form']['submit'])) {
+	        if ($this->params['form']['submit']==__('Refresh',true)){
+
+                   $this->requestAction('/users/refresh/edit/'.$id);
+                }
+             }
 
 
 	     //No id specified

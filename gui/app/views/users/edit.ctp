@@ -22,6 +22,9 @@
  *
  ***************************************************************************/
 
+echo $form->create('User',array('type' => 'post','controller' => 'users', 'action'=> 'edit'));
+echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
 
 
  if($data = $this->data){

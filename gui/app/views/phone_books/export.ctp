@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * export.ctp	- Export of phone book 
- * version 	- 1.0.362
+ * version 	- 2.0.1127
  * 
  * Version: MPL 1.1
  *
@@ -20,48 +20,79 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
- ***************************************************************************/
+ ***************************************************************************/debug($phonebook_name);
 
+        //Calculate max number of phone numbers for each entry
 
-     $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Phone',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
+        if ($data){
+
+            foreach($data as $entry){
+
+                     $numbers[] = sizeof($entry['PhoneNumber']);    
+            }
+
+        }
+
+        //Create data headers
+       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Phone',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
+
+       $i = 1;
+       while($i<= max($numbers)){
+
+       $line[] = __('Phone number',true).' '.$i;
+       $i++;
+       }
+
      $csv->addRow($line);
-     $filename = __('PhoneBook',true).'_'.$data['PhoneBook']['name'].'.csv';
-
-     if (!$entry['last_epoch']) {
-
-        $last_epoch = __('Never',true);
-
-     } else {
-
-       $last_epoch = date('Y-m-d H:i:s',$entry['last_epoch']);
-     }
+     $filename = __('PhoneBook',true).'_'.$phonebook_name.'.csv';
 
 
 	if($data){
 
-		foreach($data['User'] as $key => $entry){
+            foreach($data as $entry){
+
+                     $numbers[] = sizeof($entry['PhoneNumber']);    
+            }
+
+		foreach($data as $entry){
+
+
+                    if (!$entry['User']['last_epoch']) {
+                       $last_epoch = __('Never',true);
+                    } else {
+                      $last_epoch = date('Y-m-d H:i:s',$entry['User']['last_epoch']);
+                    }
 	
-		$line = array(
-		      $entry['name'],
-		      $entry['surname'],
-		      $entry['email'],
-		      $entry['skype'],
+		    $line = array(
+		      $entry['User']['name'],
+		      $entry['User']['surname'],
+		      $entry['User']['email'],
+		      $entry['User']['skype'],
 		      false,
-		      $entry['organization'],
-		      date('Y-m-d H:i:s',$entry['created']),
-		      $entry['count_poll'],
-		      $entry['count_ivr'],
-		      $entry['count_lam'],
-		      $entry['first_app'],
-		      $entry['last_app'],
+		      $entry['User']['organization'],
+		      date('Y-m-d H:i:s',$entry['User']['created']),
+		      $entry['User']['count_poll'],
+		      $entry['User']['count_ivr'],
+		      $entry['User']['count_lam'],
+		      $entry['User']['first_app'],
+		      $entry['User']['last_app'],
                       $last_epoch,
 		      );
 
-		$csv->addRow($line);
+                      foreach($entry['PhoneNumber'] as $key => $number){
+                      
+                         $line[] = $number['number'];                   
+
+                      }
+
+		   $csv->addRow($line);
+
 
 		}
 
 	}
+
+
 		echo $csv->render($filename);  
 		$csv->render(false);
 

@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
- 
+
 
  if($data = $this->data){
 
@@ -87,6 +87,7 @@
      echo $html->tableCells($row, array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
+
      echo "</div>";
      //** END AJAX **//
 
@@ -94,7 +95,7 @@
      //** AJAX: Add phone number **//
      echo  $ajax->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
      echo "<table width='400px' cellspacing='0' class='blue'>";
-     $add[] = array(__('Add phone number',true), $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false)), $form->end(__('Add',true)));
+     $add[] = array(__('Add phone number',true), $form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false, 'autocomplete' => 'off')), $form->end(__('Add',true)));
      echo $html->tableCells($add,array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo $form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));

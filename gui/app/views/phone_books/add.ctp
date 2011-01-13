@@ -24,7 +24,13 @@
 
 echo "<h1>".__("Create phone book",true)."</h1>";
 
-$session->flash();
+   if ($messages = $session->read('Message.multiFlash')) {
+   
+       foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+   
+   }
+
+
 
 $options	  = array('label' => false);
 

@@ -110,7 +110,7 @@ $sort  = $session->read('messages_sort');
      echo "<div class='frameRight'>";
      echo "<table cellspacing =0 class ='blue'>";;
      echo $html->tableCells(array (
-     array(__("Created",true),	$time->nice($data['Message']['created'])),
+     array(__("Created",true),	date('Y-m-d H:i:s',$data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
      array(__("Sender",true),   $data['Message']['sender']),

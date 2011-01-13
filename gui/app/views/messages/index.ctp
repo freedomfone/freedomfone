@@ -76,7 +76,7 @@ echo $html->tableHeaders(array(
 	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
-	$created  = $time->niceShort($message['Message']['created']);
+	$created  = date('Y-m-d H:i:s',$message['Message']['created']);
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
 

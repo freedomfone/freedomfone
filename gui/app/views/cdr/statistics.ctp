@@ -88,8 +88,8 @@ echo $form->end();
 
      echo "<table cellspacing = 0 class='none'>";
      echo $html->tableCells(array (
-     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime','interval'=>15))),
-     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval'=>15)))
+     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime','interval'=>15,'selected' => $start))),
+     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval'=>15,'selected' => $end)))
       ),array('class' => 'none'), array('class' => 'none'));
       echo "</table>"; 
 

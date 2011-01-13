@@ -61,8 +61,9 @@ class CdrController extends AppController{
       //User arrived from other page, reset session variables
       if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
 
-            $this->Session->write('cdr_start', strtotime('1 January 2010'));
-            $this->Session->write('cdr_end',time());
+
+            $this->Session->write('cdr_start', $this->Cdr->getEpoch('first')-900);
+            $this->Session->write('cdr_end',time()+900);
 
       }
 
@@ -71,6 +72,7 @@ class CdrController extends AppController{
 
       if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
       if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
+
 
       $app   = $this->data['Cdr']['application'];
       if ($app) {$this->Session->write('cdr_app',$app);}
@@ -306,8 +308,12 @@ class CdrController extends AppController{
        		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end']));
        		$this->set('cdr', $this->Cdr->find('all',$param)); 
         } else {
-       	       $this->set('cdr',$this->Cdr->find('all'));  
+       	       $this->set('cdr',$this->Cdr->find('all'));
         }
+
+        $start = $this->Cdr->getEpoch('first');  
+        $end   = time()+900;
+        $this->set(compact('start','end'));
 
         $this->render();  
 
@@ -380,12 +386,9 @@ class CdrController extends AppController{
                 $bin = $this->Bin->find('all');                                                                                                                                                          
                                                                                                                                                                                                          
                 $this->loadModel('Poll');                    
-                $polls = $this->Poll->find('all');                                                                                                                                                       
-                                                                                                                                                                                                         
-                $this->set(compact('messages','bin','polls','ivr'));                                                                                                                                     
-                                                                                                                                                                                                         
-                                                                                                                                                                                                         
-                $this->render();       
+                $polls = $this->Poll->find('all');
+                $this->set(compact('messages','bin','polls','ivr'));
+                $this->render(); 
 
         }
 }

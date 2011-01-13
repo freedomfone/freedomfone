@@ -65,6 +65,10 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
      	   echo $html->tableCells($row);
      	   echo "</table>";
 
+         } else {
+
+         echo $html->div('feedback', __('No Leave-a-Message menus exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
+
          }
 
 ?>

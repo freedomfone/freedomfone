@@ -83,7 +83,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
    } else {
 
-   echo $html->div('instruction',__("There are no OfficeRoute units connected to your system.",true));
+   echo $html->div('feedback',__("There are no OfficeRoute units connected to your system.",true));
 
    }
 
@@ -132,7 +132,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
    } else {
 
-   echo $html->div('instruction',__("There are no Mobigater units connected to your system.",true));
+   echo $html->div('feedback',__("There are no Mobigater units connected to your system.",true));
 
    }
 

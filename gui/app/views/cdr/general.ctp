@@ -156,7 +156,7 @@
 
 
 	     }	  else {
-	     echo $html->div('feedback',__('No records found',true));
+	     echo $html->div('feedback',__('No records found.',true));
 	     }
  
 	     //** END: List CDR **/

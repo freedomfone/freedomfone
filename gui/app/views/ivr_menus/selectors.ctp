@@ -69,7 +69,7 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
      		echo "</table>";
      }   else {
 
-     echo $html->div('instruction',__("There are no language selectors created",true));
+     echo $html->div('feedback',__("There are no language selectors created.",true));
 
      }
 

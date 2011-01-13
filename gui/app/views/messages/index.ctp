@@ -41,14 +41,12 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
      if ($messages){
 
 
-echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
-echo $form->hidden('source',array('value'=>'index'));
+     echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
+     echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
+     echo $form->hidden('source',array('value'=>'index'));
 
-
-
-echo "<table width='800px' cellspacing  = '0'>";
-echo $html->tableHeaders(array(
+     echo "<table width='800px' cellspacing  = '0'>";
+     echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'new'),
  	$paginator->sort(__("Title",true), 'title'),
@@ -119,6 +117,10 @@ echo $html->tableHeaders(array(
 
      echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
 
+
+     } else {
+
+     echo $html->div('feedback', __('No records found.',true));
 
      }
 

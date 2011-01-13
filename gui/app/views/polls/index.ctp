@@ -86,8 +86,7 @@
 
    else {
 
-   echo "<div class='instruction'>".__("No polls exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
-
+        echo $html->div('feedback', __('No polls exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
 
    }
  

@@ -58,7 +58,8 @@ echo "<h1>".__("Tags",true)."</h1>";
 
       }
       else {
-      echo "<div class='instruction'>".__("No tags exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
+
+         echo $html->div('feedback', __('No tags exist. Please create one by clicking the <i>Create new</i> button to the right.',true));k
 
       }
 

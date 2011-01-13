@@ -146,7 +146,7 @@ echo $form->end();
 
      } else {
 
-     echo $html->div('instruction',__('There are no users in the selected phone book.', true));
+     echo $html->div('feedback',__('There are no users in the selected phone book.', true));
 
      }
 

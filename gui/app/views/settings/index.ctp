@@ -25,7 +25,7 @@
 echo "<h1>".__("System settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-$msgAccessLevel =  __('This settings determines the access level of the streaming audio content of your Freedom Fone installation.',true); 
+$msgAccessLevel =  __('This settings determine the access level of the streaming audio content of your Freedom Fone installation.',true); 
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

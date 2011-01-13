@@ -83,7 +83,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
    } else {
 
-   echo __("There are no OfficeRoute units connected to your system.",true);
+   echo $html->div('instruction',__("There are no OfficeRoute units connected to your system.",true));
 
    }
 
@@ -129,21 +129,14 @@ echo "<h1>".__('GSM channels',true)."</h1>";
      echo $html->tableCells($row);
      echo "</table>"; 
 
-     $lines[] = array(array($html->div('empty_line',''),array('colspan'=>3,'height'=>100,'valign'=>'bottom')));
-     $lines[] = array(__('Generated',true).' : ', $time->format('H:i:s A (e \G\M\T O)',time()));
-
-     echo "<table>"; 
-     echo $html->tableCells($lines);
-     echo "</table>"; 
 
    } else {
 
-   echo __("There are no Mobigater units connected to your system.",true);
+   echo $html->div('instruction',__("There are no Mobigater units connected to your system.",true));
 
    }
 
-
- 
+     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time())); 
 
  
 

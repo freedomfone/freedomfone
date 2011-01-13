@@ -22,20 +22,19 @@
  *
  ***************************************************************************/
 
-$session->flash();
+ $session->flash();
 
 
  //If action = Export, create CSV file 
-
-
  $export=false;
 
  if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action']==__('Export',true)){
+	
+     if ($this->params['form']['action']==__('Export',true)){
 
 	     $export=true;
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Protocol',true),__('Length',true));
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Length',true));
 		$csv->addRow($line);
 
 	if($cdr){
@@ -75,22 +74,23 @@ $session->flash();
 	//** START: Search form **/
 	echo "<h1>".__("Reporting",true)." : ".__("Incoming calls",true)."</h1>";
 	echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
-	echo $form->input('foo1',array('type' => 'hidden','value'=> 100));;
-	echo $form->input('foo2',array('type' => 'hidden','value'=> 200));;
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');
 
 
-	//Set application default value (IVR)
+	//Set application default value (LAM)
 
-	if( ! $default = $this->data['Cdr']['application']){
-	      if(!$default = $session->read('cdr_app')){
-    	      		   $default= 'ivr';
+
+	if( ! $app = $this->data['Cdr']['application']){
+	      if(!$app = $session->read('cdr_app')){
+ 
+                           $app = 'lam';
     	       }
 	    }
 
-	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$default));
-	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$default));
+
+	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$app));
+	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$app));
 
 	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam,'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
 	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All IVR',true).' -'));
@@ -129,12 +129,12 @@ $session->flash();
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
-	  		     $line = array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$data['proto'],$formatting->epochToWords($data['length']));
+	  		     $line = array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$formatting->epochToWords($data['length']));
                                if($app == 'lam') { $line[] = $this->element('message_status',array('quickHangup' => $data['quick_hangup']));}
                              $rows[] = $line;
 	     		     }
 
-	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Protocol',true),__('Length',true));
+	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Length',true));
 
              if($app == 'lam') { $headers[] = __('Quick hangup',true); }
 

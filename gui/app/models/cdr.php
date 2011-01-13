@@ -397,8 +397,28 @@ class Cdr extends AppModel{
 		   }
 
 
+
+/*
+ *
+ *
+ */
+
+        function getEpoch($type){
+
+                 switch($type){
+
+                    case 'first':
+                    $data = $this->find('first');
+                    $epoch = $data['Cdr']['epoch'];
+                    break;
+
+
+                 }
+
+                 return $epoch;
+
+        }
+
 }
-
-
 
 ?>

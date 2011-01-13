@@ -127,6 +127,8 @@ class UsersController extends AppController{
 	      //Save form data
 	      else {
 
+                   unset($this->data['PhoneNumber']);
+
 		     if($this->User->saveAll($this->data)){
                                  $this->log("INFO EDIT {ID: ".$id."; NAME: ".$this->data['User']['name']." ".$this->data['User']['surname']."}", "user");                       
                 		 $this->_flash(__('The entry has been updated',true),'success');

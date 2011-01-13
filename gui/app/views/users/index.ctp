@@ -53,7 +53,9 @@ echo $form->end();
      echo "</table>";
      echo $form->end();
 
-     if (isset($users)){
+     $row = array();
+
+     if ($users){
 
 
      echo $html->div("paginator'",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));

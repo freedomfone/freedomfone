@@ -108,6 +108,7 @@ $session->flash();
       		 ),array('class' => 'none'),array('class' => 'none'));
 	    echo "</table>";
 
+
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    $buttons=array();
 	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));

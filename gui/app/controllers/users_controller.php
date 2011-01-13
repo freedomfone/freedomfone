@@ -31,10 +31,12 @@ class UsersController extends AppController{
       var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
       var $components = array('RequestHandler');
 
+
       function refresh(){
 
+
       $this->requestAction('/cdr/refresh');
-      $this->redirect(array('action' =>'/users'));
+      $this->redirect(array('controller' => 'users', 'action' =>'index'));
 
       }
 
@@ -48,6 +50,7 @@ class UsersController extends AppController{
 
       if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
+
                    $this->requestAction('/users/refresh');
            }
        }

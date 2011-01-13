@@ -36,7 +36,7 @@ class PhoneNumber extends AppModel {
 	              'number' => array(
  				       'rule' => 'phoneFormat',
  				       'message' => __('Invalid phone number format (numbers and plus (+) sign allowed).',true),
-		   		       'allowEmpty' => true
+		   		       'allowEmpty' => false
  				                )
                              );
 	

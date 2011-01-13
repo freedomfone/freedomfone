@@ -102,12 +102,27 @@ class PhoneBooksController extends AppController {
     function export($id){
 
     	     Configure::write('debug', 0);
-	     //$acl = $this->PhoneBook->User->Acl->findAll(); 
 
+             $data = $this->PhoneBook->findById($id); 
+             $this->set('phonebook_name', $data['PhoneBook']['name']);
 
-//	 debug($this->PhoneBook->User->find('all',array('conditions' =>)));
+             foreach ($data['User'] as $key => $user){
+             
+                $id_keys[] = $user['id'];
 
-    	     $this->set('data', $this->PhoneBook->findById($id)); 
+             }
+
+             $this->loadModel('User');
+             $this->User->unbindModel(
+                array('hasMany' => array('Message','Cdr'))
+                );
+
+             $this->User->unbindModel(
+                array('hasAndBelongsToMany' => array('PhoneBook'))
+                );
+
+  	     $data = $this->User->findAllById($id_keys); 
+    	     $this->set('data', $data); 
 
     	     $this->layout = null;
     	     $this->autoLayout = false;

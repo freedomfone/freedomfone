@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * user.php		- Model for managing users through the address book
- * version 		- 1.0.359
+ * version 		- 2.0.1127
  * 
  * Version: MPL 1.1
  *
@@ -28,10 +28,7 @@ class User extends AppModel {
 	
 	var $belongsTo = array('Acl'); 
 
-//	var $hasMany = array('Message','Cdr');
-
-
-      var $hasMany = array('PhoneNumber' => array(
+        var $hasMany = array('PhoneNumber' => array(
                         	       'order' => 'PhoneNumber.id ASC',
                         	       'dependent' => true),
                            'Message','Cdr');

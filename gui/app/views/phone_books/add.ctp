@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * add.ctp	- Create new phone book (used for Contacts)
- * version 	- 1.0.362
+ * version 	- 2.0.1139
  * 
  * Version: MPL 1.1
  *
@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Create phone book",true)."</h1>";
+echo "<h1>".__("Create Phone book",true)."</h1>";
 
    if ($messages = $session->read('Message.multiFlash')) {
    

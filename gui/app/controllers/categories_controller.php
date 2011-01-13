@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * categories_controller.php	- Controller for categories (used for messages)
- * version 		 	- 1.0.368
+ * version 		 	- 2.0.1139
  * 
  * Version: MPL 1.1
  *
@@ -28,7 +28,7 @@ class CategoriesController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = 'Leave-a-Message : Categories';
+      		$this->pageTitle = 'Categories';
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->paginate());
 	}
@@ -36,7 +36,7 @@ class CategoriesController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = 'Leave-a-Message : Categories : Add';
+      		$this->pageTitle = 'Categories : Add';
 		if (!empty($this->data)) {
 		  
 			$this->Category->create();
@@ -61,7 +61,7 @@ class CategoriesController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Leave-a-Message : Categories : Edit';
+      		$this->pageTitle = 'Categories : Edit';
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid Category', true),'warning');

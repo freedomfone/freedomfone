@@ -32,6 +32,7 @@ class ProcessesController extends AppController{
 
 
       function index(){
+
       	$this->pageTitle = __('System Health',true);
 
 	$this->requestAction('/processes/refresh');
@@ -96,7 +97,7 @@ class ProcessesController extends AppController{
 					
 			//Save NEW pid, update status and timestamps
 			$this->Process->id = $id;
-			//$this->data['Process']['pid']= $pid;
+			$this->data['Process']['pid']= $pid;
  			$this->data['Process']['start_time']= time();
 			$this->data['Process']['last_seen']= time();
 			$this->data['Process']['status']= 1;		
@@ -172,12 +173,10 @@ class ProcessesController extends AppController{
 
       function refresh($method = null){
 
-      $this->Session->write('Process.refresh', time());
-   
-      $this->autoRender = false;
- 
-      $this->logRefresh('processes',$method); 
-      $this->Process->refresh();
+               $this->Session->write('Process.refresh', time());
+               $this->autoRender = false;
+               $this->logRefresh('processes',$method); 
+               $this->Process->refresh();
 
       }
 

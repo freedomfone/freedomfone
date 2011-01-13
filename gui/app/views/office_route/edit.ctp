@@ -32,20 +32,20 @@
                    foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
          	   }
 
+                echo $html->div('frameLeft');
 
 		echo $form->create('OfficeRoute', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 
+		$row = array (array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))), 
+		              array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50'))),
+     		              array(__("Operator",true),	$this->data['OfficeRoute']['operator_name']));
 
-		echo "<table border=0>";
-		echo $html->tableCells(array (
-     		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
-		echo $html->tableCells(array (
-     		     array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50')))));
-                echo $html->tableCells(array (
-     		     array(__("Operator",true),	$this->data['OfficeRoute']['operator_name'])));
-		echo "</table>";
+                echo "<table width='400px' cellspacing='0' class='blue'>"; 
+                echo $html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
+                echo "</table>";
 
 		echo $form->end(__('Save',true));
+                echo "</div>";
 
 		}
 
@@ -53,4 +53,5 @@
     		echo "<h1>".__("This page does not exist.",true)."</h1>";
 	}
 
+        
 ?>

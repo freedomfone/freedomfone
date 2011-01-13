@@ -236,7 +236,6 @@ class CdrController extends AppController{
     function output (){
 
 
-
       if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
       	 $end 	  = $this->data['Cdr']['end_time'];
@@ -269,11 +268,13 @@ class CdrController extends AppController{
 
 	 $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
     	 $this->set('data', $this->Cdr->find('all',$param)); 
-	 } 
-	 else {
+
+       } else {
+
+           //Export all entries
     	   $this->set('data', $this->Cdr->findAll()); 
 	   $this->set('select_option','all');	   
-	 }
+        }
 
 
          $this->set(compact('select_option'));

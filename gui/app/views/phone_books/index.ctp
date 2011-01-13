@@ -60,7 +60,7 @@
 
    }   else {
       
-      echo "<div class='instruction'>".__("No phone books exist. Please create one by clicking the 'Create new' button to the right.")."</div>";
+      echo $htlm->div('feedback', __('No phone books exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
 
    }
 

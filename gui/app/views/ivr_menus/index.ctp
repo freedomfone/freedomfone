@@ -72,6 +72,10 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      		echo $html->tableCells($row);
      		echo "</table>";
 
+     } else {
+
+     echo $html->div('feedback',__("There are no voice menus created.",true));
+
      }
 
 ?>

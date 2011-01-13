@@ -111,7 +111,12 @@
      echo $html->link(__('All',true),'archive',null, null, false);
      echo "</span>";
 
+     } else {
+
+     echo $html->div('feedback', __('No records found.',true));
+
      }
+
 
 
 ?>

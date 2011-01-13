@@ -90,7 +90,7 @@ echo $form->end();
 
 
      } else {
-      	   echo $html->div('instruction', __("No content items exist. Please upload content by clicking the 'Upload new' button to the right.",true));
+      	   echo $html->div('feedback', __("No content items exist. Please upload content by clicking the <i>Upload new</i> button to the right.",true));
      }
 
 ?>

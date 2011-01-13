@@ -36,7 +36,7 @@
 		echo $form->create('Channel', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 
 
-		echo "<table border=0>";
+     	       echo "<table width='95%' cellspacing=0>";
 		echo $html->tableCells(array (
      		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
 		echo $html->tableCells(array (

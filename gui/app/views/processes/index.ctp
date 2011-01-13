@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-$session->flash();
+
 $generated  = $session->read('Process.refresh');
 
 
@@ -31,6 +31,10 @@ echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name
 echo $form->end();
 
 echo "<h1>".__('Processes',true)."</h1>";
+
+     if ($messages = $session->read('Message.multiFlash')) {
+             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+     }
 
 
      if ($data){

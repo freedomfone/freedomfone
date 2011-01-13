@@ -43,7 +43,7 @@ class PhoneBooksController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = 'Phone book : Add';
+      		$this->pageTitle = 'Phone books : Add';
 
 		if (!empty($this->data)) {
 			$this->PhoneBook->create();
@@ -59,7 +59,7 @@ class PhoneBooksController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Phone book : Manage';
+      		$this->pageTitle = 'Phone books : Edit';
 
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid id', true));

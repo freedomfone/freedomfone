@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * bin_controller.php		- Controller for Other SMS
- * version 		 	- 1.0.368
+ * version 		 	- 2.0.1139
  * 
  * Version: MPL 1.1
  *
@@ -33,7 +33,7 @@ class BinController extends AppController{
 
       function index(){
 
-      	    $this->pageTitle = 'Unclassified SMS';
+      	    $this->pageTitle = 'SMS Incoming';
 
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){

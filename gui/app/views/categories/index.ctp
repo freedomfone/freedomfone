@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all categories (used in Leave-a-message)
- * version 	- 1.0.362
+ * version 	- 2.0.1139
  * 
  * Version: MPL 1.1
  *
@@ -26,7 +26,7 @@ echo $form->create('Category',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo "<h1>".__("Manage Categories",true)."</h1>";
+echo "<h1>".__("Categories",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {                                                     
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  

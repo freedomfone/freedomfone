@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edit existing phone books (used in Contacts)
- * version 	- 1.0.362
+ * version 	- 2.0.1139
  * 
  * Version: MPL 1.1
  *
@@ -26,7 +26,7 @@
 
       if($this->data){
 
-      echo "<h1>".__("Edit phone book",true)."</h1>";
+      echo "<h1>".__("Edit Phone book",true)."</h1>";
       $session->flash();
 
       $options_name = array('label' =>  array('text'=>false,

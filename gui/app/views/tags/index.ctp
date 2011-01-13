@@ -1,8 +1,8 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all tags (used in Leave-a-message)
- * version 	- 1.0.362
- * 
+ * version 	- 2.0.1139 
+ *
  * Version: MPL 1.1
  *
  * The contents of this file are subject to the Mozilla Public License Version
@@ -28,7 +28,7 @@ echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('n
 echo $form->end();
 
 
-echo "<h1>".__("Manage Tags",true)."</h1>";
+echo "<h1>".__("Tags",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {                                                     
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  

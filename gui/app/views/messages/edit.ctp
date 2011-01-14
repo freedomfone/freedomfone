@@ -92,7 +92,7 @@ $sort  = $session->read('messages_sort');
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),
-     array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','size' => 5, 'label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
+     array(array(__("Tag",true),array('valign'=>'top')),	$form->input('Tag',array('type'=>'select','multiple'=>'true','size' => 5, 'label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
      ),array('class' => 'blue'), array('class' => 'blue'));
      echo "</table>";
 
@@ -113,7 +113,7 @@ $sort  = $session->read('messages_sort');
      array(__("Created",true),	date('Y-m-d H:i:s',$data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
-     array(__("Sender",true),   $data['Message']['sender']),
+     array(__("Caller",true),   $data['Message']['sender']),
      array(__("Quick hangup",true), $this->element('message_status',array('quickHangup' => $data['Message']['quick_hangup']))),
      array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))

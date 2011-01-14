@@ -34,19 +34,21 @@
 
 
 		echo $form->create('Channel', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+	
+                $rows = array(
+     		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))),
+     		     array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50'))),
+     		     array(__("IMSI",true),	$this->data['Channel']['imsi']),
+     		     array(__("IMEI",true),	$this->data['Channel']['imei']));
 
 
-     	       echo "<table width='95%' cellspacing=0>";
-		echo $html->tableCells(array (
-     		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50')))));
-		echo $html->tableCells(array (
-     		     array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50')))));
-                echo $html->tableCells(array (
-     		     array(__("IMSI",true),	$this->data['Channel']['imsi'])));
-		echo "</table>";
+               echo "<div class='frameLeft'>";
+     	       echo "<table width='95%' cellspacing=0 class='blue'>";
+               echo $html->tableCells($rows,array('class' => 'blue'),array('class' => 'blue'));
+	       echo "</table>";
 
-		echo $form->end(__('Save',true));
-
+		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'button'));
+                echo "</div>";
 		}
 
 	else {
@@ -54,3 +56,4 @@
 	}
 
 ?>
+

@@ -22,6 +22,8 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Users', '/users');
+
 
 echo $javascript->includeScript('toggle');
 
@@ -69,7 +71,7 @@ echo $form->end();
  	$paginator->sort(__("Surname",true), 'User.surname'),
  	$paginator->sort(__("Email",true), 'User.email'),
 	$paginator->sort(__("Skype",true), 'User.skype'),
- 	$paginator->sort(__("Acl",true), 'Acl.name'),
+	$paginator->sort(__("Acl",true), 'Acl.name'),
  	$paginator->sort(__("Phone",true), 'User.phone'),
 	__("Edit",true),
 	__("Delete",true)));

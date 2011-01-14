@@ -88,7 +88,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
 	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
 	$ivr_code    = $entry['MonitorIvr']['ivr_code'];
-	$call_id     = $entry['MonitorIvr']['call_id'];
+	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8,false,true,false);
 	$digit       = $entry['MonitorIvr']['digit'];
 	$title       = $text->truncate($entry['Node']['title'],13,'...',true,false);
 	$caller_number  = $entry['MonitorIvr']['caller_number'];

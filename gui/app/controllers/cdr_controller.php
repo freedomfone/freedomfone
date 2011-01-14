@@ -25,7 +25,7 @@
 class CdrController extends AppController{
 
       var $name = 'Cdr';
-      var $helpers = array('Csv','Javascript','Formatting');
+      var $helpers = array('Csv','Javascript','Formatting','Text');
 
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.id' => 'desc')); 
 

@@ -47,11 +47,11 @@
 
 
       
-     echo "<table width='500px' cellspacing='0'>";
+     echo "<table width='500px' cellspacing='0' >";
      echo $html->tableCells(array (
      	  array(__("Name",true),	        $form->input('name',$options_name)),
      	  array(__("Description",true),		$form->input('description',$options_longname)),
-     	  array(__("Use in",true),		$form->input('User',array('type'=>'select','multiple'=>'true','options' => $users,'label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	  array(__("Use in",true),		$form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>__('-- Use in none --',true)))),
      	  array('',	$form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 
     echo "</table>";

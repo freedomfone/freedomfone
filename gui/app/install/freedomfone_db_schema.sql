@@ -178,6 +178,8 @@ CREATE TABLE `channels` (
   `phone_callflow` int(6) default NULL,
   `during-call` tinyint(1) default NULL,
   `sim_inserted` varchar(20) default NULL,
+  `title` varchar(50) default NULL,
+  `msisdn` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

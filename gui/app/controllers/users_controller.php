@@ -26,7 +26,7 @@ class UsersController extends AppController{
 
       var $name = 'Users';
 
-      var $helpers = array('Flash','Formatting','Session','Text','Ajax');      
+      var $helpers = array('Flash','Formatting','Session','Text','Ajax','Html');      
 
       var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
       var $components = array('RequestHandler');

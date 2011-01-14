@@ -22,6 +22,9 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Users', '/users');
+echo $html->addCrumb('Edit', '/users/edit');
+
 echo $form->create('User',array('type' => 'post','controller' => 'users', 'action'=> 'edit'));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -60,13 +63,13 @@ echo $form->end();
     //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
      $row[] = array($html->div('table_sub_header',__('User data',true)), array($button,''));
-     $row[] = array(__("Name",true),			$form->input('name',array('label'=>false)));
-     $row[] = array(__("Surname",true),			$form->input('surname',array('label'=>false)));
-     $row[] = array(__("Email",true),			$form->input('email',array('label'=>false)));
-     $row[] = array(__("Skype",true),			$skype);
-     $row[] = array(__("Organization",true),		$form->input('organization',array('label'=>false)));
-     $row[] = array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
-     $row[] = array(__("Phone book",true),		$form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
+     $row[] = array(__("Name",true),			 $form->input('name',array('label'=>false)));
+     $row[] = array(__("Surname",true),			 $form->input('surname',array('label'=>false)));
+     $row[] = array(__("Email",true),			 $form->input('email',array('label'=>false)));
+     $row[] = array(__("Skype",true),			 $skype);
+     $row[] = array(__("Organization",true),		 $form->input('organization',array('label'=>false)));
+     $row[] = array(__("Access control list (ACL)",true), $form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
+     $row[] = array(__("Phone book",true),		 $form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
      
      
      echo "<table width='400px' cellspacing='0' class='blue'>";

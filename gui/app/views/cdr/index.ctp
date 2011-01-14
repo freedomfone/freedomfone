@@ -80,7 +80,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$time  	     = date('H:i:s A',$entry['Cdr']['epoch']);
 	$type	     = $entry['Cdr']['channel_state'];
 	$application = $formatting->appMatch($entry['Cdr']['application']);
-	$call_id     = $entry['Cdr']['call_id'];
+	$call_id     = $text->truncate($entry['Cdr']['call_id'],8,false,true,false);
 
 
 

@@ -92,7 +92,7 @@ $sort  = $session->read('messages_sort');
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),
-     array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','size' => 3, 'label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
+     array(__("Tag",true),	$form->input('Tag',array('type'=>'select','multiple'=>'true','size' => 5, 'label'=>false,'empty'=>"--- ".__("No tag",true)." ---"))),
      ),array('class' => 'blue'), array('class' => 'blue'));
      echo "</table>";
 

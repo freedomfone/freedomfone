@@ -59,7 +59,7 @@ echo "<h1>".__("Tags",true)."</h1>";
       }
       else {
 
-         echo $html->div('feedback', __('No tags exist. Please create one by clicking the <i>Create new</i> button to the right.',true));k
+         echo $html->div('feedback', __('No tags exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
 
       }
 

@@ -115,7 +115,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
 
 
-     echo "<table cellspacing = 0>";
+     echo "<table width='95%' cellspacing = 0>";
      echo $html->tableHeaders(array(
                         __('Interface id',true),
                         __('Title',true),

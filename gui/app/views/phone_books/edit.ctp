@@ -29,29 +29,20 @@
       echo "<h1>".__("Edit Phone book",true)."</h1>";
       $session->flash();
 
-      $options_name = array('label' =>  array('text'=>false,
-			  	        'class'=>'formTitleDefault'),
-			  		'type'=>'text',
-			  		'size'=>'20');
+      $options_name = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'20');
+      $options_longname = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'50');
 
-      $options_longname = array('label' =>  array('text'=>false,
-			  	        'class'=>'formTitleDefault'),
-			  		'type'=>'text',
-			  		'size'=>'50');
-
-     $options_message = array('label' =>  array('text'=>false,
-			  	        'class'=>'formTitleDefault'));
 
       echo $form->create('PhoneBook',array('type' => 'post','action'=> 'edit'));
       echo $form->hidden('id');
 
 
       
-     echo "<table width='500px' cellspacing='0' >";
+     echo "<table width='600px' cellspacing='0' >";
      echo $html->tableCells(array (
-     	  array(__("Name",true),	        $form->input('name',$options_name)),
-     	  array(__("Description",true),		$form->input('description',$options_longname)),
-     	  array(__("Use in",true),		$form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	  array(array(__("Name",true),array('width' =>'150px')),	        $form->input('name',$options_name)),
+     	  array(__("Description",true),                                         $form->input('description',$options_longname)),
+     	  array(array(__("Add user to phone book",true),array('valign' => 'top')),		                        $form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>__('-- Use in none --',true)))),
      	  array('',	$form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 
     echo "</table>";

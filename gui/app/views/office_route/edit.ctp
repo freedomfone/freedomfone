@@ -44,7 +44,8 @@
                 echo $html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
                 echo "</table>";
 
-		echo $form->end(__('Save',true));
+		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'button'));
+
                 echo "</div>";
 
 		}

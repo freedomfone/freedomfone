@@ -50,7 +50,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 	'',
 	$paginator->sort(__("New",true), 'new'),
  	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Sender",true), 'sender'),
+ 	$paginator->sort(__("Caller",true), 'sender'),
  	$paginator->sort(__("Rate",true), 'rate'),
  	$paginator->sort(__("Category",true), 'Category.name'),
  	$paginator->sort(__("Income",true), 'created'),

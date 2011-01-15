@@ -62,7 +62,7 @@ echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_
 
      // ** General settings **//
      echo "<fieldset><legend>".__('General settings',true)."</legend>";
-      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Title',true),'after' => $commentTitle));
+      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'45','maxLength' => '50', 'label'=>__('Title',true),'after' => $commentTitle));
      echo $form->input('LmMenu.lmMaxreclen', array('between'=>'<br />','type'=>'select', 'options' => $options, 'label'=>__('Message duration',true),'after' => $commentMaxreclen));
      echo $form->hidden('lmForceTTS',array('value'=>0));
      echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'before' => __('Do not use uploaded files',true).' '));    	    

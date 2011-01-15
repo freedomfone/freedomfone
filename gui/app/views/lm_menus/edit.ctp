@@ -71,7 +71,7 @@ echo $form->hidden('lmGoodbyeMessage');
 
      // ** General settings **//
      echo "<fieldset><legend>".__('General settings',true)."</legend>";
-      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','size'=>'50','label'=>__('Title',true),'after' => $commentTitle));
+      echo $form->input('LmMenu.title', array('between'=>'<br />','type'=>'text','maxLength'=>50, 'size' => '45','label'=>__('Title',true),'after' => $commentTitle));
      echo $form->input('LmMenu.lmMaxreclen', array('between'=>'<br />','type'=>'select', 'options' => $options, 'label'=>__('Message duration',true),'after' => $commentMaxreclen));
      echo $form->hidden('lmForceTTS',array('value'=>0));
      echo $form->input('lmForceTTS',array('type' =>'checkbox','label' => false, 'before' => __('Do not use uploaded files',true).' '));    	    

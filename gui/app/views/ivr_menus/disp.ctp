@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * disp.ctp	- Display Language Selector service options
- * version 	- 1.0.354
+ * version 	- 2.0.1150
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,13 @@
  *
  ***************************************************************************/
 
-
+      $ivr  = Configure::read('IVR_SETTINGS');
       echo $ajax->div("service_div");
+
+       foreach($data as $key => $entry){
+             $data[$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
+       }
+
 
 
       for($i=1;$i<=9;$i++){

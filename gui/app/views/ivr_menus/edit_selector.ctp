@@ -108,6 +108,18 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                 echo "<legend>".__('Services',true)."</legend>";
 
 
+       foreach($lam as $key => $entry){
+             $lam[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+       }
+       foreach($voicemenu as $key => $entry){
+             $voicemenu[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+       }
+
+       foreach($nodes['title'] as $key => $entry){
+             $nodes['title'][$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+       }
+
+
      for($i=0;$i<9;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
@@ -129,29 +141,15 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
         $listen = false;
 
-        if($this->data['Mapping'][$i] ){
-
-//          if( array_key_exists('type', $this->data['Mapping'][$i])){
-                if($this->data['Mapping'][$i]['type'] == 'node'){
-
-                   $id = $this->data['Mapping'][$i]['node_id'];
-                   $file = $nodes['file'][$id];
-                   $title = $nodes['title'][$id];
-      	           $path = $settings['path'].$settings['dir_node'];
-	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
-                }
-  //         }
-        }
-
 
         $row[$i]=array(
-	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),
+	"<h3>".__('#',true)." ".($i+1)."</h3>",
 	$radio1, 
-        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select Leave-a-message',true).' -' )),
+        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$radio2, 
-        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select Voice Menu',true).' -' )),
+        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$radio3, 
-        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
+        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$listen,
 
 	);
@@ -159,7 +157,9 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
      }
 
-     echo "<table width='95%' cellspacing=0 class='none'>";
+     $headers = array('','',__('Leave-a-Message',true),'',__('Voice Menu',true),'',__('Content',true),'');
+     echo "<table cellspacing=0 class='none_header'>";
+     echo $html->tableCells($headers,array('class' =>'none_header'),array('class' =>'none_header'));
      echo $html->tableCells($row, array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 

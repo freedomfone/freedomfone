@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List processes
- * version 	- 1.0.360
+ * version 	- 2.0.1150
  * 
  * Version: MPL 1.1
  *
@@ -64,7 +64,7 @@ echo $form->input('ivr_type',array('type'=>'hidden','value'=>$ivrMenu['ivr_type'
 $path = $ivr_settings['path'].$this->data['IvrMenu']['instance_id']."/".$ivr_settings['dir_menu'];
 
 echo "<fieldset><legend>".__('Name',true)."</legend>";
-echo $form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle));
+echo $form->input('title',array('type'=>'text','size' => '95', 'maxLength' => '100','between'=>'<br />','label'=>$commentTitle));
 echo "</fieldset>";
 
 echo "<fieldset>";
@@ -169,6 +169,18 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 $path = $ivr['path'].$ivr['dir_node'];
 
+       foreach($lam as $key => $entry){
+             $lam[$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+       }
+       foreach($voicemenu as $key => $entry){
+             $voicemenu[$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+       }
+
+       foreach($nodes['title'] as $key => $entry){
+             $nodes['title'][$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+       }
+
+
 
      for($i=0;$i<9;$i++){
 
@@ -209,14 +221,17 @@ $path = $ivr['path'].$ivr['dir_node'];
            }
         }
 
+
+
+
         $row[$i]=array(
 	array("<h3>".__('#',true)." ".($i+1)."</h3>",array('width'=>'100px')),
 	$radio1, 
-        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select Leave-a-message',true).' -' )),
+        $form->input('Mapping.'.$i.'.lam_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$radio2, 
-        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select Voice Menu',true).' -' )),
+        $form->input('Mapping.'.$i.'.ivr_id',array('type'=>'select','options' => $voicemenu,'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$radio3, 
-        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select content',true).' -' )),
+        $form->input('Mapping.'.$i.'.node_id',array('type'=>'select','options' => $nodes['title'],'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	$listen,
 
 	);
@@ -225,8 +240,9 @@ $path = $ivr['path'].$ivr['dir_node'];
      }
 
 
-
+     $headers = array('','',__('Leave-a-Message',true),'',__('Voice Menu',true),'',__('Content',true),'');
      echo "<table width='95%' cellspacing=0 class='none'>";
+     echo $html->tableCells($headers,array('class' =>'none_header'),array('class' =>'none_header'));
      echo $html->tableCells($row,array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 

@@ -29,7 +29,7 @@ App::import("Xml");
 class IvrMenusController extends AppController{
 
 	var $name = 'IvrMenus';
-	var $helpers = array('Flash','Session','Ajax','Formatting','Javascript');      
+	var $helpers = array('Flash','Session','Ajax','Formatting','Javascript','Text');      
 
 
 /*
@@ -451,7 +451,6 @@ class IvrMenusController extends AppController{
 		//Fetch list of all lam
                 $this->loadModel('LmMenu');
 		$lam  = $this->LmMenu->find('list');
-
 
 		//Fetch single record, and render view
 		$this->data = $this->IvrMenu->findById($id);

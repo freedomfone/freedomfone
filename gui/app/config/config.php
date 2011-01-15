@@ -111,11 +111,13 @@ $config['IVR_SETTINGS'] = array(
 		'host'	           => MY_DOMAIN,
 		'path'             => 'freedomfone/ivr/',
 		'curl'             => 'xml_curl/',
-		'dir_node'         =>  'nodes/',
-		'dir_menu'         =>  'ivr/',
-		'dir_conf'         =>  'conf/',
+		'dir_node'         => 'nodes/',
+		'dir_menu'         => 'ivr/',
+		'dir_conf'         => 'conf/',
                 'instance_start'   => '100',
                 'instance_end'     => '119',
+                'showLengthMin'    => '15',
+                'showLengthMax'    => '20',
 		);
 
 
@@ -176,10 +178,6 @@ $config['OR_MIB']= array(
 
 $config['OR_SNMP']= array(
                         array('ip_addr'   => '192.168.1.46' ,
-                              'community' => 'public' , 
-                              'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
-                              ),
-                        array('ip_addr'   => '192.168.1.99' ,
                               'community' => 'public' , 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                               )

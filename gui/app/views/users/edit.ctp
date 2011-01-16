@@ -69,7 +69,7 @@ echo $form->end();
      $row[] = array(__("Skype",true),			 $skype);
      $row[] = array(__("Organization",true),		 $form->input('organization',array('label'=>false)));
      $row[] = array(__("Access control list (ACL)",true), $form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
-     $row[] = array(__("Phone book",true),		 $form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
+     $row[] = array(array(__("Phone book",true),array('valign'=>'top')),		 $form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
      
      
      echo "<table width='400px' cellspacing='0' class='blue'>";

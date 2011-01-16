@@ -379,9 +379,9 @@ class CdrController extends AppController{
 
         $this->requestAction('/bin/refresh');
         $this->requestAction('/polls/refresh');
-        $this->requestAction('/cdr/refresh');                                                                                                                                                                                                                                                                                                                                                         
-        $this->set('cdr',$this->Cdr->find('all'));                                                                                                                                                       
-                                                                                                                                                                                                         
+        $this->requestAction('/cdr/refresh');
+        $this->set('cdr',$this->Cdr->find('all'));
+
                 //Fetch data from unassociated models                                                                                                                                                    
                 $this->loadModel('IvrMenu');                                                                                                                                                             
                 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                   

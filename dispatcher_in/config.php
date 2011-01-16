@@ -33,6 +33,7 @@ define("LocalDomain", "http://localhost/freedomfone/");
 define("ESLPath", BaseDir."/esl/native/ESL.php");
 define("PidFile", BaseDir."gui/app/webroot/system/pid/dispatcher_in.pid");
 define("VersionFile", BaseDir."gui/app/webroot/system/version/dispatcher_in");
+define("EpochFile", BaseDir."gui/app/webroot/system/epoch/dispatcher_in");
 define("LogLevel", 3);  //1 = low, 2 = medium, 3 = high
 
 $_SocketParam = array(

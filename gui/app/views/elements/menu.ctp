@@ -86,7 +86,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("SMS Incoming",true),'/bin/'); ?>
+<?php echo $html->link(__("Incoming SMS",true),'/bin/'); ?>
 </li>
 
 

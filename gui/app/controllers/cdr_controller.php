@@ -288,7 +288,12 @@ class CdrController extends AppController{
 
       function export(){
 
-    	     $this->render();  
+        $start = $this->Cdr->getEpoch('first');  
+        $end   = time()+900;
+        $this->set(compact('start','end'));
+
+    	$this->render();  
+
        }
 
 

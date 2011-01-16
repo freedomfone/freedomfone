@@ -99,8 +99,11 @@ class MonitorIvrController extends AppController{
 
       function export(){
 
+        $start = $this->MonitorIvr->Cdr->getEpoch('first');  
+        $end   = time()+900;
+        $this->set(compact('start','end'));
 
-    	     $this->render();  
+    	$this->render();  
   
      }
 
@@ -194,6 +197,10 @@ class MonitorIvrController extends AppController{
 	 }
 	 else {
 	 
+                $start = $this->MonitorIvr->Cdr->getEpoch('first');  
+                $end   = time()+900;
+                $this->set(compact('start','end'));
+
 		$this->render();
 	 } 
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List monitoring data for Voice Menus
- * version 	- 1.0.353
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -56,8 +56,8 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
      echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'process','name'  => 'MonitorIvr'));
      
      ?>
-     <input type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.MonitorIvr)">
-     <input type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.MonitorIvr)">
+     <input class="button" type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.MonitorIvr)">
+     <input class="button" type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.MonitorIvr)">
      <?
      echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete));
 
@@ -72,7 +72,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
  	$paginator->sort(__("Title",true), 'title'),
  	$paginator->sort(__("Caller number",true), 'caller_number'),
  	$paginator->sort(__("Type",true), 'type'),
-	__("Delete",true)));
+	''));
 
 
 
@@ -86,8 +86,8 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
-	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
-	$ivr_code    = $entry['MonitorIvr']['ivr_code'];
+	$time  	     = date('H:i',$entry['MonitorIvr']['epoch']);
+	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20,'...',true,false);
 	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8,false,true,false);
 	$digit       = $entry['MonitorIvr']['digit'];
 	$title       = $text->truncate($entry['Node']['title'],13,'...',true,false);

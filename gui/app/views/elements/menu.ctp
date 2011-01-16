@@ -208,7 +208,7 @@
 
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("System Health",true),'/processes'); ?>
+<?php echo $html->link(__("Health",true),'/processes'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
@@ -219,7 +219,7 @@
 
 
 <li>
-<?php echo $html->link(__("System",true),'/processes/system'); ?>
+<?php echo $html->link(__("General info",true),'/processes/system'); ?>
 </li>
 
 <li>
@@ -227,7 +227,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("System Logs",true),'/logs'); ?>
+<?php echo $html->link(__("Logs",true),'/logs'); ?>
 </li>
 
 

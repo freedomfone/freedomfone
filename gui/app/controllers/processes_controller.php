@@ -33,7 +33,7 @@ class ProcessesController extends AppController{
 
       function index(){
 
-      	$this->pageTitle = __('System Health',true);
+      	$this->pageTitle = __('Health',true);
 
 	$this->requestAction('/processes/refresh');
 
@@ -61,7 +61,7 @@ class ProcessesController extends AppController{
 	       }
 
 
-      	$this->pageTitle = __('System Software',true);
+      	$this->pageTitle = __('General information',true);
 
  	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");

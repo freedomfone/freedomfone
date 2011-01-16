@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 
-	echo "<h1>".__("System Logs",true)."</h1>";
+	echo "<h1>".__("Logs",true)."</h1>";
 	echo $html->div('instructions',__('Select log file to view',true));
 	echo $form->create("Log");
 	$opt = array('poll'=>'Poll','bin' => 'SMS','message'=>'Message Centre','ivr' => 'IVR Centre','debug'=> 'Debug','error' => 'Error');

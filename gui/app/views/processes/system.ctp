@@ -62,7 +62,7 @@
      $lang = Configure::read('LANGUAGES.'.$language);
 
 
-     echo "<h1>".__("System",true)."</h1>";
+     echo "<h1>".__("General Information",true)."</h1>";
 
 
      echo "<h2>".__("Software",true)."</h2>";

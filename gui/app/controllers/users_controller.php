@@ -34,9 +34,11 @@ class UsersController extends AppController{
 
       function refresh($redirect, $id = null){
 
+        $this->requestAction('/bin/refresh');
+        $this->requestAction('/polls/refresh');
+        $this->requestAction('/cdr/refresh');
 
-      $this->requestAction('/cdr/refresh');
-      $this->redirect(array('controller' => 'users', 'action' => $redirect,$id));
+        $this->redirect(array('controller' => 'users', 'action' => $redirect,$id));
 
       }
 
@@ -279,9 +281,8 @@ class UsersController extends AppController{
                         $this->User->PhoneNumber->saveAll($this->data['PhoneNumber']);
 			$this->_flash(__('New user has been added', true),'success');
 			$this->redirect(array('action'=>'index'));
-		} else {
-			$this->_flash(__('The user could not be added. Please, try again.', true),'error');
-		}
+		} 
+
 	} else {
 
 		//Show empty form

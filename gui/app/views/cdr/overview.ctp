@@ -84,7 +84,7 @@ echo $form->end();
 
                  $rows[] = array(
                        $message['Message']['sender'],
-                       $time->niceShort($message['Message']['created']), 
+                       $time->format('Y/m/d H:i',$message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
                        $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
                        $download,

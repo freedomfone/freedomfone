@@ -322,8 +322,8 @@ function checkDate($data,$field){
 
 		 		$count = $userData['User'][$update]+1;
 				$id = 	$userData['User']['id'];
-                                $this->User->id = $id;
-	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
+                                $this->User->read(null, $id);
+	 			$this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
  		 		$this->User->save();
 
 		        } else {
@@ -332,7 +332,7 @@ function checkDate($data,$field){
 
                               if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
 
-                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
                                  $this->User->save($user);
                                  $user_id = $this->User->getLastInsertId();
                                  $phonenumber = array('user_id' => $user_id, 'number' => $value);

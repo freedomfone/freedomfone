@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * user.php		- Model for managing users through the address book
- * version 		- 2.0.1127
+ * version 		- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -60,18 +60,18 @@ function __construct($id = false, $table = null, $ds = null) {
 				     ),
 
  		),
-	'phone' => array(
-			'alphaNumeric' => array(
- 				       'rule' => 'phoneFormat',
- 				       'message' => __('Please sypply a valid phone number (numbers and plus (+) signed allowed).',true),
-		   		       'allowEmpty' => true
- 				       ),
- 		),
 	'skype' => array(
  				       'rule' => 'skypeFormat',
  				       'message' => __('Please supply a valid skype name.',true),
 		   		       'allowEmpty' => true
  				       ),
+        'name' => array(
+                        'alphaNumeric' => array(
+                                        'rule'     => 'alphaNumeric',
+                                        'required' =>  true,
+                                        'message'  => __('Please supply an alpha-numberic string.',true)
+                                        )),
+
 	);
 	}
 

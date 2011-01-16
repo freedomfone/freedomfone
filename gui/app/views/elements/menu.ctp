@@ -81,7 +81,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Settings",true),'/lm_menus/index'); ?>
+<?php echo $html->link(__("LAM Settings",true),'/lm_menus/index'); ?>
 </li>
 
 

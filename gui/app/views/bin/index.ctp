@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List Other SMS
- * version 	- 1.0.362
+ * version 	- 2.0.1150
  * 
  * Version: MPL 1.1
  *
@@ -37,7 +37,7 @@ echo $form->end();
 
 
 
-echo "<h1>".__('Other SMS',true)."</h1>";
+echo "<h1>".__('Incoming SMS',true)."</h1>";
 echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 
      if ($data){

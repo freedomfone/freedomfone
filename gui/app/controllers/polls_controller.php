@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
- * version 		 	- 1.0.368
+ * version 		 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -27,7 +27,7 @@ class PollsController extends AppController{
 
       var $name = 'Polls';
 
-      var $helpers = array('Time','Html', 'Session','Form','Formatting','Ajax');
+      var $helpers = array('Time','Html', 'Session','Form','Formatting','Ajax','Number');
       var $components = array('RequestHandler');
 
 

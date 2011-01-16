@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * player.ctp			- Uses AudioPlayer to stream mp3 files
- * version 			- 1.0.362
+ * version 			- 2.0.1160
  * 
 
  * Audio Player is a WordPress plugin developed by Martin Laine.
@@ -25,6 +25,7 @@
  *
  *
 ***************************************************************************/
+
       //if full url is provided
       if (isset($url) && $url){ 
 
@@ -50,7 +51,6 @@
       }
 
 
-
       //Overwrite IP address from FreeSWITCH with system IP address
       $ip_address = Configure::read('Setting.ip_addr');
 
@@ -63,7 +63,7 @@
 
      if($check==1){ 
 
-        $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';
+        $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$text->truncate($title,20,'...',true,false).'"});';
 	echo $html->para(false,__("No Flash plugin installed",true),array('id'=>'audio_player_'.$id));
 	echo $javascript->codeBlock($script,array('safe'=>false));
 

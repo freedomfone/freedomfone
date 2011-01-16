@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all Leave-a-message messages
- * version 	- 1.0.362
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -45,7 +45,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
      echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
      echo $form->hidden('source',array('value'=>'index'));
 
-     echo "<table width='800px' cellspacing  = '0'>";
+     echo "<table width='95%' cellspacing  = '0'>";
      echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'new'),
@@ -53,10 +53,10 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
  	$paginator->sort(__("Caller",true), 'sender'),
  	$paginator->sort(__("Rate",true), 'rate'),
  	$paginator->sort(__("Category",true), 'Category.name'),
- 	$paginator->sort(__("Income",true), 'created'),
+ 	$paginator->sort(__("Date",true), 'created'),
  	$paginator->sort(__("Length",true), 'length'),
-	__("Edit",true),
-	__("Download",true),
+        '',
+        '',
 	__("Listen",true)));
 
 
@@ -70,11 +70,11 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
-	$title    = $message['Message']['title'];
+	$title    = $text->truncate($message['Message']['title'],20,'...',true,false);
 	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
-	$created  = date('Y-m-d H:i:s',$message['Message']['created']);
+	$created  = date('y/m/d H:i',$message['Message']['created']);
 	$length   = $formatting->epochToWords($message['Message']['length']);
 
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List polls with view, edit and delete options
- * version 	- 1.0.362
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -57,8 +57,9 @@
 
 	   $question = $html->link($poll['Poll']['question'],"/polls/view/{$poll['Poll']['id']}");
 	   $code     = $poll['Poll']['code'];
-	   $start    = $time->niceShort($poll['Poll']['start_time']);
-	   $end      = $time->niceShort($poll['Poll']['end_time']);
+	   $start    = $time->format('Y/m/d H:i',$poll['Poll']['start_time']);
+	   $end      = $time->format('Y/m/d H:i',$poll['Poll']['end_time']);
+	   $view     = $html->link($html->image("icons/view.png", array("title" => __("View",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
 	   $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 	   $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/polls/delete/{$poll['Poll']['id']}",null, __("Are you sure you want to delete this poll?",true),false);
 
@@ -69,13 +70,14 @@
 		array($votes,array('align' =>'center')),
 		$start,
 		$end,
+		array($view,array('align'=>'center')),
 		array($edit,array('align'=>'center')),
 		array($delete,array('align'=>'center')));
 
      }
 
     echo "<table width='90%' cellspacing =0>";
-    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__("Edit",true),__("Delete",true)));
+    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("View",true),__("Edit",true),__("Delete",true)));
     echo $html->tableCells($row);
     echo "</table>";
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * cdr_controller.php	- Dispaly, delete, export of CDR 
- * version 		- 1.0.353
+ * cdr_controller.php	- Display, delete, export of CDR, System Overview page (Home) 
+ * version 		- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -367,17 +367,19 @@ class CdrController extends AppController{
 
 
                                                                                                                                                                                                    
+
       function overview(){                                                                                                                                                                               
-                                                                                                                                                                                                         
-        $this->requestAction('/cdr/refresh');                                                                                                                                                            
+
         $this->pageTitle = __('System Overview',true);                                                                                                                                                   
-                                                                                                                                                                                                         
-                                                                                                                                                                                                         
+
+        $this->requestAction('/bin/refresh');
+        $this->requestAction('/polls/refresh');
+        $this->requestAction('/cdr/refresh');                                                                                                                                                                                                                                                                                                                                                         
         $this->set('cdr',$this->Cdr->find('all'));                                                                                                                                                       
                                                                                                                                                                                                          
                 //Fetch data from unassociated models                                                                                                                                                    
                 $this->loadModel('IvrMenu');                                                                                                                                                             
-                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
+                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                   
                 $ivr = $this->IvrMenu->find('all');                                                                                                                                                      
                                                                                                                                                                                                          
                 $this->loadModel('Message');                                                                                                                                                             
@@ -386,7 +388,8 @@ class CdrController extends AppController{
                 $this->loadModel('Bin');                                                                                                                                                                 
                 $bin = $this->Bin->find('all');                                                                                                                                                          
                                                                                                                                                                                                          
-                $this->loadModel('Poll');                    
+                $this->loadModel('Poll');               
+                $this->Poll->unbindModel(array('hasMany' => array('User')));                                
                 $polls = $this->Poll->find('all');
                 $this->set(compact('messages','bin','polls','ivr'));
                 $this->render(); 

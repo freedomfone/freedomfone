@@ -38,7 +38,7 @@ Incorrect votes that cannot be matched to any existing poll, will be classified 
 
 
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
-echo $html->div('frameRight', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
@@ -46,13 +46,11 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
    if ($data){
 
-
-
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
 
-	//echo $html->div('box',__("Please hit the refresh button to refresh the poll result.",true));
+
 	echo "<h2>".__("Result",true)."</h2>";
       
         $total =  0;

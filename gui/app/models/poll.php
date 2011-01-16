@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * poll.php		- Model for poll. Manages validation of poll creation, and refresh data from spooler.
- * version 		- 1.0.359
+ * version 		- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -24,6 +24,7 @@
 
 
 class Poll extends AppModel{
+
 
       var $name = 'Poll';
       var $hasMany = array('Vote' => array(
@@ -213,11 +214,11 @@ function checkDate($data,$field){
 	   		foreach ($poll_entry['Vote'] as $key => $vote){
 	
 				//Search for matching chtext
-				if (strcasecmp($votes_chtext,$vote['chtext'])==0){
+				if (strcasecmp($votes_chtext,$vote['chtext'])){
 		   	   		$matched=true;
 					$vote_id = $vote['id'];
 		   		 }
-	 	         }		 
+	 	        }
 
 			        //CHECK A1: VALID VOTE (correct code, correct chtext)
 
@@ -285,41 +286,70 @@ function checkDate($data,$field){
 			 $result = $this->query("insert into bin (body,sender,created,mode,proto)values ('$body','$sender','$created','$mode','$proto')");
 	        }
 
-  	//Add data to CDR
-	$resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
-	$this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
+  	        //Add data to CDR
+	        $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
+	        $this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
 
 
-			//Manage contact 
-			$field = 'phone1';
-			$value = $sender;
-			$time = time();
-			
-		  	if( $proto == 'skype') { $field = 'skype';}
-		  	elseif( $proto == 'SMS') { $field = 'phone1';}
 
-		        if($application=='poll'){ $count_app = 'count_poll';}
-		        else { $count_app = 'count_bin'; } 
+                        $field = false;
+		  	if( strcasecmp($proto,'skype')) { $field = 'User.skype';}
+		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
+			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
 
-			       //Existing contact
-			       if ($userData = $this->query("SELECT * from  users WHERE $field = '$value'", false)){
+		        if($application=='poll')  { 
+                            $update = 'count_poll';
+                        } else { 
+                            $update = 'count_bin'; 
+                        } 
 
-			        if($application=='poll'){ 
-				   $count = $userData[0]['users']['count_poll']+1;
-				} else { 
-				   $count = $userData[0]['users']['count_bin']+1;
-				} 
-				$id = 	$userData[0]['users']['id'];
-				$this->query("UPDATE users SET $count_app = '$count',last_app= '$application',last_epoch= '$time' WHERE id='$id'");
-				unset($userData);
+			$value = urldecode($entry['from']);                        
+                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
 
-		            } else { //New contact
-				$this->query("INSERT INTO users ($count_app,first_app,last_app,last_epoch,$field,created,acl_id) values (1,'$application','$application', '$time','$value','$time',1)");
-			    }
+                        //Does user exist in database
+                        if (strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
+
+                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
+
+                        } elseif (strcasecmp($proto,'skype')){
+
+                           $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
+
+                        }
 
 
-	}
+                        if ($userData){
 
+		 		$count = $userData['User'][$update]+1;
+				$id = 	$userData['User']['id'];
+                                $this->User->id = $id;
+	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
+ 		 		$this->User->save();
+
+		        } else {
+
+			      $created = time();
+
+                              if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
+
+                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                                 $user_id = $this->User->getLastInsertId();
+                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
+                                 $this->User->PhoneNumber->saveAll($phonenumber);
+
+                              } elseif ( strcasecmp($proto,'skype')){
+
+                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+  
+                              }
+		       }
+
+
+	} //while
+
+        $this->unbindModel(array('hasMany' => array('User')));
 
 	// Update status of polls (use beforeSave to update status)
 	$data = $this->findAll();

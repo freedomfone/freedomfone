@@ -46,8 +46,9 @@
 </li>
 
 <li>
-<?php echo $html->link(__("SMS Incoming",true),'/bin/'); ?>
+<?php echo $html->link(__("Create poll",true),'/polls/add/'); ?>
 </li>
+
 
 
 <li class='last'>
@@ -84,6 +85,9 @@
 <?php echo $html->link(__("LAM Settings",true),'/lm_menus/index'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("SMS Incoming",true),'/bin/'); ?>
+</li>
 
 
 

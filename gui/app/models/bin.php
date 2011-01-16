@@ -43,30 +43,82 @@ class Bin extends AppModel{
 
     function refresh(){
 
-      $array = Configure::read('bin');
-      $instance_id = IID;
-      $mode = __("Unclassified",true);
-      
-      $obj = new ff_event($array);	       
+      $array       = Configure::read('bin');
+      $mode        = __("Unclassified",true);
+      $application = 'bin';
+      $update      = 'count_bin'; 
+      $obj         = new ff_event($array);	       
 
        	   if ($obj -> auth != true) {
   	       	  die(printf("Unable to authenticate\r\n"));
-        	  }
+           }
 
      	    while ($entry = $obj->getNext('update')){
 
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
 	      $sender	= urldecode($entry['from']);
 	      $proto   = $entry['proto'];
-
-      	      $data= array ( 'instance_id'  =>$instance_id, 'body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
+              
+      	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
 	      
 	      $this->create();
 	      $result = $this->save($data);
 	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$sender."; Timestamp: ".$created, "bin"); 
 	 
 	      //add to CDR
-	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','bin','$proto')");
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
+
+                        $field = false;
+		  	if( strcasecmp($proto,'skype')) { $field = 'User.skype';}
+		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
+			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
+
+
+
+
+                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
+
+                        //Does user exist in database
+                        if (strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
+
+                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
+
+                        } elseif (strcasecmp($proto,'skype')){
+
+                           $userData = $this->User->find('first',array('conditions' => array('skype' => $sender)));
+
+                        }
+
+
+                        if ($userData){
+
+		 		$count = $userData['User'][$update]+1;
+				$id    = $userData['User']['id'];
+                                $this->User->id = $id;
+	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
+ 		 		$this->User->save();
+
+		        } else {
+
+			      $created = time();
+
+                              if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
+
+                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+                                 $user_id = $this->User->getLastInsertId();
+                                 $phonenumber = array('user_id' => $user_id, 'number' => $sender);
+                                 $this->User->PhoneNumber->saveAll($phonenumber);
+
+                              } elseif ( strcasecmp($proto,'skype')){
+
+                                 $user =array($field => $sender,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $this->User->save($user);
+  
+                              }
+		       }
+
+                       $this->unbindModel(array('hasMany' => array('User')));
 
 	      }
 

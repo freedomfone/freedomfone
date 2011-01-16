@@ -30,17 +30,12 @@ class PollsController extends AppController{
       var $helpers = array('Time','Html', 'Session','Form','Formatting','Ajax');
       var $components = array('RequestHandler');
 
-//      var $total;
-
-
 
       function refresh($method = null){
 
-      $this->autoRender = false;
-
-      $this->logRefresh('poll',$method); 
-      $this->Poll->refresh();
-
+               $this->autoRender = false;
+               $this->logRefresh('poll',$method); 
+               $this->Poll->refresh();
 
       }
 
@@ -53,12 +48,13 @@ class PollsController extends AppController{
         if(isset($this->params['form']['submit'])) {
 	   if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/polls/refresh');
-                   }
-       }
+           }
+        }
 
+        $this->pageTitle = 'Manage polls';
 
-      $this->pageTitle = 'Manage polls';
-      $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
+        $this->Poll->unbindModel(array('hasMany' => array('User')));
+        $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
 
       }
 

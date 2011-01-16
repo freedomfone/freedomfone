@@ -24,6 +24,11 @@
 
 $session->flash();
 
+echo $form->create('Cdr',array('type' => 'post','action'=> 'overview'));
+echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
+
+
      //Calculate stats for CDR
      $pollCount  = 0;
      $lamCount   = 0;

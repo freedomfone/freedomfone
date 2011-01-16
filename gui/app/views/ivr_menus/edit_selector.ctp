@@ -157,9 +157,10 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
      }
 
+
      $headers = array('','',__('Leave-a-Message',true),'',__('Voice Menu',true),'',__('Content',true),'');
-     echo "<table cellspacing=0 class='none_header'>";
-     echo $html->tableCells($headers,array('class' =>'none_header'),array('class' =>'none_header'));
+     echo "<table cellspacing=0>";
+     echo $html->tableHeaders($headers);
      echo $html->tableCells($row, array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 

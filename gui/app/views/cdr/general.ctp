@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * general.ctp	- Data mining of LAM and IVR calls
- * version 	- 1.0.353
+ * version 	- 2.0.1150
  * 
  * Version: MPL 1.1
  *
@@ -23,7 +23,7 @@
  ***************************************************************************/
 
  $session->flash();
-
+ $settings = Configure::read('IVR_SETTINGS');
 
  //If action = Export, create CSV file 
  $export=false;
@@ -89,11 +89,19 @@
 	    }
 
 
+       foreach($lam as $key => $entry){
+             $lam[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+       }
+       foreach($ivr as $key => $entry){
+             $ivr[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+       }
+
+
 	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$app));
 	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$app));
 
 	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam,'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
-	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All IVR',true).' -'));
+	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All Voice Menus',true).' -'));
 
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (

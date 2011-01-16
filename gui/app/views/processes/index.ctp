@@ -30,7 +30,7 @@ echo $form->create('Process',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo "<h1>".__('System Health : Processes',true)."</h1>";
+echo "<h1>".__('Health',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
              foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

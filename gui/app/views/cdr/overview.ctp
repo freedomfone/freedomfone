@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * overview.ctp	- Show CDR statistics
- * version 	- 1.0.376
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -148,8 +148,9 @@ echo $form->end();
 
 	   $question = $html->link($poll['Poll']['question'],"/polls/view/{$poll['Poll']['id']}");
 	   $code     = $poll['Poll']['code'];
-	   $start    = $time->niceShort($poll['Poll']['start_time']);
-	   $end      = $time->niceShort($poll['Poll']['end_time']);
+	   $start    = $time->format('Y/m/d H:i', $poll['Poll']['start_time']);
+	   $end      = $time->format('Y/m/d H:i', $poll['Poll']['end_time']);
+           $view     = $html->link($html->image("icons/view.png", array("title" => __("View results",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
            $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 
            $row[$key] = array(
@@ -158,6 +159,7 @@ echo $form->end();
 		array($votes,array('align' =>'center')),
 		$start,
 		$end,
+                $view,
                 $edit);
 
 

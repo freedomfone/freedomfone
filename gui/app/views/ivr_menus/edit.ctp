@@ -94,6 +94,7 @@ if($ivrMenu['file_long']){
 		array(array($box[0],array('colspan'=>3))),
 		),array('class' =>'none'),array('class' =>'none'));
 
+                echo "</table>";
 
 //**** 2. Instructions ****//
 
@@ -114,7 +115,7 @@ if($ivrMenu['file_short']){
 		array($step2[2],array($step2[3],array('valign'=>'bottom')),array($step2[4],array('valign'=>'bottom'))),
 		array(array($box[1],array('colspan'=>3))),
 		),array('class' =>'none'),array('class' =>'none'));
-
+                echo "</table>";
 
 //**** 3. Goodbye ****//
 
@@ -135,7 +136,7 @@ if($ivrMenu['file_exit']){
 		array($step3[2],array($step3[3],array('valign'=>'bottom')),array($step3[4],array('valign'=>'bottom'))),
 		array(array($box[2],array('colspan'=>3))),
 		),array('class' =>'none'),array('class' =>'none'));
-
+                echo "</table>";
 
 
 //**** 4. Invalid ****//
@@ -240,9 +241,9 @@ $path = $ivr['path'].$ivr['dir_node'];
      }
 
 
-     $headers = array('','',__('Leave-a-Message',true),'',__('Voice Menu',true),'',__('Content',true),'');
-     echo "<table width='95%' cellspacing=0 class='none'>";
-     echo $html->tableCells($headers,array('class' =>'none_header'),array('class' =>'none_header'));
+    $headers = array('','',__('Leave-a-Message',true),'',__('Voice Menu',true),'',__('Content',true),'');
+     echo "<table width='95%' cellspacing=0>";
+     echo $html->tableHeaders($headers);
      echo $html->tableCells($row,array('class' =>'none'),array('class' =>'none'));
      echo "</table>";
 

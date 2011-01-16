@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * overview.ctp	- Show CDR statistics
- * version 	- 1.0.376
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -89,12 +89,9 @@ echo $form->end();
      echo "<table cellspacing = 0 class='none'>";
      echo $html->tableCells(array (
      array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime','interval'=>15,'selected' => $start))),
-     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval'=>15,'selected' => $end)))
+     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval'=>15,'selected' => $end))),
+     array($form->end(array('name' => __('View',true), 'label' =>__('View',true),'class' =>'button')),false),
       ),array('class' => 'none'), array('class' => 'none'));
       echo "</table>"; 
-
-
-     echo $form->end(__('View',true));
-
 
 ?>

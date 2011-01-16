@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * export.ctp	- Display form for export of CDR.
- * version 	- 1.0.353
+ * version 	- 2.0.1160
  * 
  * Version: MPL 1.1
  *
@@ -27,10 +27,14 @@ echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
 
 echo "<table cellspacing = 0 class= 'stand-alone'>";
 echo $html->tableCells(array (
-     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15))),
-     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15)))
+     array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15,'selected' => $start))),
+     array(__("End time",true),		$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' => $end)))
       ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 echo "</table>";
-echo $form->end(__('Export',true));
+
+echo $form->end(array('name' => __('Export',true), 'label' =>__('Export',true),'class' =>'button'));
+
 
 ?>
+
+

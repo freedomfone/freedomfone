@@ -78,6 +78,7 @@ class Message extends AppModel {
 	       	      	      'created'         =>$created,
 			      'length'          =>$length,
 	       		      'url'             => $entry['FF-URI'],
+	       		      'instance_id'     => $entry['FF-InstanceID'],
       			      'quick_hangup'    => $entry['FF-OnQuickHangup'],
                               );
 

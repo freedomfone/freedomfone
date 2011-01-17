@@ -79,14 +79,14 @@ echo $form->end();
 
                 if(sizeof($rows)<5){
 
-	        $download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+	        $download  = $html->link($html->image("icons/music.png", array("title" => __("Download audio file",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
 	        $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
 
                  $rows[] = array(
                        $message['Message']['sender'],
                        $time->format('Y/m/d H:i',$message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
-                       $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
+                       $html->link($html->image("icons/edit.png", array("title" => __("Edit message",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
                        $download,
                        $listen
                        );
@@ -126,7 +126,7 @@ echo $form->end();
              echo $html->div('instruction', __('The table below shows the five most recent new messages',true));
         }
         echo "<table width='600px' cellspacing=0>";
-        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('View',true),__('Download',true),__('Listen',true)));
+        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('Edit',true),'',__('Listen',true)));
         echo $html->tableCells($rows);
         echo "</table>";
      }
@@ -151,7 +151,7 @@ echo $form->end();
 	   $start    = $time->format('Y/m/d H:i', $poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i', $poll['Poll']['end_time']);
            $view     = $html->link($html->image("icons/view.png", array("title" => __("View results",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
-           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
+           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit poll",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 
            $row[$key] = array(
      		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),
@@ -166,7 +166,7 @@ echo $form->end();
      }
 
      echo "<table width='80%' cellspacing=0>";
-     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Edit',true)));
+     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('View',true),__('Edit',true)));
      echo $html->tableCells($row);
      echo "</table>";
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * bin_controller.php		- Controller for Other SMS
- * version 		 	- 2.0.1139
+ * version 		 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *

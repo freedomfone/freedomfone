@@ -275,9 +275,11 @@ class MessagesController extends AppController{
 	$this->Message->id = $id;
 	$data = $this->Message->read();
 	
-	$file = $data['Message']['file'].'.mp3';
-	$name = $data['Message']['title'];
-	$url  = 'webroot/freedomfone/leave_message/'.IID.'/messages';
+	$file        = $data['Message']['file'].'.mp3';
+	$name        = $data['Message']['title'];
+        $instance_id = $data['Message']['instance_id'];
+
+	$url  = 'webroot/freedomfone/leave_message/'.$instance_id.'/messages';
 
         $this->view = 'Media';
 

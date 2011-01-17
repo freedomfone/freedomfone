@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List Other SMS
- * version 	- 2.0.1150
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -48,21 +48,21 @@ echo $form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'B
 <input type="button" class='button' name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Bin)">
 <?
 
-echo "<table width='90%' cellspacing=0>";
+echo "<table width='95%' cellspacing=0>";
 
 echo $html->tableHeaders(array(
 	'',
- 	$paginator->sort(__("Body",true), 'body'),
- 	$paginator->sort(__("Arrival",true), 'created'),
+ 	$paginator->sort(__("Message",true), 'body'),
+ 	$paginator->sort(__("Time",true), 'created'),
  	$paginator->sort(__("Type",true), 'mode'),
  	$paginator->sort(__("Protocol",true), 'proto'),
  	$paginator->sort(__("Sender",true), 'sender'),
-	__("Delete",true)));
+	''));
 
       foreach ($data as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
 	$body     = $entry['Bin']['body'];
-	$created  = $time->niceShort($entry['Bin']['created']);
+	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];
 	$sender    = $entry['Bin']['sender'];
@@ -77,7 +77,7 @@ echo $html->tableHeaders(array(
      echo "</table>"; 
 
 
-     echo $html->div('',$form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')));
+     echo $html->div('',$form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button')));
 
      if($paginator->counter(array('format' => '%pages%'))>1){
            echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));

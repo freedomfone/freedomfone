@@ -22,6 +22,10 @@
  *
 ***************************************************************************/
 
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Monitoring', '/monitor_ivr');
+
+
 
 $session->flash();
 echo $javascript->includeScript('toggle');

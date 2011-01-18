@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all CDR
- * version 	- 1.0.353
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,11 @@
  *
  *
  ***************************************************************************/
+
+
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Call data records', '/cdr');
+
 
 $session->flash();
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * settings_controller.php	- Controller for changing global settings
- * version 		 	- 1.0.368
+ * version 		 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -29,7 +29,7 @@ class SettingsController extends AppController {
 
 	function index() {
 
-              $this->pageTitle = 'Environment settings';
+              $this->pageTitle = 'Settings';
 	      
 	      //Fetch form data and process
               if (!empty($this->data)) {

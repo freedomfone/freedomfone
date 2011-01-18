@@ -22,7 +22,11 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("System settings",true)."</h1>";
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('Settings', '/settings');
+
+
+echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 $msgAccessLevel =  __('This settings determine the access level of the streaming audio content of your Freedom Fone installation.',true); 

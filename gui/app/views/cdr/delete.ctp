@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * delete.ctp	- Display form for deleting CDR by time
- * version 	- 1.0.353
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,10 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Call data records', '/cdr');
+echo $html->addCrumb('Delete', '/cdr/delete');
 
 echo "<h1>".__("Delete Call Data Records",true)."</h1>";
 echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));

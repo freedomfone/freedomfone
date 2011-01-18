@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- Form for selecting Freedom Fone logs
- * version 	- 1.0.354
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,9 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('Logs', '/logs');
 
 
 	echo "<h1>".__("Logs",true)."</h1>";

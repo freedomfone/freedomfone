@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * exit.ctp	- Edit a Leave-a-message messages
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -25,6 +25,16 @@
 $source  = $session->read('Message.source');
 $sort  = $session->read('messages_sort');
 
+if($source == 'index') { $location = __('Inboxes',true);} else { $location = __('Archive',true);}
+
+echo $html->addCrumb('Message Centre', '/messages');
+echo $html->addCrumb($location, '/messages/'.$source);
+
+
+
+
+
+
       $Prev = 'prev';
       $Next = 'next';
 
@@ -36,6 +46,9 @@ $sort  = $session->read('messages_sort');
       }
 
       if($data){
+
+      echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
+
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
 		      'empty'   => "--- ".__('No rate',true)." ---");
@@ -124,7 +137,9 @@ $sort  = $session->read('messages_sort');
 }
     else {
 
-    echo "<h1>".__("No messsage with this id exists",true)."</h1>";
+         echo $html->div("invalid_entry", __("This page does not exist.",true));
+
+
     }
 
  

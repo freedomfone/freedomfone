@@ -22,6 +22,11 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Archive', '/messages/');
+
+
+
  $session->flash();
 
  echo $javascript->includeScript('toggle');

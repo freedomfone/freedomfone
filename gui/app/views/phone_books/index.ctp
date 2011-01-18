@@ -22,6 +22,9 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
+echo $html->addCrumb('Phone books', '/phone_books');
+
    echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
    echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
    echo $form->end();

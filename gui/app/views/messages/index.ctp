@@ -22,6 +22,9 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Inboxes', '/messages');
+
 $session->flash();
 echo $javascript->includeScript('toggle');
 

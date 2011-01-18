@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit Leave-a-message IVR menu
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,7 +22,14 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Administration', '/lm_menus');
+
+
+
 if($this->data){
+
+echo $html->addCrumb('Edit', '/lm_menus/edit/'.$this->data['LmMenu']['id']);
 
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
@@ -30,7 +37,7 @@ $lm_default  = Configure::read('LM_DEFAULT');
 $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.",true);
 
 
-     echo "<h1>".__("Modify Leave a Message IVR",true)."</h1>";
+     echo "<h1>".__("Edit Leave a Message IVR",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -132,7 +139,7 @@ echo $form->hidden('lmGoodbyeMessage');
 
      }	else {
 
-      echo "<h1>".__("Invalid page.",true)."</h1>";
+         echo $html->div("invalid_entry", __("This page does not exist.",true));
 
      }
 

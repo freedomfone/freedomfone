@@ -24,6 +24,8 @@
 
 $session->flash();
 
+echo $html->addCrumb('', '');
+
 echo $form->create('Cdr',array('type' => 'post','action'=> 'overview'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();

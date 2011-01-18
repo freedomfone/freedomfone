@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit existing poll
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,7 +22,11 @@
  *
 ***************************************************************************/
 
+echo $html->addCrumb('Polls', '/polls');
 
+
+     if($this->data){
+           echo $html->addCrumb('Edit', '/polls/edit/'.$this->data['Poll']['id']);
 	   echo "<h1>".__("Edit Poll",true)."</h1>";
 
 	   $session->flash();
@@ -110,6 +114,12 @@
 
 
      echo "</div>";
+     } else {
+
+
+         echo $html->div("invalid_entry", __("This page does not exist.",true));
+
+     }
 
 ?>
 

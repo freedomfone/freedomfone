@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
+echo $html->addCrumb('Phone books', '/phone_books');
+echo $html->addCrumb('Add', '/phone_books/add');
+
 echo "<h1>".__("Create Phone book",true)."</h1>";
 
    if ($messages = $session->read('Message.multiFlash')) {

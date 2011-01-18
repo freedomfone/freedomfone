@@ -82,12 +82,8 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 	 <div class="header"></div>
 
 	 <div id="top_nav"><?php echo $this->element('menu'); ?></div>		<!-- horizonal menu -->
-
-
-
 	 <div id="content_wrap">
-
-        <?php //echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
+        <?php echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
 
 		<div id="main_content">
     		<?php 

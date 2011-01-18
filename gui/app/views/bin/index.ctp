@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Incoming SMS', '/bin');
+
+
 $session->flash();
 echo $javascript->includeScript('toggle');
 

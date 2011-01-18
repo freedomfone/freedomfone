@@ -22,8 +22,9 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
 echo $html->addCrumb('Users', '/users');
-echo $html->addCrumb('Edit', '/users/edit');
+echo $html->addCrumb('Edit', '/users/edit/'.$this->data['User']['id']);
 
 echo $form->create('User',array('type' => 'post','controller' => 'users', 'action'=> 'edit'));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));

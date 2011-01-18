@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * add.ctp	- Add category (used in Leave-a-message)
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,22 +22,24 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Add Category",true)."</h1>";
+
+      echo $html->addCrumb('Message Centre', '');
+      echo $html->addCrumb('Categories', '/categories');
+      echo $html->addCrumb('Add', '/categories/add');
 
 
+      echo "<h1>".__("Add Category",true)."</h1>";
+      $options	  = array('label' => false);
 
 
-$options	  = array('label' => false);
+      echo $form->create('Category',array('type' => 'post','action'=> 'add'));
+      echo "<table cellspacing=0 'class'='stand-alone'>";
 
-
-echo $form->create('Category',array('type' => 'post','action'=> 'add'));
-echo "<table cellspacing=0 'class'='stand-alone'>";
-
-echo $html->tableCells(array (
-     array(__("Category",true),	        $form->input('name',$options)),
-     array(__("Description",true),	$form->input('longname',$options)),
-     array('',	$form->end(__('Save',true)))
-     ),array('class'=>'stand-alone'),array('class'=>'stand-alone'));
-echo "</table>";
+      echo $html->tableCells(array (
+           array(__("Category",true),	        $form->input('name',$options)),
+           array(__("Description",true),	$form->input('longname',$options)),
+           array('',	$form->end(__('Save',true)))),
+           array('class'=>'stand-alone'),array('class'=>'stand-alone'));
+     echo "</table>";
 
 ?>

@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
+echo $html->addCrumb('Phone books', '/phone_books');
+echo $html->addCrumb('Edit', '/phone_books/edit/'.$this->data['PhoneBook']['id']);
+
 
 
       if($this->data){

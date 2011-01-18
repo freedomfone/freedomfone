@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * system.ctp	- List system data (software versions, system environment)
- * version 	- 1.0.369
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,10 @@
  *
  *
  ***************************************************************************/
+
+
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('About', '/processes/system');
 
 
  $os = php_uname('s');
@@ -63,6 +67,14 @@
 
 
      echo "<h1>".__("General Information",true)."</h1>";
+
+
+     echo "<h2>".__("Freedom Fone",true)."</h2>";
+     $row0[] = array(__('Freedom Fone',true)." ".VERSION." <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a></i>");
+     echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
+     echo $html->tableCells($row0,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
+     echo "</table>"; 
+
 
 
      echo "<h2>".__("Software",true)."</h2>";

@@ -22,6 +22,9 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
+echo $html->addCrumb('Users', '/users');
+echo $html->addCrumb('Add', '/users/add');
 
 
      echo "<h1>".__("Add User",true)."</h1>";

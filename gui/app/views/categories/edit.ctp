@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edit existing category (used in Leave-a-message)
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,7 +22,13 @@
  *
  ***************************************************************************/
 
+      echo $html->addCrumb('Message Centre', '');
+      echo $html->addCrumb('Categories', '/categories');
+
+
       if($this->data){
+
+      echo $html->addCrumb('Edit', '/categories/edit/'.$this->data['Category']['id']);
 
       echo "<h1>".__("Edit Category",true)."</h1>";
       $session->flash();
@@ -44,7 +50,9 @@
      }
      else {
 
-    echo "<h1>".__("No category with this id exists",true)."</h1>";
+         echo $html->div("invalid_entry", __("This page does not exist.",true));
+
+
      }
 
 

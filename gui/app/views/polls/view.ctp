@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * view.ctp	- View poll result
- * version 	- 2.0.1160
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,9 @@
  *
  *
 ***************************************************************************/
+
+echo $html->addCrumb('Polls', '/polls');
+
 
 
 $info = __('Classification of votes|The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|
@@ -46,6 +49,7 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
    if ($data){
 
+        echo $html->addCrumb('View', '/polls/view/'.$data['Poll']['id']);
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
@@ -119,7 +123,9 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 
 	      else {
 
-	      echo "<h1>".__("No poll with this id exists",true)."</h1>";
+                   echo $html->div("invalid_entry", __("This page does not exist.",true));
+
+
 	      }
 
 ?>

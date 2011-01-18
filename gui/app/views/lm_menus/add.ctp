@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add.ctp	- Create a new Leave-a-message IVR menu
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,12 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Administration', '/lm_menus');
+echo $html->addCrumb('Create', '/lm_menus/add');
+
+
 
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');

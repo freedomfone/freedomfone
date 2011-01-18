@@ -223,7 +223,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("About",true),'/processes/system'); ?>
+<?php echo $html->link(__("About",true),'/dashboard/about'); ?>
 </li>
 
 

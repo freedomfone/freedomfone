@@ -42,7 +42,7 @@ Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'
 
 Router::connect('/contact', array('controller' => 'pages', 'action' => 'display', 'contact'));
 
-Router::connect('/about', array('controller' => 'pages', 'action' => 'display', 'about'));
+Router::connect('/dashboard/about', array('controller' => 'processes', 'action' => 'system'));
 
 
 Router::connect('/selectors/', array('controller' => 'ivr_menus', 'action' => 'selectors'));

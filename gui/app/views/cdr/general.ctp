@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Reporting', '/cdr/general');
+
+
  $session->flash();
  $settings = Configure::read('IVR_SETTINGS');
 
@@ -72,7 +76,7 @@
 	if(!$export){
 
 	//** START: Search form **/
-	echo "<h1>".__("Reporting",true)." : ".__("Incoming calls",true)."</h1>";
+	echo "<h1>".__("Reporting of incoming calls",true)."</h1>";
 	echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');

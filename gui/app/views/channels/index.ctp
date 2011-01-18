@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List GSM channels
- * version 	- 1.0.354
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,10 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('GSM channels', '/channels');
+
 
 $session->flash();
 $generated  = $session->read('Channel.refresh');

@@ -22,6 +22,11 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Monitoring', '/monitor_ivr');
+echo $html->addCrumb('Delete', '/monitor_ivr/delete');
+
+
 echo "<h1>".__("Delete monitoring data",true)."</h1>";
 echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'delete'));
 

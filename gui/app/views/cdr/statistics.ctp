@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Statistics', '/cdr/statistics')
+;
+
 $session->flash();
 
 echo "<h1>".__('CDR Statistics',true)."</h1>";

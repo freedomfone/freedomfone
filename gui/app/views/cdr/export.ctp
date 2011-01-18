@@ -22,6 +22,11 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('System data', '');
+echo $html->addCrumb('Call data records', '/cdr');
+echo $html->addCrumb('Export', '/cdr/export');
+
+
 echo "<h1>".__("Export CDR",true)."</h1>";
 echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
 

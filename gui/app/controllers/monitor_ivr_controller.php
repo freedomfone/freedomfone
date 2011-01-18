@@ -42,7 +42,7 @@ class MonitorIvrController extends AppController{
        }
 
 
-	     $this->pageTitle = 'Voice Menus: Monitor';
+	     $this->pageTitle = 'Monitor Voice Menus';
 
     	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
 	     $this->MonitorIvr->recursive = 0; 
@@ -98,6 +98,8 @@ class MonitorIvrController extends AppController{
     }
 
       function export(){
+
+       $this->pageTitle = 'Export monitoring data';
 
         $start = $this->MonitorIvr->Cdr->getEpoch('first');  
         $end   = time()+900;
@@ -159,7 +161,7 @@ class MonitorIvrController extends AppController{
 
     function delete(){
 
-
+    $this->pageTitle = 'Delete monitoring data';
 
       if ($this->data['MonitorIvr']){
       	 $start	  = $this->data['MonitorIvr']['start_time'];

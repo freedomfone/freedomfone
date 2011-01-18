@@ -417,7 +417,6 @@ gui/app/views/nodes/add.ctp -text
 gui/app/views/nodes/edit.ctp -text
 gui/app/views/nodes/index.ctp -text
 gui/app/views/office_route/edit.ctp -text
-gui/app/views/pages/about.ctp -text
 gui/app/views/pages/home.ctp -text
 gui/app/views/phone_books/add.ctp -text
 gui/app/views/phone_books/edit.ctp -text

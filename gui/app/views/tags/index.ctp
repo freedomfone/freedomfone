@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all tags (used in Leave-a-message)
- * version 	- 2.0.1139 
+ * version 	- 2.0.1170
  *
  * Version: MPL 1.1
  *
@@ -21,6 +21,10 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Tags', '/tags');
+
 
 
 echo $form->create('Tag',array('type' => 'post','action'=> 'add'));

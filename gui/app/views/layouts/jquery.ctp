@@ -88,13 +88,15 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
          
          <?php echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
 
-
 		<div id="main_content">
     		<?php echo $content_for_layout; ?>  
 		</div>								<!--main_content end-->
 	 </div>									<!--content_wrap end-->
+
+	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?>
+         <?php echo "( Memory: ".round(memory_get_peak_usage()/1000000).' MB)'; ?>         
+         </div>
 	 
-	 <div class="footer"><?php echo VERSION_NAME." ".VERSION; ?></div>
 </div>										<!--wrapper end-->
 </body>
 </html>

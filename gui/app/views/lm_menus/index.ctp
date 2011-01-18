@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List existing Leave-a-message IVR menus. Provide links to Add, Edit and Delete.
- * version 	- 1.0.359
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,10 +22,15 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Message Centre', '');
+echo $html->addCrumb('Administration', '/lm_menus');
+
+
+
 echo $form->create('LmMenu',array('type' => 'post','action'=> 'create'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-echo "<h1>".__('Leave-a-message Settings',true)."</h1>";
+echo "<h1>".__('Leave-a-message Administration',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * menu.ctp	- Main horizontal menu
- * version 	- 1.0.354
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -82,7 +82,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("LAM Settings",true),'/lm_menus/index'); ?>
+<?php echo $html->link(__("Administration",true),'/lm_menus/index'); ?>
 </li>
 
 <li>
@@ -219,12 +219,13 @@
 
 
 <li>
-<?php echo $html->link(__("General info",true),'/processes/system'); ?>
+<?php echo $html->link(__("GSM channels",true),'/channels'); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("GSM channels",true),'/channels'); ?>
+<?php echo $html->link(__("About",true),'/processes/system'); ?>
 </li>
+
 
 <li>
 <?php echo $html->link(__("Logs",true),'/logs'); ?>
@@ -264,10 +265,6 @@
 <?php echo $html->link(__("Feedback",true),'http://www.freedomfone.org/page/feedback',array('target'=>'blank')); ?>
 </li>
 
-
-<li>
-<?php echo $html->link(__("About",true),'/about'); ?>
-</li>
 
 
 <li class='last'>

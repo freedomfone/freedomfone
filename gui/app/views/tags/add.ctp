@@ -22,22 +22,25 @@
  *
  ***************************************************************************/
 
-echo "<h1>".__("Create tag",true)."</h1>";
+      echo $html->addCrumb('Message Centre', '');
+      echo $html->addCrumb('Tags', '/tags');
+      echo $html->addCrumb('Add', '/tags/add');
+
+      echo "<h1>".__("Create tag",true)."</h1>";
 
 
-$session->flash();
+      $session->flash();
+      $options	  = array('label' => false);
 
-$options	  = array('label' => false);
 
+      echo $form->create('Tag',array('type' => 'post','action'=> 'add'));
+      echo "<table cellspacing=0 class='stand-alone'>";
 
-echo $form->create('Tag',array('type' => 'post','action'=> 'add'));
-echo "<table cellspacing=0 class='stand-alone'>";
+      echo $html->tableCells(array (
+           array(__("Tag",true),           $form->input('name',$options)),
+           array(__("Description",true),   $form->input('longname',$options)),
+           array('',			     $form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 
-echo $html->tableCells(array (
-     array(__("Tag",true),           $form->input('name',$options)),
-     array(__("Description",true),   $form->input('longname',$options)),
-     array('',			     $form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
-
-echo "</table>";
+     echo "</table>";
 
 ?>

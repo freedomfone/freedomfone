@@ -22,6 +22,11 @@
  *
  ***************************************************************************/
 
+      echo $html->addCrumb('Message Centre', '');
+      echo $html->addCrumb('Categories', '/categories');
+
+
+
 echo $form->create('Category',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();

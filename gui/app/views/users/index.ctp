@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all users in system
- * version 	- 1.0.362
+ * version 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -22,6 +22,7 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('User Management', '');
 echo $html->addCrumb('Users', '/users');
 
 

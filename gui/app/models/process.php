@@ -71,14 +71,7 @@ class Process extends AppModel{
 				 $entry['interupt'] = __('Unmanaged',true);
 				 $this->save($entry);
     		      		 $this->log('UNEXPECTED INTERRUPT; Type: '.$name.'; Msg: Process NOT running but status = ON', 'process');
-		       } /*elseif ($pid != $this->data['Process']['data'][$key]['Process']['pid']){
-
-				 $entry['id'] = $id;
-				 $entry['started']   = time();
-				 $entry['last_seen'] = time();
-				 $entry['pid'] = $pid;
-                                 $this->save($entry);
-                       }*/
+		       } 
 
       	       }
 

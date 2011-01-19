@@ -111,6 +111,7 @@ public $ext;
 
      $ivr_default = Configure::read('IVR_DEFAULT');
      $this->menu_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
+
 	  
 	   $comment	    = "type: ".$data['ivr_type'];
 	   $name            = 'freedomfone_ivr_'.$data['instance_id'];
@@ -128,7 +129,7 @@ public $ext;
 
 
 	   if($data['file_long'] && !$data['mode_long']){
-		$greet_long = 'file_long.wav';
+		$greet_long = $this->menu_path.'file_long.wav';
 		}
 	   elseif (trim($message_long)) {
 	   	$greet_long = "say: ".$message_long;
@@ -140,7 +141,7 @@ public $ext;
 
 
 	   if($data['file_short'] && !$data['mode_short']){
-		$greet_short = 'file_short.wav';
+		$greet_short = $this->menu_path.'file_short.wav';
 		}
 	   elseif (trim($message_short)) {
 	   	$greet_short = "say: ".$message_short;
@@ -151,7 +152,7 @@ public $ext;
 
 
 	   if($data['file_invalid'] && !$data['mode_invalid']){
-		$invalid = 'file_invalid.wav';
+		$invalid = $this->menu_path.'file_invalid.wav';
 		}
 	   elseif(trim($message_invalid)){
 		$invalid = "say: ".$message_invalid;
@@ -163,7 +164,7 @@ public $ext;
 
 
 	   if($data['file_exit'] && !$data['mode_exit']){
-		$exit = 'file_exit.wav';
+		$exit = $this->menu_path.'file_exit.wav';
 		}
 	   elseif($message_exit){
 		$exit = "say: ".$message_exit;
@@ -214,9 +215,9 @@ public $ext;
 
 
 	   if($data['file_long'] && !$data['mode_long']){
-		$greet_long = 'file_long.wav';
-		}
-	   elseif (trim($message_long)) {
+		$greet_long = $this->menu_path.'file_long.wav';
+
+           } elseif (trim($message_long)) {
 	   	$greet_long = "say: ".$message_long;
 	   } else {
 	     $greet_long = "say: ".$ivr_default['ivrLongMessage'];
@@ -226,7 +227,7 @@ public $ext;
 
 
 	   if($data['file_invalid'] && !$data['mode_invalid']){
-		$invalid = 'file_invalid.wav';
+		$invalid = $this->menu_path.'file_invalid.wav';
 		}
 	   elseif(trim($message_invalid)){
 		$invalid = "say: ".$message_invalid;
@@ -237,7 +238,7 @@ public $ext;
 	   }
 
 
-	    $menus -> addAttribute ("invalid-sound",$invalid);
+           $menus -> addAttribute ("invalid-sound",$invalid);
 	   $menus -> addAttribute ("timeout",$this->timeout);					 
 	   $menus -> addAttribute ("inter-digit-timeout",$this->inter_digit_timeout);			 
            $menus -> addAttribute ("max-failures",$this->max_failures);					 

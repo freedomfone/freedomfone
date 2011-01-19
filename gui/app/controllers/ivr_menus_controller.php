@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menus_controller.php	- Controller for IVR menus. Manages CRUD operations. Creating ivr.xml files.
- * version 		 	- 1.0.368
+ * version 		 	- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -519,6 +519,7 @@ class IvrMenusController extends AppController{
 
                 foreach($this->data['Mapping'] as $key => $entry){
 
+
                     if (!$entry[$entry['type'].'_id'] ) {
 
                     unset($this->data['Mapping'][$key]);
@@ -773,14 +774,9 @@ class IvrMenusController extends AppController{
 
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 					   $this->log("INFO; Action: Edit switcher; Type: ".$url, "switcher");
-
-
-                                           $filename = $this->getFilename($fileOK['files'][$key]);
 					   $name= $fileData[$key]['name'];
-                                           $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part));
+                                           $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
-
 
 				   }
 					

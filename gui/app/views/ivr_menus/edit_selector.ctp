@@ -22,6 +22,12 @@
  *
  ***************************************************************************/
 
+
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Language selectors', '/selectors');
+
+
+
 $settings = Configure::read('IVR_SETTINGS');
 
 $commentTitle   = "<span class='formHelp'>".__("Name of language selector",true)."</span>";
@@ -35,6 +41,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='switcher'){
 
+                echo $html->addCrumb('Edit', '/selectors/edit/'.$this->data['IvrMenu']['id']);
 
                 $switcher = $this->data['IvrMenu'];
 

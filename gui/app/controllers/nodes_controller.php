@@ -33,12 +33,12 @@ class NodesController extends AppController{
       function index(){
 
 
-      	     $this->pageTitle = 'Voice menus : Audio files';           
-             $this->paginate['limit'] = 10;
-	     $this->Node->recursive = 0; 
+      	$this->pageTitle = 'Content';           
+        $this->paginate['limit'] = 10;
+	$this->Node->recursive = 0; 
 
-      if(isset($this->params['named']['limit'])) { 
-	$this->Session->write('messages_limit',$this->params['named']['limit']);
+        if(isset($this->params['named']['limit'])) { 
+	     $this->Session->write('messages_limit',$this->params['named']['limit']);
 	}
 	elseif($this->Session->check('messages_limit')) { 
 	$this->paginate['limit'] = $this->Session->read('messages_limit');
@@ -53,7 +53,7 @@ class NodesController extends AppController{
 
    function add(){
 
-      	$this->pageTitle = 'Voice menus : Audio files : Add';           
+      	$this->pageTitle = 'Upload content';           
 
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
@@ -154,7 +154,7 @@ $this->render();
 
    function edit($id=null){
 
-      	$this->pageTitle = 'Voice menus : Audio files : Edit';           
+      	$this->pageTitle = 'Edit content';           
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
         $_titleOK = $_fileOK = true;

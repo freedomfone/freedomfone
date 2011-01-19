@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add.ctp	- Add node (aka Content for Voice Menus and Selectors)
- * version 	- 1.0.475
+ * version 	- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,12 @@
  *
  *
 ***************************************************************************/
+
+
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Content', '/nodes');
+echo $html->addCrumb('Upload', '/nodes/add');
+
 
 $session->flash();
 echo "<h1>".__("Upload Content",true)."</h1>";

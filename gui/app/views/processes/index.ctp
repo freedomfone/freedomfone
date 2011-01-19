@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('Health', '/processes/');
+
+
 
 $generated  = $session->read('Process.refresh');
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * selectors.ctp	- List language selectors
- * version 	        - 1.0.359
+ * version 	        - 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -63,8 +63,8 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
 
      		$row[$key] = array(
                            $instance_id,
-			   array($title,array('width'=>'100px')),
-			   array($type,array('width'=>'100px')),
+			   $title,
+			   $type,
                            $modified,		
 			   array($edit,array('align'=>'center')),
 			   array($delete,array('align'=>'center')));

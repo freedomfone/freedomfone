@@ -42,7 +42,7 @@ class IvrMenusController extends AppController{
    function index(){
 
       	$this->pageTitle = 'Voice menus';           
-
+    	$this->layout = 'jquery';
    	//Avoid fetching associated data
 	$this->IvrMenu->recursive = 0;
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all IVR Voice Menus
- * version 	- 1.0.359
+ * version 	- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -21,6 +21,10 @@
  *
  *
  ***************************************************************************/
+
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Voice menus', '/ivr_menus');
+
 
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));

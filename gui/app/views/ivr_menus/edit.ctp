@@ -22,21 +22,14 @@
  *
  ***************************************************************************/
 
-$ivr = Configure::read('IVR_SETTINGS');
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Voice menus', '/ivr_menus/');
+
 $session->flash();
 
-	if($this->data && $this->data['IvrMenu']['ivr_type']=='ivr'){
-
-
-$ivrMenu = $this->data['IvrMenu'];
-echo "<h1>".__("Edit voice menu",true)."</h1>";
 
 $ivr_default  = Configure::read('IVR_DEFAULT');
 $ivr_settings = Configure::read('IVR_SETTINGS');
-
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-        }
 
 
 $commentTitle   = "<span class='formHelp'>".__("Name of IVR",true)."</span>";
@@ -52,6 +45,21 @@ $FallbackExit    = "<div class='formComment'>".__("Default: ",true).$ivr_default
 $FallbackInvalid    = "<div class='formComment'>".__("Default: ",true).$ivr_default['ivrInvalidMessage']."</div>";
 $FallbackLong    = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrLongMessage']."</div>";
 $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_default['ivrShortMessage']."</div>";
+
+
+	if($this->data && $this->data['IvrMenu']['ivr_type']=='ivr'){
+
+             echo $html->addCrumb('Edit', '/ivr_menus/edit/'.$this->data['IvrMenu']['id']);
+
+             $ivrMenu = $this->data['IvrMenu'];
+             echo "<h1>".__("Edit voice menu",true)."</h1>";
+
+
+             if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+             }
+
+
 
 
 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
@@ -168,17 +176,17 @@ echo "</fieldset>";
 echo "<fieldset>";
 echo "<legend>".__('Menu Options',true)."</legend>";
 
-$path = $ivr['path'].$ivr['dir_node'];
+$path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
        }
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr['showLengthMin'],'...',true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
        }
 
 
@@ -215,7 +223,7 @@ $path = $ivr['path'].$ivr['dir_node'];
                    $id = $mappings[$i]['node_id'];
                    $file = $nodes['file'][$id];
                    $title = $nodes['title'][$id];
-      	           $path = $ivr['path'].$ivr['dir_node'];
+      	           $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
                 }
 

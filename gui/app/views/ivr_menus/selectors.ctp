@@ -22,6 +22,10 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Language selectors', '/selectors');
+
+
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -38,8 +42,9 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
      $switchers = $ivr_menus;
      	if ($switchers){
 
-     	   echo "<table width='500px' cellspacing=0>";
+     	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
+ 		$paginator->sort(__("Instance",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Type",true), 'type'),
  		$paginator->sort(__("Last modified",true), 'modified'),
@@ -49,7 +54,7 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
 		
 
 	foreach ($switchers as $key => $switcher){
-
+		$instance_id  = $switcher['IvrMenu']['instance_id'];
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
@@ -57,6 +62,7 @@ echo "<h1>".__('Languge selectors',true)."</h1>";
 		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/selectors/delete/{$switcher['IvrMenu']['id']}/switcher",null, __("Are you sure you want to delete this language selector?",true),false);
 
      		$row[$key] = array(
+                           $instance_id,
 			   array($title,array('width'=>'100px')),
 			   array($type,array('width'=>'100px')),
                            $modified,		

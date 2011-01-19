@@ -22,6 +22,11 @@
  *
  ***************************************************************************/
 
+echo $html->addCrumb('IVR Centre', '');
+echo $html->addCrumb('Voice menus', '/ivr_menus/');
+echo $html->addCrumb('Create', '/ivr_menus/add');
+
+
 echo "<h1>".__("Create voice menu",true)."</h1>";
 
 $ivr_default  = Configure::read('IVR_DEFAULT');

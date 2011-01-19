@@ -131,6 +131,7 @@ class IvrMenusController extends AppController{
 	$this->data['IvrMenu']['file_exit']= false;
 	$this->data['IvrMenu']['file_invalid']= false;
 
+debug($this->data);
 
           //Save text based form data
 
@@ -140,7 +141,6 @@ class IvrMenusController extends AppController{
                 $index = $entry[$entry['type'].'_id'];
 
                 if($index){
-
 
                    switch($entry['type']){
 
@@ -170,7 +170,6 @@ class IvrMenusController extends AppController{
 	            $this->data['Mapping'][$key]['node_id']= false;
 	            $this->data['Mapping'][$key]['instance_id']= false;
 	            $this->data['Mapping'][$key]['type']= false;
-
 
                   }
 
@@ -206,11 +205,10 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                           $filename = $this->getFilename($fileOK['files'][$key]);
 					   $name= $fileData[$key]['name'];
-                                           $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part));
+                                           $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
+
 		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
@@ -368,11 +366,10 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
-                                           $filename = $this->getFilename($fileOK['files'][$key]);
 					   $name= $fileData[$key]['name'];
-                                           $part = strstr($filename,'_');
-   			                   $field=substr($part,1,strlen($part));
+                                           $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
+
 		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
@@ -614,6 +611,7 @@ class IvrMenusController extends AppController{
 
                        if ($result = $this->IvrMenu->deleteIVR($id,$instance_id)){
 
+                          $this->IvrMenu->writeIVRCommon();
                           $this->_flash(__('The selected entry has been deleted.',true),'success');
                    
                        }

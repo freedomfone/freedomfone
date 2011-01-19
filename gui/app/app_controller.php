@@ -490,7 +490,7 @@ return $result;
                           $directoryHandle = opendir($directory);
        
                 while ($contents = readdir($directoryHandle)) {
-                      if($contents != '.' && $contents != '..') {
+                      if($contents != '.' && $contents != '..' && $contents != '.svn') {
                                    $path = $directory . "/" . $contents;
               
 

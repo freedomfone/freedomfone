@@ -388,7 +388,6 @@ function __construct($id = false, $table = null, $ds = null) {
    
                 if($this->delete($id,true)){
 
-
 		   $this->log("INFO; DELETE IVR {Id: ".$id."}", "ivr");
                    return true;
 

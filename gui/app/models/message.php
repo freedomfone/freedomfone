@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * message.php		- Model for Leave-a-message entries.
- * version 		- 1.0.359
+ * version 		- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -26,8 +26,6 @@ class Message extends AppModel {
 
 	var $name = 'Message';
 	
-
-
 	var $belongsTo = array('Category','User'); 
 
 	var $hasAndBelongsToMany = array('Tag');

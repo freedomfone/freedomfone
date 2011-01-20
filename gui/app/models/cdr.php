@@ -256,13 +256,32 @@ class Cdr extends AppModel{
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
+                  $service = $entry['FF-IVR-IVR-Node-Service-ID'];
+                  
+                  switch ($service){
 
+                         case 'Node':
+                         $table_id = 'node_id';
+                         break;
+
+                         case 'LmMenu':
+                         $table_id = 'lm_menu_id';
+                         break;
+
+                         case 'IvrMenu':
+                         $table_id = 'ivr_menu_id';
+                         break;
+
+                  }
 		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
 	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
-    	       	  $this->MonitorIvr->set('node_id',$entry['FF-IVR-IVR-Node-Unique-ID']);
+    	       	  $this->MonitorIvr->set('service',$service);
+    	       	  
+                  if ($table_id) { $this->MonitorIvr->set($table_id,$entry['FF-IVR-IVR-Node-Unique-ID']);}
+
 	       	  $this->MonitorIvr->set('caller_number', urldecode($entry['FF-IVR-Caller-ID-Number']));
 	       	  $this->MonitorIvr->set('extension', $entry['FF-IVR-Destination-Number']);
 		  $this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);

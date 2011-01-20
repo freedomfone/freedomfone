@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menu.php		- Model for IVRs (aka 'Voice menus') Manages updates of default IVR (aka 'parent').
- * version 		- 1.0.360
+ * version 		- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -27,7 +27,7 @@ class IvrMenu extends AppModel{
 
       var $name = 'IvrMenu';
 
-      var $hasMany = array('Mapping');	
+      var $hasMany = array('Mapping','MonitorIvr');	
 
 
 

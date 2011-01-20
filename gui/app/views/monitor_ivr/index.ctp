@@ -71,21 +71,19 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
  	$paginator->sort(__("Date (YMD)",true), 'epoch'),
  	$paginator->sort(__("Time",true), 'epoch'),
  	$paginator->sort(__("Call ID",true), 'call_id'),
- 	$paginator->sort(__("IVR Code",true), 'ivr_code'),
- 	$paginator->sort(__("Digit",true), 'digit'),
+ 	$paginator->sort(__("Caller ID",true), 'caller_number'),
+ 	$paginator->sort(__("From",true), 'ivr_code'),
+ 	$paginator->sort(__("Pressed",true), 'digit'),
+ 	$paginator->sort(__("To",true), 'service'),
  	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Caller number",true), 'caller_number'),
+
  	$paginator->sort(__("Type",true), 'type'),
 	''));
-
-
-
 
 	$call_id_old=false;
 	$class='lighter';
 
       foreach ($data as $key => $entry){
-
 
 
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
@@ -94,13 +92,29 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20,'...',true,false);
 	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8,false,true,false);
 	$digit       = $entry['MonitorIvr']['digit'];
-	$title       = $text->truncate($entry['Node']['title'],13,'...',true,false);
+	
 	$caller_number  = $entry['MonitorIvr']['caller_number'];
-	//$extension = $entry['MonitorIvr']['extension'];
 
-	$type = $entry['MonitorIvr']['type'];
-	if($type =='CS_ROUTING'){ $type=__("start",true);}
-	elseif($type =='CS_DESTROY'){ $type=__("end",true);}
+
+	$type_tmp = $entry['MonitorIvr']['type'];
+        $title = false;
+	$service = false;
+
+        if($type_tmp =='CS_ROUTING'){ 
+                 $type   = __("start",true);
+         
+        } elseif ($type_tmp =='CS_DESTROY'){ 
+                $type=__("end",true);
+
+        } elseif ($type_tmp == 'tag'){
+
+                 $type=__("tag",true);
+                 $service = $this->element('services',array('service' => $entry['MonitorIvr']['service']));
+                 $title  = $text->truncate($entry[$entry['MonitorIvr']['service']]['title'],13,'...',true,false);
+
+        }
+
+
 
 
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
@@ -117,10 +131,11 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 		$date,
 		$time,
 		$call_id,
+		$caller_number,
 		$ivr_code,
 		array($digit,array('align'=>'center')),
+                $service,
 		$title,
-		$caller_number,
 		array($type,array('align'=>'center')),
 		array($delete,array('align'=>'center'))
 		);

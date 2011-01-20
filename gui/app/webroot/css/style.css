@@ -22,6 +22,7 @@
  ***************************************************************************/
 
 
+
 .formTitleDefault {
 	font-weight: normal;
 	font-size: 100%;
@@ -297,8 +298,8 @@ padding: 0;
 #top_nav {
 height: 33px;
 width: 900px;
-margin: 0;
-padding: 0;
+margin: 0px;
+padding: 0px;
 background: #fff;
 }
 
@@ -306,13 +307,14 @@ background: #fff;
 #content_wrap {
 width: 900px;
 overflow: auto;
+
 }
 
 #main_content {
 float: left;
 width: 880px;
 padding: 0px 10px 10px 10px;
-margin-left: 0px;
+margin: 0px;
 min-height: 500px;
 }
 

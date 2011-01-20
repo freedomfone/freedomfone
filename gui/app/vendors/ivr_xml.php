@@ -316,7 +316,7 @@ public $ext;
 		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
 		       	   $arr = mysql_fetch_array($obj);
 			   $action = "menu-exec-app";
-
+                           $service = 'Node';
 
 			   //We wait 1 second after playing the file to return to head IVR
 			   $param  = 'play_and_get_digits 1 1 1 1000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
@@ -330,6 +330,7 @@ public $ext;
 		       	   $arr = mysql_fetch_array($obj);
 			   $action = "menu-play-sound";
 			   $param  = $this->node_path.$arr['file'].'.wav';
+                           $service = 'Node';
 			   break;
 
 
@@ -340,7 +341,7 @@ public $ext;
 			   $ext = $this->ext['lam'].$instance_id;
 			   $action = "menu-exec-app";
 			   $param  = "transfer ".$ext." XML default";
-			   $id='lam';
+                           $service = 'LmMenu';
 			   break;
 
 
@@ -349,6 +350,7 @@ public $ext;
 
 		           $action  = "menu-sub";
 		           $param   = "freedomfone_ivr_".$instance_id;
+                           $service = 'IvrMenu';
                            break;
 
           		   }
@@ -363,7 +365,7 @@ public $ext;
 
 			if($monitor){
 				$action= "menu-exec-app";
-				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' '\${caller_id_number}' '\${destination_number}'";
+				$param = "javascript $this->ivr_monitor \${uuid} '$title' '$digit' '$id' '$service' '\${caller_id_number}' '\${destination_number}'";
 		        	$entry = $this->body -> section-> configuration-> menus -> menu -> addChild("entry");
       				$entry -> addAttribute("action",$action);
 		        	$entry -> addAttribute("digits",$digit);

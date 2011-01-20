@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * lm_menu.php		- Model for Leave-a-message IVR menu.
- * version 		- 1.0.359
+ * version 		- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -26,7 +26,7 @@ class LmMenu extends AppModel {
 
 	var $name = 'LmMenu';
 
-        var $hasMany = array('Mapping');	
+        var $hasMany = array('Mapping','MonitorIvr');	
 
 
 /*

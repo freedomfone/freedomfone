@@ -374,6 +374,7 @@ gui/app/views/elements/message_status.ctp -text
 gui/app/views/elements/player.ctp -text
 gui/app/views/elements/poll_status.ctp -text
 gui/app/views/elements/process_status.ctp -text
+gui/app/views/elements/services.ctp -text
 gui/app/views/errors/empty -text
 gui/app/views/errors/missing_action.ctp -text
 gui/app/views/errors/missing_controller.ctp -text

@@ -1,7 +1,7 @@
 <?php
-/*
- * monitor_ivr.php	- Model for monitoring of IVR data.
- * version 		- 2.0.1175
+/****************************************************************************
+ * services.ctp         - Converts variations of service names to huam readable format
+ * version 		- 2.0.1180
  * 
  * Version: MPL 1.1
  *
@@ -20,36 +20,25 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
- */
+***************************************************************************/
+
+if(isSet($service)){
 
 
-class MonitorIvr extends AppModel{
+		if($service == 'Node'){
+   		     $return =  __('Content',true);
+		}
 
-      var $name = 'MonitorIvr';
-      
-      var $belongsTo = array('Node','IvrMenu','LmMenu',
-      	  'Cdr' => array(
- 	  	 'className' => 'Cdr',
- 		 'foreignKey' => 'cdr_id'
- 		 ));
-		 
+		elseif($service == 'LmMenu'){
+   		     $return =__('Leave-a-message',true);
+		}
 
-/*
- * Get unique call id
- *  
- * @param int $id
- *
- * @return string $call_id
- *
- */
+		elseif($service == 'IvrMenu'){
+   		     $return = __('Voice Menu',true);
+		}
 
-    function getCallId($id){
-
-    $data = $this->findById($id);
-    return $data['MonitorIvr']['call_id'];     
-    }
-
-
+                echo $return;
+                
 }
 
 

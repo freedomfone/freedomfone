@@ -33,13 +33,11 @@ class MonitorIvrController extends AppController{
       function index(){
 
 
-
-
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
                    $this->requestAction('/cdr/refresh');
-                   }
-       }
+                }
+        }
 
 
 	     $this->pageTitle = 'Monitor Voice Menus';
@@ -49,7 +47,7 @@ class MonitorIvrController extends AppController{
    	     $data = $this->paginate('MonitorIvr');
 	     $this->set('data',$data);  
 
-	     }
+	}
 
 
     function del ($id){

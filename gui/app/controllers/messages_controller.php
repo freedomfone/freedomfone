@@ -78,9 +78,6 @@ class MessagesController extends AppController{
 	     }
 
 
-
-
-
 	     }
 
 

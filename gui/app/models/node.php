@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * node.php	- Model for nodes (aka 'Menu options') used to compose IVRs (aka Voice menus).
- * version 	- 1.0.359
+ * version 	- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -32,7 +32,6 @@ class Node extends AppModel{
 	var $hasMany = array(
                         'MonitorIvr' => array(
                         	       'order' => 'MonitorIvr.id ASC',
-                        	       'dependent' => true,
                                        ),			      
                         'Mapping' => array(
                         	       'order' => 'Mapping.id ASC',

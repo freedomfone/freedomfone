@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * setting.php	- Model for global settings
- * version 	- 1.0.359
+ * version 	- 2.0.1175
  * 
  * Version: MPL 1.1
  *
@@ -32,9 +32,6 @@ class Setting extends AppModel{
 	  switch($type){
 
 	    case 'internal':
-     	    //$cmd = "/usr/bin/python /var/tmp/mylocalip.py";
-	    
-	    //$ip = gethostbyname(trim(`hostname`));
 	    $ip = $_SERVER['HTTP_HOST'];
 	    break;
 
@@ -63,6 +60,17 @@ class Setting extends AppModel{
 		}
 	}
 
+	function validDomain($domain){
+
+		 
+		 if (preg_match ("/^[a-z0-9.]+(\.[a-z]{2,4})+$/i", $domain)) {
+
+    		    return true;
+		 } else {
+		    return false;
+		 }
+
+	}
 
 }
 

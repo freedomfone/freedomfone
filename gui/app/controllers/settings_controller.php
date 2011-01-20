@@ -68,7 +68,7 @@ class SettingsController extends AppController {
                    $bool = date_default_timezone_set(Configure::read('Config.timezone'));
                    $this->Session->write('Config.timezone', $timezone); 
 
-		   if($this->Setting->validIP($ip_addr)){
+		   if($this->Setting->validIP($ip_addr) || $this->Setting->validDomain($ip_addr) ){
 
 		   $file = new File(APP.'/config/ip_addr.php',true);
 		   $string = "<?php \$config['Setting']['ip_addr']= '$ip_addr'; ?>";
@@ -78,7 +78,7 @@ class SettingsController extends AppController {
 		   } else {
 
 		   unset($data['Settings'][5]);
-		   $this->Session->setFlash('Invalid IP address. Please try again.','flash_error');
+		   $this->_flash('Invalid IP address ('.$ip_addr.') Please try again.','error');
 		   }
 
 		   $this->Setting->saveAll($data['Settings']);															            

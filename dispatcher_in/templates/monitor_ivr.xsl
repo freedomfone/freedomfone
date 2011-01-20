@@ -12,6 +12,7 @@
         <FF-IVR-IVR-Name><xsl:value-of select="event/headers/FF-IVR-IVR-Name"/></FF-IVR-IVR-Name>
         <FF-IVR-IVR-Node-Digit><xsl:value-of select="event/headers/FF-IVR-IVR-Node-Digit"/></FF-IVR-IVR-Node-Digit>
         <FF-IVR-IVR-Node-Unique-ID><xsl:value-of select="event/headers/FF-IVR-IVR-Node-Unique-ID"/></FF-IVR-IVR-Node-Unique-ID>
+        <FF-IVR-IVR-Node-Service-ID><xsl:value-of select="event/headers/FF-IVR-IVR-Node-Service-ID"/></FF-IVR-IVR-Node-Service-ID>
         <FF-IVR-Caller-ID-Number><xsl:value-of select="event/headers/FF-IVR-Caller-ID-Number"/></FF-IVR-Caller-ID-Number>
         <FF-IVR-Destination-Number><xsl:value-of select="event/headers/FF-IVR-Destination-Number"/></FF-IVR-Destination-Number>
      </headers>

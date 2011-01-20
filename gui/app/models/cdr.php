@@ -172,7 +172,6 @@ class Cdr extends AppModel{
 		  }
 
 
-
 			//Check if user is registered
 
 			//Process only CS_ROUTING (start) messages
@@ -180,7 +179,7 @@ class Cdr extends AppModel{
 
 			$value = urldecode($entry['Caller-Caller-ID-Number']);
                         $field = false;
-		  	if( $proto == 'skype') { $field = 'User.skype';}
+		  	if( $proto == 'skype') { $field = 'skype';}
 		  	elseif( $proto == 'gsm') { $field = 'PhoneNumber.number';}
 			elseif( $proto == 'sip') { $field = 'PhoneNumber.number';}
 
@@ -207,7 +206,7 @@ class Cdr extends AppModel{
 
                          }
 
-
+			 
 
 			if ($userData){
 
@@ -215,7 +214,7 @@ class Cdr extends AppModel{
 				$id = 	$userData['User']['id'];
                                 $this->User->id = $id;
 	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
- 		 		$this->User->save();
+ 		 		$this->User->save($this->User->data,false);
 
 		        } else {
 
@@ -223,20 +222,22 @@ class Cdr extends AppModel{
 
                               if($proto == 'sip' || $proto == 'gsm'){
 
-                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
+                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
+                                 $this->User->save($user,false);
                                  $user_id = $this->User->getLastInsertId();
                                  $phonenumber = array('user_id' => $user_id, 'number' => $value);
                                  $this->User->PhoneNumber->saveAll($phonenumber);
 
                               } elseif ($proto == 'skype'){
 
-                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
-                                 $this->User->save($user);
+                                 $user =array('skype' => $value, 'created' => $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
+                                 $this->User->save($user,false);
+
                               }        
 				
+				
 			}
+
 	           } //user
 
 	        } //insert into CDR		

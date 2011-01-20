@@ -92,7 +92,7 @@ class PhoneBooksController extends AppController {
     	     if($this->PhoneBook->delete($id,true)) {
 
     	     $this->_flash(__('The selected phone book has been deleted.',true),'success');
-	     $this->redirect(array('action' => '/index'));
+	     $this->redirect(array('action' => 'index'));
 
 	     }
      }

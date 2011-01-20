@@ -293,7 +293,7 @@ function checkDate($data,$field){
 
 
                         $field = false;
-		  	if( strcasecmp($proto,'skype')) { $field = 'User.skype';}
+		  	if( strcasecmp($proto,'skype')) { $field = 'skype';}
 		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
 			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
 
@@ -317,14 +317,13 @@ function checkDate($data,$field){
 
                         }
 
-
                         if ($userData){
 
 		 		$count = $userData['User'][$update]+1;
 				$id = 	$userData['User']['id'];
                                 $this->User->read(null, $id);
 	 			$this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
- 		 		$this->User->save();
+		 		$this->User->save($this->User->data,false);
 
 		        } else {
 
@@ -332,19 +331,23 @@ function checkDate($data,$field){
 
                               if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
 
-                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-                                 $this->User->save($user);
-                                 $user_id = $this->User->getLastInsertId();
-                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
-                                 $this->User->PhoneNumber->saveAll($phonenumber);
+                                 $user = array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
+                                 if($this->User->save($user,false)){
+					$user_id = $this->User->getLastInsertId();
+                                 	$phonenumber = array('user_id' => $user_id, 'number' => $value);
+                                 	$this->User->PhoneNumber->saveAll($phonenumber);
+			          }
 
                               } elseif ( strcasecmp($proto,'skype')){
 
-                                 $user =array($field => $value,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
-  
+                                 $user = array('skype' => $value,'created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
+
+                                 $this->User->save($user,false);
+
                               }
+
 		       }
+
 
 
 	} //while

@@ -28,6 +28,7 @@ echo $html->addCrumb('Phone books', '/phone_books');
    echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
    echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
    echo $form->end();
+
    echo "<h1>".__("Phone books",true)."</h1>";
 
 
@@ -63,7 +64,7 @@ echo $html->addCrumb('Phone books', '/phone_books');
 
    }   else {
       
-      echo $htlm->div('feedback', __('No phone books exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
+      echo $html->div('feedback', __('No phone books exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
 
    }
 

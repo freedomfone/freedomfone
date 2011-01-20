@@ -321,7 +321,6 @@ SET character_set_client = @saved_cs_client;
 --
 
 
-
 DROP TABLE IF EXISTS `monitor_ivr`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
@@ -336,9 +335,13 @@ CREATE TABLE `monitor_ivr` (
   `caller_number` varchar(50) default NULL,
   `extension` smallint(6) default NULL,
   `type` varchar(10) default NULL,
+  `service` varchar(10) default NULL,
+  `lm_menu_id` int(11) default NULL,
+  `ivr_menu_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
 
 
 --

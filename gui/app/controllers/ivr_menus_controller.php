@@ -521,6 +521,9 @@ class IvrMenusController extends AppController{
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['ivr_id']= false;
 	            $this->data['Mapping'][$key]['instance_id']= false;
+		    if(!$entry['node_id']){
+		    	   $this->data['Mapping'][$key]['type']= false;
+		    }
                     break;
 
                     case 'lam':
@@ -531,6 +534,7 @@ class IvrMenusController extends AppController{
 		    	   $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($lam_id);
 	             } else {
 	   	           $this->data['Mapping'][$key]['instance_id']= false;
+		    	   $this->data['Mapping'][$key]['type']= false;		    	   
 		     }
 
                     break;
@@ -541,8 +545,10 @@ class IvrMenusController extends AppController{
 
 		    if($ivr_id = $entry['ivr_id']){
 		    	   $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($ivr_id);
+
 	             } else {
 	   	           $this->data['Mapping'][$key]['instance_id']= false;
+			   $this->data['Mapping'][$key]['type']= false;
 		     }
 
                     break;
@@ -802,33 +808,39 @@ class IvrMenusController extends AppController{
 
                          foreach($this->data['Mapping'] as $key => $entry){
 
-                            if (!$entry[$entry['type'].'_id'] ) {
-
-                                unset($this->data['Mapping'][$key]);
-
-                            } else {
-
                               switch($entry['type']){
 
-                              case 'node':
-	                      $this->data['Mapping'][$key]['lam_id']= false;
-	                      $this->data['Mapping'][$key]['ivr_id']= false;
-                              break;
+                               case 'node':
+	                       $this->data['Mapping'][$key]['lam_id']= false;
+	                       $this->data['Mapping'][$key]['ivr_id']= false;
+		    	       if(!$entry['node_id']){
+				$this->data['Mapping'][$key]['type']= false;
+		               }
 
-                              case 'lam':
-	                      $this->data['Mapping'][$key]['node_id']= false;
-	                      $this->data['Mapping'][$key]['ivr_id']= false;
-	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
-                              break;
+                               break;
 
-                              case 'ivr':
-	                      $this->data['Mapping'][$key]['lam_id']= false;
-	                      $this->data['Mapping'][$key]['node_id']= false;
-	                      $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id'],'ivr');                
-                              break;
-                             
+                               case 'lam':
+	                       $this->data['Mapping'][$key]['node_id']= false;
+	                       $this->data['Mapping'][$key]['ivr_id']= false;
+		    	       if($lam_id = $entry['lam_id']){
+		    	      	$this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($lam_id);
+	         	       } else {
+	   	              	$this->data['Mapping'][$key]['instance_id']= false;
+		    	   	$this->data['Mapping'][$key]['type']= false;		    	   
+		     	       }
+                               break;
+
+                               case 'ivr':
+	                       $this->data['Mapping'][$key]['lam_id']= false;
+	                       $this->data['Mapping'][$key]['node_id']= false;
+		    	       if($ivr_id = $entry['ivr_id']){
+		    	         $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($ivr_id);
+	                        } else {
+	   	                  $this->data['Mapping'][$key]['instance_id']= false;
+			   	  $this->data['Mapping'][$key]['type']= false;
+		                }
+                                break;                             
                               }
-                            }
                           }
                       }
 

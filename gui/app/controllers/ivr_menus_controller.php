@@ -131,7 +131,7 @@ class IvrMenusController extends AppController{
 	$this->data['IvrMenu']['file_exit']= false;
 	$this->data['IvrMenu']['file_invalid']= false;
 
-debug($this->data);
+
 
           //Save text based form data
 
@@ -513,15 +513,7 @@ debug($this->data);
           //Save text based form data
 
 
-
                 foreach($this->data['Mapping'] as $key => $entry){
-
-
-                    if (!$entry[$entry['type'].'_id'] ) {
-
-                    unset($this->data['Mapping'][$key]);
-
-                    } else {
 
                    switch($entry['type']){
 
@@ -534,18 +526,28 @@ debug($this->data);
                     case 'lam':
 	            $this->data['Mapping'][$key]['node_id']= false;
 	            $this->data['Mapping'][$key]['ivr_id']= false;
-	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['lam_id'],'lam');                
+		    
+		    if($lam_id = $entry['lam_id']){
+		    	   $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($lam_id);
+	             } else {
+	   	           $this->data['Mapping'][$key]['instance_id']= false;
+		     }
+
                     break;
 
                     case 'ivr':
 	            $this->data['Mapping'][$key]['lam_id']= false;
 	            $this->data['Mapping'][$key]['node_id']= false;
-	            $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($entry['ivr_id']);                
+
+		    if($ivr_id = $entry['ivr_id']){
+		    	   $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($ivr_id);
+	             } else {
+	   	           $this->data['Mapping'][$key]['instance_id']= false;
+		     }
+
                     break;
 
                    }
-                  } 
-
                 }
 
 
@@ -556,6 +558,7 @@ debug($this->data);
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
 	 $this->IvrMenu->writeIVR($id);
 	 $this->IvrMenu->writeIVRCommon();
+
 
 	//Redirect to index
 	$this->redirect(array('action' => 'index'));

@@ -51,7 +51,7 @@ var miDebug = true;
 if (miDebug) {
         console_log("\n");
         console_log(" ============================================================================ " +"\n");
-        console_log(miIVR_Unique_ID + "|" + miIVR_IVR_Name + "|" + miIVR_IVR_Node_Digit + "|" + miIVR_IVR_Node_Unique_ID + "|" + miIVR_Node_Service_ID + "|" + miIVR_Caller_ID_Number + "|" + miIVR_Destination_Number +"\n");
+        console_log(miIVR_Unique_ID + "|" + miIVR_IVR_Name + "|" + miIVR_IVR_Node_Digit + "|" + miIVR_IVR_Node_Unique_ID + "|" + miIVR_IVR_Node_Service_ID + "|" + miIVR_Caller_ID_Number + "|" + miIVR_Destination_Number +"\n");
         console_log(" ============================================================================ " +"\n");
         console_log("\n");
 	    }   

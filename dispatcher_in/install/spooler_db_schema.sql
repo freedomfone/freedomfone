@@ -168,6 +168,7 @@ CREATE TABLE `monitor_ivr` (
   `FF-IVR-IVR-Name` varchar(200) default NULL,
   `FF-IVR-IVR-Node-Digit` smallint(6) default '0',
   `FF-IVR-IVR-Node-Unique-ID` smallint(6) default '0',
+  `FF-IVR-IVR-Node-Service-ID` varchar(10) default 'NULL',
   `FF-IVR-Caller-ID-Number` varchar(50) default NULL,
   `FF-IVR-Destination-Number` varchar(50) default NULL,
   `status` tinyint(1) default '0',

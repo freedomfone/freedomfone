@@ -31,7 +31,7 @@ echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('n
 echo $form->end();
 
 
-echo "<h1>".__('Languge selectors',true)."</h1>";
+echo "<h1>".__('Language selectors',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

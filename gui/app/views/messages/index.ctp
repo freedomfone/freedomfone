@@ -73,7 +73,8 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
-	$title    = $text->truncate($message['Message']['title'],20,'...',true,false);
+
+	$title    = "<div title='".$message['Message']['title']."'>".$text->truncate($message['Message']['title'],20,'...',true,false)."</div>";
 	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];

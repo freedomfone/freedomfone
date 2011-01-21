@@ -61,7 +61,6 @@ class CdrController extends AppController{
       //User arrived from other page, reset session variables
       if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
 
-
             $this->Session->write('cdr_start', $this->Cdr->getEpoch('first')-900);
             $this->Session->write('cdr_end',time()+900);
 
@@ -79,9 +78,10 @@ class CdrController extends AppController{
 
       $title=false;
 
+
       if($app =='ivr'){ 
       	      $title   = $this->data['Cdr']['title_ivr'];
-	      } elseif ($app =='lam') {
+      } elseif ($app =='lam') {
 	      $title   = $this->data['Cdr']['title_lam'];
       }
 
@@ -94,6 +94,7 @@ class CdrController extends AppController{
 
 	      $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
 	  	      
+
 	      $this->set('count', $count);
 
 
@@ -113,8 +114,11 @@ class CdrController extends AppController{
 
       } else {
       //Fetch CDR by Title
-        
+
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+        $foo = $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
+
 
          $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
 
@@ -125,12 +129,15 @@ class CdrController extends AppController{
 
         $this->loadModel('IvrMenu');
         $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
-        $ivr = $this->IvrMenu->find('list');
+        $ivr_data = $this->IvrMenu->find('list');
+        foreach($ivr_data as $key => $title){ $ivr[$title] = $title;}       
+
 
 
         $this->loadModel('LmMenu');
-        $lam = $this->LmMenu->find('list');
-	
+        $lam_data = $this->LmMenu->find('list');
+        foreach($lam_data as $key => $title){ $lam[$title] = $title;}       
+
 	$application = $this->data['Cdr']['application'];
 
         $data = $this->paginate('Cdr');

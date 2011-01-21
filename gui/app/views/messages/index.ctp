@@ -73,15 +73,13 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
 
-
-	$title    = "<div title='".$message['Message']['title']."'>".$text->truncate($message['Message']['title'],20,'...',true,false)."</div>";
-	$sender   = $message['Message']['sender'];
-	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
-	$category = $message['Category']['name'];
-	$created  = date('y/m/d H:i',$message['Message']['created']);
-	$length   = $formatting->epochToWords($message['Message']['length']);
-
-
+        $title      = $message['Message']['title'];
+        $title_div  = $html->div('',$text->truncate($title,20,'...',true,false),array('title' => $title),false);
+	$sender     = $message['Message']['sender'];
+	$rate       = $this->element('message_status',array('rate'=>$message['Message']['rate']));
+	$category   = $message['Category']['name'];
+	$created    = date('y/m/d H:i',$message['Message']['created']);
+	$length     = $formatting->epochToWords($message['Message']['length']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
 	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
 
@@ -90,7 +88,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 
      $row[$key] = array($id,
      		array($status,array('align'=>'center')),
-		$title,
+		array($title_div, array('width' => '110px')),
                 $sender,
 		array($rate,array('align'=>'center')),
 		array($category,array('align'=>'center')),

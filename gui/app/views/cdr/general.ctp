@@ -94,10 +94,10 @@ echo $html->addCrumb('Reporting', '/cdr/general');
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,30,'...',true,false);
        }
        foreach($ivr as $key => $entry){
-             $ivr[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+             $ivr[$key] = $text->truncate($entry,30,'...',true,false);
        }
 
 

@@ -116,14 +116,18 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
+
        }
+
+
+
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+             $voicemenu[$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$settings['showLengthMin'],'...',true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
        }
 
 

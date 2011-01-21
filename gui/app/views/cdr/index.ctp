@@ -72,6 +72,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
  	$paginator->sort(__("Type",true), 'channel_state'),
  	$paginator->sort(__("Call ID",true), 'call_id'),
  	$paginator->sort(__("Caller",true), 'caller_number'),
+ 	$paginator->sort(__("Title",true), 'title'),
  	$paginator->sort(__("Application",true), 'application')));
 
 
@@ -84,6 +85,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$date  	     = date('Y-m-d',$entry['Cdr']['epoch']);
 	$time  	     = date('H:i:s A',$entry['Cdr']['epoch']);
 	$type	     = $entry['Cdr']['channel_state'];
+	$title	     = $text->truncate($entry['Cdr']['title'],20,false,true,false);
 	$application = $formatting->appMatch($entry['Cdr']['application']);
 	$call_id     = $text->truncate($entry['Cdr']['call_id'],8,false,true,false);
 
@@ -101,7 +103,8 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 		$type,		
 		$call_id,
 		$caller_number,
-		$application
+		$title,
+                $application
 		);
 
 	

@@ -22,8 +22,13 @@
  *
 ***************************************************************************/
 
+echo $html->addCrumb('Dashboard', '');
+echo $html->addCrumb('GSM channels', '/channels');
+
 
 	if($this->data){
+
+                echo $html->addCrumb('Edit Officeroute', '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
 		echo "<h1>".__("Edit channel (slot ".$this->data['OfficeRoute']['id'].")",true)."</h1>";
 		

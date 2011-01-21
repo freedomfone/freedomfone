@@ -531,7 +531,8 @@ class IvrMenusController extends AppController{
 	            $this->data['Mapping'][$key]['ivr_id']= false;
 		    
 		    if($lam_id = $entry['lam_id']){
-		    	   $this->data['Mapping'][$key]['instance_id']= $this->IvrMenu->getInstanceID($lam_id);
+		           $this->loadModel('LmMenu');
+		    	   $this->data['Mapping'][$key]['instance_id']= $this->LmMenu->getInstanceID($lam_id);
 	             } else {
 	   	           $this->data['Mapping'][$key]['instance_id']= false;
 		    	   $this->data['Mapping'][$key]['type']= false;		    	   

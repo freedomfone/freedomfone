@@ -202,7 +202,7 @@ function __construct($id = false, $table = null, $ds = null) {
         //Write to file
 	$obj->write_file_individual();
 	
-		 
+
 
     }
 

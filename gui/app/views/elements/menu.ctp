@@ -82,7 +82,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Administration",true),'/lm_menus/index'); ?>
+<?php echo $html->link(__("Manage LAM",true),'/lm_menus/index'); ?>
 </li>
 
 <li>

@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Administration', '/lm_menus');
+echo $html->addCrumb('Leave-a-message', '/lm_menus');
 
 
 $ext = Configure::read('EXTENSIONS');
@@ -31,7 +31,7 @@ $ext = Configure::read('EXTENSIONS');
 echo $form->create('LmMenu',array('type' => 'post','action'=> 'create'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-echo "<h1>".__('Leave-a-message Administration',true)."</h1>";
+echo "<h1>".__('Manage Leave-a-message',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 

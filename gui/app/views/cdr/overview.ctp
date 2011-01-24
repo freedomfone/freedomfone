@@ -109,13 +109,11 @@ echo $form->end();
      $stat[] = array(__('Voice menus',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Poll',true),		 array($pollCount,array('align'=>'center')),array(round(100*$pollCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Other SMS',true),	 array($otherCount,array('align'=>'center')),array(round(100*$otherCount/$all).' %',array('align'=>'center')));
-     //$stat[] = array(array($html->div('empty_line'),array('colspan'=>'3')));
-     //$stat[] = array(__('All',true),	 array($total,array('align'=>'center')),'');
 
      echo "<table cellspacing=0>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      echo $html->tableCells($stat);
-     echo $html->tableHeaders(array(__('Total',true), $total,''));
+     echo $html->tableHeaders(array(false,$all,100*($lamCount+$ivrCount+$pollCount+$otherCount)/$all),false,array('align' => 'center'));
 
      echo "</table>";
 

@@ -29,7 +29,7 @@ echo $html->addCrumb('Language selectors', '/selectors');
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-
+$ext = Configure::read('EXTENSIONS');
 
 echo "<h1>".__('Language selectors',true)."</h1>";
 
@@ -44,7 +44,7 @@ echo "<h1>".__('Language selectors',true)."</h1>";
 
      	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
- 		$paginator->sort(__("Instance",true), 'instance_id'),
+ 		$paginator->sort(__("Service",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Type",true), 'type'),
  		$paginator->sort(__("Last modified",true), 'modified'),
@@ -54,7 +54,7 @@ echo "<h1>".__('Language selectors',true)."</h1>";
 		
 
 	foreach ($switchers as $key => $switcher){
-		$instance_id  = $switcher['IvrMenu']['instance_id'];
+		$instance_id  = $ext['ivr'].$switcher['IvrMenu']['instance_id'];
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);

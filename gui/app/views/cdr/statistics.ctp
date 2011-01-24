@@ -78,7 +78,7 @@ echo $form->end();
      echo $form->create('Cdr',array('type' => 'post','action'=> 'statistics'));
   
      echo "<table width='400px' cellspacing = 0>";
-     echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
+     echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)),false,array('align'=>'center'));
      $stat[] = array(__('Leave-a-message',true), array($lamCount,array('align'=>'center')),array(round(100*$lamCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Voice menus',true), 	 array($ivrCount,array('align'=>'center')),array(round(100*$ivrCount/$all).' %',array('align'=>'center')));
      $stat[] = array(__('Poll',true),		 array($pollCount,array('align'=>'center')),array(round(100*$pollCount/$all).' %',array('align'=>'center')));

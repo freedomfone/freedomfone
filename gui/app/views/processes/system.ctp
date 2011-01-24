@@ -66,7 +66,7 @@ echo $html->addCrumb('About', '/processes/system');
      $lang = Configure::read('LANGUAGES.'.$language);
 
 
-     echo "<h1>".__("General Information",true)."</h1>";
+     echo "<h1>".__("About",true)."</h1>";
 
 
      echo "<h2>".__("Freedom Fone",true)."</h2>";

@@ -25,6 +25,7 @@
 echo $html->addCrumb('IVR Centre', '');
 echo $html->addCrumb('Voice menus', '/ivr_menus');
 
+$ext = Configure::read('EXTENSIONS');
 
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
@@ -47,7 +48,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      	   echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
      	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
-     	   	__("Instance",true),
+     	   	__("Service",true),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Last modified",true), 'modified'),
 		__("Edit",true),
@@ -58,7 +59,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
  
 	foreach ($ivr_menus as $key => $ivr_menu){
       		$options    = array($ivr_menu['IvrMenu']['id']=>'');
-                $instance   = $ivr_menu['IvrMenu']['instance_id'];
+                $instance   = $ext['ivr'].$ivr_menu['IvrMenu']['instance_id'];
 		$title      = $ivr_menu['IvrMenu']['title'];
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 		$edit       = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);

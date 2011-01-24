@@ -26,6 +26,7 @@ echo $html->addCrumb('Message Centre', '');
 echo $html->addCrumb('Administration', '/lm_menus');
 
 
+$ext = Configure::read('EXTENSIONS');
 
 echo $form->create('LmMenu',array('type' => 'post','action'=> 'create'));
 echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
@@ -43,7 +44,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
 
      	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
- 		$paginator->sort(__("Instance",true), 'instance_id'),
+ 		$paginator->sort(__("Service",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Created",true), 'created'),
 		__("Edit",true),
@@ -51,7 +52,7 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
 
 
 	foreach ($lm_menus as $key => $lm_menu){
-  		$instance_id      = $lm_menu['LmMenu']['instance_id'];
+  		$instance_id      = $ext['lam'].$lm_menu['LmMenu']['instance_id'];
 		$title         = $lm_menu['LmMenu']['title'];
 		$created       = $time->niceShort($lm_menu['LmMenu']['created']);
 		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/lm_menus/edit/{$lm_menu['LmMenu']['id']}",null, null, false);

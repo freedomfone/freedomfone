@@ -48,7 +48,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
      	   echo $form->create('IvrMenu',array('type' => 'post','action'=> 'update'));
      	   echo "<table cellspacing=0>";
      	   echo $html->tableHeaders(array(
-     	   	__("Service",true),
+ 		$paginator->sort(__("Service",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Last modified",true), 'modified'),
 		__("Edit",true),

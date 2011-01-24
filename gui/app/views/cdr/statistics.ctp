@@ -87,7 +87,7 @@ echo $form->end();
 
   
      echo $html->tableCells($stat);
-     echo $html->tableHeaders(array(__('All',true), $total, ''));
+     echo $html->tableHeaders(array('', $total, 100*($lamCount+$ivrCount+$pollCount+$otherCount)/$total.' %'), false, array('align' => 'center'));
      echo "</table>";
 
      echo "<table cellspacing = 0 class='none'>";

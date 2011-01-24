@@ -34,8 +34,10 @@ class UsersController extends AppController{
 
       function refresh($redirect, $id = null){
 
+
         $this->requestAction('/bin/refresh');
         $this->requestAction('/polls/refresh');
+        $this->requestAction('/messages/refresh');
         $this->requestAction('/cdr/refresh');
 
         $this->redirect(array('controller' => 'users', 'action' => $redirect,$id));

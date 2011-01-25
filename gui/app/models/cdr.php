@@ -106,6 +106,8 @@ class Cdr extends AppModel{
 
 
 		        $message = $this->Message->findByFile($call_id);
+
+
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
                                
@@ -299,7 +301,6 @@ class Cdr extends AppModel{
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 
 	      }
-
 
 
 	}

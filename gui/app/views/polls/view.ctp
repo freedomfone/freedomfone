@@ -58,10 +58,11 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	echo "<h2>".__("Results",true)."</h2>";
       
         $total =  0;
+        $total_percentage = 0;
         $total_early =  0;
         $total_closed =  0;
         echo "<table width='400px' cellspacing=0>";
-        echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Early votes',true),__('Late votes',true)));
+        echo $html->tableHeaders(array(__("Options",true), __("Votes",true), __("Percentage",true),__('Early votes',true),__('Late votes',true)),false, array('align' => 'center'));
 
 	$votes = $data['Vote'];
 	$invalid_open   = $data['Poll']['invalid_open'];
@@ -89,6 +90,8 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 		   $percentage = $number->toPercentage(100*$vote['chvotes']/$total,0);
 		}
 
+                
+
 		$rows[] = array($vote['chtext'],array($vote['chvotes'],array('align'=>'center')),array($percentage,array('align'=>'center')),array($vote['votes_early'],array('align'=>'center')),array($vote['votes_closed'],array('align'=>'center')));
     	      }
 
@@ -99,14 +102,14 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	      	$percentage=0;
 		}
 
-	 
+
   	      $rows[] = array('"'.__('Invalid',true).'"',array($invalid_open,array('align'=>'center')),array($percentage,array('align'=>'center')),array($invalid_early,array('align'=>'center')), array($invalid_closed,array('align'=>'center')));
 
 	      echo $html->tableCells($rows);
 
-  	      $final = array(__('Total',true),$total,'', $total_early, $total_closed);
+  	      $final = array(false,$total,false, $total_early, $total_closed);
 	      
-	      echo $html->tableHeaders($final);
+	      echo $html->tableHeaders($final,false, array('align' => 'center'));
 	      echo "</table>";
 
 

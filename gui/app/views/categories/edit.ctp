@@ -24,37 +24,36 @@
 
       echo $html->addCrumb('Message Centre', '');
       echo $html->addCrumb('Categories', '/categories');
-
+      $ivr_settings = Configure::read('IVR_SETTINGS');      
 
       if($this->data){
 
-      echo $html->addCrumb('Edit', '/categories/edit/'.$this->data['Category']['id']);
+         foreach ($messages as $key => $entry){
+             $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],'...',true,false);
+         }
 
-      echo "<h1>".__("Edit Category",true)."</h1>";
-      $session->flash();
+         echo $html->addCrumb('Edit', '/categories/edit/'.$this->data['Category']['id']);
+         echo "<h1>".__("Edit Category",true)."</h1>";
+         $session->flash();
 
-      $options	  = array('label' => false);
-      $options_category = array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true));
+         $options	  = array('label' => false);
+         $options_category = array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>__('-- Use in none --',true));
 
-      echo $form->create('Category',array('type' => 'post','action'=> 'edit'));
-      echo "<table cellspacing = 0 class='stand-alone'>";
-
-      echo $html->tableCells(array (
+         echo $form->create('Category',array('type' => 'post','action'=> 'edit'));
+         echo "<table cellspacing = 0 class='stand-alone'>";
+         echo $html->tableCells(array (
       	   array(__("Category",true),	        $form->input('name',$options)),
      	   array(__("Description",true),	$form->input('longname',$options)),
      	   array(array(__("Use in message",true),array('valign' => 'top')),	$form->input('Message',$options_category)),
-     	   array('',	$form->end(__('Save',true)))
-     ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
-     echo "</table>";
+     	   array('',	$form->end(__('Save',true)))),
+           array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+         echo "</table>";
 
-     }
-     else {
+      }  else {
 
          echo $html->div("invalid_entry", __("This page does not exist.",true));
 
-
-     }
-
+      }
 
 ?>
 

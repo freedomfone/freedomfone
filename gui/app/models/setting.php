@@ -66,7 +66,13 @@ class Setting extends AppModel{
 		 if (preg_match ("/^[a-z0-9.]+(\.[a-z]{2,4})+$/i", $domain)) {
 
     		    return true;
-		 } else {
+
+		 } elseif ($domain == 'localhost') {
+
+                    return true;
+
+                 } else {
+
 		    return false;
 		 }
 

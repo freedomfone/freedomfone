@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edit existing tag (used in Leave-a-message)
- * version 	- 2.0.1170
+ * version 	- 2.0.1200
  * 
  * Version: MPL 1.1
  *
@@ -24,39 +24,39 @@
 
       echo $html->addCrumb('Message Centre', '');
       echo $html->addCrumb('Tags', '/tags');
+      $ivr_settings = Configure::read('IVR_SETTINGS');
 
+      if($this->data){
 
-     if($this->data){
+         foreach ($messages as $key => $entry){
+             $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],'...',true,false);
+         }
 
+        echo $html->addCrumb('Edit', '/tags/edit/'.$this->data['Tag']['id']);
+        echo "<h1>".__("Edit Tag",true)."</h1>";
+        $session->flash();
 
-      echo $html->addCrumb('Edit', '/tags/edit/'.$this->data['Tag']['id']);
+        $options_name     = array('label' =>  false);
+        $options_longname = array('label' =>  false, 'type'=>'text','size'=>'50');
+        $options_message  = array('label' =>  false);
 
-      echo "<h1>".__("Edit Tag",true)."</h1>";
-      $session->flash();
-
-      $options_name     = array('label' =>  array('text'=>false,'class'=>'formTitleDefault'), 'type' => 'text','size'=>'20');
-      $options_longname = array('label' =>  array('text'=>false,'class'=>'formTitleDefault'),'type'=>'text','size'=>'50');
-      $options_message  = array('label' =>  array('text'=>false,'class'=>'formTitleDefault'));
-
-      echo $form->create('Tag',array('type' => 'post','action'=> 'edit'));
-      	   				       			 
-
-     echo "<table cellspacing = 0 class = 'stand-alone'>";
-     echo $html->tableCells(array (
+        echo $form->create('Tag', array('type' => 'post','action'=> 'edit'));   				       			 
+        echo "<table cellspacing = 0 class = 'stand-alone'>";
+        echo $html->tableCells(array (
      	    array(__("Tag",true), $form->input('name',$options_name)),
      	    array(__("Description",true), $form->input('longname',$options_longname)),
-     	    array(__("Use in",true), $form->input('Message',array('type'=>'select','multiple'=>'true','label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	    array(array(__("Use in message",true),array('valign' =>'top')), $form->input('Message',array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>__('-- Use in none --',true)))),
             array('',   $form->end(__('Save',true)))
                                 ),
-                                array('class' => 'stand-alone'),array('class' => 'stand-alone'));
-    echo "</table>";
+            array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+        echo "</table>";
 
-    }
-    else {
+      } else {
 
          echo $html->div("invalid_entry", __("This page does not exist.",true));
 
-    }
+      }
+
 
 
 

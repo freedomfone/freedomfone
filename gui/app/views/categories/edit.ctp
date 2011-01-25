@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edit existing category (used in Leave-a-message)
- * version 	- 2.0.1170
+ * version 	- 2.0.1200
  * 
  * Version: MPL 1.1
  *
@@ -42,7 +42,7 @@
       echo $html->tableCells(array (
       	   array(__("Category",true),	        $form->input('name',$options)),
      	   array(__("Description",true),	$form->input('longname',$options)),
-     	   array(__("Use in message",true),	$form->input('Message',$options_category)),
+     	   array(array(__("Use in message",true),array('valign' => 'top')),	$form->input('Message',$options_category)),
      	   array('',	$form->end(__('Save',true)))
      ),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
      echo "</table>";

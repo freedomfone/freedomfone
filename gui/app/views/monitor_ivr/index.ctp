@@ -88,7 +88,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
-	$time  	     = date('H:i',$entry['MonitorIvr']['epoch']);
+	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
 	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20,'...',true,false);
 	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8,false,true,false);
 	$digit       = $entry['MonitorIvr']['digit'];

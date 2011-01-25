@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * disp.ctp	- Display Language Selector service options
- * version 	- 2.0.1150
+ * version 	- 2.0.1215
  * 
  * Version: MPL 1.1
  *
@@ -25,10 +25,9 @@
       $ivr  = Configure::read('IVR_SETTINGS');
       echo $ajax->div("service_div");
 
-       foreach($data as $key => $entry){
+      foreach($data as $key => $entry){
              $data[$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
-       }
-
+      }
 
 
       for($i=1;$i<=9;$i++){
@@ -37,17 +36,15 @@
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	
         echo $form->input('Mapping.'.$i.'.type',array('type'=>'hidden','value' => $service));	
 
+        $row[]=array( array("<h3>".__('#',true)." ".$i."</h3>", array('width'=>'100')),             
+        $form->input('Mapping.'.$i.'.'.$service.'_id',array('type'=>'select','options' => $data, 'label' => false,'empty'=>'-- '.__('Select entry',true).' --' )));  
+      
+       }
 
-       $row[]=array( array("<h3>".__('#',true)." ".$i."</h3>", array('width'=>'100')),             
-      $form->input('Mapping.'.$i.'.'.$service.'_id',array('type'=>'select','options' => $data, 'label' => false,'empty'=>'-- '.__('Select entry',true).' --' ))
-      );  
-                  }
-
-         echo "<table width='700px' cellspacing = 0 class='none'>";
-         echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));
-         echo "</table>";
-         echo $form->end(__('Save',true));
-         echo $ajax->divEnd("service_div");
-	
+       echo "<table width='700px' cellspacing = 0 class='none'>";
+       echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));
+       echo "</table>";
+       echo $form->end(__('Save',true));
+       echo $ajax->divEnd("service_div");
 
 ?>

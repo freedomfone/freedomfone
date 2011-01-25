@@ -60,7 +60,7 @@ echo $html->addCrumb('Polls', '/polls');
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->format('Y/m/d H:i',$poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i',$poll['Poll']['end_time']);
-	   $view     = $html->link($html->image("icons/view.png", array("title" => __("View",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
+	   $view     = $html->link($html->image("icons/view.png", array("title" => __("Results",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
 	   $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 	   $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/polls/delete/{$poll['Poll']['id']}",null, __("Are you sure you want to delete this poll?",true),false);
 
@@ -78,7 +78,7 @@ echo $html->addCrumb('Polls', '/polls');
      }
 
     echo "<table width='90%' cellspacing =0>";
-    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("View",true),__("Edit",true),__("Delete",true)));
+    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("Results",true),__("Edit",true),__("Delete",true)));
     echo $html->tableCells($row);
     echo "</table>";
 

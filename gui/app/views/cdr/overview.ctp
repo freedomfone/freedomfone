@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * overview.ctp	- Show CDR statistics
- * version 	- 2.0.1160
+ * version 	- 2.0.1215
  * 
  * Version: MPL 1.1
  *
@@ -151,7 +151,7 @@ echo $form->end();
 	   $start    = $time->format('Y/m/d H:i', $poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i', $poll['Poll']['end_time']);
            $view     = $html->link($html->image("icons/view.png", array("title" => __("View results",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
-           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit poll",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
+           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit message",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
 
            $row[$key] = array(
      		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),
@@ -159,14 +159,15 @@ echo $form->end();
 		array($votes,array('align' =>'center')),
 		$start,
 		$end,
-                $view,
-                $edit);
+                array($view,array('align' => 'center')),
+                array($edit,array('align' => 'center')));
+
 
 
      }
 
      echo "<table width='80%' cellspacing=0>";
-     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('View',true),__('Edit',true)));
+     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Results',true),__('Edit',true)), false,array('align' => 'center'));
      echo $html->tableCells($row);
      echo "</table>";
 

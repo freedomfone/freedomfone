@@ -55,7 +55,7 @@ echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('al
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
 
 
-	echo "<h2>".__("Result",true)."</h2>";
+	echo "<h2>".__("Results",true)."</h2>";
       
         $total =  0;
         $total_early =  0;

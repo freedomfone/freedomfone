@@ -28,7 +28,7 @@ echo $html->addCrumb('Language selectors', '/selectors');
 
 
 
-$settings = Configure::read('IVR_SETTINGS');
+$ivr_settings = Configure::read('IVR_SETTINGS');
 
 $commentTitle   = "<span class='formHelp'>".__("Name of language selector",true)."</span>";
 $commentLong    = "<span class='formHelp'>".__("Brief instruction how to reach each language menu.",true)."</span>";
@@ -49,7 +49,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                               foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
                 }
 
-                $path = $settings['path'].$switcher['instance_id'].'/'.$settings['dir_menu'];
+                $path = $ivr_settings['path'].$switcher['instance_id'].'/'.$ivr_settings['dir_menu'];
 
                 echo $form->create('IvrMenu', array('type' => 'post', 'action' => 'edit_selector','enctype' => 'multipart/form-data') );
                 echo $form->input('id',array('type'=>'hidden'));
@@ -75,7 +75,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step1[0] = "<h3>1. ".__('Instructions',true)."</h3>";
                  $step1[1] = $form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'between'=>'<br />' ));
                  $step1[2] = $form->input('SwitcherFile.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-                 $step1[4] = $this->element('player',array('host'=>$settings['host'],'path'=>$path,'file'=>'file_long','title'=>__('Instructions Message',true),'id'=>'short'));
+                 $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_long','title'=>__('Instructions Message',true),'id'=>'short'));
 
                  if($switcher['file_long']){
 	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
@@ -93,7 +93,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step2[0] = "<h3>2. ".__('Invalid option',true)."</h3>";
                  $step2[1] = $form->input('message_invalid',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentInvalid, 'between'=>'<br />' ));
                  $step2[2] = $form->input('SwitcherFile.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));
-                 $step2[4] = $this->element('player',array('host'=>$settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'short'));
+                 $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'short'));
 
                  if($switcher['file_invalid']){
 	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
@@ -116,18 +116,18 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
 
        }
 
 
 
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$settings['showLengthMax'],'...',true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
 
 
@@ -151,6 +151,21 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
        	$radio3 = $form->radio('Mapping.'.$i.'.type',$options3,$attributes);
 
         $listen = false;
+        if($mappings = $this->data['Mapping']){
+
+          if(array_key_exists($i,$mappings)){
+            
+              if($mappings[$i]['type'] == 'node'){
+
+                   $id = $mappings[$i]['node_id'];
+                   $file = $nodes['file'][$id];
+                   $title = $nodes['title'][$id];
+      	           $path = $ivr_settings['path'].$ivr_settings['dir_node'];
+	           $listen =  $this->element('player',array('path'=>$path,'file'=>$file,'title'=>$title,'id'=>$id));
+                }
+
+           }
+        }
 
 
         $row[$i]=array(

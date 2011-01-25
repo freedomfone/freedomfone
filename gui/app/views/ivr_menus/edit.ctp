@@ -179,17 +179,15 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],'...',true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
-
-
 
      for($i=0;$i<9;$i++){
 
@@ -214,8 +212,6 @@ $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
         if($mappings = $this->data['Mapping']){
 
-
-
           if(array_key_exists($i,$mappings)){
             
               if($mappings[$i]['type'] == 'node'){
@@ -229,7 +225,6 @@ $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
            }
         }
-
 
 
 

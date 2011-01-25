@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * config.php	- Configuration parameters for spooler tables, and application settings
- * version 	- 1.0.360
+ * version 	- 2.0.1215
  * 
  * Version: MPL 1.1
  *
@@ -116,8 +116,8 @@ $config['IVR_SETTINGS'] = array(
 		'dir_conf'         => 'conf/',
                 'instance_start'   => '100',
                 'instance_end'     => '119',
-                'showLengthMin'    => '13',
-                'showLengthMax'    => '20',
+                'showLengthMin'    => '14',
+                'showLengthMax'    => '50',
 		);
 
 

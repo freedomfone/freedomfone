@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * users_controller.php		- Controller for Users (phone book)
- * version 		 	- 1.0.408
+ * version 		 	- 1.0.1225
  * 
  * Version: MPL 1.1
  *
@@ -150,9 +150,11 @@ class UsersController extends AppController{
 	              } else {
 
 
+                                $phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
+                                
                                 $acls 	    	    = $this->User->Acl->find('list');
  		                $phonebook 	    = $this->User->PhoneBook->find('list');
- 		                $this->set(compact('acls','phonebook'));
+ 		                $this->set(compact('acls','phonebook','phonenumbers'));
 
                       }
 

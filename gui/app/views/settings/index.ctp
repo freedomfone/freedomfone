@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * env.ctp	- Set environment settings
- * version 	- 1.0.362
+ * version 	- 2.0.1230
  * 
  * Version: MPL 1.1
  *
@@ -29,7 +29,7 @@ echo $html->addCrumb('Settings', '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-$msgAccessLevel =  __('This settings determine the access level of the streaming audio content of your Freedom Fone installation.',true); 
+$msgAccessLevel =  __('These settings determine the access level of the streaming audio content of your Freedom Fone installation.',true); 
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

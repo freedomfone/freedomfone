@@ -66,14 +66,14 @@ function __construct($id = false, $table = null, $ds = null) {
 		   		       'allowEmpty' => true
  				       ),
         'name' => array(
-                        'alphaNumeric' => array(
-                                        'rule'     => 'alphaNumeric',
+                                        'rule'     => '/^[a-zA-Z -]+$/i',
                                         'required' =>  true,
-                                        'message'  => __('Please supply an alpha-numberic string.',true)
-                                        )),
+                                        'message'  => __('Only letters, space and hyphen.',true)
+                                        )
 
 	);
 	}
+
 
 
 

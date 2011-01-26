@@ -42,32 +42,34 @@ class Message extends AppModel {
 
     function getTitle($id){
 
-    $data = $this->findById($id);
-    return $data['Message']['title'];     
+       $data = $this->findById($id);
+       return $data['Message']['title'];     
     }
 
 
-
+/*
+ * Fetch new data from spooler
+ * 
+ * 
+ * 
+ *
+ */
       function refresh(){
 
       $this->autoRender = false;
-
-
       $array = Configure::read('lm_in');
-
 	      
-	       $obj = new ff_event($array);	       
+	    $obj = new ff_event($array);	       
 
-	       if ($obj -> auth != true) {
-    	       die(printf("Unable to authenticate\r\n"));
-	       }
+	   if ($obj -> auth != true) {
+    	          die(printf("Unable to authenticate\r\n"));
+	   }
 
- 	       while ($entry = $obj->getNext('update')){
+ 	   while ($entry = $obj->getNext('update')){
 
 
 	       $created = floor($entry['Event-Date-Timestamp']/1000000);
-	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);
-	       
+	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);   
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
@@ -80,16 +82,13 @@ class Message extends AppModel {
       			      'quick_hangup'    => $entry['FF-OnQuickHangup'],
                               );
 
-	      $this->log('INFO: NEW MESSAGE {sender: '.$entry['FF-CallerID'].'}', 'leave_message');	
-
+	       $this->log('INFO: NEW MESSAGE {sender: '.$entry['FF-CallerID'].'}', 'leave_message');	
 	       $this->create();
 	       $this->save($data);
 
-               } 
+           } 
      
      }
-
-
 
 }
 ?>

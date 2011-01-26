@@ -214,9 +214,11 @@ function checkDate($data,$field){
 	   		foreach ($poll_entry['Vote'] as $key => $vote){
 	
 				//Search for matching chtext
-				if (strcasecmp($votes_chtext,$vote['chtext'])){
+				if (!strcasecmp($votes_chtext,$vote['chtext'])){
 		   	   		$matched=true;
 					$vote_id = $vote['id'];
+
+        
 		   		 }
 	 	        }
 
@@ -234,7 +236,7 @@ function checkDate($data,$field){
 
 				   case 1:
 				   //ADD TO STATS (open)
-		   	   	   $this->Vote->query("UPDATE votes SET chvotes=chvotes+1 WHERE id=$vote_id "); 
+		   	   	   $this->Vote->query("UPDATE votes SET chvotes=chvotes+1 WHERE id= $vote_id "); 
 				   $mode=__("Valid, open", true);
 				   break;
 
@@ -304,7 +306,7 @@ function checkDate($data,$field){
                         } 
 
 			$value = urldecode($entry['from']);                        
-                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
+                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'id'))));
 
                         //Does user exist in database
                         if (strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){

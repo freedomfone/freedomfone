@@ -67,8 +67,9 @@ class PollsController extends AppController{
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
 	   	   $this->requestAction('/polls/refresh');
-     	   	   }
+     	   	}
 	}	   
+
       	   $this->Poll->id = $id;
       	   $this->set('data',$this->Poll->findById($id));       
 

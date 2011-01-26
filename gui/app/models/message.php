@@ -71,7 +71,7 @@ class Message extends AppModel {
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
-	       $data= array ( 'sender'          =>$entry['FF-CallerID'],
+	       $data= array ( 'sender'          =>urldecode($entry['FF-CallerID']),
 	       	      	      'file'            =>$entry['FF-FileID'],
 	       	      	      'created'         =>$created,
 			      'length'          =>$length,

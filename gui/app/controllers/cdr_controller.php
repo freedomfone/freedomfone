@@ -26,113 +26,97 @@ class CdrController extends AppController{
 
       var $name = 'Cdr';
       var $helpers = array('Csv','Javascript','Formatting','Text');
-
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.id' => 'desc')); 
 
 
       function refresh($method = null){
 
-      $this->requestAction('/messages/refresh/'.$method);
-      $this->autoRender = false;
-
-      $this->logRefresh('cdr',$method); 
-
-      $this->Cdr->refresh();
-
+         $this->requestAction('/messages/refresh/'.$method);
+         $this->autoRender = false;
+         $this->logRefresh('cdr',$method); 
+         $this->Cdr->refresh();
 
       }
 
       function general($action = null){
 
+         $this->requestAction('/messages/refresh');
+         $this->requestAction('/cdr/refresh');
+         $this->pageTitle = __('Reporting',true);
 
-      $this->requestAction('/messages/refresh');
-      $this->requestAction('/cdr/refresh');
-      $this->pageTitle = __('Reporting',true);
 
+         if(isset($this->params['named']['limit'])) { 
+	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
+         } elseif($this->Session->check('cdr_limit')) { 
+	    $this->paginate['limit'] = $this->Session->read('cdr_limit');
+         }	
 
-      if(isset($this->params['named']['limit'])) { 
-	$this->Session->write('cdr_limit',$this->params['named']['limit']);
-
-      } elseif($this->Session->check('cdr_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('cdr_limit');
-
-      }	
-
-      //User arrived from other page, reset session variables
-      if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
+         //User arrived from other page, reset session variables
+         if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
 
             $this->Session->write('cdr_start', $this->Cdr->getEpoch('first')-900);
             $this->Session->write('cdr_end',time()+900);
 
-      }
+         }
+
+        $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+
+        if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
+        if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 
 
-      $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+        $app   = $this->data['Cdr']['application'];
+        if ($app) {$this->Session->write('cdr_app',$app);}
 
-      if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
-      if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
+        $title=false;
 
-
-      $app   = $this->data['Cdr']['application'];
-      if ($app) {$this->Session->write('cdr_app',$app);}
-
-      $title=false;
-
-
-      if($app =='ivr'){ 
+        if($app =='ivr'){ 
       	      $title   = $this->data['Cdr']['title_ivr'];
-      } elseif ($app =='lam') {
+        } elseif ($app =='lam') {
 	      $title   = $this->data['Cdr']['title_lam'];
-      }
+        }
 
-      $this->Cdr->unbindModel(array('belongsTo' => array('User')));
-      $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
+        $this->Cdr->unbindModel(array('belongsTo' => array('User')));
+        $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
 
+        //Fetch All CDR
+        if(!$title){
 
-      //Fetch All CDR
-      if(!$title){
-
-	      $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
+	  $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
 	  	      
+	$this->set('count', $count);
 
-	      $this->set('count', $count);
+	//Limit is set
+	$limit = $this->Session->read('cdr_limit');
+	if(!empty($limit)){
+               $pageCount = $this->Session->read('cdr_limit');
+        } else {
+	   if ($count){ 
+              $pageCount = $count;
+           }  else { 
+              $pageCount = 1;
+           }
+	}
 
+       $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
+	$this->set('select_option','all');
 
-	      //Limit is set
-	      $limit = $this->Session->read('cdr_limit');
-	      if(!empty($limit)){
-		$pageCount = $this->Session->read('cdr_limit');
-		} else {
-		  if ($count){ $pageCount = $count;}
-		  else { $pageCount = 1;}
-	      }
-
-
-	      $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
-
-	      $this->set('select_option','all');
-
-      } else {
-      //Fetch CDR by Title
-
+        } else {
+        
+         //Fetch CDR by Title
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
 
         $foo = $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
-
-
          $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
 
 	 $this->set('select_option','selected');
 
-      }
-
+        }
 
         $this->loadModel('IvrMenu');
         $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
         $ivr_data = $this->IvrMenu->find('list');
         foreach($ivr_data as $key => $title){ $ivr[$title] = $title;}       
-
-
 
         $this->loadModel('LmMenu');
         $lam_data = $this->LmMenu->find('list');
@@ -148,8 +132,7 @@ class CdrController extends AppController{
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action']==__('Export',true)){
-     
+	     if ($this->params['form']['action']==__('Export',true)){     
   	       Configure::write('debug', 0);
     	       $this->layout = null;
     	       $this->autoLayout = false;
@@ -163,36 +146,29 @@ class CdrController extends AppController{
 
       function index(){
 
-      $this->requestAction('/messages/refresh');
+          $this->requestAction('/messages/refresh');
+          $this->requestAction('/cdr/refresh');
 
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
-                   }
-       }
+         $this->pageTitle = __('Call Data Records',true);
+         $this->Session->write('Cdr.source', 'index');
 
-      $this->pageTitle = __('Call Data Records',true);
-      $this->Session->write('Cdr.source', 'index');
-
-      if(isset($this->params['named']['sort'])) { 
+          if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('cdr_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		}
-	elseif($this->Session->check('cdr_sort')) { 
+	  } elseif($this->Session->check('cdr_sort')) { 
   		$this->paginate['order'] = $this->Session->read('cdr_sort');
-		} 
+	  } 
 
-      if(isset($this->params['named']['limit'])) { 
-	$this->Session->write('cdr_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('cdr_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('cdr_limit');
-	}	
+         if(isset($this->params['named']['limit'])) { 
+	       $this->Session->write('cdr_limit',$this->params['named']['limit']);
+	 } elseif($this->Session->check('cdr_limit')) { 
+	       $this->paginate['limit'] = $this->Session->read('cdr_limit');
+	 }	
 
-	     $this->Cdr->recursive = 0; 
-   	     $data = $this->paginate('Cdr');
-	     $this->set('cdr',$data);  
+	 $this->Cdr->recursive = 0; 
+   	 $data = $this->paginate('Cdr');
+	 $this->set('cdr',$data);  
 
-	     }
+    }
 
 
 

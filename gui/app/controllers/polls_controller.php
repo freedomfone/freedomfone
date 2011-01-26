@@ -183,17 +183,12 @@ class PollsController extends AppController{
 
    function edit($id = null){
 
-
-   $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
-
+           $this->pageTitle = 'Edit poll: '.$this->Poll->getTitle($id);   
  
 	   if (!$id && empty($this->data)){ 
 			$this->Session->setFlash(__('Invalid Poll', true)); 
 			$this->redirect(array('action'=>'index')); 
-	    } 
-
-
-   	   elseif (empty($this->data['Poll'])){ 
+	    } elseif (empty($this->data['Poll'])){ 
 
 
 		$this->data = $this->Poll->read(null,$id);
@@ -201,58 +196,33 @@ class PollsController extends AppController{
 		$this->set(compact('votes'));
 
 	   } else{
-
    
                 //Fetch form data
 	        $this->Poll->set( $this->data );
 
-/*	        foreach($this->data['Vote'] as $key => $option){
+	        //Validate data (poll and vote)
+	        if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
 
-		     if(!$option['chtext'] && $key>1){
-			unset($this->data['Vote'][$key]); 
-		     }
-                }*/
+	            //Save poll data
 
+	            $this->Poll->save($this->data['Poll']);
 
-	//Validate data (poll and vote)
-	if ($this->Poll->saveAll($this->data, array('validate' => 'only'))) {
-
-	 //Save poll data
-
-	  $this->Poll->save($this->data['Poll']);
-
-	  //Get unique id for each vote,
-   /*	  $vote_id = $this->Poll->Vote->find('all', array('conditions' => array('Poll.id' => $id), 'order' => array('Vote.id asc')));
-
-	  //Set id for each vote, and save data
-   	   foreach($this->data['Vote'] as $key => $vote){
-
-
-	   if(isset($vote_id[$key]['Vote']['id'])) { $voteId=$vote_id[$key]['Vote']['id'];} else { $voteId=false;}
-		$this->data['Vote'][$key]['id']= $voteId;
-	    	$this->data['Vote'][$key]['poll_id']=$id;
-
-	     }
-
-	 //Save vote data
-
-	$this->Poll->Vote->create($this->data['Vote']);
-	$this->Poll->Vote->saveAll($this->data['Vote'],array('validate'=>false));*/
-
-
-        if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
-            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
-         } else {                                                                                                                                                                                                                                                              
-         $this->_flash(__("The poll has been updated.",true),'success');                                                                                                                                                                                                       
-         }    
+                         if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
+                            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
+                         } else {                                                                                                                                                                                                                                                              
+                            $this->_flash(__("The poll has been updated.",true),'success');                                                                                                                                                                                                       
+                         }    
 	
-	 $this->redirect(array('action' => 'index'));
-       }
+                        $this->redirect(array('action' => 'index'));
 
+                 } else {
 
-      }
+                  $votes = $this->Poll->Vote->find('all',array('conditions' =>array('Poll.id' => $id)));
+		  $this->set(compact('votes'));
+
+                 } 
+            }
     }
-
 
 
 }

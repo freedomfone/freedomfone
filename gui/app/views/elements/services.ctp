@@ -40,6 +40,10 @@ if(isSet($service)){
 		elseif($service == 'bin'){
    		     $return = __('SMS',true);
 		}
+		elseif($service == 'poll'){
+   		     $return = __('Poll',true);
+		}
+
 
                 echo $return;
                 

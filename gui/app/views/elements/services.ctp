@@ -29,7 +29,7 @@ if(isSet($service)){
    		     $return =  __('Content',true);
 		}
 
-		elseif($service == 'LmMenu' || $server == 'lam'){
+		elseif($service == 'LmMenu' || $service == 'lam'){
    		     $return =__('Leave-a-message',true);
 		}
 

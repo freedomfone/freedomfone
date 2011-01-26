@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * services.ctp         - Converts variations of service names to huam readable format
- * version 		- 2.0.1180
+ * version 		- 2.0.1220
  * 
  * Version: MPL 1.1
  *
@@ -29,12 +29,16 @@ if(isSet($service)){
    		     $return =  __('Content',true);
 		}
 
-		elseif($service == 'LmMenu'){
+		elseif($service == 'LmMenu' || $server == 'lam'){
    		     $return =__('Leave-a-message',true);
 		}
 
-		elseif($service == 'IvrMenu'){
+		elseif($service == 'IvrMenu' || $service == 'ivr'){
    		     $return = __('Voice Menu',true);
+		}
+
+		elseif($service == 'bin'){
+   		     $return = __('SMS',true);
 		}
 
                 echo $return;

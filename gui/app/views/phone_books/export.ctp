@@ -34,7 +34,7 @@
         }
 
         //Create data headers
-       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Phone',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
+       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
 
        $i = 1;
        while($i<= max($numbers)){
@@ -68,7 +68,6 @@
 		      $entry['User']['surname'],
 		      $entry['User']['email'],
 		      $entry['User']['skype'],
-		      false,
 		      $entry['User']['organization'],
 		      date('Y-m-d H:i:s',$entry['User']['created']),
 		      $entry['User']['count_poll'],

@@ -44,34 +44,27 @@
 	    }
 	    
 
-      if (!isset($host)){ $host = MY_DOMAIN;}
-
-      $song_url = $host.$path.$file.'.mp3';
-
+           if (!isset($host)){ 
+              $host = MY_DOMAIN;
+           }
+           $song_url = $host.$path.$file.'.mp3';
       }
-
 
       //Overwrite IP address from FreeSWITCH with system IP address
       $ip_address = Configure::read('Setting.ip_addr');
-
-
       $data = explode('/',$song_url);
       $search = $data[2];
       $song_url = str_replace($data[2],$ip_address,$song_url);
 
+      if($check==1){ 
 
+              $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$title.'"});';
+	      echo $html->para(false,__("No Flash plugin installed",true),array('id'=>'audio_player_'.$id));
+	      echo $javascript->codeBlock($script,array('safe'=>false));
 
-     if($check==1){ 
-
-        $script = 'AudioPlayer.embed("audio_player_'.$id.'", {soundFile: "'.$song_url.'",titles: "'.$text->truncate($title,20,'...',true,false).'"});';
-	echo $html->para(false,__("No Flash plugin installed",true),array('id'=>'audio_player_'.$id));
-	echo $javascript->codeBlock($script,array('safe'=>false));
-
-	}
- 
-     else { 
-     	  echo __("No audio file available",true); 
-     }
+      }  else { 
+     	      echo __("No audio file available",true); 
+      }
 
 ?>
 

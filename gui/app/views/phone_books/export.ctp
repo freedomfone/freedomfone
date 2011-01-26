@@ -74,8 +74,8 @@
 		      $entry['User']['count_poll'],
 		      $entry['User']['count_ivr'],
 		      $entry['User']['count_lam'],
-		      $entry['User']['first_app'],
-		      $entry['User']['last_app'],
+                      $this->element('services',array('service' => $entry['User']['first_app'])),
+                      $this->element('services',array('service' => $entry['User']['last_app'])),
                       $last_epoch,
 		      );
 

@@ -66,12 +66,12 @@ function __construct($id = false, $table = null, $ds = null) {
 		   		       'allowEmpty' => true
  				       ),
         'name' => array(
-                                        'rule'     => '/^[a-zA-Z -]+$/i',
+                                        'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'required' =>  true,
                                         'message'  => __('Only letters, spaces and hyphens.',true)
                                         ),
         'surname' => array(
-                                        'rule'     => '/^[a-zA-Z -]+$/i',
+                                        'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'allowEmpty' =>  true,
                                         'message'  => __('Only letters, spaces and hyphens.',true)
                                         )

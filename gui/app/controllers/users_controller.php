@@ -34,12 +34,7 @@ class UsersController extends AppController{
 
       function refresh($redirect, $id = null){
 
-
-        $this->requestAction('/bin/refresh');
-        $this->requestAction('/polls/refresh');
-        $this->requestAction('/messages/refresh');
-        $this->requestAction('/cdr/refresh');
-
+        $this->refreshAll();
         $this->redirect(array('controller' => 'users', 'action' => $redirect,$id));
 
       }
@@ -47,38 +42,26 @@ class UsersController extends AppController{
 
       function index(){
 
-      $this->layout = 'jquery';
-      $this->pageTitle = 'Users';
+        $this->refreshAll();
 
-      $this->User->recursive = 1;         
+        $this->layout = 'jquery';
+        $this->pageTitle = 'Users';
+        $this->User->recursive = 1;         
 
-      if(isset($this->params['form']['submit'])) {
-	   if ($this->params['form']['submit']==__('Refresh',true)){
-
-                   $this->requestAction('/users/refresh/index');
-           }
-       }
-
-      if(isset($this->params['named']['sort'])) { 
+         if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('users_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-      } elseif($this->Session->check('users_sort')) { 
-	                      
+         } elseif($this->Session->check('users_sort')) {                     
                $this->paginate['order'] = $this->Session->read('users_sort');
+         } 
 
-      } 
-
-      if(isset($this->params['named']['limit'])) { 
-
-	$this->Session->write('users_limit',$this->params['named']['limit']);
-    
-      } elseif($this->Session->check('users_limit')) { 
-	
-        $this->paginate['limit'] = $this->Session->read('users_limit');
-      
-      }	
+         if(isset($this->params['named']['limit'])) { 
+	        $this->Session->write('users_limit',$this->params['named']['limit']);
+         } elseif($this->Session->check('users_limit')) { 
+                $this->paginate['limit'] = $this->Session->read('users_limit');
+         }	
 
 
-      if(isset($this->params['form']['submit']) && $phone_book_id = $this->data['User']['phone_book_id']) { 
+         if(isset($this->params['form']['submit']) && $phone_book_id = $this->data['User']['phone_book_id']) { 
             
              $data = $this->User->PhoneBook->findById($phone_book_id);
              if ($data['User']){
@@ -90,21 +73,20 @@ class UsersController extends AppController{
 
                 $users = $this->paginate('User', array('User.id' => $user_id));
                 $this->set(compact('users'));    
-              }
+             }
             
-       } else {
+         } else {
 
              $users = $this->paginate('User');
              $this->set(compact('users'));    
+         }
 
-       }
+         $this->loadModel('PhoneBook');
+         $options = $this->PhoneBook->find('list');
+         $options[0] = __('All users',true);
+         $this->set(compact('options','users'));
 
-        $this->loadModel('PhoneBook');
-        $options = $this->PhoneBook->find('list');
-        $options[0] = __('All users',true);
-        $this->set(compact('options','users'));
-
-	}
+      }
 
 
 
@@ -116,7 +98,6 @@ class UsersController extends AppController{
 
              if(isset($this->params['form']['submit'])) {
 	        if ($this->params['form']['submit']==__('Refresh',true)){
-
                    $this->requestAction('/users/refresh/edit/'.$id);
                 }
              }
@@ -124,8 +105,8 @@ class UsersController extends AppController{
 
 	     //No id specified
 	     if(!$id){
-		     $this->redirect(array('action' =>'/'));
-		     }
+		  $this->redirect(array('action' =>'/'));
+	     }
 
              //Fetch data from db     
     	     elseif(empty($this->data['User'])){

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * messages_controller.php	- Controller for Leave-a-message messages. Manages CRUD operations on messages.
- * version 		 	- 1.0.408
+ * version 		 	- 2.0.1230
  * 
  * Version: MPL 1.1
  *
@@ -25,90 +25,80 @@
 class MessagesController extends AppController{
 
       var $name = 'Messages';
-
       var $helpers = array('Flash','Formatting','Session');      
-
       var  $paginate = array('page' => 1, 'order' => array( 'Message.created' => 'desc')); 
 
 
+
+      function refresh($method = null){
+
+          $this->autoRender = false;
+          $this->logRefresh('message',$method); 
+          $this->Message->refresh();
+
+          $this->loadModel('Cdr');
+          $this->Cdr->refresh();
+          $this->logRefresh('cdr',$method); 
+      
+      }
 
 
       function index(){
 
 
-      $this->requestAction('/messages/refresh');
-      $this->requestAction('/cdr/refresh');
-
-      $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
-      $this->Session->write('Message.source', 'index');
+         $this->refreshAll();
+         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
+         $this->Session->write('Message.source', 'index');
    
-        if(isset($this->params['form']['submit'])) {
-	   if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/messages/refresh');
-                   }
-       }
-
-
-      //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
-
-      if(isset($this->params['named']['sort'])) { 
+         if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		}
-	elseif($this->Session->check('messages_sort')) { 
+         } elseif($this->Session->check('messages_sort')) { 
 		if(in_array($this->Session->read('messags_sort'),array('new','title','rate','category','created','modified','length'))){
 		   $this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
-	} 
+	 } 
 
-      if(isset($this->params['named']['limit'])) { 
+         if(isset($this->params['named']['limit'])) { 
+	       $this->Session->write('messages_limit',$this->params['named']['limit']);
+	 } elseif($this->Session->check('messages_limit')) { 
+	       $this->paginate['limit'] = $this->Session->read('messages_limit');
+	 }	
 
-	$this->Session->write('messages_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('messages_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('messages_limit');
-	}	
+	 $this->Message->recursive = 0; 
+   	 $data = $this->paginate('Message', array('Message.status' => '1'));
+	 $this->set('messages',$data);  
 
-	     $this->Message->recursive = 0; 
-   	     $data = $this->paginate('Message', array('Message.status' => '1'));
-
-	     $this->set('messages',$data);  
-
-	     if(!isset($checked)){
+	 if(!isset($checked)){
 	     $this->set('checked','');
-	     }
-
-
-	     }
+	  }
+      }
 
 
       function archive(){
 
-
-      $this->pageTitle = 'Leave-a-Message : Archive';
-      $this->Session->write('Message.source', 'archive');
+         $this->refreshAll();
+         $this->pageTitle = 'Leave-a-Message : Archive';
+         $this->Session->write('Message.source', 'archive');
      
-      if(isset($this->params['named']['sort'])) { 
+         if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		}
-	elseif($this->Session->check('messages_sort')) { 
+	 } elseif($this->Session->check('messages_sort')) { 
 		if(in_array($this->Session->read('messags_sort'),array('new','title','rate','category','created','modified','length'))){
 		   $this->paginate['order'] = $this->Session->read('messages_sort');
 		} 
-	} 
+	 } 
 
-      if(isset($this->params['named']['limit'])) { 
-	$this->Session->write('messages_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('messages_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('messages_limit');
-	}	
+         if(isset($this->params['named']['limit'])) { 
+	    $this->Session->write('messages_limit',$this->params['named']['limit']);
+	 } elseif($this->Session->check('messages_limit')) { 
+	   $this->paginate['limit'] = $this->Session->read('messages_limit');
+	 }	
 
+         $this->Message->recursive = 0; 
+   	 $data = $this->paginate('Message', array('Message.status' => '0'));
+	 $this->set('messages',$data);
 
-	     $this->Message->recursive = 0; 
-   	     $data = $this->paginate('Message', array('Message.status' => '0'));
-	     $this->set('messages',$data);       
-
-	     }
+        }
 
 
      function view($id){
@@ -255,14 +245,6 @@ class MessagesController extends AppController{
     }
 
 
-      function refresh($method = null){
-
-
-      $this->autoRender = false;
-      $this->logRefresh('message',$method); 
-      $this->Message->refresh();
-
-      }
 
   function download ($id) {
 

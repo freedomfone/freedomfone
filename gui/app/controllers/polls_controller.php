@@ -43,14 +43,8 @@ class PollsController extends AppController{
 
       function index(){
 
-      $this->layout ='jquery';
-
-        if(isset($this->params['form']['submit'])) {
-	   if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/polls/refresh');
-           }
-        }
-
+        $this->Poll->refresh();
+        $this->layout ='jquery';
         $this->pageTitle = 'Manage polls';
 
         $this->Poll->unbindModel(array('hasMany' => array('User')));
@@ -81,18 +75,12 @@ class PollsController extends AppController{
 
       $this->pageTitle = 'Create new poll';
  
-
       //Render empty form
       if (empty($this->data)){
+      	 $this->render(); 
+      }  else{
 
-      	 $this->render();
-	 }
-
-
-      //Validate and save form data
-      else{
-
-        //Fetch form data
+      //Fetch form data
 	$this->Poll->set( $this->data );
 
 	foreach($this->data['Vote'] as $key => $option){

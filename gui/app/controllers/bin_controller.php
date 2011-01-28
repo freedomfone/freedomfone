@@ -31,25 +31,27 @@ class BinController extends AppController{
       var $scaffold;
 
 
+      function refresh($method = null){
+
+           $this->autoRender = false;
+           $this->logRefresh('bin',$method); 
+           $this->Bin->refresh($method);
+
+      }
+
+
       function index(){
 
-      	    $this->pageTitle = 'SMS Incoming';
+           $this->Bin->refresh('manual');
+      	   $this->pageTitle = 'SMS Incoming';
 
-     	if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-	   	   $this->requestAction('/bin/refresh');
-   	   	   $this->requestAction('/polls/refresh');
-     	   	   }
-	}	   
-
-            if(isset($this->params['named']['sort'])) { 
-      		
-			$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
+            if(isset($this->params['named']['sort'])) {     		
+		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 		
 	     }  elseif($this->Session->check('messages_sort')){
 		     if(in_array($this->Session->read('messags_sort'),array('body','created','mode','proto','sender'))){
 			$this->paginate['order'] = $this->Session->read('messages_sort');
-			} 
+		     } 
 	     } 
 
      	     $this->Bin->recursive = 0; 
@@ -109,13 +111,6 @@ class BinController extends AppController{
 
 
 
-      function refresh($method = null){
-
-      $this->autoRender = false;
-      $this->logRefresh('bin',$method); 
-      $this->Bin->refresh($method);
-
-      }
 
 
 }

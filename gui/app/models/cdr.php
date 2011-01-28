@@ -102,17 +102,13 @@ class Cdr extends AppModel{
 								 'conditions'=>array('Message.file'=>$call_id)))));
 
                         $instance_id = substr($ext,1);
-
-
-
 		        $message = $this->Message->findByFile($call_id);
 
-
+                        debug($message);
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
                                
 		        $lm_menu = $this->query("select * from lm_menus where instance_id = $instance_id ");
-
 		        $this->set('title',$lm_menu[0]['lm_menus']['title']);
 
 		     } 

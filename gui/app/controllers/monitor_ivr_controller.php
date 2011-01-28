@@ -35,7 +35,7 @@ class MonitorIvrController extends AppController{
 
         if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
+//                   $this->requestAction('/cdr/refresh');
                 }
         }
 
@@ -69,7 +69,7 @@ class MonitorIvrController extends AppController{
 
 
       $this->autoRender = false;
-      $this->MonitorIvr->Cdr->refresh();
+//      $this->MonitorIvr->Cdr->refresh();
 
       }
 

@@ -31,19 +31,19 @@ class CdrController extends AppController{
 
       function refresh($method = null){
 
-         $this->requestAction('/messages/refresh/'.$method);
-         $this->autoRender = false;
-         $this->logRefresh('cdr',$method); 
-         $this->Cdr->refresh();
+         $this->loadModel('Message');
+         $this->Message->refresh();
+         $this->logRefresh('message',$method); 
 
+         $this->Cdr->refresh();
+         $this->logRefresh('cdr',$method); 
+         $this->autoRender = false;
       }
 
       function general($action = null){
 
-         $this->requestAction('/messages/refresh');
-         $this->requestAction('/cdr/refresh');
+         $this->refreshAll();
          $this->pageTitle = __('Reporting',true);
-
 
          if(isset($this->params['named']['limit'])) { 
 	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
@@ -146,9 +146,7 @@ class CdrController extends AppController{
 
       function index(){
 
-          $this->requestAction('/messages/refresh');
-          $this->requestAction('/cdr/refresh');
-
+         $this->refreshAll();
          $this->pageTitle = __('Call Data Records',true);
          $this->Session->write('Cdr.source', 'index');
 
@@ -158,17 +156,17 @@ class CdrController extends AppController{
   		$this->paginate['order'] = $this->Session->read('cdr_sort');
 	  } 
 
-         if(isset($this->params['named']['limit'])) { 
+          if(isset($this->params['named']['limit'])) { 
 	       $this->Session->write('cdr_limit',$this->params['named']['limit']);
-	 } elseif($this->Session->check('cdr_limit')) { 
+	  } elseif($this->Session->check('cdr_limit')) { 
 	       $this->paginate['limit'] = $this->Session->read('cdr_limit');
-	 }	
+	  }	
 
-	 $this->Cdr->recursive = 0; 
-   	 $data = $this->paginate('Cdr');
-	 $this->set('cdr',$data);  
+	  $this->Cdr->recursive = 0; 
+   	  $data = $this->paginate('Cdr');
+	  $this->set('cdr',$data);  
 
-    }
+     }
 
 
 
@@ -282,15 +280,9 @@ class CdrController extends AppController{
 
       function statistics(){
 
-      $this->requestAction('/cdr/refresh');
-
+        $this->refreshAll();
        	$this->pageTitle = 'Call Data Records : Overview';
 
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
-                   }
-        } 
 
         if($this->data){
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
@@ -358,11 +350,8 @@ class CdrController extends AppController{
 
       function overview(){                                                                                                                                                                               
 
+        $this->refreshAll();
         $this->pageTitle = __('System Overview',true);                                                                                                                                                   
-
-        $this->requestAction('/bin/refresh');
-        $this->requestAction('/polls/refresh');
-        $this->requestAction('/cdr/refresh');
         $this->set('cdr',$this->Cdr->find('all'));
 
                 //Fetch data from unassociated models                                                                                                                                                    

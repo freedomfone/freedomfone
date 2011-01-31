@@ -543,6 +543,14 @@ installer/sekowei/demo/ivr_ivr/1_file_long.mp3 -text
 installer/sekowei/demo/ivr_ivr/1_file_long.wav -text
 installer/sekowei/demo/ivr_ivr/1_file_short.mp3 -text
 installer/sekowei/demo/ivr_ivr/1_file_short.wav -text
+installer/sekowei/demo/ivr_ivr/file_exit.mp3 -text
+installer/sekowei/demo/ivr_ivr/file_exit.wav -text
+installer/sekowei/demo/ivr_ivr/file_invalid.mp3 -text
+installer/sekowei/demo/ivr_ivr/file_invalid.wav -text
+installer/sekowei/demo/ivr_ivr/file_long.mp3 -text
+installer/sekowei/demo/ivr_ivr/file_long.wav -text
+installer/sekowei/demo/ivr_ivr/file_short.mp3 -text
+installer/sekowei/demo/ivr_ivr/file_short.wav -text
 installer/sekowei/demo/ivr_ivr/ivr.xml -text
 installer/sekowei/demo/ivr_nodes/1292926356_Press_1._cholera_menu_ch_1_symptoms_and_prevention.mp3 -text
 installer/sekowei/demo/ivr_nodes/1292926356_Press_1._cholera_menu_ch_1_symptoms_and_prevention.wav -text

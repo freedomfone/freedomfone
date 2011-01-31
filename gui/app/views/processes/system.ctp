@@ -79,20 +79,20 @@ echo $html->addCrumb('About', '/processes/system');
 
 
      echo "<h2>".__("Software",true)."</h2>";
-     $row1[] = array(__("Operating system",true).": ", $string); 
-     $row1[] = array(__("FreeSWITCH",true).": ", $version[1]); 
-     $row1[] = array(__("Web server",true).": ", apache_get_version());
-     $row1[] = array(__("MySQL",true).": ", mysql_get_server_info());
-     $row1[] = array(__("Dispatcher",true).": ", $version[0]);
+     $row1[] = array(__("Operating system",true), $string); 
+     $row1[] = array(__("FreeSWITCH",true), $version[1]); 
+     $row1[] = array(__("Web server",true), apache_get_version());
+     $row1[] = array(__("MySQL",true), mysql_get_server_info());
+     $row1[] = array(__("Dispatcher",true), $version[0]);
     echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
     echo $html->tableCells($row1,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
     echo "</table>"; 
 
 
      echo "<h2>".__("Environment",true)."</h2>";
-      $row2[] = array(__("IP address",true).": ", $ip_address); 
-      $row2[] = array(__("Language",true).": ", $lang); 
-      $row2[] = array(__("System time",true).": ", date('Y-m-d H:i A').' ('.$timezone.')'); 
+      $row2[] = array(__("IP address",true), $ip_address); 
+      $row2[] = array(__("Language",true), $lang); 
+      $row2[] = array(__("System time",true), date('Y-m-d H:i A').' ('.$timezone.')'); 
 
     echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
     echo $html->tableCells($row2,array('class' =>'stand-alone'),array('class' =>'stand-alone'));

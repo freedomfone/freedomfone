@@ -116,7 +116,7 @@ $config['IVR_SETTINGS'] = array(
 		'dir_conf'         => 'conf/',
                 'instance_start'   => '100',
                 'instance_end'     => '119',
-                'showLengthMin'    => '14',
+                'showLengthMin'    => '13',
                 'showLengthMax'    => '50',
 		);
 

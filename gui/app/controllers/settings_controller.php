@@ -37,7 +37,7 @@ class SettingsController extends AppController {
 		  if(array_key_exists('Setting', $this->data)){
 		     $ip_radio = $this->data['Setting']['ip_radio'];
 		     unset($this->data['Setting']);
-		     }
+		  }
 
 		      $i=false;	
 		 foreach ($this->data as $id => $entry){

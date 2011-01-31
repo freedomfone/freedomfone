@@ -535,14 +535,6 @@ installer/sekowei/4_sekowei_db_reset.sh -text
 installer/sekowei/5_sekowei_skype -text
 installer/sekowei/6_sekowei_demo_data.sh -text
 installer/sekowei/CHECKLIST/20101228 -text
-installer/sekowei/demo/ivr_ivr/1_file_exit.mp3 -text
-installer/sekowei/demo/ivr_ivr/1_file_exit.wav -text
-installer/sekowei/demo/ivr_ivr/1_file_invalid.mp3 -text
-installer/sekowei/demo/ivr_ivr/1_file_invalid.wav -text
-installer/sekowei/demo/ivr_ivr/1_file_long.mp3 -text
-installer/sekowei/demo/ivr_ivr/1_file_long.wav -text
-installer/sekowei/demo/ivr_ivr/1_file_short.mp3 -text
-installer/sekowei/demo/ivr_ivr/1_file_short.wav -text
 installer/sekowei/demo/ivr_ivr/file_exit.mp3 -text
 installer/sekowei/demo/ivr_ivr/file_exit.wav -text
 installer/sekowei/demo/ivr_ivr/file_invalid.mp3 -text

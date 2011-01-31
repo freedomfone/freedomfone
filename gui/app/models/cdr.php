@@ -104,7 +104,7 @@ class Cdr extends AppModel{
                         $instance_id = substr($ext,1);
 		        $message = $this->Message->findByFile($call_id);
 
-                        debug($message);
+
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
                                

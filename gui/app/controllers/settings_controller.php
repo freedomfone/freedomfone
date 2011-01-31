@@ -90,6 +90,7 @@ class SettingsController extends AppController {
 	      $external = $this->Setting->getIP('external');
 	      $internal = $this->Setting->getIP('internal');
 
+
 	      $this->set('data',$this->Setting->findAllByType('env'));
  	      $this->set(compact('external','internal'));
 	      $this->render();       

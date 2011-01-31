@@ -70,7 +70,8 @@ echo $html->addCrumb('About', '/processes/system');
 
 
      echo "<h2>".__("Freedom Fone",true)."</h2>";
-     $row0[] = array(__('Freedom Fone',true)." ".VERSION." <i>".__('aka',true).": <a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a></i>");
+     $row0[] = array(__('Version',true),__('Freedom Fone',true)." ".VERSION." (<a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a>)");
+     $row0[] = array(__('SVN revision',true),$svn);
      echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
      echo $html->tableCells($row0,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
      echo "</table>"; 

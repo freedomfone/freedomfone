@@ -65,9 +65,10 @@ class ProcessesController extends AppController{
 
  	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
+        $svn = $this->Process->getSVN();
 
 	$settings = $this->Process->query("select * from settings");
-	$this->set(compact('version','items','settings'));
+	$this->set(compact('version','items','settings','svn'));
 	$this->render();
 
       }

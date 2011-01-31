@@ -47,6 +47,7 @@ class Cdr extends AppModel{
 	$mapping = Configure::read('EXT_MAPPING');
 
 
+
            //** Fetch CDR from spooler **//
       	      $array = Configure::read('cdr');
 	      $obj = new ff_event($array);	       
@@ -57,7 +58,6 @@ class Cdr extends AppModel{
 
 
       	      while ($entry = $obj->getNext('update')){
-
 
 	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];

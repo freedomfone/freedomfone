@@ -286,5 +286,17 @@ class Process extends AppModel{
 	return false;
 		}
       }
+
+        function getSVN(){
+
+	    $cmd = "svnversion /usr/local/freedomfone";
+  	    $op = array();
+	    exec($cmd,$op);
+	    $svn = $op[0]; 
+	    
+            return $svn;
+
+        }
+
 }
 ?>

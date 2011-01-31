@@ -78,6 +78,8 @@ class Setting extends AppModel{
 
 	}
 
+
+
 }
 
 ?>

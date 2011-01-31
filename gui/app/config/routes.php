@@ -31,8 +31,7 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.ctp)...
  */
-
-	Router::connect('/', array('controller' => 'cdr', 'action' => 'overview'));
+Router::connect('/', array('controller' => 'cdr', 'action' => 'overview'));
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.
@@ -44,10 +43,10 @@ Router::connect('/contact', array('controller' => 'pages', 'action' => 'display'
 
 Router::connect('/dashboard/about', array('controller' => 'processes', 'action' => 'system'));
 
-
 Router::connect('/selectors/', array('controller' => 'ivr_menus', 'action' => 'selectors'));
 
 Router::connect('selectors/edit/*', array('controller' => 'ivr_menus', 'action' => 'edit_selector'));
+
 Router::connect('selectors/delete/*', array('controller' => 'ivr_menus', 'action' => 'delete'));
 
 ?>

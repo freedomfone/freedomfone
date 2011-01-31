@@ -113,13 +113,16 @@ echo $form->end();
      echo "<table cellspacing=0>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      echo $html->tableCells($stat);
-     echo $html->tableHeaders(array(false,$all,100*($lamCount+$ivrCount+$pollCount+$otherCount)/$all),false,array('align' => 'center'));
+     echo $html->tableHeaders(array(false,$total,100*($lamCount+$ivrCount+$pollCount+$otherCount)/$all),false,array('align' => 'center'));
 
      echo "</table>";
 
  
      ///*** NEW MESSAGES ***///
-     echo "<h1>".__('New Messages',true)." (".$message_new.") </h1>";
+     if($message_new) { $msg = " (".$message_new.")";} else { $msg = false;}
+     if(!$message_total) { $message_total = '0';}
+
+     echo "<h1>".__('New Messages',true).$msg."</h1>";
      echo $html->div('instruction',__('Total number of messages',true).": ".$message_total);
      if ($message_new){
         if($message_new >=5) { 

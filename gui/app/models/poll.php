@@ -216,9 +216,7 @@ function checkDate($data,$field){
 				//Search for matching chtext
 				if (!strcasecmp($votes_chtext,$vote['chtext'])){
 		   	   		$matched=true;
-					$vote_id = $vote['id'];
-
-        
+					$vote_id = $vote['id'];        
 		   		 }
 	 	        }
 

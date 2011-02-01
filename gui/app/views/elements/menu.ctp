@@ -222,15 +222,15 @@
 <?php echo $html->link(__("GSM channels",true),'/channels'); ?>
 </li>
 
-<li>
-<?php echo $html->link(__("About",true),'/dashboard/about'); ?>
-</li>
-
 
 <li>
 <?php echo $html->link(__("Logs",true),'/logs'); ?>
 </li>
 
+
+<li>
+<?php echo $html->link(__("About",true),'/dashboard/about'); ?>
+</li>
 
 
 <li class='last'>

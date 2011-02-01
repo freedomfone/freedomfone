@@ -103,8 +103,8 @@ echo $html->addCrumb('About', '/processes/system');
     if ($items){
       echo "<h2>".__("Latest news",true)."</h2>";
       foreach($items as $key => $item) {
-	  if($key<5){	  echo $html->div('news',$html->link($item->get_title(), $item->get_permalink()));
-	    //echo $text->truncate($item->get_description());  
+	  if($key<5){	  
+              echo $html->div('news',$html->link($item->get_title(), $item->get_permalink())); 
 	  }
       }
     }	  

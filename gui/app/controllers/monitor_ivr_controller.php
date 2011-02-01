@@ -32,14 +32,7 @@ class MonitorIvrController extends AppController{
 
       function index(){
 
-
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-//                   $this->requestAction('/cdr/refresh');
-                }
-        }
-
-
+             $this->refreshAll();
 	     $this->pageTitle = 'Monitor Voice Menus';
 
     	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));

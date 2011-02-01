@@ -147,7 +147,6 @@ class Cdr extends AppModel{
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
 
 
-
 		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);
 		  	$this->MonitorIvr->set('call_id' , $entry['Unique-ID']);
@@ -252,6 +251,7 @@ class Cdr extends AppModel{
 
       	      while ($entry = $obj->getNext('update')){
 
+
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
                   $service = $entry['FF-IVR-IVR-Node-Service-ID'];
@@ -287,6 +287,7 @@ class Cdr extends AppModel{
 
 		  $this->MonitorIvr->create($this->MonitorIvr->data);
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
+
 
 		  //Save IVR title to CDR
 		    

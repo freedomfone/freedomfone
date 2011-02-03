@@ -39,7 +39,7 @@ echo $form->end();
 
 
 echo "<h1>".__('Audio Messages',true)."</h1>";
-
+$ext = Configure::read('EXTENSIONS');
 
      if ($messages){
 
@@ -52,6 +52,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
      echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'new'),
+ 	$paginator->sort(__("Service",true), 'instance_id'),
  	$paginator->sort(__("Title",true), 'title'),
  	$paginator->sort(__("Caller",true), 'sender'),
  	$paginator->sort(__("Rate",true), 'rate'),
@@ -72,7 +73,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 	if($message['Message']['new']){
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
 	}
-
+        $service      = $message['Message']['instance_id'];
         $title      = $message['Message']['title'];
         $title_div  = $html->div('',$text->truncate($title,20,'...',true,false),array('title' => $title),false);
 	$sender     = $message['Message']['sender'];
@@ -88,6 +89,7 @@ echo "<h1>".__('Audio Messages',true)."</h1>";
 
      $row[$key] = array($id,
      		array($status,array('align'=>'center')),
+                array($ext['lam'].$service,array('align'=>'center')),
 		array($title_div, array('width' => '110px')),
                 $sender,
 		array($rate,array('align'=>'center')),

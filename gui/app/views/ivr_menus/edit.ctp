@@ -189,7 +189,7 @@ $path = $ivr_settings['path'].$ivr_settings['dir_node'];
              $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
        }
 
-     for($i=0;$i<9;$i++){
+     for($i=0;$i<8;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	

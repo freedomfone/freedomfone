@@ -30,7 +30,7 @@
       }
 
 
-      for($i=1;$i<=9;$i++){
+      for($i=1;$i<=8;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i));	
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	

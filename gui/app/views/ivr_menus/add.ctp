@@ -108,7 +108,7 @@ $path = $ivr['path'].$ivr['dir_node'];
        }
 
 
-     for($i=0;$i<9;$i++){
+     for($i=0;$i<8;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
 

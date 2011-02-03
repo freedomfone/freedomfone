@@ -131,7 +131,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
        }
 
 
-     for($i=0;$i<9;$i++){
+     for($i=0;$i<8;$i++){
 
         echo $form->input('Mapping.'.$i.'.digit',array('type'=>'hidden','value' => $i+1));	
         echo $form->input('Mapping.'.$i.'.id',array('type'=>'hidden'));	

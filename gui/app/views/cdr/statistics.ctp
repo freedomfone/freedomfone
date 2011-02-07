@@ -40,10 +40,12 @@ echo $form->end();
      $ivrCount   = 0;
      $otherCount = 0;
 
+
      if($cdr){
 
+
      foreach ($cdr as $key => $entry){
-    
+
 
      $app = $entry['Cdr']['application'];
 

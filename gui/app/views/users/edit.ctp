@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edits user data in phone book
- * version 	- 1.0.362
+ * version 	- 2.0.1244
  * 
  * Version: MPL 1.1
  *
@@ -36,7 +36,7 @@ echo $form->end();
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 
 
-     echo "<h1>".__("Edit contact",true)."</h1>";
+     echo "<h1>".__("Edit User",true)."</h1>";
      
      echo $html->div('content_wrap_inline');
 

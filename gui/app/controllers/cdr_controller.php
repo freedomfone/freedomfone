@@ -286,16 +286,16 @@ class CdrController extends AppController{
 
         if($this->data){
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
-       		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end']));
-       		$this->set('cdr', $this->Cdr->find('all',$param)); 
+     		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end'],'application !=' => ''));
+
         } else {
-       	       $this->set('cdr',$this->Cdr->find('all'));
+     		$param = array('conditions' => array('application !=' => ''));
         }
 
+       	$this->set('cdr', $this->Cdr->find('all',$param)); 
         $start = $this->Cdr->getEpoch('first');  
         $end   = time()+900;
         $this->set(compact('start','end'));
-
         $this->render();  
 
       }

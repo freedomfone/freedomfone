@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * users_controller.php		- Controller for Users (phone book)
- * version 		 	- 1.0.1225
+ * version 		 	- 2.0.1225
  * 
  * Version: MPL 1.1
  *
@@ -94,7 +94,7 @@ class UsersController extends AppController{
     function edit($id = null)    {  
 
 
-    	     $this->pageTitle = 'User : Edit';   
+    	     $this->pageTitle = 'Edit User';   
 
              if(isset($this->params['form']['submit'])) {
 	        if ($this->params['form']['submit']==__('Refresh',true)){
@@ -250,7 +250,7 @@ class UsersController extends AppController{
 
     function add() {
 
-    	$this->pageTitle = 'User : Add';
+    	$this->pageTitle = 'Add User';
 	$acls = $this->User->Acl->find('list');
  	$this->set(compact('acls'));
 

@@ -29,7 +29,13 @@ echo $html->addCrumb('Settings', '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-$msgAccessLevel =  __('These settings determine the access level of the streaming audio content of your Freedom Fone installation.',true); 
+ 
+
+$msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.<br/>',true);
+$msgAccessLevel .=  __('If you intend to access the server: <br/>',true)."<ul>";
+$msgAccessLevel .= "<li>".__('remotely over the Internet, select "Internet".<br/>',true)."</li>"; 
+$msgAccessLevel .= "<li>".__('over a local area network (LAN), select "Local area network".<br/>',true)."</li>"; 
+$msgAccessLevel .= "<li>".__('only from the machine,  select "Local machine".<br/>',true)."</li></ul>"; 
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -66,9 +72,9 @@ $msgAccessLevel =  __('These settings determine the access level of the streamin
 
 	   elseif ($entry['name']=='ip_address'){
 
-           $options1 = array($external => ' '.__('Public access',true));
-           $options2 = array($internal => ' '.__('Local access',true));
-           $options3 = array('127.0.0.1'=>' '.__('Private access',true)); 
+           $options1 = array($external => ' '.__('Internet',true));
+           $options2 = array($internal => ' '.__('Local Area Network',true));
+           $options3 = array('127.0.0.1'=>' '.__('Local machine',true)); 
 
 
 	   $default_ext = $default_int = $default_local = false;
@@ -83,9 +89,9 @@ $msgAccessLevel =  __('These settings determine the access level of the streamin
 
 	   
 
-            if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),__('No restriction',true).' ('.__('accessible from ',true).$external.')');}
-            if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),__('Access from Local Area Nework only',true).' ('.__('accessible from ',true).$internal.')');}
-            $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)),__('Access from local machine only',true).' ('.__('accessible from 127.0.0.1',true).')');
+            if ($external){ $radio[] = array($form->radio('ip_radio',$options1,array('legend'=>false,'value'=>$default_ext)),$external);}
+            if ($internal){ $radio[] = array($form->radio('ip_radio',$options2,array('legend'=>false,'value'=>$default_int)),$internal);}
+            $radio[] = array($form->radio('ip_radio',$options3,array('legend'=>false,'value'=>$default_local)), '127.0.0.1');
             echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));                                                         
 
 
@@ -103,7 +109,7 @@ $msgAccessLevel =  __('These settings determine the access level of the streamin
 
 
 	//Display IP address table
-        echo "<h2>".__("Access level",true)."</h2>";                                                                                                                                                                                                      
+        echo "<h2>".__("IP address",true)."</h2>";                                                                                                                                                                                                      
         echo $html->div('instruction', $msgAccessLevel);
 	echo "<table cellspacing=0 class='stand-alone'>";
 	echo $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone'));

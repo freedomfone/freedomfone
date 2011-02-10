@@ -17,4 +17,6 @@
 [X]  clean deb packages 
 [X]  fix grub 
 [X]  check that 100.conf has good values 
- 
+
+[X] radiance ubuntu theme 
+[X] clean audio files and update 4_ reset script 

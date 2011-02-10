@@ -10,6 +10,8 @@ find $SVNROOT/freeswitch/scripts -type f -name *meta -print0 | xargs -0 rm -f
 find $SVNROOT/freeswitch/scripts -type f -name *mp3 -print0 | xargs -0 rm -f
 find $SVNROOT/freeswitch/scripts -type f -name ivr.xml -print0 | xargs -0 rm -f
 
+echo "The log files will be deleted! after pressing ENTER, CTRL-C to abort"
+rm -f $SVNROOT/gui/app/tmp/logs/*
 instance=100
 while [ $instance -lt 120 ] ; do
 cp $SVNROOT/freeswitch/scripts/freedomfone/leave_message/instance/instance.conf $SVNROOT/freeswitch/scripts/freedomfone/leave_message/$instance/conf/$instance.conf 

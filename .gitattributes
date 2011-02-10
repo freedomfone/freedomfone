@@ -62,14 +62,6 @@ dispatcher_in/templates/tickle.xsl -text
 dispatcher_in/tests/sendSMS.php -text
 dispatcher_out/config.php -text
 dispatcher_out/dispatcher_out.php -text
-documentation/developers/freedomfone_pictus_developers_part1_v1.6.pdf -text
-documentation/developers/freedomfone_pictus_developers_part2_v1.1.pdf -text
-documentation/developers/freedomfone_technical_documentation_GSMopen_v3.0.doc -text
-documentation/developers/freedomfone_technical_documentation_GSMopen_v3.0.odt -text
-documentation/developers/freedomfone_technical_documentation_GSMopen_v3.0.pdf -text
-documentation/developers/freedomfone_technical_documentation_middle+application_v1.0.doc -text
-documentation/developers/freedomfone_technical_documentation_middle+application_v1.0.odt -text
-documentation/developers/freedomfone_technical_documentation_middle+application_v1.0.pdf -text
 documentation/screenshots/freedomfone_worldwide.png -text
 documentation/screenshots/ivr_sw.png -text
 documentation/screenshots/poll_sw.png -text

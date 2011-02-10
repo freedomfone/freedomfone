@@ -26,7 +26,7 @@ class NodesController extends AppController{
 
       var $name = 'Nodes';
       var $helpers = array('Html', 'Session','Form','Formatting','Flash');
-
+      var  $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
     
      	
 
@@ -67,9 +67,9 @@ class NodesController extends AppController{
            $title = $this->data['Node']['title'];
 	   
 	   //If title exists, upload file (wav)
-	   
-	   unset($this->data['Node']['file']);
+
    	   $this->Node->set( $this->data );
+ 
 
   	   if ($this->Node->validates()){
 
@@ -114,7 +114,7 @@ class NodesController extends AppController{
 	              }
 
 		 }
-	    }
+	    } 
 
 
 	}

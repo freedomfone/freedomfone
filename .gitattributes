@@ -212,6 +212,8 @@ freeswitch/scripts/freedomfone/leave_message/119/audio_menu/README -text
 freeswitch/scripts/freedomfone/leave_message/119/conf/119.conf -text
 freeswitch/scripts/freedomfone/leave_message/119/conf/119_core.conf -text
 freeswitch/scripts/freedomfone/leave_message/119/conf/README -text
+freeswitch/scripts/freedomfone/leave_message/instance/instance.conf -text
+freeswitch/scripts/freedomfone/leave_message/instance/instance_core.conf -text
 freeswitch/scripts/freedomfone/leave_message/main.js -text
 freeswitch/scripts/freedomfone/monitor_ivr/main.js -text
 freeswitch/scripts/freedomfone/sms/README -text

@@ -269,6 +269,7 @@ gui/app/controllers/tags_controller.php -text
 gui/app/controllers/users_controller.php -text
 gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
+gui/app/install/UPDATE_freedomfone_1.6.5-04_TO_2.0.sql -text
 gui/app/install/freedomfone_db_createdb_user.sql -text
 gui/app/install/freedomfone_db_schema.sql -text
 gui/app/install/freedomfone_demo_data.sql -text

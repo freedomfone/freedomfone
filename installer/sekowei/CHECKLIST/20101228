@@ -19,4 +19,7 @@
 [X]  check that 100.conf has good values 
 
 [X] radiance ubuntu theme 
-[X] clean audio files and update 4_ reset script 
+[X] clean audio files and update 4_ reset script
+[X] added useful scripts under desktp
+[X] add new boolean to firefox about:config browser.sessionstore.enable false
+[X] clean deb packages 

@@ -1,0 +1,115 @@
+Freedom Fone 2.0 - Lycaon Sekowei
+
+Alberto Escudero-Pascual
+
+<aep@it46.se>
+
+$2.0.1$
+
+Copyright © 2009-2011 Alberto Escudero-Pascual
+
+$Date: 2011/02/08 10:17:29$
+
+Sekowei has arrived! The fifth release of Freedom Fone.
+
+Freedom Fone is an open source vCMS. A vCMS is a Voice Content Management that
+allows you to deliver and receive audio content via the GSM network or a SIP
+voice over IP gateway. The software connects phone networks to our platform,
+two flexible voice applications allow the retrieval of audience feedback (Leave
+a Message) and to deliver customized audio content (IVRs).
+
+Freedom Fone is the result of three years of field experience with telephony
+information services for civil society. During this last three years we have
+learned that there is enough technology to build almost anything but not for
+everyone to use. With Freedom Fone we have taken a U-U approach to telephony
+technology and designed a system that wants to be "user and usability-centric".
+
+Rather than presenting users with a million options to set up a telephony
+system, we have opted to design basic but powerful telephony applications that
+can be used with a great degree of flexibility. We have put special emphasis in
+the user interface and lowering the cost of interfacing with the GSM network.
+
+Freedom Fone is built combining the power of several open source projects that
+include: FreeSWITCH, Spidermonkey, PHP5, Cake PHP and JQuery. Freedom Fone uses
+Cepstral, a text-to-speech voice engine to synthesize voice messages.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What is new in 2.0?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nested IVRs
+
+This new feature of Freedom Fone includes major changes in the way that Voice
+Menus are built. In constrast with previous versions, users can now create
+several IVRs and nested them together to build any voice scenario.
+
+Callers can reach individual IVRs or being offered the possibility to navigate
+audio content interactively.
+
+To facilitate the creation of voice menus in different languages we have
+included a specific template to enable Language Selection. This simple IVR/
+Voice Menu is known as Language Switcher and gives the possibity to select the
+language as the first option when the call arrives to the system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Graphical Interface
+
+The Graphical User Interface has been completely redisigned and lots of work
+have been put into new AJAX features, Breadcrub trail and terminology
+consolidation.
+
+With version 2.0 of Freedom Fone, our graphical interfaces also goes 2.0,
+making navigation much more intuitive and interactive.
+
+The new interface includes a Dashboard that gives the user an overall view of
+the status of the system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Multiple Leave-a-Message
+
+As an improvement to previous versions, this new version supports multiple
+Leave-a-Message (LAM). Now, it is possible to have several LAMs active in the
+system as part of different IVRs or as independent services.
+
+In combination with the Language Switcher, you can build personalized
+Leave-a-Message services in multiple local languages. This feature is key to
+reach audiences in local languages.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Audience management and phonebooks
+
+Users that calls into the system can be automatically added to a phonebook.
+Phonebooks can be exported to any other information system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Enhanced hardware support
+
+We have addressed the scalability issues of Freedom Fone by supporting
+OfficeRoute, a low cost GSM-SIP gateway and opening the possibility to
+interface any other SIP gateway.
+
+To improve troubleshooting of poor GSM networks, Freedom Fone is able to talk
+directly to our GSM gateway and retrieve status information of the GSM network.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+On the Cloud
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Virtualization and remote hosting
+
+We are working hard to make sure that Freedom Fone can be installed on the
+Cloud and provide secure hosting for installations. Freedom Fone architecture
+supports the possibility of having the backend virtualized on a Cloud solution
+and still be present with local GSM numbers.
+
+Interested? Get in touch.
+

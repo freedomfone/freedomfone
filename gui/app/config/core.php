@@ -242,7 +242,7 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','2.0');
+define ('VERSION','2.0.1');
 define ('VERSION_NAME','Lycaon sekowei');
 
 

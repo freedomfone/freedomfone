@@ -75,26 +75,28 @@ class ChannelsController extends AppController{
 
 	  // No id, or empty form
 	     if(!$id){	
-	     $this->_flash(__('Invalid option.', true),'warning'); 
-	     $this->redirect(array('action'=>'index')); 
+	     $this->_flash(__('Invalid option.', true),'warning');
+	     $this->redirect(array('action'=>'index'));
 	  }
-          
-          // Retrieve data from database and display 
+
+          // Retrieve data from database and display
     	  elseif(empty($this->data['Channel'])){
 
 		$this->Channel->id = $id;
 		$this->data = $this->Channel->read(null,$id);
 
           }
-          
-          //Fetch form data 
+
+          //Fetch form data
 	  else {
 
-          $this->Channel->set( $this->data );	       
+          $this->Channel->set( $this->data );
+	  debug($this->data);
+	
           $this->Channel->save();
   	  $this->redirect(array('action' => 'index'));
-  
-          }           
+
+          }
 
 }
 

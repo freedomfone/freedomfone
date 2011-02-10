@@ -298,6 +298,7 @@ gui/app/install/freedomfone_db_schema.sql -text
 gui/app/install/freedomfone_demo_data.sql -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
+gui/app/locale/freedomfone_2-0.pot -text
 gui/app/locale/gui.pot -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
 gui/app/models/behaviors/empty -text

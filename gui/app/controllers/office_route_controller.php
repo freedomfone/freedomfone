@@ -25,7 +25,7 @@
 class OfficeRouteController extends AppController{
 
       var $name = 'OfficeRoute';
-    
+      var $helpers = array('Flash');    
 
       function refresh($method = null){
 

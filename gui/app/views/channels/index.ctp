@@ -22,23 +22,27 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('GSM channels', '/channels');
+  echo $html->addCrumb('Dashboard', '');
+  echo $html->addCrumb('GSM channels', '/channels');
 
+  if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+  }
 
-$session->flash();
-$generated  = $session->read('Channel.refresh');
-
-echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-
-echo "<h1>".__('GSM channels',true)."</h1>";
+  $generated  = $session->read('Channel.refresh');
+  echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
+  echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+  echo $form->end();
+  echo "<h1>".__('GSM channels',true)."</h1>";
 
      echo "<h3>".__('Office Route',true)."</h3>";
 
-     if ($data){
+     if ($data == 'snmp_off'){ 
+
+       echo $html->div('feedback',__("SNMP daemon is not running.",true));
+
+     } elseif ($data){
+
 
       foreach ($data as $no => $unit){
 

@@ -1,28 +1,12 @@
-Freedom Fone http://www.freedomfone.org 
-1.0 Lycaon Pictus Pictus November 2009
-1.5 Lycaon Pictus Lupinus March 2010
-2.0 Lycaon Sekowei February 2011
+The Initial Developer of the Original Code is IT46 AB.
+Code developed in cooperation with the Kubatana Trust of Zimbabwe
+info@freedomfone.org
 
-- Louise Berthilson (louise@it46.se)
-	cake php MVC GUI
-	dispatcher
-	dialer
-	esl
-	
-- Giovanni Maruzzelli (gmaruzz@gmail.com)
-	gsmopen
-	skypeopen 
+Authors: Louise Berthilson (louise@it46.se)
+         Alberto Escudero-Pascual (aep@it46.se)
 
-- Alberto Escudero-Pascual (aep@it46.se)
-	project architecture
-	system integration
-	freeswitch scripts/javascript
-	installer
-	xml_curl
-
-- Brenda Burrell (bren@kubatana.net)
-	Renowned Bug tracker
-
+Contributors: Giovanni Maruzzelli (gmaruzz@gmail.com)
+              Brenda Burrell (bren@kubatana.net)
 ---------------------------------------------------------
 
 Freedom Fone is also free software, enjoy the freedoms!
@@ -47,15 +31,7 @@ Freedom Fone is also free software, enjoy the freedoms!
 	File system monitoring
 	http://iwatch.sourceforge.net/
 
----------------------------------------------------------
+* audio player
+	A Flash MP3 Player
+	http://wpaudioplayer.com/license/
 
-Read the documentation 
-
-* documentation
-Tons of it in the documentation folder, for developers and non-tech users
-	
----------------------------------------------------------
-
-Code developed in cooperation with the Kubatana Trust of Zimbabwe
-http://www.kubatana.net/
-info@freedomfone.org

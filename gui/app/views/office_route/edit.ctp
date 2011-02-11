@@ -31,8 +31,12 @@ echo $html->addCrumb('GSM channels', '/channels');
 
                 echo $html->addCrumb('Edit Officeroute', '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
-		echo "<h1>".__("Edit channel (slot ".$this->data['OfficeRoute']['id'].")",true)."</h1>";
+                $msg1 = __("Edit channel",true);
+                $msg2 = __("slot",true);
+		echo "<h1>".$msg1." (".$msg2.":".$this->data['OfficeRoute']['id'].")</h1>";
 		
+
+
 
    	  	if ($messages = $session->read('Message.multiFlash')) {
                    foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

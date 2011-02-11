@@ -29,7 +29,8 @@ echo $html->addCrumb('Logs', '/logs');
 	echo "<h1>".__("Logs",true)."</h1>";
 	echo $html->div('instructions',__('Select log file to view',true));
 	echo $form->create("Log");
-	$opt = array('poll'=>'Poll','bin' => 'SMS','message'=>'Message Centre','ivr' => 'IVR Centre','debug'=> 'Debug','error' => 'Error');
+	$opt = array('poll'=>'Poll','bin' => 'SMS','message'=>'Message Centre','ivr' => 'IVR Centre','cdr' => 'CDR', 'monitor_ivr' => 'Monitoring', 'process' => 'Health', 'refresh' => 'Cron and refresh', 'debug'=> 'Debug','error' => 'Error');
+
 	echo $form->input("type",array("id"=>"LogType","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select log file",true).' --'));
 	$opt = array(
 		"update" => "log_div",

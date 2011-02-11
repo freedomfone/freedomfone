@@ -46,24 +46,28 @@ class OfficeRoute extends AppModel{
      //For each office route in use
      foreach($snmp as $key => $unit){
 
+
        if($this->is_alive($unit['ip_addr'])){
 
-         for($i=0; $i<4; $i++){
+          if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1',1000000,2)){
+   
+                for($i=0; $i<4; $i++){
 
-         $mib[$i]['id']                    =  $i + 1; 
-         $mib[$i]['line_id']               =  $this->get_entry($unit, 2, $i);
-         $mib[$i]['imei']                  =  $this->get_entry($unit, 3, $i);
-         $mib[$i]['signal_level']          =  $this->get_entry($unit, 7, $i);
-         $mib[$i]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
-         $mib[$i]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
-         $mib[$i]['imsi']                  =  $this->get_entry($unit, 12, $i);
-         $mib[$i]['operator_name']         =  $this->get_entry($unit, 14, $i);         
-         $mib[$i]['ip_addr']               =  $unit['ip_addr'];
+                          $mib[$i]['id']                    =  $i + 1; 
+                          $mib[$i]['line_id']               =  $this->get_entry($unit, 2, $i);
+                          $mib[$i]['imei']                  =  $this->get_entry($unit, 3, $i);
+                          $mib[$i]['signal_level']          =  $this->get_entry($unit, 7, $i);
+                          $mib[$i]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
+                          $mib[$i]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
+                          $mib[$i]['imsi']                  =  $this->get_entry($unit, 12, $i);
+                          $mib[$i]['operator_name']         =  $this->get_entry($unit, 14, $i);         
+                          $mib[$i]['ip_addr']               =  $unit['ip_addr'];
 
-
-         if (trim($mib[$i]['sim_inserted']) == 'No') { $mib[$i]['signal_level']= false;}
+                          if (trim($mib[$i]['sim_inserted']) == 'No') { $mib[$i]['signal_level']= false;}
         
-         } //for
+                }  //for
+
+           } 
 
      } //if
 
@@ -115,7 +119,23 @@ class OfficeRoute extends AppModel{
 	return true;
 
  	}
-}
+   }
+
+
+  function snmp_on(){
+
+    $snmp   = Configure::read('OR_SNMP');
+          if(snmpget( $snmp[0]['ip_addr'] , $snmp[0]['community'], $snmp[0]['object_id'].'.2.1',1000000,2)){
+          
+                return true;
+          
+          } else {
+
+               return false;
+
+         }
+
+  }
 
 }
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2011-02-11 10:02+0100\n"
+"POT-Creation-Date: 2011-02-11 10:13+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -172,7 +172,7 @@ msgid "The selected menu could not be deleted since it is a member of another IV
 msgstr ""
 
 #: /controllers/messages_controller.php:50
-#: /views/ivr_menus/add.ctp:145
+#: /views/ivr_menus/add.ctp:142
 #: /views/ivr_menus/edit.ctp:247
 #: /views/ivr_menus/edit_selector.ctp:187
 msgid "Leave-a-Message"
@@ -192,7 +192,7 @@ msgstr ""
 #: /views/categories/add.ctp:41
 #: /views/categories/edit.ctp:48
 #: /views/channels/edit.ctp:55;55
-#: /views/ivr_menus/add.ctp:152
+#: /views/ivr_menus/add.ctp:149
 #: /views/ivr_menus/add_switcher.ctp:105
 #: /views/ivr_menus/disp.ctp:47
 #: /views/ivr_menus/edit.ctp:254
@@ -818,9 +818,8 @@ msgid "Edit Category"
 msgstr ""
 
 #: /views/categories/edit.ctp:40
-#: /views/phone_books/edit.ctp:49
 #: /views/tags/edit.ctp:48
-msgid "-- Use in none --"
+msgid "Use in none"
 msgstr ""
 
 #: /views/categories/edit.ctp:47
@@ -1347,7 +1346,7 @@ msgstr ""
 
 #: /views/elements/menu.ctp:119
 #: /views/elements/services.ctp:29
-#: /views/ivr_menus/add.ctp:145
+#: /views/ivr_menus/add.ctp:142
 #: /views/ivr_menus/edit.ctp:247
 #: /views/ivr_menus/edit_selector.ctp:187
 #: /views/ivr_menus/selectors.ctp:40
@@ -1479,7 +1478,7 @@ msgid "ON"
 msgstr ""
 
 #: /views/elements/services.ctp:37
-#: /views/ivr_menus/add.ctp:145
+#: /views/ivr_menus/add.ctp:142
 #: /views/ivr_menus/add_switcher.ctp:83
 #: /views/ivr_menus/edit.ctp:247
 #: /views/ivr_menus/edit_selector.ctp:187
@@ -1539,17 +1538,17 @@ msgstr ""
 msgid "Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2."
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:46
+#: /views/ivr_menus/add.ctp:43
 #: /views/ivr_menus/edit.ctp:41
 msgid "Select option for alternative 1."
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:47
+#: /views/ivr_menus/add.ctp:44
 #: /views/ivr_menus/edit.ctp:42
 msgid "Select option for alternative 2."
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:50;51;52;53;54
+#: /views/ivr_menus/add.ctp:47;48;49;50;51
 #: /views/ivr_menus/add_selector.ctp:44;45;46;47;48
 #: /views/ivr_menus/edit.ctp:46;47
 #: /views/lm_menus/add.ctp:48;49;50;51;52;53;54;55
@@ -1560,7 +1559,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:63
+#: /views/ivr_menus/add.ctp:60
 #: /views/ivr_menus/edit.ctp:74
 #: /views/phone_books/add.ctp:48
 #: /views/phone_books/edit.ctp:47
@@ -1572,12 +1571,12 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:68
+#: /views/ivr_menus/add.ctp:65
 #: /views/ivr_menus/edit.ctp:87
 msgid "Welcome"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:70;76;82;88
+#: /views/ivr_menus/add.ctp:67;73;79;85
 #: /views/ivr_menus/add_selector.ctp:64;71
 #: /views/ivr_menus/add_switcher.ctp:49;56
 #: /views/ivr_menus/edit.ctp:89;111;132;154
@@ -1594,7 +1593,7 @@ msgstr ""
 msgid "Audio file"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:74
+#: /views/ivr_menus/add.ctp:71
 #: /views/ivr_menus/add_selector.ctp:62
 #: /views/ivr_menus/add_switcher.ctp:47
 #: /views/ivr_menus/edit.ctp:109
@@ -1604,12 +1603,12 @@ msgstr ""
 msgid "Instructions"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:80
+#: /views/ivr_menus/add.ctp:77
 #: /views/ivr_menus/edit.ctp:130
 msgid "Goodbye"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:86
+#: /views/ivr_menus/add.ctp:83
 #: /views/ivr_menus/add_selector.ctp:69
 #: /views/ivr_menus/add_switcher.ctp:54
 #: /views/ivr_menus/edit.ctp:152
@@ -1618,20 +1617,20 @@ msgstr ""
 msgid "Invalid"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:95
+#: /views/ivr_menus/add.ctp:92
 #: /views/ivr_menus/add_selector.ctp:78
 #: /views/ivr_menus/edit.ctp:177
 msgid "Menu Options"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:131
+#: /views/ivr_menus/add.ctp:128
 #: /views/ivr_menus/disp.ctp:39
 #: /views/ivr_menus/edit.ctp:232
 #: /views/ivr_menus/edit_selector.ctp:172
 msgid "#"
 msgstr ""
 
-#: /views/ivr_menus/add.ctp:133;135;137
+#: /views/ivr_menus/add.ctp:130;132;134
 #: /views/ivr_menus/disp.ctp:40
 #: /views/ivr_menus/edit.ctp:234;236;238
 #: /views/ivr_menus/edit_selector.ctp:174;176;178
@@ -2036,11 +2035,11 @@ msgid "No rate"
 msgstr ""
 
 #: /views/messages/edit.ctp:63
-msgid "« Older message"
+msgid "Older message"
 msgstr ""
 
 #: /views/messages/edit.ctp:67
-msgid "Newer message »"
+msgid "Newer message"
 msgstr ""
 
 #: /views/messages/edit.ctp:79
@@ -2205,6 +2204,10 @@ msgstr ""
 
 #: /views/phone_books/edit.ctp:49
 msgid "Add user to phone book"
+msgstr ""
+
+#: /views/phone_books/edit.ctp:49
+msgid "-- Use in none --"
 msgstr ""
 
 #: /views/phone_books/edit.ctp:57
@@ -2494,23 +2497,23 @@ msgid "Latest news"
 msgstr ""
 
 #: /views/settings/index.ctp:34
-msgid "Please select appropriate IP address of your Freedom Fone installation.<br/>"
+msgid "Please select appropriate IP address of your Freedom Fone installation."
 msgstr ""
 
 #: /views/settings/index.ctp:35
-msgid "If you intend to access the server: <br/>"
+msgid "If you intend to access the server: "
 msgstr ""
 
 #: /views/settings/index.ctp:36
-msgid "remotely over the Internet, select \"Internet\".<br/>"
+msgid "remotely over the Internet, select Internet."
 msgstr ""
 
 #: /views/settings/index.ctp:37
-msgid "over a local area network (LAN), select \"Local area network\".<br/>"
+msgid "over a local area network (LAN), select Local area network."
 msgstr ""
 
 #: /views/settings/index.ctp:38
-msgid "only from the machine,  select \"Local machine\".<br/>"
+msgid "only from the machine, select Local machine."
 msgstr ""
 
 #: /views/settings/index.ctp:75

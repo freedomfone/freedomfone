@@ -45,7 +45,7 @@
         echo $html->tableCells(array (
      	    array(__("Tag",true), $form->input('name',$options_name)),
      	    array(__("Description",true), $form->input('longname',$options_longname)),
-     	    array(array(__("Use in message",true),array('valign' =>'top')), $form->input('Message',array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>__('-- Use in none --',true)))),
+     	    array(array(__("Use in message",true),array('valign' =>'top')), $form->input('Message',array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>'-- '.__('Use in none',true).' --'))),
             array('',   $form->end(__('Save',true)))
                                 ),
             array('class' => 'stand-alone'),array('class' => 'stand-alone'));

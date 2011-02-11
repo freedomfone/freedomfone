@@ -56,6 +56,8 @@ extras/fix_perms_gui.sh -text
 extras/gsmopen/README -text
 extras/gsmopen/mod_gsmopen.la -text
 extras/gsmopen/mod_gsmopen.so -text
+extras/logrotate.d/freedomfone -text
+extras/logrotate.d/freedomfone_dispatcher_in -text
 extras/php.ini -text
 extras/php2twitter.php -text
 extras/setmixers -text

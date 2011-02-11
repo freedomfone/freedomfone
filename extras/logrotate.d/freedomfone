@@ -1,0 +1,7 @@
+"/var/tmp/pop3_daemon.log" "/usr/local/freedomfone/gui/app/tmp/logs/*.log" {
+daily
+missingok
+copytruncate
+rotate 7
+compress
+}

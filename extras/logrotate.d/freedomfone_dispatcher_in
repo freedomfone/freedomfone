@@ -1,0 +1,11 @@
+"/var/tmp/dispatcher_in.log" {
+daily
+missingok
+copytruncate
+rotate 7
+compress
+sharedscripts
+postrotate
+/etc/init.d/dispatcher_in restart > /dev/null
+endscript
+}

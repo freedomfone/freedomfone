@@ -60,11 +60,11 @@ echo $html->addCrumb($location, '/messages/'.$source);
 
 
      if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
-	  $prev = $html->link(__("« Older message",true),"edit/".$prev,array('class'=>'subTitles'));
+	  $prev = $html->link("« ".__("Older message",true),"edit/".$prev,array('class'=>'subTitles'));
 	  }
 
      if ($next = $neighbors[$Next]['Message']['id']){
-     	$next = $html->link(__("Newer message »",true),"edit/".$next);
+     	$next = $html->link(__("Newer message",true)." »","edit/".$next);
      }
 
 

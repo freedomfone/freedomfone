@@ -37,7 +37,7 @@
          $session->flash();
 
          $options	  = array('label' => false);
-         $options_category = array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>__('-- Use in none --',true));
+         $options_category = array('type'=>'select','multiple'=>'true','options' => $messages, 'label'=>false,'empty'=>'-- '.__('Use in none',true).' --');
 
          echo $form->create('Category',array('type' => 'post','action'=> 'edit'));
          echo "<table cellspacing = 0 class='stand-alone'>";

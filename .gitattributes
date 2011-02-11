@@ -61,8 +61,6 @@ dispatcher_in/templates/monitor_ivr.xsl -text
 dispatcher_in/templates/officeroute.xsl -text
 dispatcher_in/templates/tickle.xsl -text
 dispatcher_in/tests/sendSMS.php -text
-dispatcher_out/config.php -text
-dispatcher_out/dispatcher_out.php -text
 documentation/developers/freedomfone_sekowei_2.0_documentation_developers_guide.pdf -text
 documentation/screenshots/freedomfone_worldwide.png -text
 documentation/screenshots/ivr_sw.png -text
@@ -557,9 +555,6 @@ installer/sekowei/extras/install-flash_64bits.sh -text
 installer/sekowei/extras/libs/esl/Makefile -text
 installer/sekowei/extras/skypopen_auth -text
 license/MPL -text
-log/dialer.log -text
-log/dispatcher_in.log -text
-log/dispatcher_out.log -text
 office_route/config.php -text
 office_route/pop3.php -text
 office_route/pop3_daemon.php -text

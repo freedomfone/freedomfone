@@ -468,13 +468,6 @@ init.d/freeswitch -text
 init.d/gsmopen -text
 init.d/iwatch -text
 init.d/rc.local -text
-installer/lupinus/0_lupinus_install_download.sh -text
-installer/lupinus/1_lupinus_install.sh -text
-installer/lupinus/2_lupinus_install.sh -text
-installer/lupinus/3_lupinus_db_reset.sh -text
-installer/pictus/centos/pictus_install_gui.sh -text
-installer/pictus/pictus_install.sh -text
-installer/pictus/pictus_install_gui.sh -text
 installer/sekowei/1_sekowei_download.sh -text
 installer/sekowei/2_sekowei_compile.sh -text
 installer/sekowei/3_sekowei_install_lamp.sh -text

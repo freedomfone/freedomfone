@@ -161,11 +161,13 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		}
 		
 		else {
-		     $filename = time().'_'.str_replace(' ', '_', $file['name']);
+		     $filename = time().'_'.strtolower(str_replace(' ', '_', $file['name']));
 		}
 
 		$result['files'][$key]=$filename;
-		$result['original'][$key]=$file['name'];
+		$result['original'][$key]= $file['name'];
+
+
 
 		// assume filetype is false
 		$typeOK = false;
@@ -351,7 +353,7 @@ return $result;
 
      function getExt($file){
 
-       return strrchr($file,'.');
+       return strtolower(strrchr($file,'.'));
 
      }
 

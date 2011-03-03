@@ -113,7 +113,7 @@ $sock = new ESLconnection($host, $port, $pass);
        	   	   $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
-		   logPOP("200 Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',$message[$key]['date']).", Body: ".$message[$key]['body'],'INFO','ESL',3);
+		   logPOP("200 Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',($message[$key]['date']/1000000)).", Body: ".$message[$key]['body'],'INFO','ESL',3);
 
 		   if (preg_match('/OK/i', $result->getBody())){
 
@@ -175,8 +175,12 @@ $sock = new ESLconnection($host, $port, $pass);
 		}  elseif (ereg("Date",$string)){
 
 	   	   	$var = trim(strstr($string, ':'),': '); 
-	   		$date = strtotime($var);
-	   		$messages[$i]['date'] = $date*1000000;
+	   		$date = strtotime($var)*1000000;
+			$messages[$i]['date'] = number_format($date, 0, '.', ''); 
+
+
+
+
 		}
 
 						

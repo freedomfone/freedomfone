@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- Display callback settings
- * version 	- 1.0.362
+ * version 	- 2.0.1200
  * 
  * Version: MPL 1.1
  *
@@ -22,38 +22,46 @@
  *
  ***************************************************************************/
 
-$callback_default  = Configure::read('CALLBACK_DEFAULT');
+echo $html->addCrumb('Callback Dialer', '');
+echo $html->addCrumb('Settings', '/callback_settings');
+$default  = Configure::read('CALLBACK_DEFAULT');
 
-$user_limit = array('0' => __("No limit",true),'10'=>10,'25'=>25,'50'=>50,'100'=>100);
-$time_limit = array('0' => __("No limit",true),'12'=>'12h','24'=>'24h','48'=>'2 days','72'=>'4 days','168'=> '1 week');
+
 echo "<h1>".__("Callback settings",true)."</h1>";
 
-        if($session->check('Message.flash')){
-                  $session->flash();
-		}  
+   	  if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+         }
 
 
-echo $form->create('CallbackSetting', array('type' => 'post', 'action' => 'index','enctype' => 'multipart/form-data'));
+         if($this->data){
 
-echo "<table>";
-/*echo $html->tableCells(array(
-     array(__("SMS code",true),		$form->input('sms_code', array('type'=>'text','size' => '10','label'=>false))),
-     array(array(__("Code for incoming SMS to generate a Callback",true),"colspan='2' class='formComment'"))));*/
+         echo $form->create('CallbackSetting', array('type' => 'post', 'action' => 'index','enctype' => 'multipart/form-data'));
+         echo $form->input('id',array('type'=>'hidden','value'=>$this->data['CallbackSetting']['id']));
 
-echo $html->tableCells(array(
-     array(__("Default response",true),		$form->input('response_type', array('options' => $callback_default['response_type'],'label' => false, 'selected' => $this->data['CallbackSetting']['response_type']))),
-     array(array(__("Default callback response",true),"colspan='2' class='formComment'"))));
+         echo "<table cellspacing=0 class='stand-alone'>";
+//     $row[0] = array(__("SMS code",true),		$form->input('sms_code', array('type'=>'text','size' => '10','label'=>false)));
+//     $row[1] = array(array(__("Code for incoming SMS to generate a Callback",true),"colspan='2' class='formComment'"));
+//     $row[2] = array(__("Default response",true), $form->input('response_type', array('options' => $callback_default['response_type'],'label' => false, 'selected' => $this->data['CallbackSetting']['response_type'])));
+//     $row[3] = array(array(__("Default callback response",true),"colspan='2' class='formComment'"));
+//     $row[4] = array(__("Max calls",true), $form->input('limit_user', array('options' => $user_limit,'label'=>false, 'selected' => $this->data['CallbackSetting']['limit_user'])));
+//     $row[5] = array(array(__("Limit the number of calls per user per day.",true),"colspan='2' class='formComment'"));
+//     $row[6] = array(__("Period",true), $form->input('limit_time', array('options' => $time_limit,'label'=>false, 'selected' => $this->data['CallbackSetting']['limit_time'])));
+//     $row[7] = array(array(__("Limit the number of calls per user per day.",true),"colspan='2' class='formComment'"));
 
-echo $html->tableCells(array(
-     array(__("Max calls",true),		$form->input('limit_user', array('options' => $user_limit,'label'=>false, 'selected' => $this->data['CallbackSetting']['limit_user']))),
-     array(array(__("Limit the number of calls per user per day.",true),"colspan='2' class='formComment'"))));
+       $row[0] = array(__("Retries",true), $form->input('retries', array('options' => $default['retries'],'label'=>false, 'selected' => $this->data['CallbackSetting']['retries'])));
+       $row[1] = array(array(__("Default number of retires for a callback.",true),"colspan='2' class='formComment'"));
 
-echo $html->tableCells(array(
-     array(__("Period",true),		$form->input('limit_time', array('options' => $time_limit,'label'=>false, 'selected' => $this->data['CallbackSetting']['limit_time']))),
-     array(array(__("Limit the number of calls per user per day.",true),"colspan='2' class='formComment'"))));
+       $row[2] = array(__("Retry interval",true), $form->input('retry_interval', array('options' => $default['retry_interval'],'label'=>false, 'selected' => $this->data['CallbackSetting']['retry_interval'])));
+       $row[3] = array(array(__("Interval (seconds) beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
 
-echo "</table>";
+       $row[4] = array(__("max duration",true), $form->input('max_duration', array('options' => $default['max_duration'],'label'=>false, 'selected' => $this->data['CallbackSetting']['max_duration'])));
+       $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
 
-echo $form->end(__('Save',true)); 
+       echo $html->tableCells($row,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+       echo "</table>";
+       echo $form->end(__('Save',true)); 
+
+       }
 ?>
 

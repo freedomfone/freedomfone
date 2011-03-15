@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * callback_settings_controller.php		- Controller for callback settings.
- * version 		 			- 1.0.368
+ * version 		 			- 2.5.1200
  * 
  * Version: MPL 1.1
  *
@@ -29,21 +29,21 @@ class CallbackSettingsController extends AppController{
 
 
 
-	function index(){
+	function index($id = null){
 
-      	$this->pageTitle = 'Callback : Settings';           
-
-		 $iid=IID;
+      	$this->pageTitle = 'Callback settings';           
 
 		if (empty($this->data)) {
-		       $this->data = $this->CallbackSetting->find('first', array('conditions' => array('instance_id' => $iid)));
-		}
+		       $this->data = $this->CallbackSetting->find('first');
 
-		if (!empty($this->data)) {
+		} else {
+                
+                      if ($this->data['CallbackSetting']['id']){
+                         $this->CallbackSetting->save($this->data);
+                      }
+                }
+               
 
-		   $this->data['CallbackSetting']['instance_id'] = $iid;
-		   $this->CallbackSetting->save($this->data);
-		}
 	}
 
 }

@@ -167,7 +167,7 @@ $config['LANGUAGES'] = array(
                                                   );
 
 $config['RSS']	= array(
-	      'path' =>'http://freedomfone.org/rss.xml',
+	      'path' =>'http://freedomfone.org/updates.xml',
               'max'  => 3
                         );
 

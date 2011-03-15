@@ -32,10 +32,10 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
  
 
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
-$msgAccessLevel .=  __('If you intend to access the server: ',true)."<br/><ul>";
-$msgAccessLevel .= "<li>".__('remotely over the Internet, select Internet.',true)."<br/></li>"; 
-$msgAccessLevel .= "<li>".__('over a local area network (LAN), select Local area network.',true)."<br/></li>"; 
-$msgAccessLevel .= "<li>".__('only from the machine, select Local machine.',true)."<br/></li></ul>"; 
+$msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
+$msgAccessLevel .= "<li>".__('is connected to the Internet, and has a public IP address, select Internet.',true)."<br/></li>"; 
+$msgAccessLevel .= "<li>".__('is connected to a local area network (LAN), select Local Area Network.',true)."<br/></li>"; 
+$msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<br/></li></ul>"; 
 
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

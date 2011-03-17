@@ -135,7 +135,7 @@ $config['CALLBACK_DEFAULT']=	array(
                 'response_type'    =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
                 'limit_user'       => '10',
                 'limit_time'       => '24',
-                'retries'          => array(3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20),
+                'retries'          => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
                 'retry_interval'   => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
                 'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min')
                 );

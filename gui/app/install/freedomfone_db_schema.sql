@@ -62,13 +62,13 @@ SET character_set_client = @saved_cs_client;
 
 
 --
--- Table structure for table `callback_in`
+-- Table structure for table `callback`
 --
 
-DROP TABLE IF EXISTS `callback_in`;
+DROP TABLE IF EXISTS `callback`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-CREATE TABLE `callback_in` (
+CREATE TABLE `callback` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `instance_id` int(6) NOT NULL,
   `created` int(10) unsigned default NULL,
@@ -592,15 +592,65 @@ CREATE TABLE `votes` (
 SET character_set_client = @saved_cs_client;
 
 
+DROP TABLE IF EXISTS `callback_settings`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callback_settings` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `retries` tinyint unsigned,
+  `retry_interval` smallint unsigned,
+  `max_duration` smallint unsigned,
+  `limit_user` smallint(6) NOT NULL default '20',
+  `limit_time` smallint(6) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
 
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-16 16:31:29
+DROP TABLE IF EXISTS `callback_jobs`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callback_jobs` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `job_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `start_time` datetime default NULL,
+  `end_time` datetime default NULL,
+  `service` smallint unsigned NOT NULL,
+  `retries` tinyint unsigned,
+  `retry_interval` smallint unsigned,
+  `max_duration` smallint unsigned,
+  `created` int(11) NOT NULL,
+  `modified` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
+
+DROP TABLE IF EXISTS `callback_retries`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callback_retries` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `callback_job_job_id` int(10) unsigned NOT NULL,
+  `epoch` int(10) unsigned NOT NULL,
+  `causeLegA` varchar(100) NOT NULL,
+  `causeLegB` varchar(100) NOT NULL,
+  `bridge_status` varchar(100) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
+DROP TABLE IF EXISTS `callback_status`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callback_status` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;

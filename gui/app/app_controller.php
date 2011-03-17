@@ -41,8 +41,7 @@ App::import("Vendor", "ff_event", false, null, 'spooler_ff.php');
 App::import("Vendor", "ESL", false, null, 'ESL.php'); 
 App::import("Vendor", "mp3file", false, null, 'mp3file.php'); 
 App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php'); 
-
-
+App::import('Core', 'HttpSocket');
 App::import('Core','L10n');
 
 class AppController extends Controller {
@@ -533,7 +532,13 @@ return $result;
         return true;
      }
 
+     
+     function dateToString($date){
 
+              return $date['year'].'-'.$date['month'].'-'.$date['day'].' '.$date['hour'].':'.$date['min'].':00 '.$data['meridian'];
+
+
+     }
 
 
 

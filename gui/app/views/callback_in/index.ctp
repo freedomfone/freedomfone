@@ -33,7 +33,7 @@ echo "</div>";
 
 echo "<h1>".__('Callback requests',true)."</h1>";
 echo "<div style='float:right'>".$paginator->counter(array('format' => __("Records",true)." %start% ".__("to",true)." %end% ".__("of",true)." %count% "))."</div>";
-echo $form->create('CallbackIn',array('type' => 'post','action'=> 'process'));
+echo $form->create('Callback',array('type' => 'post','action'=> 'process'));
 
 
      if ($callbacks){
@@ -48,12 +48,12 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Date",true), 'created')));
 
       foreach ($callbacks as $key => $callback){
-      	$status 	  = $this->element('callback_status',array('status'=>$callback['CallbackIn']['status']));
-	//$to       	  = $callback['CallbackIn']['receiver'];
-	$from       	  = $callback['CallbackIn']['sender'];
-	$mode       	  = $callback['CallbackIn']['mode'];
-	$protocol         = $callback['CallbackIn']['proto'];
-	$created  	  = $time->niceShort($callback['CallbackIn']['created']);
+      	$status 	  = $this->element('callback_status',array('status'=>$callback['Callback']['status']));
+	//$to       	  = $callback['Callback']['receiver'];
+	$from       	  = $callback['Callback']['sender'];
+	$mode       	  = $callback['Callback']['mode'];
+	$protocol         = $callback['Callback']['proto'];
+	$created  	  = $time->niceShort($callback['Callback']['created']);
 	
 
      $row[$key] = array(array($status,array('align'=>'center', 'width'=>'30')),$from,$mode,$protocol, $created);

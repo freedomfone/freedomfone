@@ -302,7 +302,6 @@ gui/app/vendors/spooler_ff.php -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/callback_in/add.ctp -text
-gui/app/views/callback_in/add.ctp~ -text
 gui/app/views/callback_in/index.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/categories/add.ctp -text

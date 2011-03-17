@@ -151,18 +151,24 @@
 
 
 
-<!--
-<li><?php echo __("Callback",true);?>
+
+<li><?php echo __("Dialer",true);?>
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Callbacks",true),'/callback/index'); ?>
+<?php echo $html->link(__("Create jobs",true),'/callbacks/add'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Settings",true),'/callback_settings/index'); ?>
+<?php echo $html->link(__("View Status", true),'/dialer/status'); ?>
 </li>
+
+
+<li>
+<?php echo $html->link(__("Settings",true),'/callback_settings'); ?>
+</li>
+
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -171,7 +177,7 @@
 </li>
 </ul>
 </li>
-!-->
+
 
 <li><?php echo __("System data",true);?>
 <ul>

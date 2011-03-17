@@ -217,7 +217,6 @@ gui/app/config/sql/i18n.sql -text
 gui/app/config/sql/sessions.php -text
 gui/app/config/sql/sessions.sql -text
 gui/app/controllers/bin_controller.php -text
-gui/app/controllers/callback_in_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
 gui/app/controllers/callbacks_controller.php -text
 gui/app/controllers/categories_controller.php -text

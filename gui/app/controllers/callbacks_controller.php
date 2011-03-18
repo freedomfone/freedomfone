@@ -29,8 +29,8 @@ class CallbacksController extends AppController{
 
 
 	var $paginate = array(
-		    	      'limit' => 25,
-			      'order' => array('Callbacks.created' => 'desc'));
+		    	      'limit' => 50,
+			      'order' => array('Callback.created' => 'desc'));
 
 
         function add(){
@@ -56,7 +56,7 @@ class CallbacksController extends AppController{
 
                $this->data['Callback']['max_duration']   = $settings['CallbackSetting']['max_duration'];
                $this->data['Callback']['retry_interval'] = $settings['CallbackSetting']['retry_interval'];
-               $this->data['Callback']['retries']        = $settings['CallbackSetting']['retries'];
+               $this->data['Callback']['max_retries']        = $settings['CallbackSetting']['max_retries'];
                $this->data['Callback']['phone_book_id']  = false;
 	
                $this->set(compact(array('phonebooks','ivr','selector','lam')));
@@ -93,7 +93,7 @@ class CallbacksController extends AppController{
               $extension = $extensions[$type].$instance_id;
 
 
-              $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
+              $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
            
                unset($data);
 
@@ -107,7 +107,7 @@ class CallbacksController extends AppController{
                        $data[$key]['status'] = $status;
                        $data[$key]['type'] = $callback_type;
                        $data[$key]['extension'] = $extension;
-                       $data[$key]['retries'] = $callback['retries'] ;
+                       $data[$key]['max_retries'] = $callback['max_retries'] ;
                        $data[$key]['retry_interval'] = $callback['retry_interval']  ;
                        $data[$key]['max_duration'] = $callback['max_duration'] ;
                        $data[$key]['start_time'] = $callback['start_time'] ;
@@ -124,14 +124,14 @@ class CallbacksController extends AppController{
                $socket_data['startTime'] = strtotime($job['Callback']['start_time']);
                $socket_data['endTime'] = strtotime($job['Callback']['end_time']);
                $socket_data['recipient'] = $phone_numbers;
-               debug($socket_data);
+               //debug($socket_data);
                $json = json_encode($socket_data);
-               debug($json);
+               //debug($json);
 
-               $HttpSocket = new HttpSocket();
-               $results = $HttpSocket->post('localhost/api/callrequest/', $json, array('method' => 'POST')); 
+               //$HttpSocket = new HttpSocket();
+               //$results = $HttpSocket->post('localhost/api/callrequest/', $json, array('method' => 'POST')); 
 
-               debug($HttpSocket->results);
+               //debug($HttpSocket->results);
 
 
               /* var $request = array(
@@ -171,14 +171,25 @@ class CallbacksController extends AppController{
 */
 
 
-	function index() {
+	function index($status = null) {
 
       	$this->pageTitle = 'Callback';           
-     	$callback_settings = Configure::read('CALLBACK_SETTINGS');
 
+        $result = $this->Callback->find('all', array('fields' => array('DISTINCT Callback.batch_id','Callback.id')));
 
-	}
+        if($result){
+            foreach ($result as $batch){
+                $batch_id[$batch['Callback']['batch_id']] = $batch['Callback']['batch_id'];
 
+	     }
+        } else {
+
+          $batch_id = false;
+        }
+
+	 $this->set('batch_id', $batch_id);  
+
+        }
 
 	function refresh(){
 
@@ -286,6 +297,43 @@ class CallbacksController extends AppController{
 	$this->Callback->withinLimit('1001');
 	}
 	
+
+
+
+/*
+ *
+ * AJAX drop-down menu for Callback jobs
+ *
+ *
+ */
+
+   function disp(){
+
+       $status = $batch_id = $data = false;
+
+       if(array_key_exists('status',$this->data['Callback'])){
+         $status = $this->data['Callback']['status'];
+        }
+       if(array_key_exists('status',$this->data['Callback'])){
+         $batch_id = $this->data['Callback']['batch_id'];
+       }
+	 $this->Callback->recursive = 0;
+
+         if ($status && $batch_id) { 
+   	    $data = $this->paginate('Callback', array('Callback.status' => $status,'Callback.batch_id' => $batch_id));
+         }  elseif ($status && !$batch_id) { 
+   	    $data = $this->paginate('Callback', array('Callback.status' => $status));
+         } elseif (!$status && $batch_id) { 
+   	    $data = $this->paginate('Callback', array('Callback.batch_id' => $batch_id));
+         } else {
+   	    $data = $this->paginate('Callback');
+         }
+
+	 $this->set('callbacks', $data);  
+        
+
+   }
+
 
 }
 ?>

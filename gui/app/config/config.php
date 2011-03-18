@@ -135,10 +135,11 @@ $config['CALLBACK_DEFAULT']=	array(
                 'response_type'    =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
                 'limit_user'       => '10',
                 'limit_time'       => '24',
-                'retries'          => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
+                'max_retries'          => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
                 'retry_interval'   => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
-                'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min')
-                );
+                'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
+                'status'           => array('pending' => __('Pending',true), 'process' => __('Processing',true), 'success' => __('Success',true), 'retry' => __('Retry',true), 'failure' => __('Failure',true), 'timeout' => __('Timeout',true), 'abort' => __('Abort',true), 'pause' => __('Pause',true)));
+
 
 
 $config['IVR_MONITOR']=	array(

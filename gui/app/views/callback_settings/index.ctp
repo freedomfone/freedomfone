@@ -49,7 +49,7 @@ echo "<h1>".__("Callback settings",true)."</h1>";
 //     $row[6] = array(__("Period",true), $form->input('limit_time', array('options' => $time_limit,'label'=>false, 'selected' => $this->data['CallbackSetting']['limit_time'])));
 //     $row[7] = array(array(__("Limit the number of calls per user per day.",true),"colspan='2' class='formComment'"));
 
-       $row[0] = array(__("Retries",true), $form->input('retries', array('options' => $default['retries'],'label'=>false, 'selected' => $this->data['CallbackSetting']['retries'])));
+       $row[0] = array(__("Max retries",true), $form->input('max_retries', array('options' => $default['max_retries'],'label'=>false, 'selected' => $this->data['CallbackSetting']['max_retries'])));
        $row[1] = array(array(__("Default number of retires for a callback.",true),"colspan='2' class='formComment'"));
 
        $row[2] = array(__("Retry interval",true), $form->input('retry_interval', array('options' => $default['retry_interval'],'label'=>false, 'selected' => $this->data['CallbackSetting']['retry_interval'])));

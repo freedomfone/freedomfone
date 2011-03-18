@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- View current callback job status
+ * status.ctp	- View current callback job status
  * version 	- 2.5.1200
  * 
  * Version: MPL 1.1
@@ -22,30 +22,15 @@
  *
 ***************************************************************************/
 echo $html->addCrumb('Callback', '/callbacks');
-
+echo $html->addCrumb('Status', '/callbacks/status');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
      echo "<h1>".__("Callback Status",true)."</h1>";
 
-     echo $form->create("Callback");
 
 
-          echo $form->input('status',array('id'=>'ServiceType1','type'=>'select','options'=>$callback_default['status'],'label'=> false,'empty'=>'-- '.__('Select status',true).' --'));
-          
-          echo $form->input('batch_id',array('id'=>'ServiceType2','type'=>'select','options'=>$batch_id,'label'=> false,'empty'=>'-- '.__('Select batch',true).' --'));
 
-
-      $opt = array(
-              "update" => "service_div",
-              "url" => "disp",
-              "frequency" => "0.2"
-                 );
-
-       echo $ajax->observeForm("CallbackAddForm",$opt);
-       echo $form->end();
-                                                                                               
-       echo "<div id='service_div' style=''></div>";
 
 ?>
 

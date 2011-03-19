@@ -23,15 +23,22 @@
  ***************************************************************************/
 
 
+
+
    echo $ajax->div("service_div");
+   echo "<div id='batch_div' class='batch_did'></div>";                                           
+   echo "<div id='user_div' class='user_did'></div>";                                           
 
     if ($callbacks ){
 
         foreach($callbacks as $key => $callback){
 
+              $batch_link = $ajax->link($callback['Callback']['batch_id'],'/callbacks/batch/'.$callback['Callback']['batch_id'].'/', array('update' => 'batch_div'), null, 1);
+              $user_link  = $ajax->link($callback['Callback']['user_id'],'/callbacks/user/'.$callback['Callback']['user_id'].'/', array('update' => 'user_div'), null, 1);
+
               $row[] = array(
-                       $callback['Callback']['batch_id'],
-                       $callback['Callback']['user_id'],
+                       $batch_link,
+                       $user_link,
                        array($callback['Callback']['status'], array('align' => 'center')),
                        array($callback['Callback']['type'], array('align' => 'center')),
                        array($callback['Callback']['extension'], array('align' => 'center')),

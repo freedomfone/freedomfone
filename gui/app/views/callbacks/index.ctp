@@ -28,6 +28,8 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
      echo "<h1>".__("Callback Status",true)."</h1>";
 
+   
+   
      echo $form->create("Callback");
 
 
@@ -36,16 +38,17 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
           echo $form->input('batch_id',array('id'=>'ServiceType2','type'=>'select','options'=>$batch_id,'label'=> false,'empty'=>'-- '.__('Select batch',true).' --'));
 
 
-      $opt = array(
-              "update" => "service_div",
-              "url" => "disp",
-              "frequency" => "0.2"
-                 );
+      $opt = array("update" => "service_div","url" => "disp","frequency" => "0.2" );
+      echo $ajax->observeForm("CallbackAddForm",$opt);
+   
 
-       echo $ajax->observeForm("CallbackAddForm",$opt);
+
+
        echo $form->end();
-                                                                                               
+                                                    
+       
        echo "<div id='service_div' style=''></div>";
+
 
 ?>
 

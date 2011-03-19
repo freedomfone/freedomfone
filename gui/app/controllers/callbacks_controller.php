@@ -334,6 +334,43 @@ class CallbacksController extends AppController{
 
    }
 
+   function batch($batch_id){
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+
+        Configure::write('debug', 0);
+      	
+            if($batch_id){
+
+                $result = $this->Callback->find('first',array('conditions' => array('Callback.batch_id' => $batch_id)));
+
+                $this->set('batch',$result);
+
+            } 
+
+
+   }
+
+
+   function user($user_id){
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+
+        Configure::write('debug', 0);
+      	
+            if($user_id){
+
+                $this->loadModel('User');
+                $result = $this->User->findById($user_id);
+
+                $this->set('user',$result);
+
+            } 
+
+
+   }
 
 }
 ?>

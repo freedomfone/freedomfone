@@ -301,9 +301,11 @@ gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/callbacks/add.ctp -text
+gui/app/views/callbacks/batch.ctp -text
 gui/app/views/callbacks/disp.ctp -text
 gui/app/views/callbacks/index.ctp -text
 gui/app/views/callbacks/status.ctp -text
+gui/app/views/callbacks/user.ctp -text
 gui/app/views/categories/add.ctp -text
 gui/app/views/categories/edit.ctp -text
 gui/app/views/categories/index.ctp -text

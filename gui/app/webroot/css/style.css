@@ -156,6 +156,13 @@ float:right;
 }
 
 
+.batch_div {
+
+    clear: all;
+
+
+}
+
 fieldset {
 
      border-radius: 10px;
@@ -170,6 +177,15 @@ fieldset {
      font-weight: normal;
      padding: 5px;
      color: #000;
+}
+
+.stand-alone-header {
+     font-size: 13px;
+     font-weight: bold;
+     padding: 5px;
+     color: #000;
+
+
 }
 
 .system_time {

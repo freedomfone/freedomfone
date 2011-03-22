@@ -30,6 +30,9 @@ $order = array('batch_id' => __('Batch id',true),'created' => __('Created',true)
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
      echo "<h1>".__("Callback Status",true)."</h1>";
 
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
    
    
      echo $form->create("Callback");

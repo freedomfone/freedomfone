@@ -140,7 +140,9 @@ $config['CALLBACK_DEFAULT']=	array(
                 'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
                 'status'           => array('pending' => __('Pending',true), 'process' => __('Processing',true), 'success' => __('Success',true), 'retry' => __('Retry',true), 'failure' => __('Failure',true), 'timeout' => __('Timeout',true), 'abort' => __('Abort',true), 'pause' => __('Pause',true)));
 
-
+$config['DIALER'] = array(
+                  'host'        => 'http://192.168.1.141/dialer/',
+                  );
 
 $config['IVR_MONITOR']=	array(
 	        'script'             => 'scripts/freedomfone/monitor_ivr/main.js'

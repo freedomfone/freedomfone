@@ -118,7 +118,7 @@ class CallbacksController extends AppController{
 
 
               $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
-               $socket_data['recipient'] = implode(',',$phone_numbers);
+              $socket_data['recipient'] = implode(',',$phone_numbers);
 
               $socket_data['startTime'] = strtotime($this->dateToString($callback['start_time']));
               $socket_data['endTime']   = strtotime($this->dateToString($callback['end_time']));
@@ -282,7 +282,7 @@ class CallbacksController extends AppController{
 
    function disp(){
 
-       $status = $batch_id = $data = false;
+       $status = $batch_id = $data = $order = $dir = false;
 
        if(array_key_exists('status',$this->data['Callback'])){
          $status = $this->data['Callback']['status'];
@@ -290,20 +290,38 @@ class CallbacksController extends AppController{
        if(array_key_exists('status',$this->data['Callback'])){
          $batch_id = $this->data['Callback']['batch_id'];
        }
-	 $this->Callback->recursive = 0;
+       if(array_key_exists('order',$this->data['Callback'])){
+         $order = $this->data['Callback']['order'];
+       }
+       if(array_key_exists('dir',$this->data['Callback'])){
+         $dir = $this->data['Callback']['dir'];
+       } else {
+         $dir = 'DESC';
+       }
 
-         if ($status && $batch_id) { 
-   	    $data = $this->paginate('Callback', array('Callback.status' => $status,'Callback.batch_id' => $batch_id));
-         }  elseif ($status && !$batch_id) { 
-   	    $data = $this->paginate('Callback', array('Callback.status' => $status));
-         } elseif (!$status && $batch_id) { 
-   	    $data = $this->paginate('Callback', array('Callback.batch_id' => $batch_id));
-         } else {
-   	    $data = $this->paginate('Callback');
-         }
-
-	 $this->set('callbacks', $data);  
+         $param = array();
+         $conditions = array();
+         $order_by = array();
         
+
+         if ($status) {
+            $conditions['Callback.status'] = $status;
+         } 
+         if ($batch_id) {
+            $conditions['Callback.batch_id'] = $batch_id;
+         } 
+         if ($order) {
+            $order_by[] = 'Callback.'.$order.' '.$dir;
+         } 
+
+         $param = array('conditions' => $conditions, 'order' => $order_by);
+	$this->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
+
+
+
+         $data = $this->Callback->find('all', $param);
+	 $this->set('callbacks', $data);  
+
 
    }
 

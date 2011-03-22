@@ -29,15 +29,18 @@
    echo "<div id='batch_div' class='batch_did'></div>";                                           
    echo "<div id='user_div' class='user_did'></div>";                                           
 
+
     if ($callbacks ){
 
         foreach($callbacks as $key => $callback){
 
               $batch_link = $ajax->link($callback['Callback']['batch_id'],'/callbacks/batch/'.$callback['Callback']['batch_id'].'/', array('update' => 'batch_div'), null, 1);
-              $user_link  = $ajax->link($callback['Callback']['user_id'],'/callbacks/user/'.$callback['Callback']['user_id'].'/', array('update' => 'user_div'), null, 1);
+              $user_link  = $ajax->link($callback['User']['name'].' '.$callback['User']['surname'],'/callbacks/user/'.$callback['Callback']['user_id'].'/', array('update' => 'user_div'), null, 1);
+
 
               $row[] = array(
                        $batch_link,
+                       array(date('Y-m-d H:i A',$callback['Callback']['created']), array('align' => 'center')),
                        $user_link,
                        array($callback['Callback']['status'], array('align' => 'center')),
                        array($callback['Callback']['type'], array('align' => 'center')),
@@ -50,12 +53,13 @@
 
         echo "<table width='95%' cellspacing  = '0'>";
         echo $html->tableHeaders(array(
-	 $paginator->sort(__("Batch ID",true), 'batch_id'),
- 	 $paginator->sort(__("User",true), 'user_id'),
- 	 $paginator->sort(__("Status",true), 'status'),
- 	 $paginator->sort(__("Type",true), 'type'),
- 	 $paginator->sort(__("Service ID",true), 'extension'),
- 	 $paginator->sort(__("Attempts",true), 'retries')));
+	 __("Batch ID",true),
+	 __("Created",true),
+ 	 __("User",true), 
+ 	 __("Status",true),
+ 	 __("Type",true),
+ 	 __("Service ID",true),
+ 	 __("Attempts",true)));
 
         echo $html->tableCells($row);
         echo "</table>";

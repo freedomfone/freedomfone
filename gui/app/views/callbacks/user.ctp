@@ -7,7 +7,7 @@ debug($user);
 	   $row[] = array(array(__('User details',true),array('colspan'=> 2, 'align' => 'center')));
            $row[] = array(__('Name',true), $user['User']['name']);
            $row[] = array(__('Surname',true), $user['User']['surname']);
-           $row[] = array(__('Phone numbers',true), $user['User']['created']);
+           $row[] = array(__('Phone numbers',true), date('Y-m-d H:i A',$user['User']['created']))
            $row[] = array(__('Skype',true), $user['User']['skype']);
            $row[] = array(__('Email',true), $user['User']['email']);
 

@@ -535,10 +535,11 @@ return $result;
      
      function dateToString($date){
 
-              return $date['year'].'-'.$date['month'].'-'.$date['day'].' '.$date['hour'].':'.$date['min'].':00 '.$data['meridian'];
+              return $date['year'].'-'.$date['month'].'-'.$date['day'].' '.$date['hour'].':'.$date['min'].':00 '.$date['meridian'];
 
 
      }
+
 
 
 

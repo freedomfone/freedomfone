@@ -25,7 +25,7 @@
 class CallbacksController extends AppController{
 
 	var $name = 'Callbacks';
-	var $helpers = array('Flash','Session');      
+	var $helpers = array('Flash','Session','Time');      
 
 
 	var $paginate = array(
@@ -33,7 +33,9 @@ class CallbacksController extends AppController{
 			      'order' => array('Callback.created' => 'desc'));
 
 
+
         function add(){
+
 
         $protocol       = 'SIP';
         $callback_type  = 'OUT';
@@ -81,8 +83,8 @@ class CallbacksController extends AppController{
 
               foreach($result as $key => $entry){
               
-                $phone_numbers[$entry['PhoneNumber']['user_id']] = $entry['PhoneNumber']['number'];
-
+                $phone_numbers[] = $entry['PhoneNumber']['number'];
+                $user_id[] = $entry['PhoneNumber']['user_id'];
               }
               
               $type = $callback['type'];
@@ -92,17 +94,14 @@ class CallbacksController extends AppController{
               $extensions = Configure::read('EXTENSIONS');
               $extension = $extensions[$type].$instance_id;
 
-
-              $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
            
                unset($data);
-
                $batch_id = rand();
 
                foreach ($phone_numbers as $key => $phone_number){
 
                        $data[$key]['phone_number'] = $phone_number;
-                       $data[$key]['user_id'] = $key;
+                       $data[$key]['user_id'] = $user_id[$key];
                        $data[$key]['protocol'] = $protocol;
                        $data[$key]['status'] = $status;
                        $data[$key]['type'] = $callback_type;
@@ -116,59 +115,33 @@ class CallbacksController extends AppController{
 
                }
 
+
+
+              $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
+               $socket_data['recipient'] = implode(',',$phone_numbers);
+
+              $socket_data['startTime'] = strtotime($this->dateToString($callback['start_time']));
+              $socket_data['endTime']   = strtotime($this->dateToString($callback['end_time']));
+
+               $HttpSocket = new HttpSocket();
+               $results = $HttpSocket->post('http://192.168.1.141/dialer/dummy_dialer/', $socket_data); 
+
+
+               $job_id = json_decode($results);
+               foreach ($job_id as $key => $entry) {
+
+                       $data[$key]['job_id'] = $entry;         
+
+               }               
+
                $this->Callback->saveAll($data);
-
-               //Fetch batch data and create JSON object
-               $job = $this->Callback->find('first', array('fields' => array('start_time','end_time'), 'conditions' => array('batch_id' => $batch_id)));
-
-               $socket_data['startTime'] = strtotime($job['Callback']['start_time']);
-               $socket_data['endTime'] = strtotime($job['Callback']['end_time']);
-               $socket_data['recipient'] = $phone_numbers;
-               //debug($socket_data);
-               $json = json_encode($socket_data);
-               //debug($json);
-
-               //$HttpSocket = new HttpSocket();
-               //$results = $HttpSocket->post('localhost/api/callrequest/', $json, array('method' => 'POST')); 
-
-               //debug($HttpSocket->results);
-
-
-              /* var $request = array(
-                   'method' => 'POST',
-                   'uri' => array('scheme' => 'http','host' => localhost,'port' => 80, 'user' => null,'pass' => null,'path' => null, 'query' => null, 'fragment' => nul),
-                   'auth' => array('method' => 'Basic','user' => null, 'pass' => null),
-                   'version' => '1.1',
-                   'body' => '',
-                   'line' => null,
-                   'header' => array('Connection' => 'close','User-Agent' => 'CakePHP'),
-                   'raw' => null,
-                   'cookies' => array()
-                   );*/
-
-
-     	     $this->redirect(array('action'=>'index'));
+  
+   	       $this->redirect(array('action'=>'index'));
 
             }     
 
         }	
 
-/*
- Parameters :
-        Mandatory
-            protocol : SIP/SKYPE/GSM (this could be a list separate by semicolons)
-            recipient : set the phonenumber, contact info of the recipient (this could be a list separate by semicolons)
-            extension : set the extension where to brigde the call on the user freeswitch server
-            startTime : Work in Epoch | UTC
-        
-        Optional
-            retryMax: 3 - 20 (default 5)
-            retryInterval: 60 - 3600 (default 60)
-            durationMax : 1
-            endTime : Set the time when the dialer should not process this request anymore
-            timeout : 
-
-*/
 
 
 	function index($status = null) {

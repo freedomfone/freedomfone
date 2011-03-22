@@ -29,6 +29,17 @@ class Callback extends AppModel{
 
       var $name = 'Callback';
 
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+       $this->validate = array(
+                'extension' => array(
+                            'rule' => 'notEmpty',
+                            'message'  => __('You must select a service.',true),
+                            ));
+
+}
+
 
 
 /**
@@ -38,7 +49,7 @@ class Callback extends AppModel{
  */
 	function withinLimit($sender){
 
-		 $data = $this->query("select * from callback_settings where instance_id=100 limit 0,1");
+		 $data = $this->query("select * from callback_settings limit 0,1");
 
 		       if ($data[0]['callback_settings']['limit_time']==0 | $data[0]['callback_settings']['limit_user'] ==0 ){
 	    	       	  return true;
@@ -61,36 +72,6 @@ class Callback extends AppModel{
 
 
 
-
-/*
- * Fetching new data from spooler
- *
- *
- */
-
-	function dial($data){
-
-	$settings = $this->query("select response_type from callback_settings where instance_id=100 limit 0,1");
-	$ext  = $settings[0]['callback_settings']['response_type'];
-
-        $defaults = array(
-        'host' => '127.0.0.1',
-        'port' => '9999',
-        'timeout' => 30,
-        'stream_timeout' => 5
-        );
-
-	$id = $data['id'];
-	$proto = $data['proto'];
-	$sender = $data['sender'];
-
-
-	$msg = $id.",".$proto.','.$sender.','.$ext;
-		 $this->Socket = new CakeSocket($defaults);	
-		 $this->Socket->connect();
-		 $this->Socket->write($msg);
-		 $this->Socket->disconnect();
-	}
 }
 
 ?>

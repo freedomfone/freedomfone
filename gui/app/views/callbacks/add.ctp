@@ -27,6 +27,11 @@ $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
      echo "<h1>".__("Create Callback Job",true)."</h1>";
+
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
+
      echo $form->create('Callback',array('type' => 'post','action'=> 'add'));
 
 
@@ -35,7 +40,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
       echo "<table cellspacing= 0 class= 'none' >";
       echo $html->tableCells(array (
-          array(__("Phone book",true),	$form->input('phone_book_id',array('options' => $phonebooks, 'selected' => $this->data['Callback']['phone_book_id'], 'label'=>false))),
+          array(__("Phone book",true),	$form->input('phone_book_id',array('options' => $phonebooks, 'label'=>false))),
           array(array(__("Select phonebook to dial.",true),"colspan='2' class='formComment'"))
           ), array('class'=>'none'),array('class'=>'none'));
        
@@ -90,13 +95,13 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        echo "<fieldset>";
        echo "<legend>".__('Settings',true)."</legend>";
        echo "<table cellspacing=0 border='0' class='none'>";
-       $row[0] = array(__("Max retries",true), $form->input('max_retries', array('options' => $callback_default['max_retries'],'label'=>false, 'selected' => $this->data['Callback']['max_retries'])));
+       $row[0] = array(__("Max retries",true), $form->input('max_retries', array('options' => $callback_default['max_retries'],'label'=>false, 'selected' => $maxretries)));
        $row[1] = array(array(__("Default number of retries for a callback.",true),"colspan='2' class='formComment'"));
 
-       $row[2] = array(__("Retry interval",true), $form->input('retry_interval', array('options' => $callback_default['retry_interval'],'label'=>false, 'selected' => $this->data['Callback']['retry_interval'])));
+       $row[2] = array(__("Retry interval",true), $form->input('retry_interval', array('options' => $callback_default['retry_interval'],'label'=>false, 'selected' => $retryinterval)));
        $row[3] = array(array(__("Interval (seconds) beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
 
-       $row[4] = array(__("max duration",true), $form->input('max_duration', array('options' => $callback_default['max_duration'],'label'=>false, 'selected' => $this->data['Callback']['max_duration'])));
+       $row[4] = array(__("max duration",true), $form->input('max_duration', array('options' => $callback_default['max_duration'],'label'=>false, 'selected' => $maxduration)));
        $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
 
        echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));

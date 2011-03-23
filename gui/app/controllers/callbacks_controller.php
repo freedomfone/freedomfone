@@ -41,7 +41,6 @@ class CallbacksController extends AppController{
         $callback_type  = 'OUT';
         $status         = 'pending';
 
-	   if (empty($this->data)){ 
                
                $this->loadModel('PhoneBook');
                $phonebooks = $this->PhoneBook->find('list');
@@ -56,18 +55,26 @@ class CallbacksController extends AppController{
                $this->loadModel('CallbackSetting');
                $settings = $this->CallbackSetting->find('first');
 
-               $this->data['Callback']['max_duration']   = $settings['CallbackSetting']['max_duration'];
-               $this->data['Callback']['retry_interval'] = $settings['CallbackSetting']['retry_interval'];
-               $this->data['Callback']['max_retries']        = $settings['CallbackSetting']['max_retries'];
-               $this->data['Callback']['phone_book_id']  = false;
-	
-               $this->set(compact(array('phonebooks','ivr','selector','lam')));
+               $maxduration   = $settings['CallbackSetting']['max_duration'];
+               $retryinterval = $settings['CallbackSetting']['retry_interval'];
+               $maxretries    = $settings['CallbackSetting']['max_retries'];
+               
 
-            } else {
+	
+               $this->set(compact(array('phonebooks','ivr','selector','lam','maxduration','retryinterval','maxretries')));
+
+               //Form data exists, store and push to dialer
+	   if (!empty($this->data)){ 
+
+
+
+
 
               //Fetch phone numbers
-              
+
               $callback = $this->data['Callback'];
+
+
               $this->loadModel('User');
   
               $data = $this->User->PhoneBook->findById($callback['phone_book_id']);
@@ -80,11 +87,11 @@ class CallbacksController extends AppController{
               $result = $this->User->PhoneNumber->find('all', array('conditions' => array('user_id' => $user_id)));;
 
               //FIXME: makes sure only one phone number per user (takes the last one)
-
               foreach($result as $key => $entry){
               
                 $phone_numbers[] = $entry['PhoneNumber']['number'];
                 $user_id[] = $entry['PhoneNumber']['user_id'];
+
               }
               
               $type = $callback['type'];
@@ -92,30 +99,27 @@ class CallbacksController extends AppController{
               if($type == 'selector') { $type = 'ivr';}
 
               $extensions = Configure::read('EXTENSIONS');
-              $extension = $extensions[$type].$instance_id;
+              if ($instance_id){ $extension = $extensions[$type].$instance_id;} else { $extension = false;}
 
-           
-               unset($data);
+               unset($this->data['Callback']);
                $batch_id = rand();
 
                foreach ($phone_numbers as $key => $phone_number){
 
-                       $data[$key]['phone_number'] = $phone_number;
-                       $data[$key]['user_id'] = $user_id[$key];
-                       $data[$key]['protocol'] = $protocol;
-                       $data[$key]['status'] = $status;
-                       $data[$key]['type'] = $callback_type;
-                       $data[$key]['extension'] = $extension;
-                       $data[$key]['max_retries'] = $callback['max_retries'] ;
-                       $data[$key]['retry_interval'] = $callback['retry_interval']  ;
-                       $data[$key]['max_duration'] = $callback['max_duration'] ;
-                       $data[$key]['start_time'] = $callback['start_time'] ;
-                       $data[$key]['end_time'] = $callback['end_time'] ;
-                       $data[$key]['batch_id'] = $batch_id;
+                       $this->data[$key]['Callback']['phone_number'] = $phone_number;
+                       $this->data[$key]['Callback']['user_id'] = $user_id[$key];
+                       $this->data[$key]['Callback']['protocol'] = $protocol;
+                       $this->data[$key]['Callback']['status'] = $status;
+                       $this->data[$key]['Callback']['type'] = $callback_type;
+                       $this->data[$key]['Callback']['extension'] = $extension;
+                       $this->data[$key]['Callback']['max_retries'] = $callback['max_retries'] ;
+                       $this->data[$key]['Callback']['retry_interval'] = $callback['retry_interval']  ;
+                       $this->data[$key]['Callback']['max_duration'] = $callback['max_duration'] ;
+                       $this->data[$key]['Callback']['start_time'] = $callback['start_time'] ;
+                       $this->data[$key]['Callback']['end_time'] = $callback['end_time'] ;
+                       $this->data[$key]['Callback']['batch_id'] = $batch_id;
 
                }
-
-
 
               $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
               $socket_data['recipient'] = implode(',',$phone_numbers);
@@ -123,22 +127,30 @@ class CallbacksController extends AppController{
               $socket_data['startTime'] = strtotime($this->dateToString($callback['start_time']));
               $socket_data['endTime']   = strtotime($this->dateToString($callback['end_time']));
 
-               $HttpSocket = new HttpSocket();
-               $results = $HttpSocket->post('http://192.168.1.141/dialer/dummy_dialer/', $socket_data); 
+              $this->Callback->set( $this->data );
+
+              if($this->Callback->saveAll($this->data, array('validate' => 'only'))){
 
 
-               $job_id = json_decode($results);
-               foreach ($job_id as $key => $entry) {
+                        $HttpSocket = new HttpSocket();
+                        $results = $HttpSocket->post('http://192.168.1.141/dialer/dummy_dialer/', $socket_data); 
+                        $job_id = json_decode($results);
+                        
+                        foreach ($job_id as $key => $entry) {
+                                $this->data[$key]['Callback']['job_id'] = $entry;         
+                        }               
 
-                       $data[$key]['job_id'] = $entry;         
+                      $this->Callback->saveAll($this->data,array('validate' => false));
+       	              $this->_flash(__('Your callback request has successfully been issued',true). '['.__('batch',true).': '.$batch_id.']', 'success');                           	 
+   	              $this->redirect(array('action'=>'index'));
+             } else {
+       	       $this->_flash(__('Please select a service.',true), 'error');                           	
+             }
 
-               }               
 
-               $this->Callback->saveAll($data);
-  
-   	       $this->redirect(array('action'=>'index'));
+            }        
 
-            }     
+             $this->render();
 
         }	
 
@@ -168,9 +180,8 @@ class CallbacksController extends AppController{
 
 
 	     $this->autoRender = false;
-
       	      $array = Configure::read('callback');
-	      
+      
 	       $obj = new ff_event($array);	       
 
 	       if ($obj -> auth != true) {
@@ -252,16 +263,6 @@ class CallbacksController extends AppController{
 	}
 
 
-	function dialout($id){
-
-		 $this->Callback->id = $id;
-		 $this->data = $this->Callback->read();
-		 $this->Callback->dial($this->data['Callback']);		 
-
-
-	}
-
-
 	function check($id){
 
  	$this->Callback->id=$id;
@@ -325,6 +326,13 @@ class CallbacksController extends AppController{
 
    }
 
+/*
+ *
+ * AJAX link to batch details
+ *
+ *
+ */
+
    function batch($batch_id){
 
     	$this->layout = null;
@@ -343,7 +351,12 @@ class CallbacksController extends AppController{
 
    }
 
-
+/*
+ *
+ * AJAX link to user details
+ *
+ *
+ */
    function user($user_id){
 
     	$this->layout = null;
@@ -360,6 +373,34 @@ class CallbacksController extends AppController{
 
             } 
 
+
+   }
+
+
+/*
+ *
+ * Refresh of callback request from Dialer
+ *
+ *
+ */
+
+   function dialer_refresh(){
+
+   	     $dialer = Configure::read('DIALER');
+ 
+             $result = $this->Callback->find('all', array('fields' => 'Callback.job_id'));
+             foreach($result as $key => $entry){
+                     $job_id[] = $entry['Callback']['job_id'];
+             }
+
+             $HttpSocket = new HttpSocket();
+             $results = $HttpSocket->get($dialer['host'].'dummy_status/', $job_id); 
+ 
+            debug($HttpSocket->response['raw']['response']);
+
+            debug($results);
+            json_decode($results);
+ 
 
    }
 

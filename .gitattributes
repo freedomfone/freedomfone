@@ -345,6 +345,7 @@ gui/app/views/ivr_menus/edit.ctp -text
 gui/app/views/ivr_menus/edit_selector.ctp -text
 gui/app/views/ivr_menus/index.ctp -text
 gui/app/views/ivr_menus/selectors.ctp -text
+gui/app/views/layouts/ajax.ctp -text
 gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text
 gui/app/views/layouts/jquery.ctp -text
@@ -371,6 +372,9 @@ gui/app/views/nodes/add.ctp -text
 gui/app/views/nodes/edit.ctp -text
 gui/app/views/nodes/index.ctp -text
 gui/app/views/office_route/edit.ctp -text
+gui/app/views/pages/polls/index.ctp -text
+gui/app/views/pages/polls/tip.ctp -text
+gui/app/views/pages/polls/view.ctp -text
 gui/app/views/phone_books/add.ctp -text
 gui/app/views/phone_books/edit.ctp -text
 gui/app/views/phone_books/export.ctp -text

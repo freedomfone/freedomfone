@@ -23,28 +23,16 @@
 ***************************************************************************/
 
 echo $html->addCrumb('Polls', '/polls');
-
-
-
-$info = __('Classification of votes|The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|
-<p><b>Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>|
-Early votes will be registered as "Valid, early". The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll.|
-<p>Late votes will be registered as "Valid, late". The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll.|
-<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option|
-Invalid votes are registered as votes, but classified as "invalid". "Early", "late" and "on-time" invalid votes are registered.|
-Only "on-time" invalid votes are incorporated into the Total number of votes (in time) summary.|
-<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results.|
-<p><b>Incorrect vote:</b> Non-matching poll code|
-Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under "Other SMS". The SMS will be classified as "Unclassified".',true);
-
-
-
+Configure::write('debug', 0);
 
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+
+$info   = $html->link($html->image('icons/bulb.png'), array('controller' => 'pages/polls', 'action' => 'view'), array('title' => 'Tool tip', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"),null,null,false);
+echo $html->div('frameInfo', $info);
+
 
 
    if ($data){

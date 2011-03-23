@@ -50,31 +50,26 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('flash_messages');?>	     	<!-- Flash messages -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
-    <?=$html->css('jquery.cluetip');?>	     	<!-- JQuery Cluetip -->
+    <?=$html->css('modalbox');?>	        <!-- Modalbox cluetip -->
     <?=$html->meta('icon');?>
-
-
 
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
+ <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
+    <?php echo $javascript->link('prototype');?>
+    <?php echo $javascript->link('scriptaculous.js?load=builder,effects');?>
+    <?php echo $javascript->link('modalbox');?>
+    <?php echo $javascript->link('cakemodalbox');?>
 
 
-    <?=$javascript->link('jquery');?>		
-    <?=$javascript->link('jquery.tableCorners');?>     <!-- Cluetip -->
-    <?=$javascript->link('jquery.cluetip');?>     <!-- Cluetip -->
-    <?=$javascript->includeScript('cluetip');?>   <!-- Cluetip -->
+<!--    <?=$javascript->link('jquery.tableCorners');?>   -->  <!-- Cluetip -->
+
+  
 
     <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
     <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
+
  
-
-
-    <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
-    <?php echo $javascript->link('prototype');?>
-    <?php echo $javascript->link('scriptaculous');?>
-
-
-
 </head>
 
 <body>

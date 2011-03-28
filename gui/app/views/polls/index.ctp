@@ -69,13 +69,12 @@ echo $html->addCrumb('Polls', '/polls');
 		$start,
 		$end,
 		array($view,array('align'=>'center')),
-		array($edit,array('align'=>'center')),
-		array($delete,array('align'=>'center')));
+		array($edit.' '.$delete,array('align'=>'center')));
 
      }
 
     echo "<table width='90%' cellspacing =0>";
-    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("Results",true),__("Edit",true),__("Delete",true)));
+    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("Result",true),__("Actions",true)));
     echo $html->tableCells($row);
     echo "</table>";
 

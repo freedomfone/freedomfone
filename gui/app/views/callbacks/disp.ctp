@@ -42,7 +42,7 @@
                        $batch_link,
                        array(date('Y-m-d H:i A',$callback['Callback']['created']), array('align' => 'center')),
                        $user_link,
-                       array($callback['Callback']['status'], array('align' => 'center')),
+                       array($this->element ('dialer_status', array('status' => $callback['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
                        array($callback['Callback']['type'], array('align' => 'center')),
                        array($callback['Callback']['extension'], array('align' => 'center')),
                        array($callback['Callback']['retries'], array('align' => 'center')),

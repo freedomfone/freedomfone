@@ -303,7 +303,9 @@ gui/app/views/callback_settings/index.ctp -text
 gui/app/views/callbacks/add.ctp -text
 gui/app/views/callbacks/batch.ctp -text
 gui/app/views/callbacks/disp.ctp -text
+gui/app/views/callbacks/disp_manage.ctp -text
 gui/app/views/callbacks/index.ctp -text
+gui/app/views/callbacks/manage_batch.ctp -text
 gui/app/views/callbacks/status.ctp -text
 gui/app/views/callbacks/user.ctp -text
 gui/app/views/categories/add.ctp -text
@@ -320,6 +322,7 @@ gui/app/views/channels/edit.ctp -text
 gui/app/views/channels/index.ctp -text
 gui/app/views/elements/callback_status.ctp -text
 gui/app/views/elements/channel_signal_level.ctp -text
+gui/app/views/elements/dialer_status.ctp -text
 gui/app/views/elements/flash_message.ctp -text
 gui/app/views/elements/menu.ctp -text
 gui/app/views/elements/menu_next.ctp -text
@@ -399,6 +402,7 @@ gui/app/views/users/add.ctp -text
 gui/app/views/users/disp.ctp -text
 gui/app/views/users/edit.ctp -text
 gui/app/views/users/index.ctp -text
+gui/app/views/users/view.ctp -text
 gui/app/views/votes/add_failure.ctp -text
 gui/app/views/votes/add_success.ctp -text
 gui/app/webroot/.htaccess -text
@@ -406,6 +410,7 @@ gui/app/webroot/css.php -text
 gui/app/webroot/css/customise.css -text
 gui/app/webroot/css/flash_messages.css -text
 gui/app/webroot/css/jquery.cluetip.css -text
+gui/app/webroot/css/modalbox.css -text
 gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
@@ -454,12 +459,16 @@ gui/app/webroot/img/menu/menu_right_long.png -text
 gui/app/webroot/index.php -text
 gui/app/webroot/js/addRemoveElements.js -text
 gui/app/webroot/js/audio-player.js -text
+gui/app/webroot/js/builder.js -text
+gui/app/webroot/js/cakemodalbox.js -text
 gui/app/webroot/js/cluetip.js -text
 gui/app/webroot/js/confirmSubmit.js -text
 gui/app/webroot/js/corner.js -text
+gui/app/webroot/js/effects.js -text
 gui/app/webroot/js/jquery.cluetip.js -text
 gui/app/webroot/js/jquery.corner.js -text
 gui/app/webroot/js/jquery.js -text
+gui/app/webroot/js/modalbox.js -text
 gui/app/webroot/js/prototype.js -text
 gui/app/webroot/js/scriptaculous.js -text
 gui/app/webroot/js/swfobject.js -text

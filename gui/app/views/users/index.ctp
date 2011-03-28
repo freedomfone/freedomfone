@@ -74,8 +74,7 @@ echo $form->end();
 	$paginator->sort(__("Skype",true), 'User.skype'),
 	$paginator->sort(__("Acl",true), 'Acl.name'),
  	$paginator->sort(__("Phone",true), 'User.phone'),
-	__("Edit",true),
-	__("Delete",true)));
+	__("Actions",true)));
 
 
  
@@ -89,34 +88,27 @@ echo $form->end();
 	}
 
 	$name     = $user['User']['name'];
-	$surname     = $user['User']['surname'];
-	$email     = $text->autoLinkEmails($user['User']['email']);
-	$skype     = $user['User']['skype'];
-	$acl       = $user['Acl']['name'];
+	$surname  = $user['User']['surname'];
+	$email    = $text->autoLinkEmails($user['User']['email']);
+	$skype    = $user['User']['skype'];
+	$acl      = $user['Acl']['name'];
 
-        $phone = false;
+
         $phone_numbers = false;
+        $info = false;
+        
 
-        if($phone_numbers  = sizeof($user['PhoneNumber'])){
-                $phone     = $user['PhoneNumber'][0]['number'];
-                               
-        } 
-
-
-        $popup = false;
-	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/users/edit/{$user['User']['id']}",null, null, false);
+        $view  = $html->link($html->image("icons/view.png", array("title" => __("User details",true))), array('controller' => 'users', 'action' => 'view',$user['User']['id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
+        $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/users/edit/{$user['User']['id']}",null, null, false);
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/users/delete/{$user['User']['id']}",null, __("Are you sure you want to delete this user?",true),false);
-        if ($phone_numbers > 1) { 
-           $info = __('Phone numbers',true).'|';
 
+          
              foreach($user['PhoneNumber'] as  $number){
  
-               $info = $info.$number['number'].'|';
+               $info = $info.$number['number']."<br/>";
               
-             }
+            }
 
-             $phone = $html->div('frameInfoLeft', $phone.' '.$html->link($html->image('icons/plus.png',array('alt'=>__('Alternative phone numbers',true))),'#',array('class'=>'infobox','title'=>$info),null,false));
-        }
 
         $row[$key] = array($id,
      		array($status,array('align'=>'center')),
@@ -125,9 +117,8 @@ echo $form->end();
 		$email,
 		$skype,
 		$acl,
-		$phone,		
-		$edit,
-		$delete);
+		$info,		
+		$view.' '.$edit.' '.$delete);
 	}
      
        echo $html->tableCells($row,array('class'=>'darker'));

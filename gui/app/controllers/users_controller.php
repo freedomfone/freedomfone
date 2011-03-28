@@ -26,7 +26,7 @@ class UsersController extends AppController{
 
       var $name = 'Users';
 
-      var $helpers = array('Flash','Formatting','Session','Text','Ajax','Html');      
+      var $helpers = array('Flash','Formatting','Session','Text','Ajax','Html','Javascript');      
 
       var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
       var $components = array('RequestHandler');
@@ -44,7 +44,6 @@ class UsersController extends AppController{
 
         $this->refreshAll();
 
-        $this->layout = 'jquery';
         $this->pageTitle = 'Users';
         $this->User->recursive = 1;         
 
@@ -89,6 +88,17 @@ class UsersController extends AppController{
       }
 
 
+
+     function view($id){
+
+      	$this->pageTitle = 'User details';
+
+
+      	   $this->User->id = $id;
+      	   $this->set('data',$this->User->findById($id));       
+
+       
+      }
 
 
     function edit($id = null)    {  

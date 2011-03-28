@@ -164,6 +164,10 @@
 <?php echo $html->link(__("Create jobs",true),'/callbacks/add'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("Manage",true),'/callbacks/manage_batch'); ?>
+</li>
+
 
 <li>
 <?php echo $html->link(__("Settings",true),'/callback_settings'); ?>

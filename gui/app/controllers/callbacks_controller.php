@@ -25,7 +25,7 @@
 class CallbacksController extends AppController{
 
 	var $name = 'Callbacks';
-	var $helpers = array('Flash','Session','Time');      
+	var $helpers = array('Flash','Session','Time','Number');      
 
 
 	var $paginate = array(
@@ -37,10 +37,10 @@ class CallbacksController extends AppController{
         function add(){
 
 
-        $protocol       = 'SIP';
+
         $callback_type  = 'OUT';
         $status         = 'pending';
-
+   	$dialer = Configure::read('DIALER');
                
                $this->loadModel('PhoneBook');
                $phonebooks = $this->PhoneBook->find('list');
@@ -65,9 +65,6 @@ class CallbacksController extends AppController{
 
                //Form data exists, store and push to dialer
 	   if (!empty($this->data)){ 
-
-
-
 
 
               //Fetch phone numbers
@@ -108,7 +105,7 @@ class CallbacksController extends AppController{
 
                        $this->data[$key]['Callback']['phone_number'] = $phone_number;
                        $this->data[$key]['Callback']['user_id'] = $user_id[$key];
-                       $this->data[$key]['Callback']['protocol'] = $protocol;
+
                        $this->data[$key]['Callback']['status'] = $status;
                        $this->data[$key]['Callback']['type'] = $callback_type;
                        $this->data[$key]['Callback']['extension'] = $extension;
@@ -118,10 +115,11 @@ class CallbacksController extends AppController{
                        $this->data[$key]['Callback']['start_time'] = $callback['start_time'] ;
                        $this->data[$key]['Callback']['end_time'] = $callback['end_time'] ;
                        $this->data[$key]['Callback']['batch_id'] = $batch_id;
+                       $this->data[$key]['Callback']['title'] = $callback['title'] ;
 
                }
 
-              $socket_data = array('protocol' => 'SIP','extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
+              $socket_data = array('title' => 'title', 'extension' => $extension, 'retry' => $callback['max_retries'], 'retry_interval' => $callback['retry_interval'], 'max_duration' => $callback['max_duration']);
               $socket_data['recipient'] = implode(',',$phone_numbers);
 
               $socket_data['startTime'] = strtotime($this->dateToString($callback['start_time']));
@@ -133,7 +131,13 @@ class CallbacksController extends AppController{
 
 
                         $HttpSocket = new HttpSocket();
-                        $results = $HttpSocket->post('http://192.168.1.141/dialer/dummy_dialer/', $socket_data); 
+                        $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+
+                        $results = $HttpSocket->post($dialer['host'], $socket_data, $request); 
+
+                        debug($HttpSocket->response['raw']['response']);
+                        debug($results);
+
                         $job_id = json_decode($results);
                         
                         foreach ($job_id as $key => $entry) {
@@ -160,11 +164,11 @@ class CallbacksController extends AppController{
 
       	$this->pageTitle = 'Callback';           
 
-        $result = $this->Callback->find('all', array('fields' => array('DISTINCT Callback.batch_id','Callback.id')));
+        $result = $this->Callback->find('all', array('fields' => array('DISTINCT Callback.batch_id','Callback.id','Callback.title')));
 
         if($result){
             foreach ($result as $batch){
-                $batch_id[$batch['Callback']['batch_id']] = $batch['Callback']['batch_id'];
+                $batch_id[$batch['Callback']['batch_id']] = $batch['Callback']['title'];
 
 	     }
         } else {
@@ -403,6 +407,79 @@ class CallbacksController extends AppController{
  
 
    }
+
+
+/*
+ *
+ * Stop/start batches, see delivery results
+ *
+ *
+ */
+
+	function manage_batch() {
+
+        $dialer = Configure::read('DIALER');
+        
+      	$this->pageTitle = 'Manage batch';           
+
+        if(!empty($this->data)){
+
+              $batch_id = $this->data['Callback']['batch_id'];
+              $action = $this->data['Callback']['action'];
+              if($action == __('Start')){ $status = 1;} elseif ($action == __('Stop',true)) { $status = 6;} else { $status = 1;}
+
+              $socket_data = array('status' => $status);
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results = $HttpSocket->put($dialer['host'].$batch_id, $socket_data, $request); 
+              debug($HttpSocket->response['raw']['response']);
+              debug($results);
+
+              $this->Callback->updateAll(array('Callback.status'=> $status),array('Callback.batch_id' => $batch_id));
+
+
+        }
+
+        $result = $this->Callback->find('all', array('fields' => array('DISTINCT Callback.batch_id','Callback.id','Callback.title')));
+
+        if($result){
+            foreach ($result as $batch){
+                $batch_id[$batch['Callback']['batch_id']] = $batch['Callback']['title'];
+	     }
+        } else {
+
+          $batch_id = false;
+        }
+
+	 $this->set('batch_id', $batch_id);  
+
+        }
+
+
+/*
+ *
+ * AJAX drop-down menu for manage batches
+ *
+ *
+ */
+
+   function disp_manage(){
+
+
+        $batch = $this->data['Callback']['batch_id'];
+        $conditions['Callback.batch_id'] = $batch;
+        $param = array('conditions' => $conditions);
+
+        $data = $this->Callback->find('all', $param);
+
+        $this->set(compact(array('batch')));
+	$this->set('callbacks', $data);  
+
+
+   }
+
+
 
 }
 ?>

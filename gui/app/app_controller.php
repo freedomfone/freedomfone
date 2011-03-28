@@ -47,6 +47,9 @@ App::import('Core','L10n');
 class AppController extends Controller {
 
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Paginator','Text','Time');
+var $components = array('RequestHandler');
+
+
 
 function beforeFilter() {
 

@@ -141,7 +141,10 @@ $config['CALLBACK_DEFAULT']=	array(
                 'status'           => array('pending' => __('Pending',true), 'process' => __('Processing',true), 'success' => __('Success',true), 'retry' => __('Retry',true), 'failure' => __('Failure',true), 'timeout' => __('Timeout',true), 'abort' => __('Abort',true), 'pause' => __('Pause',true)));
 
 $config['DIALER'] = array(
-                  'host'        => 'http://192.168.1.141/dialer/',
+                  'host'        => 'http://192.168.1.87/voip_dialer/api/callrequest/',
+                  'user'        => 'areski',
+                  'pwd'         => 'areski',
+                  'account'     => '',
                   );
 
 $config['IVR_MONITOR']=	array(

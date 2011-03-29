@@ -544,6 +544,20 @@ return $result;
      }
 
 
+     function headerGetStatus($header){
+
+              switch($header){
+
+                case 'HTTP/1.0 200 OK':
+                $status = 1;
+                quit;
+              
+
+              }
+
+              return $status;
+
+     }
 
 
 }

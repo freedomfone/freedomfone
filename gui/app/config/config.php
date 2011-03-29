@@ -135,16 +135,22 @@ $config['CALLBACK_DEFAULT']=	array(
                 'response_type'    =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
                 'limit_user'       => '10',
                 'limit_time'       => '24',
-                'max_retries'          => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
+                'max_retries'      => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
                 'retry_interval'   => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
                 'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
-                'status'           => array('pending' => __('Pending',true), 'process' => __('Processing',true), 'success' => __('Success',true), 'retry' => __('Retry',true), 'failure' => __('Failure',true), 'timeout' => __('Timeout',true), 'abort' => __('Abort',true), 'pause' => __('Pause',true)));
+                'status'           => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)));
 
 $config['DIALER'] = array(
-                  'host'        => 'http://192.168.1.87/voip_dialer/api/callrequest/',
-                  'user'        => 'areski',
-                  'pwd'         => 'areski',
-                  'account'     => '',
+                  'host'           => 'http://192.168.1.87:8000/',
+                  'campaign'       => 'api/campaign/',
+                  'callrequest'    => 'api/callrequest/',
+                  'user'           => 'areski',
+                  'pwd'            => 'areski',
+                  'account'        => '',
+                  'a-leg_gateway'  => 1,
+                  'b-leg_gateway'  => 1,
+                  'frequency'      => '60',
+                  'call_timeout'   => '60',
                   );
 
 $config['IVR_MONITOR']=	array(

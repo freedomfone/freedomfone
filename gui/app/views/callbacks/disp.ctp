@@ -37,7 +37,8 @@
         foreach($callbacks as $key => $callback){
 
               echo $form->input('Callback.'.$key.'.id',array('type'=>'hidden','value'=>$callback['Callback']['id']));
-              echo $form->input('Callback.'.$key.'.job_id',array('type'=>'hidden','value'=>$callback['Callback']['job_id']));
+              echo $form->input('Callback.'.$key.'.batch_id',array('type'=>'hidden','value'=>$callback['Callback']['batch_id']));
+              echo $form->input('Callback.'.$key.'.phone_number',array('type'=>'hidden','value'=>$callback['Callback']['phone_number']));
 
               $batch_link  = $html->link($callback['Callback']['name'], array('controller' => 'callbacks', 'action' => 'batch',$callback['Callback']['batch_id'] ), array('title' => 'Batch details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false);	
               $user_link  = $html->link($callback['User']['name'], array('controller' => 'users', 'action' => 'view',$callback['User']['id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	

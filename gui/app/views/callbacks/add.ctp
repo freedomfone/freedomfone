@@ -40,8 +40,8 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
       echo "<table cellspacing= 0 class= 'none' >";
       echo $html->tableCells(array (
-          array(__("Title",true),	$form->input('title',array('label'=>false))),
-          array(array(__("Set a unique title of the job",true),"colspan='2' class='formComment'")),
+          array(__("Name",true),	$form->input('name',array('label'=>false))),
+          array(array(__("Set a unique name of the job",true),"colspan='2' class='formComment'")),
           array(__("Phone book",true),	$form->input('phone_book_id',array('options' => $phonebooks, 'label'=>false))),
           array(array(__("Select phonebook to dial.",true),"colspan='2' class='formComment'"))
 

@@ -546,11 +546,13 @@ return $result;
 
      function headerGetStatus($header){
 
-              switch($header){
+              $status = false;
+
+              switch(trim($header)){
 
                 case 'HTTP/1.0 200 OK':
                 $status = 1;
-                quit;
+                break;
               
 
               }

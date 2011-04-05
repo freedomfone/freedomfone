@@ -3,16 +3,16 @@
 
    if($campaign){
 
-           $row[] = array(__('Start time',true), $campaign[0]['Callback']['start_time']);
-           $row[] = array(__('End time',true), $campaign[0]['Callback']['end_time']);
-           $row[] = array(__('Initialization time',true), date('Y-m-d H:i:s',$campaign[0]['Callback']['created']));
-           $row[] = array(__('Max duration',true), $formatting->epochToWords($campaign[0]['Callback']['max_duration']));
-           $row[] = array(__('Max retries',true), $campaign[0]['Callback']['max_retries']);
+           $row[] = array(__('Start time',true), $campaign['Campaign']['start_time']);
+           $row[] = array(__('End time',true), $campaign['Campaign']['end_time']);
+           $row[] = array(__('Initialization time',true), date('Y-m-d H:i:s',$campaign['Campaign']['created']));
+           $row[] = array(__('Max duration',true), $formatting->epochToWords($campaign['Campaign']['max_duration']));
+           $row[] = array(__('Max retries',true), $campaign['Campaign']['max_retries']);
 
 
-       foreach($campaign as $key => $entry){
+       foreach($campaign['Callback'] as $key => $entry){
 
-              $status[] = $entry['Callback']['status'];
+              $status[] = $entry['status'];
 
         }
 

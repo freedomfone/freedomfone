@@ -313,8 +313,8 @@ gui/app/views/callbacks/user.ctp -text
 gui/app/views/campaigns/add.ctp -text
 gui/app/views/campaigns/disp.ctp -text
 gui/app/views/campaigns/disp_manage.ctp -text
+gui/app/views/campaigns/edit.ctp -text
 gui/app/views/campaigns/index.ctp -text
-gui/app/views/campaigns/manage_batch.ctp -text
 gui/app/views/campaigns/status.ctp -text
 gui/app/views/campaigns/user.ctp -text
 gui/app/views/campaigns/view.ctp -text

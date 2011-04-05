@@ -45,7 +45,7 @@
               echo $form->input('Callback.'.$j.'.dialer_id',array('type'=>'hidden','value'=>$campaign['Campaign']['dialer_id']));
 
               $campaign_link  = $html->link($campaign['Campaign']['name'], array('controller' => 'campaigns', 'action' => 'view', $campaign['Campaign']['id'] ), array('title' => 'Campaign details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false);	
-              $user_link  = $html->link(__('User details',true), array('controller' => 'users', 'action' => 'view',$callback['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
+              $user_link  = $html->link($callback['phone_number'], array('controller' => 'users', 'action' => 'view',$callback['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
 
 
               switch ($campaign['Campaign']['status']){

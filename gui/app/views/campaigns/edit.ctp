@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * manage_batch.ctp	- Manage  (stop and start) callback batches 
+ * edit.ctp             - Manage  (stop and start) callback campaigns 
  * version 	        - 2.5.1200
  * 
  * Version: MPL 1.1
@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback', '/callbacks');
-echo $html->addCrumb('Manage batches', '/callbacks/manage_batch');
+echo $html->addCrumb('Campaigns', '/campaigns');
+echo $html->addCrumb('Manage', '/campaigns/edit');
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
@@ -30,26 +30,22 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 $order = array('batch_id' => __('Batch id',true),'created' => __('Created',true),'user_id' => __('User',true),'status' => __('Status',true), 'type' => __('Type',true),'extension' => __('Service ID',true),'retry' => __('Attempts',true));
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
 
-     echo "<h1>".__("Manage batches",true)."</h1>";
-
+     echo "<h1>".__("Manage callback campaigns",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-        }
+     }
    
 
-
-
-     echo $form->create("Callback");
-     $input = $form->input('batch_id',array('id'=>'ServiceType2','type'=>'select','options'=>$batch_id,'label'=> false,'empty'=>'-- '.__('Select batch',true).' --'));
+     echo $form->create("Campaign");
+     $input = $form->input('id',array('id'=>'ServiceType2','type'=>'select','options'=>$campaigns,'label'=> false,'empty'=>'-- '.__('Select campaign',true).' --'));
    
-
      echo "<table cellspacing = 0 class ='none'>";
      echo $html->tableCells(array($input), array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
 
-     $opt = array("update" => "service_div","url" => "disp_manage","frequency" => "0.2" );
-     echo $ajax->observeForm("CallbackAddForm",$opt);
+     $opt = array("update" => "service_div","url" => "disp_edit","frequency" => "0.2" );
+     echo $ajax->observeForm("CampaignAddForm",$opt);
      echo $form->end();
      echo "<div id='service_div' style=''></div>";
 

@@ -553,6 +553,10 @@ return $result;
                 case 'HTTP/1.0 200 OK':
                 $status = 1;
                 break;
+
+                case 'HTTP/1.1 200 OK':
+                $status = 1;
+                break;
               
 
               }

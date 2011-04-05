@@ -25,7 +25,7 @@
 class CampaignsController extends AppController{
 
 	var $name = 'Campaigns';
-	var $helpers = array('Flash','Session','Time','Number','Formatting');      
+	var $helpers = array('Flash','Session','Time','Number','Formatting','Html');      
 
 
 	var $paginate = array(
@@ -278,19 +278,18 @@ class CampaignsController extends AppController{
         
 
          if ($status) {
-            $conditions['Campaign.status'] = $status;
+            $conditions['Callback.status'] = $status;
          } 
          if ($campaign_id) {
             $conditions['Campaign.id'] = $campaign_id;
          } 
          if ($order) {
-            $order_by[] = 'Campaign.'.$order.' '.$dir;
+            $order_by = $order.' '.$dir;
          } 
 
 	 $this->Campaign->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
          $param = array('conditions' => $conditions, 'order' => $order_by);
-
-         $campaigns = $this->Campaign->find('all', $param);
+         $campaigns = $this->Campaign->Callback->find('all', $param);
 	 $this->set('campaigns', $campaigns);  
 
 

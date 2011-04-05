@@ -33,6 +33,36 @@ echo $form->end();
 
  if($data = $this->data){
 
+      $Prev = 'prev';
+      $Next = 'next';
+
+/*
+      if($sort){
+	if(current($sort)=='desc'){
+		$Prev = 'next';
+      		$Next = 'prev';
+		}
+      }*/
+
+     if ($prev = $neighbors[$Prev]['User']['id']) {     	  
+	  $prev = $html->link("« ".__("Previous",true),"edit/".$prev,array('class'=>'subTitles'));
+     }
+
+     if ($next = $neighbors[$Next]['User']['id']){
+     	$next = $html->link(__("Next",true)." »","edit/".$next);
+     }
+
+     echo "<div class='frameRightAlone'>";
+     if ($prev && $next){ 
+        echo $prev." | ".$next;
+     } elseif ($prev) { 
+        echo $prev;
+     } elseif ($next) { 
+        echo $next;
+     }
+     echo "</div>";
+
+
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 
 
@@ -60,6 +90,8 @@ echo $form->end();
      if($value = $data['User']['last_epoch']) {
                   $last_seen = date('Y-m-d',$value);
      }
+
+
    
     //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";

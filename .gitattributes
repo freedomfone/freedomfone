@@ -219,6 +219,7 @@ gui/app/config/sql/sessions.sql -text
 gui/app/controllers/bin_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
 gui/app/controllers/callbacks_controller.php -text
+gui/app/controllers/campaigns_controller.php -text
 gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text
 gui/app/controllers/channels_controller.php -text
@@ -252,6 +253,7 @@ gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/callback.php -text
 gui/app/models/callback_setting.php -text
+gui/app/models/campaign.php -text
 gui/app/models/category.php -text
 gui/app/models/cdr.php -text
 gui/app/models/channel.php -text
@@ -308,6 +310,14 @@ gui/app/views/callbacks/index.ctp -text
 gui/app/views/callbacks/manage_batch.ctp -text
 gui/app/views/callbacks/status.ctp -text
 gui/app/views/callbacks/user.ctp -text
+gui/app/views/campaigns/add.ctp -text
+gui/app/views/campaigns/disp.ctp -text
+gui/app/views/campaigns/disp_manage.ctp -text
+gui/app/views/campaigns/index.ctp -text
+gui/app/views/campaigns/manage_batch.ctp -text
+gui/app/views/campaigns/status.ctp -text
+gui/app/views/campaigns/user.ctp -text
+gui/app/views/campaigns/view.ctp -text
 gui/app/views/categories/add.ctp -text
 gui/app/views/categories/edit.ctp -text
 gui/app/views/categories/index.ctp -text

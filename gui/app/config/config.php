@@ -141,9 +141,10 @@ $config['CALLBACK_DEFAULT']=	array(
                 'status'           => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)));
 
 $config['DIALER'] = array(
-                  'host'           => 'http://192.168.1.87:8000/',
+                  'host'           => 'http://rajesh.it.kth.se:9000/',
                   'campaign'       => 'api/campaign/',
                   'subscriber'     => 'api/subscriber/',
+                  'callrequest'    => 'api/callrequest/',
                   'user'           => 'areski',
                   'pwd'            => 'areski',
                   'account'        => '',

@@ -92,6 +92,21 @@ div.required label:after {
     margin: 2px 0 10px 0;
 }
 
+.dialer-stopped {
+
+    font-size: 12px;
+    color: #f00;
+    margin: 2px 0 10px 0;
+}
+
+.dialer-running {
+
+    font-size: 12px;
+    color: #0ff;
+    margin: 2px 0 10px 0;
+}
+
+
 img.icon {
 
     padding: 2px 2px 2px 2px;
@@ -266,7 +281,7 @@ height: 10px;
 
 #wrapper {
 position: relative;
-width: 900px;
+width: 1200px;
 margin: 0;
 padding: 0;
 margin: 0 auto;
@@ -276,7 +291,7 @@ z-index: 1;
 
 .header {
 height: 33px;
-width: 900px;
+width: 1200px;
 padding: 0;
 margin: 0;
 line-height: 33px;
@@ -305,7 +320,7 @@ margin-right: 20px;
 }
 
 #branding_header {
-width: 900px;
+width: 1200px;
 height: 150px;
 margin: 0;
 padding: 0;
@@ -313,7 +328,7 @@ padding: 0;
 
 #top_nav {
 height: 33px;
-width: 900px;
+width: 1200px;
 margin: 0px;
 padding: 0px;
 background: #fff;
@@ -321,26 +336,26 @@ background: #fff;
 
 
 #content_wrap {
-width: 900px;
+width: 1200px;
 overflow: auto;
 
 }
 
 #main_content {
 float: left;
-width: 880px;
+width: 1180px;
 padding: 0px 10px 10px 10px;
 margin: 0px;
 min-height: 500px;
 }
 
 * html body #main_content {
-width: 900px;
+width: 1200px;
 }
 
 .footer  {
 background-color: #a2b84b;
-width: 900px;
+width: 1200px;
 height: 30px;
 text-align: center;
 padding-top: 8px;

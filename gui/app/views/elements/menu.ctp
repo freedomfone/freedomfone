@@ -156,16 +156,16 @@
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Status", true),'/callbacks/'); ?>
+<?php echo $html->link(__("Status", true),'/campaigns/'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Create jobs",true),'/callbacks/add'); ?>
+<?php echo $html->link(__("Add campaign",true),'/campaigns/add'); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Manage",true),'/callbacks/manage_batch'); ?>
+<?php echo $html->link(__("Manage",true),'/campaigns/status'); ?>
 </li>
 
 

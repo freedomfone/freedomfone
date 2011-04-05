@@ -29,6 +29,13 @@ class Callback extends AppModel{
 
       var $name = 'Callback';
 
+      var $belongsTo = array(
+      	  'Campaign' => array(
+ 	  	 'className' => 'Campaign',
+ 		 'foreignKey' => 'campaign_id'
+ 		 ));
+
+
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 

@@ -121,12 +121,35 @@ class UsersController extends AppController{
              //Fetch data from db     
     	     elseif(empty($this->data['User'])){
 
+      		if($this->Session->check('messages_sort')){
+			$data = $this->Session->read('messages_sort');
+			$keys = array_keys($data);
+			$field = $keys[0];
+			$dir = $data[$field];
+		} else {
+			$field = 'id';
+			$dir = 'asc';
+		}
+
+
 		$this->data = $this->User->read(null,$id);
 		$phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
 
 		$acls 	    	    = $this->User->Acl->find('list');
- 		$phonebook 	    = $this->User->PhoneBook->find('list');               
- 		$this->set(compact('acls','phonebook','phonenumbers'));
+ 		$phonebook 	    = $this->User->PhoneBook->find('list');
+                $phone_book_id = 2;
+
+
+	$this->User->bindModel(array('belongsTo' => array('PhoneBook' => array('ClassName' => 'phone_book_id'))));   
+
+                $neighbors = $this->User->find('neighbors', array('field' => $field, 'value ' =>$this->data['User'][$field], 'dir' => 'desc'));
+                debug($neighbors);
+
+
+
+
+ 		$this->set(compact('acls','phonebook','phonenumbers','neighbors'));
+              
               }
 
 	      //Save form data

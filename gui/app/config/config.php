@@ -142,9 +142,9 @@ $config['CALLBACK_DEFAULT']=	array(
 
 $config['DIALER'] = array(
                   'host'           => 'http://rajesh.it.kth.se:9000/',
-                  'campaign'       => 'api/campaign/',
-                  'subscriber'     => 'api/subscriber/',
-                  'callrequest'    => 'api/callrequest/',
+                  'campaign'       => 'api/dialer_campaign/campaign/',
+                  'subscriber'     => 'api/dialer_campaign/subscriber/',
+                  'callrequest'    => 'api/dialer_cdr/callrequest/',
                   'user'           => 'areski',
                   'pwd'            => 'areski',
                   'account'        => '',

@@ -32,6 +32,12 @@ class CampaignsController extends AppController{
 		    	      'limit' => 50,
 			      'order' => array('Campaign.created' => 'desc'));
 
+/*
+ *
+ * Create new callback campaign
+ *
+ *
+ */
         function add(){
 
            $callback_type  = 'OUT';
@@ -199,7 +205,12 @@ class CampaignsController extends AppController{
         }	
 
 
-
+/*
+ *
+ * List status of callback requests. Set individual call status {start,pause,abort}
+ *
+ *
+ */
 	function index($status = null) {
 
         $dialer = Configure::read('DIALER');
@@ -234,8 +245,65 @@ class CampaignsController extends AppController{
 
         }
 
-	function refresh(){
 
+/*
+ *
+ * AJAX drop-down menu for Campaign jobs (index)
+ *
+ *
+ */
+
+   function disp(){
+
+       $status = $campaign = $data = $order = $dir = false;
+
+       if(array_key_exists('status',$this->data['Callback'])){
+         $status = $this->data['Callback']['status'];
+        }
+       if(array_key_exists('campaign_id',$this->data['Callback'])){
+         $campaign_id = $this->data['Callback']['campaign_id'];
+       }
+       if(array_key_exists('order',$this->data['Callback'])){
+         $order = $this->data['Callback']['order'];
+       }
+       if(array_key_exists('dir',$this->data['Callback'])){
+         $dir = $this->data['Callback']['dir'];
+       } else {
+         $dir = 'DESC';
+       }
+
+         $param = array();
+         $conditions = array();
+         $order_by = array();
+        
+
+         if ($status) {
+            $conditions['Campaign.status'] = $status;
+         } 
+         if ($campaign_id) {
+            $conditions['Campaign.id'] = $campaign_id;
+         } 
+         if ($order) {
+            $order_by[] = 'Campaign.'.$order.' '.$dir;
+         } 
+
+	 $this->Campaign->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
+         $param = array('conditions' => $conditions, 'order' => $order_by);
+
+         $campaigns = $this->Campaign->find('all', $param);
+	 $this->set('campaigns', $campaigns);  
+
+
+   }
+
+
+/*
+ *
+ * Update campaign data from dialer
+ *
+ *
+ */
+	function refresh(){
 
 	     $this->autoRender = false;
       	      $array = Configure::read('callback');
@@ -320,67 +388,10 @@ class CampaignsController extends AppController{
 
 	}
 
-
-	function check($id){
-
- 	$this->Campaign->id=$id;
-        $this->set('data',$this->Campaign->read()); 
-
-	$this->Campaign->withinLimit('1001');
-	}
 	
 
 
 
-/*
- *
- * AJAX drop-down menu for Campaign jobs
- *
- *
- */
-
-   function disp(){
-
-       $status = $campaign = $data = $order = $dir = false;
-
-       if(array_key_exists('status',$this->data['Callback'])){
-         $status = $this->data['Callback']['status'];
-        }
-       if(array_key_exists('campaign_id',$this->data['Callback'])){
-         $campaign_id = $this->data['Callback']['campaign_id'];
-       }
-       if(array_key_exists('order',$this->data['Callback'])){
-         $order = $this->data['Callback']['order'];
-       }
-       if(array_key_exists('dir',$this->data['Callback'])){
-         $dir = $this->data['Callback']['dir'];
-       } else {
-         $dir = 'DESC';
-       }
-
-         $param = array();
-         $conditions = array();
-         $order_by = array();
-        
-
-         if ($status) {
-            $conditions['Campaign.status'] = $status;
-         } 
-         if ($campaign_id) {
-            $conditions['Campaign.id'] = $campaign_id;
-         } 
-         if ($order) {
-            $order_by[] = 'Campaign.'.$order.' '.$dir;
-         } 
-
-	 $this->Campaign->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
-         $param = array('conditions' => $conditions, 'order' => $order_by);
-
-         $campaigns = $this->Campaign->find('all', $param);
-	 $this->set('campaigns', $campaigns);  
-
-
-   }
 
 /*
  *
@@ -441,92 +452,100 @@ class CampaignsController extends AppController{
  *
  */
 
-   function dialer_refresh(){
+   function dialer_refresh($mode = null){
 
-   	     $dialer = Configure::read('DIALER');
- 
-             $result = $this->Campaign->find('all', array('fields' => 'Campaign.job_id'));
-             foreach($result as $key => $entry){
-                     $job_id[] = $entry['Campaign']['job_id'];
-             }
+          $this->autoRender = false;
+   	  $dialer = Configure::read('DIALER');
+          $result = $this->Campaign->find('all', array('fields' => 'Campaign.id'));
+          $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
+         
 
              $HttpSocket = new HttpSocket();
-             $results = $HttpSocket->get($dialer['host'].'dummy_status/', $job_id); 
- 
-            debug($HttpSocket->response['raw']['status-line']);
+             $results = $HttpSocket->get($dialer['host'].$dialer['campaign'], false,  $request); 
+             $header = $HttpSocket->response['raw']['status-line'];
 
+             if ($this->headerGetStatus($header) == 1) {     
 
-            json_decode($results);
- 
+                $results = json_decode($results);
+
+                foreach ($results as $key => $campaign){
+       
+                       $id = $campaign->{'id'};
+                       $this->Campaign->id = $id;
+                      // $this->Campaign->saveField('status',$campaign->{'status'});
+                      $this->log("SUCCESS: dialer_refresh; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
+                }
+             
+             } else {
+
+                      $this->log("FAILURE: dialer_refresh; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
+             }
+
 
    }
 
 
 /*
  *
- * Stop/start batches, see delivery results
+ * Stop/pause/abort campaigns. See campaign delivery results
  *
  *
  */
-
-	function edit() {
-
+   function edit() {
 
         $dialer = Configure::read('DIALER');
- 
       	$this->pageTitle = 'Manage campaign';           
 
+        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
+        $this->set('campaigns', $result);  
 
-debug($this->data);
         if(!empty($this->data)){
 
-
-              $id     = $this->data['Campaign']['id'];
+              $id = $this->data['Campaign']['id'];
               $status = $this->data['Campaign']['status'];
+              $data = $this->Campaign->findById($id);
+              $dialer_id = $data['Campaign']['dialer_id'];
 
               $socket_data = array('status' => $status);
 
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$id, $socket_data, $request); 
+              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$dialer_id, $socket_data, $request); 
               $header = $HttpSocket->response['raw']['status-line'];
 
-              debug($results);
+
               if ($this->headerGetStatus($header) == 1) {           
 
+       	         $this->_flash(__('The campaign status has successfully been changed.',true), 'success');                           	
                  $this->Campaign->updateAll(array('Campaign.status'=> $status),array('Campaign.id' => $id));
 
               } else {
 
        	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
-
               }
+              
+              $this->redirect(array('action'=>'edit'));   	 
 
-        }
-
-        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
-        $this->set('campaigns', $result);  
+       }
 
         }
 
 
 /*
  *
- * AJAX drop-down menu for manage batches
+ * AJAX drop-down menu for edit campaign status
  *
  *
  */
-
-   function disp_manage(){
+   function disp_edit(){
 
         $id = $this->data['Campaign']['id'];
         $data = $this->Campaign->findById($id);
 	$this->set('campaign', $data);  
 
-
    }
 
 
-
 }
+
 ?>

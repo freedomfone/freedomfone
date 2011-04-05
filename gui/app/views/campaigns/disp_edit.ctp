@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * disp_manage.ctp	- Display callback requests by Campaign name
+ * disp_edit.ctp	- Display callback requests by Campaign name
  * version 	        - 2.5.1200
  * 
  * Version: MPL 1.1

@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * disp_manage.ctp	- Display Callback jobs by batch id
+ * disp_manage.ctp	- Display callback requests by Campaign name
  * version 	        - 2.5.1200
  * 
  * Version: MPL 1.1
@@ -26,16 +26,15 @@
    echo $ajax->div("service_div");
 
    $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
+   echo $form->create('Campaign', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );  
 
-   echo $form->create('Callback', array('type' => 'post', 'action' => 'manage_batch','enctype' => 'multipart/form-data') );  
-   echo $form->input('batch_id',array('type'=>'hidden','value'=>$batch));
+  if ($campaign){
 
+   echo $form->input('id',array('type'=>'hidden','value'=>$campaign['Campaign']['id']));
 
-    if ($callbacks ){
+        foreach($campaign['Callback'] as $key => $callback){
 
-        foreach($callbacks as $key => $callback){
-
-              $status[] = $callback['Callback']['status'];
+              $status[] = $callback['status'];
 
         }
 
@@ -48,13 +47,13 @@
         $pause   = $number->toPercentage(100*sizeof(array_keys($status,6))/$total,0);
         $process = $number->toPercentage(100*sizeof(array_keys($status,7))/$total,0);
 
-        $batch_status = $form->input('batch_status',array('options' => $options, 'label' => false, 'selected' => $callback['Callback']['batch_status']));
+        $campaign_status = $form->input('status',array('options' => $options, 'label' => false, 'selected' => $campaign['Campaign']['status']));
         $submit       = $form->end(__('Submit',true));
  
            echo "<table width='35%' cellspacing  = '0' class = 'stand-alone'>";
-           $row[] = array(__('Name',true), $callbacks[0]['Callback']['name']);
-           $row[] = array(__('Start Time',true), $callbacks[0]['Callback']['start_time']);
-           $row[] = array(__('End Time',true), $callbacks[0]['Callback']['end_time']);
+           $row[] = array(__('Name',true), $campaign['Campaign']['name']);
+           $row[] = array(__('Start Time',true), $campaign['Campaign']['start_time']);
+           $row[] = array(__('End Time',true), $campaign['Campaign']['end_time']);
            $row[] = array(__('Pending',true), $pending);
            $row[] = array(__('Failure',true), $failure);
            $row[] = array(__('Retry',true), $retry);
@@ -62,7 +61,7 @@
            $row[] = array(__('Abort',true), $abort);
            $row[] = array(__('Pause',true), $pause);
            $row[] = array(__('Processing',true), $process);
-           $row[] = array(__('Status',true), $batch_status);
+           $row[] = array(__('Status',true), $campaign_status);
            echo $html->tableCells($row,array('class'=>'stand-alone'),array('class'=>'stand-alone'));
            echo "</table>";
 

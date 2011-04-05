@@ -165,7 +165,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Manage",true),'/campaigns/status'); ?>
+<?php echo $html->link(__("Manage",true),'/campaigns/edit'); ?>
 </li>
 
 

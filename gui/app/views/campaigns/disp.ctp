@@ -68,11 +68,11 @@
                        $campaign_link,
                        array(date('Y-m-d H:i A',$campaign['Campaign']['created']), array('align' => 'center')),
                        $user_link,
-                       array($this->element ('dialer_status', array('status' => $campaign['Campaign']['status'],'mode' => 'text')), array('align' => 'center','style' => $style)),
+                       array($this->element ('dialer_status', array('status' => $callback['status'],'mode' => 'text')), array('align' => 'center','style' => $style)),
                        array($callback['type'], array('align' => 'center')),
                        array($campaign['Campaign']['extension'], array('align' => 'center')),
                        array($callback['retries'], array('align' => 'center')),
-                       $form->input('Callback.'.$j.'.status',array('type'=>'select','options'=>$options,'label'=> false,'selected' => $callback['status']))
+                       $form->input('Callback.'.$j.'.state',array('type'=>'select','options'=>$options,'label'=> false,'selected' => $callback['state']))
                        );
                        $j++;
 
@@ -85,7 +85,7 @@
 	 __("Campaign",true),
 	 __("Created",true),
  	 __("User",true), 
- 	 __("Campaign status",true),
+ 	 __("Call status",true),
  	 __("Type",true),
  	 __("Service ID",true),
  	 __("Attempts",true),

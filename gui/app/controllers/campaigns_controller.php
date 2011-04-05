@@ -213,14 +213,14 @@ class CampaignsController extends AppController{
 
              foreach($this->data['Callback'] as $key => $entry){
 
-                    $results = $HttpSocket->put($dialer['host'].$dialer['subscriber'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['status']), $request); 
+                    $results = $HttpSocket->put($dialer['host'].$dialer['subscriber'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
                     $header = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 1) {           
 
                        $this->loadModel('Callback');
                        $this->Callback->id = $entry['id'];
-                       $this->Callback->saveField('status',$entry['status']);
+                       $this->Callback->saveField('state',$entry['state']);
 
                    }
 
@@ -394,7 +394,7 @@ class CampaignsController extends AppController{
     	$this->layout = null;
     	$this->autoLayout = false;
 
-        Configure::write('debug', 3);
+        Configure::write('debug', 0);
       	
             if($id){
 
@@ -469,30 +469,32 @@ class CampaignsController extends AppController{
  *
  */
 
-	function manage_batch() {
+	function edit() {
 
 
         $dialer = Configure::read('DIALER');
-        
-      	$this->pageTitle = 'Manage batch';           
+ 
+      	$this->pageTitle = 'Manage campaign';           
 
 
+debug($this->data);
         if(!empty($this->data)){
 
 
-              $batch_id     = $this->data['Campaign']['batch_id'];
-              $batch_status = $this->data['Campaign']['batch_status'];
+              $id     = $this->data['Campaign']['id'];
+              $status = $this->data['Campaign']['status'];
 
-              $socket_data = array('status' => $batch_status);
+              $socket_data = array('status' => $status);
 
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$batch_id, $socket_data, $request); 
+              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$id, $socket_data, $request); 
               $header = $HttpSocket->response['raw']['status-line'];
 
+              debug($results);
               if ($this->headerGetStatus($header) == 1) {           
 
-                 $this->Campaign->updateAll(array('Campaign.batch_status'=> $batch_status),array('Campaign.batch_id' => $batch_id));
+                 $this->Campaign->updateAll(array('Campaign.status'=> $status),array('Campaign.id' => $id));
 
               } else {
 
@@ -502,18 +504,8 @@ class CampaignsController extends AppController{
 
         }
 
-        $result = $this->Campaign->find('all', array('fields' => array('DISTINCT Campaign.batch_id','Campaign.id','Campaign.name')));
-
-        if($result){
-            foreach ($result as $batch){
-                $batch_id[$batch['Campaign']['batch_id']] = $batch['Campaign']['name'];
-	     }
-        } else {
-
-          $batch_id = false;
-        }
-
-	 $this->set('batch_id', $batch_id);  
+        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
+        $this->set('campaigns', $result);  
 
         }
 
@@ -527,15 +519,9 @@ class CampaignsController extends AppController{
 
    function disp_manage(){
 
-
-        $batch = $this->data['Campaign']['batch_id'];
-        $conditions['Campaign.batch_id'] = $batch;
-        $param = array('conditions' => $conditions);
-
-        $data = $this->Campaign->find('all', $param);
-
-        $this->set(compact(array('batch')));
-	$this->set('callbacks', $data);  
+        $id = $this->data['Campaign']['id'];
+        $data = $this->Campaign->findById($id);
+	$this->set('campaign', $data);  
 
 
    }

@@ -49,6 +49,7 @@ class Bin extends AppModel{
       $update      = 'count_bin'; 
       $obj         = new ff_event($array);	       
 
+
        	   if ($obj -> auth != true) {
   	       	  die(printf("Unable to authenticate\r\n"));
            }
@@ -56,7 +57,7 @@ class Bin extends AppModel{
      	    while ($entry = $obj->getNext('update')){
 
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
-	      $sender	= urldecode($entry['from']);
+	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
               
       	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);

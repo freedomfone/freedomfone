@@ -71,8 +71,8 @@ class Cdr extends AppModel{
 	       	  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
-		  $this->set('caller_name', urldecode($entry['Caller-Caller-ID-Name']));
-    	       	  $this->set('caller_number',urldecode($entry['Caller-Caller-ID-Number']));
+		  $this->set('caller_name', $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Name']));
+    	       	  $this->set('caller_number',$this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']));
 	       	  $this->set('extension', $ext);
 
 
@@ -153,7 +153,7 @@ class Cdr extends AppModel{
 	       	  	$this->MonitorIvr->set('ivr_code', '');
 		  	$this->MonitorIvr->set('digit', '');
     	       	  	$this->MonitorIvr->set('node_id','');
-	       	  	$this->MonitorIvr->set('caller_number', urldecode($entry['Caller-Caller-ID-Number']));
+	       	  	$this->MonitorIvr->set('caller_number', $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']));
 	       	  	$this->MonitorIvr->set('extension', $entry['Caller-Destination-Number']);
 		  	//$this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  	$this->MonitorIvr->set('type', $channel_state);
@@ -174,7 +174,7 @@ class Cdr extends AppModel{
 			//Process only CS_ROUTING (start) messages
 			if($entry['Channel-State']=='CS_ROUTING'){
 
-			$value = urldecode($entry['Caller-Caller-ID-Number']);
+			$value = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
                         $field = false;
 		  	if( $proto == 'skype') { $field = 'skype';}
 		  	elseif( $proto == 'gsm') { $field = 'PhoneNumber.number';}
@@ -274,13 +274,13 @@ class Cdr extends AppModel{
 		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
-	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
+	       	  $this->MonitorIvr->set('ivr_code', $this->sanitizePhoneNumber($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('service',$service);
     	       	  
                   if ($table_id) { $this->MonitorIvr->set($table_id,$entry['FF-IVR-IVR-Node-Unique-ID']);}
 
-	       	  $this->MonitorIvr->set('caller_number', urldecode($entry['FF-IVR-Caller-ID-Number']));
+	       	  $this->MonitorIvr->set('caller_number', $this->sanitizePhoneNumber($entry['FF-IVR-Caller-ID-Number']));
 	       	  $this->MonitorIvr->set('extension', $entry['FF-IVR-Destination-Number']);
 		  $this->MonitorIvr->set('cdr_id', $cdr['Cdr']['id']);
 		  $this->MonitorIvr->set('type', __('tag',true));
@@ -292,7 +292,7 @@ class Cdr extends AppModel{
 		  //Save IVR title to CDR
 		    
 		  $this->id = $cdr['Cdr']['id'];
-		  $this->saveField('title',urldecode($entry['FF-IVR-IVR-Name']));
+		  $this->saveField('title',$this->sanitizePhoneNumber($entry['FF-IVR-IVR-Name']));
 
 
 		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
@@ -436,6 +436,9 @@ class Cdr extends AppModel{
                  return $epoch;
 
         }
+
+
+
 
 }
 

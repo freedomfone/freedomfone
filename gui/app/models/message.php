@@ -58,6 +58,7 @@ class Message extends AppModel {
 
       $this->autoRender = false;
       $array = Configure::read('lm_in');
+
 	      
 	    $obj = new ff_event($array);	       
 
@@ -72,10 +73,10 @@ class Message extends AppModel {
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
-	       $data= array ( 'sender'          =>urldecode($entry['FF-CallerID']),
-	       	      	      'file'            =>$entry['FF-FileID'],
-	       	      	      'created'         =>$created,
-			      'length'          =>$length,
+	       $data= array ( 'sender'          => $this->sanitizePhoneNumber($entry['FF-CallerID']),
+	       	      	      'file'            => $entry['FF-FileID'],
+	       	      	      'created'         => $created,
+			      'length'          => $length,
 	       		      'url'             => $entry['FF-URI'],
 	       		      'instance_id'     => $entry['FF-InstanceID'],
       			      'quick_hangup'    => $entry['FF-OnQuickHangup'],

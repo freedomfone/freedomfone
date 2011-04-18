@@ -199,7 +199,7 @@ function checkDate($data,$field){
 		$_message	=  explode(' ',$body);
 		$polls_code   	=  trim($_message[0]);
 		$votes_chtext 	=  trim($_message[1]);
-		$sender		=  urldecode($entry['from']);
+		$sender		=  $this->sanitizePhoneNumber($entry['from']);
 		$proto		=  $entry['proto'];
 	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
@@ -303,7 +303,7 @@ function checkDate($data,$field){
                             $update = 'count_bin'; 
                         } 
 
-			$value = urldecode($entry['from']);                        
+			$value = $this->sanitizePhoneNumber($entry['from']);                        
                         $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'id'))));
 
                         //Does user exist in database

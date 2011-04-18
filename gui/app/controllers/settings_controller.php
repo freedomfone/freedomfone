@@ -29,8 +29,9 @@ class SettingsController extends AppController {
 
 	function index() {
 
+
               $this->pageTitle = 'Settings';
-	      
+
 	      //Fetch form data and process
               if (!empty($this->data)) {
 				
@@ -39,13 +40,22 @@ class SettingsController extends AppController {
 		     unset($this->data['Setting']);
 		  }
 
-		      $i=false;	
+                        $i=false;	
 		 foreach ($this->data as $id => $entry){
 
 		 if ($id==1){ $lang = $entry['value'];}
 		 if ($id==6){ $timezone = $entry['value'];}
+		 if ($id==8){ 
+
+                    $country_id = $entry['value'];
+                    $this->loadModel('Country');
+                    $country = $this->Country->findById($country_id, array('fields' => 'countryprefix'));
+                    $data[9]= array('id'=>9, 'value_int'=>$country['Country']['countryprefix']);
+
+                 }
 
 		 //IP address
+
 		 if ($id==5 ) {
 		      if ( !isset($entry['value'])){
 		      $entry['value'] = $ip_radio;
@@ -90,9 +100,11 @@ class SettingsController extends AppController {
 	      $external = $this->Setting->getIP('external');
 	      $internal = $this->Setting->getIP('internal');
 
+              $this->loadModel('Country');
+              $countries = $this->Country->find('list');
 
 	      $this->set('data',$this->Setting->findAllByType('env'));
- 	      $this->set(compact('external','internal'));
+ 	      $this->set(compact('external','internal','countries'));
 	      $this->render();       
          
 	 }

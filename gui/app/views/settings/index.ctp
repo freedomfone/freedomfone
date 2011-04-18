@@ -29,7 +29,9 @@ echo $html->addCrumb('Settings', '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
- 
+
+
+
 
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
 $msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
@@ -68,7 +70,13 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	    
 
-	  } 
+	  } elseif ($entry['name']=='country'){
+
+
+	     $rows[] = array("Country", $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$entry['value_string'])));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+
+          }
 
 	   elseif ($entry['name']=='ip_address'){
 

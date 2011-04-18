@@ -201,6 +201,7 @@ gui/apache2/nginx/sites-available/default -text
 gui/apache2/nginx/sites-enabled/freedomfone -text
 gui/app/.htaccess -text
 gui/app/app_controller.php -text
+gui/app/app_model.php -text
 gui/app/config/acl.ini.php -text
 gui/app/config/bootstrap.php -text
 gui/app/config/config.php -text

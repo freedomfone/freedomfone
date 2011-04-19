@@ -49,23 +49,7 @@ $ext = Configure::read('EXTENSIONS');
 <?
 
      echo $form->hidden('source',array('value'=>'index'));
-
      echo "<table width='95%' cellspacing  = '0'>";
-
-/*     echo $html->tableHeaders(array(
-	'',
-	$paginator->sort(__("New",true), 'new'),
- 	$paginator->sort(__("Service",true), 'instance_id'),
- 	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Caller",true), 'sender'),
- 	$paginator->sort(__("Rate",true), 'rate'),
- 	$paginator->sort(__("Category",true), 'Category.name'),
- 	$paginator->sort(__("Date",true), 'created'),
- 	$paginator->sort(__("Length",true), 'length'),
-        '',
-        '',
-	__("Listen",true)));*/
-
      echo $html->tableHeaders(array(
 	'',
 	__("New",true),
@@ -80,16 +64,13 @@ $ext = Configure::read('EXTENSIONS');
         '',
 	__("Listen",true)));
 
-
  
       foreach ($messages as $key => $message){
 
-      $status='';
+        $status='';
 	$id = "<input name='message[$key]['Message']' type='checkbox' value='".$message['Message']['id']."' id='check' class='check'>";
 
-	if($message['Message']['new']){
-		$status = $html->image("icons/star.png",array("title" => __("New",true)));
-	}
+	if($message['Message']['new']){ $status = $html->image("icons/star.png",array("title" => __("New",true)));}
         $service      = $message['Message']['instance_id'];
         $title      = $message['Message']['title'];
         $title_div  = $html->div('',$text->truncate($title,20,'...',true,false),array('title' => $title),false);
@@ -100,11 +81,9 @@ $ext = Configure::read('EXTENSIONS');
 	$length     = $formatting->epochToWords($message['Message']['length']);
 	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
 	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
-
-
 	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
-     $row[$key] = array($id,
+        $row[$key] = array($id,
      		array($status,array('align'=>'center')),
                 array($ext['lam'].$service,array('align'=>'center')),
 		array($title_div, array('width' => '110px')),

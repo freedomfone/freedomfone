@@ -26,7 +26,7 @@ class MessagesController extends AppController{
 
       var $name = 'Messages';
       var $helpers = array('Flash','Formatting','Session');      
-      var  $paginate = array('page' => 1, 'order' => array( 'Message.created' => 'desc')); 
+      var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Message.created' => 'desc')); 
 
 
 
@@ -45,6 +45,15 @@ class MessagesController extends AppController{
 
       function index(){
 
+         $this->Session->write('messages_tag',false);
+         $this->Session->write('messages_category',false);
+         $this->Session->write('messages_rate',false);
+         $this->Session->write('messages_service',false);
+         $this->Session->write('messages_order',false);
+         $this->Session->write('messages_dir',false);
+         $this->Session->write('messages_limit',false);
+         $this->Session->write('messages_page',false);
+
                 $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
@@ -54,14 +63,13 @@ class MessagesController extends AppController{
       }
 
 
-      function disp(){
-
-
+      function disp($page = null){
+      
       $this->Message->recursive = 1; 
-
-      $tag = $category = $rate = $instance_id = $dir = false;
+      $tag = $category = $rate = $instance_id = $dir = $limit = $id = false;
       $param = $conditions = $order = array();
       $data = $this->data['Message'];
+
 
       if($data['tag']){
 
@@ -71,56 +79,86 @@ class MessagesController extends AppController{
         }
         $conditions['Message.id'] = $message_id;
       }
+
       if($data['category']){
          $conditions['Category.id'] = $data['category'];
+         $this->Session->write('messages_category',$data['category']);
+      } elseif ( $category = $this->Session->read('messages_category')){
+
+        $conditions['Message.category_id']  = $category;
+
       }
+
       if($data['rate']){
          $conditions['Message.rate'] = $data['rate'];
+         $this->Session->write('messages_rate',$data['rate']);
+
+      } elseif ($rate = $this->Session->read('messages_rate')){
+
+        $conditions['Message.rate'] = $rate;
+
       }
+
       if($data['service']){
+
          $conditions['Message.instance_id'] = $data['service'];
+         $this->Session->write('messages_service',$data['service']);
+
+      } elseif ($service  = $this->Session->read('messages_service')) {
+
+        $conditions['Message.instance_id'] = $service;
+
       }
+
+
       if($data['dir']){
          $dir = $data['dir'];
+         $this->Session->write('messages_dir',$dir);
+      } elseif (!$dir = $this->Session->read('messages_dir')){
+
+        $dir = false;
 
       }
-      if($data['order']){
+ 
+     if($data['order']){
           if($data['order'] == 'Message.new'){ $dir = 'DESC';}
          $order = $data['order'].' '.$dir;
+         $this->Session->write('messages_order',$order);
+      } elseif (!$order = $this->Session->read('messages_order')){
+
+        $order = false;
       }
 
+
+      if($data['limit']){
+         $limit = $data['limit'];
+        $this->Session->write('messages_limit',$limit);
+     
+      } elseif (!$limit = $this->Session->read('messages_limit')) {
+        $limit = 10;
+      }
+
+      if(!$page){
+        $page = 1;
+      } 
 
          $this->refreshAll();
          $this->Session->write('Message.source', 'index');
  
-         if(isset($this->params['named']['sort'])) { 
-      		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-         } elseif($this->Session->check('messages_sort')) { 
-		if(in_array($this->Session->read('messags_sort'),array('new','title','rate','category','created','modified','length'))){
-		   $this->paginate['order'] = $this->Session->read('messages_sort');
-		} 
-	 } 
 
-         if(isset($this->params['named']['limit'])) { 
-	       $this->Session->write('messages_limit',$this->params['named']['limit']);
-	 } elseif($this->Session->check('messages_limit')) { 
-	       $this->paginate['limit'] = $this->Session->read('messages_limit');
-	 }	
-
-
-         $conditions['Message.status'] = 1;
-         $param = array('conditions' => $conditions, 'order' => $order);
-         $data = $this->Message->find('all', $param);
+         $conditions['Message.status'] = 1;       
+         $this->paginate = array('conditions' => $conditions, 'order' => $order,'limit' => $limit, 'page' => $page);
+   	 $data = $this->paginate('Message');
 	 $this->set('messages',$data);  
+
          foreach ($data as $key => $message){
                 $id[] = $message['Message']['id'];
          }
 
+       
          $this->Session->write('messages_selected', $id);
 
-	 if(!isset($checked)){
-	     $this->set('checked','');
-	  }
+
 
       }
 

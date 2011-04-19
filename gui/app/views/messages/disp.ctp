@@ -24,31 +24,27 @@
 
 echo $ajax->div("service_div");
 
-
-
-echo $javascript->includeScript('toggle');
-
-
 echo $form->create('Message',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'index', 'class' => 'button')));
+echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'disp', 'class' => 'button')));
 echo $form->end();
-
-
 
 $ext = Configure::read('EXTENSIONS');
 
      if ($messages){
 
-//     echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
+     echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
 
      echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 
-?>
-<div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)"></div>
-<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)"></div>
-<?
+
+     ?>
+     <input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
+     <input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)"> 
+     <?
+
 
      echo $form->hidden('source',array('value'=>'index'));
+
      echo "<table width='95%' cellspacing  = '0'>";
      echo $html->tableHeaders(array(
 	'',
@@ -110,12 +106,17 @@ $ext = Configure::read('EXTENSIONS');
      echo "</table>";
      echo $form->end();
 
-/*     if($paginator->counter(array('format' => '%pages%'))>1){
+     if($paginator->counter(array('format' => '%pages%'))>1){
            echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
-     }*/
 
 
-///     echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
+        $prev = $ajax->link('«'.__('Previous',true),"/messages/disp/2", array('update' => 'service_div'), null, 1); 
+
+        $next = $ajax->link(__('Next',true).'»','/messages/disp/2', array('update' => 'service_div'), null, 1); 
+
+        echo  $html->div('paginator', $prev.$next);
+
+    }
 
 
      } else {

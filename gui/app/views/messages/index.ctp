@@ -22,110 +22,45 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Inboxes', '/messages');
+      echo $html->addCrumb('Message Centre', '');
+      echo $html->addCrumb('Inboxes', '/messages');
+      echo "<h1>".__('Audio Messages',true)."</h1>";
+      echo $html->div('feedback', __('Please select one or more criteria below.',true));
+      $rates = array(0,1,2,3,4,5);
+      $order = array('Category.id' => __('Category',true),'Message.rate' => __('Rate',true), 'Message.instance_id' => __('Service',true),'Message.length' => __('Length',true), 'Message.created' => __('Time',true),'Message.new' => __('New message',true));
+      $dir = array('ASC' => __('Ascending', true), 'DESC' => __('Descending',true));
 
-$session->flash();
-echo $javascript->includeScript('toggle');
+      $instances = array_unique($instances);
 
-echo $form->create('Message',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'index', 'class' => 'button')));
-echo $form->end();
+      foreach ($instances as $key => $instance){
 
-?>
-<div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)"></div>
-<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)"></div>
-<?
+       $services[$instance] = '2'.$instance;
 
+      }
 
-echo "<h1>".__('Audio Messages',true)."</h1>";
-$ext = Configure::read('EXTENSIONS');
-
-     if ($messages){
+      $session->flash();
+      echo $form->create("Message");
 
 
-     echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
-     echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
-     echo $form->hidden('source',array('value'=>'index'));
 
-     echo "<table width='95%' cellspacing  = '0'>";
-     echo $html->tableHeaders(array(
-	'',
-	$paginator->sort(__("New",true), 'new'),
- 	$paginator->sort(__("Service",true), 'instance_id'),
- 	$paginator->sort(__("Title",true), 'title'),
- 	$paginator->sort(__("Caller",true), 'sender'),
- 	$paginator->sort(__("Rate",true), 'rate'),
- 	$paginator->sort(__("Category",true), 'Category.name'),
- 	$paginator->sort(__("Date",true), 'created'),
- 	$paginator->sort(__("Length",true), 'length'),
-        '',
-        '',
-	__("Listen",true)));
+      $input1 = $form->input('tag', array('id' => 'ServiceType1','type' => 'select', 'options' => $tags, 'label' => false, 'empty' => '-- '.__("Select tag",true).' --'));
+      $input2 = $form->input('category', array('id' => 'ServiceType2','type' => 'select', 'options' => $categories, 'label' => false, 'empty' => '-- '.__("Select category",true).' --'));
+      $input3 = $form->input('rate', array('id' => 'ServiceType3','type' => 'select', 'options' => $rates, 'label' => false, 'empty' => '-- '.__("Select rate",true).' --'));
+      $input4 = $form->input('service', array('id' => 'ServiceType4','type' => 'select', 'options' => $services, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+
+      $input5 = $form->input('order', array('id' => 'ServiceType5','type' => 'select', 'options' => $order, 'label' => false, 'empty' => '-- '.__("Select order",true).' --'));
+      $input6 = $form->input('dir', array('id' => 'ServiceType6','type' => 'select', 'options' => $dir, 'label' => false, 'empty' => '-- '.__("Select direction",true).' --'));
 
 
- 
-      foreach ($messages as $key => $message){
-
-      $status='';
-	$id = "<input name='message[$key]['Message']' type='checkbox' value='".$message['Message']['id']."' id='check' class='check'>";
-
-	if($message['Message']['new']){
-		$status = $html->image("icons/star.png",array("title" => __("New",true)));
-	}
-        $service      = $message['Message']['instance_id'];
-        $title      = $message['Message']['title'];
-        $title_div  = $html->div('',$text->truncate($title,20,'...',true,false),array('title' => $title),false);
-	$sender     = $message['Message']['sender'];
-	$rate       = $this->element('message_status',array('rate'=>$message['Message']['rate']));
-	$category   = $message['Category']['name'];
-	$created    = date('y/m/d H:i',$message['Message']['created']);
-	$length     = $formatting->epochToWords($message['Message']['length']);
-	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
-	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+      echo "<table cellspacing=0 class='none'>";
+      echo $html->tableCells(array(array($input1,$input2),array($input3,$input4),array($input5,$input6)), array('class' => 'none'), array('class' => 'none'));
+      echo "</table>";
 
 
-	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
+      $opt = array("update" => "service_div", "url" => "disp", "frequency" => "0.2");
+      echo $ajax->observeForm("MessageAddForm", $opt);
+      echo $form->end();
 
-     $row[$key] = array($id,
-     		array($status,array('align'=>'center')),
-                array($ext['lam'].$service,array('align'=>'center')),
-		array($title_div, array('width' => '110px')),
-                $sender,
-		array($rate,array('align'=>'center')),
-		array($category,array('align'=>'center')),
-		$created,		
-		array($length,array('align'=>'center')),
-		array($edit,array('align'=>'center')),
-		array($download,array('align'=>'center')),
-		array($listen,array('align'=>'center')));
-		
-
-	}
-
-
-     echo $html->tableCells($row);
-     echo "</table>";
-
-     echo "<table cellspacing = 0 class = 'none'>";
-     echo $html->tableCells(array(__('Perform action on selected',true).': ',
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
-     echo "</table>";
-     echo $form->end();
-
-     if($paginator->counter(array('format' => '%pages%'))>1){
-           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
-     }
-
-
-     echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
-
-
-     } else {
-
-     echo $html->div('feedback', __('No records found.',true));
-
-     }
+      echo "<div id= 'service_div' style=''></div>";
 
 ?>

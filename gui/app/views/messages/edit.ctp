@@ -27,27 +27,19 @@ $sort  = $session->read('messages_sort');
 
 if($source == 'index') { $location = __('Inboxes',true);} else { $location = __('Archive',true);}
 
+$keys = $session->read('messages_selected');
+
+debug($keys);
 echo $html->addCrumb('Message Centre', '/messages');
 echo $html->addCrumb($location, '/messages/'.$source);
+echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
 
-
-
-
-
-
-      $Prev = 'prev';
-      $Next = 'next';
-
-      if($sort){
-	if(current($sort)=='desc'){
-		$Prev = 'next';
-      		$Next = 'prev';
-		}
-      }
+     $current = array_keys($keys,$data['Message']['id']);
+     $prev = $next = false;
 
       if($data){
 
-      echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
+
 
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
@@ -58,17 +50,16 @@ echo $html->addCrumb($location, '/messages/'.$source);
 		          'label'   => false);
 
 
+     if($current[0]-1 >= 0){
 
-     if ($prev = $neighbors[$Prev]['Message']['id']) {     	  
-	  $prev = $html->link("« ".__("Older message",true),"edit/".$prev,array('class'=>'subTitles'));
+     if (array_key_exists($current[0]-1,$keys)) {
+      	  $prev = $html->link("« ".__("Previous message",true),"edit/".$keys[$current[0]-1],array('class'=>'subTitles'));
 	  }
-
-     if ($next = $neighbors[$Next]['Message']['id']){
-     	$next = $html->link(__("Newer message",true)." »","edit/".$next);
      }
 
-
-
+     if (array_key_exists($current[0]+1, $keys)) {
+     	$next = $html->link(__("Next message",true)." »","edit/".$keys[$current[0]+1]);
+     }
 
      echo "<div class='frameRightAlone'>";
      if ($prev && $next){ echo $prev." | ".$next;}
@@ -93,8 +84,6 @@ echo $html->addCrumb($location, '/messages/'.$source);
      echo $form->create('Message',array('type' => 'post','action'=> 'edit'));
      echo "<table width='300px' cellspacing= 0 class ='blue'>";
      echo $form->hidden('new',array('value'=>0));
-     echo $form->hidden('next',array('value'=>$neighbors[$Next]['Message']['id']));
-     echo $form->hidden('prev',array('value'=>$neighbors[$Prev]['Message']['id']));
      echo $form->hidden('source',array('value'=>$source));
      echo $form->input('id',array('type'=>'hidden','value'=>$this->data['Message']['id']));
 

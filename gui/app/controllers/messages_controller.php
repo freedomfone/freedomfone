@@ -45,11 +45,54 @@ class MessagesController extends AppController{
 
       function index(){
 
+                $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
+		$tags 	    = $this->Message->Tag->find('list');
+ 		$categories = $this->Message->Category->find('list');
+                $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
+ 		$this->set(compact('tags','categories','instances'));
+
+      }
+
+
+      function disp(){
+
+
+      $this->Message->recursive = 1; 
+
+      $tag = $category = $rate = $instance_id = $dir = false;
+      $param = $conditions = $order = array();
+      $data = $this->data['Message'];
+
+      if($data['tag']){
+
+        $tags = $this->Message->Tag->findById($data['tag']);
+        foreach ($tags['Message'] as $key => $message){
+                $message_id[] = $message['id'];
+        }
+        $conditions['Message.id'] = $message_id;
+      }
+      if($data['category']){
+         $conditions['Category.id'] = $data['category'];
+      }
+      if($data['rate']){
+         $conditions['Message.rate'] = $data['rate'];
+      }
+      if($data['service']){
+         $conditions['Message.instance_id'] = $data['service'];
+      }
+      if($data['dir']){
+         $dir = $data['dir'];
+
+      }
+      if($data['order']){
+          if($data['order'] == 'Message.new'){ $dir = 'DESC';}
+         $order = $data['order'].' '.$dir;
+      }
+
 
          $this->refreshAll();
-         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
          $this->Session->write('Message.source', 'index');
-   
+ 
          if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
          } elseif($this->Session->check('messages_sort')) { 
@@ -64,14 +107,23 @@ class MessagesController extends AppController{
 	       $this->paginate['limit'] = $this->Session->read('messages_limit');
 	 }	
 
-	 $this->Message->recursive = 0; 
-   	 $data = $this->paginate('Message', array('Message.status' => '1'));
+
+         $conditions['Message.status'] = 1;
+         $param = array('conditions' => $conditions, 'order' => $order);
+         $data = $this->Message->find('all', $param);
 	 $this->set('messages',$data);  
+         foreach ($data as $key => $message){
+                $id[] = $message['Message']['id'];
+         }
+
+         $this->Session->write('messages_selected', $id);
 
 	 if(!isset($checked)){
 	     $this->set('checked','');
 	  }
+
       }
+
 
 
       function archive(){
@@ -112,16 +164,12 @@ class MessagesController extends AppController{
 
     function edit($id = null)    {  
 
-
-
     	     $this->pageTitle = 'Leave-a-Message : Edit';   
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));
 
-		     }
-
-    	     elseif(empty($this->data['Message'])){
+	     } elseif(empty($this->data['Message'])){
 
 		$this->referer();
 
@@ -196,6 +244,7 @@ class MessagesController extends AppController{
 
 
     function process (){
+
 
 	if (!$redirect = $this->data['Message']['source']){
 	   	$redirect = 'index';

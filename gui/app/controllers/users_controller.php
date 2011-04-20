@@ -42,6 +42,7 @@ class UsersController extends AppController{
 
       function index(){
 
+
         $this->refreshAll();
 
         $this->pageTitle = 'Users';
@@ -82,7 +83,6 @@ class UsersController extends AppController{
 
          $this->loadModel('PhoneBook');
          $options = $this->PhoneBook->find('list');
-         $options[0] = __('All users',true);
          $this->set(compact('options','users'));
 
       }
@@ -142,8 +142,8 @@ class UsersController extends AppController{
 
 	$this->User->bindModel(array('belongsTo' => array('PhoneBook' => array('ClassName' => 'phone_book_id'))));   
 
-                $neighbors = $this->User->find('neighbors', array('field' => $field, 'value ' =>$this->data['User'][$field], 'dir' => 'desc'));
-                debug($neighbors);
+//                $neighbors = $this->User->find('neighbors', array('field' => $field, 'value ' =>$this->data['User'][$field], 'dir' => 'desc'));
+//                debug($neighbors);
 
 
 
@@ -156,6 +156,7 @@ class UsersController extends AppController{
 	      else {
 
                    unset($this->data['PhoneNumber']);
+
 
 		     if($this->User->saveAll($this->data)){
                                  $this->log("INFO EDIT {ID: ".$id."; NAME: ".$this->data['User']['name']." ".$this->data['User']['surname']."}", "user");                       
@@ -198,6 +199,55 @@ class UsersController extends AppController{
     	    	$action = $this->params['data']['Submit'];
 
                 switch($action){
+
+
+                        case __('Add to phone book',true): 
+
+                        $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
+    	     	        foreach ($entries as $key => $id){
+
+                                $user_id = $id;
+                                $phonebooks = $this->User->findById($user_id);
+                                $phone_books = $phonebooks['PhoneBook'];
+                                foreach ($phone_books as $book){
+                                        
+                                        $phone_book_id[] = $book['id'];
+
+                                }
+                                $phone_book_id[] = $phone_book_id_selected;
+                                $phone_book_id = array_unique($phone_book_id);
+                                $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
+
+
+                                $this->User->id = $user_id;
+                                $this->User->save($data);
+
+                        }
+                        
+                        break;
+
+                        case __('Remove from phone book',true): 
+                        
+                        $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
+                        foreach ($entries as $key => $id){
+
+                                $user_id = $id;
+                                $phonebooks = $this->User->findById($user_id);
+                                $phone_books = $phonebooks['PhoneBook'];
+                                foreach ($phone_books as $book){                             
+                                        $phone_book_id[] = $book['id'];
+                                }
+
+                                $key = array_search($phone_book_id_selected, $phone_book_id);
+                                unset($phone_book_id[$key]);                                 
+                                $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
+                                $this->User->id = $user_id;
+                                $this->User->save($data);
+
+                        }
+
+                        break;
+
 
                         case __('Delete',true): 
 
@@ -276,7 +326,7 @@ class UsersController extends AppController{
               }     //array_key_exists 
 		 
 
-	     $this->redirect(array('action' => 'index'));
+	     $this->redirect(array('action' => '/'));
 
     }
 
@@ -313,29 +363,26 @@ class UsersController extends AppController{
 
     function disp (){
 
-  	   Configure::write('debug', 0);
+	  Configure::write('debug', 0);
 
           if( $phone_book_id = $this->data['User']['phone_book_id']){
 
              if ($data = $this->User->PhoneBook->findById($phone_book_id)){
 
-
                 foreach ($data['User'] as $key => $user){
-
                      $user_id[] = $user['id'];
                 }
-
 
                 $users = $this->User->find('all', array('conditions' => array('User.id' => $user_id)));
                 $this->set(compact('users'));    
               }
             
-             } else {
+           } else {
 
              $users = $this->User->find('all');
              $this->set(compact('users'));    
 
-             }
+           }
 
      }
 

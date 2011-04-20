@@ -1,4 +1,4 @@
-?php
+<?php
 /****************************************************************************
  * index.ctp	- List all Leave-a-message messages
  * version 	- 2.0.1160

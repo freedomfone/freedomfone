@@ -333,6 +333,7 @@ class UsersController extends AppController{
 
     function add() {
 
+
     	$this->pageTitle = 'Add User';
 	$acls = $this->User->Acl->find('list');
  	$this->set(compact('acls'));
@@ -352,6 +353,10 @@ class UsersController extends AppController{
 		} 
 
 	} else {
+
+               $this->loadModel('PhoneBook');
+               $options = $this->PhoneBook->find('list');
+               $this->set(compact('options'));
 
 		//Show empty form
       	 	$this->render();

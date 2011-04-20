@@ -48,9 +48,11 @@ echo $form->end();
 
    
 
-
+   $options_slim = $options;
+   $options[0] = __('All users',true);
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
+
      echo "<table cellspacing = '0' class='none'>";
      echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
      echo "</table>";
@@ -63,6 +65,7 @@ echo $form->end();
 
      echo $html->div("paginator'",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+
 
      echo "<table width='800px' class='collapsed' cellspacing=0>";
      echo $html->tableHeaders(array(
@@ -80,7 +83,8 @@ echo $form->end();
  
       foreach ($users as $key => $user){
 
-      $status='';
+        echo $form->input('User.'.$user['User']['id'].'.name',array('type'=>'hidden', 'value' => $user['User']['name']));
+        $status='';
 	$id = "<input name='user[$key]['User']' type='checkbox' value='".$user['User']['id']."' id='check' class='check'>";
 
 	if($user['User']['new']){
@@ -128,7 +132,14 @@ echo $form->end();
        echo "<table cellspacing = '0' class='none'>";
        echo $html->tableCells(array(__('Perform action on selected',true).': ',
        $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-       $form->submit( __('Merge',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class'=>'none'),array('class'=>'none'));
+       $form->submit(__('Merge',true),  array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
+       echo "</table>";
+
+       echo "<table cellspacing = '0' class='none'>";
+       echo $html->tableCells(array(
+$form->input('add_phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options_slim,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')),
+       $form->submit( __('Add to phone book',true), array('name' =>'data[Submit]', 'class' => 'button')),
+       $form->submit( __('Remove from phone book',true), array('name' =>'data[Submit]', 'class' => 'button'))), array('class' => 'none'),array('class' => 'none'));
        echo "</table>";
        echo $form->end();
 

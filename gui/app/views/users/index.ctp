@@ -137,7 +137,7 @@ echo $form->end();
 
        echo "<table cellspacing = '0' class='none'>";
        echo $html->tableCells(array(
-$form->input('add_phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options_slim,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')),
+       $form->input('add_phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options_slim,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')),
        $form->submit( __('Add to phone book',true), array('name' =>'data[Submit]', 'class' => 'button')),
        $form->submit( __('Remove from phone book',true), array('name' =>'data[Submit]', 'class' => 'button'))), array('class' => 'none'),array('class' => 'none'));
        echo "</table>";

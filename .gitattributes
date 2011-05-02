@@ -218,6 +218,7 @@ gui/app/config/sql/i18n.sql -text
 gui/app/config/sql/sessions.php -text
 gui/app/config/sql/sessions.sql -text
 gui/app/controllers/bin_controller.php -text
+gui/app/controllers/callback_services_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
 gui/app/controllers/callbacks_controller.php -text
 gui/app/controllers/campaigns_controller.php -text
@@ -253,6 +254,7 @@ gui/app/locale/swa/LC_MESSAGES/default.po -text
 gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/callback.php -text
+gui/app/models/callback_service.php -text
 gui/app/models/callback_setting.php -text
 gui/app/models/campaign.php -text
 gui/app/models/category.php -text
@@ -302,6 +304,7 @@ gui/app/vendors/simplepie/simplepie.php -text
 gui/app/vendors/spooler_ff.php -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
+gui/app/views/callback_services/add.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/callbacks/add.ctp -text
 gui/app/views/callbacks/batch.ctp -text

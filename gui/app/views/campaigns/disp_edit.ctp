@@ -24,6 +24,7 @@
 
 
    echo $ajax->div("service_div");
+   $status = false;
 
    $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
    echo $form->create('Campaign', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );  
@@ -33,11 +34,9 @@
    echo $form->input('id',array('type'=>'hidden','value'=>$campaign['Campaign']['id']));
 
         foreach($campaign['Callback'] as $key => $callback){
-
               $status[] = $callback['status'];
-
         }
-
+debug($status);
         $total   = sizeof($status);
         $pending = $number->toPercentage(100*sizeof(array_keys($status,1))/$total,0);
         $failure = $number->toPercentage(100*sizeof(array_keys($status,2))/$total,0);

@@ -138,7 +138,8 @@ class CampaignsController extends AppController{
                         $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
-
+debug($results);
+debug($header);
  
                         if ($this->headerGetStatus($header) == 1) {
                         
@@ -159,13 +160,14 @@ class CampaignsController extends AppController{
                            $this->Campaign->saveAll($this->data['Campaign'],array('validate' => false));
                            $campaign_id = $this->Campaign->getLastInsertId();
 
-                           foreach ($phone_numbers as $key => $subscriber) {
+                           foreach ($phone_numbers as $key => $contact) {
 
-                                   $subscriber = array('phonebook_id' => $dialer_id, 'contact' =>  $subscriber);
-                                   $results = $HttpSocket->post($dialer['host'].$dialer['subscriber'], $subscriber, $request); 
+                                   $contact = array('phonebook_id' => $dialer_id, 'contact' =>  $contact);
+                                   $results = $HttpSocket->post($dialer['host'].$dialer['contact'], $contact, $request); 
                                    $results = json_decode($results);
                                    $header  = $HttpSocket->response['raw']['status-line'];
 
+debug($results);
                                    $this->data[$key]['Callrequest']['job_id'] = $results->{'id'};
                                    $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
                                    $this->data[$key]['Callrequest']['status'] = 1;
@@ -178,7 +180,7 @@ class CampaignsController extends AppController{
 
 
                                    } else {
-       	                              $this->_flash(__('Dialer API Error (subscriber POST).',true).' '.$header, 'error');                           	
+       	                              $this->_flash(__('Dialer API Error (contact POST).',true).' '.$header, 'error');                           	
                                    }
 
                            }
@@ -224,7 +226,7 @@ class CampaignsController extends AppController{
 
              foreach($this->data['Callback'] as $key => $entry){
 
-                    $results = $HttpSocket->put($dialer['host'].$dialer['subscriber'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
+                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
                     $header = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 1) {           

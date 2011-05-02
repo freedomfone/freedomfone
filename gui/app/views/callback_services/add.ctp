@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * add.ctp	- Create new callback campaign
- * version 	- 2.5.1200
+ * add.ctp	- Create new Callback Service
+ * version 	- 2.5.1300
  * 
  * Version: MPL 1.1
  *
@@ -21,20 +21,21 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Campaign', '/campaign');
-echo $html->addCrumb('Create', '/campaign/add');
+echo $html->addCrumb('Callback Service', '/callback_services');
+echo $html->addCrumb('Create', '/callback_services/add');
 
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
-     echo "<h1>".__("Create callback campaign",true)."</h1>";
+
+     echo "<h1>".__("Create Callback Service",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
         }
 
-     echo $form->create('Campaign',array('type' => 'post','action'=> 'add'));
+     echo $form->create('CallbackService',array('type' => 'post','action'=> 'add'));
 
 
       echo "<fieldset>";
@@ -42,17 +43,12 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
       echo "<table cellspacing= 0 class= 'none' >";
       echo $html->tableCells(array (
-          array(__("Name",true),	$form->input('name',array('label'=>false))),
-          array(array(__("Set a unique name of the job",true),"colspan='2' class='formComment'")),
-          array(__("Phone book",true),	$form->input('phone_book_id',array('options' => $phonebooks, 'label'=>false))),
-          array(array(__("Select phonebook to dial.",true),"colspan='2' class='formComment'"))
-
+          array(__("SMS code",true),	$form->input('code',array('label'=>false))),
+          array(array(__("3-10 alpha-numeric characters.",true),"colspan='2' class='formComment'")),
           ), array('class'=>'none'),array('class'=>'none'));
        
       echo "</table>";
       echo "</fieldset>";
-
-
 
 
 
@@ -109,6 +105,14 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        $row[4] = array(__("Max duration",true), $form->input('max_duration', array('options' => $callback_default['max_duration'],'label'=>false, 'selected' => $maxduration)));
        $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
 
+       $row[6] = array(__("Max calls per user",true), $form->input('max_calls_user', array('options' => $callback_default['max_calls_user'],'selected' => $callback_default['max_calls_user_default'], 'label'=>false )));
+       $row[7] = array(array(__("Maxumum number of calls per user for this service.",true),"colspan='2' class='formComment'"));
+
+       $row[8] = array(__("Max calls per user and day",true), $form->input('max_calls_user_day', array('options' => $callback_default['max_calls_user_day'],'selected' => $callback_default['max_calls_user_day_default'], 'label'=>false )));
+       $row[9] = array(array(__("Maxumum number of calls per user/day (24h) for this service.",true),"colspan='2' class='formComment'"));
+
+       $row[10] = array(__("Max calls",true), $form->input('max_calls_total', array('options' => $callback_default['max_calls_total'],'selected' => $callback_default['max_calls_total_default'], 'label'=>false )));
+       $row[11] = array(array(__("Maxumum number of calls for this service.",true),"colspan='2' class='formComment'"));
 
 
        echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));
@@ -121,7 +125,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
        echo "<fieldset>";
        echo "<legend>".__('Start and end time',true)."</legend>";
-       echo "<div class='formComment'>".__("The callback campaign will start at Start Time. No further attempts for outgoing calls will be made after the End Time.",true)."</div>";
+       echo "<div class='formComment'>".__("The Callback Service will be available from Start Time. No outgoing calls will be made after the End Time.",true)."</div>";
 
        echo "<table cellspacing = 0 class='none'>";
        echo $html->tableCells(array (

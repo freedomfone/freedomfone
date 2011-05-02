@@ -131,19 +131,26 @@ $config['IVR_DEFAULT']=	array(
 
 
 $config['CALLBACK_DEFAULT']=	array(
-	        'sms_code'	   => 'CALLBACK',
-                'response_type'    =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
-                'limit_user'       => '10',
-                'limit_time'       => '24',
-                'max_retries'      => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
-                'retry_interval'   => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
-                'max_duration'     => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
-                'status'           => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)));
+                'response_type'                =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
+                'max_retries'                  => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
+                'retry_interval'               => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
+                'max_duration'                 => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
+                'status'                       => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)),
+                'max_calls_user'               => array(0 => __('Unlimited', true) , 1 => 1, 5 => 5, 10 => 10, 25 => 25, 50 => 50),
+                'max_calls_user_default'       => 10,
+                'max_calls_user_day'           => array(0 => __('Unlimited', true), 1 => 1, 5 => 5, 10 => 10),
+                'max_calls_user_day_default'   => 5,
+                'max_calls_total'              => array(0 => __('Unlimited', true), 50 => 50, 100 => 100, 250 => 250, 500 => 500, 1000 => 1000),
+                'max_calls_total_default'      => 250,
+                );
 
+
+
+                
 $config['DIALER'] = array(
                   'host'           => 'http://rajesh.it.kth.se:9000/',
                   'campaign'       => 'api/dialer_campaign/campaign/',
-                  'subscriber'     => 'api/dialer_campaign/subscriber/',
+                  'contact'        => 'api/dialer_campaign/contact/',
                   'callrequest'    => 'api/dialer_cdr/callrequest/',
                   'user'           => 'areski',
                   'pwd'            => 'areski',

@@ -82,6 +82,32 @@ CREATE TABLE `callback` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
+
+--
+-- Table structure for table `callback_services`
+--
+
+DROP TABLE IF EXISTS `callback_services`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callback_services` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `code` int(11) NOT NULL,
+  `max_retries` tinyint(3) unsigned NOT NULL,
+  `retry_interval` smallint(5) unsigned default NULL,
+  `max_duration` smallint(5) unsigned default NULL,
+  `created` int(11) NOT NULL,
+  `modified` int(11) NOT NULL,
+  `start_time` datetime default NULL,
+  `end_time` datetime default NULL,
+  `extension` smallint(6) NOT NULL,
+  `max_calls_user` smallint(5) unsigned default NULL,
+  `max_calls_user_day` smallint(5) unsigned default NULL,
+  `max_calls_total` smallint(5) unsigned default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
 --
 -- Table structure for table `callback_settings`
 --
@@ -96,6 +122,54 @@ CREATE TABLE `callback_settings` (
   `response_type` smallint(6) NOT NULL default '0',
   `limit_user` smallint(6) NOT NULL default '20',
   `limit_time` smallint(6) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `callbacks`
+--
+
+DROP TABLE IF EXISTS `callbacks`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `callbacks` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `campaign_id` int(10) unsigned NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `type` varchar(10) default NULL,
+  `retries` tinyint(3) unsigned default '0',
+  `status` smallint(6) default '1',
+  `state` tinyint(4) default '1',
+  `phone_number` varchar(200) default NULL,
+  `last_attempt` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
+--
+-- Table structure for table `campaigns`
+--
+
+DROP TABLE IF EXISTS `campaigns`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `campaigns` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `dialer_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `start_time` datetime default NULL,
+  `end_time` datetime default NULL,
+  `retry_interval` smallint(5) unsigned default NULL,
+  `max_duration` smallint(5) unsigned default NULL,
+  `max_retries` tinyint(3) unsigned NOT NULL,
+  `created` int(11) NOT NULL,
+  `modified` int(11) NOT NULL,
+  `extension` smallint(6) NOT NULL,
+  `status` smallint(6) default '1',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

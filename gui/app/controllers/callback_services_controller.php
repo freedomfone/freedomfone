@@ -25,11 +25,27 @@
 class CallbackServicesController extends AppController{
 
 	var $name = 'CallbackServices';
-	var $helpers = array('Flash');      
+	var $helpers = array('Flash','Ajax');      
+        var $components = array('RequestHandler');
 
 	var $paginate = array(
 		    	      'limit' => 50,
 			      'order' => array('CallbackService.code' => 'asc'));
+
+/*
+ *
+ * List all Callback Services
+ *
+ *
+ */
+        function index(){
+
+                 $this->pageTitle = 'Callback Services';
+                 $this->set('data',$this->CallbackService->find('all',array('order'=>'CallbackService.code ASC')));
+
+
+        }
+
 
 
 /*
@@ -43,7 +59,8 @@ class CallbackServicesController extends AppController{
            $callback_type  = 'IN';
            $status         = 'pending';
    	   $dialer = Configure::read('DIALER');
-               
+	   $mapping = Configure::read('EXTENSIONS'); 
+
                $this->loadModel('PhoneBook');
                $phonebooks = $this->PhoneBook->find('list');
 
@@ -66,6 +83,12 @@ class CallbackServicesController extends AppController{
                //Form data exists, store and push to dialer	   
                if (!empty($this->data)){ 
 
+                  $type = $this->data['CallbackService']['type'];
+                  $key = $type."_instance_id";
+                  $extension = $mapping[$type].$this->data['CallbackService'][$key];
+                  debug($extension);
+                  $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
+debug($this->data);
 
                   $this->CallbackService->set($this->data);
 
@@ -83,7 +106,31 @@ class CallbackServicesController extends AppController{
                 }
 
          }
+
+
+
+
+/*
+ *
+ * Delete Callback Service (AJAX)
+ *
+ *
+ */
+
+    function delete($id){
+
+    Configure::write('debug', 0);
+
+       if($id){
+                
+           if ($this->CallbackService->del($id)){
+                   $this->set('data',$this->CallbackService->find('all',array('order'=>'CallbackService.code ASC')));        
+                   $this->render('delete_success','ajax');
+           }
+
+        }
         
+    }
 
 }
 ?>

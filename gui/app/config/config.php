@@ -178,6 +178,7 @@ $config['ESL']	= array(
 $config['EXTENSIONS'] = array(
 		      'lam' => '2',
 		      'ivr' => '4',
+                      'selector' => '4',
 		      );
 
 $config['EXT_MAPPING'] = array(

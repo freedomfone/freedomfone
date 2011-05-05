@@ -139,7 +139,7 @@ class CampaignsController extends AppController{
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
 debug($results);
-debug($header);
+
  
                         if ($this->headerGetStatus($header) == 1) {
                         

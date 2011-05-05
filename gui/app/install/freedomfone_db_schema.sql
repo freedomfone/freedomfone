@@ -104,6 +104,7 @@ CREATE TABLE `callback_services` (
   `max_calls_user` smallint(5) unsigned default NULL,
   `max_calls_user_day` smallint(5) unsigned default NULL,
   `max_calls_total` smallint(5) unsigned default NULL,
+  `calls_total` smallint(5) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

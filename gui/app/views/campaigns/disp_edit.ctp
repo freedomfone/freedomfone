@@ -26,7 +26,10 @@
    echo $ajax->div("service_div");
    $status = false;
 
-   $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
+   $callback_default  = Configure::read('CALLBACK_DEFAULT');
+   $options = $callback_default['campaign_status'];
+   unset($options[4]);
+
    echo $form->create('Campaign', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );  
 
   if ($campaign){
@@ -36,7 +39,7 @@
         foreach($campaign['Callback'] as $key => $callback){
               $status[] = $callback['status'];
         }
-debug($status);
+
         $total   = sizeof($status);
         $pending = $number->toPercentage(100*sizeof(array_keys($status,1))/$total,0);
         $failure = $number->toPercentage(100*sizeof(array_keys($status,2))/$total,0);

@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * status.ctp	- View current callback job status
+ * status.ctp	- View status of current callback jobs
  * version 	- 2.5.1200
  * 
  * Version: MPL 1.1
@@ -22,15 +22,35 @@
  *
 ***************************************************************************/
 echo $html->addCrumb('Callback', '/callbacks');
-echo $html->addCrumb('Status', '/callbacks/status');
+
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+$order = array('Callback.campaign_id' => __('Campaign',true),'Campaign.created' => __('Created',true),'Callback.user_id' => __('User',true),'Callback.status' => __('Status',true), 'Callback.type' => __('Type',true),'Campaign.extension' => __('Service ID',true),'Callback.retries' => __('Attempts',true));
+$dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
      echo "<h1>".__("Callback Status",true)."</h1>";
 
 
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
+   
+   
+     echo $form->create("Callback");
+     $input1 = $form->input('status',array('id'=>'ServiceType1','type'=>'select','options'=>$callback_default['status'],'label'=> false,'empty'=>'-- '.__('Select status',true).' --'));         
+     $input2 = $form->input('campaign_id',array('id'=>'ServiceType2','type'=>'select','options'=>$campaign,'label'=> false,'empty'=>'-- '.__('Select campaign',true).' --'));
+     $input3 = $form->input('order',array('id'=>'ServiceType3','type'=>'select','options'=>$order,'label'=> false,'empty'=>'-- '.__('Order by',true).' --'));
+     $input4 = $form->input('dir',array('id'=>'ServiceType4','type'=>'select','options'=>$dir,'label'=> false,'empty'=>'-- '.__('Direction',true).' --'));
 
+
+     echo "<table cellspacing = 0 class ='none'>";
+     echo $html->tableCells(array(array($input1, $input2), array($input3, $input4)),array('class'=>'none'),array('class'=>'none'));
+     echo "</table>";
+
+     $opt = array("update" => "service_div","url" => "disp","frequency" => "0.2" );
+     echo $ajax->observeForm("CallbackAddForm",$opt);
+     echo $form->end();
+     echo "<div id='service_div' style=''></div>";
 
 
 ?>
-

@@ -305,6 +305,8 @@ gui/app/vendors/spooler_ff.php -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/callback_services/add.ctp -text
+gui/app/views/callback_services/delete_success.ctp -text
+gui/app/views/callback_services/index.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/callbacks/add.ctp -text
 gui/app/views/callbacks/batch.ctp -text
@@ -367,7 +369,9 @@ gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text
 gui/app/views/layouts/jquery.ctp -text
 gui/app/views/layouts/js/empty -text
+gui/app/views/layouts/json/default.ctp -text
 gui/app/views/layouts/rss/empty -text
+gui/app/views/layouts/xml/default.ctp -text
 gui/app/views/layouts/xml/empty -text
 gui/app/views/lm_menus/add.ctp -text
 gui/app/views/lm_menus/advanced_add.ctp -text

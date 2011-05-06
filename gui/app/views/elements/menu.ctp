@@ -156,12 +156,12 @@
 <ul>
 <li>
 <?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Status", true),'/campaigns/'); ?>
+<?php echo $html->link(__("Campaigns",true),'/campaigns'); ?>
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
 <li>
-<?php echo $html->link(__("Add campaign",true),'/campaigns/add'); ?>
+<?php echo $html->link(__("Callback Status", true),'/campaigns/status'); ?>
 </li>
 
 <li>

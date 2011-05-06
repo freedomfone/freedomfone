@@ -34,11 +34,17 @@ class PhoneNumber extends AppModel {
 
       $this->validate = array(
 	              'number' => array(
- 				       'rule' => 'phoneFormat',
- 				       'message' => __('Invalid phone number format (numbers and plus (+) sign allowed).',true),
+            	                'isUnique' => array(
+				       'rule'       => 'isUnique',
+				       'message'    => __('This phone number is already in use',true),
+                                       'allowEmpty' => false
+				      ),
+                               'format' => array(
+ 				       'rule'       => 'phoneFormat',
+ 				       'message'    => __('Invalid phone number format (numbers and plus (+) sign are allowed).',true),
 		   		       'allowEmpty' => false
- 				                )
-                             );
+ 				       )
+                             ));
 	
   }
 

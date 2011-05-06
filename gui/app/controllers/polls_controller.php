@@ -29,7 +29,7 @@ class PollsController extends AppController{
 
       var $helpers = array('Time','Html', 'Session','Form','Formatting','Ajax','Number','Javascript');
 
-
+      
 
       function refresh($method = null){
 
@@ -44,7 +44,6 @@ class PollsController extends AppController{
       function index(){
 
         $this->Poll->refresh();
-
         $this->pageTitle = 'Manage polls';
 
         $this->Poll->unbindModel(array('hasMany' => array('User')));
@@ -55,18 +54,18 @@ class PollsController extends AppController{
 
      function view($id){
 
+  
       	$this->pageTitle = 'View poll: '.$this->Poll->getTitle($id);
 
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
 	   	   $this->requestAction('/polls/refresh');
      	   	}
-	}	   
+	}	  
 
       	   $this->Poll->id = $id;
-      	   $this->set('data',$this->Poll->findById($id));       
-
-       
+      	   $data = $this->Poll->findById($id);
+           
       }
 
 

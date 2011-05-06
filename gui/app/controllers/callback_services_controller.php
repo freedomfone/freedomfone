@@ -25,12 +25,27 @@
 class CallbackServicesController extends AppController{
 
 	var $name = 'CallbackServices';
-	var $helpers = array('Flash','Ajax');      
+	var $helpers = array('Flash','Ajax','Formatting','Xml');      
         var $components = array('RequestHandler');
 
 	var $paginate = array(
 		    	      'limit' => 50,
 			      'order' => array('CallbackService.code' => 'asc'));
+
+
+     function get(){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+      	   $data = $this->CallbackService->find('list', array('fields' => array('code')));
+           echo json_encode($data);       
+
+       
+      }
+
 
 /*
  *
@@ -38,12 +53,20 @@ class CallbackServicesController extends AppController{
  *
  *
  */
+
         function index(){
 
                  $this->pageTitle = 'Callback Services';
-                 $this->set('data',$this->CallbackService->find('all',array('order'=>'CallbackService.code ASC')));
+                 $data = $this->paginate('CallbackService');
 
+                 foreach($data as $key => $callback_service){
 
+                       $result = $this->getServiceName($callback_service['CallbackService']['extension']);
+                       $data[$key]['CallbackService']['service_name'] = $result['service_name'];
+                       $data[$key]['CallbackService']['application'] = $result['application'];
+                 }
+ 
+                 $this->set(compact('data'));    
         }
 
 
@@ -86,9 +109,9 @@ class CallbackServicesController extends AppController{
                   $type = $this->data['CallbackService']['type'];
                   $key = $type."_instance_id";
                   $extension = $mapping[$type].$this->data['CallbackService'][$key];
-                  debug($extension);
+
                   $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
-debug($this->data);
+
 
                   $this->CallbackService->set($this->data);
 

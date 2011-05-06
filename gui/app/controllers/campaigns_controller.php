@@ -32,6 +32,29 @@ class CampaignsController extends AppController{
 		    	      'limit' => 50,
 			      'order' => array('Campaign.created' => 'desc'));
 
+
+/*
+ *
+ * List all Campaigns
+ *
+ *
+ */
+        function index(){
+
+                 $this->pageTitle = 'Campaigns';
+                 $campaigns = $this->paginate('Campaign');
+
+                 foreach($campaigns as $key => $campaign){
+                       $result = $this->getServiceName($campaign['Campaign']['extension']);
+                       $campaigns[$key]['Campaign']['service_name'] = $result['service_name'];
+                       $campaigns[$key]['Campaign']['application'] = $result['application'];
+                 }
+ 
+                 $this->set(compact('campaigns'));    
+
+        }
+
+
 /*
  *
  * Create new callback campaign
@@ -138,8 +161,6 @@ class CampaignsController extends AppController{
                         $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
-debug($results);
-
  
                         if ($this->headerGetStatus($header) == 1) {
                         
@@ -167,7 +188,6 @@ debug($results);
                                    $results = json_decode($results);
                                    $header  = $HttpSocket->response['raw']['status-line'];
 
-debug($results);
                                    $this->data[$key]['Callrequest']['job_id'] = $results->{'id'};
                                    $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
                                    $this->data[$key]['Callrequest']['status'] = 1;
@@ -186,7 +206,7 @@ debug($results);
                            }
 
        	                   $this->_flash(__('Your campaign has successfully been issued',true).' ['.$campaign['name'].']', 'success');                           	 
-   	                   $this->redirect(array('action'=>'index'));
+   	                   $this->redirect(array('action'=>'status'));
 
                       } else {
 
@@ -213,10 +233,10 @@ debug($results);
  *
  *
  */
-	function index($status = null) {
+	function status($status = null) {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Callback campaign';           
+      	$this->pageTitle = 'Callback status';           
 
 
         if(!empty($this->data)){
@@ -227,6 +247,7 @@ debug($results);
              foreach($this->data['Callback'] as $key => $entry){
 
                     $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
+               
                     $header = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 1) {           

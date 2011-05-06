@@ -95,6 +95,31 @@
 
     }
 
+
+    function dialerStatus($code){
+
+     switch($code){
+
+	     case '1':
+	     return __('Poll',true);
+	     break;
+
+	     case '2':
+	     return __('Leave-a-message',true);
+	     break;
+
+	     case '3':
+	     return __('Voice menu',true);
+	     break;
+
+      }
+
+    }
+
+
+
+
+
 }
 
 ?>

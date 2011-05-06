@@ -1,6 +1,6 @@
 <?php
 
-     echo $html->div('error',__("Invalid phone number format (numbers and plus (+) sign are allowed).",true));
+     echo $html->div('error',__("Duplicated or invalid phone number format (numbers and plus (+) sign are allowed).",true));
      $row[] = array(array($html->div('table_sub_header',__('Phone numbers',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom')));
 
      foreach ($phonenumbers as $key => $number){

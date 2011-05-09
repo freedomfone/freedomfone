@@ -5,7 +5,7 @@
  *                             message CHANNEL_STATE
  *      	   	       custom message tickle leave_a_message monitor_ivr gsmopen::dump_event officeroute
  *
- * version 		- 1.0.4
+ * version 		- 2.0
  * 
  * Version: MPL 1.1
  *
@@ -47,6 +47,7 @@ require_once(ESLPath);
 global $_SocketParam;
 global $_DispatcherDB;
 global $_AllowCURL;
+global $_CallbackAPI;
 global $mypid;
 
 
@@ -331,6 +332,8 @@ function applyRules($string){
 	 	      break;
 
                       case 'callback':
+
+
                       $application[]='callback_in';
 		      logESL("Application match: callback (call/Skype)","INFO",2); 
 	 	      break;             
@@ -373,8 +376,10 @@ function applyRules($string){
 	 	         break;
 
 	                 case 'officeroute':
+                         
 	                 $application[]= analyzeBody($body);
 			 logESL("Application match: poll/bin (custom)","INFO",2); 
+			 logESL($application[0],"INFO",2); 
 	 	         break;
 
 	               }
@@ -533,6 +538,8 @@ function addQuotes($data,$quote){
 
 function analyzeBody($body){
 
+        $callback = getCallbackServices();
+
         $data =  explode(' ',$body);
 	foreach ($data as $token){
 	
@@ -542,9 +549,8 @@ function analyzeBody($body){
 		
 	}
 	
-        if (strpos($body,'CALLBACK')!== false){
-
-                $app ='callback';
+        if(in_array($body, $callback)){
+                $app ='callback_in';
         }
 
         elseif(sizeof($message)==2){
@@ -645,4 +651,53 @@ function parseArgs($argv){
       }
 
 
+/*
+ * Get Callback Service SMS codes from Freedom Fone by CURL requrest (HTTP GET)
+ *  
+ *
+ * @return array $codes
+ *
+ */
+
+        function getCallbackServices(){
+
+                 global $_CallbackAPI;
+
+                 $url      = $_CallbackAPI['url_GET'];
+                 $user     = $_CallbackAPI['user'];
+                 $password = $_CallbackAPI['password'];
+                 
+         	 $ch = curl_init($url);
+
+                                                                                                                        
+                 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC ) ;
+                 curl_setopt($ch, CURLOPT_USERPWD, $user.':'.$password); 
+         	 curl_setopt($ch, CURLOPT_FRESH_CONNECT,true);  //do not use cached data
+	         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true); //return data as string
+	  	 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS,1000); //timout: 1s
+                 curl_setopt($ch, CURLOPT_HEADER, 0); 
+                 curl_setopt($ch, CURLOPT_HTTPGET,1); 
+                 curl_setopt($ch, CURLOPT_HTTPHEADER,array ("Accept: application/json"));
+                 
+		 $data = curl_exec($ch);                                                                                                  $info = curl_getinfo($ch);
+
+                 if ($data === false || $info['http_code'] != 200) {
+                        $data = "No CURL data returned for $url [". $info['http_code']. "]";
+                        if (curl_error($ch)){
+                               $data .= "\n". curl_error($ch);
+                               logESL("REST API: ".$data,"ERROR",3);                  
+                        } else {       
+                               logESL("REST API: ".$data,"ERROR",3);                  
+                        }
+
+                  } else {
+
+                    logESL("REST API: OK ","INFO",3);      
+                    $results   = json_decode($data,true);
+
+                  }
+
+                  return $results;
+
+         }
 ?>

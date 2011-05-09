@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-define("Version", '1.6.0');
+define("Version", '2.0');
 define("ParentXML", "ff-event");
 define("BaseDir", "/usr/local/freedomfone/");
 define("DefaultXSL", "default.xsl");
@@ -50,5 +50,13 @@ $_DispatcherDB = array(
 	      'password'=>'thefone',
 	      'database'=>'spooler_in'
 	      );
+
+$_CallbackAPI = array(
+	      'url_GET'      => 'http://192.168.1.10/freedomfone/callback_services/get',
+	      'url_POST'     => 'http://localhost/freedomfone/callback_services/post',
+	      'user'    => 'api',
+	      'password'=> 'freddyboy',
+	      );
+
 $_AllowCURL = array('callback_in' => 'callback_in');
 ?>

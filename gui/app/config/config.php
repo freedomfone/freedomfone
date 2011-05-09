@@ -72,6 +72,13 @@ $config['gsmopen']= array(
 	       'password' => 'thefone',
 	       'database' => 'spooler_in',
 	       );
+
+$config['public_api']= array(
+	       'user'      => 'api',
+	       'password' => 'freddyboy',
+	       );
+
+
 	       	      
 
 /*

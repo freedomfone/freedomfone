@@ -566,6 +566,37 @@ return $result;
      }
 
 
+     function getServiceName($ext){
+
+	$mapping = Configure::read('EXT_MAPPING');
+        $application = $model = false;
+	foreach($mapping as $app => $reg){
+	      preg_match($reg,$ext,$matches);
+		   if($matches){	
+	 	       	$application = $app;
+                        $instance_id = substr($ext,1,3);
+		   }
+         }
+
+
+         switch($application){
+
+         case 'lam':
+         $model = 'LmMenu';
+         break;
+
+         case 'ivr':
+         $model = 'IvrMenu';
+         break; 
+         }
+
+
+         $this->loadModel($model);
+         if($model == 'LmMenu'){ $this->{$model}->unbindModel(array('hasMany' => array('Mapping')));}
+         $data = $this->{$model}->findByInstanceId($instance_id);
+         return array('service_name' => $data[$model]['title'], 'application' => $application);
+
+     }
 
 }
 ?>

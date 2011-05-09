@@ -52,7 +52,7 @@ Router::connect('selectors/delete/*', array('controller' => 'ivr_menus', 'action
 
 Router::mapResources('callback_services');
 Router::parseExtensions('xml','json');
-Router::connect( "/:controller/", array("action" => "get", "[method]" => "GET");
+Router::connect( "/:controller/", array("action" => "get", "[method]" => "GET"));
 
 
 ?>

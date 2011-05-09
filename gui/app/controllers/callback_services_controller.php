@@ -26,12 +26,21 @@ class CallbackServicesController extends AppController{
 
 	var $name = 'CallbackServices';
 	var $helpers = array('Flash','Ajax','Formatting','Xml');      
-        var $components = array('RequestHandler');
+        var $components = array('RequestHandler','Security');
 
 	var $paginate = array(
 		    	      'limit' => 50,
 			      'order' => array('CallbackService.code' => 'asc'));
 
+     function beforeFilter(){
+
+	   $auth = Configure::read('public_api');
+ 
+               $this->Security->loginOptions = array('type' => 'basic', 'realm' => 'MyRealm');
+               $this->Security->loginUsers = array($auth['user'] => $auth['password']);
+               $this->Security->requireLogin();
+
+     }
 
      function get(){
 

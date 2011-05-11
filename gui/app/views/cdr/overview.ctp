@@ -78,8 +78,8 @@ $session->flash();
                 $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));                 
                                                                                                                                                                                                                    
                  $rows[] = array(                                                                                                                                                                                  
-                       $message['Message']['sender'],                                                                                                                                                              
-                       $time->niceShort($message['Message']['created']),                                                                                                                                           
+                       $message['Message']['sender'],
+                       array(date('Y-m-d H:i A',$message['Message']['created']), array('align' => 'center')),
                        $formatting->epochToWords($message['Message']['length']),                                                                                                                                   
                        $html->link($html->image("icons/edit.png", array("title" => __("View",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),                                              
                        $download,                                                                                                                                                                                  

@@ -74,7 +74,7 @@ class Message extends AppModel {
 	       $value = $entry['FF-CallerName'];
 
 
-	       $data= array ( 'sender'  => urldecode($entry['FF-CallerID']),
+	       $data= array ( 'sender'  => $this->sanitizePhoneNumber($entry['FF-CallerID']),
 	       	      	      'file'    =>$entry['FF-FileID'],
 	       	      	      'created' =>$created,
 			      'length'  =>$length,

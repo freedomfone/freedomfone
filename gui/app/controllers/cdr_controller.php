@@ -32,22 +32,20 @@ class CdrController extends AppController{
 
       function refresh($method = null){
 
-      $this->requestAction('/messages/refresh/'.$method);
-      $this->autoRender = false;
+         $this->loadModel('Message');
+         $this->Message->refresh();
+         $this->logRefresh('message',$method); 
 
-      $this->logRefresh('cdr',$method); 
-
-      $this->Cdr->refresh();
-
+         $this->Cdr->refresh();
+         $this->logRefresh('cdr',$method); 
+         $this->autoRender = false;
 
       }
 
       function general($action = null){
 
-
-      $this->requestAction('/messages/refresh');
-      $this->requestAction('/cdr/refresh');
-      $this->pageTitle = __('Reporting',true);
+       $this->refreshAll();
+       $this->pageTitle = __('Reporting',true);
 
 
       if(isset($this->params['named']['limit'])) { 
@@ -160,30 +158,21 @@ class CdrController extends AppController{
 
       function index(){
 
-      $this->requestAction('/messages/refresh');
+               $this->refreshAll();
+               $this->pageTitle = __('Call Data Records',true);
+               $this->Session->write('Cdr.source', 'index');
 
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
-                   }
-       }
-
-      $this->pageTitle = __('Call Data Records',true);
-      $this->Session->write('Cdr.source', 'index');
-
-      if(isset($this->params['named']['sort'])) { 
-      		$this->Session->write('cdr_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		}
-	elseif($this->Session->check('cdr_sort')) { 
-  		$this->paginate['order'] = $this->Session->read('cdr_sort');
+               if(isset($this->params['named']['sort'])) { 
+      		  $this->Session->write('cdr_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
+		} elseif($this->Session->check('cdr_sort')) { 
+  		  $this->paginate['order'] = $this->Session->read('cdr_sort');
 		} 
 
-      if(isset($this->params['named']['limit'])) { 
-	$this->Session->write('cdr_limit',$this->params['named']['limit']);
-	}
-	elseif($this->Session->check('cdr_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('cdr_limit');
-	}	
+               if(isset($this->params['named']['limit'])) { 
+	          $this->Session->write('cdr_limit',$this->params['named']['limit']);
+	       } elseif($this->Session->check('cdr_limit')) { 
+	          $this->paginate['limit'] = $this->Session->read('cdr_limit');
+	       }	
 
 	     $this->Cdr->recursive = 0; 
    	     $data = $this->paginate('Cdr');
@@ -298,15 +287,9 @@ class CdrController extends AppController{
 
       function statistics(){
 
-      $this->requestAction('/cdr/refresh');
 
+        $this->refreshAll();
        	$this->pageTitle = 'Call Data Records : Overview';
-
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
-                   }
-         } 
 
          if($this->data){
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
@@ -314,9 +297,9 @@ class CdrController extends AppController{
        		$this->set('cdr', $this->Cdr->find('all',$param)); 
           } else {
        	       $this->set('cdr',$this->Cdr->find('all'));  
-                 }
+          }
 
-  $this->render();  
+          $this->render();  
       }
 
 
@@ -368,7 +351,7 @@ class CdrController extends AppController{
 
       function overview(){
 
-        $this->requestAction('/cdr/refresh');
+        $this->refreshAll();
        	$this->pageTitle = __('System Overview',true);
 
 

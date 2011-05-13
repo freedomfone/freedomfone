@@ -35,11 +35,9 @@ class PollsController extends AppController{
 
       function refresh($method = null){
 
-      $this->autoRender = false;
-
-      $this->logRefresh('poll',$method); 
-      $this->Poll->refresh();
-
+            $this->autoRender = false;
+            $this->logRefresh('poll',$method); 
+            $this->Poll->refresh();
 
       }
 
@@ -47,16 +45,9 @@ class PollsController extends AppController{
 
       function index(){
 
-
-        if(isset($this->params['form']['submit'])) {
-	   if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/polls/refresh');
-                   }
-       }
-
-
-      $this->pageTitle = 'Manage polls';
-      $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
+             $this->Poll->refresh();
+             $this->pageTitle = 'Manage polls';
+             $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
 
       }
 

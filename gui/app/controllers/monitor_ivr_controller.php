@@ -30,26 +30,26 @@ class MonitorIvrController extends AppController{
 
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'MonitorIvr.epoch desc','MonitorIvr.call_id'));       
 
+      function refresh(){
+
+               $this->autoRender = false;
+               //$this->MonitorIvr->Cdr->refresh();
+
+      }
+
+
       function index(){
 
 
+        $this->refreshAll();
+	$this->pageTitle = 'Voice Menus: Monitor';
 
+    	$this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
+	$this->MonitorIvr->recursive = 0; 
+   	$data = $this->paginate('MonitorIvr');
+	$this->set('data',$data);  
 
-        if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/cdr/refresh');
-                   }
        }
-
-
-	     $this->pageTitle = 'Voice Menus: Monitor';
-
-    	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
-	     $this->MonitorIvr->recursive = 0; 
-   	     $data = $this->paginate('MonitorIvr');
-	     $this->set('data',$data);  
-
-	     }
 
 
     function del ($id){
@@ -67,13 +67,6 @@ class MonitorIvrController extends AppController{
 
     }
 
-      function refresh(){
-
-
-      $this->autoRender = false;
-      $this->MonitorIvr->Cdr->refresh();
-
-      }
 
     function process (){
 

@@ -407,5 +407,19 @@ return $result;
 
     }
 
+
+   function refreshAll(){
+     
+     $this->requestAction('/polls/refresh/manual');
+     $this->requestAction('/messages/refresh');
+     $this->requestAction('/cdr/refresh/manual');
+     $this->requestAction('/monitor_ivr/refresh/manual');
+     $this->requestAction('/processes/refresh/manual');
+     $this->requestAction('/channels/refresh/manual');
+     $this->requestAction('/bin/refresh/manual');
+     return true;                                                                          
+   
+   }    
+
 }
 ?>

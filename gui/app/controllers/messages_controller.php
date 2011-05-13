@@ -31,25 +31,25 @@ class MessagesController extends AppController{
       var  $paginate = array('page' => 1, 'order' => array( 'Message.created' => 'desc')); 
 
 
+      function refresh($method = null){
+
+            $this->autoRender = false;
+            $this->logRefresh('message',$method); 
+            $this->Message->refresh();
+
+            $this->loadModel('cdr');
+            $this->Cdr->refresh();
+            $this->logRefresh('cdr',$method);
+
+      }
 
 
       function index(){
 
-
-      $this->requestAction('/messages/refresh');
-      $this->requestAction('/cdr/refresh');
-
+      $this->refreshAll();
       $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
       $this->Session->write('Message.source', 'index');
    
-        if(isset($this->params['form']['submit'])) {
-	   if ($this->params['form']['submit']==__('Refresh',true)){
-                   $this->requestAction('/messages/refresh');
-                   }
-       }
-
-
-      //Source: http://www.muszek.com/cakephp-how-to-remember-pagination-sort-order-session
 
       if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -86,6 +86,7 @@ class MessagesController extends AppController{
 
       function archive(){
 
+      $this->refreshAll();
 
       $this->pageTitle = 'Leave-a-Message : Archive';
       $this->Session->write('Message.source', 'archive');
@@ -258,14 +259,6 @@ class MessagesController extends AppController{
     }
 
 
-      function refresh($method = null){
-
-
-      $this->autoRender = false;
-      $this->logRefresh('message',$method); 
-      $this->Message->refresh();
-
-      }
 
   function download ($id) {
 

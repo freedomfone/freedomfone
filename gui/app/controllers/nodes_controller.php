@@ -66,6 +66,7 @@ class NodesController extends AppController{
 	   $files = array();
 	   $files[0] = $this->data['Node']['file'];
            $title = $this->data['Node']['title'];
+
 	   
 	   //If title exists, upload file (wav)
 	   
@@ -77,6 +78,7 @@ class NodesController extends AppController{
               if ($files[0]['error']==1 && !$files[0]['size']) {
                        $this->_flash(__('File upload failure (filesize exceeds maximum)',true).' : '.$files[0]['name'], 'error');                           
 	       }  elseif ($files[0]['size']){
+
 
 
                	    $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);

@@ -37,7 +37,7 @@ class MessagesController extends AppController{
             $this->logRefresh('message',$method); 
             $this->Message->refresh();
 
-            $this->loadModel('cdr');
+            $this->loadModel('Cdr');
             $this->Cdr->refresh();
             $this->logRefresh('cdr',$method);
 

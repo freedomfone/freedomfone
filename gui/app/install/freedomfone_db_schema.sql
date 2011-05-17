@@ -118,14 +118,24 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `callback_settings` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `instance_id` int(10) unsigned NOT NULL,
-  `sms_code` varchar(10) NOT NULL default 'CALLBACK',
-  `response_type` smallint(6) NOT NULL default '0',
+  `retry_interval` smallint(5) unsigned default NULL,
+  `max_duration` smallint(5) unsigned default NULL,
   `limit_user` smallint(6) NOT NULL default '20',
   `limit_time` smallint(6) default NULL,
+  `max_retries` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `callback_settings`
+--
+
+LOCK TABLES `callback_settings` WRITE;
+/*!40000 ALTER TABLE `callback_settings` DISABLE KEYS */;
+INSERT INTO `callback_settings` VALUES (1,120,180,5,5,10);
+/*!40000 ALTER TABLE `callback_settings` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `callbacks`
@@ -665,21 +675,6 @@ CREATE TABLE `votes` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
-
-DROP TABLE IF EXISTS `callback_settings`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `callback_settings` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `retries` tinyint unsigned,
-  `retry_interval` smallint unsigned,
-  `max_duration` smallint unsigned,
-  `limit_user` smallint(6) NOT NULL default '20',
-  `limit_time` smallint(6) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 

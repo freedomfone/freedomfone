@@ -217,6 +217,7 @@ gui/app/config/sql/i18n.php -text
 gui/app/config/sql/i18n.sql -text
 gui/app/config/sql/sessions.php -text
 gui/app/config/sql/sessions.sql -text
+gui/app/controllers/api_controller.php -text
 gui/app/controllers/bin_controller.php -text
 gui/app/controllers/callback_services_controller.php -text
 gui/app/controllers/callback_settings_controller.php -text
@@ -251,6 +252,7 @@ gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
 gui/app/locale/freedomfone_2-0.pot -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
+gui/app/models/api.php -text
 gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/callback.php -text

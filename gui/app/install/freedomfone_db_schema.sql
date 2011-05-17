@@ -92,7 +92,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `callback_services` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `code` int(11) NOT NULL,
+  `code` varchar(25) NOT NULL,
   `max_retries` tinyint(3) unsigned NOT NULL,
   `retry_interval` smallint(5) unsigned default NULL,
   `max_duration` smallint(5) unsigned default NULL,

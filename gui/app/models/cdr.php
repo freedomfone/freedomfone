@@ -102,7 +102,9 @@ class Cdr extends AppModel{
 								 'conditions'=>array('Message.file'=>$call_id)))));
 					
 
+
 		        $message = $this->Message->findByFile($call_id);
+
 		        $this->set('length',$message['Message']['length']);
 		        $this->set('title', LAM_DEFAULT);
 		     } 
@@ -126,6 +128,7 @@ class Cdr extends AppModel{
 
 		     if($insert){
 		     
+
 			$this->create($this->data);
 	  	     	$this->save($this->data);
 

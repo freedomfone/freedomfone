@@ -145,17 +145,24 @@ img.icon {
 
 
 .frameRightAlone {
-float: right;
-margin: 5px;
-padding: 5px;
-}
 
-.frameRight2{
-
-float:right;
-
+     overflow: auto;
+     float: right;
+     clear: both;
+     margin: 5px;
+     padding: 5px;
 
 }
+
+
+.frameLeftAlone {
+     
+     float: left;
+     margin: 5px;
+     padding: 5px;
+
+}
+
 
 .frameLeft {
 
@@ -167,6 +174,15 @@ float:right;
       -moz-border-radius:10px;
       -webkit-border-radius:10px;
       border-radius:10px;
+
+}
+
+
+
+.frameClear {
+
+      clear: right;
+      float: left;
 
 }
 
@@ -269,9 +285,9 @@ padding: 0px;
 
 .space {
 
-height: 10px;
+margin-bottom: 50px;
 
- }
+}
 
 .long {
       width: 400px;

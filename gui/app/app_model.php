@@ -40,24 +40,28 @@ class AppModel extends Model {
 
      function sanitizePhoneNumber($number){
 
-       if(preg_match('/%/',$number)){ $number = urldecode($number);}
+       if($number){
 
-        $entry = $this->query("select value_int from settings where name = 'prefix'");
-        $prefix =  $entry[0]['settings']['value_int'];
+        if(preg_match('/%/',$number)){ $number = urldecode($number);}
+
+          $entry = $this->query("select value_int from settings where name = 'prefix'");
+          $prefix =  $entry[0]['settings']['value_int'];
 
 
-        //Starts with + sign
-        if (preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number)){
+          //Starts with + sign
+          if (preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number)){
 
            //Replace +  sign with 00
            $number = preg_replace (array('/^[+]/'), array('00'),$number);           
 
-        } 
-        //Starts without country prefix
-        elseif (!preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number) && !preg_match('/^[00]{2,2}[0-9]{4,25}$/', $number)){
+          } 
+          //Starts without country prefix
+          elseif (!preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number) && !preg_match('/^[00]{2,2}[0-9]{4,25}$/', $number)){
       
             //Append 00 and strip first 0 (if any)
             $number = '00'.$prefix.ltrim($number,'0');
+
+          }
 
         }
 

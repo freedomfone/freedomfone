@@ -70,6 +70,7 @@ class Message extends AppModel {
 	       $created = floor($entry['Event-Date-Timestamp']/1000000);
 	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);
 	       
+
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 
@@ -85,6 +86,9 @@ class Message extends AppModel {
 	       $this->create();
 	       $this->save($data);
 
+               //Check if CDR with the same call_id exists with length=false
+               $this->query("UPDATE cdr set length = ".$length.", quick_hangup = '".$entry['FF-OnQuickHangup']."' where call_id = '".$entry['FF-FileID']."' and channel_state='CS_ROUTING'");
+              
                } 
      
      }

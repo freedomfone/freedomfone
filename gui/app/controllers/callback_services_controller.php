@@ -32,29 +32,6 @@ class CallbackServicesController extends AppController{
 		    	      'limit' => 50,
 			      'order' => array('CallbackService.code' => 'asc'));
 
-     function beforeFilter(){
-
-	   $auth = Configure::read('public_api');
- 
-               $this->Security->loginOptions = array('type' => 'basic', 'realm' => 'MyRealm');
-               $this->Security->loginUsers = array($auth['user'] => $auth['password']);
-               $this->Security->requireLogin();
-
-     }
-
-     function get(){
-
-           Configure::write('debug', 0);
-           $this->autoRender = false;
-           $this->layout = 'json/default';
-           $this->RequestHandler->setContent('json','text/x-json');  
-
-      	   $data = $this->CallbackService->find('list', array('fields' => array('code')));
-           echo json_encode($data);       
-
-       
-      }
-
 
 /*
  *
@@ -112,6 +89,9 @@ class CallbackServicesController extends AppController{
 
                $this->set(compact(array('phonebooks','ivr','selector','lam','maxduration','retryinterval','maxretries')));
 
+
+               //REMOVE!!!
+               unset($this->data['_Token']);
                //Form data exists, store and push to dialer	   
                if (!empty($this->data)){ 
 

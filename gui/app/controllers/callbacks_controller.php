@@ -40,59 +40,13 @@ class CallbacksController extends AppController{
  *
  */
 
-   function dialer_refresh($mode = null){
+      function refresh($method = null){
 
+           $this->autoRender = false;
+           $this->logRefresh('callback_in',$method); 
+           $this->Callback->refresh($method);
 
-          $this->autoRender = false;
-   	  $dialer = Configure::read('DIALER');
-          $result = $this->Callback->find('all', array('conditions' => array('Callback.status' => array(1,2))));
-          $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
-
-
-          foreach($result as $key => $entry){
-
-debug($entry);
-             $campaign_id  = $entry['Campaign']['dialer_id'];          
-             $phone_number = $entry['Callback']['phone_number'];          
-             $job_id       = $entry['Callback']['job_id'];          
-
-             $HttpSocket = new HttpSocket();
-             $results = $HttpSocket->get($dialer['host'].$dialer['contact'].'/'.$campaign_id.'/'.$phone_number, false,  $request); 
-             $header = $HttpSocket->response['raw']['status-line'];
-
-
-             if ($this->headerGetStatus($header) == 1) {     
-
-                $dialer_result = json_decode($results,true);
-debug($dialer_result);
-
-                if ($entry['Callback']['job_id'] == $dialer_result[0]['contact_id'] ){
-
-
-                   $id                         = $entry['Callback']['id'];
-                   $this->Callback->id         = $id;
-                   $this->data['status']       = $dialer_result[0]['status'];
-                   $this->data['retries']      = $dialer_result[0]['count_attempt'];
-                   $this->data['last_attempt'] = $dialer_result[0]['last_attempt'];
-                   $this->data['status']       = 1;
-                       
-                   $this->Callback->save($this->data, array('status','retries','last_attempt'));
-                   $this->log("SUCCESS: dialer_refresh; Campaign id: ".$id."; Mode: ".$mode, "campaign");               
-
-                 } else {
-
-                    $this->log("FAILURE: dialer_refresh MISMATCH ID; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
-
-                 }             
-
-
-              } else {
-
-                      $this->log("FAILURE: dialer_refresh HEADER; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
-              }
-
-           }
-   }
+      }
 
 }
 ?>

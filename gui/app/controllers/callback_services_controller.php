@@ -100,20 +100,47 @@ class CallbackServicesController extends AppController{
                   $extension = $mapping[$type].$this->data['CallbackService'][$key];
 
                   $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
-
-
                   $this->CallbackService->set($this->data);
 
-                  if($this->CallbackService->saveAll($this->data)){
+                  if($this->CallbackService->saveAll($this->data, array('validate' => 'only'))){
+                        $campaign = $this->data['CallbackService'];
+                        $startingdate    = strtotime($this->dateToString($campaign['start_time']));
+                        $expirationdate   = strtotime($this->dateToString($campaign['end_time']));
 
-       	                   $this->_flash(__('The Callback Service has successfully been added',true), 'success');                           	 
+                        $socket_data = array(
+                             'name'             => $campaign['code'], 
+                             'startingdate'     => $startingdate, 
+                             'expirationdate'   => $expirationdate, 
+                             'frequency'        => $dialer['frequency'],
+                             'callmaxduration'  => $campaign['max_duration'],
+                             'maxretry'         => $campaign['max_retries'],
+                             'intervalretry'    => $campaign['retry_interval'],
+                             'calltimeout'      => $dialer['call_timeout'],
+                             'aleg_gateway'     => $dialer['a-leg_gateway'],
+                             'voipapp'          => 1, 
+                             'voipapp_data'     => $extension,
+                             'daily_start_time' => '00:00:00',
+                             'daily_stop_time'  => '23:59:59',
+                             );
+
+                        $HttpSocket = new HttpSocket();
+                        $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+                        $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
+                        $header  = $HttpSocket->response['raw']['status-line'];
+
+                       if ($this->headerGetStatus($header) == 1) {
+
+                           $results   = json_decode($results,true);
+                           $dialer_id  = $results['phonebook'][0]['id'];   //Known as phone_book_id in Dialer
+                           $this->data['CallbackService']['dialer_id'] = $dialer_id;
+                           $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
+
+
+                        }
+                        
                            $this->redirect(array('action'=>'index'));
 
-                   } else {
-       	           
-       	                   $this->_flash(__('The Callback Service could not be created.',true), 'error');                           	 
-                           
-                   }
+                  }
 
                 }
 

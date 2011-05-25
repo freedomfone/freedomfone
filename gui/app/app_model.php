@@ -35,6 +35,8 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model
  */
+
+
 class AppModel extends Model {
 
 
@@ -67,6 +69,34 @@ class AppModel extends Model {
 
         return $number;
 
+
+     }
+
+
+        function getCallbackService($code){
+
+                $data =  $this->query("select id,dialer_id from callback_services where code = '$code'");
+                return array('id' => $data[0]['callback_services']['id'],'dialer_id' => $data[0]['callback_services']['dialer_id']);
+        }
+
+     function headerGetStatus($header){
+
+              $status = false;
+
+              switch(trim($header)){
+
+                case 'HTTP/1.0 200 OK':
+                $status = 1;
+                break;
+
+                case 'HTTP/1.1 200 OK':
+                $status = 1;
+                break;
+              
+
+              }
+
+              return $status;
 
      }
 

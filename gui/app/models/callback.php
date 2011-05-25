@@ -22,10 +22,11 @@
  *
  ***************************************************************************/
 
+App::import('Core', 'HttpSocket');
 
-App::import('Core', 'Socket');
 
 class Callback extends AppModel{
+
 
       var $name = 'Callback';
 
@@ -48,6 +49,97 @@ function __construct($id = false, $table = null, $ds = null) {
 }
 
 
+/*
+ * Fetches new data from spooler
+ *
+ *
+ */
+
+    function refresh(){
+
+
+      $array       = Configure::read('callback_in');
+      $dialer       = Configure::read('DIALER');
+      $application = 'callback_in';
+      $type = 'IN';
+      $obj         = new ff_event($array);	       
+      $update      = 'count_callback'; 
+
+       	   if ($obj -> auth != true) {
+  	       	  die(printf("Unable to authenticate\r\n"));
+           }
+
+     	   while ($entry = $obj->getNext('update')){
+
+              debug($entry);
+
+	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
+	      $sender	= $this->sanitizePhoneNumber($entry['from']);
+              $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
+              $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
+
+              //** Update user information **//
+
+              //If user exists in system: update statistics
+              if ($userData){
+
+                 debug($userData);
+		 $count = $userData['User'][$update]+1;
+                 $user_id = $userData['User']['id'];
+                 $this->User->read(null, $user_id);
+	         $this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
+                 $this->User->save();
+               } 
+
+               //If user does NOT exist in system: add user and phone number
+               else {
+                 $created = time();
+                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Callback SMS',true));
+                 $this->User->create(); 
+                if ($this->User->save($user)){
+
+                       $user_id = $this->User->getLastInsertId();
+                       debug($user);
+                       debug($user_id);
+                       $phonenumber = array('user_id' => $user_id, 'number' => $sender);
+                       $this->User->PhoneNumber->saveAll($phonenumber);
+                  }
+
+                }
+
+                //** Create Newfie contact (contact::write) **//
+                $callback_service = $this->getCallbackService($entry['Body']);  
+                $contact = array('phonebook_id' => $callback_service['dialer_id'], 'contact' =>  $sender);
+                $HttpSocket = new HttpSocket();
+                $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+                
+                $results = $HttpSocket->post($dialer['host'].$dialer['contact'], $contact, $request); 
+                $results = json_decode($results);
+                $header  = $HttpSocket->response['raw']['status-line'];
+
+                if ($this->headerGetStatus($header) == 1) {
+
+                  $callback['callback_service_id'] = $callback_service['id'];
+                  $callback['job_id'] = '';
+                  $callback['user_id'] = $user_id;
+                  $callback['type'] = $type;
+                  $callback['retries'] = 0; 
+                  $callback['status'] = 1;
+                  $callback['state'] = 1; 
+                  $callback['phone_number'] = $sender;
+                  $callback['last_attempts'] = false; 
+                  $callback['epoch'] = $created;
+
+                  debug($callback);
+                  } else {
+
+	            $this->log('ERROR Newfie contact::post FAILED', 'callback');		       
+                  
+                  }
+
+            }
+
+      }
 
 /**
  * Check if the number of callbacks allowed (within a certain time limit) for a user has exceeded its maximum value or not

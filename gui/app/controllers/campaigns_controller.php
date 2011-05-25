@@ -205,7 +205,7 @@ class CampaignsController extends AppController{
 
                            }
 
-       	                   $this->_flash(__('Your campaign has successfully been issued',true).' ['.$campaign['name'].']', 'success');                           	 
+       	                   $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
    	                   $this->redirect(array('action'=>'status'));
 
                       } else {

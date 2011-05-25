@@ -60,7 +60,7 @@ class Bin extends AppModel{
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
               
-      	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
+     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
 	      
 	      $this->create();
 	      $result = $this->save($data);

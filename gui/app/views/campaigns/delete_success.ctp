@@ -22,6 +22,8 @@
  *
 ***************************************************************************/
 
+$callback_default  = Configure::read('CALLBACK_DEFAULT');
+
         if ($data){
 
            echo "<div id ='campaign'>";  

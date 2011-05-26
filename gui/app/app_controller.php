@@ -558,8 +558,24 @@ return $result;
                 $status = 1;
                 break;
               
+                case 'HTTP/1.1 409 CONFLICT':
+                $status = 2;
+                break;
+
+                case 'HTTP/1.1 500 INTERNAL SERVER ERROR':
+                $status = 3;
+                break;
+
+                case 'HTTP/1.1 204 NO CONTENT':
+                $status = 4;
+                break;
+
+
+
+
 
               }
+
 
               return $status;
 

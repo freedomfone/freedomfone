@@ -30,7 +30,7 @@ class CampaignsController extends AppController{
 
 	var $paginate = array(
 		    	      'limit' => 50,
-			      'order' => array('Campaign.created' => 'desc'));
+			      'order' => array('Campaign.name' => 'ASC'));
 
 
 /*
@@ -161,13 +161,12 @@ class CampaignsController extends AppController{
                         $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
- 
 
-                        if ($this->headerGetStatus($header) == 1) {
-                        
+                        $status = $this->headerGetStatus($header);
+
+                        if ( $status == 1) {
 
                            $results   = json_decode($results,true);
-                           $dialer_id  = $results['phonebook'][0]['id'];   //Known as phone_book_id in Dialer
                            $nf_phone_book_id  = $results['phonebook'][0]['id']; 
 
                            $this->data['Campaign']['extension'] = $extension;
@@ -178,7 +177,6 @@ class CampaignsController extends AppController{
                            $this->data['Campaign']['end_time'] = $campaign['end_time'] ;
                            $this->data['Campaign']['name'] = $campaign['name'] ;
                            $this->data['Campaign']['status'] = 1;
-                           $this->data['Campaign']['dialer_id'] = $dialer_id;                         
                            $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['Campaign']['nf_campaign_id'] = $results['id'];
 
@@ -187,34 +185,38 @@ class CampaignsController extends AppController{
 
                            foreach ($phone_numbers as $key => $contact) {
 
-                                   $contact = array('phonebook_id' => $dialer_id, 'contact' =>  $contact);
+                                   $contact = array('phonebook_id' => $nf_phone_book_id, 'contact' =>  $contact);
                                    $results = $HttpSocket->post($dialer['host'].$dialer['contact'], $contact, $request); 
-                                   $results = json_decode($results);
+                                   $results = json_decode($results,true);
                                    $header  = $HttpSocket->response['raw']['status-line'];
 
-                                   $this->data[$key]['Callrequest']['job_id'] = $results->{'id'};
+                                   $this->data[$key]['Callrequest']['job_id'] = $results['id'];
                                    $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
                                    $this->data[$key]['Callrequest']['status'] = 1;
                                    
-                                   if ($this->headerGetStatus($header) == 1) {
-
+                                   if ( $this->headerGetStatus($header) == 1) {
 
 	                             $this->Campaign->Callback->create($this->data[$key]['Callrequest']);
 	                             $this->Campaign->Callback->saveAll($this->data[$key]['Callrequest'],array('validate' => false));
 
-
                                    } else {
+
        	                              $this->_flash(__('Dialer API Error (contact POST).',true).' '.$header, 'error');                           	
                                    }
 
                            }
 
        	                   $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
-   	                   $this->redirect(array('action'=>'status'));
+   	                   $this->redirect(array('action'=>'index'));
 
-                      } else {
+                      } elseif ($status == 2 ) {
 
-       	                $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
+       	                 $this->_flash(__('The Campaign name is already in use. Please try again.',true), 'error');
+
+                      }   else {
+       	               
+                         $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
+
                       }
 
               }
@@ -240,7 +242,7 @@ class CampaignsController extends AppController{
 	function status($status = null) {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Callback status';           
+      	$this->pageTitle = 'Callback status';
 
 
         if(!empty($this->data)){
@@ -248,10 +250,10 @@ class CampaignsController extends AppController{
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
 
+
              foreach($this->data['Callback'] as $key => $entry){
 
-                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['dialer_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
-               
+                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_campaign_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request);               
                     $header = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 1) {           
@@ -281,6 +283,31 @@ class CampaignsController extends AppController{
  */
 
    function disp(){
+
+/*   if(!empty($this->data)){
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+
+
+             foreach($this->data['Callback'] as $key => $entry){
+
+                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_phone_book_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
+               
+                    $header = $HttpSocket->response['raw']['status-line'];
+
+                    if ($this->headerGetStatus($header) == 1) {           
+
+                       $this->loadModel('Callback');
+                       $this->Callback->id = $entry['id'];
+                       $this->Callback->saveField('state',$entry['state']);
+
+                   }
+
+              }
+
+         }*/
+
 
        $status = $campaign = $data = $order = $dir = false;
 
@@ -317,6 +344,7 @@ class CampaignsController extends AppController{
 	 $this->Campaign->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
          $param = array('conditions' => $conditions, 'order' => $order_by);
          $campaigns = $this->Campaign->Callback->find('all', $param);
+
 	 $this->set('campaigns', $campaigns);  
 
 
@@ -584,23 +612,33 @@ class CampaignsController extends AppController{
 
     function delete($id){
 
-  //  Configure::write('debug', 0);
+    Configure::write('debug', 0);
       $dialer = Configure::read('DIALER');
       
        if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
 
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['dialer_id'], false, $request); 
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['nf_campaign_id'], false, $request); 
               $header  = $HttpSocket->response['raw']['status-line'];
- 
-        debug($header);
-                    if ($this->headerGetStatus($header) == 1) {
-                    
+
+                    if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
                         $results   = json_decode($results,true);
-                        debug($results);       
-                        if ($this->CallbackService->del($id)){
-                           $this->set('data',$this->Campaign->find('all',array('order'=>'Campaign.name ASC')));        
+
+
+                        if ($this->Campaign->delete($id)){
+
+                           $campaigns = $this->paginate('Campaign');
+
+
+                           foreach($campaigns as $key => $campaign){
+
+                                         $result = $this->getServiceName($campaign['Campaign']['extension']);
+                                         $campaigns[$key]['Campaign']['service_name'] = $result['service_name'];
+                                         $campaigns[$key]['Campaign']['application'] = $result['application'];
+                           }
+                      
+                           $this->set('data',$campaigns);
                            $this->render('delete_success','ajax');
                         }
                     } 

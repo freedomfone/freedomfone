@@ -30,7 +30,7 @@
    echo "<div id='user_div' class='user_did'></div>";                                           
 
    $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
-   echo $form->create('Campaign',array('type' => 'post','action'=> 'index'));
+   echo $form->create('Campaign',array('type' => 'post','action'=> 'status'));
 
     if ($campaigns){
 
@@ -39,7 +39,8 @@
               echo $form->input('Callback.'.$key.'.id',array('type'=>'hidden','value'=>$campaign['Callback']['id']));
               echo $form->input('Callback.'.$key.'.campaign_id',array('type'=>'hidden','value'=>$campaign['Campaign']['id']));
               echo $form->input('Callback.'.$key.'.phone_number',array('type'=>'hidden','value'=>$campaign['Callback']['phone_number']));
-              echo $form->input('Callback.'.$key.'.dialer_id',array('type'=>'hidden','value'=>$campaign['Campaign']['dialer_id']));
+              echo $form->input('Callback.'.$key.'.nf_phone_book_id',array('type'=>'hidden','value'=>$campaign['Campaign']['nf_phone_book_id']));
+              echo $form->input('Callback.'.$key.'.nf_campaign_id',array('type'=>'hidden','value'=>$campaign['Campaign']['nf_campaign_id']));
 
               $campaign_link  = $html->link($campaign['Campaign']['name'], array('controller' => 'campaigns', 'action' => 'view', $campaign['Campaign']['id'] ), array('title' => 'Campaign details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false);	
               $user_link  = $html->link($campaign['User']['name'].' '.$campaign['User']['surname'], array('controller' => 'users', 'action' => 'view',$campaign['Callback']['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	

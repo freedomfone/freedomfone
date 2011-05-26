@@ -319,6 +319,7 @@ gui/app/views/callbacks/manage_batch.ctp -text
 gui/app/views/callbacks/status.ctp -text
 gui/app/views/callbacks/user.ctp -text
 gui/app/views/campaigns/add.ctp -text
+gui/app/views/campaigns/delete_success.ctp -text
 gui/app/views/campaigns/disp.ctp -text
 gui/app/views/campaigns/disp_edit.ctp -text
 gui/app/views/campaigns/edit.ctp -text

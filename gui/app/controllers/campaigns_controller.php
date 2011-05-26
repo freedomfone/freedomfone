@@ -162,11 +162,13 @@ class CampaignsController extends AppController{
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
  
+
                         if ($this->headerGetStatus($header) == 1) {
                         
 
-                           $results   = json_decode($results);
-                           $dialer_id  = $results->{'phonebook'}[0]->{'id'};   //Known as phone_book_id in Dialer
+                           $results   = json_decode($results,true);
+                           $dialer_id  = $results['phonebook'][0]['id'];   //Known as phone_book_id in Dialer
+                           $nf_phone_book_id  = $results['phonebook'][0]['id']; 
 
                            $this->data['Campaign']['extension'] = $extension;
                            $this->data['Campaign']['max_retries'] = $campaign['max_retries'] ;
@@ -177,6 +179,8 @@ class CampaignsController extends AppController{
                            $this->data['Campaign']['name'] = $campaign['name'] ;
                            $this->data['Campaign']['status'] = 1;
                            $this->data['Campaign']['dialer_id'] = $dialer_id;                         
+                           $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
+                           $this->data['Campaign']['nf_campaign_id'] = $results['id'];
 
                            $this->Campaign->saveAll($this->data['Campaign'],array('validate' => false));
                            $campaign_id = $this->Campaign->getLastInsertId();
@@ -479,28 +483,31 @@ class CampaignsController extends AppController{
           $this->autoRender = false;
    	  $dialer = Configure::read('DIALER');
           $result = $this->Campaign->find('all', array('fields' => 'Campaign.id'));
-          $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
-         
 
+         
+             //** CAMPAIGN::GET **//
              $HttpSocket = new HttpSocket();
+             $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
              $results = $HttpSocket->get($dialer['host'].$dialer['campaign'], false,  $request); 
              $header = $HttpSocket->response['raw']['status-line'];
 
              if ($this->headerGetStatus($header) == 1) {     
 
-                $results = json_decode($results);
+                $results = json_decode($results,true);
 
                 foreach ($results as $key => $campaign){
        
-                       $id = $campaign->{'id'};
-                       $this->Campaign->id = $id;
-                      // $this->Campaign->saveField('status',$campaign->{'status'});
-                      $this->log("SUCCESS: dialer_refresh; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
+                       $id = $campaign['id'];
+                       if($data = $this->Campaign->find('first', array('conditions' => array('dialer_id' => $id)))){
+                               $this->Campaign->id = $data['Campaign']['id'];
+                               $this->Campaign->saveField('status',$campaign['status']);
+                               $this->log("SUCCESS: dialer_refresh; Dialer id: ".$id."; Mode: ".$mode, "campaign");
+                       } 
                 }
              
              } else {
 
-                      $this->log("FAILURE: dialer_refresh; Campaign id: ".$id."; Mode: ".$mode, "campaign"); 
+                      $this->log("FAILURE: dialer_refresh; Campaign id: ".$data['Campaign']['id']."; Mode: ".$mode, "campaign"); 
              }
 
 
@@ -567,6 +574,39 @@ class CampaignsController extends AppController{
 
    }
 
+
+/*
+ *
+ * Delete Campaign (AJAX)
+ *
+ *
+ */
+
+    function delete($id){
+
+  //  Configure::write('debug', 0);
+      $dialer = Configure::read('DIALER');
+      
+       if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['dialer_id'], false, $request); 
+              $header  = $HttpSocket->response['raw']['status-line'];
+ 
+        debug($header);
+                    if ($this->headerGetStatus($header) == 1) {
+                    
+                        $results   = json_decode($results,true);
+                        debug($results);       
+                        if ($this->CallbackService->del($id)){
+                           $this->set('data',$this->Campaign->find('all',array('order'=>'Campaign.name ASC')));        
+                           $this->render('delete_success','ajax');
+                        }
+                    } 
+       }
+
+    }
 
 }
 

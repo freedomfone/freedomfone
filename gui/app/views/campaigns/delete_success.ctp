@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- List all Campaigns
+ * delete_success.ctp	- list all Callback Services
  * version 	- 2.5.1300
  * 
  * Version: MPL 1.1
@@ -21,24 +21,11 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Campaign', '/campaigns');
-$callback_default  = Configure::read('CALLBACK_DEFAULT');
 
-echo $form->create('Campaign',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Create Campaign',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
+        if ($data){
 
-echo $form->create('Campaign',array('type' => 'post','action'=> 'edit'));
-echo $html->div('frameRightAlone',$form->submit(__('Manage Campaigns',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-
-     echo "<h1>".__("Campaigns",true)."</h1>";
-
-     if($campaigns){
-
-
-             foreach ($campaigns as $key => $campaign){
+           echo "<div id ='campaign'>";  
+           foreach ($data as $key => $campaign){
 
                      $row[$key] = array(
                         $campaign['Campaign']['name'],
@@ -49,11 +36,11 @@ echo $form->end();
                         $campaign['Campaign']['end_time'],
                         $ajax->link($html->image("icons/delete.png"),'/campaigns/delete/'.$campaign['Campaign']['id'], array('update' => 'campaign'), null, 1),
                         );
+           }
 
 
-              }
 
-           echo "<div id ='campaign'>";  
+
         echo "<table width='800px' class='collapsed' cellspacing=0>";
         echo $html->tableHeaders(array(
  	     $paginator->sort(__("Campaign",true), 'name'),
@@ -69,13 +56,6 @@ echo $form->end();
               echo "</table>";
               echo "</div>";
 
-             } else {
 
 
-               echo $html->div('feedback',__('There are no campaigns in the system.', true));
-
-             }
-
-
-?>
-
+         }

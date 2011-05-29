@@ -362,7 +362,7 @@ function applyRules($string){
 	
                          case 'message':
 			 $application[] = analyzeBody($body);
-			 logESL("Application match: poll/bin (custom)","INFO",2); 
+			 logESL("Application match: poll/bin/callback (custom)","INFO",2); 
 	                 break;
 
 	                 case 'monitor_ivr':
@@ -378,7 +378,7 @@ function applyRules($string){
 	                 case 'officeroute':
                          
 	                 $application[]= analyzeBody($body);
-			 logESL("Application match: poll/bin (custom)","INFO",2); 
+			 logESL("Application match: poll/bin/callback (custom)","INFO",2); 
 			 logESL($application[0],"INFO",2); 
 	 	         break;
 
@@ -394,6 +394,13 @@ function applyRules($string){
 			 	logESL("Application match: channel_state","INFO",2);
 			 }
 	 	 }
+
+                //If application = callback, remove Bin from array to avoid duplicate data
+                if(in_array('callback_in',$application) && in_array('bin',$application)) { 
+                          $key = array_search('callback_in', $application);
+                          unset($application[$key]);
+                }
+
  		return $application;
 }
 
@@ -539,6 +546,7 @@ function addQuotes($data,$quote){
 function analyzeBody($body){
 
         $callback = getCallbackServices();
+
 
         $data =  explode(' ',$body);
 	foreach ($data as $token){
@@ -693,9 +701,11 @@ function parseArgs($argv){
                   } else {
 
                     logESL("REST API: OK ","INFO",3);      
+                    logESL($data,"INFO",3);      
                     $results   = json_decode($data,true);
 
                   }
+
 
                   return $results;
 

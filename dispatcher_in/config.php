@@ -52,11 +52,11 @@ $_DispatcherDB = array(
 	      );
 
 $_CallbackAPI = array(
-	      'url_GET'      => 'http://192.168.1.10/freedomfone/callback_services/get',
-	      'url_POST'     => 'http://localhost/freedomfone/callback_services/post',
+	      'url_GET'      => 'http://localhost/freedomfone/api/get',
+	      'url_POST'     => 'http://localhost/freedomfone/api/post',
 	      'user'    => 'api',
 	      'password'=> 'freddyboy',
 	      );
 
-$_AllowCURL = array('callback_in' => 'callback_in');
+$_AllowCURL = array('callback' => 'callback_in');
 ?>

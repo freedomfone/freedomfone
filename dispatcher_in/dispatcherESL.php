@@ -168,7 +168,7 @@ $mypid = getmypid();
 
 				//6. Apply rules to determine with application(s) to associate data with
   				if ($application = applyRules($xml)){
-				   
+
 
    				    if (!mysql_ping ($link)) {
                                         mysql_close($link);
@@ -313,7 +313,6 @@ function applyXSL($event){
  * @return array containing application names
  */
 function applyRules($string){
-
 	 $application=array();
 	 $xml   = simplexml_load_string($string);
 
@@ -356,8 +355,9 @@ function applyRules($string){
 	 	         break;
 
 	                 case 'tickle':
-	                 $application[]='callback_in';
-			 logESL("Application match: callback (tickle)","INFO",2); 
+
+	                 $application[]='tickle';
+			 logESL("Application match: callback/tickle","INFO",2); 
                          break;
 	
                          case 'message':
@@ -425,8 +425,17 @@ function XML2SQL($table,$string){
 		     $values[] = $child[0];
 	     }
 
-	     return insertValues($table,$fields,$values);
 
+             if(in_array('tickle',$table)){
+                  $table[0]  =  'callback_in';
+                  $result =  getCallbackServices();
+
+                  $fields[] = 'Body';
+                  $values[] = $result['tickle']; 
+                  
+              }                 
+
+	     return insertValues($table,$fields,$values);
 }
 
 
@@ -545,8 +554,8 @@ function addQuotes($data,$quote){
 
 function analyzeBody($body){
 
-        $callback = getCallbackServices();
-
+        $result =  getCallbackServices();
+        $callback = $result['callback'];
 
         $data =  explode(' ',$body);
 	foreach ($data as $token){

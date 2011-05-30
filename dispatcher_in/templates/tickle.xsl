@@ -21,6 +21,7 @@
         <FF-To><xsl:value-of select="FF-To"/></FF-To>
         <FF-StartTimeEpoch><xsl:value-of select="FF-StartTimeEpoch"/></FF-StartTimeEpoch>
 	<FF-FinishTimeEpoch><xsl:value-of select="FF-FinishTimeEpoch"/></FF-FinishTimeEpoch>
+	<FF-Type><xsl:value-of select="FF-Type"/></FF-Type>
      </headers>
 </xsl:template>
 

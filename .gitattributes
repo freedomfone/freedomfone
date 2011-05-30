@@ -32,6 +32,7 @@ dispatcher_in/templates/monitor_ivr.xsl -text
 dispatcher_in/templates/officeroute.xsl -text
 dispatcher_in/templates/tickle.xsl -text
 dispatcher_in/tests/sendSMS.php -text
+dispatcher_in/tests/sendTickle.php -text
 documentation/developers/freedomfone_sekowei_2.0_documentation_developers_guide.pdf -text
 documentation/screenshots/freedomfone_worldwide.png -text
 documentation/screenshots/ivr_sw.png -text

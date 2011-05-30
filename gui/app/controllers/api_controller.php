@@ -45,11 +45,17 @@ class ApiController extends AppController{
            $this->RequestHandler->setContent('json','text/x-json');  
 
            $this->loadModel('CallbackService');  
-    	   $data = $this->CallbackService->find('list', array('fields' => array('code')));
+    	   $list   = $this->CallbackService->find('list', array('fields' => array('code')));
+    	   $tickle = $this->CallbackService->findByTickle(1);
+           $data['callback'] = $list;
+           $data['tickle']   = $tickle['CallbackService']['code'];
+
            echo json_encode($data);       
 
        
       }
+
+
 
       }
 

@@ -60,6 +60,7 @@ function tmTriggerEvent() {
     	tmEvent.addHeader("FF-To",tmMedia);
     	tmEvent.addHeader("FF-StartTimeEpoch",tmStartDate.getTime());
     	tmEvent.addHeader("FF-FinishTimeEpoch",tmFinishDate.getTime());
+    	tmEvent.addHeader("FF-Type","tickle");
     	tmEvent.fire();
        	tm42Logger("STATE_ESL_EVENT", caller_id_num + "\n");
 }

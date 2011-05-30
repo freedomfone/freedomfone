@@ -190,9 +190,12 @@ class CampaignsController extends AppController{
                                    $results = json_decode($results,true);
                                    $header  = $HttpSocket->response['raw']['status-line'];
 
-                                   $this->data[$key]['Callrequest']['job_id'] = $results['id'];
+                                   $this->data[$key]['Callrequest']['nf_campaign_subscriber_id'] = $results['id'];
                                    $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
                                    $this->data[$key]['Callrequest']['status'] = 1;
+                                   $this->data[$key]['Callrequest']['state'] = 1;
+                                   $this->data[$key]['Callrequest']['epoch'] = time();
+
                                    
                                    if ( $this->headerGetStatus($header) == 1) {
 
@@ -235,6 +238,113 @@ class CampaignsController extends AppController{
 
 /*
  *
+ * Delete Campaign (AJAX)
+ *
+ *
+ */
+
+    function delete($id){
+
+    Configure::write('debug', 0);
+      $dialer = Configure::read('DIALER');
+      
+       if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['nf_campaign_id'], false, $request); 
+              $header  = $HttpSocket->response['raw']['status-line'];
+
+                    if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
+                        $results   = json_decode($results,true);
+
+                        $this->Campaign->id= $id;
+
+                        if ($this->Campaign->delete($i,true)){
+
+                           $campaigns = $this->paginate('Campaign');
+
+
+                           foreach($campaigns as $key => $campaign){
+
+                                         $result = $this->getServiceName($campaign['Campaign']['extension']);
+                                         $campaigns[$key]['Campaign']['service_name'] = $result['service_name'];
+                                         $campaigns[$key]['Campaign']['application'] = $result['application'];
+                           }
+                      
+                           $this->set('data',$campaigns);
+                           $this->render('delete_success','ajax');
+                        }
+                    } 
+       }
+
+    }
+
+
+/*
+ *
+ * Stop/pause/abort campaigns. See campaign delivery results
+ *
+ *
+ */
+   function edit() {
+
+        $dialer = Configure::read('DIALER');
+      	$this->pageTitle = 'Manage campaign';           
+
+        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
+        $this->set('campaigns', $result);  
+
+        if(!empty($this->data)){
+
+              $id = $this->data['Campaign']['id'];
+              $status = $this->data['Campaign']['status'];
+              $data = $this->Campaign->findById($id);
+              $nf_campaign_id = $data['Campaign']['nf_campaign_id'];
+
+              $socket_data = array('status' => $status);
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id, $socket_data, $request); 
+              $header = $HttpSocket->response['raw']['status-line'];
+
+
+              if ($this->headerGetStatus($header) == 1) {           
+
+       	         $this->_flash(__('The campaign status has successfully been changed.',true), 'success');                           	
+                 $this->Campaign->updateAll(array('Campaign.status'=> $status),array('Campaign.id' => $id));
+
+              } else {
+
+       	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
+              }
+              
+              $this->redirect(array('action'=>'edit'));   	 
+
+       }
+
+        }
+
+
+
+/*
+ *
+ * AJAX drop-down menu for edit campaign status
+ *
+ *
+ */
+   function disp_edit(){
+
+        $id = $this->data['Campaign']['id'];
+        $data = $this->Campaign->findById($id);
+	$this->set('campaign', $data);  
+
+   }
+
+
+/*
+ *
  * List status of callback requests. Set individual call status {start,pause,abort}
  *
  *
@@ -266,11 +376,13 @@ class CampaignsController extends AppController{
 
               }
 
-         }
+         } 
 
 
-        $campaign = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
-	$this->set('campaign', $campaign);  
+        $campaign         = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
+
+        $this->set(compact('campaign'));
+
 
         }
 
@@ -283,31 +395,6 @@ class CampaignsController extends AppController{
  */
 
    function disp(){
-
-/*   if(!empty($this->data)){
-
-              $HttpSocket = new HttpSocket();
-              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-
-
-             foreach($this->data['Callback'] as $key => $entry){
-
-                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_phone_book_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request); 
-               
-                    $header = $HttpSocket->response['raw']['status-line'];
-
-                    if ($this->headerGetStatus($header) == 1) {           
-
-                       $this->loadModel('Callback');
-                       $this->Callback->id = $entry['id'];
-                       $this->Callback->saveField('state',$entry['state']);
-
-                   }
-
-              }
-
-         }*/
-
 
        $status = $campaign = $data = $order = $dir = false;
 
@@ -350,129 +437,6 @@ class CampaignsController extends AppController{
 
    }
 
-
-/*
- *
- * Update campaign data from dialer
- *
- *
- */
-	function refresh(){
-
-	     $this->autoRender = false;
-      	      $array = Configure::read('callback');
-      
-	       $obj = new ff_event($array);	       
-
-	       if ($obj -> auth != true) {
-    	       die(printf("Unable to authenticate\r\n"));
-	       }
-
-
-
- 	       while ($entry = $obj->getNext('update')){
-
-	       $created = floor($entry['Event-Date-Timestamp']/1000000);
-	       
-
-	       if(!$iid = $entry['FF-InstanceID']){ 
-	       		$iid = IID;
-			}
-
-	       if (!$mode = $entry['Event-Subclass']){
-	       	  $mode = 'sms';
-		  }
-
-	      if(!$proto = $entry['proto']){
-	      		 if(strpos($entry['FF-CallerName'],'GSMopen')===false){
-				$proto ='SIP';}
-
-				else {
-				$proto ='GSM';
-				}
-
-		}
-
-		if (!$sender = $entry['FF-CallerID']){
-		   $sender = $entry['from'];
-
-		}
-
-		if(!$receiver = $entry['FF-To']){
-			      $receiver = $entry['login'];
-			      }
-
-	  $status = $this->Campaign->withinLimit($sender);
-
-
-	       $data= array ('instance_id'      => $iid,
-	       	      	      'mode'		=> $mode,
-		      	      'created'         => $created, 
-      	      	              'sender'          => $sender,
-	       	      	      'receiver'        => $entry['FF-To'],
-			      'proto'		=> $proto,	       	      	    
-	       		      'status'          => $status);
-
-			      print_r($data);
-
-	       $this->Campaign->create();
-	       $this->Campaign->save($data);
-
-	       $id = $this->Campaign->getLastInsertId();
-
- 	       $this->Campaign->id=$id;
-	        $this->data = $this->Campaign->read();
-
-
-	       if($status){
-
-	       $this->log('Campaign OK '.$id, 'campaign');		       
-	       $this->Campaign->dial($this->data['Campaign']);		 
-
-
-	       }
-
-	       else {
-	       $this->log('Campaign DENY '.$id, 'campaign');		       
-
-	       }
-
-            }
-
-
-	}
-
-	
-
-
-
-
-/*
- *
- * AJAX link to campaign details
- *
- *
- */
-
-   function view($id){
-
-    	$this->layout = null;
-    	$this->autoLayout = false;
-
-        Configure::write('debug', 0);
-      	
-            if($id){
-
-//                $result = $this->Campaign->find('all',array('conditions' => array('Campaign.id' => $id)));
-                $result = $this->Campaign->findById($id);
-
-                $this->set('campaign',$result);
-
-            } 
-
-
-   }
-
 /*
  *
  * AJAX link to user details
@@ -492,6 +456,33 @@ class CampaignsController extends AppController{
                 $result = $this->User->findById($user_id);
 
                 $this->set('user',$result);
+
+            } 
+
+
+   }
+
+
+
+/*
+ *
+ * AJAX link to campaign details
+ *
+ *
+ */
+
+   function view($id){
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+
+        Configure::write('debug', 0);
+      	
+            if($id){
+
+                $result = $this->Campaign->findById($id);
+
+                $this->set('campaign',$result);
 
             } 
 
@@ -526,7 +517,7 @@ class CampaignsController extends AppController{
                 foreach ($results as $key => $campaign){
        
                        $id = $campaign['id'];
-                       if($data = $this->Campaign->find('first', array('conditions' => array('dialer_id' => $id)))){
+                       if($data = $this->Campaign->find('first', array('conditions' => array('nf_phone_book_id' => $id)))){
                                $this->Campaign->id = $data['Campaign']['id'];
                                $this->Campaign->saveField('status',$campaign['status']);
                                $this->log("SUCCESS: dialer_refresh; Dialer id: ".$id."; Mode: ".$mode, "campaign");
@@ -542,109 +533,6 @@ class CampaignsController extends AppController{
    }
 
 
-/*
- *
- * Stop/pause/abort campaigns. See campaign delivery results
- *
- *
- */
-   function edit() {
-
-        $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Manage campaign';           
-
-        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
-        $this->set('campaigns', $result);  
-
-        if(!empty($this->data)){
-
-              $id = $this->data['Campaign']['id'];
-              $status = $this->data['Campaign']['status'];
-              $data = $this->Campaign->findById($id);
-              $dialer_id = $data['Campaign']['dialer_id'];
-
-              $socket_data = array('status' => $status);
-
-              $HttpSocket = new HttpSocket();
-              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$dialer_id, $socket_data, $request); 
-              $header = $HttpSocket->response['raw']['status-line'];
-
-
-              if ($this->headerGetStatus($header) == 1) {           
-
-       	         $this->_flash(__('The campaign status has successfully been changed.',true), 'success');                           	
-                 $this->Campaign->updateAll(array('Campaign.status'=> $status),array('Campaign.id' => $id));
-
-              } else {
-
-       	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
-              }
-              
-              $this->redirect(array('action'=>'edit'));   	 
-
-       }
-
-        }
-
-
-/*
- *
- * AJAX drop-down menu for edit campaign status
- *
- *
- */
-   function disp_edit(){
-
-        $id = $this->data['Campaign']['id'];
-        $data = $this->Campaign->findById($id);
-	$this->set('campaign', $data);  
-
-   }
-
-
-/*
- *
- * Delete Campaign (AJAX)
- *
- *
- */
-
-    function delete($id){
-
-    Configure::write('debug', 0);
-      $dialer = Configure::read('DIALER');
-      
-       if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
-
-              $HttpSocket = new HttpSocket();
-              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['nf_campaign_id'], false, $request); 
-              $header  = $HttpSocket->response['raw']['status-line'];
-
-                    if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
-                        $results   = json_decode($results,true);
-
-
-                        if ($this->Campaign->delete($id)){
-
-                           $campaigns = $this->paginate('Campaign');
-
-
-                           foreach($campaigns as $key => $campaign){
-
-                                         $result = $this->getServiceName($campaign['Campaign']['extension']);
-                                         $campaigns[$key]['Campaign']['service_name'] = $result['service_name'];
-                                         $campaigns[$key]['Campaign']['application'] = $result['application'];
-                           }
-                      
-                           $this->set('data',$campaigns);
-                           $this->render('delete_success','ajax');
-                        }
-                    } 
-       }
-
-    }
 
 }
 

@@ -308,7 +308,10 @@ gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/callback_services/add.ctp -text
 gui/app/views/callback_services/delete_success.ctp -text
+gui/app/views/callback_services/disp.ctp -text
 gui/app/views/callback_services/index.ctp -text
+gui/app/views/callback_services/status.ctp -text
+gui/app/views/callback_services/view.ctp -text
 gui/app/views/callback_settings/index.ctp -text
 gui/app/views/callbacks/add.ctp -text
 gui/app/views/callbacks/batch.ctp -text

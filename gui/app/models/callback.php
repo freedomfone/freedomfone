@@ -34,7 +34,14 @@ class Callback extends AppModel{
       	  'Campaign' => array(
  	  	 'className' => 'Campaign',
  		 'foreignKey' => 'campaign_id'
- 		 ));
+ 		 ),
+      	  'CallbackService' => array(
+ 	  	 'className' => 'CallbackService',
+ 		 'foreignKey' => 'callback_service_id'
+ 		 ),
+
+
+                 );
 
 
 function __construct($id = false, $table = null, $ds = null) {
@@ -55,13 +62,13 @@ function __construct($id = false, $table = null, $ds = null) {
  *
  */
 
-    function refresh(){
+    function refresh($type = null){
 
+      if(!$type) { $type = 'SMS';}
 
       $array       = Configure::read('callback_in');
-      $dialer       = Configure::read('DIALER');
+      $dialer      = Configure::read('DIALER');
       $application = 'callback_in';
-      $type = 'IN';
       $obj         = new ff_event($array);	       
       $update      = 'count_callback'; 
 
@@ -99,8 +106,6 @@ function __construct($id = false, $table = null, $ds = null) {
                 if ($this->User->save($user)){
 
                        $user_id = $this->User->getLastInsertId();
-                       debug($user);
-                       debug($user_id);
                        $phonenumber = array('user_id' => $user_id, 'number' => $sender);
                        $this->User->PhoneNumber->saveAll($phonenumber);
                   }
@@ -109,7 +114,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
                 //** Create Newfie contact (contact::write) **//
                 $callback_service = $this->getCallbackService($entry['Body']);  
-                $contact = array('phonebook_id' => $callback_service['dialer_id'], 'contact' =>  $sender);
+                $contact = array('phonebook_id' => $callback_service['nf_phone_book_id'], 'contact' =>  $sender);
                 $HttpSocket = new HttpSocket();
                 $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                 
@@ -117,10 +122,12 @@ function __construct($id = false, $table = null, $ds = null) {
                 $results = json_decode($results);
                 $header  = $HttpSocket->response['raw']['status-line'];
 
+
                 if ($this->headerGetStatus($header) == 1) {
 
+                  unset($callback);
                   $callback['callback_service_id'] = $callback_service['id'];
-                  $callback['job_id'] = '';
+                  $callback['nf_campaign_subscriber_id'] = '';
                   $callback['user_id'] = $user_id;
                   $callback['type'] = $type;
                   $callback['retries'] = 0; 
@@ -129,6 +136,9 @@ function __construct($id = false, $table = null, $ds = null) {
                   $callback['phone_number'] = $sender;
                   $callback['last_attempts'] = false; 
                   $callback['epoch'] = $created;
+
+                  $this->create();
+                  $this->save($callback);
 
                   debug($callback);
                   } else {

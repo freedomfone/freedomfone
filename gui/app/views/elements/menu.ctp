@@ -161,14 +161,6 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Callback Status", true),'/campaigns/status'); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Manage",true),'/campaigns/edit'); ?>
-</li>
-
-<li>
 <?php echo $html->link(__("Callback services",true),'/callback_services'); ?>
 </li>
 

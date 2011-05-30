@@ -27,6 +27,12 @@ class CallbackService extends AppModel{
 
       var $name = 'CallbackService';
 
+      var $hasMany = array('Callback' => array(
+                        	       'order' => 'Callback.id ASC',
+                        	       'dependent' => true)
+				       ); 
+
+
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 

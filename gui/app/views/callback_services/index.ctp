@@ -40,9 +40,14 @@ echo $html->addCrumb('Callback Service', '/callback_services');
 
         if ($data){
 
+        echo $form->create('CallbackService',array('type' => 'post','action'=> 'index', 'enctype' => 'multipart/form-data'));
            foreach ($data as $key => $entry){
 
+                   $delete = $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1);
+	           $edit   = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/callback_services/edit/{$entry['CallbackService']['id']}",null, null, false);
+                   $tickle = $form->radio('tickle',array($entry['CallbackService']['id'] => ''),array('legend' => false, 'default' => $entry['CallbackService']['tickle']));
                    $row[$key] = array(
+                                $tickle,
                                 $entry['CallbackService']['code'],
                                 $formatting->appMatch($entry['CallbackService']['application']),                                
                                 $entry['CallbackService']['service_name'],
@@ -50,7 +55,7 @@ echo $html->addCrumb('Callback Service', '/callback_services');
                                 array($entry['CallbackService']['calls_total'], array('align' => 'center')),
                                 $entry['CallbackService']['start_time'],
                                 $entry['CallbackService']['end_time'],
-                                $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1),
+		                array($edit.' '.$delete,array('align'=>'center'))
                                 );
 
            }
@@ -60,6 +65,7 @@ echo $html->addCrumb('Callback Service', '/callback_services');
             echo "<table width='90%' cellspacing =0>";
 
             echo $html->tableHeaders(array(
+                             __('Tickle',true),
                   	     $paginator->sort(__("SMS Code",true), 'code'),
                   	     $paginator->sort(__("Application",true), 'application'),
                   	     $paginator->sort(__("Name",true), 'service_name'),
@@ -73,6 +79,7 @@ echo $html->addCrumb('Callback Service', '/callback_services');
             echo $html->tableCells($row);
             echo "</table>";
             echo "</div>";
+      echo $form->end(__('Save',true));
 
 
          }

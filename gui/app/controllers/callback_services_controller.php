@@ -43,8 +43,16 @@ class CallbackServicesController extends AppController{
         function index(){
 
                  $this->pageTitle = 'Callback Services';
-                 $data = $this->paginate('CallbackService');
 
+                 if($this->data){
+
+                        $this->CallbackService->updateAll(array('CallbackService.tickle' => 0));
+                        $this->CallbackService->id = $this->data['CallbackService']['tickle'];
+                        $this->CallbackService->saveField('tickle',1);
+
+                 } 
+
+                 $data = $this->paginate('CallbackService');
                  foreach($data as $key => $callback_service){
 
                        $result = $this->getServiceName($callback_service['CallbackService']['extension']);
@@ -132,7 +140,9 @@ class CallbackServicesController extends AppController{
 
                            $results   = json_decode($results,true);
                            $nf_phone_book_id  = $results['phonebook'][0]['id'];   
+                           $nf_campaign_id    = $results['id'];   
                            $this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
+                           $this->data['CallbackService']['nf_campaign_id'] = $nf_campaign_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
 
@@ -183,6 +193,7 @@ class CallbackServicesController extends AppController{
       	$this->pageTitle = 'Callback service status';
 
 
+         unset($this->data['_Token']);
         if(!empty($this->data)){
 
               $HttpSocket = new HttpSocket();
@@ -194,7 +205,6 @@ class CallbackServicesController extends AppController{
 
                     $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_campaign_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request);               
                     $header = $HttpSocket->response['raw']['status-line'];
-
                     if ($this->headerGetStatus($header) == 1) {           
 
                        $this->loadModel('Callback');
@@ -287,6 +297,88 @@ class CallbackServicesController extends AppController{
 
    }
 
+   function edit($id = null){
+
+	   $mapping = Configure::read('EXTENSIONS'); 
+   	   $dialer = Configure::read('DIALER');
+    	    $this->pageTitle = 'Edit Callback Service';
+
+	    if(!$id){
+
+		     $this->redirect(array('action' =>'/'));
+
+            } elseif($this->data){
+
+              $data = $this->data['CallbackService'];
+
+              $nf_campaign_id = $data['nf_campaign_id'];
+
+              $startingdate    = strtotime($this->dateToString($data['start_time']));
+              $expirationdate   = strtotime($this->dateToString($data['end_time']));
+              $type = $this->data['CallbackService']['type'];
+              $key = $type."_instance_id";
+              $extension = $mapping[$type].$this->data['CallbackService'][$key];
+              $data['extension'] = $extension;
+
+              $socket_data = array(
+                             'status'           => $data['status'],
+                             'startingdate'     => $startingdate, 
+                             'expirationdate'   => $expirationdate, 
+                             'frequency'        => $data['retry_interval'],
+                             'callmaxduration'  => $data['max_duration'],
+                             'maxretry'         => $data['max_retries'],
+                             'intervalretry'    => $data['retry_interval'],
+                             'calltimeout'      => $dialer['call_timeout'],
+                             'aleg_gateway'     => $dialer['a-leg_gateway'],
+                             'voipapp'          => 1, 
+                             'voipapp_data'     => $extension,
+                             'daily_start_time' => '00:00:00',
+                             'daily_stop_time'  => '23:59:59',
+                             );
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id, $socket_data, $request); 
+              $header = $HttpSocket->response['raw']['status-line'];
+
+
+              if ($this->headerGetStatus($header) == 1) {           
+
+	        $this->CallbackService->save($data);
+
+       	         $this->_flash(__('The callback service has successfully been updated.',true), 'success');                           	
+
+
+              } else {
+
+       	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
+
+              }
+
+                        $this->redirect(array('action'=>'index'));
+
+            } else {
+
+               $this->loadModel('IvrMenu');
+               $ivr = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'ivr'), 'fields' => array('instance_id','title'),'recursive' => 0));
+               $selector = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'switcher'), 'fields' => array('instance_id','title'),'recursive' => 0));
+               
+               $this->loadModel('LmMenu');
+               $lam = $this->LmMenu->find('list',array('fields' => array('instance_id','title'),'recursive' => 0));
+
+               $this->loadModel('CallbackSetting');
+               $settings = $this->CallbackSetting->find('first');
+
+               $maxduration   = $settings['CallbackSetting']['max_duration'];
+               $retryinterval = $settings['CallbackSetting']['retry_interval'];
+               $maxretries    = $settings['CallbackSetting']['max_retries'];
+
+               $this->set(compact(array('ivr','selector','lam')));
+               $this->data = $this->CallbackService->findById($id);
+
+            }
+
+   }
 }
 
 ?>

@@ -57,6 +57,7 @@ CREATE TABLE `callback_in` (
   `FF-CallerName` varchar(50) default '0',
   `FF-To` varchar(100) default NULL,
   `FF-InstanceID` int(6) default NULL,
+  `FF-Type` varchar(10) default NULL,
   `Body` varchar(160) default NULL,
   `status` tinyint(1) default '0',
   PRIMARY KEY  (`id`)

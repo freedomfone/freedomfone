@@ -25,7 +25,7 @@
 class CallbackServicesController extends AppController{
 
 	var $name = 'CallbackServices';
-	var $helpers = array('Flash','Ajax','Formatting','Xml');      
+	var $helpers = array('Flash','Ajax','Formatting','Xml','Number');      
         var $components = array('RequestHandler','Security');
 
 	var $paginate = array(
@@ -131,8 +131,8 @@ class CallbackServicesController extends AppController{
                        if ($this->headerGetStatus($header) == 1) {
 
                            $results   = json_decode($results,true);
-                           $dialer_id  = $results['phonebook'][0]['id'];   //Known as phone_book_id in Dialer
-                           $this->data['CallbackService']['dialer_id'] = $dialer_id;
+                           $nf_phone_book_id  = $results['phonebook'][0]['id'];   
+                           $this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
 
@@ -171,5 +171,122 @@ class CallbackServicesController extends AppController{
         
     }
 
+/*
+ *
+ * List status of callback requests. Set individual call status {start,pause,abort}
+ *
+ *
+ */
+	function status($status = null) {
+
+        $dialer = Configure::read('DIALER');
+      	$this->pageTitle = 'Callback service status';
+
+
+        if(!empty($this->data)){
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+
+
+          if(array_key_exists('Callback', $this->data)){
+             foreach($this->data['Callback'] as $key => $entry){
+
+                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_campaign_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request);               
+                    $header = $HttpSocket->response['raw']['status-line'];
+
+                    if ($this->headerGetStatus($header) == 1) {           
+
+                       $this->loadModel('Callback');
+                       $this->Callback->id = $entry['id'];
+                       $this->Callback->saveField('state',$entry['state']);
+
+                   }
+
+              }
+           }
+
+         } 
+
+
+        $callback_service         = $this->CallbackService->find('list', array('fields' => array('CallbackService.id','CallbackService.code')));
+        $this->set(compact('callback_service'));
+
+
+        }
+
+
+/*
+ *
+ * AJAX drop-down menu for Callback service calls
+ *
+ *
+ */
+
+   function disp(){
+
+       $status = $callback_service = $data = $order = $type = false;
+       $dir = 'DESC';
+
+         $status = $this->data['Callback']['status'];
+         $callback_service_id = $this->data['Callback']['callback_service_id'];
+         $order = $this->data['Callback']['order'];
+         $dir = $this->data['Callback']['dir'];
+
+         if(!$type = $this->data['Callback']['type']){
+                   $type = array('SMS','TICKLE');
+         }
+
+         $param = array();
+         $conditions = array();
+         $order_by = array();
+        
+         if ($status) {
+            $conditions['Callback.status'] = $status;
+         } 
+         if ($callback_service_id) {
+            $conditions['CallbackService.id'] = $callback_service_id;
+         } 
+         if ($type) {
+            $conditions['Callback.type'] = $type;
+         } 
+         if ($order) {
+            $order_by = $order.' '.$dir;
+         } 
+
+	 $this->CallbackService->Callback->unbindModel(array('belongsTo' => array('Campaign')));
+	 $this->CallbackService->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
+         $param = array('conditions' => $conditions, 'order' => $order_by);
+         $callback_services = $this->CallbackService->Callback->find('all', $param);
+
+	 $this->set('callback_services', $callback_services);  
+
+
+   }
+
+/*
+ *
+ * AJAX link to callback service status
+ *
+ *
+ */
+
+   function view($id){
+
+    	$this->layout = null;
+    	$this->autoLayout = false;
+
+        Configure::write('debug', 0);
+      	
+            if($id){
+
+                $this->set('callbackService' ,$this->CallbackService->findById($id));
+
+            } 
+
+
+   }
+
 }
+
 ?>

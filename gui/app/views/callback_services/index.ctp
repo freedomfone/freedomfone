@@ -34,6 +34,10 @@ echo $html->addCrumb('Callback Service', '/callback_services');
         echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
         echo $form->end();
 
+        echo $form->create('CallbackService',array('type' => 'post','action'=> 'status'));
+        echo $html->div('frameRightAlone',$form->submit(__('Call status',true),  array('name' =>'submit', 'class' => 'button')));
+        echo $form->end();
+
         if ($data){
 
            foreach ($data as $key => $entry){

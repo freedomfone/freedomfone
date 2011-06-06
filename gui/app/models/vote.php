@@ -72,7 +72,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
      if(is_array($options)){ 
 	if (in_array($data['chtext'],$options)) { 
-	   $result = __('The option is not unique',true);
+	   $result = __('The option is not unique.',true);
 	} else { 
 	   $result = true;
 	}

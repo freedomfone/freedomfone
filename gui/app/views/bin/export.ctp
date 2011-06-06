@@ -38,7 +38,7 @@
 		}
 
 	}
-		echo $csv->render(__('OtherSMS',true).'.csv');  
+		echo $csv->render(__('Other SMS',true).'.csv');  
 		$csv->render(false);
 
 

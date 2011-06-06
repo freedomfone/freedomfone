@@ -39,7 +39,7 @@ $ivr_settings = Configure::read('IVR_SETTINGS');
 
 
 $commentTitle   = "<span class='formHelp'>".__("Name of IVR",true)."</span>";
-$commentLong   = "<span class='formHelp'>".__("Long greeting message:include a brief description of the services offered and the menu alternatives.",true)."</span>";
+$commentLong   = "<span class='formHelp'>".__("Long greeting message: include a brief description of the services offered and the menu alternatives.",true)."</span>";
 $commentShort  = "<span class='formHelp'>".__("Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2.",true)."</span>";
 $commentIndex  = "<span class='formHelp'>".__(" ",true)."</span>";
 $commentExit   = "<span class='formHelp'>".__(" ",true)."</span>";

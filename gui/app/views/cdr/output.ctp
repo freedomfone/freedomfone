@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
+		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call ID',true),__('Caller',true),__('Application',true),__('Protocol',true));
 		$csv->addRow($line);
 
 	if($data){

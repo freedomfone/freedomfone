@@ -73,7 +73,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
                         __('Slot',true),
                         __('Title',true),
                         __('Phone number',true),
-                        __('Sim inserted',true),
+                        __('SIM inserted',true),
                         __('Signal level',true),
                         __('IMSI',true),
                         __('Network registration',true),
@@ -86,7 +86,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
    } else {
 
-   echo __("There are no OfficeRoute units connected to your system.",true);
+   echo __("There are no Office Route units connected to your system.",true);
 
    }
 
@@ -119,7 +119,7 @@ echo "<h1>".__('GSM channels',true)."</h1>";
 
      echo "<table>";
      echo $html->tableHeaders(array(
-                        __('Interface id',true),
+                        __('Interface ID',true),
                         __('Title',true),
                         __('Phone number',true),
                         __('Interface name',true),

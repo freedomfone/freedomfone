@@ -65,7 +65,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo "<table width='100%'>";
      echo $html->tableHeaders(array(
 	'',
- 	$paginator->sort(__("Date (YMD)",true), 'epoch'),
+ 	$paginator->sort(__("Date (Y-m-d)",true), 'epoch'),
  	$paginator->sort(__("Time",true), 'epoch'),
  	$paginator->sort(__("Type",true), 'channel_state'),
  	$paginator->sort(__("Call ID",true), 'call_id'),

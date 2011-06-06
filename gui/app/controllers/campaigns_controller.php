@@ -233,7 +233,7 @@ class CampaignsController extends AppController{
 
     function delete($id = null){
 
-    Configure::write('debug', 3);
+    Configure::write('debug', 0);
       $dialer = Configure::read('DIALER');
       
        if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
@@ -397,31 +397,26 @@ class CampaignsController extends AppController{
 
        $status = $campaign = $data = $order = $dir = false;
 
-       if(array_key_exists('status',$this->data['Callback'])){
          $status = $this->data['Callback']['status'];
-        }
-       if(array_key_exists('campaign_id',$this->data['Callback'])){
-         $campaign_id = $this->data['Callback']['campaign_id'];
-       }
-       if(array_key_exists('order',$this->data['Callback'])){
+         $campaign_id = $this->data['Callback']['campaign_id'];       
          $order = $this->data['Callback']['order'];
-       }
-       if(array_key_exists('dir',$this->data['Callback'])){
-         $dir = $this->data['Callback']['dir'];
-       } else {
-         $dir = 'DESC';
-       }
+
+         if (!$dir = $this->data['Callback']['dir']) { 
+                  $dir = 'DESC';
+         }
 
          $param = array();
          $conditions = array();
          $order_by = array();
         
-
          if ($status) {
             $conditions['Callback.status'] = $status;
          } 
          if ($campaign_id) {
             $conditions['Campaign.id'] = $campaign_id;
+         } else {
+            $conditions['Campaign.id !='] = 0;
+
          } 
          if ($order) {
             $order_by = $order.' '.$dir;
@@ -508,6 +503,7 @@ class CampaignsController extends AppController{
              $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
              $results = $HttpSocket->get($dialer['host'].$dialer['campaign'], false,  $request); 
              $header = $HttpSocket->response['raw']['status-line'];
+
 
              if ($this->headerGetStatus($header) == 1) {     
 

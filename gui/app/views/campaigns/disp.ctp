@@ -23,8 +23,6 @@
  ***************************************************************************/
 
 
-
-
    echo $ajax->div("service_div");
    echo "<div id='campaign_div' class='campaign_did'></div>";                                           
    echo "<div id='user_div' class='user_did'></div>";                                           
@@ -46,7 +44,6 @@
               $campaign_link  = $html->link($campaign['Campaign']['name'], array('controller' => 'campaigns', 'action' => 'view', $campaign['Campaign']['id'] ), array('title' => 'Campaign details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false);	
               $user_link  = $html->link($campaign['User']['name'].' '.$campaign['User']['surname'], array('controller' => 'users', 'action' => 'view',$campaign['Callback']['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
 
-debug($campaign['Campaign']['status']);
 
               switch ($campaign['Campaign']['status']){
 
@@ -68,8 +65,7 @@ debug($campaign['Campaign']['status']);
                 }
 
               $row[] = array(
-                       $campaign_link,
-                       $icon,
+                       $icon.'&nbsp;&nbsp;'.$campaign_link,
                        array(date('Y-m-d H:i A',$campaign['Campaign']['created']), array('align' => 'center')),
                        $user_link,
                        array($this->element ('dialer_status', array('status' => $campaign['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
@@ -87,7 +83,6 @@ debug($campaign['Campaign']['status']);
         echo "<table width='95%' cellspacing  = '0'>";
         echo $html->tableHeaders(array(
 	__("Campaign",true),
-        false,
 	 __("Created",true),
  	 __("User",true), 
  	 __("Call status",true),

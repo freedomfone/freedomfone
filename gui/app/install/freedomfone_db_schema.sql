@@ -153,7 +153,7 @@ CREATE TABLE `callbacks` (
   `retries` tinyint(3) unsigned default '0',
   `status` smallint(6) default '1',
   `state` tinyint(4) default '1',
-  `phone_number` varchar(200) default NULL,
+  `phone_number` int(11) unsigned default NULL,
   `last_attempt` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

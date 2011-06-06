@@ -39,9 +39,34 @@ class Campaign extends AppModel{
                 'extension' => array(
                             'rule' => 'notEmpty',
                             'message'  => __('You must select a service.',true),
+                            'required' => true,
+                            ),
+                'name' => array(
+                            'rule' => 'notEmpty',
+                            'message'  => __('Please state a name for the campaign.',true),
+                            'required' => true,
                             ));
 
       }
 
+
+      function getExtension($campaign){
+
+      
+                  $extensions = Configure::read('EXTENSIONS');
+                  $type = $campaign['type'];
+                  $instance_id = $campaign[$type.'_instance_id'];
+                  if($type == 'selector') { 
+                           $type = 'ivr';
+                  }
+
+                  if ($instance_id){ 
+                          $extension = $extensions[$type].$instance_id;
+                  } else { 
+                          $extension = false;
+                  }
+
+                  return $extension;
+      }
 }
 ?>

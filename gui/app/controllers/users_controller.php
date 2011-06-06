@@ -73,6 +73,8 @@ class UsersController extends AppController{
 
                 $users = $this->paginate('User', array('User.id' => $user_id));
                 $this->set(compact('users'));    
+             } else {
+                $users = false;
              }
             
          } else {

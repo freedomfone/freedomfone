@@ -614,5 +614,32 @@ return $result;
 
      }
 
+/*
+ * Get list of non-empty phone books (campaign::add)
+ *  
+ * @return array('PhoneBook.id', 'PhoneBook.name')
+ * 
+ *
+ */
+  function getPhoneBooks(){
+
+        $this->loadModel('User');
+        $users  = $this->User->find('all');
+        foreach($users as $user){
+            foreach($user['PhoneBook'] as $key => $entry){
+                  $id[] = $entry['id'];
+            }
+        } 
+
+        $this->loadModel('PhoneBook');
+        $phonebooks = $this->PhoneBook->find('list', array('conditions' => array('id' => $id)));
+        
+        return $phonebooks;
+
+ }
+
+
+
+
 }
 ?>

@@ -60,24 +60,27 @@ CREATE TABLE `bin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
-
 --
--- Table structure for table `callback`
+-- Table structure for table `callbacks`
 --
 
-DROP TABLE IF EXISTS `callback`;
+
+DROP TABLE IF EXISTS `callbacks`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-CREATE TABLE `callback` (
+CREATE TABLE `callbacks` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `instance_id` int(6) NOT NULL,
-  `created` int(10) unsigned default NULL,
-  `mode` varchar(10) default NULL,
-  `sender` varchar(100) default NULL,
-  `receiver` varchar(100) default NULL,
-  `body` varchar(160) default NULL,
-  `status` tinyint(2) default NULL,
-  `proto` varchar(50) default NULL,
+  `campaign_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `type` varchar(10) default NULL,
+  `retries` tinyint(3) unsigned default '0',
+  `status` smallint(6) default '1',
+  `phone_number` varchar(200) default NULL,
+  `last_attempt` int(11) default NULL,
+  `epoch` int(11) unsigned default NULL,
+  `callback_service_id` int(11) unsigned default NULL,
+  `state` smallint(6) default NULL,
+  `nf_campaign_subscriber_id` int(11) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -104,10 +107,17 @@ CREATE TABLE `callback_services` (
   `max_calls_user` smallint(5) unsigned default NULL,
   `max_calls_user_day` smallint(5) unsigned default NULL,
   `max_calls_total` smallint(5) unsigned default NULL,
-  `calls_total` smallint(5) unsigned default 0,
+  `calls_total` smallint(5) unsigned default '0',
+  `nf_campaign_id` int(11) unsigned default NULL,
+  `nf_phone_book_id` int(11) unsigned default NULL,
+  `status` smallint(6) default '1',
+  `type` varchar(10) default NULL,
+  `instance_id` smallint(6) default NULL,
+  `tickle` tinyint(4) default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
 
 --
 -- Table structure for table `callback_settings`
@@ -124,8 +134,9 @@ CREATE TABLE `callback_settings` (
   `limit_time` smallint(6) default NULL,
   `max_retries` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
+
 
 --
 -- Dumping data for table `callback_settings`
@@ -159,7 +170,6 @@ CREATE TABLE `callbacks` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
-
 --
 -- Table structure for table `campaigns`
 --
@@ -169,7 +179,6 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `campaigns` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `dialer_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(200) NOT NULL,
   `start_time` datetime default NULL,
@@ -181,10 +190,11 @@ CREATE TABLE `campaigns` (
   `modified` int(11) NOT NULL,
   `extension` smallint(6) NOT NULL,
   `status` smallint(6) default '1',
+  `nf_campaign_id` int(11) unsigned NOT NULL,
+  `nf_phone_book_id` int(11) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
-
 
 --
 -- Table structure for table `categories`

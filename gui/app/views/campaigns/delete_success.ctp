@@ -24,6 +24,11 @@
 
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+     if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        }
+
+
         if ($data){
 
            echo "<div id ='campaign'>";  

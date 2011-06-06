@@ -62,9 +62,7 @@ function __construct($id = false, $table = null, $ds = null) {
  *
  */
 
-    function refresh($type = null){
-
-      if(!$type) { $type = 'SMS';}
+    function refresh(){
 
       $array       = Configure::read('callback_in');
       $dialer      = Configure::read('DIALER');
@@ -78,19 +76,18 @@ function __construct($id = false, $table = null, $ds = null) {
 
      	   while ($entry = $obj->getNext('update')){
 
-              debug($entry);
-
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
+	      $type  = $entry['FF-Type'];
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
               $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
               $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
+              if ($type == 'tickle'){ $name = __('Callback tickle',true);} else { $name = __('Callback SMS',true); $type = 'SMS';}
 
               //** Update user information **//
 
               //If user exists in system: update statistics
               if ($userData){
 
-                 debug($userData);
 		 $count = $userData['User'][$update]+1;
                  $user_id = $userData['User']['id'];
                  $this->User->read(null, $user_id);
@@ -100,8 +97,9 @@ function __construct($id = false, $table = null, $ds = null) {
 
                //If user does NOT exist in system: add user and phone number
                else {
+
                  $created = time();
-                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Callback SMS',true));
+                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => $name);
                  $this->User->create(); 
                 if ($this->User->save($user)){
 
@@ -117,7 +115,7 @@ function __construct($id = false, $table = null, $ds = null) {
                 $contact = array('phonebook_id' => $callback_service['nf_phone_book_id'], 'contact' =>  $sender);
                 $HttpSocket = new HttpSocket();
                 $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-                
+
                 $results = $HttpSocket->post($dialer['host'].$dialer['contact'], $contact, $request); 
                 $results = json_decode($results);
                 $header  = $HttpSocket->response['raw']['status-line'];
@@ -143,7 +141,7 @@ function __construct($id = false, $table = null, $ds = null) {
                   debug($callback);
                   } else {
 
-	            $this->log('ERROR Newfie contact::post FAILED', 'callback');		       
+	            $this->log('ERROR Newfie contact::post FAILED '.$results, 'callback');		       
                   
                   }
 

@@ -66,9 +66,8 @@ class CampaignsController extends AppController{
            $callback_type  = 'OUT';
            $status         = 'pending';
    	   $dialer = Configure::read('DIALER');
-               
-               $this->loadModel('PhoneBook');
-               $phonebooks = $this->PhoneBook->find('list');
+
+               $phonebooks = $this->getPhoneBooks();
 
                $this->loadModel('IvrMenu');
                $ivr = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'ivr'), 'fields' => array('instance_id','title'),'recursive' => 0));
@@ -89,9 +88,11 @@ class CampaignsController extends AppController{
                //Form data exists, store and push to dialer	   
                if (!empty($this->data)){ 
 
-
                   //Fetch phone numbers
                   $campaign = $this->data['Campaign'];
+
+                  $extension = $this->Campaign->getExtension($campaign);
+                  $this->data['Campaign']['extension'] = $extension;
 
                   $this->loadModel('User');
                   $data = $this->User->PhoneBook->findById($campaign['phone_book_id']);
@@ -101,18 +102,13 @@ class CampaignsController extends AppController{
                   }
               
                   $result = $this->User->PhoneNumber->find('all', array('conditions' => array('user_id' => $user_id)));;
+
                   //FIXME: makes sure only one phone number per user (takes the last one)
                   foreach($result as $key => $entry){
                         $phone_numbers[] = $entry['PhoneNumber']['number'];
                         $user_id[] = $entry['PhoneNumber']['user_id'];
                   }
               
-                  $type = $campaign['type'];
-                  $instance_id = $campaign[$type.'_instance_id'];
-                  if($type == 'selector') { $type = 'ivr';}
-
-                  $extensions = Configure::read('EXTENSIONS');
-                  if ($instance_id){ $extension = $extensions[$type].$instance_id;} else { $extension = false;}
 
  
 
@@ -154,7 +150,6 @@ class CampaignsController extends AppController{
               
 
                   $this->Campaign->set( $this->data );
-
                   if($this->Campaign->saveAll($this->data, array('validate' => 'only'))){
 
                         $HttpSocket = new HttpSocket();
@@ -168,14 +163,6 @@ class CampaignsController extends AppController{
 
                            $results   = json_decode($results,true);
                            $nf_phone_book_id  = $results['phonebook'][0]['id']; 
-
-                           $this->data['Campaign']['extension'] = $extension;
-                           $this->data['Campaign']['max_retries'] = $campaign['max_retries'] ;
-                           $this->data['Campaign']['retry_interval'] = $campaign['retry_interval']  ;
-                           $this->data['Campaign']['max_duration'] = $campaign['max_duration'] ;
-                           $this->data['Campaign']['start_time'] = $campaign['start_time'] ;
-                           $this->data['Campaign']['end_time'] = $campaign['end_time'] ;
-                           $this->data['Campaign']['name'] = $campaign['name'] ;
                            $this->data['Campaign']['status'] = 1;
                            $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['Campaign']['nf_campaign_id'] = $results['id'];
@@ -212,28 +199,29 @@ class CampaignsController extends AppController{
        	                   $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
    	                   $this->redirect(array('action'=>'index'));
 
-                      } elseif ($status == 2 ) {
+                         } elseif ($status == 2 ) {
 
-       	                 $this->_flash(__('The Campaign name is already in use. Please try again.',true), 'error');
+       	                       $this->_flash(__('The Campaign name is already in use. Please try again.',true), 'error');
 
-                      }   else {
+                         }   else {
        	               
                          $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
 
-                      }
+                         }
 
+
+
+              } //if validates
+
+              else {
+      	                 $this->_flash(__('Please select a Service.', true), 'error');                           	
               }
 
-
-             } else {
-       	       $this->_flash(__('Please select a service.',true), 'error');                           	
-             }
-
+             } // if $this->data
         
-
              $this->render();
 
-        }	
+       }
 
 
 /*
@@ -243,16 +231,16 @@ class CampaignsController extends AppController{
  *
  */
 
-    function delete($id){
+    function delete($id = null){
 
-    Configure::write('debug', 0);
+    Configure::write('debug', 3);
       $dialer = Configure::read('DIALER');
       
        if($id && $data= $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
 
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/'.$data['Campaign']['nf_campaign_id'], false, $request); 
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/delete_cascade/'.$data['Campaign']['nf_campaign_id'], false, $request); 
               $header  = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
@@ -260,10 +248,10 @@ class CampaignsController extends AppController{
 
                         $this->Campaign->id= $id;
 
-                        if ($this->Campaign->delete($i,true)){
+                        if ($this->Campaign->delete($id,true)){
+
 
                            $campaigns = $this->paginate('Campaign');
-
 
                            foreach($campaigns as $key => $campaign){
 
@@ -273,9 +261,20 @@ class CampaignsController extends AppController{
                            }
                       
                            $this->set('data',$campaigns);
+                           $this->_flash(__('The campaign has been deleted.',true), 'success');
                            $this->render('delete_success','ajax');
                         }
+                    } else {
+
+       	              $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
+                      $this->redirect(array('action'=>'index'));   	                     
+
                     } 
+       } else {
+
+                      $this->_flash(__('There is no campaign with this id.',true), 'error');
+                      $this->redirect(array('action'=>'index'));   	                     
+
        }
 
     }

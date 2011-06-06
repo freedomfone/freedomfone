@@ -138,7 +138,7 @@ function __construct($id = false, $table = null, $ds = null) {
                   $this->create();
                   $this->save($callback);
 
-                  debug($callback);
+
                   } else {
 
 	            $this->log('ERROR Newfie contact::post FAILED '.$results, 'callback');		       

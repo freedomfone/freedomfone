@@ -42,7 +42,8 @@ class CallbackServicesController extends AppController{
 
         function index(){
 
-                 $this->pageTitle = 'Callback Services';
+                 $this->pageTitle   = 'Callback Services';
+                 $services = $this->paginate('CallbackService');
 
                  if($this->data){
 
@@ -50,17 +51,20 @@ class CallbackServicesController extends AppController{
                         $this->CallbackService->id = $this->data['CallbackService']['tickle'];
                         $this->CallbackService->saveField('tickle',1);
 
+
                  } 
 
-                 $data = $this->paginate('CallbackService');
-                 foreach($data as $key => $callback_service){
-
-                       $result = $this->getServiceName($callback_service['CallbackService']['extension']);
-                       $data[$key]['CallbackService']['service_name'] = $result['service_name'];
-                       $data[$key]['CallbackService']['application'] = $result['application'];
-                 }
  
-                 $this->set(compact('data'));    
+
+                 foreach($services as $key => $service){
+
+                       $result = $this->getServiceName($service['CallbackService']['extension']);
+                       $services[$key]['CallbackService']['service_name'] = $result['service_name'];
+                       $services[$key]['CallbackService']['application'] = $result['application'];
+                 }
+
+
+                 $this->set(compact('services'));    
         }
 
 
@@ -110,6 +114,7 @@ class CallbackServicesController extends AppController{
                   $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
                   $this->CallbackService->set($this->data);
 
+
                   if($this->CallbackService->saveAll($this->data, array('validate' => 'only'))){
                         $campaign = $this->data['CallbackService'];
                         $startingdate    = strtotime($this->dateToString($campaign['start_time']));
@@ -135,8 +140,8 @@ class CallbackServicesController extends AppController{
                         $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
-
-                       if ($this->headerGetStatus($header) == 1) {
+                        $header_status = $this->headerGetStatus($header);
+                       if ( $header_status  == 1) {
 
                            $results   = json_decode($results,true);
                            $nf_phone_book_id  = $results['phonebook'][0]['id'];   
@@ -146,9 +151,17 @@ class CallbackServicesController extends AppController{
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
 
-                        }
-                        
+                        } elseif ($header_status == 2)  {
+                      
+      	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
+
+                       }
+                       debug($header_status);
                            $this->redirect(array('action'=>'index'));
+
+                  } else {
+
+      	                 $this->_flash(__('Please select a Service.', true), 'error');
 
                   }
 
@@ -316,9 +329,15 @@ class CallbackServicesController extends AppController{
               $startingdate    = strtotime($this->dateToString($data['start_time']));
               $expirationdate   = strtotime($this->dateToString($data['end_time']));
               $type = $this->data['CallbackService']['type'];
+       
+
               $key = $type."_instance_id";
               $extension = $mapping[$type].$this->data['CallbackService'][$key];
               $data['extension'] = $extension;
+              $data['instance_id'] = $this->data['CallbackService'][$key];
+
+
+             if($this->CallbackService->saveAll($data, array('validate' => 'only'))){
 
               $socket_data = array(
                              'status'           => $data['status'],
@@ -351,13 +370,25 @@ class CallbackServicesController extends AppController{
 
               } else {
 
+
        	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
 
               }
 
                         $this->redirect(array('action'=>'index'));
 
-            } else {
+             } else
+
+             //Does not validate
+             {
+
+                        $errors = $this->CallbackService->invalidFields(); 
+      	                $this->_flash(__('Please select a Callback service.', true), 'error');
+
+             }
+
+
+            } 
 
                $this->loadModel('IvrMenu');
                $ivr = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'ivr'), 'fields' => array('instance_id','title'),'recursive' => 0));
@@ -376,7 +407,7 @@ class CallbackServicesController extends AppController{
                $this->set(compact(array('ivr','selector','lam')));
                $this->data = $this->CallbackService->findById($id);
 
-            }
+            
 
    }
 }

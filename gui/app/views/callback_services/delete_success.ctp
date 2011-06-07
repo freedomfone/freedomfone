@@ -27,6 +27,9 @@
            echo "<div id ='callback_services'>";  
            foreach ($data as $key => $entry){
 
+                   $delete = $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1);
+	           $edit   = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/callback_services/edit/{$entry['CallbackService']['id']}",null, null, false);
+
                    $row[$key] = array(
                                 $entry['CallbackService']['code'],
                                 $entry['CallbackService']['extension'],
@@ -39,7 +42,7 @@
                                 $entry['CallbackService']['calls_total'],
                                 $entry['CallbackService']['start_time'],
                                 $entry['CallbackService']['end_time'],
-                                $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1),
+		                array($edit.' '.$delete,array('align'=>'center'))
                                 );
 
            }

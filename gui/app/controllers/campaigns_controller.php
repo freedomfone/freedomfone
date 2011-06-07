@@ -205,6 +205,7 @@ class CampaignsController extends AppController{
 
                          }   else {
        	               
+
                          $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
 
                          }

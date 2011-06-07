@@ -38,10 +38,10 @@ echo $html->addCrumb('Callback Service', '/callback_services');
         echo $html->div('frameRightAlone',$form->submit(__('Call status',true),  array('name' =>'submit', 'class' => 'button')));
         echo $form->end();
 
-        if ($data){
+        if ($services){
 
         echo $form->create('CallbackService',array('type' => 'post','action'=> 'index', 'enctype' => 'multipart/form-data'));
-           foreach ($data as $key => $entry){
+           foreach ($services as $key => $entry){
 
                    $delete = $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1);
 	           $edit   = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/callback_services/edit/{$entry['CallbackService']['id']}",null, null, false);

@@ -33,16 +33,36 @@ class CallbackService extends AppModel{
 				       ); 
 
 
-function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
 
-       $this->validate = array(
+
+      function __construct($id = false, $table = null, $ds = null) {
+         parent::__construct($id, $table, $ds);
+
+         $this->validate = array(
                 'extension' => array(
+                      'notEmpty' =>  array(
+                                     'rule' => 'notEmpty',
+                                     'message'  => __('You must select a service.',true),
+                                     'required' => true,
+                                     ),
+                      'range' =>  array(
+                                     'rule' => array('range', 2100, 4120),
+                                     'message'  => __('You must select a service.',true),
+                                     'required' => true,
+                                     )),
+                'code' => array(
+                    'notEmpty' => array(
                             'rule' => 'notEmpty',
-                            'message'  => __('You must select a service.',true),
-                            ));
+                            'message'  => __('Please state an SMS code for the callback service.',true),
+                            'required' => true,
+                            ),
+                    'IsUnique' => array(
+                            'rule' => 'isUnique',
+                            'message'  => __('The SMS code provided is alrady in use.',true),
+                            'required' => true,
+                            )));
 
-}
+      }
 
 
 

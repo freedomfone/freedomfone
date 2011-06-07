@@ -1,0 +1,310 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-06-06 09:35+0200\n"
+"PO-Revision-Date: 2011-06-07 10:17+0100\n"
+"Last-Translator: louise <louise@it46.se>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+# "Operation error"
+msgid "Failure"
+msgstr ""
+
+# "Non-accepted category or type or pattern"
+msgid "Invalid"
+msgstr ""
+
+# "Generation of reports that digest service's related information"
+msgid "Reporting"
+msgstr ""
+
+# "Conversion of data to other formats"
+msgid "Export"
+msgstr ""
+
+# "In telephony systems the data sets that store call related information"
+msgid "Call Data Records"
+msgstr ""
+
+# "Interactive Voice System, the set of voice menus of an interactive voice system"
+msgid "Voice menu"
+msgstr ""
+
+# "Voice answering machine in Internet"
+msgid "Leave-a-Message"
+msgstr ""
+
+# "As a tray for incoming messages"
+msgid "Inbox"
+msgstr ""
+
+# "Moving data to a long term storage"
+msgid "Archive"
+msgstr ""
+
+# "Run a service that has been configured"
+msgid "Activate"
+msgstr ""
+
+# "The submenu option of an IVR system"
+msgid "Menu option"
+msgstr ""
+
+# "Refresh system data from telephony platform."
+msgid "Refresh"
+msgstr ""
+
+# "Collection of opinions via SMS, Skype messages, etc"
+msgid "Poll"
+msgstr ""
+
+# "Heartbeat of the running system"
+msgid "System Health"
+msgstr ""
+
+# "The PID file contains the name of the process identification (ID) and pid should not be translated"
+msgid "No pid found. Contact system admin."
+msgstr ""
+
+# "Labels associated to messages to enable searching and classification"
+msgid "tag"
+msgstr ""
+
+# "We do not accept the use of HTML code inside of the system forms"
+msgid "No hyperlinks allowed."
+msgstr ""
+
+# "When a process stops as a result of a system error. Term that opposed the concept of Manual"
+msgid "Unmanaged"
+msgstr ""
+
+# "SMSes that do not match a Poll and they are classified as Other, as in other type of SMS"
+msgid "Other SMS"
+msgstr ""
+
+# "As in number of"
+msgid "No of entries per page: "
+msgstr ""
+
+# "Data stored related to a given a call or service"
+msgid "Records"
+msgstr ""
+
+# "Service that returns a call as a result of a caller request"
+msgid "Callback"
+msgstr ""
+
+# "As abbreviation of maximum"
+msgid "Max"
+msgstr ""
+
+# "Associate no category to a message, equivalent to use nowhere"
+msgid "Use in none"
+msgstr ""
+
+# "Use (a category) in a message"
+msgid "Use in message"
+msgstr ""
+
+# "As in administrate a set of items"
+msgid "Manage"
+msgstr ""
+
+# "Abbreviation of call data records, do not translate"
+msgid "CDR"
+msgstr ""
+
+# "The order that dates are expressed, Y(ear) m(month) d(day)"
+msgid "Date (Y-m-d)"
+msgstr ""
+
+# "Identification number of the caller, the Caller ID can be a name"
+msgid "Caller"
+msgstr ""
+
+# "The duration of a call. Duration"
+msgid "Length"
+msgstr ""
+
+# Used in Reporting for displaying incoming calls to all existing Leave-a-message services.
+msgid "All Leave-a-message"
+msgstr ""
+
+# Used in Reporting for displaying incoming calls to all existing Voice Menus.
+msgid "All IVR"
+msgstr ""
+
+# "As in the service invoked"
+msgid "Application"
+msgstr ""
+
+# "Abbreviation of Call identifier"
+msgid "Call ID"
+msgstr ""
+
+# "As the short one-word code that assist to classify a vote coming via SMS (noun)"
+msgid "Code"
+msgstr ""
+
+# "As in communication channel of Office Route"
+msgid "Edit channel"
+msgstr ""
+
+# "Mobile subscriber identifier, do not translate"
+msgid "IMSI"
+msgstr ""
+
+# "Name of a product, do not translate"
+msgid "Office Route"
+msgstr ""
+
+# "Place where each SIM card is placed in the Office Route"
+msgid "Slot"
+msgstr ""
+
+# "GSM subscriber card, do not translate"
+msgid "SIM"
+msgstr ""
+
+# "Radio signal level in GSM"
+msgid "Signal level"
+msgstr ""
+
+# "As in phone registering to a GSM network operator"
+msgid "Network registration"
+msgstr ""
+
+# "As in GSM operator"
+msgid "Operator"
+msgstr ""
+
+# "Name of hardware product, do not translate"
+msgid "Mobigater"
+msgstr ""
+
+# "ID as identifier"
+msgid "Interface ID"
+msgstr ""
+
+# "Mobile Equipment Identifier, do not translate"
+msgid "IMEI"
+msgstr ""
+
+# "As main view of the application"
+msgid "Home"
+msgstr ""
+
+# "Service that records the selections of the users in a IVR"
+msgid "Monitoring"
+msgstr ""
+
+# "As in callback-calls noun"
+msgid "Callbacks"
+msgstr ""
+
+# "Overview of the system data, overall view of the system"
+msgid "Dashboard"
+msgstr ""
+
+# "Details about the software version"
+msgid "About"
+msgstr ""
+
+# "Not available"
+msgid "N/A"
+msgstr ""
+
+# "As in Flash-technology, do not translate Flash"
+msgid "No Flash plugin installed"
+msgstr ""
+
+msgid "OFF"
+msgstr ""
+
+msgid "ON"
+msgstr ""
+
+# "short for hours"
+msgid "h"
+msgstr ""
+
+# "short for minutes"
+msgid "min"
+msgstr ""
+
+# "short for seconds"
+msgid "sec"
+msgstr ""
+
+# "do not translate"
+msgid "Freedom Fone"
+msgstr ""
+
+# "information how to use the service"
+msgid "Inform Message"
+msgstr ""
+
+# "Rate of message quality/relevance for Leave-a-message services (noun)
+msgid "Rate"
+msgstr ""
+
+# "Preserve the » sign as it works as a forward arrow"
+msgid "Newer message »"
+msgstr ""
+
+# "As in number"
+msgid "Digit"
+msgstr ""
+
+# "do not translate wav and mp3"
+msgid "Valid formats: wav and mp3"
+msgstr ""
+
+# "also known as"
+msgid "aka"
+msgstr ""
+
+# "As in numbers and letters"
+msgid "Alpha-numeric characters only (maximum 10)"
+msgstr ""
+
+# "time as in clock time"
+msgid "System time"
+msgstr ""
+
+# "do not translate"
+msgid "FreeSWITCH"
+msgstr ""
+
+# "type of service interruption, manual vs unmanaged"
+msgid "Interrupt mode"
+msgstr ""
+
+# "do not translate"
+msgid "MySQL"
+msgstr ""
+
+# "Component of freedomfone responsible of distributing events to the different components of the architecture"
+msgid "Dispatcher"
+msgstr ""
+
+# "As in Graphical interface language, locale, timezone etc"
+msgid "Environment"
+msgstr ""
+
+# "As in access control level"
+msgid "Access level"
+msgstr ""
+
+# "As duration of the leave a message message"
+msgid "Message length"
+msgstr ""
+
+# "As where to use a tag or category, as in Use in message"
+msgid "Use in"
+msgstr ""
+

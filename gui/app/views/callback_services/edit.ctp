@@ -28,7 +28,7 @@ echo $html->addCrumb('Edit', '/callback_services/edit');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
-$data = $this->data;
+        if($this->data){ $data = $this->data;}
 
      echo "<h1>".__("Edit Callback Service",true).": ".$data['CallbackService']['code']."</h1>";
 
@@ -37,7 +37,9 @@ $data = $this->data;
         }
 
      echo $form->create('CallbackService',array('type' => 'post','action'=> 'edit', 'enctype' => 'multipart/form-data'));
+     echo $form->input('id',array('type' => 'hidden','value'=> $data['CallbackService']['id']));
      echo $form->input('status',array('type' => 'hidden','value'=> $data['CallbackService']['status']));
+     echo $form->input('code',array('type' => 'hidden','value'=> $data['CallbackService']['code']));
      echo $form->input('nf_campaign_id',array('type' => 'hidden','value'=> $data['CallbackService']['nf_campaign_id']));
 
 

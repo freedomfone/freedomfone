@@ -73,12 +73,6 @@ class AppModel extends Model {
      }
 
 
-        function getCallbackService($code){
-
-                $data =  $this->query("select id, nf_phone_book_id from callback_services where code = '$code'");
-                return array('id' => $data[0]['callback_services']['id'],'nf_phone_book_id' => $data[0]['callback_services']['nf_phone_book_id']);
-        }
-
 
      function headerGetStatus($header){
 

@@ -63,6 +63,62 @@ class ApiController extends AppController{
       }
 
 /*
+ * Retrieve Incoming SMS (bin)
+ * Method: GET
+ *
+ * @data
+ *      $sender(int) Phone number of SMS sender 
+ *
+ * @return 
+ *      $bin (array)
+ */
+      function bin(){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+           parse_str(file_get_contents("php://input"),$post_vars);
+           $keys = array('sender');
+
+           if(!$this->Api->validPostVars($post_vars,$keys)){
+                echo header("HTTP/1.0 400 Bad Request");
+           } else {
+
+             $this->loadModel('Bin');
+
+             foreach($post_vars as $key => $value){
+
+                 switch($key){
+
+                    case 'sender':  
+                    if(is_numeric($value)){
+                         $params[] = array( 'Bin.sender' => $value);
+                    } else {
+                         $bad_request = true;
+                    }
+                    break;
+
+                 }
+
+              }
+
+              $bin = $this->Bin->find('all', array('conditions' => $params));
+
+              if(!$bin){ $not_found = true;}
+
+                 $this->Api->sendHeader($bin,$bad_request,$not_found);
+              }
+        
+  }
+
+
+/*
  * Retrieve poll data
  * Method: GET
  *
@@ -82,41 +138,52 @@ class ApiController extends AppController{
            $this->layout = 'json/default';
            $this->RequestHandler->setContent('json','text/x-json');  
 
-           parse_str(file_get_contents("php://input"),$post_vars);
-           
-
            $params = false;
-           $valid_request = true;
+           $bad_request = false;
+           $not_found   = false;
 
-           $this->loadModel('Poll');
+           parse_str(file_get_contents("php://input"),$post_vars);
+           $keys = array('status','id');
+           $post_vars['id'] = $id;
 
-           //Status
-           if(array_key_exists('status', $post_vars)){
-             $status = $post_vars['status'];
-  
-             if($this->Api->validRange($status,0,2)){
-                      $params[] = array( 'Poll.status' => $status);
-             } else {
-               $valid_request = false;              
-             }
-
-           }
-
-           //Poll id
-           if($id){
-                   $params[] = array( 'Poll.id' => $id);
-           }
-
-           $poll = $this->Poll->find('all', array('conditions' => $params));
-
-           if($valid_request){           
-                echo json_encode($poll);     
-           } else {
+           if(!$this->Api->validPostVars($post_vars,$keys)){
                 echo header("HTTP/1.0 400 Bad Request");
+           } else {
 
-           }
-      }
+             $this->loadModel('Poll');
 
+             foreach($post_vars as $key => $value){
+
+                 switch($key){
+
+                    case 'status':  
+                    if($this->Api->validRange($value,0,2)){
+                        $params[] = array( 'Poll.status' => $value);
+                    } else {
+                        $bad_request = true;
+                    }
+                    break;
+
+                    case 'id':
+                    if(is_numeric($value)){
+                         $params[] = array( 'Poll.id' => $value);
+                    } else {
+                         $bad_request = true;
+                    }
+                    break;
+
+                 }
+
+              }
+
+              $poll = $this->Poll->find('all', array('conditions' => $params));
+
+              if(!$poll){ $not_found = true;}
+
+                 $this->Api->sendHeader($poll,$bad_request,$not_found);
+              }
+        
+  }
 
 
 
@@ -139,7 +206,8 @@ class ApiController extends AppController{
            $this->RequestHandler->setContent('json','text/x-json');  
 
            $params = false;
-           $valid_request = true;
+           $bad_request = false;
+           $not_found = false;
 
            $this->loadModel('LmMenu');
      	   $this->LmMenu->unbindModel(array('hasMany' => array('MonitorIvr')));
@@ -147,19 +215,21 @@ class ApiController extends AppController{
 
            //LmMenu id
            if($id){
+             if(is_numeric($id)){
                    $params = array( 'LmMenu.id' => $id);
+             } else {
+                   $bad_request = true;
+             }
            }
 
            $lm_menu = $this->LmMenu->find('all', array('conditions' => $params));
 
-           $lm_menu = $this->Api->addLmMenuFiles($lm_menu);
-
-           if($valid_request){           
-                echo json_encode($lm_menu);     
-           } else {
-                echo header("HTTP/1.0 400 Bad Request");
-
+           if(!$lm_menu){ $not_found = true;} else {
+                          $lm_menu = $this->Api->addLmMenuFiles($lm_menu);
            }
+          
+           $this->Api->sendHeader($lm_menu,$bad_request,$not_found); 
+
 
 
 
@@ -177,14 +247,16 @@ class ApiController extends AppController{
  *      $id(int) id of message
  *      $user_id(int) id of message author 
  *      $category_id: id of message category
+ *      $tag_id(int): id of tag
  *      $rate: message rate {1-5}
  *      $new: message status {0-1}
  *      $quick_hangup: Message left by quick hangup, or complete hangup (boolean)
+
  
  * @return 
  *      $messages (array)
  */
-    function messages(){
+    function messages($instance_id){
 
            Configure::write('debug', 0);
            $this->autoRender = false;
@@ -192,9 +264,12 @@ class ApiController extends AppController{
            $this->RequestHandler->setContent('json','text/x-json');  
 
            $params = false;
-           $valid_request = true;
+           $bad_request = false;
+           $not_found   = false;
+
            parse_str(file_get_contents("php://input"),$post_vars);
-           $keys = array('id','user_id','category_id','rate','new','quick_hangup');
+           $post_vars['instance_id'] = $instance_id;
+           $keys = array('id','user_id','category_id','rate','new','quick_hangup','tag_id','instance_id');
 
            if(!$this->Api->validPostVars($post_vars,$keys)){
                 echo header("HTTP/1.0 400 Bad Request");
@@ -202,74 +277,109 @@ class ApiController extends AppController{
 
              $this->loadModel('Message');
 
-           
-                //User ID
-                if(array_key_exists('user_id', $post_vars)){
-                $user_id = $post_vars['user_id'];
-                         if(is_int((int)$user_id)){
-                                $params[] = array( 'Message.user_id' => $user_id);
+             foreach($post_vars as $key => $value){
+
+
+                    switch($key){
+
+                        case 'instance_id':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Message.instance_id' => $value);
                          } else {
-                                $valid_request = false;              
+                                $bad_request = true;              
                          }
-                }
+                         break;
 
-           //Category ID
-           if(array_key_exists('category_id', $post_vars)){
-             $category_id = $post_vars['category_id'];
-             if(is_int((int)$category_id)){
-                      $params[] = array( 'Message.category_id' => $category_id);
-             } else {
-               $valid_request = false;              
-             }
-           }
+                        case 'id':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Message.id' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
 
-           //Rate
-           if(array_key_exists('rate', $post_vars)){
-             $rate = $post_vars['rate'];
-             if(is_int((int)$category_id) && $this->Api->validRange($rate,1,5)){
-                      $params[] = array('Message.rate' => $rate);
-             } else {
-               $valid_request = false;              
-             }
-           }
 
-           //New (true)
-           if(array_key_exists('new', $post_vars)){
-             $new = $post_vars['new'];
-             if(is_int((int)$new) && $this->Api->validRange($new,0,1)){
-                      $params[] = array( 'Message.new' => $new);
-             } else {
-               $valid_request = false;              
-             }
-           }
+                        case 'user_id':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Message.user_id' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
 
-           //Quick hangup
-           if(array_key_exists('quick_hangup', $post_vars)){
-             $quick_hangup = $post_vars['quick_hangup'];
-             if($quick_hangup== 'true'){
-                      $params[] = array( 'Message.quick_hangup' => $quick_hangup);
-             } else {
-               $valid_request = false;              
-             }
-           }
-           Configure::write('debug', 1);
+                        case 'category_id':
+                        if(is_numeric($value)){
+                                $params[] = array( 'Message.category_id' => $value);
+                        } else {
+                               $bad_request = true;              
+                        }
+                        break;
+
+                        case 'tag_id':
+                        if(is_numeric($value)){
+                                if($tags = $this->Message->Tag->findById($value)){
+                                         foreach ($tags['Message'] as $key => $message){
+                                                 $message_id[] = $message['id'];
+                                         }
+                                         $params[] = array('Message.id' => $message_id);
+                                } else {
+                                  $not_found = true;
+                                } 
+                        } else {
+                           $bad_request = true;
+                        }
+                        break;
+
+                        case 'rate':
+                        if(is_numeric($value) && $this->Api->validRange($value,1,5)){
+                             $params[] = array('Message.rate' => $value);
+                        } else {
+                             $bad_request = true;              
+                        }
+                        break;
+
+                        case 'new':
+                        if(is_numeric($value) && $this->Api->validRange($value,0,1)){
+                             $params[] = array('Message.new' => $value);
+                        } else {
+                            $bad_request = true;              
+                        }
+                        break;
+
+                        case 'quick_hangup':
+
+                        if((bool)$value){
+                             $params[] = array( 'Message.quick_hangup' => $value);
+                        } else {
+                            $bad_request = true;
+                         
+                        }
+                        break;
+
+
+
+
+                    } //switch
+
+             } //foreach
+           
+
            $message = $this->Message->find('all', array('conditions' => $params));
+           if(!$message){ 
+                          $not_found = true;
+           } else {
 
-           foreach($message as $key => $entry){
+             foreach($message as $key => $entry){
                 $message[$key]['Message']['url'] = urlencode($message[$key]['Message']['url']);
                 $message[$key]['Message']['file'] = $this->Api->getMessageAudio($entry['Message']['file'],$entry['Message']['instance_id']);
                 unset($message[$key]['Message']['url']);
+              }
            }
 
+
+           $this->Api->sendHeader($message,$bad_request,$not_found);
            
-           if($valid_request){           
-                echo json_encode($message);     
-           } else {
-                echo header("HTTP/1.0 400 Bad Request");
-
-           }
-
-           }
+        }
       }
 
 }

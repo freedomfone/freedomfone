@@ -175,6 +175,30 @@ class Api extends AppModel{
 
     }
 
+/*
+ * Output HTTP header
+ *
+ * @params
+ *      $data(array) data to be sent out
+ *      $bad_request(bool)
+ *      $not_found(bool)
+ *
+ * @return 
+ *      $path(string)
+ */
+    function sendHeader($data,$bad_request, $not_found){
+
+           if($bad_request){ 
+                 echo header("HTTP/1.0 400 Bad Request");
+           } elseif($not_found){
+                 echo header("HTTP/1.0 404 Not Found");
+           } else {
+                echo json_encode($data);     
+           } 
+
+     
+    }
+
 }
 
 ?>

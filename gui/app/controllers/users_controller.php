@@ -42,46 +42,85 @@ class UsersController extends AppController{
 
       function index(){
 
-
         $this->refreshAll();
-
         $this->pageTitle = 'Users';
         $this->User->recursive = 1;         
 
-         if(isset($this->params['named']['sort'])) { 
+        if(strpos($this->referer(),'users') === false){
+
+            $this->Session->write('users_phone_book_id',false);
+
+        } else {
+
+           if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('users_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-         } elseif($this->Session->check('users_sort')) {                     
+           } elseif($this->Session->check('users_sort')) {                     
                $this->paginate['order'] = $this->Session->read('users_sort');
-         } 
+           } 
 
-         if(isset($this->params['named']['limit'])) { 
+           if(isset($this->params['named']['limit'])) { 
 	        $this->Session->write('users_limit',$this->params['named']['limit']);
-         } elseif($this->Session->check('users_limit')) { 
+           } elseif($this->Session->check('users_limit')) { 
                 $this->paginate['limit'] = $this->Session->read('users_limit');
-         }	
+           }	
+
+        }
 
 
-         if(isset($this->params['form']['submit']) && $phone_book_id = $this->data['User']['phone_book_id']) { 
-            
+           $phone_book_id = $this->data['User']['phone_book_id'];
+ 
+           //Phone book selected || Show all phone books
+           if($phone_book_id ){
+
+             $this->Session->write('users_phone_book_id', $phone_book_id);
              $data = $this->User->PhoneBook->findById($phone_book_id);
              if ($data['User']){
-
                 foreach ($data['User'] as $key => $user){
-
                      $user_id[] = $user['id'];
                 }
 
                 $users = $this->paginate('User', array('User.id' => $user_id));
-                $this->set(compact('users'));    
+                $this->set(compact('users'));
+
              } else {
                 $users = false;
              }
-            
-         } else {
+
+
+             //Show all phone books
+             } elseif ( isset($phone_book_id) && $phone_book_id ==0 ){
 
              $users = $this->paginate('User');
              $this->set(compact('users'));    
-         }
+
+             //Pagination changed
+             } elseif ( !$phone_book_id  && $this->Session->read('users_phone_book_id')){
+
+             $phone_book_id = $this->Session->read('users_phone_book_id');
+             $data = $this->User->PhoneBook->findById($phone_book_id);
+             if ($data['User']){
+                foreach ($data['User'] as $key => $user){
+                     $user_id[] = $user['id'];
+                }
+
+                $users = $this->paginate('User', array('User.id' => $user_id));
+                $this->set(compact('users'));
+
+             
+             } else {
+                $users = false;
+             }
+
+             } else {
+             //Visit site for first time
+             $this->Session->write('users_phone_book_id', false);
+             $users = $this->paginate('User');
+             $this->set(compact('users'));    
+
+             }
+
+
+
 
          $this->loadModel('PhoneBook');
          $options = $this->PhoneBook->find('list');
@@ -104,6 +143,9 @@ class UsersController extends AppController{
 
 
     function edit($id = null)    {  
+
+debug($this->Session->read('users_phone_book_id'));
+debug($this->Session->read('users_order'));
 
 
     	     $this->pageTitle = 'Edit User';   
@@ -139,13 +181,13 @@ class UsersController extends AppController{
 
 		$acls 	    	    = $this->User->Acl->find('list');
  		$phonebook 	    = $this->User->PhoneBook->find('list');
-                $phone_book_id = 2;
+
 
 
 	$this->User->bindModel(array('belongsTo' => array('PhoneBook' => array('ClassName' => 'phone_book_id'))));   
 
 //                $neighbors = $this->User->find('neighbors', array('field' => $field, 'value ' =>$this->data['User'][$field], 'dir' => 'desc'));
-//                debug($neighbors);
+ //               debug($neighbors);
 
 
 

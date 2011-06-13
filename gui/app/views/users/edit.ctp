@@ -22,6 +22,8 @@
  *
  ***************************************************************************/
 
+
+
 echo $html->addCrumb('User Management', '');
 echo $html->addCrumb('Users', '/users');
 echo $html->addCrumb('Edit', '/users/edit/'.$this->data['User']['id']);
@@ -44,6 +46,7 @@ echo $form->end();
 		}
       }*/
 
+/*
      if ($prev = $neighbors[$Prev]['User']['id']) {     	  
 	  $prev = $html->link("« ".__("Previous",true),"edit/".$prev,array('class'=>'subTitles'));
      }
@@ -61,7 +64,7 @@ echo $form->end();
         echo $next;
      }
      echo "</div>";
-
+*/
 
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
 

@@ -49,7 +49,7 @@ echo $form->end();
    
 
    $options_slim = $options;
-   $options[0] = __('All users',true);
+   $options[0] = __('All phone books',0);
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
@@ -67,6 +67,7 @@ echo $form->end();
      echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
 
+
      echo "<table width='800px' class='collapsed' cellspacing=0>";
      echo $html->tableHeaders(array(
 	'',
@@ -76,7 +77,7 @@ echo $form->end();
  	$paginator->sort(__("Email",true), 'User.email'),
 	$paginator->sort(__("Skype",true), 'User.skype'),
 	$paginator->sort(__("Acl",true), 'Acl.name'),
- 	$paginator->sort(__("Phone",true), 'User.phone'),
+ 	__("Phone",true),
 	__("Actions",true)));
 
 

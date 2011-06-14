@@ -144,10 +144,6 @@ class UsersController extends AppController{
 
     function edit($id = null)    {  
 
-debug($this->Session->read('users_phone_book_id'));
-debug($this->Session->read('users_order'));
-
-
     	     $this->pageTitle = 'Edit User';   
 
              if(isset($this->params['form']['submit'])) {
@@ -178,19 +174,8 @@ debug($this->Session->read('users_order'));
 
 		$this->data = $this->User->read(null,$id);
 		$phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
-
 		$acls 	    	    = $this->User->Acl->find('list');
  		$phonebook 	    = $this->User->PhoneBook->find('list');
-
-
-
-	$this->User->bindModel(array('belongsTo' => array('PhoneBook' => array('ClassName' => 'phone_book_id'))));   
-
-//                $neighbors = $this->User->find('neighbors', array('field' => $field, 'value ' =>$this->data['User'][$field], 'dir' => 'desc'));
- //               debug($neighbors);
-
-
-
 
  		$this->set(compact('acls','phonebook','phonenumbers','neighbors'));
               

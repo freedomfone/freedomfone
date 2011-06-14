@@ -25,14 +25,13 @@
 $source  = $session->read('Message.source');
 $sort  = $session->read('messages_sort');
 
-if($source == 'index') { $location = __('Inboxes',true);} else { $location = __('Archive',true);}
+   if($source == 'index') { $location = __('Inboxes',true);} else { $location = __('Archive',true);}
 
-$keys = $session->read('messages_selected');
+     $keys = $session->read('messages_selected');
 
-debug($keys);
-echo $html->addCrumb('Message Centre', '/messages');
-echo $html->addCrumb($location, '/messages/'.$source);
-echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
+     echo $html->addCrumb('Message Centre', '/messages');
+     echo $html->addCrumb($location, '/messages/'.$source);
+     echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
 
      $current = array_keys($keys,$data['Message']['id']);
      $prev = $next = false;

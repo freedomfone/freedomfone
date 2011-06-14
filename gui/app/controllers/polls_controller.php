@@ -65,7 +65,8 @@ class PollsController extends AppController{
 
       	   $this->Poll->id = $id;
       	   $data = $this->Poll->findById($id);
-           
+           $this->set(compact('data'));
+
       }
 
 

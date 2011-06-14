@@ -382,5 +382,167 @@ class ApiController extends AppController{
         }
       }
 
+/*
+ * Retrieve message categories
+ * Method: GET
+ *
+ * @params
+ *      $id(int) Category id
+ * 
+ * @return 
+ *      $categories (array)
+ */
+      function categories($id = null){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+             $this->loadModel('Category');
+
+             if($id) {
+                    if(is_numeric($id)){
+                        $params[] = array( 'Category.id' => $id);
+                    } else {
+                        $bad_request = true;
+                    }
+              }
+
+     	      $this->Category->unbindModel(array('hasMany' => array('Message')));
+              $category = $this->Category->find('all', array('conditions' => $params));
+              $this->Api->sendHeader($category,$bad_request,$not_found);
+      }
+
+/*
+ * Retrieve message tags
+ * Method: GET
+ *
+ * @params
+ *      $id(int) Tag id
+ * 
+ * @return 
+ *      $tags (array)
+ */
+      function tags($id = null){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+             $this->loadModel('Tag');
+
+             if($id) {
+                    if(is_numeric($id)){
+                        $params[] = array( 'Tag.id' => $id);
+                    } else {
+                        $bad_request = true;
+                    }
+              }
+
+     	      $this->Tag->unbindModel(array('hasAndBelongsToMany' => array('Message')));
+              $tag = $this->Tag->find('all', array('conditions' => $params));
+              $this->Api->sendHeader($tag,$bad_request,$not_found);
+      }
+
+/*
+ * Retrieve CDR
+ * Method: GET
+ *
+ * @data
+ *      $start_time(int): epoch start time
+ *      $end_time (int): epoch end time
+ *      $caller_number (int): caller phone number
+ *      $application (string): type of application {bin, poll, lam, ivr, callback}
+ *      $user_id(int) : User id 
+ *
+ * @return 
+ *      $cdr (array)
+ */
+      function cdr(){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+           parse_str(file_get_contents("php://input"),$post_vars);
+           $keys = array('start_time', 'end_time', 'caller_number', 'application','user_id');
+
+           if(!$this->Api->validPostVars($post_vars,$keys)){
+                echo header("HTTP/1.0 400 Bad Request");
+           } else {
+
+             $this->loadModel('Cdr');
+
+             foreach($post_vars as $key => $value){
+
+                 switch($key){
+
+                        case 'start_time':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Cdr.epoch >=' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                        case 'end_time':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Cdr.epoch <=' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                        case 'caller_number':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Cdr.caller_number' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                        case 'application':
+                         if(in_array($value, array('lam','ivr','bin','poll', 'callback'))){
+                                $params[] = array( 'Cdr.application' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                        case 'user_id':
+                         if(is_numeric($value)){
+                                $params[] = array( 'Cdr.user_id' => $value);
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                   }                         
+             }
+
+           Configure::write('debug', 0);
+     	     $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
+             $cdr = $this->Cdr->find('all', array('conditions' => $params));
+             $this->Api->sendHeader($cdr,$bad_request,$not_found);
+
+         }
+     }
+  
+
 }
 ?>

@@ -110,5 +110,60 @@ class AppModel extends Model {
 
      }
 
+
+     function updateUserStatistics($proto,$sender,$application, $update){
+
+              App::import('model','User');
+              $user = new User();
+              $created = time();
+
+              //Determine state (skype or default) and fetch user data
+	      if( strcasecmp($proto,'skype')== 0) { 
+                  $state = 'skype';
+                  $userData = $user->find('first',array('conditions' => array('skype' => $sender)));
+
+              } elseif( strcasecmp($proto,'gsm') ==0  || strcasecmp($proto,'sip') == 0){  
+                  $state = 'default';
+                  $userData = $user->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
+              }
+
+
+              //If User exists
+              if ($userData){
+                     $user_id = $userData['User']['id'];
+	             $count = $userData['User'][$update]+1;
+                     $user->read(null, $userData['User']['id']);
+	 	     $user->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
+                     $user->save();           
+
+	      } else {
+              //If New User
+
+                   if($state == 'default'){
+                           $new_user =array('created'=> $created,'new'=>1,
+                                            $update  =>1,'first_app'=>$application,
+                                            'first_epoch' => $created, 'last_app'=>$application,
+                                            'last_epoch'=>$created, 'acl_id' => 1,
+                                            'name' => __('Unknown user',true));
+
+                           if ($user->save($new_user)){
+                                    $user_id = $user->getLastInsertId();
+                                    $phonenumber = array('user_id' => $user_id, 'number' => $sender);
+                                    $user->PhoneNumber->saveAll($phonenumber);
+                           }                                  
+
+                    } elseif ( $state == 'skype') {
+
+                                 $new_user =array('User.skype' => $sender,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $user->save($new_user);
+                                 $user_id = $user->getLastInsertId();
+  
+                    }
+	      }
+
+              return $user_id;
+
+       }
+
 }
 ?>

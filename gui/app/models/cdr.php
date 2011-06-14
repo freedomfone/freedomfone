@@ -47,7 +47,6 @@ class Cdr extends AppModel{
 	$mapping = Configure::read('EXT_MAPPING');
 
 
-
            //** Fetch CDR from spooler **//
       	      $array = Configure::read('cdr');
 	      $obj = new ff_event($array);	       
@@ -89,7 +88,6 @@ class Cdr extends AppModel{
 
 
 		   //Determine whether entry should be stored or not
-		   
 		   $insert = $this->insertCDR($proto,$channel_state,$answer_state,$application);
 
 		   //Calculate length of LAM and IVR calls
@@ -164,8 +162,6 @@ class Cdr extends AppModel{
 		  	$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
 
-
-
 		  }
 
 
@@ -174,68 +170,20 @@ class Cdr extends AppModel{
 			//Process only CS_ROUTING (start) messages
 			if($entry['Channel-State']=='CS_ROUTING'){
 
-			$value = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
-                        $field = false;
-		  	if( $proto == 'skype') { $field = 'skype';}
-		  	elseif( $proto == 'gsm') { $field = 'PhoneNumber.number';}
-			elseif( $proto == 'sip') { $field = 'PhoneNumber.number';}
+			$sender = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
 
 
-                        if ($proto == 'sip' || $proto == 'gsm'){
-
-                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
-
-                        } elseif ($proto == 'skype'){
-
-                           $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
-
+                        //Determine database field to update
+                        if($application == 'ivr') {
+                                $update='count_ivr';
+                        } elseif ($application == 'lam'){
+                               $update='count_lam';
                         }
 
-                        switch($application) {
+                        //Update user statistics
+                        $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
 
-                             case 'ivr':
-                                $update='count_ivr';
-                                break;
-
-                             case 'lam':
-                               $update='count_lam';
-                               break;
-
-                         }
-
-			 
-
-			if ($userData){
-
-		 		$count = $userData['User'][$update]+1;
-				$id = 	$userData['User']['id'];
-                                $this->User->id = $id;
-	 			$this->User->set(array('id' => $id, $update => $count,'last_app'=>$application,'last_epoch'=>time()));
- 		 		$this->User->save($this->User->data,false);
-
-		        } else {
-
-			      $created = time();
-
-                              if($proto == 'sip' || $proto == 'gsm'){
-
-                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-                                 $this->User->save($user,false);
-                                 $user_id = $this->User->getLastInsertId();
-                                 $phonenumber = array('user_id' => $user_id, 'number' => $value);
-                                 $this->User->PhoneNumber->saveAll($phonenumber);
-
-                              } elseif ($proto == 'skype'){
-
-                                 $user =array('skype' => $value, 'created' => $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-                                 $this->User->save($user,false);
-
-                              }        
-				
-				
-			}
-
-	           } //user
+	                } 
 
 	        } //insert into CDR		
 
@@ -250,7 +198,6 @@ class Cdr extends AppModel{
 	      }
 
       	      while ($entry = $obj->getNext('update')){
-
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
@@ -289,13 +236,12 @@ class Cdr extends AppModel{
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
 
 
-		  //Save IVR title to CDR
+		  //Save IVR title and User id to CDR
 		    
 		  $this->id = $cdr['Cdr']['id'];
 		  $this->saveField('title',$this->sanitizePhoneNumber($entry['FF-IVR-IVR-Name']));
+		  $this->saveField('user_id',$user_id);
 
-
-		  //$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
 
 	      }
 

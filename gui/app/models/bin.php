@@ -54,75 +54,25 @@ class Bin extends AppModel{
   	       	  die(printf("Unable to authenticate\r\n"));
            }
 
-     	    while ($entry = $obj->getNext('update')){
+     	   while ($entry = $obj->getNext('update')){
 
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
-              
-     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto);
-	      
-	      $this->create();
+           
+	 
+              //Update user statistics
+              $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
+
+              //Save bin data
+              $this->create();   
+     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto, 'user_id' => $user_id);   
 	      $result = $this->save($data);
 	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$sender."; Timestamp: ".$created, "bin"); 
-	 
-	      //add to CDR
-	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
-
-                        $field = false;
-		  	if( strcasecmp($proto,'skype')) { $field = 'User.skype';}
-		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
-			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
 
 
-
-
-                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));
-
-                        //Does user exist in database
-                        if (strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
-
-                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
-
-                        } elseif (strcasecmp($proto,'skype')){
-
-                           $userData = $this->User->find('first',array('conditions' => array('skype' => $sender)));
-
-                        }
-
-                        if ($userData){
-
-		 		$count = $userData['User'][$update]+1;
-                                $this->User->read(null, $userData['User']['id']);
-	 			$this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
-                                $this->User->save($data);
-                                
-
-		        } else {
-
-			      $created = time();
-
-                              if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
-
-                                 $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-
-
-                                 if ($this->User->save($user)){
-
-                                    $user_id = $this->User->getLastInsertId();
-                                    $phonenumber = array('user_id' => $user_id, 'number' => $sender);
-                                    $this->User->PhoneNumber->saveAll($phonenumber);
-                                 }                                  
-
-                              } elseif ( strcasecmp($proto,'skype')){
-
-                                 $user =array($field => $sender,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-                                 $this->User->save($user);
-  
-                              }
-		       }
-
-                       $this->unbindModel(array('hasMany' => array('User')));
+              //Create CDR
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension, application, proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
 
 	      }
 

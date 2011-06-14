@@ -188,7 +188,9 @@ class Api extends AppModel{
  */
     function sendHeader($data,$bad_request, $not_found){
 
-           if($bad_request){ 
+           if(!$data){
+                echo header("HTTP/1.0 404 Not Found");
+           } elseif($bad_request){ 
                  echo header("HTTP/1.0 400 Bad Request");
            } elseif($not_found){
                  echo header("HTTP/1.0 404 Not Found");

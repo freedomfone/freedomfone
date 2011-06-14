@@ -183,8 +183,6 @@ function checkDate($data,$field){
 
       $array = Configure::read('poll_in');
  
-
-
 	       $obj = new ff_event($array);	       
 
 	       if ($obj -> auth != true) {
@@ -203,6 +201,7 @@ function checkDate($data,$field){
 		$proto		=  $entry['proto'];
 	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
 		$matched      	=  false;
+
 
 		// CHECK A: SMS CODE EXISTS (VALID/INVALID)
 		if ($poll_entry = $this->findByCode( $polls_code)){
@@ -286,68 +285,20 @@ function checkDate($data,$field){
 			 $result = $this->query("insert into bin (body,sender,created,mode,proto)values ('$body','$sender','$created','$mode','$proto')");
 	        }
 
-  	        //Add data to CDR
-	        $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto) values ('$created','MESSAGE','','','$sender','','$application','$proto')");
-	        $this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
 
-
-
-                        $field = false;
-		  	if( strcasecmp($proto,'skype')) { $field = 'skype';}
-		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
-			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
-
+                        //Determine database field to update
 		        if($application=='poll')  { 
                             $update = 'count_poll';
                         } else { 
                             $update = 'count_bin'; 
                         } 
 
-			$value = $this->sanitizePhoneNumber($entry['from']);                        
-                        $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'id'))));
+                        //Update user statistics
+                        $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
 
-                        //Does user exist in database
-                        if (strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
-
-                           $userData = $this->User->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $value)));
-
-                        } elseif (strcasecmp($proto,'skype')){
-
-                           $userData = $this->User->find('first',array('conditions' => array('skype' => $value)));
-
-                        }
-
-                        if ($userData){
-
-		 		$count = $userData['User'][$update]+1;
-				$id = 	$userData['User']['id'];
-                                $this->User->read(null, $id);
-	 			$this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
-		 		$this->User->save($this->User->data,false);
-
-		        } else {
-
-			      $created = time();
-
-                              if(strcasecmp($proto,'sip') || strcasecmp($proto,'gsm')){
-
-                                 $user = array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-                                 if($this->User->save($user,false)){
-					$user_id = $this->User->getLastInsertId();
-                                 	$phonenumber = array('user_id' => $user_id, 'number' => $value);
-                                 	$this->User->PhoneNumber->saveAll($phonenumber);
-			          }
-
-                              } elseif ( strcasecmp($proto,'skype')){
-
-                                 $user = array('skype' => $value,'created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => __('Unknown user',true));
-
-                                 $this->User->save($user,false);
-
-                              }
-
-		       }
-
+  	                //Add data to CDR
+	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
+	                $this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
 
 
 	} //while

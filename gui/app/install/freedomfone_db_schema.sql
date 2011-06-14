@@ -231,7 +231,7 @@ CREATE TABLE `cdr` (
   `application` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
   `length` int(11) unsigned default '0',
-  `user_id` varchar(50) default NULL,
+  `user_id` int(11) unsigned default NULL,
   `title` varchar(100) default NULL,
   `quick_hangup` varchar(10) default NULL,
   PRIMARY KEY  (`id`)
@@ -659,14 +659,15 @@ CREATE TABLE `users` (
   `count_poll` int(11) unsigned default NULL,
   `count_ivr` int(11) unsigned default NULL,
   `count_lam` int(11) unsigned default NULL,
-  `callback_count` int(11) unsigned default NULL,
+  `count_bin` int(11) unsigned default NULL,
+  `count_callback` int(11) unsigned default NULL,
   `first_app` varchar(10) default NULL,
   `first_epoch` int(11) unsigned default NULL,
   `last_app` varchar(10) default NULL,
   `last_epoch` int(11) unsigned default NULL,
   `acl_id` int(11) unsigned default '0',
   `new` tinyint(4) default '1',
-  `count_bin` int(11) unsigned default NULL,
+
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

@@ -84,7 +84,7 @@ function __construct($id = false, $table = null, $ds = null) {
               $user             = $this->getCallbackUser($sender);             
               $callback_service = $this->getCallbackService($code);  
               $limits           = $this->getUserUsage($sender,$callback_service['id']);
-          
+     
               //CallbackService Open
               if(strtotime($callback_service['end_time']) < $time || strtotime($callback_service['start_time']) > $time){
 
@@ -143,7 +143,6 @@ function __construct($id = false, $table = null, $ds = null) {
                 $results = json_decode($results);
                 $header  = $HttpSocket->response['raw']['status-line'];
 
-
                 if ($this->headerGetStatus($header) == 1) {
 
                   unset($callback);
@@ -160,6 +159,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
                   $this->create();
                   $this->save($callback);
+
 
 
                   } else {

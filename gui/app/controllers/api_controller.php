@@ -543,6 +543,44 @@ class ApiController extends AppController{
          }
      }
   
+/*
+ * Retrieve Freedom Fone services
+ * Method: GET
+ *
+ * @params
+ *      $type(string): service type (ivr, lam)
+ * 
+ * @return 
+ *      $services (array)
+ */
+      function services($type = null){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+           if($type == 'lam'){ 
+                    $model = 'LmMenu';
+
+           } elseif ($type == 'ivr'){ 
+                    $model = 'IvrMenu';
+
+           }
+           else {
+                echo header("HTTP/1.0 400 Bad Request");
+           }
+
+           $this->loadModel($model);
+     	   $this->{$model}->unbindModel(array('hasMany' => array('MonitorIvr')));
+           $this->{$model}->unbindModel(array('hasMany' => array('Mapping')));
+           $services = $this->{$model}->find('all');
+           $this->Api->sendHeader($services, $bad_request,$not_found);
+      }
 
 }
 ?>

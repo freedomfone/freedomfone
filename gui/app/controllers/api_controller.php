@@ -666,5 +666,71 @@ class ApiController extends AppController{
               $this->Api->sendHeader($user,$bad_request,$not_found);
       }
 
+
+       function system(){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $this->loadModel('Process');
+ 	   $system['dispatcher_version']   = $this->Process->version(3);
+	   $system['fs_version']           = trim($this->Process->fsCommand("version"));
+           $system['apache_version']       = urlencode(apache_get_version());
+           $system['mysql_version']        = mysql_get_server_info();
+           $system['freedomfone_version']  = VERSION;
+
+           $system['svn_rev']              = $this->Process->getSVN();
+           $os = php_uname('s');
+           $cmd1 = exec('/usr/bin/lsb_release -d');
+           $cmd2 = exec('/usr/bin/lsb_release -a');
+           $release = $lsb = false;
+           if($cmd1){ 
+ 	      $release = explode(':',$cmd1); 
+           }
+           if($cmd2){ 
+ 	      $lsb = explode(':',$cmd2); 
+           }
+
+           $system['operative_system'] = array('operative_system' => $os, 'release' => trim($release[1]), 'name' => trim($lsb[1]));
+
+
+           $this->loadModel('Setting');
+	   $settings = $this->Setting->find('all');
+              foreach ($settings as $key => $value){
+                switch ($value['Setting']['name']){
+                       case 'language':
+                       $system['language'] = Configure::read('LANGUAGES.'.$value['Setting']['value_string']);
+                       break;
+
+                       case 'domain':
+                       $system['domain'] = urlencode($value['Setting']['value_string']);
+                       break;
+                
+                       case 'ip_address':
+                       $system['ip_address'] = $value['Setting']['value_string'];
+                       break;
+
+                       case 'timezone':
+                       $system['timezone'] = urlencode($value['Setting']['value_string']);
+                       break;
+
+                       case 'country':
+                       $country_id = $value['Setting']['value_string'];
+                       break;
+
+                       case 'prefix':
+                       $system['prefix'] = $value['Setting']['value_int'];
+                       break;
+                  }
+            }
+           $this->loadModel('Country');
+           $country = $this->Country->findById($country_id);
+           $system['country'] = $country['Country']['name'];
+           $data[]['system'] = $system;
+           $this->Api->sendHeader( $data, false, false);
+      }
+
 }
 ?>

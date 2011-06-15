@@ -459,11 +459,13 @@ class ApiController extends AppController{
  * Method: GET
  *
  * @data
- *      $start_time(int): epoch start time
- *      $end_time (int): epoch end time
- *      $caller_number (int): caller phone number
- *      $application (string): type of application {bin, poll, lam, ivr, callback}
- *      $user_id(int) : User id 
+ *      $start_time(int)      : epoch start time
+ *      $end_time (int)       : epoch end time
+ *      $caller_number (int)  : caller phone number
+ *      $application (string) : type of application {bin, poll, lam, ivr, callback}
+ *      $service (int)        : a  four character long numeric string unique for a certain instance of an application. 
+ *                              {2100-2119} for LAM, and {4100-4119} for IVR.
+ *      $user_id(int)         : User id 
  *
  * @return 
  *      $cdr (array)
@@ -478,13 +480,17 @@ class ApiController extends AppController{
            $params = false;
            $bad_request = false;
            $not_found   = false;
+           $page = 1;
+           $limit = 100;
 
            parse_str(file_get_contents("php://input"),$post_vars);
-           $keys = array('start_time', 'end_time', 'caller_number', 'application','user_id');
+           $keys = array('start_time', 'end_time', 'caller_number', 'application', 'user_id','service', 'limit', 'page');
+                    
 
            if(!$this->Api->validPostVars($post_vars,$keys)){
                 echo header("HTTP/1.0 400 Bad Request");
            } else {
+
 
              $this->loadModel('Cdr');
 
@@ -519,10 +525,34 @@ class ApiController extends AppController{
                         case 'application':
                          if(in_array($value, array('lam','ivr','bin','poll', 'callback'))){
                                 $params[] = array( 'Cdr.application' => $value);
+
                          } else {
                                 $bad_request = true;              
                          }
                          break;
+
+
+                         case 'service':
+
+                            $params[] = array( 'Cdr.channel_state' => 'CS_ROUTING');
+                            $application = $post_vars['application'];
+                         if($application == 'ivr'){
+                                    if($this->Api->validRange($value,4100,4119)){
+                                        $params[] = array( 'Cdr.extension' => $value);
+                                    } else {
+                                        $bad_request = true;              
+                                    }
+                         } elseif ($application == 'lam'){
+                                    if($this->Api->validRange($value,2100,2119)){
+                                        $params[] = array( 'Cdr.extension' => $value);
+                                    } else {
+                                        $bad_request = true;              
+                                    }
+                         } else {
+                              $bad_request = true;
+                         }
+                         break;
+
 
                         case 'user_id':
                          if(is_numeric($value)){
@@ -532,12 +562,28 @@ class ApiController extends AppController{
                          }
                          break;
 
+                        case 'limit':
+                         if(is_numeric($value)){
+                                $limit = $value;
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
+                        case 'page':
+                         if(is_numeric($value)){
+                                $page = $value;
+                         } else {
+                                $bad_request = true;              
+                         }
+                         break;
+
                    }                         
              }
 
-           Configure::write('debug', 0);
      	     $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
-             $cdr = $this->Cdr->find('all', array('conditions' => $params));
+     	     $this->Cdr->unbindModel(array('belongsTo' => array('User')));
+             $cdr = $this->Cdr->find('all', array('conditions' => $params, 'limit' => $limit, 'page' => $page));
              $this->Api->sendHeader($cdr,$bad_request,$not_found);
 
          }
@@ -580,6 +626,44 @@ class ApiController extends AppController{
            $this->{$model}->unbindModel(array('hasMany' => array('Mapping')));
            $services = $this->{$model}->find('all');
            $this->Api->sendHeader($services, $bad_request,$not_found);
+      }
+
+/*
+ * Retrieve user details
+ * Method: GET
+ *
+ * @params
+ *      $id(int) User id
+ * 
+ * @return 
+ *      $users (array)
+ */
+      function users($id = null){
+
+           Configure::write('debug', 0);
+           $this->autoRender = false;
+           $this->layout = 'json/default';
+           $this->RequestHandler->setContent('json','text/x-json');  
+
+           $params = false;
+           $bad_request = false;
+           $not_found   = false;
+
+             $this->loadModel('User');
+
+             if($id) {
+                    if(is_numeric($id)){
+                        $params[] = array( 'User.id' => $id);
+                    } else {
+                        $bad_request = true;
+                    }
+              }
+
+     	      $this->User->unbindModel(array('hasMany' => array('Message')));
+     	      $this->User->unbindModel(array('hasMany' => array('Cdr')));
+     	      $this->User->unbindModel(array('belongsTo' => array('Acl')));
+              $user = $this->User->find('all', array('conditions' => $params));
+              $this->Api->sendHeader($user,$bad_request,$not_found);
       }
 
 }

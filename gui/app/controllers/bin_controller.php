@@ -44,15 +44,19 @@ class BinController extends AppController{
 
            $this->Bin->refresh('manual');
       	   $this->pageTitle = 'SMS Incoming';
+           $this->Session->write('Bin.source', 'index');
 
-            if(isset($this->params['named']['sort'])) {     		
-		$this->Session->write('messages_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
-		
-	     }  elseif($this->Session->check('messages_sort')){
-		     if(in_array($this->Session->read('messags_sort'),array('body','created','mode','proto','sender'))){
-			$this->paginate['order'] = $this->Session->read('messages_sort');
-		     } 
-	     } 
+          if(isset($this->params['named']['sort'])) { 
+      		$this->Session->write('bin_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
+	  } elseif($this->Session->check('bin_sort')) { 
+  		$this->paginate['order'] = $this->Session->read('bin_sort');
+	  } 
+
+          if(isset($this->params['named']['limit'])) { 
+	       $this->Session->write('bin_limit',$this->params['named']['limit']);
+	  } elseif($this->Session->check('bin_limit')) { 
+	       $this->paginate['limit'] = $this->Session->read('bin_limit');
+	  }	
 
      	     $this->Bin->recursive = 0; 
    	     $data = $this->paginate();

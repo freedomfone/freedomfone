@@ -45,8 +45,7 @@ echo $html->addCrumb('Polls', '/polls');
 
      foreach ($polls as $key => $poll){
 
-     	     $votes=0;
-
+     	     $votes=$poll['Poll']['invalid_open'];
      	     foreach($poll['Vote'] as $option){
 	    
 		$votes = $votes + $option['chvotes'];
@@ -64,17 +63,17 @@ echo $html->addCrumb('Polls', '/polls');
 
            $row[$key] = array(
      		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),
-		$question,array($code,array('align'=>'left')),
+                array($question,array('align'=>'left','width' => '200px')),
+                array($code,array('align'=>'center','width' => '50px')),
 		array($votes,array('align' =>'center')),
-		$start,
-		$end,
-		array($view,array('align'=>'center')),
-		array($edit.' '.$delete,array('align'=>'center')));
+		array($start,array('align' =>'center', 'width' => '100px')),
+		array($end,array('align' =>'center', 'width' => '100px')),
+		array($view.' '.$edit.' '.$delete,array('align'=>'center','width' => '100px')));
 
      }
 
-    echo "<table width='90%' cellspacing =0>";
-    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Votes",true),__("Open",true),__("Close",true),__("Result",true),__("Actions",true)));
+    echo "<table cellspacing =0>";
+    echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Total Votes",true),__("Open",true),__("Close",true),__("Actions",true)), false, array('align' => 'center'));
     echo $html->tableCells($row);
     echo "</table>";
 

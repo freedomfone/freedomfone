@@ -44,8 +44,8 @@ function __construct($id = false, $table = null, $ds = null) {
       $this->validate = array(
 	'email' => array(
  			'between' => array(
- 				       'rule' => array('between', 1, 50),
- 				       'message' => __('Between 1 to 50 characters',true),
+ 				       'rule' => array('between', 1, 35),
+ 				       'message' => __('Between 1 to 35 characters',true),
 				       'allowEmpty' => true
  				       ),
 	                'email' =>array(
@@ -66,15 +66,30 @@ function __construct($id = false, $table = null, $ds = null) {
 		   		       'allowEmpty' => true
  				       ),
         'name' => array(
+                        'format' => array(
                                         'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'required' =>  true,
                                         'message'  => __('Only letters, spaces and hyphens.',true)
                                         ),
+ 			'between' => array(
+ 				       'rule' => array('between', 1, 20),
+ 				       'message' => __('Between 1 to 20 characters',true),
+				       'allowEmpty' => true
+ 				       )),
+
+
         'surname' => array(
+                       'foramt' => array(
                                         'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'allowEmpty' =>  true,
                                         'message'  => __('Only letters, spaces and hyphens.',true)
-                                        )
+                                        ),
+ 			'between' => array(
+ 				       'rule' => array('between', 1, 20),
+ 				       'message' => __('Between 1 to 20 characters',true),
+				       'allowEmpty' => true
+ 				       ))
+
 	);
 	}
 
@@ -94,11 +109,11 @@ function skypeFormat($check) {
 
 function phoneFormat($check) {
  
-  //May start with a plus sign. Then 4-25 digits
+  //May start with a plus sign. Then 4-20 digits
   $value = array_values($check);
   $value = $value[0];
 
-  return preg_match('/^[+]{0,1}[0-9]{4,25}$/', $value);
+  return preg_match('/^[+]{0,1}[0-9]{4,20}$/', $value);
   
   }
 

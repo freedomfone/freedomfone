@@ -68,6 +68,22 @@ echo $html->addCrumb('About', '/processes/system');
 
      echo "<h1>".__("About",true)."</h1>";
 
+     //Software updates
+     if ($items){
+       echo "<h2>".__("Software updates",true)."</h2>";
+       echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
+       foreach($items as $key => $item) {
+	  if($key<5){	  
+              $rss[] =  array($html->div('news',$html->link($item->get_title(), $item->get_permalink()))); 
+	  }
+       }
+    }	  
+
+    echo $html->tableCells($rss,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
+    echo "</table>"; 
+
+
+
 
      echo "<h2>".__("Freedom Fone",true)."</h2>";
      $row0[] = array(__('Version',true),__('Freedom Fone',true)." ".VERSION." (<a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a>)");
@@ -97,18 +113,5 @@ echo $html->addCrumb('About', '/processes/system');
     echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
     echo $html->tableCells($row2,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
     echo "</table>"; 
-
-
-
-    if ($items){
-      echo "<h2>".__("Latest news",true)."</h2>";
-      foreach($items as $key => $item) {
-	  if($key<5){	  
-              echo $html->div('news',$html->link($item->get_title(), $item->get_permalink())); 
-	  }
-      }
-    }	  
-
-
 
 ?>

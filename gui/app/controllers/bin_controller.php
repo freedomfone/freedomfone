@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * bin_controller.php		- Controller for Other SMS
+ * bin_controller.php		- Controller for Incoming SMS
  * version 		 	- 2.0.1170
  * 
  * Version: MPL 1.1

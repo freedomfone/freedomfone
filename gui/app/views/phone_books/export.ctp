@@ -34,7 +34,7 @@
         }
 
         //Create data headers
-       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('First application',true),__('Last application',true),__('Last active',true));
+       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('SMS count',true), __('Callback count',true),__('First application',true),__('Last application',true),__('Last active',true));
 
        $i = 1;
        while($i<= max($numbers)){
@@ -73,6 +73,8 @@
 		      $entry['User']['count_poll'],
 		      $entry['User']['count_ivr'],
 		      $entry['User']['count_lam'],
+		      $entry['User']['count_bin'],
+		      $entry['User']['count_callback'],
                       $this->element('services',array('service' => $entry['User']['first_app'])),
                       $this->element('services',array('service' => $entry['User']['last_app'])),
                       $last_epoch,

@@ -298,7 +298,9 @@ function checkDate($data,$field){
 
   	                //Add data to CDR
 	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
-	                $this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "poll"); 
+
+                        //Log poll vote (not visible under Logs)
+	                $this->log("Message: ".$mode."; Body: ".$body."; From: ".$sender."; Timestamp: ".$created, "vote"); 
 
 
 	} //while

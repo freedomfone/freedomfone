@@ -28,18 +28,20 @@ echo $html->addCrumb('Users', '/users');
 
 echo $javascript->includeScript('toggle');
 
+
 echo $form->create('User',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightTrans', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $form->create('User',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Add user',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightTrans',$form->submit(__('Add user',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 ?>
-<div class='frameRightAlone'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></div>
-<div class='frameRightAlone'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
+<div class='frameRightTrans'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></div>
+<div class='frameRightTrans'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
 <?
+
      echo "<h1>".__('Users',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
@@ -68,7 +70,7 @@ echo $form->end();
 
 
 
-     echo "<table width='800px' class='collapsed' cellspacing=0>";
+     echo "<table class='collapsed' cellspacing=0>";
      echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'User.new'),
@@ -117,13 +119,13 @@ echo $form->end();
 
         $row[$key] = array($id,
      		array($status,array('align'=>'center')),
-		$name,
-		$surname,
+     		array($name,array('width' => '100px')),
+     		array($surname,array('width' => '100px')),
 		$email,
 		$skype,
 		$acl,
 		$info,		
-		$view.' '.$edit.' '.$delete);
+		array($view.' '.$edit.' '.$delete, array('align' => 'center', 'width' => '80px')));
 	}
      
        echo $html->tableCells($row,array('class'=>'darker'));

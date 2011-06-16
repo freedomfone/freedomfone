@@ -530,7 +530,7 @@ SET character_set_client = utf8;
 CREATE TABLE `phone_numbers` (
   `id` int(11) unsigned NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
-  `number` varchar(200) NOT NULL,
+  `number` varchar(20) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- List Other SMS
+ * index.ctp	- List Incoming SMS
  * version 	- 2.0.1170
  * 
  * Version: MPL 1.1

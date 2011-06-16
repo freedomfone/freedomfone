@@ -11,6 +11,6 @@ echo "<p>Invalid votes are registered as votes, but classified as \"invalid\". \
 echo "<p>Only \"on-time\" invalid votes are incorporated into the Total number of votes (in time) summary.</p>";
 echo "<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results.</p>";
 echo "<p><b>Incorrect vote:</b> Non-matching poll code</p>";
-echo "<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Other SMS\". The SMS will be classified as \"Unclassified\".</p>";
+echo "<p>Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Incoming SMS\". The SMS will be classified as \"Unclassified\".</p>";
 
 ?>

@@ -65,7 +65,7 @@ echo $html->tableHeaders(array(
 
       foreach ($data as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
-	$body     = $entry['Bin']['body'];
+	$body     = array($entry['Bin']['body'], array('width' => '600px'));
 	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];

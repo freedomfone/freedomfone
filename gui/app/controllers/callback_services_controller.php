@@ -122,6 +122,7 @@ class CallbackServicesController extends AppController{
 
                         $socket_data = array(
                              'name'             => $campaign['code'], 
+                             'callerid'        => $dialer['caller_id'],
                              'startingdate'     => $startingdate, 
                              'expirationdate'   => $expirationdate, 
                              'frequency'        => $dialer['frequency'],
@@ -130,8 +131,8 @@ class CallbackServicesController extends AppController{
                              'intervalretry'    => $campaign['retry_interval'],
                              'calltimeout'      => $dialer['call_timeout'],
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
-                             'voipapp'          => 1, 
-                             'voipapp_data'     => $extension,
+                             'voipapp'          => $dialer['voip_app'], 
+                             'extra_data'       => $extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
                              );
@@ -156,7 +157,7 @@ class CallbackServicesController extends AppController{
       	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
 
                        }
-                       debug($header_status);
+
                            $this->redirect(array('action'=>'index'));
 
                   } else {

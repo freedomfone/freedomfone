@@ -22,7 +22,7 @@
  *
 ***************************************************************************/
 echo $html->addCrumb('Campaigns', '/campaigns');
-echo $html->addCrumb('Manage', '/campaigns/edit');
+echo $html->addCrumb('Overview', '/campaigns/edit');
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
@@ -30,7 +30,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 $order = array('batch_id' => __('Batch id',true),'created' => __('Created',true),'user_id' => __('User',true),'status' => __('Status',true), 'type' => __('Type',true),'extension' => __('Service ID',true),'retry' => __('Attempts',true));
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
 
-     echo "<h1>".__("Manage Campaigns",true)."</h1>";
+     echo "<h1>".__("Campaign Overview",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

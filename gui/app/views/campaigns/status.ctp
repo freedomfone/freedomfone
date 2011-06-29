@@ -21,14 +21,15 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback', '/callbacks');
+echo $html->addCrumb('Campaigns', '/campaigns');
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
 $order = array('Callback.campaign_id' => __('Campaign',true),'Campaign.created' => __('Created',true),'Callback.user_id' => __('User',true),'Callback.status' => __('Status',true), 'Callback.type' => __('Type',true),'Campaign.extension' => __('Service ID',true),'Callback.retries' => __('Attempts',true));
+
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
-     echo "<h1>".__("Callback Status",true)."</h1>";
+     echo "<h1>".__("Call Status",true)."</h1>";
 
 
      if ($messages = $session->read('Message.multiFlash')) {

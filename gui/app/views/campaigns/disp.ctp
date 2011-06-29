@@ -69,7 +69,6 @@
                        array(date('Y-m-d H:i A',$campaign['Campaign']['created']), array('align' => 'center')),
                        $user_link,
                        array($this->element ('dialer_status', array('status' => $campaign['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
-                       array($campaign['Callback']['type'], array('align' => 'center')),
                        array($campaign['Campaign']['extension'], array('align' => 'center')),
                        array($campaign['Callback']['retries'], array('align' => 'center')),
                        $form->input('Callback.'.$key.'.state',array('type'=>'select','options'=>$options,'label'=> false,'selected' => $campaign['Callback']['state']))
@@ -86,7 +85,6 @@
 	 __("Created",true),
  	 __("User",true), 
  	 __("Call status",true),
- 	 __("Type",true),
  	 __("Service ID",true),
  	 __("Attempts",true),
  	 __("Callback status",true)));

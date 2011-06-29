@@ -29,11 +29,11 @@ echo $html->div('frameRightAlone',$form->submit(__('Create Campaign',true),  arr
 echo $form->end();
 
 echo $form->create('Campaign',array('type' => 'post','action'=> 'edit'));
-echo $html->div('frameRightAlone',$form->submit(__('Manage Campaigns',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Campaign overview',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 echo $form->create('Campaign',array('type' => 'post','action'=> 'status'));
-echo $html->div('frameRightAlone',$form->submit(__('Callback status',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightAlone',$form->submit(__('Call status',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 

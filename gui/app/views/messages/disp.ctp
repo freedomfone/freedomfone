@@ -30,6 +30,7 @@ echo $form->end();
 
 $ext = Configure::read('EXTENSIONS');
 
+
      if ($messages){
 
      echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 

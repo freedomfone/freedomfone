@@ -127,6 +127,7 @@ class CampaignsController extends AppController{
 
                   $socket_data = array(
                              'name'             => $campaign['name'], 
+                             'callerid'        => $dialer['caller_id'],
                              'startingdate'     => $startingdate, 
                              'expirationdate'   => $expirationdate, 
                              'frequency'        => $dialer['frequency'],
@@ -135,8 +136,8 @@ class CampaignsController extends AppController{
                              'intervalretry'    => $campaign['retry_interval'],
                              'calltimeout'      => $dialer['call_timeout'],
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
-                             'voipapp'          => 1, 
-                             'voipapp_data'     => $extension,
+                             'voipapp'          => $dialer['voip_app'], 
+                             'extra_data'       => $extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
                              'monday'           => 1,
@@ -148,7 +149,6 @@ class CampaignsController extends AppController{
                              'sunday'           => 1,
                              );
               
-
                   $this->Campaign->set( $this->data );
                   if($this->Campaign->saveAll($this->data, array('validate' => 'only'))){
 
@@ -203,7 +203,11 @@ class CampaignsController extends AppController{
 
        	                       $this->_flash(__('The Campaign name is already in use. Please try again.',true), 'error');
 
-                         }   else {
+                         } elseif( $status == 5){
+
+       	                       $this->_flash(__('There is no such VoIP gateway in the Dialer.',true), 'error');
+
+                         }  else {
        	               
 
                          $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
@@ -290,7 +294,7 @@ class CampaignsController extends AppController{
    function edit() {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Manage campaign';           
+      	$this->pageTitle = 'Campaign Overview';           
 
         $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
         $this->set('campaigns', $result);  

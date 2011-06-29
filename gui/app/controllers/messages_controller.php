@@ -69,24 +69,30 @@ class MessagesController extends AppController{
       $tag = $category = $rate = $instance_id = $dir = $limit = $id = false;
       $param = $conditions = $order = array();
       $data = $this->data['Message'];
-
+      $no_match = false;
 
       if($data['tag']){
 
         $tags = $this->Message->Tag->findById($data['tag']);
-        foreach ($tags['Message'] as $key => $message){
+
+           foreach ($tags['Message'] as $key => $message){
                 $message_id[] = $message['id'];
-        }
-        $conditions['Message.id'] = $message_id;
+           }
+           if(isset($message_id)){
+           $conditions['Message.id'] = $message_id;
+           } else {
+           $no_match = true;
+           }
+
+
       }
 
+debug($data);
       if($data['category']){
          $conditions['Category.id'] = $data['category'];
          $this->Session->write('messages_category',$data['category']);
       } elseif ( $category = $this->Session->read('messages_category')){
-
         $conditions['Message.category_id']  = $category;
-
       }
 
       if($data['rate']){
@@ -144,20 +150,23 @@ class MessagesController extends AppController{
 
          $this->refreshAll();
          $this->Session->write('Message.source', 'index');
- 
 
-         $conditions['Message.status'] = 1;       
-         $this->paginate = array('conditions' => $conditions, 'order' => $order,'limit' => $limit, 'page' => $page);
-   	 $data = $this->paginate('Message');
-	 $this->set('messages',$data);  
+         $conditions['Message.status'] = 1;
+         if(!$no_match){      
+             $this->paginate = array('conditions' => $conditions, 'order' => $order,'limit' => $limit, 'page' => $page);
+   	     $data = $this->paginate('Message');
+	     $this->set('messages',$data);  
 
-         foreach ($data as $key => $message){
+             foreach ($data as $key => $message){
                 $id[] = $message['Message']['id'];
+             }
+         } else {
+
+           $this->set('messages',false);  
          }
-
-       
          $this->Session->write('messages_selected', $id);
-
+         debug($conditions);
+         debug($no_match);
 
 
       }

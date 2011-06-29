@@ -126,6 +126,7 @@ class Cdr extends AppModel{
 	       	       	       $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
 		      }
 
+
 		     $this->set('application', $application);
 
 		     if($insert){
@@ -221,7 +222,7 @@ class Cdr extends AppModel{
 		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
-	       	  $this->MonitorIvr->set('ivr_code', $this->sanitizePhoneNumber($entry['FF-IVR-IVR-Name']));
+	       	  $this->MonitorIvr->set('ivr_code', $entry['FF-IVR-IVR-Name']);
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('service',$service);
     	       	  
@@ -239,7 +240,7 @@ class Cdr extends AppModel{
 		  //Save IVR title and User id to CDR
 		    
 		  $this->id = $cdr['Cdr']['id'];
-		  $this->saveField('title',$this->sanitizePhoneNumber($entry['FF-IVR-IVR-Name']));
+		  $this->saveField('title',$entry['FF-IVR-IVR-Name']);
 		  $this->saveField('user_id',$user_id);
 
 

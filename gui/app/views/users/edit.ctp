@@ -28,6 +28,8 @@ echo $html->addCrumb('User Management', '');
 echo $html->addCrumb('Users', '/users');
 echo $html->addCrumb('Edit', '/users/edit/'.$this->data['User']['id']);
 
+
+
 echo $form->create('User',array('type' => 'post','controller' => 'users', 'action'=> 'edit'));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
@@ -35,7 +37,7 @@ echo $form->end();
 
  if($data = $this->data){
 
-     $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
+     $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'save_button'));
      echo "<h1>".__("Edit User",true)."</h1>";
      echo $html->div('content_wrap_inline');
 

@@ -97,7 +97,7 @@ $sort  = $session->read('messages_sort');
      ),array('class' => 'blue'), array('class' => 'blue'));
      echo "</table>";
 
-     $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save',true),'class' => 'button'));
+     $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save',true),'class' => 'save_button'));
      $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
      echo "<table class= 'blue' cellspacing = 0>";
      echo $html->tableCells(array($button),array('class'=>'blue'),array('class'=>'blue'));

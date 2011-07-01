@@ -37,7 +37,8 @@ echo $html->addCrumb('Polls', '/polls');
 
           
 	   echo $form->create('Poll',array('type' => 'post','action'=> 'edit'));
-           echo $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'button'));
+           echo $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'save_button'));
+
 	   echo $form->input('id',array('type' => 'hidden','value'=> $this->data['Poll']['id']));
    	   echo $form->input('invalid_open',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_open']));
    	   echo $form->input('invalid_early',array('type' => 'hidden','value'=> $this->data['Poll']['invalid_early']));
@@ -76,9 +77,6 @@ echo $html->addCrumb('Polls', '/polls');
 
 
 
-
-
-
 	  echo "<h2>".__("Poll options",true)."</h2>";
 	  echo "<div class='formComment'>".__("Alpha-numeric characters only (maximum 10)",true)."</div>";
 	  echo "<div class='formComment'>".__("Please note that all votes associated with a poll option will be deleted together with the poll option.",true)."</div>";
@@ -96,6 +94,8 @@ echo $html->addCrumb('Polls', '/polls');
      echo $html->tableCells($row, array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo $form->input('Vote.poll_id', array('type' =>'hidden', 'value' => $this->data['Poll']['id']));
+
+
      echo "</div>";
      //** END AJAX **//
 

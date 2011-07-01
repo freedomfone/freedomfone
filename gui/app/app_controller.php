@@ -570,6 +570,10 @@ return $result;
                 $status = 4;
                 break;
 
+                case 'HTTP/1.1 400 BAD REQUEST':
+                $status = 5;
+                break;
+
 
 
 

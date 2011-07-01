@@ -54,7 +54,7 @@ echo $html->addCrumb('GSM channels', '/channels');
                 echo $html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
                 echo "</table>";
 
-		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'button'));
+		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'save_button'));
 
                 echo "</div>";
 

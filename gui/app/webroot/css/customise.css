@@ -258,30 +258,50 @@ text-decoration: none;
 font-weight: normal;
 }
 
-.button {                                                                                                                                                                                                                                                      
-        display: inline-block;                                                                                                                                                                                                                                 
-        outline: none;                                                                                                                                                                                                                                         
-        cursor: pointer;                                                                                                                                                                                                                                       
-        text-align: center;                                                                                                                                                                                                                                    
-        text-decoration: none;                                                                                                                                                                                                                                 
-        font: 11px/100% Helvetica Neue, sans-serif;                                                                                                                                                                                                            
-        padding: .2em .2em .2em .2em;                                                                                                                                                                                                                          
-        text-shadow: 0 1px 1px rgba(0,0,0,.3);                                                                                                                                                                                                                 
-        -webkit-border-radius: .10em;                                                                                                                                                                                                                          
-        -moz-border-radius: .10em;                                                                                                                                                                                                                             
-        border-radius: .10em;                                                                                                                                                                                                                                  
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                          
-        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                             
-        box-shadow: 0 1px 2px rgba(0,0,0,.2);                                                                                                                                                                                                                  
-}                                                                                                                                                                                                                                                              
+.save_button {
+            margin: 0em;
+            display:block;
+            background:#fff;
+            border:1px solid #EE2E26;
+            text-align:center;
+            text-decoration:none;
+            color:#FFEFDF;
+            padding:5px;
+            font:bold 12px/100%  "Lucida Grande", Arial, Helvetica, sans-serif;
+            border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;
+            -webkit-box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            -moz-box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            } 
 
-.button:hover {                                                                                                                                                                                                                                                
-              text-decoration: none;                                                                                                                                                                                                                           
-}                                                                                                                                                                                                                                                              
-.button:active {                                                                                                                                                                                                                                               
-               position: relative;                                                                                                                                                                                                                             
-               top: 1px;                                                                                                                                                                                                                                       
-}  
+.button {           
+        display: inline-block;
+        text-decoration: none;
+        font: 11px/100% Helvetica Neue, sans-serif; 
+        padding: .2em .2em .2em .2em;
+        -webkit-border-radius: .10em;
+        -moz-border-radius: .10em;
+        border-radius: .10em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+              text-decoration: none;
+}
+
+.button:active {                                                                                                                                                                                                                                          position: relative;                                                                                                                                                                                                                         top: 1px;
+}
+
 
 
 .inputbox {

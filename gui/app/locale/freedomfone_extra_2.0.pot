@@ -1,0 +1,36 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: Revision: 6311 /app_controller.php
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-07-03 09:37+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /views/ivr_menus/index.ctp:34
+msgid "Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components associated with telephony keypad selections."
+msgstr ""
+
+#: /views/lm_menus/add.ctp:35
+#: /views/lm_menus/edit.ctp:37
+#: /views/lm_menus/settings.ctp:31
+msgid "Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file."
+msgstr ""
+
+
+#: /views/polls/index.ctp:27
+msgid "Poll|The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone.<p>The Freedom Fone administrator has the ability to create, edit and delete polls.<p>The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public.<p>Before a poll is opened, and after it has been closed, no poll votes are registered for the poll. <p>For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer."
+msgstr ""
+
+
+#: /views/polls/view.ctp:29
+msgid "Classification of votes|The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|\n<p><b>Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>|\nEarly votes will be registered as \"Valid, early\". The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll.|\n<p>Late votes will be registered as \"Valid, late\". The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll.|\n<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option|\nInvalid votes are registered as votes, but classified as \"invalid\". \"Early\", \"late\" and \"on-time\" invalid votes are registered.|\nOnly \"on-time\" invalid votes are incorporated into the Total number of votes (in time) summary.|\n<p>Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results.|\n<p><b>Incorrect vote:</b> Non-matching poll code|\nIncorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Other SMS\". The SMS will be classified as \"Unclassified\"."
+msgstr ""

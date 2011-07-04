@@ -328,8 +328,8 @@ gui/app/views/campaigns/add.ctp -text
 gui/app/views/campaigns/delete_success.ctp -text
 gui/app/views/campaigns/disp.ctp -text
 gui/app/views/campaigns/disp_edit.ctp -text
-gui/app/views/campaigns/edit.ctp -text
 gui/app/views/campaigns/index.ctp -text
+gui/app/views/campaigns/overview.ctp -text
 gui/app/views/campaigns/status.ctp -text
 gui/app/views/campaigns/user.ctp -text
 gui/app/views/campaigns/view.ctp -text

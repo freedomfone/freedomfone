@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * disp.ctp	- Display Callback jobs by status
+ * status_disp.ctp	- Display Callback jobs by status
  * version 	- 2.5.1200
  * 
  * Version: MPL 1.1

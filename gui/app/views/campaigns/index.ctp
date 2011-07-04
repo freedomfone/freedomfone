@@ -51,7 +51,7 @@ echo $form->end();
                         $callback_default['campaign_status'][$campaign['Campaign']['status']],
                         $campaign['Campaign']['start_time'],
                         $campaign['Campaign']['end_time'],
-                        array($html->link($html->image("icons/view.png", array("title" => __("Campaign status",true))), array('controller' => 'campaigns', 'action' => 'edit',$campaign['Campaign']['id'] ), array('title' => 'Campaign status', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false),array('align' => 'center')),
+                        array($html->link($html->image("icons/view.png", array("title" => __("Campaign status",true))), array('controller' => 'campaigns', 'action' => 'overview',$campaign['Campaign']['id'] ), array('title' => 'Campaign status', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false),array('align' => 'center')),
                         array($ajax->link($html->image("icons/delete.png"),'/campaigns/delete/'.$campaign['Campaign']['id'], array('update' => 'campaign'), null, 1), array('align' => 'center')),
                         );
 

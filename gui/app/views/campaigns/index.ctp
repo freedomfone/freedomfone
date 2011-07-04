@@ -24,18 +24,13 @@
 echo $html->addCrumb('Campaign', '/campaigns');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
-echo $form->create('Campaign',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Create Campaign',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-echo $form->create('Campaign',array('type' => 'post','action'=> 'edit'));
-echo $html->div('frameRightAlone',$form->submit(__('Campaign overview',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
 echo $form->create('Campaign',array('type' => 'post','action'=> 'status'));
-echo $html->div('frameRightAlone',$form->submit(__('Call status',true),  array('name' =>'submit', 'class' => 'button')));
+echo $html->div('frameRightTrans',$form->submit(__('Status',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
+echo $form->create('Campaign',array('type' => 'post','action'=> 'add'));
+echo $html->div('frameRightTrans',$form->submit(__('Create',true),  array('name' =>'submit', 'class' => 'button')));
+echo $form->end();
 
      echo "<h1>".__("Campaigns",true)."</h1>";
 
@@ -56,7 +51,8 @@ echo $form->end();
                         $callback_default['campaign_status'][$campaign['Campaign']['status']],
                         $campaign['Campaign']['start_time'],
                         $campaign['Campaign']['end_time'],
-                        $ajax->link($html->image("icons/delete.png"),'/campaigns/delete/'.$campaign['Campaign']['id'], array('update' => 'campaign'), null, 1),
+                        array($html->link($html->image("icons/view.png", array("title" => __("Campaign status",true))), array('controller' => 'campaigns', 'action' => 'edit',$campaign['Campaign']['id'] ), array('title' => 'Campaign status', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false),array('align' => 'center')),
+                        array($ajax->link($html->image("icons/delete.png"),'/campaigns/delete/'.$campaign['Campaign']['id'], array('update' => 'campaign'), null, 1), array('align' => 'center')),
                         );
 
 
@@ -71,6 +67,7 @@ echo $form->end();
  	     $paginator->sort(__("Status",true), 'status'),
 	     $paginator->sort(__("Start time",true), 'start_time'),
 	     $paginator->sort(__("End time",true), 'end_time'),
+             __('Overview',true),
              __('Delete',true)));
 
 

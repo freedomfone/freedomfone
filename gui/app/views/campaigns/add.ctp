@@ -84,7 +84,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 	$radio3,$form->input('lam_instance_id',array('type'=>'select','options' => $lam,'label'=>'','empty'=>'- '.__('Select entry',true).' -' )),
 	);
 
-       $titles = array(array(__('Selector',true),array('colspan'=>2,'align' => 'center')),array(__('Voice Menu',true),array('colspan'=>2,'align' => 'center')),array(__('Leave-a-Message',true),array('colspan'=>2,'align' => 'center')));
+       $titles = array(array(__('Language selector',true),array('colspan'=>2,'align' => 'center')),array(__('Voice Menu',true),array('colspan'=>2,'align' => 'center')),array(__('Leave-a-Message',true),array('colspan'=>2,'align' => 'center')));
 
        echo "<fieldset>";
        echo "<legend>".__('Service',true)."</legend>";
@@ -125,7 +125,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        echo "<table cellspacing = 0 class='none'>";
        echo $html->tableCells(array (
             array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime','interval' => 15 ))),
-            array(__("End time",true),	        $form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected'=> time()+3600))),
+            array(__("End time",true),	        $form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected'=> time()+86400))),
       ),array('class'=>'none'),array('class'=>'none'));
       echo "</table>";
       echo "</fieldset>";

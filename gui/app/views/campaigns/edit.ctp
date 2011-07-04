@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * edit.ctp             - Manage  (stop and start) callback campaigns 
- * version 	        - 2.5.1200
+ * edit.ctp             - Display callback requests by Campaign name
+ * version 	        - 2.5.1400
  * 
  * Version: MPL 1.1
  *
@@ -20,35 +20,57 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
-***************************************************************************/
-echo $html->addCrumb('Campaigns', '/campaigns');
-echo $html->addCrumb('Overview', '/campaigns/edit');
+ ***************************************************************************/
 
-$ivr_settings = Configure::read('IVR_SETTINGS');
-$callback_default  = Configure::read('CALLBACK_DEFAULT');
 
-$order = array('batch_id' => __('Batch id',true),'created' => __('Created',true),'user_id' => __('User',true),'status' => __('Status',true), 'type' => __('Type',true),'extension' => __('Service ID',true),'retry' => __('Attempts',true));
-$dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
+//   echo $ajax->div("service_div");
+   $status = false;
 
-     echo "<h1>".__("Campaign Overview",true)."</h1>";
+   $callback_default  = Configure::read('CALLBACK_DEFAULT');
+   $options = $callback_default['campaign_status'];
+   unset($options[4]);
 
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-     }
-   
+   echo $form->create('Campaign', array('type' => 'post', 'action' => 'set_status','enctype' => 'multipart/form-data') );  
 
-     echo $form->create("Campaign");
-     $input = $form->input('id',array('id'=>'ServiceType2','type'=>'select','options'=>$campaigns,'label'=> false,'empty'=>'-- '.__('Select campaign',true).' --'));
-   
-     echo "<table cellspacing = 0 class ='none'>";
-     echo $html->tableCells(array($input), array('class'=>'none'),array('class'=>'none'));
-     echo "</table>";
+  if ($campaign){
 
-     $opt = array("update" => "service_div","url" => "disp_edit","frequency" => "0.2" );
-     echo $ajax->observeForm("CampaignAddForm",$opt);
-     echo $form->end();
-     echo "<div id='service_div' style=''></div>";
+   echo $form->input('id',array('type'=>'hidden','value'=>$campaign['Campaign']['id']));
 
+        foreach($campaign['Callback'] as $key => $callback){
+              $status[] = $callback['status'];
+        }
+
+        $total   = sizeof($status);
+        $pending = $number->toPercentage(100*sizeof(array_keys($status,1))/$total,0);
+        $failure = $number->toPercentage(100*sizeof(array_keys($status,2))/$total,0);
+        $retry   = $number->toPercentage(100*sizeof(array_keys($status,3))/$total,0);
+        $success = $number->toPercentage(100*sizeof(array_keys($status,4))/$total,0);
+        $abort   = $number->toPercentage(100*sizeof(array_keys($status,5))/$total,0);
+        $pause   = $number->toPercentage(100*sizeof(array_keys($status,6))/$total,0);
+        $process = $number->toPercentage(100*sizeof(array_keys($status,7))/$total,0);
+
+        $campaign_status = $form->input('status',array('options' => $options, 'label' => false, 'selected' => $campaign['Campaign']['status']));
+        $submit       = $form->end(array('name' =>__('Save',true),'label' => __('Save',true), 'class' => 'save_button'));
+ 
+           echo "<table width='90%' cellspacing  = '0' class = 'stand-alone'>";
+           $row[] = array(__('Name',true), $campaign['Campaign']['name']);
+           $row[] = array(__('Start Time',true), $campaign['Campaign']['start_time']);
+           $row[] = array(__('End Time',true), $campaign['Campaign']['end_time']);
+           $row[] = array(__('Pending',true), $pending);
+           $row[] = array(__('Failure',true), $failure);
+           $row[] = array(__('Retry',true), $retry);
+           $row[] = array(__('Success',true), $success);
+           $row[] = array(__('Abort',true), $abort);
+           $row[] = array(__('Pause',true), $pause);
+           $row[] = array(__('Processing',true), $process);
+           $row[] = array(__('Status',true), $campaign_status);
+           $row[] = array(array($submit, array('colspan' => 2)));
+           echo $html->tableCells($row,array('class'=>'stand-alone'),array('class'=>'stand-alone'));
+           echo "</table>";
+
+                   
+        }
+
+//     echo $ajax->divEnd("service_div");
 
 ?>
-

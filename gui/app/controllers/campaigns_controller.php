@@ -63,6 +63,7 @@ class CampaignsController extends AppController{
  */
         function add(){
 
+           $this->pageTitle = 'Create campaign';
            $callback_type  = 'OUT';
            $status         = 'pending';
    	   $dialer = Configure::read('DIALER');
@@ -287,17 +288,13 @@ class CampaignsController extends AppController{
 
 /*
  *
- * Stop/pause/abort campaigns. See campaign delivery results
+ * Stop/pause/abort campaigns.
  *
  *
  */
-   function edit() {
+   function set_status() {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Campaign Overview';           
-
-        $result = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
-        $this->set('campaigns', $result);  
 
         if(!empty($this->data)){
 
@@ -307,7 +304,6 @@ class CampaignsController extends AppController{
               $nf_campaign_id = $data['Campaign']['nf_campaign_id'];
 
               $socket_data = array('status' => $status);
-
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
               $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id, $socket_data, $request); 
@@ -324,11 +320,11 @@ class CampaignsController extends AppController{
        	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
               }
               
-              $this->redirect(array('action'=>'edit'));   	 
+              $this->redirect(array('action'=>'/'));   	 
 
        }
 
-        }
+    }
 
 
 
@@ -338,12 +334,14 @@ class CampaignsController extends AppController{
  *
  *
  */
-   function disp_edit(){
+   function overview($id = null){
 
-        $id = $this->data['Campaign']['id'];
+
+        Configure::write('debug',0);
         $data = $this->Campaign->findById($id);
 	$this->set('campaign', $data);  
 
+   
    }
 
 
@@ -398,7 +396,7 @@ class CampaignsController extends AppController{
  *
  */
 
-   function disp(){
+   function status_disp(){
 
        $status = $campaign = $data = $order = $dir = false;
 

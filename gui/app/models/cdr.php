@@ -59,6 +59,8 @@ class Cdr extends AppModel{
 
       	      while ($entry = $obj->getNext('update')){
 
+                  $userData = false;
+
 	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];
 	      	  $answer_state = $entry['Answer-State'];

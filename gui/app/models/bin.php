@@ -55,6 +55,7 @@ class Bin extends AppModel{
 
      	    while ($entry = $obj->getNext('update')){
 
+              $userData = false;
 	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
 	      $sender	= urldecode($entry['from']);
 	      $proto   = $entry['proto'];
@@ -72,8 +73,6 @@ class Bin extends AppModel{
 		  	if( strcasecmp($proto,'skype')) { $field = 'User.skype';}
 		  	elseif( strcasecmp($proto,'gsm')) { $field = 'PhoneNumber.number';}
 			elseif( strcasecmp($proto,'sip')) { $field = 'PhoneNumber.number';}
-
-
 
 
                         $this->bindModel(array('hasMany' => array('User' => array('className' => 'User','foreignKey' => 'user_id'))));

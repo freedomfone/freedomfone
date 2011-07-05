@@ -195,6 +195,7 @@ function checkDate($data,$field){
 
       	    while ($entry = $obj->getNext('update')){
 
+                $userData = false;
 	        $body 	        =  $entry['Body']; 
 		$_message	=  explode(' ',$body);
 		$polls_code   	=  trim($_message[0]);

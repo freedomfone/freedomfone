@@ -1,0 +1,11 @@
+CHANGELOG
+
+2.0.3
+
+* Automatic merge of new users
+Callers (not present as Users in Freedom Fone) are merged to one User with multiple phone numbers if they are processed in the same spooler batch.
+
+2.0.2
+
+* OfficeRoute SMS timestamp
+Timestamp set to 0 (January 1, 1970) for incoming SMS via OfficeRoute.

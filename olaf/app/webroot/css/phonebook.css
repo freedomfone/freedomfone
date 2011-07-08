@@ -1,0 +1,120 @@
+#PhoneBookEditForm{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#999;
+	font-size:15px;
+}
+#PhoneBookEditForm h1{
+	font-size:20px;
+	color:#FF9900;
+	font-weight:bold;
+}
+#PhoneBookEditForm .cell1, #PhoneBookEditForm .cell2{
+	display:table-cell;
+}
+#PhoneBookEditForm .cell1{
+	width:120px;
+}
+#PhoneBookEditForm .users{
+	display:table-cell;
+	width:300px;
+	padding:10px;
+}
+#PhoneBookEditForm .listHeader{
+	background:url(../img/phonebook/listsHeaderBg.png) repeat-x top;
+	color:#FFF;
+	border:1px solid #CCC;
+	border-bottom:none;
+	-moz-border-radius: 7px 7px 0 0;
+	-webkit-border-radius: 7px 7px 0 0;
+	border-radius: 7px 7px 0 0;
+	padding:5px;
+	
+}
+#PhoneBookEditForm .listUsers{
+	border:1px solid #CCC;
+	border-top:none;
+	padding:5px;
+}
+#PhoneBookEditForm .listTitle, #PhoneBookEditForm .listAction{
+	display:inline;
+}
+#PhoneBookEditForm .listAction{
+	float:right;
+}
+#PhoneBookEditForm .contactAction{
+	text-align:right;
+}
+#PhoneBookEditForm .listTitle{
+	font-size:23px;
+	font-weight:bold;
+}
+#PhoneBookEditForm .userContactDetails, #PhoneBookEditForm .contactAction{
+	display:table-cell;
+}
+#PhoneBookEditForm .userDetail{
+	display:table;
+	width:100%;
+}
+#PhoneBookEditForm .hiddenCb{
+	display:none;
+}
+#PhoneBookEditForm input.button{
+	font-size:15px;
+	padding:6px;
+	-moz-border-radius: 7p;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	width:90px;
+	margin:4px;
+}
+#PhoneBookEditForm input.saveBtn{
+	background:#006600 url(../img/phonebook/saveBtnBg.png) repeat-x top;
+	color:#FFF;
+	border:none;
+}
+#PhoneBookEditForm input.cancelBtn{
+	background:#FFFFE3 url(../img/phonebook/cancelBtnBg.png) repeat-x top;
+	color:#F90;
+	border:1px solid #ccc;
+}
+#PhoneBookEditForm .buttons{
+	text-align:center;
+}
+#PhoneBookEditForm .note{
+	font-size:0.7em;
+	padding:10px;
+	margin-top:20px;
+	
+}
+#PhoneBookEditForm .noteTitle{
+	font-weight:bold;
+	color:#900;
+}
+#PhoneBookEditForm .add{
+	color:#669900;
+	text-decoration:underline;
+	cursor:pointer;
+}
+#PhoneBookEditForm .added{
+	color:#8ED32B;
+	cursor:default;
+}
+#PhoneBookEditForm .remove{
+	color:#FA0000;
+	text-decoration:underline;
+	cursor:pointer;
+}
+#PhoneBookEditForm .user{
+	border-bottom:1px dotted #ccc;
+	padding:5px 0;
+}
+#PhoneBookEditForm .userName{
+	font-weight:bold;
+	color:#666;
+}
+#PhoneBookEditForm .userDetail{
+	font-size:0.8em;
+}
+form#PhoneBookEditForm .row{
+	padding:5px;
+}

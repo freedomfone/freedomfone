@@ -28,35 +28,97 @@ echo $html->addCrumb('Edit', '/phone_books/edit/'.$this->data['PhoneBook']['id']
 
 
 
-      if($this->data){
+if($this->data){
 
-      echo "<h1>".__("Edit Phone book",true)."</h1>";
-      $session->flash();
-
-      $options_name = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'20');
-      $options_longname = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'50');
-
-
-      echo $form->create('PhoneBook',array('type' => 'post','action'=> 'edit'));
-      echo $form->hidden('id');
+	echo "<h1>".__("Edit Phone book",true)."</h1>";
+	$session->flash();
+	
+	$options_name = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'20', 'div'=>'cell2');
+	$options_longname = array('label' =>  array('text'=>false), 'type'=>'text','size'=>'50');
 
 
-      
-     echo "<table width='600px' cellspacing='0' >";
-     echo $html->tableCells(array (
-     	  array(array(__("Name",true),array('width' =>'150px')),	        $form->input('name',$options_name)),
-     	  array(__("Description",true),                                         $form->input('description',$options_longname)),
-     	  array(array(__("Add user to phone book",true),array('valign' => 'top')),		                        $form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>"-- ".__('Use in none',true)." --"))),
-     	  array('',	$form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+	echo $form->create('PhoneBook',array('type' => 'post','action'=> 'edit'));
+	echo $form->hidden('id');
 
-    echo "</table>";
 
-    }
-    else {
-    
-    echo "<h1>".__("No phone book with this id exists",true)."</h1>";
+	echo "<div class='row'>";
+		echo $html->div('cell1 label', 'Name');
+		echo $form->input('name', array('label' => false, 'type'=>'text','size'=>'20', 'div'=>'cell2'));
+	echo "</div>";
+	echo "<div class='row'>";
+		echo $html->div('cell1 label', 'Description');
+		echo $form->input('description', array('label' =>  false, 'type'=>'text','size'=>'20', 'div'=>'cell2'));
+	echo "</div>";
+	
+	echo $form->input('User',array('type'=>'select','multiple'=>'checkbox', 'options' => $users, 'div'=>'row hiddenCb'));
+	
+	
+	echo "<div class='listAll users'>";
+		echo "<div class='listHeader'>";
+			echo $html->div('listTitle', 'All Users');
+			echo $html->div('listAction', 'add all');
+		echo "</div>";
+		echo "<div class='listUsers'>";
+			while ($user = current($users)) {
+				echo "<div class='user' title='".key($users)."'>";
+					echo "<div class='userName'>".$user."</div>";
+					echo "<div class='userDetail'>";
+						echo "<div class='userContactDetails'>";
+							echo $html ->div('contact', 'tel: +123456789');
+							echo $html ->div('contact', 'skype: olaf');
+						echo "</div>";
+						echo $html->div('contactAction add', 'click to add [+]');
+					echo "</div>";
+				echo "</div>";
+				next($users);
+			}
+			?>
+			<div class="note">
+				<div class="noteTitle">HINT:</div>
+				<div class="noteDetail">Clicking 'click to add [+]' will add the contact to your selected users list</div>
+			</div>
+			<?php
+			
+		echo "</div>";
+	echo "</div>";
+	$selectedUsers = $this->data['User'];
+	
+	echo "<div class='listSelected users'>";
+		echo "<div class='listHeader'>";
+			echo $html->div('listTitle', 'Selected Users');
+			echo $html->div('listAction', 'remove all');
+		echo "</div>";
+		echo "<div class='listUsers'>";
+			while ($user = current($selectedUsers)) {
+				echo "<div class='user' title='".$user['id']."'>";
+					echo "<div class='userName'>".$user['name']."</div>";
+					echo "<div class='userDetail'>";
+						echo "<div class='userContactDetails'>";
+							echo $html ->div('contact', 'tel: +123456789');
+							echo $html ->div('contact', 'skype: '.$user['skype']);
+						echo "</div>";
+						echo $html->div('contactAction remove', 'click to remove [-]');
+					echo "</div>";
+				echo "</div>";
+				next($selectedUsers);
+			}
+			?>
+			<div class="note">
+				<div class="noteTitle">NOTE:</div>
+				<div class="noteDetail">Clicking "remove all" will not remove the user from the system, just remove them from this list</div>
+			</div>
+			<?php
+		echo "</div>";
+	echo "</div>";
+	
+	echo "<div class='buttons'>";				
+		echo $form->end(array('label'=>'Save', 'class'=>'saveBtn button', 'div'=>false));
+		echo $form->button('Cancel', array('type'=>'reset', 'class'=>'cancelBtn button'));
+	echo "</div>";
 
-    }
+} else {
+	echo "<h1>".__("No phone book with this id exists",true)."</h1>";
+}
 
 
 

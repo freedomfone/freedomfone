@@ -78,7 +78,7 @@ class PhoneBooksController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->PhoneBook->read(null, $id);
 
-			$users   = $this->PhoneBook->User->find('list');
+			$users   = $this->PhoneBook->User->find('all');
 
 			$this->set(compact('users'));
 		}

@@ -60,12 +60,13 @@ if($this->data){
 		echo "</div>";
 		echo "<div class='listUsers'>";
 			while ($user = current($users)) {
-				echo "<div class='user' title='".key($users)."'>";
-					echo "<div class='userName'>".$user."</div>";
+				$userDetail= $user['User'];
+				echo "<div class='user' title='".$userDetail['id']."'>";
+					echo "<div class='userName'>".$userDetail['name']."</div>";
 					echo "<div class='userDetail'>";
 						echo "<div class='userContactDetails'>";
 							echo $html ->div('contact', 'tel: +123456789');
-							echo $html ->div('contact', 'skype: olaf');
+							echo $html ->div('contact', 'skype: '.$userDetail['skype']);
 						echo "</div>";
 						echo $html->div('contactAction add', 'click to add [+]');
 					echo "</div>";

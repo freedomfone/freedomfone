@@ -204,7 +204,7 @@ class UsersController extends AppController{
                            $core['User']['count_bin']  += $tmp['User']['count_bin'];
                            $core['User']['new'] = 0;
 
-                           if(!$core['User']['email']){ $core['User']['email'] = $tmp['User']['count_bin'];}
+                           if(!$core['User']['email']){ $core['User']['email'] = $tmp['User']['email'];}
                            if(!$core['User']['first_app']){ $core['User']['first_app'] = $tmp['User']['first_app'];}
                            if(!$core['User']['last_app']){ $core['User']['last_app'] = $tmp['User']['last_app'];}
                            $core['User']['created'] = min(array($core['User']['created'],$tmp['User']['created']));

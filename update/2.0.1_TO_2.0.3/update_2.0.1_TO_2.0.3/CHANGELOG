@@ -3,9 +3,14 @@ CHANGELOG
 2.0.3
 
 * Automatic merge of new users
-Callers (not present as Users in Freedom Fone) are merged to one User with multiple phone numbers if they are processed in the same spooler batch.
+Bug: Callers (not present as Users in Freedom Fone) are merged to one User with multiple phone numbers if they are processed in the same spooler batch (FIXED)
 
+* Export of CDR reports
+Bug: Header Channel missing in CSV file (FIXED)
+Zero length calls are displayed as 0 sec (instead of empty field)
+
+ 
 2.0.2
 
 * OfficeRoute SMS timestamp
-Timestamp set to 0 (January 1, 1970) for incoming SMS via OfficeRoute.
+Bug: Timestamp set to 0 (January 1, 1970) for incoming SMS via OfficeRoute (FIXED)

@@ -142,7 +142,8 @@ $config['CALLBACK_DEFAULT']=	array(
                 'max_retries'                  => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
                 'retry_interval'               => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
                 'max_duration'                 => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
-                'status'                       => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)),
+                'status_all'                       => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)),
+                'status'                       => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '7' => __('Process',true)),
                 'campaign_status'              => array('1' => __('Start',true), '2' => __('Pause',true), '3' => __('Abort',true), '4' => __('End',true)),
                 'max_calls_user'               => array(0 => __('Unlimited', true) , 1 => 1, 5 => 5, 10 => 10, 25 => 25, 50 => 50),
                 'max_calls_user_default'       => 10,
@@ -156,17 +157,19 @@ $config['CALLBACK_DEFAULT']=	array(
 
                 
 $config['DIALER'] = array(
-                  'host'           => 'http://rajesh.it.kth.se:9000/',
+                  'host'           => 'http://newfies.it46.se:9080/',
                   'campaign'       => 'api/dialer_campaign/campaign/',
                   'contact'        => 'api/dialer_campaign/contact/',
                   'callrequest'    => 'api/dialer_cdr/callrequest/',
-                  'user'           => 'areski',
-                  'pwd'            => 'areski',
+                  'user'           => 'admin',
+                  'pwd'            => 'freedomfone',
                   'account'        => '',
                   'a-leg_gateway'  => 1,
                   'b-leg_gateway'  => 1,
                   'frequency'      => '60',
                   'call_timeout'   => '60',
+                  'voip_app'       => 1,
+                  'caller_id'      => '123456'
                   );
 
 $config['IVR_MONITOR']=	array(

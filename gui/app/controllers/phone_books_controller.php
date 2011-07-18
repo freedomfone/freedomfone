@@ -80,6 +80,7 @@ class PhoneBooksController extends AppController {
 
 			$users   = $this->PhoneBook->User->find('list');
 
+
 			$this->set(compact('users'));
 		}
 

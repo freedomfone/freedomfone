@@ -49,10 +49,4 @@ Router::connect('selectors/edit/*', array('controller' => 'ivr_menus', 'action' 
 
 Router::connect('selectors/delete/*', array('controller' => 'ivr_menus', 'action' => 'delete'));
 
-
-Router::mapResources('Api');
-Router::parseExtensions('xml','json');
-Router::connect( "/controller/", array("action" => "get", "[method]" => "GET"));
-
-
 ?>

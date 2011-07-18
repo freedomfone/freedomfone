@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * missing_view.ctp	- Error message when view does not exist.
- * version 		- 1.0.353
+ * version 		- 3.0
  * 
  * Version: MPL 1.1
  *
@@ -22,6 +22,6 @@
  *
  ***************************************************************************/
 
-
+echo $html->addCrumb('', '');
 echo "<h3>".__('This view does not exist.',true)."</h3>";
 ?>

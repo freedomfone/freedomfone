@@ -305,18 +305,19 @@ class UsersController extends AppController{
                            $tmp = $this->User->read();
                            $this->log("INFO MERGE {ID: ".$tmp['User']['id']."; NAME: ".$tmp['User']['name']." ".$tmp['User']['surname']."}", "user");                       
                            
-                           $core['User']['name'].= $tmp['User']['name'];
-                           $core['User']['surname'].= $tmp['User']['surname'];
-                           $core['User']['skype'].= $tmp['User']['skype'];
-                           $core['User']['organization'].= $tmp['User']['organization'];
+                           $core['User']['name']         = substr($core['User']['name'].$tmp['User']['name'],0,20);
+                           $core['User']['surname']      = substr($core['User']['surname'].$tmp['User']['surname'],0,20);
+                           $core['User']['skype']        = substr($core['User']['skype'].$tmp['User']['skype'],0,20);
+                           $core['User']['organization'] = substr($core['User']['organization'].$tmp['User']['organization'],0,20);
 
                            $core['User']['count_poll'] += $tmp['User']['count_poll'];
                            $core['User']['count_ivr']  += $tmp['User']['count_ivr'];
                            $core['User']['count_lam']  += $tmp['User']['count_lam'];
                            $core['User']['count_bin']  += $tmp['User']['count_bin'];
+                           $core['User']['count_callback']  += $tmp['User']['count_callback'];
                            $core['User']['new'] = 0;
 
-                           if(!$core['User']['email']){ $core['User']['email'] = $tmp['User']['count_bin'];}
+                           if(!$core['User']['email']){ $core['User']['email'] = $tmp['User']['email'];}
                            if(!$core['User']['first_app']){ $core['User']['first_app'] = $tmp['User']['first_app'];}
                            if(!$core['User']['last_app']){ $core['User']['last_app'] = $tmp['User']['last_app'];}
                            $core['User']['created'] = min(array($core['User']['created'],$tmp['User']['created']));
@@ -326,14 +327,17 @@ class UsersController extends AppController{
                            $core['User']['acl_id'] = max(array($core['User']['acl_id'],$tmp['User']['acl_id']));
 
                            $j = sizeof($core['PhoneNumber']);
+                           unset($core['PhoneNumber']);
                            if($tmp['PhoneNumber']){
                                 foreach($tmp['PhoneNumber'] as $i => $phone_number){
                            
-                                        $core['PhoneNumber'][$j+$i+1]['user_id'] = $core['User']['id'];
-                                        $core['PhoneNumber'][$j+$i+1]['number'] = $phone_number['number'];
+                                        $core['PhoneNumber'][$i]['user_id'] = $core['User']['id'];
+                                        $core['PhoneNumber'][$i]['number'] = $phone_number['number'];
                          
                                 }
                            }
+
+//                           unset($core['PhoneBooks']);
                            if($tmp['PhoneBook']){
                                 foreach($tmp['PhoneBook'] as $i => $phone_book){
   
@@ -346,9 +350,17 @@ class UsersController extends AppController{
                            $this->User->del($tmp['User']['id']);
                         }
 
-                      $this->User->saveAll($core);
-                      $this->User->PhoneBook->save($core['PhoneBook']);
+                      if($this->User->PhoneNumber->validates()){
+debug($core);
+                        $this->User->id = $core['User']['id'];
+                        $this->User->save($core['User'], array('validate' => false));
+                        $this->User->PhoneNumber->saveAll($core['PhoneNumber']);      
+                        $this->User->PhoneBook->saveAll($core['PhoneBook'], array('validate' => false));
+                      
+                      } else {
+                        $errors = $this->User->invalidFields();
 
+                      }
 
 
                  } //switch		     

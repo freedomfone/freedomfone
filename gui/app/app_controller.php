@@ -523,7 +523,7 @@ return $result;
 
      function refreshAll(){
 
-     $this->requestAction('/callbacks/refresh/manual');
+
      $this->requestAction('/polls/refresh/manual');
      $this->requestAction('/messages/refresh');
      $this->requestAction('/cdr/refresh/manual');

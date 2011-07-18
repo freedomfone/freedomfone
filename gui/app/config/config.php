@@ -73,12 +73,6 @@ $config['gsmopen']= array(
 	       'database' => 'spooler_in',
 	       );
 
-$config['public_api']= array(
-	       'user'      => 'api',
-	       'password' => 'freddyboy',
-	       );
-
-
 	       	      
 
 /*
@@ -153,24 +147,6 @@ $config['CALLBACK_DEFAULT']=	array(
                 'max_calls_total_default'      => 250,
                 );
 
-
-
-                
-$config['DIALER'] = array(
-                  'host'           => 'http://newfies.it46.se:9080/',
-                  'campaign'       => 'api/dialer_campaign/campaign/',
-                  'contact'        => 'api/dialer_campaign/contact/',
-                  'callrequest'    => 'api/dialer_cdr/callrequest/',
-                  'user'           => 'admin',
-                  'pwd'            => 'freedomfone',
-                  'account'        => '',
-                  'a-leg_gateway'  => 1,
-                  'b-leg_gateway'  => 1,
-                  'frequency'      => '60',
-                  'call_timeout'   => '60',
-                  'voip_app'       => 1,
-                  'caller_id'      => '123456'
-                  );
 
 $config['IVR_MONITOR']=	array(
 	        'script'             => 'scripts/freedomfone/monitor_ivr/main.js'

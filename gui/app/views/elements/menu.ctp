@@ -150,35 +150,6 @@
 </li>
 
 
-
-
-<li><?php echo __("Dialer",true);?>
-<ul>
-<li>
-<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
-<?php echo $html->link(__("Campaigns",true),'/campaigns'); ?>
-<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
-</li>
-
-<li>
-<?php echo $html->link(__("Callback services",true),'/callback_services'); ?>
-</li>
-
-
-<li>
-<?php echo $html->link(__("Settings",true),'/callback_settings'); ?>
-</li>
-
-
-<li class='last'>
-<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
-<?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>
-<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
-</li>
-</ul>
-</li>
-
-
 <li><?php echo __("System data",true);?>
 <ul>
 

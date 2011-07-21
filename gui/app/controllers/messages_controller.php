@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * messages_controller.php	- Controller for Leave-a-message messages. Manages CRUD operations on messages.
- * version 		 	- 2.0.1230
+ * version 		 	- 2.5.1350
  * 
  * Version: MPL 1.1
  *
@@ -87,7 +87,7 @@ class MessagesController extends AppController{
 
       }
 
-debug($data);
+
       if($data['category']){
          $conditions['Category.id'] = $data['category'];
          $this->Session->write('messages_category',$data['category']);
@@ -165,8 +165,6 @@ debug($data);
            $this->set('messages',false);  
          }
          $this->Session->write('messages_selected', $id);
-         debug($conditions);
-         debug($no_match);
 
 
       }
@@ -176,7 +174,8 @@ debug($data);
       function archive(){
 
          $this->refreshAll();
-         $this->pageTitle = 'Leave-a-Message : Archive';
+ 
+         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Archive',true);
          $this->Session->write('Message.source', 'archive');
      
          if(isset($this->params['named']['sort'])) { 
@@ -193,8 +192,9 @@ debug($data);
 	   $this->paginate['limit'] = $this->Session->read('messages_limit');
 	 }	
 
-         $this->Message->recursive = 0; 
-   	 $data = $this->paginate('Message', array('Message.status' => '0'));
+         $conditions['Message.status'] = 0;
+         $this->paginate = array('conditions' => $conditions);
+   	 $data = $this->paginate('Message');
 	 $this->set('messages',$data);
 
         }
@@ -211,7 +211,7 @@ debug($data);
 
     function edit($id = null)    {  
 
-    	     $this->pageTitle = 'Leave-a-Message : Edit';   
+            $this->pageTitle = __('Leave-a-Message',true)." : ".__('Edit',true);
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));

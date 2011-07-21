@@ -28,7 +28,7 @@ class CategoriesController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = 'Categories';
+      		$this->pageTitle = __('Categories',true);
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->paginate());
 	}
@@ -36,7 +36,7 @@ class CategoriesController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = 'Categories : Add';
+      		$this->pageTitle = __('Add category');
 		if (!empty($this->data)) {
 		  
 			$this->Category->create();
@@ -59,7 +59,7 @@ class CategoriesController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Categories : Edit';
+      		$this->pageTitle = __('Edit category',true);
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid Category', true),'warning');

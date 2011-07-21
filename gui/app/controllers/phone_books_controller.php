@@ -32,7 +32,7 @@ class PhoneBooksController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = 'Phone books';
+      		$this->pageTitle = __('Phone books',true);
 		$this->PhoneBook->recursive = 0;
 		$this->set('data', $this->paginate());
 
@@ -43,7 +43,7 @@ class PhoneBooksController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = 'Phone books : Add';
+      		$this->pageTitle = __('Add Phone book',true);
 
 		if (!empty($this->data)) {
 			$this->PhoneBook->create();
@@ -59,7 +59,7 @@ class PhoneBooksController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Phone books : Edit';
+      		$this->pageTitle = __('Edit Phone book',true);
 
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid id', true));

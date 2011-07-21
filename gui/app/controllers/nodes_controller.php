@@ -33,7 +33,7 @@ class NodesController extends AppController{
       function index(){
 
 
-      	$this->pageTitle = 'Content';           
+      	$this->pageTitle = __('Content',true);           
         $this->paginate['limit'] = 10;
 	$this->Node->recursive = 0; 
 
@@ -53,7 +53,7 @@ class NodesController extends AppController{
 
    function add(){
 
-      	$this->pageTitle = 'Upload content';           
+      	$this->pageTitle = __('Upload content',true);           
 
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
@@ -154,7 +154,7 @@ $this->render();
 
    function edit($id=null){
 
-      	$this->pageTitle = 'Edit content';           
+      	$this->pageTitle = __('Edit content',true);           
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
         $_titleOK = $_fileOK = true;

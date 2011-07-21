@@ -158,16 +158,21 @@ class CallbackServicesController extends AppController{
 
                         } elseif ($header_status == 2)  {                      
       	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
+                        } elseif ($header_status == 5)  {                      
+      	                 $this->_flash(__('The dialer is not configured properly.', true)." (".$header.")", 'error');
                         } elseif ($header_status == 6)  {                      
-      	                 $this->_flash(__('Authentication failed with selected dialer.', true), 'error');
+      	                 $this->_flash(__('Authentication failed with selected dialer.', true)." (".$header.")", 'error');
                        }
 
 
 
                   } else {
 
+                    if(array_key_exists('extension', $error = $this->CallbackService->invalidFields())){
 
-      	                 $this->_flash($this->CallbackService->invalidFields(), 'error');
+      	                 $this->_flash($error['extension'],'error');
+
+                    }
 
                   }
 

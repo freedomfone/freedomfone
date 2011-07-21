@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * editctp	- Edit Callback Service
- * version 	- 2.5.1300
+ * version 	- 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback Service', '/callback_services');
-echo $html->addCrumb('Edit', '/callback_services/edit');
+echo $html->addCrumb(__('Callback Service',true), '/callback_services');
+echo $html->addCrumb(__('Edit',true), '/callback_services/edit');
 
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -30,7 +30,6 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
         if($this->data){ $data = $this->data;}
 
-debug($data);
      echo "<h1>".__("Edit Callback Service",true).": ".$data['CallbackService']['code']."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {

@@ -58,11 +58,74 @@ class CallbackService extends AppModel{
                             ),
                     'IsUnique' => array(
                             'rule' => 'isUnique',
-                            'message'  => __('The SMS code provided is alrady in use.',true),
+                            'message'  => __('The SMS code provided is already in use.',true),
                             'required' => true,
-                            )));
-
+                            ),
+                     'minLength' => array(
+                            'rule'     => array('minLength', 3),
+                            'required' =>  true,
+                            'message'  => __('A title is required. Minimum 3 characters.',true)
+                            ),
+                     'maxLength' => array(
+                            'rule'     => array('maxLength', 10),
+                            'required' =>  true,
+                            'message'  => __('A title is required. Maximum 10 characters.',true)
+                            )),
+	             'start_time' => array(
+			'checkDate' => array(
+        				       'rule' => array('checkDate', 'start_time' ),
+        				       'message' => __('The date is not valid.',true)
+                                              )),	
+	             'end_time' => array(
+			'compareFieldValues' => array(
+        				       'rule' => array('compareFieldValues', 'start_time' ),
+        				       'message' => __('The end time must be later than the start time.',true)
+                			       ),
+			'checkDate' => array(
+        				       'rule' => array('checkDate', 'end_time' ),
+        				       'message' => __('The date is not valid.',true)
+                			       )) 
+                        );
       }
+
+
+/*
+ * Validation: check that number of days is matching month
+ *
+ *
+ */
+function checkDate($data,$field){
+
+	 $date = date_parse($data[$field]);
+
+	 if(checkdate($date['month'],$date['day'],$date['year'])){ 
+	 	return true;
+		} else {
+		return false;
+		}
+
+}
+
+
+/*
+ * Validation: Comparison of two fields
+ *
+ *
+ */
+
+ function compareFieldValues( $data, $field) 
+    {
+        foreach( $data as $key => $value ){
+            $v1 = $value;
+            $v2 = $this->data[$this->name][ $field ];                 
+            if($v2 > $v1) {
+                return FALSE;
+            } else {
+                continue;
+            }
+        }
+        return TRUE;
+    }
 
 
 

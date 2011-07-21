@@ -393,8 +393,11 @@ class CallbackServicesController extends AppController{
              //Does not validate
              {
 
-                        $errors = $this->CallbackService->invalidFields(); 
-      	                $this->_flash(__('Please select a Callback service.', true), 'error');
+                    if(array_key_exists('extension', $error = $this->CallbackService->invalidFields())){
+
+      	                 $this->_flash($error['extension'],'error');
+
+                    }
 
              }
 

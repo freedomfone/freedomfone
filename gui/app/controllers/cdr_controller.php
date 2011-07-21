@@ -281,7 +281,7 @@ class CdrController extends AppController{
       function statistics(){
 
         $this->refreshAll();
-       	$this->pageTitle = 'Call Data Records : Overview';
+       	$this->pageTitle = __('Call Data Records',true)." : ".__('Overview',true);
 
 
         if($this->data){

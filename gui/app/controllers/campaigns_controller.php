@@ -41,7 +41,7 @@ class CampaignsController extends AppController{
  */
         function index(){
 
-                 $this->pageTitle = 'Campaigns';
+                 $this->pageTitle = __('Campaigns',true);
                  $campaigns = $this->paginate('Campaign');
 
                  foreach($campaigns as $key => $campaign){
@@ -63,7 +63,7 @@ class CampaignsController extends AppController{
  */
         function add(){
 
-           $this->pageTitle = 'Create campaign';
+           $this->pageTitle = __('Create campaign',true);
            $callback_type  = 'OUT';
            $status         = 'pending';
    	   $dialer = Configure::read('DIALER');
@@ -354,7 +354,7 @@ class CampaignsController extends AppController{
 	function status($status = null) {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Callback status';
+      	$this->pageTitle = __('Callback status',true);
 
 
         if(!empty($this->data)){

@@ -87,7 +87,7 @@ class OfficeRouteController extends AppController{
 
    function edit($id ){
 
-      	$this->pageTitle = 'OfficeRoute : Edit';           
+      	$this->pageTitle = __('Edit OfficeRoute',true);           
 
 
 	  // No id, or empty form

@@ -75,7 +75,7 @@ class ChannelsController extends AppController{
 
    function edit($id ){
 
-      	$this->pageTitle = 'Mobigater : Edit';           
+      	$this->pageTitle = __('Edit Mobigater',true);           
 
 
 	  // No id, or empty form

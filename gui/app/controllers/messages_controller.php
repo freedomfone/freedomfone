@@ -54,7 +54,7 @@ class MessagesController extends AppController{
          $this->Session->write('messages_limit',false);
          $this->Session->write('messages_page',false);
 
-                $this->pageTitle = __('Leave-a-Message',true)." : ".__('Inbox',true);
+                $this->pageTitle = __('Leave-a-Message Inbox',true);
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
                 $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
@@ -175,7 +175,7 @@ class MessagesController extends AppController{
 
          $this->refreshAll();
  
-         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Archive',true);
+         $this->pageTitle = __('Leave-a-Message Archive',true);
          $this->Session->write('Message.source', 'archive');
      
          if(isset($this->params['named']['sort'])) { 
@@ -211,7 +211,7 @@ class MessagesController extends AppController{
 
     function edit($id = null)    {  
 
-            $this->pageTitle = __('Leave-a-Message',true)." : ".__('Edit',true);
+            $this->pageTitle = __('Edit Leave-a-Message',true);
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));

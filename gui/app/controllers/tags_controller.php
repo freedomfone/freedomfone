@@ -31,7 +31,7 @@ class TagsController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = 'Tags';
+      		$this->pageTitle = __('Tags',true);
 		$this->Tag->recursive = 0;
 		$this->set('tags', $this->paginate());
 
@@ -42,7 +42,7 @@ class TagsController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = 'Tags : Add';
+      		$this->pageTitle = __('Add Tag');
 
 		if (!empty($this->data)) {
 			$this->Tag->create();
@@ -58,7 +58,7 @@ class TagsController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = 'Tags : Edit';
+      		$this->pageTitle = __('Edit Tag',true);
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid Tag', true),'warning');

@@ -47,7 +47,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
    function create() {
 
 
-         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Create',true);           
+         $this->pageTitle = __('Create Leave-a-Message',true);
                  $lm_settings = Configure::read('LM_SETTINGS');
                  $fileData = array();
 
@@ -71,7 +71,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
     function add($id) {
 
-         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Create',true);           
+         $this->pageTitle = __('Create Leave-a-Message',true);
          $lm_settings = Configure::read('LM_SETTINGS');
          $instance_id=$this->data['LmMenu']['instance_id'];
          $fileData = array();
@@ -142,7 +142,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
 
                 
-                 $this->pageTitle = __('Leave-a-Message',true)." : ".__('Edit',true);           
+                 $this->pageTitle = __('Edit Leave-a-Message',true);
 
                  $lm_settings = Configure::read('LM_SETTINGS');
 

@@ -43,7 +43,7 @@ class BinController extends AppController{
       function index(){
 
            $this->Bin->refresh('manual');
-      	   $this->pageTitle = 'SMS Incoming';
+      	   $this->pageTitle = __('SMS Incoming',true);
            $this->Session->write('Bin.source', 'index');
 
           if(isset($this->params['named']['sort'])) { 

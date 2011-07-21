@@ -43,7 +43,7 @@ class UsersController extends AppController{
       function index(){
 
         $this->refreshAll();
-        $this->pageTitle = 'Users';
+        $this->pageTitle = __('Users',true);
         $this->User->recursive = 1;         
 
         if(strpos($this->referer(),'users') === false){
@@ -132,7 +132,7 @@ class UsersController extends AppController{
 
      function view($id){
 
-      	$this->pageTitle = 'User details';
+      	$this->pageTitle = __('User details',true);
 
 
       	   $this->User->id = $id;
@@ -144,7 +144,7 @@ class UsersController extends AppController{
 
     function edit($id = null)    {  
 
-    	     $this->pageTitle = 'Edit User';   
+    	     $this->pageTitle = __('Edit User',true);   
 
              if(isset($this->params['form']['submit'])) {
 	        if ($this->params['form']['submit']==__('Refresh',true)){
@@ -375,7 +375,7 @@ debug($core);
     function add() {
 
 
-    	$this->pageTitle = 'Add User';
+    	$this->pageTitle = __('Add User',true);
 	$acls = $this->User->Acl->find('list');
  	$this->set(compact('acls'));
 

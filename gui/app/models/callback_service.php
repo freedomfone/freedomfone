@@ -46,7 +46,7 @@ class CallbackService extends AppModel{
                                      'required' => true,
                                      ),
                       'range' =>  array(
-                                     'rule' => array('range', 2100, 4120),
+                                     'rule' => array('range', 2099, 4120),
                                      'message'  => __('You must select a service.',true),
                                      'required' => true,
                                      )),

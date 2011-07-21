@@ -114,7 +114,6 @@ class CallbackServicesController extends AppController{
                   $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
                   $this->CallbackService->set($this->data);
 
-
                   if($this->CallbackService->saveAll($this->data, array('validate' => 'only'))){
                         $campaign = $this->data['CallbackService'];
                         $startingdate    = strtotime($this->dateToString($campaign['start_time']));
@@ -142,6 +141,7 @@ class CallbackServicesController extends AppController{
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
+
                        if ( $header_status  == 1) {
 
                            $results   = json_decode($results,true);
@@ -151,18 +151,20 @@ class CallbackServicesController extends AppController{
                            $this->data['CallbackService']['nf_campaign_id'] = $nf_campaign_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
+                           $this->redirect(array('action'=>'index'));
 
-                        } elseif ($header_status == 2)  {
-                      
+                        } elseif ($header_status == 2)  {                      
       	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
-
+                        } elseif ($header_status == 6)  {                      
+      	                 $this->_flash(__('Authentication failed with selected dialer.', true), 'error');
                        }
 
-                           $this->redirect(array('action'=>'index'));
+
 
                   } else {
 
-      	                 $this->_flash(__('Please select a Service.', true), 'error');
+
+      	                 $this->_flash($this->CallbackService->invalidFields(), 'error');
 
                   }
 

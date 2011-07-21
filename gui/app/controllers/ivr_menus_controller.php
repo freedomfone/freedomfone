@@ -41,7 +41,7 @@ class IvrMenusController extends AppController{
 
    function index(){
 
-      	$this->pageTitle = 'Voice menus';           
+      	$this->pageTitle = __('Voice menus',true);           
     	$this->layout = 'jquery';
    	//Avoid fetching associated data
 	$this->IvrMenu->recursive = 0;
@@ -66,7 +66,7 @@ class IvrMenusController extends AppController{
  */
    function add(){
 
-      	$this->pageTitle = 'Voice menus : Add';           
+      	$this->pageTitle = __('Add Voice Menu',true);           
 	
 
             $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -250,7 +250,7 @@ class IvrMenusController extends AppController{
  */
    function add_selector(){
 
-      	$this->pageTitle = 'Language Selector : Add';           
+      	$this->pageTitle = __('Add Language Selector',true);           
 	
 
         $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -413,7 +413,7 @@ class IvrMenusController extends AppController{
 
 
 
-      	$this->pageTitle = 'Voice menus : Edit';           
+      	$this->pageTitle = __('Edit Voice menu',true);           
 
             $ivr_settings = Configure::read('IVR_SETTINGS');
             $ivr_default  = Configure::read('IVR_DEFAULT');
@@ -709,7 +709,7 @@ class IvrMenusController extends AppController{
 
    function edit_selector($id = null){
 
-      	$this->pageTitle = 'Language Selector : Edit';           
+      	$this->pageTitle = __('Edit Language Selector',true);           
 
             $settings = Configure::read('IVR_SETTINGS');
 

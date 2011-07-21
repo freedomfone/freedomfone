@@ -30,7 +30,7 @@ class SettingsController extends AppController {
 	function index() {
 
 
-              $this->pageTitle = 'Settings';
+              $this->pageTitle = __('Settings',true);
 
 	      //Fetch form data and process
               if (!empty($this->data)) {

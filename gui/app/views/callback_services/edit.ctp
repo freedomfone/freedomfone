@@ -30,6 +30,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
         if($this->data){ $data = $this->data;}
 
+debug($data);
      echo "<h1>".__("Edit Callback Service",true).": ".$data['CallbackService']['code']."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * callback_services_controller.php	- Controller for SMS based Callback Services.
- * version 		 	        - 2.5.1200
+ * version 		 	        - 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -42,7 +42,7 @@ class CallbackServicesController extends AppController{
 
         function index(){
 
-                 $this->pageTitle   = 'Callback Services';
+                 $this->pageTitle   = __('Callback Services',true);
                  $services = $this->paginate('CallbackService');
 
                  if($this->data){
@@ -109,10 +109,13 @@ class CallbackServicesController extends AppController{
 
                   $type = $this->data['CallbackService']['type'];
                   $key = $type."_instance_id";
-                  $extension = $mapping[$type].$this->data['CallbackService'][$key];
+                  $extension   = $mapping[$type].$this->data['CallbackService'][$key];
+  
 
-                  $this->data['CallbackService']['extension'] = $mapping[$type].$this->data['CallbackService'][$key];
+                  $this->data['CallbackService']['extension']   = $mapping[$type].$this->data['CallbackService'][$key];
+                  $this->data['CallbackService']['instance_id'] = $this->data['CallbackService'][$key];
                   $this->CallbackService->set($this->data);
+
 
                   if($this->CallbackService->saveAll($this->data, array('validate' => 'only'))){
                         $campaign = $this->data['CallbackService'];
@@ -206,7 +209,7 @@ class CallbackServicesController extends AppController{
 	function status($status = null) {
 
         $dialer = Configure::read('DIALER');
-      	$this->pageTitle = 'Callback service status';
+      	$this->pageTitle = __('Callback service status',true);
 
 
          unset($this->data['_Token']);
@@ -315,9 +318,9 @@ class CallbackServicesController extends AppController{
 
    function edit($id = null){
 
-	   $mapping = Configure::read('EXTENSIONS'); 
-   	   $dialer = Configure::read('DIALER');
-    	    $this->pageTitle = 'Edit Callback Service';
+	    $mapping = Configure::read('EXTENSIONS'); 
+   	    $dialer = Configure::read('DIALER');
+    	    $this->pageTitle = __('Edit Callback Service',true);
 
 	    if(!$id){
 

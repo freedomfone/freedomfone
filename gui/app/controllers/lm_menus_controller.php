@@ -31,7 +31,9 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
    function index(){
 
-   $this->pageTitle = 'Leave-a-message IVR Menus';           
+
+   $this->pageTitle = __('Leave-a-Message IVR Menus',true);
+
 
    //Avoid fetching associated data
    $this->LmMenu->recursive = -1;
@@ -44,7 +46,8 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
    function create() {
 
-                 $this->pageTitle = 'Leave-a-Message : IVR';           
+
+         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Create',true);           
                  $lm_settings = Configure::read('LM_SETTINGS');
                  $fileData = array();
 
@@ -55,7 +58,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                      $entry = $this->LmMenu->nextInstance();
 
                      if(!$entry['id']){
-                        $this->_flash(__('There are no idle instance for a new Leave-a-message IVR menu. Please delete an existing menu, and try again. Maximum menus: 10.',true), 'warning');
+                        $this->_flash(__('There are no idle instance for a new Leave-a-message IVR menu. Please delete an existing menu, and try again. Maximum menus: 20.',true), 'warning');
                         $this->redirect(array('action' =>'/'));
                      } else {
  
@@ -68,7 +71,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
     function add($id) {
 
-         $this->pageTitle = 'Leave-a-Message : IVR';           
+         $this->pageTitle = __('Leave-a-Message',true)." : ".__('Create',true);           
          $lm_settings = Configure::read('LM_SETTINGS');
          $instance_id=$this->data['LmMenu']['instance_id'];
          $fileData = array();
@@ -86,6 +89,8 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
         }  else {
          //Id OK, form data OK -> Save and redirect to Index
+
+            if($this->data['LmMenu']['title']){
 
               foreach($this->data['LmMenuFile'] as $key => $file){
 
@@ -119,20 +124,26 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                        }
                  }
               } else {
-                     $this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
+                     $this->_flash(__('Your data could not be saved. Please, try again.',true),'error');
               }
 
               $this->redirect(array('action' => '/'));
          
-         } 
+
+
+             } else {
+                     $this->_flash(__('Please enter a title for the menu.',true),'error');
+
+             } 
    }
 
-
+ }
    function edit($id) {
 
 
                 
-                 $this->pageTitle = 'Leave-a-Message : IVR';           
+                 $this->pageTitle = __('Leave-a-Message',true)." : ".__('Edit',true);           
+
                  $lm_settings = Configure::read('LM_SETTINGS');
 
                  $instance_id=$this->data['LmMenu']['instance_id'];

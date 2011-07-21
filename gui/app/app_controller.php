@@ -574,6 +574,12 @@ return $result;
                 $status = 5;
                 break;
 
+                case 'HTTP/1.1 401 UNAUTHORIZED':
+                $status = 6;
+                break;
+
+
+
 
 
 

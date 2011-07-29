@@ -27,6 +27,7 @@ $(document).ready(function() {
 		var cloned = user.clone();
 		var userId = cloned.attr('title');
 		var exists = $(	".listSelected .listUsers").find('[title='+userId+']');
+		$(cloned).find('.userContactDetails').remove();		
 		if(!exists.length){
 			$(cloned).insertBefore(".listSelected .listUsers .note");
 		}
@@ -44,16 +45,18 @@ $(document).ready(function() {
 		initPhonebook();
 	}
 	function initPhonebook(){
-		$('.checkbox input').prop("checked", false);
+		$('#UsersSelect').each(function(){
+			$('#UsersSelect option').removeAttr('selected');
+		});
 		var allUsers = $(	".listAll .listUsers .user");
 		$(allUsers).each(function() {
-			$(this).find('.contactAction').html('<span class="add">click to add [+]</span>');
+			$(this).find('.contactAction').html('<span class="add">click to add</span>');
 		});
 		var selectedUsers = $(	".listSelected .listUsers .user");
 		$(selectedUsers).each(function() {
-			$(this).find('.contactAction').html('<span class="remove">click to remove [-]</span>');														 	
+			$(this).find('.contactAction').html('<span class="remove">click to remove</span>');														 	
 			var userId = $(this).attr('title');
-			$('input[value='+userId+']').prop("checked", true);
+			$('#UsersSelect option[value='+userId+']').attr('selected','selected');
 			var origUser = $(	".listAll .listUsers").find('[title='+userId+']');
 			origUser.find('.contactAction').html('<span class="added">added</span>');
 		});

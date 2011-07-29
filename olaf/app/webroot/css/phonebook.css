@@ -34,6 +34,8 @@
 	border:1px solid #CCC;
 	border-top:none;
 	padding:5px;
+	height:300px;
+	overflow:auto;
 }
 #PhoneBookEditForm .listTitle, #PhoneBookEditForm .listAction{
 	display:inline;
@@ -55,7 +57,7 @@
 	display:table;
 	width:100%;
 }
-#PhoneBookEditForm .hiddenCb{
+#PhoneBookEditForm .hiddenSelect{
 	display:none;
 }
 #PhoneBookEditForm input.button{
@@ -117,4 +119,7 @@
 }
 form#PhoneBookEditForm .row{
 	padding:5px;
+}
+#PhoneBookEditForm .listAction{
+	cursor:pointer;
 }

@@ -50,8 +50,14 @@ if($this->data){
 		echo $form->input('description', array('label' =>  false, 'type'=>'text','size'=>'20', 'div'=>'cell2'));
 	echo "</div>";
 	
-	echo $form->input('User',array('type'=>'select','multiple'=>'checkbox', 'options' => $users, 'div'=>'row hiddenCb'));
-	
+	echo "<select name='data[User][User][]' class='hiddenSelect' multiple='multiple' id='UsersSelect'>";
+	$usersSelect = $users;	
+	while ($userSelect = current($usersSelect)) {
+		$userSelectDetail= $userSelect['User'];
+		echo "<option value='".$userSelectDetail['id']."'>".$userSelectDetail['name']."</option>";
+		next($usersSelect);
+	}
+	echo "</select>";
 	
 	echo "<div class='listAll users'>";
 		echo "<div class='listHeader'>";
@@ -62,13 +68,13 @@ if($this->data){
 			while ($user = current($users)) {
 				$userDetail= $user['User'];
 				echo "<div class='user' title='".$userDetail['id']."'>";
-					echo "<div class='userName'>".$userDetail['name']."</div>";
+					echo "<div class='userName'>".$userDetail['name']." ".$userDetail['surname']."</div>";
 					echo "<div class='userDetail'>";
 						echo "<div class='userContactDetails'>";
-							echo $html ->div('contact', 'tel: +123456789');
+							echo $html ->div('contact', 'tel: ' .$user['PhoneNumber'][0]['number']);
 							echo $html ->div('contact', 'skype: '.$userDetail['skype']);
 						echo "</div>";
-						echo $html->div('contactAction add', 'click to add [+]');
+						echo $html->div('contactAction add', 'click to add');
 					echo "</div>";
 				echo "</div>";
 				next($users);
@@ -76,7 +82,7 @@ if($this->data){
 			?>
 			<div class="note">
 				<div class="noteTitle">HINT:</div>
-				<div class="noteDetail">Clicking 'click to add [+]' will add the contact to your selected users list</div>
+				<div class="noteDetail">Clicking 'click to add' will add the contact to your selected users list</div>
 			</div>
 			<?php
 			
@@ -94,11 +100,8 @@ if($this->data){
 				echo "<div class='user' title='".$user['id']."'>";
 					echo "<div class='userName'>".$user['name']."</div>";
 					echo "<div class='userDetail'>";
-						echo "<div class='userContactDetails'>";
-							echo $html ->div('contact', 'tel: +123456789');
-							echo $html ->div('contact', 'skype: '.$user['skype']);
-						echo "</div>";
-						echo $html->div('contactAction remove', 'click to remove [-]');
+						
+						echo $html->div('contactAction remove', 'click to remove');
 					echo "</div>";
 				echo "</div>";
 				next($selectedUsers);

@@ -91,28 +91,30 @@ class MessagesController extends AppController{
       if($data['category']){
          $conditions['Category.id'] = $data['category'];
          $this->Session->write('messages_category',$data['category']);
-      } elseif ( $category = $this->Session->read('messages_category')){
-        $conditions['Message.category_id']  = $category;
+      } else {
+         unset($conditions['Category.id']);
+
       }
 
       if($data['rate']){
+
          $conditions['Message.rate'] = $data['rate'];
          $this->Session->write('messages_rate',$data['rate']);
 
-      } elseif ($rate = $this->Session->read('messages_rate')){
+         } else {
 
-        $conditions['Message.rate'] = $rate;
+         unset($conditions['Message.rate']);
 
-      }
+         }
 
       if($data['service']){
 
          $conditions['Message.instance_id'] = $data['service'];
          $this->Session->write('messages_service',$data['service']);
 
-      } elseif ($service  = $this->Session->read('messages_service')) {
+      } else {
 
-        $conditions['Message.instance_id'] = $service;
+         unset($conditions['Message.instance_id']);
 
       }
 
@@ -147,6 +149,8 @@ class MessagesController extends AppController{
       if(!$page){
         $page = 1;
       } 
+
+
 
          $this->refreshAll();
          $this->Session->write('Message.source', 'index');

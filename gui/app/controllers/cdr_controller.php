@@ -98,7 +98,11 @@ class CdrController extends AppController{
            }
 	}
 
-       $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
+        $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
+	$this->set('select_option','all');
+
+        $cdrExport = $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc')));
+
 	$this->set('select_option','all');
 
         } else {
@@ -106,7 +110,8 @@ class CdrController extends AppController{
          //Fetch CDR by Title
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
 
-        $foo = $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
+        $cdrExport = $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
+       
          $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
 
 	 $this->set('select_option','selected');
@@ -127,7 +132,7 @@ class CdrController extends AppController{
         $data = $this->paginate('Cdr');
 	$this->set('cdr',$data);  
 
-        $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
+        $this->set(compact('ivr','lam','cdr','count','application','select_option','app','cdrExport'));
 
 
 	//Export data
@@ -252,10 +257,11 @@ class CdrController extends AppController{
          $this->data['Cdr']['start_time'] = $start_epoch;
          $this->data['Cdr']['end_time'] = $end_epoch;
 
+
          if($this->Cdr->SaveAll($this->data, array('validate' => 'only'))){
 
 	        $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
-    	        $this->set('data', $this->Cdr->find('all',$param)); 
+                $this->set('data', $this->Cdr->find('all',$param)); 
 
           } else {
 
@@ -276,12 +282,12 @@ class CdrController extends AppController{
         }
 
 
+
          $this->set(compact('select_option'));
   	     Configure::write('debug', 0);
     	     $this->layout = null;
     	     $this->autoLayout = false;
     	     $this->render();  
-
 
        
     }

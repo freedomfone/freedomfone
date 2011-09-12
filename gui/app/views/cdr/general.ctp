@@ -32,6 +32,7 @@ echo $html->addCrumb('Reporting', '/cdr/general');
  //If action = Export, create CSV file 
  $export=false;
 
+
  if(isset($this->params['form']['action'])) {	
 	
      if ($this->params['form']['action']==__('Export',true)){
@@ -41,9 +42,9 @@ echo $html->addCrumb('Reporting', '/cdr/general');
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
 		$csv->addRow($line);
 
-	if($cdr){
+	if($cdrExport){
 
-		foreach($cdr as $key => $entry){
+		foreach($cdrExport as $key => $entry){
 
                 if(!$entry['Cdr']['length']){$entry['Cdr']['length'] = 0;}
  

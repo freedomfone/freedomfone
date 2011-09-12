@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Call data records', '/cdr');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Call data records',true), '/cdr');
 
 
 $session->flash();

@@ -35,6 +35,38 @@ class Cdr extends AppModel{
                         	       'dependent' => true)
 				       );
 
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+      $this->validate = array(
+	'end_time' => array(
+			'compareFieldValues' => array(
+        				       'rule' => array('compareFieldValues', 'start_time' ),
+        				       'message' => __('The end time must be later than the start time.',true)
+                			       )));
+}
+
+
+/*
+ * Validation: Comparison of two fields
+ *
+ *
+ */
+
+ function compareFieldValues( $data, $field) 
+    {
+        foreach( $data as $key => $value ){
+            $v1 = $value;
+            $v2 = $this->data[$this->name][ $field ];                 
+            if($v2 > $v1) {
+                return FALSE;
+            } else {
+                continue;
+            }
+        }
+        return TRUE;
+    }
+
 
 /*
  * Fetching new data from spooler

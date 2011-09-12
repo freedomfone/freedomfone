@@ -22,12 +22,17 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Call data records', '/cdr');
-echo $html->addCrumb('Export', '/cdr/export');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Call data records',true), '/cdr');
+echo $html->addCrumb(__('Export',true), '/cdr/export');
 
 
 echo "<h1>".__("Export CDR",true)."</h1>";
+
+   	  if ($messages = $session->read('Message.multiFlash')) {
+                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+         }
+
 echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
 
 echo "<table cellspacing = 0 class= 'stand-alone'>";

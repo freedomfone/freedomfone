@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * cdr_controller.php	- Display, delete, export of CDR, System Overview page (Home) 
- * version 		- 2.0.1160
+ * version 		- 2.5.1160
  * 
  * Version: MPL 1.1
  *
@@ -216,6 +216,8 @@ class CdrController extends AppController{
 
     function output (){
 
+    
+     $export = true;
 
       if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
@@ -247,23 +249,41 @@ class CdrController extends AppController{
       	 $start_epoch = strtotime($start);
       	 $end_epoch = strtotime($end);
 
-	 $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
-    	 $this->set('data', $this->Cdr->find('all',$param)); 
+         $this->data['Cdr']['start_time'] = $start_epoch;
+         $this->data['Cdr']['end_time'] = $end_epoch;
+
+         if($this->Cdr->SaveAll($this->data, array('validate' => 'only'))){
+
+	        $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
+    	        $this->set('data', $this->Cdr->find('all',$param)); 
+
+          } else {
+
+                    if(array_key_exists('end_time', $error = $this->Cdr->invalidFields())){
+      	                 $this->_flash($error['end_time'],'error');
+	                 $this->redirect(array('action' => 'export'));
+
+                    }
+          }
 
        } else {
 
            //Export all entries
     	   $this->set('data', $this->Cdr->findAll()); 
 	   $this->set('select_option','all');	   
+
+
         }
 
 
          $this->set(compact('select_option'));
-
   	     Configure::write('debug', 0);
     	     $this->layout = null;
     	     $this->autoLayout = false;
-    	     $this->render();   
+    	     $this->render();  
+
+
+       
     }
 
 
@@ -285,6 +305,7 @@ class CdrController extends AppController{
 
 
         if($this->data){
+
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
      		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end'],'application !=' => ''));
 

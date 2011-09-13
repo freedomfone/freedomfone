@@ -42,6 +42,7 @@ echo $form->end();
 <div class='frameRightTrans'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
 <?
 
+
      echo "<h1>".__('Users',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
@@ -61,17 +62,29 @@ echo $form->end();
      echo $form->end();
 
      $row = array();
+     $suffix = false;
+     $phone_book_id = false;
 
      if ($users){
+     
+        if(isset($this->data['User']['phone_book_id'])){
+                $phone_book_id = $this->data['User']['phone_book_id'];
+        } elseif($session->read('users_phone_book_id')){
+                $phone_book_id = $session->read('users_phone_book_id');
+        }
 
 
-     echo $html->div("paginator'",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-     echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+        if($phone_book_id){
 
+               $suffix = __('from phone book',true).' <b>'.$options[$phone_book_id].'</b>';
 
+        }
 
-     echo "<table class='collapsed' cellspacing=0>";
-     echo $html->tableHeaders(array(
+        echo $html->div("paginator'",$paginator->counter(array('format' => __("User",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ".$suffix)));
+        echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+
+        echo "<table class='collapsed' cellspacing=0>";
+        echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'User.new'),
  	$paginator->sort(__("Name",true), 'User.name'),

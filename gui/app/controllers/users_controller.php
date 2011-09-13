@@ -46,6 +46,9 @@ class UsersController extends AppController{
         $this->pageTitle = __('Users',true);
         $this->User->recursive = 1;         
 
+
+        //Refered from page != Users
+
         if(strpos($this->referer(),'users') === false){
 
             $this->Session->write('users_phone_book_id',false);
@@ -66,9 +69,8 @@ class UsersController extends AppController{
 
         }
 
-
            $phone_book_id = $this->data['User']['phone_book_id'];
- 
+
            //Phone book selected || Show all phone books
            if($phone_book_id ){
 
@@ -112,15 +114,13 @@ class UsersController extends AppController{
              }
 
              } else {
+
              //Visit site for first time
              $this->Session->write('users_phone_book_id', false);
              $users = $this->paginate('User');
              $this->set(compact('users'));    
 
              }
-
-
-
 
          $this->loadModel('PhoneBook');
          $options = $this->PhoneBook->find('list');
@@ -351,7 +351,7 @@ class UsersController extends AppController{
                         }
 
                       if($this->User->PhoneNumber->validates()){
-debug($core);
+
                         $this->User->id = $core['User']['id'];
                         $this->User->save($core['User'], array('validate' => false));
                         $this->User->PhoneNumber->saveAll($core['PhoneNumber']);      

@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Users', '/users');
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Users',true), '/users');
 
 
 echo $javascript->includeScript('toggle');

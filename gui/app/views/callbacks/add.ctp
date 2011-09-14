@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback', '/callbacks');
-echo $html->addCrumb('Create', '/callbacks/add');
+echo $html->addCrumb(__('Callback',true), '/callbacks');
+echo $html->addCrumb(__('Create',true), '/callbacks/add');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 

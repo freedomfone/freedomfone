@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Incoming SMS', '/bin');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Incoming SMS',true)                    , '/bin');
 
 
 $session->flash();

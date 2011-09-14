@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Phone books', '/phone_books');
-echo $html->addCrumb('Add', '/phone_books/add');
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Phone books',true), '/phone_books');
+echo $html->addCrumb(__('Add',true), '/phone_books/add');
 
 echo "<h1>".__("Create Phone book",true)."</h1>";
 

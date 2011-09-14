@@ -22,8 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Content', '/nodes');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Content',true), '/nodes');
 
 
 $ivr = Configure::read('IVR_SETTINGS');

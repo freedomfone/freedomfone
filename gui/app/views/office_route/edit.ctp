@@ -22,10 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('GSM channels', '/channels');
-
-
+        echo $html->addCrumb(__('Dashboard',true));
+        echo $html->addCrumb(__('GSM channels',true), '/channels');
 
 	if($this->data){
 

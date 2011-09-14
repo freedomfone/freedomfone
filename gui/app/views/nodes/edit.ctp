@@ -22,8 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Content', '/nodes');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Content',true), '/nodes');
 
 
 
@@ -32,7 +32,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 	if($this->data){
 
-                echo $html->addCrumb('Edit', '/nodes/edit/'.$this->data['Node']['id']);
+                echo $html->addCrumb(__('Edit',true), '/nodes/edit/'.$this->data['Node']['id']);
 
 		echo "<h1>".__("Edit Content",true)."</h1>";
 		

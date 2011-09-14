@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Administration', '/lm_menus');
-echo $html->addCrumb('Create', '/lm_menus/add');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Administration',true), '/lm_menus');
+echo $html->addCrumb(__('Create',true), '/lm_menus/add');
 
 
 

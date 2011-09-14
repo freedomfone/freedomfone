@@ -21,7 +21,7 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback Service', '/callback_services');
+echo $html->addCrumb(__('Callback Service',true), '/callback_services');
 
 
      echo "<h1>".__("Callback Services",true)."</h1>";

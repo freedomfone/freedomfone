@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Reporting', '/cdr/general');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
  $session->flash();

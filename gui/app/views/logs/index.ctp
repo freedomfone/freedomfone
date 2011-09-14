@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('Logs', '/logs');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('Logs',true), '/logs');
 
 
 	echo "<h1>".__("Logs",true)."</h1>";

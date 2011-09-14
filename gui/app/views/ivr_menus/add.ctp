@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus/');
-echo $html->addCrumb('Create', '/ivr_menus/add');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus/');
+echo $html->addCrumb(__('Create',true), '/ivr_menus/add');
 
 
 echo "<h1>".__("Create voice menu",true)."</h1>";

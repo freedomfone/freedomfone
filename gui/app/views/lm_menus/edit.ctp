@@ -22,14 +22,14 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Administration', '/lm_menus');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Administration',true), '/lm_menus');
 
 
 
 if($this->data){
 
-echo $html->addCrumb('Edit', '/lm_menus/edit/'.$this->data['LmMenu']['id']);
+echo $html->addCrumb(__('Edit',true), '/lm_menus/edit/'.$this->data['LmMenu']['id']);
 
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');

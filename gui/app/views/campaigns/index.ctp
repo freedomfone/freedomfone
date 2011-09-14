@@ -21,7 +21,7 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Campaign', '/campaigns');
+echo $html->addCrumb(__('Campaign',true), '/campaigns');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
 echo $form->create('Campaign',array('type' => 'post','action'=> 'status'));

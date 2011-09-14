@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Leave-a-message', '/lm_menus');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Leave-a-message',true), '/lm_menus');
 
 
 $ext = Configure::read('EXTENSIONS');

@@ -22,9 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Statistics', '/cdr/statistics')
-;
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Statistics',true), '/cdr/statistics');
 
 $session->flash();
 

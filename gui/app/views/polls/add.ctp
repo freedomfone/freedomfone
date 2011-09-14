@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Polls', '/polls');
-echo $html->addCrumb('Create', '/polls/add');
+echo $html->addCrumb(__('Polls',true), '/polls');
+echo $html->addCrumb(__('Create',true), '/polls/add');
 
 echo $javascript->link('addRemoveElements');
 

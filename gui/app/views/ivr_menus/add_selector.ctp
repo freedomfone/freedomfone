@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add_selector.ctp	- Create new language selector
- * version 	        - 1.0.360
+ * version 	        - 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Language selectors', '/selectors');
-echo $html->addCrumb('Create', '/selectors/add');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Language selectors',true), '/selectors');
+echo $html->addCrumb(__('Create',true), '/selectors/add');
 
 
 echo "<h1>".__("Create Language Selector",true)."</h1>";

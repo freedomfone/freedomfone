@@ -21,7 +21,7 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Polls', '/polls');
+echo $html->addCrumb(__('Polls',true), '/polls');
 
     $session->flash();
 

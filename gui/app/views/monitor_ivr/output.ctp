@@ -24,8 +24,7 @@
  ***************************************************************************/
 
 
-
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Title',true),__('Digit',true),__('Caller number',true),__('Type',true));
+ $line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Call ID',true),__('IVR ID',true),__('Node ID',true),__('Title',true),__('Digit',true),__('Caller number',true),__('Type',true));
 		$csv->addRow($line);
 
 	if($data){

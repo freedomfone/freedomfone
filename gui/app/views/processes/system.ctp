@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('About', '/processes/system');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('About',true), '/processes/system');
 
 
  $os = php_uname('s');

@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Campaign', '/campaigns');
-echo $html->addCrumb('Create', '/campaigns/add');
+echo $html->addCrumb(__('Campaign',true), '/campaigns');
+echo $html->addCrumb(__('Create',true), '/campaigns/add');
 
 
 $ivr_settings = Configure::read('IVR_SETTINGS');

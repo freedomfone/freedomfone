@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Callback Dialer', '');
-echo $html->addCrumb('Settings', '/callback_settings');
+echo $html->addCrumb(__('Callback Dialer',true), '');
+echo $html->addCrumb(__('Settings',true), '/callback_settings');
 $default  = Configure::read('CALLBACK_DEFAULT');
 
 

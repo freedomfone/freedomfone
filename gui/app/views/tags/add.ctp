@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Tags', '/tags');
-      echo $html->addCrumb('Add', '/tags/add');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Tags',true), '/tags');
+      echo $html->addCrumb(__('Add',true), '/tags/add');
 
       echo "<h1>".__("Create tag",true)."</h1>";
 

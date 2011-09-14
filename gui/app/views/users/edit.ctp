@@ -24,9 +24,9 @@
 
 
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Users', '/users');
-echo $html->addCrumb('Edit', '/users/edit/'.$this->data['User']['id']);
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Users',true), '/users');
+echo $html->addCrumb(__('Edit',true), '/users/edit/'.$this->data['User']['id']);
 
 
 

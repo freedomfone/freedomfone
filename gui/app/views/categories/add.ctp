@@ -23,9 +23,9 @@
  ***************************************************************************/
 
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Categories', '/categories');
-      echo $html->addCrumb('Add', '/categories/add');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Categories',true), '/categories');
+      echo $html->addCrumb(__('Add',true), '/categories/add');
 
 
       echo "<h1>".__("Add Category",true)."</h1>";

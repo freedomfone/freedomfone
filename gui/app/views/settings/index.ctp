@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('Settings', '/settings');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('Settings',true), '/settings');
 
 
 echo "<h1>".__("Settings",true)."</h1>";

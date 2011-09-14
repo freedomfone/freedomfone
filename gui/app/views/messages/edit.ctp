@@ -29,9 +29,9 @@ $sort  = $session->read('messages_sort');
 
      $keys = $session->read('messages_selected');
 
-     echo $html->addCrumb('Message Centre', '/messages');
+     echo $html->addCrumb(__('Message Centre',true), '/messages');
      echo $html->addCrumb($location, '/messages/'.$source);
-     echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
+     echo $html->addCrumb(__('Edit message',true), '/messages/edit/'.$data['Message']['id']);
 
      $current = array_keys($keys,$data['Message']['id']);
      $prev = $next = false;

@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Callback Services', '/callback_services');
-echo $html->addCrumb('Status', '/callback_services/status');
+echo $html->addCrumb(__('Callback Services',true), '/callback_services');
+echo $html->addCrumb(__('Status',true), '/callback_services/status');
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');

@@ -22,7 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Polls', '/polls');
+echo $html->addCrumb(__('Polls',true), '/polls');
+
 Configure::write('debug', 0);
 
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
@@ -37,7 +38,7 @@ echo $html->div('frameInfo', $info);
 
    if ($data){
 
-        echo $html->addCrumb('View', '/polls/view/'.$data['Poll']['id']);
+        echo $html->addCrumb(__('View',true), '/polls/view/'.$data['Poll']['id']);
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";

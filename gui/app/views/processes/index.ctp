@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('Health', '/processes/');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('Health',true), '/processes/');
 
 
 

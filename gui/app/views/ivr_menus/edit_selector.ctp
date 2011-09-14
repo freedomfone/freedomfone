@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit_selector.ctp	- Edit language selecor
- * version 	        - 1.0.360
+ * version 	        - 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Language selectors', '/selectors');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Language selectors',true), '/selectors');
 
 
 
@@ -41,7 +41,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='switcher'){
 
-                echo $html->addCrumb('Edit', '/selectors/edit/'.$this->data['IvrMenu']['id']);
+                echo $html->addCrumb(__('Edit',true), '/selectors/edit/'.$this->data['IvrMenu']['id']);
 
                 $switcher = $this->data['IvrMenu'];
 

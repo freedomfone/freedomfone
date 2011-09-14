@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Tags', '/tags');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Tags',true), '/tags');
       $ivr_settings = Configure::read('IVR_SETTINGS');
 
       if($this->data){
@@ -32,7 +32,7 @@
              $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],'...',true,false);
          }
 
-        echo $html->addCrumb('Edit', '/tags/edit/'.$this->data['Tag']['id']);
+        echo $html->addCrumb(__('Edit',true), '/tags/edit/'.$this->data['Tag']['id']);
         echo "<h1>".__("Edit Tag",true)."</h1>";
         $session->flash();
 

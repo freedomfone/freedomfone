@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-  echo $html->addCrumb('Dashboard', '');
-  echo $html->addCrumb('GSM channels', '/channels');
+  echo $html->addCrumb(__('Dashboard',true), '');
+  echo $html->addCrumb(__('GSM channels',true), '/channels');
 
   if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

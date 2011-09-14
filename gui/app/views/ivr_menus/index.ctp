@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all IVR Voice Menus
- * version 	- 2.0.1175
+ * version 	- 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus');
 
 $ext = Configure::read('EXTENSIONS');
 

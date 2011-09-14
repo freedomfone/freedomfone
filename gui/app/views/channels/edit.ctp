@@ -22,14 +22,14 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('GSM channels', '/channels');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('GSM channels',true), '/channels');
 
 
 
 	if($this->data){
 
-                echo $html->addCrumb('Edit Mobigater', '/channels/edit/'.$this->data['Channel']['id']);
+                echo $html->addCrumb(__('Edit Mobigater',true), '/channels/edit/'.$this->data['Channel']['id']);
 		echo "<h1>".__("Edit channel",true)."</h1>";
 		
 

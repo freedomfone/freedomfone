@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Categories', '/categories');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Categories',true), '/categories');
 
 
 

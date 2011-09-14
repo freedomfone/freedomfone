@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Categories', '/categories');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Categories',true), '/categories');
       $ivr_settings = Configure::read('IVR_SETTINGS');      
 
       if($this->data){
@@ -32,7 +32,7 @@
              $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],'...',true,false);
          }
 
-         echo $html->addCrumb('Edit', '/categories/edit/'.$this->data['Category']['id']);
+         echo $html->addCrumb(__('Edit',true), '/categories/edit/'.$this->data['Category']['id']);
          echo "<h1>".__("Edit Category",true)."</h1>";
          $session->flash();
 

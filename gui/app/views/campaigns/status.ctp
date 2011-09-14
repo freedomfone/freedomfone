@@ -21,7 +21,7 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Campaigns', '/campaigns');
+echo $html->addCrumb(__('Campaigns',true), '/campaigns');
 
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');

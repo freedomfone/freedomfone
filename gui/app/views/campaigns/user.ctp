@@ -2,7 +2,7 @@
    echo "<div id='user_div' class='user_div'>";
 
    if($user){
-debug($user);
+
            echo "<table width='35%' cellspacing  = '0' class = 'stand-alone'>";
 	   $row[] = array(array(__('User details',true),array('colspan'=> 2, 'align' => 'center')));
            $row[] = array(__('Name',true), $user['User']['name']);

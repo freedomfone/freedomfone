@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
+echo $html->addCrumb(__('User Management',true), '');
 Configure::write('debug', 0);
 
  if($data){

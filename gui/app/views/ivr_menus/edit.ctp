@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus/');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus/');
 
 $session->flash();
 
@@ -50,7 +50,7 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='ivr'){
 
-             echo $html->addCrumb('Edit', '/ivr_menus/edit/'.$this->data['IvrMenu']['id']);
+             echo $html->addCrumb(__('Edit',true), '/ivr_menus/edit/'.$this->data['IvrMenu']['id']);
 
              $ivrMenu = $this->data['IvrMenu'];
              echo "<h1>".__("Edit voice menu",true)."</h1>";

@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Language selectors', '/selectors');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Language selectors',true), '/selectors');
 
 
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));

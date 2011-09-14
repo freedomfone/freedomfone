@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Call data records', '/cdr');
-echo $html->addCrumb('Delete', '/cdr/delete');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Call data records',true), '/cdr');
+echo $html->addCrumb(__('Delete',true), '/cdr/delete');
 
 echo "<h1>".__("Delete Call Data Records",true)."</h1>";
 echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));

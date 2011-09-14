@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Archive', '/messages/');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Archive',true), '/messages/');
 
 
 

@@ -22,8 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Monitoring', '/monitor_ivr');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Monitoring',true), '/monitor_ivr');
 
 
 

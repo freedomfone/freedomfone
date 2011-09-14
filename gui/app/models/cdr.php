@@ -405,8 +405,8 @@ function __construct($id = false, $table = null, $ds = null) {
                  switch($type){
 
                     case 'first':
-                    $data = $this->find('first');
-                    $epoch = $data['Cdr']['epoch'];
+                    $result = $this->find('first', array('order' => 'Cdr.id asc', 'recursive' => 1));
+                    $epoch = $result['Cdr']['epoch'];
                     break;
 
 
@@ -415,7 +415,6 @@ function __construct($id = false, $table = null, $ds = null) {
                  return $epoch;
 
         }
-
 
 
 

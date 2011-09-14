@@ -116,6 +116,7 @@ echo $html->addCrumb('Reporting', '/cdr/general');
       		 ),array('class' => 'none'), array('class' => 'none'));
             echo "</table>";
 
+
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (
      	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$session->read('cdr_start')))),
@@ -164,7 +165,7 @@ echo $html->addCrumb('Reporting', '/cdr/general');
               }
 
 
-              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/view/limit:25',null, null, false)." | ".$html->link('50','general/view/limit:50',null, null, false)." | ".$html->link('100','general/view/limit:100',null, null, false));
+              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/limit:25',null, null, false)." | ".$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false));
 
 
 

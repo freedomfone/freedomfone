@@ -46,7 +46,6 @@ class UsersController extends AppController{
         $this->pageTitle = __('Users',true);
         $this->User->recursive = 1;         
 
-
         //Refered from page != Users
 
         if(strpos($this->referer(),'users') === false){
@@ -393,16 +392,12 @@ class UsersController extends AppController{
 			$this->redirect(array('action'=>'index'));
 		} 
 
-	} else {
+	} 
 
                $this->loadModel('PhoneBook');
                $options = $this->PhoneBook->find('list');
                $this->set(compact('options'));
-
-		//Show empty form
-      	 	$this->render();
-	}
-
+    	       $this->render();
 
     }
 

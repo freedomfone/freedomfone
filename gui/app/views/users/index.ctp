@@ -49,15 +49,13 @@ echo $form->end();
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
 
-   
-
    $options_slim = $options;
    $options[0] = __('All phone books',0);
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
      echo "<table cellspacing = '0' class='none'>";
-     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
+     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'selected' => $session->read('users_phone_book_id'), 'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
      echo "</table>";
      echo $form->end();
 

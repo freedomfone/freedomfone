@@ -55,7 +55,7 @@ class PollsController extends AppController{
      function view($id){
 
   
-      	$this->pageTitle = __('View Poll,true).' : '.$this->Poll->getTitle($id);
+      	$this->pageTitle = __('View Poll',true).' : '.$this->Poll->getTitle($id);
 
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){

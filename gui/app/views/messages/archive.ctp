@@ -34,6 +34,7 @@ echo $html->addCrumb('Archive', '/messages/');
 
 	if ($messages){
 
+
            echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
            echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
 

@@ -87,7 +87,7 @@ echo $html->addCrumb('Polls', '/polls');
 
      foreach ($votes as $key => $vote){
 
-             $delete = $ajax->link($html->image("icons/delete.png"),'/votes/delete/'.$vote['Vote']['id'].'/'.$this->data['Poll']['id'], array('update' => 'votes'), null, 1);
+             $delete = $ajax->link("delete",'/votes/delete/'.$vote['Vote']['id'].'/'.$this->data['Poll']['id'], array('update' => 'votes'), null, 1);
              $row[] = array(__('Option',true).' '.($key+1), $vote['Vote']['chtext'], $delete);
 
      }

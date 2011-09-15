@@ -47,7 +47,7 @@ class MonitorIvrController extends AppController{
 
    	     $call_id = $this->MonitorIvr->getCallId($id);
 
-    	     if($this->MonitorIvr->del($id))
+    	     if($this->MonitorIvr->delete($id))
 	     {
 	     $this->Session->setFlash('Entry  with Call ID "'.$call_id.'" has been deleted.');
 	     $this->log("Action: entry deleted; Call-ID: ".$call_id, "monitor_ivr"); 
@@ -77,7 +77,7 @@ class MonitorIvrController extends AppController{
 		       $this->MonitorIvr->id = $id;
 		       if ($action == __('Delete selected',true)){
     	     	       	   $call_id = $this->MonitorIvr->getCallId($id);
-     	       	  	   if ($this->MonitorIvr->del($id)){
+     	       	  	   if ($this->MonitorIvr->delete($id)){
 	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "monitor_ivr"); 
 			    }
 			}

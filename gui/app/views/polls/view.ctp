@@ -39,7 +39,10 @@ echo $html->div('frameInfo', $info);
 
         echo $html->addCrumb('View', '/polls/view/'.$data['Poll']['id']);
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
-	echo  $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$data['Poll']['id']}",null, null, false)."</h1>";
+
+	echo $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $data['Poll']['id'])));
+        echo "</h1>";
+
 	echo "<h3>".__("SMS code",true).": ".$data['Poll']['code']."</h3>";
 
 

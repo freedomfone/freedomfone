@@ -100,11 +100,14 @@ class CdrController extends AppController{
 
        $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
 	$this->set('select_option','all');
+        $cdrExport = $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc')));
 
         } else {
         
          //Fetch CDR by Title
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+
+        $cdrExport = $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
 
         $foo = $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc')));
          $this->paginate = array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'));
@@ -127,7 +130,7 @@ class CdrController extends AppController{
         $data = $this->paginate('Cdr');
 	$this->set('cdr',$data);  
 
-        $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
+        $this->set(compact('ivr','lam','cdr','count','application','select_option','app', 'cdrExport'));
 
 
 	//Export data
@@ -174,7 +177,7 @@ class CdrController extends AppController{
 
     	     $call_id = $this->Cdr->getCallId($id);
 
-    	     if($this->Cdr->del($id))
+    	     if($this->Cdr->delete($id))
 	     {
 	     $this->Session->setFlash('CDR with Call ID "'.$call_id.'" has been deleted.');
 	     $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
@@ -199,7 +202,7 @@ class CdrController extends AppController{
     	     	    if ($id) {
 		       $this->Cdr->id = $id;
 		       $call_id = $this->Cdr->getCallId($id);
-     	       	       if ($this->Cdr->del($id)){
+     	       	       if ($this->Cdr->delete($id)){
 	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
 		       }
 		    }

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * general.ctp	- Data mining of LAM and IVR calls
- * version 	- 2.0.1150
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Reporting', '/cdr/general');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
  $session->flash();
@@ -41,9 +41,9 @@ echo $html->addCrumb('Reporting', '/cdr/general');
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
 		$csv->addRow($line);
 
-	if($cdr){
+	if($cdrExport){
 
-		foreach($cdr as $key => $entry){
+		foreach($cdrExport as $key => $entry){
 
                 if(!$entry['Cdr']['length']){$entry['Cdr']['length'] = 0;}
  
@@ -96,10 +96,10 @@ echo $html->addCrumb('Reporting', '/cdr/general');
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,30,'...',true,false);
+             $lam[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
        foreach($ivr as $key => $entry){
-             $ivr[$key] = $text->truncate($entry,30,'...',true,false);
+             $ivr[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
 
 

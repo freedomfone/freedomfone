@@ -47,11 +47,10 @@ echo "<h1>".__("Tags",true)."</h1>";
 
       	      foreach ($tags as $key => $tag){
 
-      	      	         $title      = $tag['Tag']['name'];
-      			 	        $description = $tag['Tag']['longname'];		   
-  						        $edit 				   = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/tags/edit/{$tag['Tag']['id']}",null, null, false);
-      											      $delete 					= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/tags/delete/{$tag['Tag']['id']}",null, __("Are you sure you want to delete this tag?",true),false);
-      											      						   
+      	      	         $title       = $tag['Tag']['name'];
+ 			 $description = $tag['Tag']['longname'];		   
+                         $edit        = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "tags", "action" => "edit", $tag['Tag']['id'])));     											      						   
+                        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "tags", "action" => "delete", $tag['Tag']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this tag?',true)."');"));
 
      $row[$key] = array($title, $description,$edit,$delete);
 

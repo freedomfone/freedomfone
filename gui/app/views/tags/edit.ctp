@@ -29,7 +29,7 @@
       if($this->data){
 
          foreach ($messages as $key => $entry){
-             $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],'...',true,false);
+             $messages[$key] = $text->truncate($entry,$ivr_settings['showLengthMax'],array('ending' => '...', 'exact' => true, 'html' => false));
          }
 
         echo $html->addCrumb('Edit', '/tags/edit/'.$this->data['Tag']['id']);

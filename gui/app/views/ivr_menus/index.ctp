@@ -34,6 +34,8 @@ echo $form->end();
 $info = __('Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components associated with telephony keypad selections.',true);
 
 echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
+//echo $html->div('frameInfo', $html->image('icons/bulb.png',array('alt'=>'Tooltips', 'title' => $info, 'url' => '#', 'class'=>'infobox')));
+
 echo "<h1>".__('Voice menus',true)."</h1>";
 
 
@@ -62,8 +64,10 @@ echo "<h1>".__('Voice menus',true)."</h1>";
                 $instance   = $ext['ivr'].$ivr_menu['IvrMenu']['instance_id'];
 		$title      = $ivr_menu['IvrMenu']['title'];
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
-		$edit       = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/ivr_menus/edit/{$ivr_menu['IvrMenu']['id']}",null, null, false);
-		$delete     = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/ivr_menus/delete/{$ivr_menu['IvrMenu']['id']}/ivr",null, __("Are you sure you want to delete this voice menu?",true),false);
+
+	        $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ivr_menus", "action" => "edit", $ivr_menu['IvrMenu']['id'])));
+                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');"));
+
 
      		$row[$key] = array(
 			   $instance,

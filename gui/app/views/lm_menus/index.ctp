@@ -55,8 +55,9 @@ echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8K
   		$instance_id      = $ext['lam'].$lm_menu['LmMenu']['instance_id'];
 		$title         = $lm_menu['LmMenu']['title'];
 		$created       = $time->niceShort($lm_menu['LmMenu']['created']);
-		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/lm_menus/edit/{$lm_menu['LmMenu']['id']}",null, null, false);
-		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/lm_menus/delete/{$lm_menu['LmMenu']['id']}",null, __("Are you sure you want to delete this Leave-a-message IVR menu?",true),false);
+                $edit      = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "lm_menus", "action" => "edit", $lm_menu['LmMenu']['id'])));
+                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "lm_menus", "action" => "delete", $lm_menu['LmMenu']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this Leave-a-message IVR menu?',true)."');"));
+
         
 
 

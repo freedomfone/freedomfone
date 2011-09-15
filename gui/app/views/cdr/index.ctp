@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all CDR
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Call data records', '/cdr');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Call data records',true), '/cdr');
 
 
 $session->flash();
@@ -85,9 +85,9 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 	$date  	     = date('Y-m-d',$entry['Cdr']['epoch']);
 	$time  	     = date('H:i:s A',$entry['Cdr']['epoch']);
 	$type	     = $entry['Cdr']['channel_state'];
-	$title	     = $text->truncate($entry['Cdr']['title'],20,false,true,false);
+	$title	     = $text->truncate($entry['Cdr']['title'],20, array('ending' => false, 'exact' => true,'html' => false));
 	$application = $formatting->appMatch($entry['Cdr']['application']);
-	$call_id     = $text->truncate($entry['Cdr']['call_id'],8,false,true,false);
+	$call_id     = $text->truncate($entry['Cdr']['call_id'],8,array('ending' => false, 'exact' => true,'html' => false));
 
 
 

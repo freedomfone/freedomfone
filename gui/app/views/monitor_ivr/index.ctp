@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List monitoring data for Voice Menus
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Monitoring', '/monitor_ivr');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Monitoring',true), '/monitor_ivr');
 
 
 
@@ -89,8 +89,9 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
 	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
 	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
-	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20,'...',true,false);
-	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8,false,true,false);
+	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20, array('ending' => '...','exact' => true,'html' => false));
+	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8, array('ending' => false,'exact' => true,'html' => false));
+
 	$digit       = $entry['MonitorIvr']['digit'];
 	
 	$caller_number  = $entry['MonitorIvr']['caller_number'];
@@ -110,7 +111,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
                  $type=__("tag",true);
                  $service = $this->element('services',array('service' => $entry['MonitorIvr']['service']));
-                 $title  = $text->truncate($entry[$entry['MonitorIvr']['service']]['title'],13,'...',true,false);
+                 $title  = $text->truncate($entry[$entry['MonitorIvr']['service']]['title'],13,array('ending' => '...','exact' => true,'html' => false));
 
         }
 
@@ -118,7 +119,9 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/monitor_ivr/del/{$entry['MonitorIvr']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
+
+        $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "monitor_ivr", "action" => "del", $entry['MonitorIvr']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');"));
+
 
 		//change class
 		if($call_id_old != $call_id){ 

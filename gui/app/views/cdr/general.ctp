@@ -163,7 +163,7 @@ echo $html->addCrumb('Reporting', '/cdr/general');
               }
 
 
-              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/view/limit:25',null, null, false)." | ".$html->link('50','general/view/limit:50',null, null, false)." | ".$html->link('100','general/view/limit:100',null, null, false));
+              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/limit:25',null, null, false)." | ".$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false));
 
 
 

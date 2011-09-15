@@ -43,7 +43,8 @@ class BinController extends AppController{
       function index(){
 
            $this->Bin->refresh('manual');
-      	   $this->pageTitle = __('SMS Incoming',true);
+
+           $this->set('title_for_layout', __('SMS Incoming',true));
            $this->Session->write('Bin.source', 'index');
 
           if(isset($this->params['named']['sort'])) { 
@@ -75,7 +76,7 @@ class BinController extends AppController{
     	     foreach ($entry as $key => $id){
 
 	       	   $this->Bin->id = $id;
-  	       	   if ($this->Bin->del($id)){
+  	       	   if ($this->Bin->delete($id)){
 	       	      $body = $this->Bin->getBody($id);
     		      $this->log('Message: BIN ENTRY DELETED; Id: '.$id."; Body:".$body, 'bin');
 		      }
@@ -93,7 +94,7 @@ class BinController extends AppController{
 
     	     $body = $this->Bin->getBody($id);
     
-    	     if($this->Bin->del($id))
+    	     if($this->Bin->delete($id))
 	     {
 		$this->Session->setFlash('Entry with message body "'.$body.'" has been deleted.');
 	     	$this->log('Message: MESSAGE DELETED; Id: '.$id."; Body:".$body, 'bin');

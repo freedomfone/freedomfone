@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List processes
- * version 	- 1.0.354
+ * version 	- 2.5.1450
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('Health', '/processes/');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('Health',true), '/processes/');
 
 
 
@@ -56,7 +56,7 @@ echo "<h1>".__('Health',true)."</h1>";
         if ($epoch > $running){
           $running = $epoch;}
 
-	$start_time = __("Running since",true).": ".$time->niceShort($running);
+	$starttime = __("Running since",true).": ".$time->niceShort($running);
 
 
 
@@ -69,8 +69,9 @@ echo "<h1>".__('Health',true)."</h1>";
 	if(!$interupt=$entry['Process']['interupt']){ $interupt=false;}
 
 
-	$start     = $html->link($html->image("icons/start.png", array("title" => __("Start",true))),"/processes/start/{$entry['Process']['id']}",null, null, false);
-	$stop      = $html->link($html->image("icons/stop.png", array("title" => __("Stop",true))),"/processes/stop/{$entry['Process']['id']}",null, null, false);
+        $start     = $this->Html->image("icons/start.png", array("alt" => __("Start",true), "title" => __("Start",true), "url" => array("controller" => "processes", "action" => "start", $entry['Process']['id'])));
+        $stop     = $this->Html->image("icons/stop.png", array("alt" => __("Stop",true), "title" => __("Stop",true), "url" => array("controller" => "processes", "action" => "stop", $entry['Process']['id'])));
+
 
 	if(!$entry['Process']['status']){ 
 		//$text = $html->div('process',$title).$last_seen.'<br/>'.$interupt;

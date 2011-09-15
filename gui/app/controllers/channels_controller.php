@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * channels_controller.ctp	- Controller for GSMopen channels.
- * version 			- 2.0.1170
+ * version 			- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -57,7 +57,7 @@ class ChannelsController extends AppController{
       $this->Channel->fsCommand("gsmopen_dump list");
       $this->pageTitle = __('GSM channels',true);
       $this->requestAction('/channels/refresh');
-      $this->set('gsmopen',$this->Channel->findAll());
+      $this->set('gsmopen',$this->Channel->find('all'));
 
       }
 

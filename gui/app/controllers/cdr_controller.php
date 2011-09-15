@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * cdr_controller.php	- Display, delete, export of CDR, System Overview page (Home) 
- * version 		- 2.0.1160
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -253,7 +253,7 @@ class CdrController extends AppController{
        } else {
 
            //Export all entries
-    	   $this->set('data', $this->Cdr->findAll()); 
+    	   $this->set('data', $this->Cdr->find('all')); 
 	   $this->set('select_option','all');	   
         }
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * system.ctp	- List system data (software versions, system environment)
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('About', '/processes/system');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('About',true), '/processes/system');
 
 
  $os = php_uname('s');
@@ -68,7 +68,10 @@ echo $html->addCrumb('About', '/processes/system');
 
      echo "<h1>".__("About",true)."</h1>";
 
+
      //Software updates
+     echo "<h2>".__("Software updates",true)."</h2>";
+
      if ($items){
        echo "<h2>".__("Software updates",true)."</h2>";
        echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
@@ -76,12 +79,16 @@ echo $html->addCrumb('About', '/processes/system');
 	  if($key<5){	  
               $rss[] =  array($html->div('news',$html->link($item->get_title(), $item->get_permalink()))); 
 	  }
-       }
+        }
+        echo $html->tableCells($rss,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
+
+    } else {
+
+        echo $html->tableCells(array(__("There are no software updates available",true)),array('class' =>'stand-alone'),array('class' =>'stand-alone'));
+
     }	  
 
-    echo $html->tableCells($rss,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
     echo "</table>"; 
-
 
 
 

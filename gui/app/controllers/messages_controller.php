@@ -25,7 +25,7 @@
 class MessagesController extends AppController{
 
       var $name = 'Messages';
-      var $helpers = array('Flash','Formatting','Session');      
+      var $helpers = array('Flash','Formatting');      
       var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Message.created' => 'desc')); 
 
 
@@ -44,6 +44,7 @@ class MessagesController extends AppController{
 
 
       function index(){
+
 
          $this->Session->write('messages_tag',false);
          $this->Session->write('messages_category',false);

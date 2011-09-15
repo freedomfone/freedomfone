@@ -23,9 +23,9 @@
 ***************************************************************************/
 
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Content', '/nodes');
-echo $html->addCrumb('Upload', '/nodes/add');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Content',true), '/nodes');
+echo $html->addCrumb(__('Upload',true), '/nodes/add');
 
 
 $session->flash();

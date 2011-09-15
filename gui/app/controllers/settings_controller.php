@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * settings_controller.php	- Controller for changing global settings
- * version 		 	- 2.0.1170
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -43,11 +43,11 @@ class SettingsController extends AppController {
                         $i=false;	
 		 foreach ($this->data as $id => $entry){
 
-		 if ($id==1){ $lang = $entry['value'];}
-		 if ($id==6){ $timezone = $entry['value'];}
+		 if ($id==1){ $lang = $entry[1]['value'];}
+		 if ($id==6){ $timezone = $entry[6]['value'];}
 		 if ($id==8){ 
 
-                    $country_id = $entry['value'];
+                    $country_id = $entry[8]['value'];
                     $this->loadModel('Country');
                     $country = $this->Country->findById($country_id, array('fields' => 'countryprefix'));
                     $data[9]= array('id'=>9, 'value_int'=>$country['Country']['countryprefix']);
@@ -56,16 +56,16 @@ class SettingsController extends AppController {
 
 		 //IP address
 
-		 if ($id==5 ) {
+		 if ($id == 5 ) {
 		      if ( !isset($entry['value'])){
-		      $entry['value'] = $ip_radio;
+		      $entry[5]['value'] = $ip_radio;
 		     }
-		     $ip_addr = $entry['value'];
+		     $ip_addr = $entry[5]['value'];
 		     
 
 		 }
 
-		 $data[$id]= array('id'=>$id,'value_string'=>$entry['value']);
+		 $data[$id]= array('id'=>$id,'value_string'=>$entry[$id]['value']);
 
 		 }
 

@@ -44,7 +44,8 @@ class PollsController extends AppController{
       function index(){
 
         $this->Poll->refresh();
-        $this->pageTitle = __('Manage Polls',true);
+        $this->set('title_for_layout', __('Manage Polls',true));
+
 
         $this->Poll->unbindModel(array('hasMany' => array('User')));
         $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
@@ -55,7 +56,7 @@ class PollsController extends AppController{
      function view($id){
 
   
-      	$this->pageTitle = __('View Poll',true).' : '.$this->Poll->getTitle($id);
+        $this->set('title_for_layout', __('View Poll',true).' : '.$this->Poll->getTitle($id));
 
      	if(isset($this->params['form']['submit'])) {
 		if ($this->params['form']['submit']==__('Refresh',true)){
@@ -72,7 +73,7 @@ class PollsController extends AppController{
 
    function add(){
 
-      $this->pageTitle = __('Create Poll',true);
+        $this->set('title_for_layout', __('Create Poll',true));
  
       //Render empty form
       if (empty($this->data)){
@@ -130,7 +131,7 @@ class PollsController extends AppController{
 
     function delete ($id){
 
-      $this->pageTitle = __('Delete Poll',true);
+        $this->set('title_for_layout', __('Delete Poll',true));
 
      	     $title = $this->Poll->getTitle($id);
     	     if($this->Poll->delete($id,true))
@@ -170,7 +171,7 @@ class PollsController extends AppController{
 
    function edit($id = null){
 
-           $this->pageTitle = __('Edit Poll',true).' : '.$this->Poll->getTitle($id);   
+        $this->set('title_for_layout', __('Edit Poll',true).' : '.$this->Poll->getTitle($id));   
  
 	   if (!$id && empty($this->data)){ 
 			$this->Session->setFlash(__('Invalid Poll', true)); 

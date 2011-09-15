@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List Incoming SMS
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Incoming SMS', '/bin');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Incoming SMS',true), '/bin');
 
 
 $session->flash();
@@ -70,7 +70,10 @@ echo $html->tableHeaders(array(
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];
 	$sender    = $entry['Bin']['sender'];
-	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/bin/delete/{$entry['Bin']['id']}",null, __("Are you sure you want to delete this entry?",true),false);
+
+        $delete     = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id'])));
+
+        //_('Are you sure you want to delete this entry?",true),false);
 
      	$row[$key] = array($id, $body, $created, $mode, $proto, $sender, array($delete,array('align'=>'center')));
 

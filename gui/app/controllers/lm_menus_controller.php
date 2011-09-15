@@ -32,7 +32,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
    function index(){
 
 
-   $this->pageTitle = __('Leave-a-Message IVR Menus',true);
+    $this->set('title_for_layout', __('Leave-a-Message IVR Menus',true));
 
 
    //Avoid fetching associated data
@@ -47,7 +47,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
    function create() {
 
 
-         $this->pageTitle = __('Create Leave-a-Message',true);
+        $this->set('title_for_layout', __('Create Leave-a-Message',true));
                  $lm_settings = Configure::read('LM_SETTINGS');
                  $fileData = array();
 
@@ -71,7 +71,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
     function add($id) {
 
-         $this->pageTitle = __('Create Leave-a-Message',true);
+        $this->set('title_for_layout',  __('Create Leave-a-Message',true));
          $lm_settings = Configure::read('LM_SETTINGS');
          $instance_id=$this->data['LmMenu']['instance_id'];
          $fileData = array();
@@ -142,7 +142,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
 
                 
-                 $this->pageTitle = __('Edit Leave-a-Message',true);
+                $this->set('title_for_layout', __('Edit Leave-a-Message',true));
 
                  $lm_settings = Configure::read('LM_SETTINGS');
 

@@ -61,7 +61,8 @@ class ProcessesController extends AppController{
 	       }
 
 
-      	$this->pageTitle = __('About',true);
+
+        $this->set('title_for_layout', __('About',true));
 
  	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");

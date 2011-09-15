@@ -26,7 +26,7 @@ class NodesController extends AppController{
 
       var $name = 'Nodes';
       var $helpers = array('Html', 'Session','Form','Formatting','Flash');
-      var  $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
+      var $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
     
      	
 
@@ -45,8 +45,12 @@ class NodesController extends AppController{
 	}	
 
 
-     	     $this->set('nodes',$this->Node->find('all',array('order'=>'Node.created ASC')));
-	     $this->set('nodes',$this->paginate());
+
+	     $nodes = $this->paginate('Node');
+
+
+             $this->set(compact('nodes'));    
+
      }
 
 

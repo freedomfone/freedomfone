@@ -50,9 +50,14 @@ echo $html->addCrumb('Phone books', '/phone_books');
 
       	      $title 	= $phone_book['PhoneBook']['name'];
       	      $description = $phone_book['PhoneBook']['description'];		   
-  	      $edit 	= array($html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/phone_books/edit/{$phone_book['PhoneBook']['id']}",null, null, false),array('align'=>'center'));
-      	      $delete 	= array($html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/phone_books/delete/{$phone_book['PhoneBook']['id']}",array('class'=>'confirm_delete'), __("Are you sure you want to delete this phone book?",true),false), array('align'=>'center'));
-	      $export 	= array($html->link($html->image("icons/export-16.png", array("title" => __("Export",true))),"/phone_books/export/{$phone_book['PhoneBook']['id']}",null, null, false),array('align'=>'center'));
+
+	      $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "phone_books", "action" => "edit", $phone_book['PhoneBook']['id'])));
+
+              $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "phone_books", "action" => "delete", $phone_book['PhoneBook']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this phone book?',true)."');"));
+	
+	      $export     = $this->Html->image("icons/export-16.png", array("alt" => __("Export",true), "title" => __("Export",true), "url" => array("controller" => "phone_books", "action" => "export", $phone_book['PhoneBook']['id'])));
+
+
               $row[$key] = array($title, $description,$edit,$delete, $export);
 
 

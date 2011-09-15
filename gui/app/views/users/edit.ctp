@@ -90,7 +90,10 @@ echo $form->end();
 
      foreach ($phonenumbers as $key => $number){
 
-             $delete = $ajax->link($html->image("icons/delete.png"),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
+
+
+//$html->image("icons/delete.png")
+             $delete = $ajax->link(__("Delete",true),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
              $row[] = array(__('Phone number',true), $number['PhoneNumber']['number'], $delete);
 
      }

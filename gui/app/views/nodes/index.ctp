@@ -66,21 +66,7 @@ echo $form->end();
 	      $created  = $time->niceShort($node['Node']['created']);
 	      $duration = $formatting->epochToWords($node['Node']['duration']);
 	      $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "nodes", "action" => "edit", $node['Node']['id'])));
-	      $delete   = $this->Html->image(
-                        "icons/delete.png", 
-                        array(
-                                "alt" => __("Delete",true), 
-                                "title" => __("Delete",true), 
-                                "url" => 
-                                      array(
-                                        "controller" => "nodes", 
-                                        "action" => "delete", 
-                                         $node['Node']['id'],
-                                        ),
-                               )
-                           );
-
-                           //__("Are you sure you want to delete this content?",true)
+                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "nodes", "action" => "delete", $node['Node']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this content?',true)."');"));
 
 	      $download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "nodes", "action" => "download", $node['Node']['id'])));
 

@@ -393,15 +393,13 @@ debug($core);
 			$this->redirect(array('action'=>'index'));
 		} 
 
-	} else {
+	} 
 
                $this->loadModel('PhoneBook');
                $options = $this->PhoneBook->find('list');
                $this->set(compact('options'));
+    	       $this->render();
 
-		//Show empty form
-      	 	$this->render();
-	}
 
 
     }

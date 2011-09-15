@@ -56,9 +56,13 @@ echo $html->addCrumb('Polls', '/polls');
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->format('Y/m/d H:i',$poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i',$poll['Poll']['end_time']);
-           $view     = $html->link($html->image("icons/view.png", array("title" => __("Results",true))), array('controller' => 'polls', 'action' => 'view',$poll['Poll']['id'] ), array('title' => 'Poll results', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"),null,false,false);
-	   $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
-	   $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/polls/delete/{$poll['Poll']['id']}",null, __("Are you sure you want to delete this poll?",true),false);
+//           $view     = $html->link($html->image("icons/view.png", array("title" => __("Results",true))), array('controller' => 'polls', 'action' => 'view',$poll['Poll']['id'] ), array('title' => 'Poll results', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"),null,false,false);
+
+           $view     = '<a href="/freedomfone/polls/view/'.$poll['Poll']['id'].'" title= "Results" onclick="Modalbox.show(this.href, {title: this.title, width: 950}); return false;"><img src="/freedomfone/img/icons/view.png"/></a>&nbsp;';
+
+           $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id'])));
+
+           $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "polls", "action" => "delete", $poll['Poll']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this poll?',true)."');"));
 
 
            $row[$key] = array(

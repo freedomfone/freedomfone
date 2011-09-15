@@ -42,8 +42,8 @@ echo "<h1>".__("Categories",true)."</h1>";
 
       		   $title 	= $category['Category']['name'];
       		   $description = $category['Category']['longname'];		   
-  		   $edit 	= $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/categories/edit/{$category['Category']['id']}",null, null, false);
-      		   $delete 	= $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/categories/delete/{$category['Category']['id']}",null, __("Are you sure you want to delete this category?",true),false);
+                   $edit        = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "categories", "action" => "edit", $category['Category']['id'])));
+                   $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "categories", "action" => "delete", $category['Category']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this category?',true)."');"));
       		   
                    $row[$key] = array($title, $description,$edit,$delete);
 

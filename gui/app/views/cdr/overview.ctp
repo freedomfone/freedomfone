@@ -81,14 +81,15 @@ echo $form->end();
 
                 if(sizeof($rows)<5){
 
-	        $download  = $html->link($html->image("icons/music.png", array("title" => __("Download audio file",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+               $download = $this->Html->image("icons/music.png", array("alt" => __("Download audio file",true), "title" => __("Download audio file",true), "url" => array("controller" => "messages", "action" => "download", $message['Message']['id'])));
+	  
 	        $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
 
                  $rows[] = array(
                        $message['Message']['sender'],
                        $time->format('Y/m/d H:i',$message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
-                       $html->link($html->image("icons/edit.png", array("title" => __("Edit message",true))),"/messages/edit/{$message['Message']['id']}",null, null, false),
+	               $this->Html->image("icons/edit.png", array("alt" => __("Edit message",true), "title" => __("Edit message",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id']))),
                        $download,
                        $listen
                        );
@@ -153,8 +154,10 @@ echo $form->end();
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->format('Y/m/d H:i', $poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i', $poll['Poll']['end_time']);
-           $view     = $html->link($html->image("icons/view.png", array("title" => __("View results",true))),"/polls/view/{$poll['Poll']['id']}",null, null, false);
-           $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit message",true))),"/polls/edit/{$poll['Poll']['id']}",null, null, false);
+
+           $view     = $this->Html->image("icons/view.png", array("alt" => __("View results",true), "title" => __("View results",true), "url" => array("controller" => "polls", "action" => "view", $poll['Poll']['id'])));
+           $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id'])));
+
 
            $row[$key] = array(
      		array($this->element('poll_status',array('status'=>$poll['Poll']['status'],'mode'=>'image')),array('align'=>'center')),

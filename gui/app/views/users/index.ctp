@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Users', '/users');
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Users',true), '/users');
 
 
 echo $javascript->includeScript('toggle');
@@ -42,13 +42,12 @@ echo $form->end();
 <div class='frameRightTrans'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
 <?
 
+
      echo "<h1>".__('Users',true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
-
-   
 
    $options_slim = $options;
    $options[0] = __('All phone books',0);
@@ -56,22 +55,34 @@ echo $form->end();
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
      echo "<table cellspacing = '0' class='none'>";
-     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
+     echo $html->tableCells(array($form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'selected' => $session->read('users_phone_book_id'), 'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
      echo "</table>";
      echo $form->end();
 
      $row = array();
+     $suffix = false;
+     $phone_book_id = false;
 
      if ($users){
+     
+        if(isset($this->data['User']['phone_book_id'])){
+                $phone_book_id = $this->data['User']['phone_book_id'];
+        } elseif($session->read('users_phone_book_id')){
+                $phone_book_id = $session->read('users_phone_book_id');
+        }
 
 
-     echo $html->div("paginator'",$paginator->counter(array('format' => __("User:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-     echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+        if($phone_book_id){
 
+               $suffix = __('from phone book',true).' <b>'.$options[$phone_book_id].'</b>';
 
+        }
 
-     echo "<table class='collapsed' cellspacing=0>";
-     echo $html->tableHeaders(array(
+        echo $html->div("paginator'",$paginator->counter(array('format' => __("User",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ".$suffix)));
+        echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+
+        echo "<table class='collapsed' cellspacing=0>";
+        echo $html->tableHeaders(array(
 	'',
 	$paginator->sort(__("New",true), 'User.new'),
  	$paginator->sort(__("Name",true), 'User.name'),

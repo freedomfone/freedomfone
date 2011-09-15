@@ -27,6 +27,7 @@ class Setting extends AppModel{
 
       var $name = 'Setting';
 
+
 	function getIP($type){
 	
 	  switch($type){
@@ -38,8 +39,14 @@ class Setting extends AppModel{
 	    case 'external':
 	    $cmd = "/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo";
   	    $op = array();
-	    exec($cmd,$op);
-	    $ip = $op[0]; 
+            exec($cmd,$op);
+
+            if(sizeof($op)){
+	        $ip = $op[0];
+             } else {
+                $ip = false;
+             }
+ 
 	    break;
 
 	  }

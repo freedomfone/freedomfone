@@ -24,7 +24,7 @@ class SimplepieComponent extends Object {
     //make the cache dir if it doesn't exist
     if (!file_exists($this->cache)) {
       $folder = new Folder();
-      $folder->mkdir($this->cache); 
+      $folder->create($this->cache); 
     }
 
     //include the vendor class

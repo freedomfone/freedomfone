@@ -311,7 +311,7 @@ function checkDate($data,$field){
         $this->unbindModel(array('hasMany' => array('User')));
 
 	// Update status of polls (use beforeSave to update status)
-	$data = $this->findAll();
+	$data = $this->find('all');
 	foreach ($data as $key => $entry){
 		$this->save($entry);
 	}

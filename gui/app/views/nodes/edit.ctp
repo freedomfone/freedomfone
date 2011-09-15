@@ -22,11 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Content', '/nodes');
-
-
-
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Content',true), '/nodes');
 
 $ivr = Configure::read('IVR_SETTINGS');
 
@@ -36,7 +33,6 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 		echo "<h1>".__("Edit Content",true)."</h1>";
 		
-
    	  	if ($messages = $session->read('Message.multiFlash')) {
                    foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
          	   }
@@ -44,8 +40,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
       		$path = $ivr['path'].$ivr['dir_node'];
 		$listen =  $this->element('player',array('path'=>$path,'file'=>$this->data['Node']['file'],'title'=>$this->data['Node']['title'],'id'=>$this->data['Node']['id']));
-		$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$this->data['Node']['id']}",null, null, false);
-
+	        $download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "nodes", "action" => "download", $this->data['Node']['id'])));
 
 
 		echo $form->create('Node', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );

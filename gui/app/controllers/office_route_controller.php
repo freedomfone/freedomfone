@@ -35,7 +35,7 @@ class OfficeRouteController extends AppController{
       $data = $this->OfficeRoute->refresh();
 
         //Create local db of old data
-        $db = $this->OfficeRoute->findAll(array('imsi !=' => ''));
+        $db = $this->OfficeRoute->find('all', array('imsi !=' => ''));
         foreach($db as $key => $entry){
 
                     $prev[$entry['OfficeRoute']['imsi']]= array($entry['OfficeRoute']['title'], $entry['OfficeRoute']['msisdn']);

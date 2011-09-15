@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List nodes (aka Content for Voice Menus and Selectors)
- * version 	- 2.0.1175
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Content', '/nodes');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Content',true), '/nodes');
 
 
 $ivr = Configure::read('IVR_SETTINGS');
@@ -65,9 +65,25 @@ echo $form->end();
 	      //$category = $node['Category']['name'];
 	      $created  = $time->niceShort($node['Node']['created']);
 	      $duration = $formatting->epochToWords($node['Node']['duration']);
-	      $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/nodes/edit/{$node['Node']['id']}",null, null, false);
-	      $delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/nodes/delete/{$node['Node']['id']}",null, __("Are you sure you want to delete this content?",true),false);
-	      $download = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/nodes/download/{$node['Node']['id']}",null, null, false);
+	      $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "nodes", "action" => "edit", $node['Node']['id'])));
+	      $delete   = $this->Html->image(
+                        "icons/delete.png", 
+                        array(
+                                "alt" => __("Delete",true), 
+                                "title" => __("Delete",true), 
+                                "url" => 
+                                      array(
+                                        "controller" => "nodes", 
+                                        "action" => "delete", 
+                                         $node['Node']['id'],
+                                        ),
+                               )
+                           );
+
+                           //__("Are you sure you want to delete this content?",true)
+
+	      $download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "nodes", "action" => "download", $node['Node']['id'])));
+
 	      $listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
      	      $row[$key] = array(
 		array($title,array('align'=>'left')),

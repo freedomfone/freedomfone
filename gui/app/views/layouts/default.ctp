@@ -80,6 +80,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 	 <div id="content_wrap">
         <?php echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
 
+        <?php echo $this->Session->flash('auth');?>
 		<div id="main_content">
     		<?php 
                 echo $content_for_layout; ?>  

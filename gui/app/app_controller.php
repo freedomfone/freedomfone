@@ -49,11 +49,21 @@ App::import('Core','L10n');
 class AppController extends Controller {
 
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Paginator','Text','Time');
-var $components = array('RequestHandler','Session');
+var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 
 
 function beforeFilter() {
+
+         //Global root ACO 
+         $this->Auth->actionPath = 'controllers/';
+
+
+         //Configure Auth component
+         $this->Auth->authorize = 'actions';
+         $this->Auth->loginAction = array('controller' => 'ff_users', 'action' => 'login');
+         $this->Auth->logoutRedirect = array('controller' => 'ff_users', 'action' => 'logout');
+         $this->Auth->loginRedirectk = array('controller' => 'polls', 'action' => 'index');
 
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){

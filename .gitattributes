@@ -220,6 +220,8 @@ gui/app/controllers/cdr_controller.php -text
 gui/app/controllers/channels_controller.php -text
 gui/app/controllers/components/empty -text
 gui/app/controllers/components/simplepie.php -text
+gui/app/controllers/ff_users_controller.php -text
+gui/app/controllers/groups_controller.php -text
 gui/app/controllers/ivr_menus_controller.php -text
 gui/app/controllers/lm_menus_controller.php -text
 gui/app/controllers/logs_controller.php -text
@@ -250,6 +252,8 @@ gui/app/models/category.php -text
 gui/app/models/cdr.php -text
 gui/app/models/channel.php -text
 gui/app/models/datasources/empty -text
+gui/app/models/ff_user.php -text
+gui/app/models/group.php -text
 gui/app/models/ivr_menu.php -text
 gui/app/models/lm_menu.php -text
 gui/app/models/log.php -text
@@ -320,6 +324,11 @@ gui/app/views/errors/empty -text
 gui/app/views/errors/missing_action.ctp -text
 gui/app/views/errors/missing_controller.ctp -text
 gui/app/views/errors/missing_view.ctp -text
+gui/app/views/ff_users/add.ctp -text
+gui/app/views/ff_users/index.ctp -text
+gui/app/views/ff_users/login.ctp -text
+gui/app/views/groups/add.ctp -text
+gui/app/views/groups/index.ctp -text
 gui/app/views/helpers/csv.php -text
 gui/app/views/helpers/empty -text
 gui/app/views/helpers/flash.php -text

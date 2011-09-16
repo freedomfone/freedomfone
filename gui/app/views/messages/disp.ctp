@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * disp.ctp	- List all Leave-a-message messages
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -70,14 +70,15 @@ $ext = Configure::read('EXTENSIONS');
 	if($message['Message']['new']){ $status = $html->image("icons/star.png",array("title" => __("New",true)));}
         $service      = $message['Message']['instance_id'];
         $title      = $message['Message']['title'];
-        $title_div  = $html->div('',$text->truncate($title,20,'...',true,false),array('title' => $title),false);
+        $title_div  = $html->div('',$text->truncate($title,20,array('ending' => '...','exact' => true,'html' => false)),array('title' => $title),false);
 	$sender     = $message['Message']['sender'];
 	$rate       = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category   = $message['Category']['name'];
 	$created    = date('y/m/d H:i',$message['Message']['created']);
 	$length     = $formatting->epochToWords($message['Message']['length']);
-	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
-	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+
+        $edit       = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id'])));
+        $download   = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $message['Message']['id'])));
 	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
         $row[$key] = array($id,

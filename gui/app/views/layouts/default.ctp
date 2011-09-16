@@ -56,18 +56,18 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
  <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
-    <?php echo $javascript->link('prototype');?>
-    <?php echo $javascript->link('scriptaculous.js?load=builder,effects');?>
-    <?php echo $javascript->link('modalbox');?>
-    <?php echo $javascript->link('cakemodalbox');?>
+    <?php echo $html->script('prototype');?>
+    <?php echo $html->script('scriptaculous.js?load=builder,effects');?>
+    <?php echo $html->script('modalbox');?>
+    <?php echo $html->script('cakemodalbox');?>
 
 
-<!--    <?=$javascript->link('jquery.tableCorners');?>   -->  <!-- Cluetip -->
+<!--    <?=$html->script('jquery.tableCorners');?>   -->  <!-- Cluetip -->
 
   
 
-    <?=$javascript->link('audio-player');?>			  <!-- Audioplayer -->
-    <?=$javascript->codeBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
+    <?=$html->script('audio-player');?>			  <!-- Audioplayer -->
+    <?=$html->scriptBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
 
  
 </head>

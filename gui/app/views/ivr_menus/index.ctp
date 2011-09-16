@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all IVR Voice Menus
- * version 	- 2.0.1175
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus');
 
 $ext = Configure::read('EXTENSIONS');
 
@@ -66,7 +66,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 
 	        $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ivr_menus", "action" => "edit", $ivr_menu['IvrMenu']['id'])));
-                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');"));
+                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id'].'/ivr'), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');"));
 
 
      		$row[$key] = array(

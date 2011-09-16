@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List processes
- * version 	- 2.0.1150
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus/');
-echo $html->addCrumb('Create', '/ivr_menus/add');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus/');
+echo $html->addCrumb(__('Create',true), '/ivr_menus/add');
 
 
 echo "<h1>".__("Create voice menu",true)."</h1>";
@@ -94,14 +94,14 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 $path = $ivr['path'].$ivr['dir_node'];
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
+             $lam[$key] = $text->truncate($entry,$ivr['showLengthMax'],   array('ending' => '...','exact' => true,'html' => false));
        }
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr['showLengthMax'],array('ending' => '...','exact' => true,'html' => false));
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr['showLengthMax'],array('ending' => '...','exact' => true,'html' => false));
        }
 
 

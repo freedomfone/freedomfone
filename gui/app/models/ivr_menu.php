@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menu.php		- Model for IVRs (aka 'Voice menus') Manages updates of default IVR (aka 'parent').
- * version 		- 2.0.1175
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -374,14 +374,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
             $this->Mapping->unbindModel(array('belongsTo' => array('Node'), 'hasOne' => array('Node'), 'belongsTo' => array('LmMenu')));     
 
-
-            //FIXME   
-    	    //$this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
-            foreach($this->data['Mapping'] as $key => $mapping){
-
-    	       $this->Mapping->delete($mapping['id']);
-
-            }
+    	    $this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
 
                 $this->log("INFO; DELETE MAPPINGS, {Id:".$id."}", "ivr");
                    

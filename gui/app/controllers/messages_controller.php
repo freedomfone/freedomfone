@@ -25,8 +25,10 @@
 class MessagesController extends AppController{
 
       var $name = 'Messages';
-      var $helpers = array('Flash','Formatting');      
+      var $helpers = array('Flash','Formatting', 'Ajax', 'Javascript');      
       var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Message.created' => 'desc')); 
+
+      var $components = array('RequestHandler','Session');
 
 
 
@@ -56,21 +58,25 @@ class MessagesController extends AppController{
          $this->Session->write('messages_page',false);
 
          $this->set('title_for_layout', __('Leave-a-Message Inbox',true));
+
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
                 $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
  		$this->set(compact('tags','categories','instances'));
 
+
       }
 
 
       function disp($page = null){
-      
+
+
       $this->Message->recursive = 1; 
       $tag = $category = $rate = $instance_id = $dir = $limit = $id = false;
       $param = $conditions = $order = array();
       $data = $this->data['Message'];
       $no_match = false;
+
 
       if($data['tag']){
 

@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * view.ctp	- View user data in phone book
- * version 	- 2.0.1244
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,10 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
+echo $html->addCrumb(__('User Management',true), '');
 Configure::write('debug', 0);
+
+  $phonenumber = $phonebook = array();
 
  if($data){
 

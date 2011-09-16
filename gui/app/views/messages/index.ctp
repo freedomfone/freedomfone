@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all Leave-a-message messages
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -24,8 +24,8 @@
 
       echo $javascript->includeScript('toggle');
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Inboxes', '/messages');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Inboxes',true), '/messages');
       echo "<h1>".__('Audio Messages',true)."</h1>";
       echo $html->div('feedback', __('Please select one or more criteria below.',true));
       $rates = array(1,2,3,4,5);
@@ -70,7 +70,7 @@
 
 
       $opt = array("update" => "service_div", "url" => "disp", "frequency" => "0.2");
-      echo $ajax->observeForm("MessageAddForm", $opt);
+      echo $ajax->observeForm("MessageIndexForm", $opt);
       echo $form->end();
 
       echo "<div id= 'service_div' style=''></div>";

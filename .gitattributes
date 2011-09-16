@@ -212,12 +212,6 @@ gui/app/config/database.php -text
 gui/app/config/database.php.default -text
 gui/app/config/ip_addr.php -text
 gui/app/config/routes.php -text
-gui/app/config/sql/db_acl.php -text
-gui/app/config/sql/db_acl.sql -text
-gui/app/config/sql/i18n.php -text
-gui/app/config/sql/i18n.sql -text
-gui/app/config/sql/sessions.php -text
-gui/app/config/sql/sessions.sql -text
 gui/app/controllers/bin_controller.php -text
 gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text

@@ -44,10 +44,12 @@ App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php');
 App::import('Core', 'HttpSocket');
 App::import('Core','L10n');
 
+
+
 class AppController extends Controller {
 
 var $helpers = array('Html','Form','Ajax','Javascript','Session','Paginator','Text','Time');
-var $components = array('RequestHandler');
+var $components = array('RequestHandler','Session');
 
 
 
@@ -57,6 +59,7 @@ function beforeFilter() {
 	 if(!$timezone = $this->Session->read('Config.timezone')){
 		$timezone = $this->getTimezone();
 	 }
+
 
                 date_default_timezone_set($timezone);
                 $locale = Configure::read('Config.language');

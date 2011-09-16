@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * archive.ctp	- List all archived Leave-a-message messages
- * version 	- 1.0.362
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Archive', '/messages/');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Archive',true), '/messages/');
 
 
 
@@ -77,8 +77,9 @@ echo $html->addCrumb('Archive', '/messages/');
 	$category = $message['Category']['name'];
 	$created  = $time->niceShort($message['Message']['created']);
 	$length   = $formatting->epochToWords($message['Message']['length']);
-	$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/messages/edit/{$message['Message']['id']}",null, null, false);
-	$download  = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$message['Message']['id']}",null, null, false);
+
+	$edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id'])));
+	$download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $message['Message']['id'])));
 	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
         $row[$key] = array(

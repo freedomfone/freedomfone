@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * tags_controller.php		- Controller for tages (used for classification of Leave-a-message messages).
- * version 		 	- 2.0.1139
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -31,7 +31,7 @@ class TagsController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = __('Tags',true);
+                $this->set('title_for_layout', __('Tags',true));
 		$this->Tag->recursive = 0;
 		$this->set('tags', $this->paginate());
 
@@ -42,11 +42,11 @@ class TagsController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = __('Add Tag');
+                $this->set('title_for_layout', __('Add Tag',true));
 
 		if (!empty($this->data)) {
-			$this->Tag->create();
-			if ($this->Tag->save($this->data)) {
+
+  			if ($this->Tag->save($this->data)) {
 				$this->_flash(__('The tag has been saved', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} 
@@ -58,7 +58,7 @@ class TagsController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = __('Edit Tag',true);
+                $this->set('title_for_layout', __('Edit Tag',true));
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid Tag', true),'warning');

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * advanced_edit.ctp	- AJAX view for advanced LAM settings (edit LAM)
- * version 	        - 2.0.1041
+ * version 	        - 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -53,7 +53,8 @@ $input8_3 = $input8_4 = false;
      $lines3[0] = array(array($input3_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmInvalid.mp3')){ 
-	    $input3_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Invalid",null, null, false);
+
+	    $input3_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Invalid')));
       } 
 
 
@@ -74,7 +75,8 @@ $input8_3 = $input8_4 = false;
      $lines4[0] = array(array($input4_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmLong.mp3')){ 
-            $input4_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Long",null, null, false);
+
+	    $input4_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Long')));
 	
      } 
 
@@ -96,7 +98,9 @@ $input8_3 = $input8_4 = false;
 
      $lines5[0] = array(array($input5_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
       if (file_exists($path.'/lmSelect.mp3')){ 
-      	 $input5_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Select",null, null, false);	
+
+         $input5_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Select')));
+
       } 
 
 
@@ -117,7 +121,9 @@ $input8_3 = $input8_4 = false;
      $lines6[0] = array(array($input6_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmDelete.mp3')){ 
-      	 $input6_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Delete",null, null, false);	
+
+         $input6_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Delete')));
+
       } 
 
 
@@ -138,7 +144,8 @@ $input8_3 = $input8_4 = false;
      $lines7[0] = array(array($input7_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmSave.mp3')){
-      	    $input7_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Save",null, null, false); 
+
+            $input7_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Save')));
       } 
 
 
@@ -160,7 +167,7 @@ $input8_3 = $input8_4 = false;
      $lines8[0] = array(array($input8_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmGoodbye.mp3')){ 
-            $input8_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Goodbye",null, null, false);
+            $input8_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Goodbye')));
       } 
 
 

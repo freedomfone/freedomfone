@@ -252,7 +252,7 @@ function __construct($id = false, $table = null, $ds = null) {
      	    $ivr_settings = Configure::read('IVR_SETTINGS');
 
 	    $this->unbindModel(array('hasMany' => array('Node')));   
-            $data =  $this->findAll();
+            $data =  $this->find('all');
 
             $i = $ivr_settings['instance_start'];
             $instance_id = false;

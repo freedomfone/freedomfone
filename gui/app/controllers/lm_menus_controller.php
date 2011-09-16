@@ -211,6 +211,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
   $this->LmMenu->id = $id;
 
+  $this->LmMenu->unbindModel(array('hasMany' => array('Mapping')));   
   $data = $this->LmMenu->read();
   
   $file = 'lm'.$message.'.mp3';
@@ -227,6 +228,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                              'extension' => 'mp3',
                              'path' => APP . $url . DS
                              );
+
         $this->set($params);
 
         $this->layout = null;

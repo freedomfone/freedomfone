@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit Leave-a-message IVR menu
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,14 +22,13 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Administration', '/lm_menus');
-
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Administration',true), '/lm_menus');
 
 
 if($this->data){
 
-echo $html->addCrumb('Edit', '/lm_menus/edit/'.$this->data['LmMenu']['id']);
+echo $html->addCrumb(__('Edit',true), '/lm_menus/edit/'.$this->data['LmMenu']['id']);
 
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
@@ -95,7 +94,8 @@ echo $form->hidden('lmGoodbyeMessage');
      $lines1[0] = array(array($input1_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
   
       if (file_exists($path.'/lmWelcome.mp3')){      	    
-      	    $input1_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Welcome",null, null, false);
+
+        $input1_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Welcome')));
       } 
 
 
@@ -119,7 +119,9 @@ echo $form->hidden('lmGoodbyeMessage');
      $lines2[0] = array(array($input2_5,array('colspan'=>3,'height'=>20,'valign'=>'bottom')));
 
       if (file_exists($path.'/lmInform.mp3')){ 
-      	    $input2_3 =$html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/lm_menus/download/{$this->data['LmMenu']['id']}/Inform",null, null, false);
+
+	    $input2_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Inform')));
+
        } 
 
      $lines2[1] = array($input2_1,array($input2_3,array('valign'=>'bottom','width'=>'25')), $input2_2);

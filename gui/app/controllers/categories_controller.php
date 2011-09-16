@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * categories_controller.php	- Controller for categories (used for messages)
- * version 		 	- 2.0.1139
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -28,7 +28,8 @@ class CategoriesController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = __('Categories',true);
+        
+                $this->set('title_for_layout', __('Categories',true));
 		$this->Category->recursive = 0;
 		$this->set('categories', $this->paginate());
 	}
@@ -36,10 +37,10 @@ class CategoriesController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = __('Add category');
+                $this->set('title_for_layout', __('Add category',true));
+
 		if (!empty($this->data)) {
 		  
-			$this->Category->create();
 			if ($this->Category->save($this->data)) {
 				$this->_flash(__('The category has been saved', true),'success');
 				$this->redirect(array('action'=>'index'));
@@ -59,7 +60,8 @@ class CategoriesController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = __('Edit category',true);
+
+                $this->set('title_for_layout', __('Edit category',true));
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid Category', true),'warning');

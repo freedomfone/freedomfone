@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * lm_menu.php		- Model for Leave-a-message IVR menu.
- * version 		- 2.0.1175
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -90,7 +90,7 @@ class LmMenu extends AppModel {
 
      	    $lm_settings = Configure::read('LM_SETTINGS');
             $this->unbindModel(array('hasMany' => array('Mapping')));   
-            $data =  $this->findAll();
+            $data =  $this->find('all');
 
           //LAM entries exist  
           if ($data){

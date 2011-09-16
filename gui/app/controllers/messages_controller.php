@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * messages_controller.php	- Controller for Leave-a-message messages. Manages CRUD operations on messages.
- * version 		 	- 2.5.1350
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -55,7 +55,7 @@ class MessagesController extends AppController{
          $this->Session->write('messages_limit',false);
          $this->Session->write('messages_page',false);
 
-                $this->pageTitle = __('Leave-a-Message Inbox',true);
+         $this->set('title_for_layout', __('Leave-a-Message Inbox',true));
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
                 $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
@@ -176,7 +176,7 @@ class MessagesController extends AppController{
 
          $this->refreshAll();
  
-         $this->pageTitle = __('Leave-a-Message Archive',true);
+         $this->set('title_for_layout', __('Leave-a-Message Archive',true));
          $this->Session->write('Message.source', 'archive');
      
          if(isset($this->params['named']['sort'])) { 
@@ -212,7 +212,7 @@ class MessagesController extends AppController{
 
     function edit($id = null)    {  
 
-            $this->pageTitle = __('Edit Leave-a-Message',true);
+            $this->set('title_for_layout', __('Edit Leave-a-Message',true));
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));
@@ -227,24 +227,26 @@ class MessagesController extends AppController{
 
 
       		if($this->Session->check('messages_sort')){
+
 			$data = $this->Session->read('messages_sort');
 			$keys = array_keys($data);
 			$field = $keys[0];
 			$dir = $data[$field];
 		} else {
+
+                        $data = $this->Message->find('list');
+                        $keys = array_keys($data);
 			$field = 'id';
 			$dir = 'asc';
 		}
 
-
+                
       		$this->Session->write('Message.messages_sort', $dir);
       	  	$neighbors = $this->Message->find('neighbors', array('field' => $field, 'dir' => 'desc','value' => $this->data['Message'][$field], 'conditions' => array('status' => $this->data['Message']['status'] )));	
 
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
- 		$this->set(compact('tags','categories','neighbors'));
-
-		     
+ 		$this->set(compact('tags','categories','neighbors','keys'));
 
 		}
 

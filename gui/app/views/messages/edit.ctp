@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * exit.ctp	- Edit a Leave-a-message messages
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,28 +22,28 @@
  *
  ***************************************************************************/
 
-$source  = $session->read('Message.source');
-$sort  = $session->read('messages_sort');
+    $source  = $session->read('Message.source');
+    $sort  = $session->read('messages_sort');
 
-   if($source == 'index') { $location = __('Inboxes',true);} else { $location = __('Archive',true);}
+    if($source == 'archive') { $location = __('Archive',true);} else { $location = __('Inbox',true);}
 
-     $keys = $session->read('messages_selected');
+    if(!$keys){
+        $keys = $session->read('messages_selected');
+    }
 
-     echo $html->addCrumb('Message Centre', '/messages');
-     echo $html->addCrumb($location, '/messages/'.$source);
-     echo $html->addCrumb('Edit message', '/messages/edit/'.$data['Message']['id']);
+    echo $html->addCrumb(__('Message Centre',true), '/messages');
+    echo $html->addCrumb($location, '/messages/'.$source);
+    echo $html->addCrumb(__('Edit message',true), '/messages/edit/'.$data['Message']['id']);
 
-     $current = array_keys($keys,$data['Message']['id']);
-     $prev = $next = false;
+    $current = array_keys($keys,$data['Message']['id']); 
+    $prev = $next = false;
 
-      if($data){
-
-
+      
+    if($data){
 
 	$options_rate = array('options' => array ( '1'=>1 ,'2'=> 2 , '3'=> 3 , '4'=>4 ,'5'=> 5 ),
 		      'label'   => false,
 		      'empty'   => "--- ".__('No rate',true)." ---");
-
 
         $options_status = array('options' => array ('1'=>__("Active",true),'0'=>__("Archive",true)),
 		          'label'   => false);
@@ -51,8 +51,8 @@ $sort  = $session->read('messages_sort');
 
      if($current[0]-1 >= 0){
 
-     if (array_key_exists($current[0]-1,$keys)) {
-      	  $prev = $html->link("« ".__("Previous message",true),"edit/".$keys[$current[0]-1],array('class'=>'subTitles'));
+          if (array_key_exists($current[0]-1,$keys)) {
+      	     $prev = $html->link("« ".__("Previous message",true),"edit/".$keys[$current[0]-1],array('class'=>'subTitles'));
 	  }
      }
 
@@ -67,8 +67,6 @@ $sort  = $session->read('messages_sort');
         echo "</div>";
 
      echo "<h1>".__("Edit Message",true)."</h1>";
-
-
 
 
      //** START LEFT FRAME **//
@@ -98,7 +96,9 @@ $sort  = $session->read('messages_sort');
      echo "</table>";
 
      $button[] = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'title'=>__('Save',true),'class' => 'save_button'));
-     $button[]   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/messages/delete/{$data['Message']['id']}",null, __("Are you sure you want to delete this message?",true),false);
+     $button[] = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "messages", "action" => "delete", $data['Message']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this message?',true)."');"));
+
+
      echo "<table class= 'blue' cellspacing = 0>";
      echo $html->tableCells(array($button),array('class'=>'blue'),array('class'=>'blue'));
      echo "</table>";
@@ -116,8 +116,8 @@ $sort  = $session->read('messages_sort');
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
      array(__("Caller",true),   $data['Message']['sender']),
      array(__("Quick hangup",true), $this->element('message_status',array('quickHangup' => $data['Message']['quick_hangup']))),
-     array(__("Download",true), $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/messages/download/{$data['Message']['id']}",null, null, false)),
-    array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
+     array(__("Download",true), $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $data['Message']['id'])))),
+     array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
      ),array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";
      echo "</div>";

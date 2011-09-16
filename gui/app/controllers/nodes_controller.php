@@ -260,12 +260,12 @@ $this->render();
 
   function download ($id) {
 
-
     	Configure::write('debug', 0);
 
 	$this->Node->id = $id;
 	$data = $this->Node->read();
 	
+
 	$file = $data['Node']['file'].'.mp3';
 	$name = $data['Node']['title'];
 	$url  = 'webroot/freedomfone/ivr/nodes';
@@ -281,6 +281,7 @@ $this->render();
  		'path' => APP . $url . DS
  		);
 	$this->set($params);
+
 
     	$this->layout = null;
     	$this->autoLayout = false;

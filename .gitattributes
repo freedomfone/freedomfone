@@ -210,7 +210,6 @@ gui/app/config/config.php -text
 gui/app/config/core.php -text
 gui/app/config/database.php -text
 gui/app/config/database.php.default -text
-gui/app/config/inflections.php -text
 gui/app/config/ip_addr.php -text
 gui/app/config/routes.php -text
 gui/app/config/sql/db_acl.php -text

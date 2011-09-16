@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * phone_books_controller.php	- Controller for phone books (used for classification of Users)
- * version 		 	- 1.0.368
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -32,7 +32,7 @@ class PhoneBooksController extends AppController {
 
 	function index() {
 
-      		$this->pageTitle = __('Phone books',true);
+                $this->set('title_for_layout', _('Phone books',true));
 		$this->PhoneBook->recursive = 0;
 		$this->set('data', $this->paginate());
 
@@ -43,7 +43,8 @@ class PhoneBooksController extends AppController {
 
 	function add() {
 
-      		$this->pageTitle = __('Add Phone book',true);
+                $this->set('title_for_layout', _('Add Phone book',true));
+
 
 		if (!empty($this->data)) {
 			$this->PhoneBook->create();
@@ -59,7 +60,7 @@ class PhoneBooksController extends AppController {
 
 	function edit($id = null) {
 
-      		$this->pageTitle = __('Edit Phone book',true);
+                $this->set('title_for_layout', _('Edit Phone book',true));
 
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid id', true));
@@ -106,6 +107,7 @@ class PhoneBooksController extends AppController {
 
              $data = $this->PhoneBook->findById($id); 
              $this->set('phonebook_name', $data['PhoneBook']['name']);
+             $id_keys = array();
 
              foreach ($data['User'] as $key => $user){
              

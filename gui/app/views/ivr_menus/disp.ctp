@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * disp.ctp	- Display Language Selector service options
- * version 	- 2.0.1215
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -26,7 +26,8 @@
       echo $ajax->div("service_div");
 
       foreach($data as $key => $entry){
-             $data[$key] = $text->truncate($entry,$ivr['showLengthMax'],'...',true,false);
+             $data[$key] = $text->truncate($entry,$ivr['showLengthMax'],array('ending' => '...','exact' => true,'html' => false));
+
       }
 
 

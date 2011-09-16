@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * selectors.ctp	- List language selectors
- * version 	        - 2.0.1170
+ * version 	        - 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Language selectors', '/selectors');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Language selectors',true), '/selectors');
 
 
 echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));
@@ -58,8 +58,8 @@ echo "<h1>".__('Language selectors',true)."</h1>";
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
-		$edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/selectors/edit/{$switcher['IvrMenu']['id']}",null, null, false);
-		$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/selectors/delete/{$switcher['IvrMenu']['id']}/switcher",null, __("Are you sure you want to delete this language selector?",true),false);
+                $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "selectors", "action" => "edit", $switcher['IvrMenu']['id'])));  
+                $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "selectors", "action" => "delete", $switcher['IvrMenu']['id'].'/switcher'), "onClick" => "return confirm('".__('Are you sure you wish to delete this language selector?',true)."');"));   
 
      		$row[$key] = array(
                            $instance_id,

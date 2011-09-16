@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List processes
- * version 	- 2.0.1150
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Voice menus', '/ivr_menus/');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Voice menus',true), '/ivr_menus/');
 
 $session->flash();
 
@@ -50,7 +50,7 @@ $FallbackShort   = "<div class='formComment'>".__("Default",true).": ".$ivr_defa
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='ivr'){
 
-             echo $html->addCrumb('Edit', '/ivr_menus/edit/'.$this->data['IvrMenu']['id']);
+             echo $html->addCrumb(__('Edit',true), '/ivr_menus/edit/'.$this->data['IvrMenu']['id']);
 
              $ivrMenu = $this->data['IvrMenu'];
              echo "<h1>".__("Edit voice menu",true)."</h1>";
@@ -92,7 +92,9 @@ $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_long']){
 	$box[0] = $form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));
-	$step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/long",null, null, false);				  
+
+        $step1[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/long')));  	
+
 }
 
  echo "<table cellspacing=0 class='none'>";
@@ -114,7 +116,7 @@ $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_short']){
 	$box[1] = $form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));
-	$step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
+        $step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/short')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";
@@ -135,7 +137,7 @@ $step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_exit']){
 	$box[2] = $form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));
-	$step3[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/exit",null, null, false);
+        $step3[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/exit')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";
@@ -157,7 +159,7 @@ $step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_invalid']){
 	$box[3] = $form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));
-	$step4[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/invalid",null, null, false);
+        $step4[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/invalid')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";
@@ -180,14 +182,14 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
        }
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
        }
 
      for($i=0;$i<8;$i++){

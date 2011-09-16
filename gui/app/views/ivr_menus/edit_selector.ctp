@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit_selector.ctp	- Edit language selecor
- * version 	        - 1.0.360
+ * version 	        - 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -23,8 +23,8 @@
  ***************************************************************************/
 
 
-echo $html->addCrumb('IVR Centre', '');
-echo $html->addCrumb('Language selectors', '/selectors');
+echo $html->addCrumb(__('IVR Centre',true), '');
+echo $html->addCrumb(__('Language selectors',true), '/selectors');
 
 
 
@@ -116,18 +116,18 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'], array('ending' => 'false','exact' => true, 'html' => false));
 
        }
 
 
 
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true, 'html' => false));
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true, 'html' => false));
        }
 
 

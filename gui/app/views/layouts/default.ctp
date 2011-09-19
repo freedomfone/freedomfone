@@ -73,9 +73,19 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 <body>
 <div id="wrapper">
-	 <div class="header"></div>
+	 <div class="header">
+         <? if (isset ($authUser)){ echo $html->div('login',__("Logged in as",true).": ".$authUser); } ?> </div>
 
-	 <div id="top_nav"><?php echo $this->element('menu'); ?></div>		<!-- horizonal menu -->
+	 <div id="top_nav"><?php echo $this->element('menu'); ?>		<!-- horizonal menu -->
+
+        <?php 
+          if(isset($authGroup)){
+             if ($authGroup) { 
+               echo $this->Html->image("icons/logout.png", array("class" => "logout", "alt" => __("Logout",true), "title" => __("Logout",true), "url" => array("controller" => "ff_users", "action" => "logout")));
+              }
+           } ?>
+
+           </div>
 	 <div id="content_wrap">
         <?php echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
 
@@ -85,9 +95,6 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
         <?php echo $this->Session->flash('auth');?>
 		<div id="main_content">
 
-        <?php if ($authGroup) { 
-              echo $this->Html->link('Logout', '/ff_users/logout', array('class' => 'button'));
-              } ?>
 
     		<?php 
                 echo $content_for_layout; ?>  

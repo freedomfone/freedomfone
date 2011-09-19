@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * add.ctp	- Add category (used in Leave-a-message)
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -23,9 +23,9 @@
  ***************************************************************************/
 
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Categories', '/categories');
-      echo $html->addCrumb('Add', '/categories/add');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Categories',true), '/categories');
+      echo $html->addCrumb(__('Add',true), '/categories/add');
 
 
       echo "<h1>".__("Add Category",true)."</h1>";

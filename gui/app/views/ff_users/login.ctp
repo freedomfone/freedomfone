@@ -22,26 +22,23 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb(__('Authentication',true), 'ff_users');
-echo $html->addCrumb(__('Login',true), 'ff_users/login');
+     echo $html->addCrumb(__('Authentication',true), 'ff_users');
+     echo $html->addCrumb(__('Login',true), 'ff_users/login');
 
-/*
-echo $this->Session->flash('auth');
-echo $this->Form->create('FfUser', array('action' => 'login'));
-echo $this->Form->inputs(array('legend' => __('Login', true),'username','password'));
-echo $this->Form->end('Login');
-*/
+     echo "<h1>".__("Login",true)."</h1>";
+     echo $this->Session->flash('auth');
 
 
-echo $this->Session->flash('auth');
+      $options	  = array('label' => false);
+      echo $form->create('FfUser',array('type' => 'post','action'=> 'login'));
+      echo "<table cellspacing=0 'class'='stand-alone'>";
 
-echo "<h2>Login</h2>";
+      echo $html->tableCells(array (
+           array(__("User name",true),	        $form->input('username',$options)),
+           array(__("Password",true),	        $form->input('password',$options)),
+           array('',	$form->end(__('Login',true)))),
+           array('class'=>'stand-alone'),array('class'=>'stand-alone'));
+     echo "</table>";
 
-
-echo $this->Form->create('FfUser', array('url' => array('controller' => 'ff_users', 'action' =>'login')));
-echo $this->Form->input('FfUser.username');
-echo $this->Form->input('FfUser.password');
-//echo $this->Form->input('FfUser.pwd');
-echo $this->Form->end('Login');
 
 ?>

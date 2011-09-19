@@ -43,7 +43,7 @@ class CdrController extends AppController{
       function general($action = null){
 
          $this->refreshAll();
-         $this->pageTitle = __('Reporting',true);
+         $this->set('title_for_layout', __('Reporting',true));
 
          if(isset($this->params['named']['limit'])) { 
 	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
@@ -150,7 +150,7 @@ class CdrController extends AppController{
       function index(){
 
          $this->refreshAll();
-         $this->pageTitle = __('Call Data Records',true);
+         $this->set('title_for_layout', __('Call Data Records',true));
          $this->Session->write('Cdr.source', 'index');
 
           if(isset($this->params['named']['sort'])) { 
@@ -284,7 +284,8 @@ class CdrController extends AppController{
       function statistics(){
 
         $this->refreshAll();
-       	$this->pageTitle = __('Call Data Records',true)." : ".__('Overview',true);
+ 
+        $this->set('title_for_layout', __('Call Data Records',true)).": ".__('Overview',true);
 
 
         if($this->data){
@@ -354,7 +355,9 @@ class CdrController extends AppController{
       function overview(){                                                                                                                                                                               
 
         $this->refreshAll();
-        $this->pageTitle = __('System Overview',true);                                                                                                                                                   
+
+        $this->set('title_for_layout', __('System Overview',true));
+
         $this->set('cdr',$this->Cdr->find('all'));
 
                 //Fetch data from unassociated models                                                                                                                                                    

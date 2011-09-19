@@ -299,7 +299,9 @@ font-weight: normal;
               text-decoration: none;
 }
 
-.button:active {                                                                                                                                                                                                                                          position: relative;                                                                                                                                                                                                                         top: 1px;
+.button:active {
+      position: relative;
+      top: 1px;
 }
 
 

@@ -32,6 +32,7 @@ class Poll extends AppModel{
                         	       'dependent' => true)
 				       ); 
 
+      var $belongsTo = array('FfUser');
 
 
 function __construct($id = false, $table = null, $ds = null) {

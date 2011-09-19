@@ -22,16 +22,26 @@
  *
  ***************************************************************************/
 
-/*echo $this->Session->flash('auth');
+echo $html->addCrumb(__('Authentication',true), 'ff_users');
+echo $html->addCrumb(__('Login',true), 'ff_users/login');
+
+/*
+echo $this->Session->flash('auth');
 echo $this->Form->create('FfUser', array('action' => 'login'));
 echo $this->Form->inputs(array('legend' => __('Login', true),'username','password'));
 echo $this->Form->end('Login');
 */
 
+
+echo $this->Session->flash('auth');
+
 echo "<h2>Login</h2>";
+
 
 echo $this->Form->create('FfUser', array('url' => array('controller' => 'ff_users', 'action' =>'login')));
 echo $this->Form->input('FfUser.username');
 echo $this->Form->input('FfUser.password');
+//echo $this->Form->input('FfUser.pwd');
 echo $this->Form->end('Login');
+
 ?>

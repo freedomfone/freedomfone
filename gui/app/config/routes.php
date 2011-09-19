@@ -27,12 +27,13 @@
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 
-//	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
 
 Router::connect('/', array('controller' => 'cdr', 'action' => 'overview'));
+
 Router::connect('/dashboard/about', array('controller' => 'processes', 'action' => 'system'));
 Router::connect('/selectors', array('controller' => 'ivr_menus', 'action' => 'selectors'));
 Router::connect('/selectors/edit/*', array('controller' => 'ivr_menus', 'action' => 'edit_selector'));

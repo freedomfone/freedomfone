@@ -27,19 +27,31 @@ class FfUsersController extends AppController{
       var $name = 'FfUsers';
 
 /*
+
       function beforeFilter() {
             parent::beforeFilter();
             $this->Auth->allow(array('*'));
-      }*/
+      }
+*/
 
+
+/*
+       function beforeFilter(){
+                 parent::beforeFilter();
+
+        }
+
+*/
 
       function login(){
+
+        $this->set('title_for_layout', __('Login',true));
 
          if ($this->Session->read('Auth.FfUser')) {
             $this->Session->setFlash('You are logged in!');
             $this->redirect('/', null, false);
          }
-      
+  
       }       
 
 
@@ -47,7 +59,7 @@ class FfUsersController extends AppController{
 
       function logout(){
 
-               $this->Session->setFlash('Good-Bye');
+               $this->Session->setFlash('You are logged out.');
                $this->redirect($this->Auth->logout());
 
 
@@ -70,6 +82,7 @@ class FfUsersController extends AppController{
                $options = $this->Group->find('list');
                $this->set(compact('options'));
 
+
 		if (!empty($this->data)) {
 
   			if ($this->FfUser->save($this->data)) {
@@ -89,14 +102,14 @@ class FfUsersController extends AppController{
     $group =& $this->FfUser->Group;
 
     //Allow admins to everything
-    $group->id = 5;     
+    $group->id = 1;     
     $this->Acl->allow($group, 'controllers');
  
     //allow users to read but not write
-    $group->id = 6;
+    $group->id = 2;
     $this->Acl->deny($group, 'controllers');
-    $this->Acl->allow($group, 'controllers/Polls/index');
-    $this->Acl->allow($group, 'controllers/Polls/view');
+    $this->Acl->allow($group, 'controllers/Polls');
+    $this->Acl->allow($group, 'controllers/Cdr');
 
     echo "all done";
     exit;

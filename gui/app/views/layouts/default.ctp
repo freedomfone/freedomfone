@@ -46,7 +46,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
     <?php echo $html->charset('UTF-8'); ?>
 
-    <?=$html->css('customise');?>    		<!-- joomla template -->
+    <?=$html->css('customise');?>    		<!-- Freedom Fone -->
     <?=$html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$html->css('flash_messages');?>	     	<!-- Flash messages -->
     <?=$html->css('vimeo');?>	     		<!-- Main menu -->
@@ -63,8 +63,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 
 <!--    <?=$html->script('jquery.tableCorners');?>   -->  <!-- Cluetip -->
-
-  
+ 
 
     <?=$html->script('audio-player');?>			  <!-- Audioplayer -->
     <?=$html->scriptBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->
@@ -80,8 +79,16 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 	 <div id="content_wrap">
         <?php echo $html->div('breadcrumb', $html->getCrumbs(' > ',__('Home',true))); ?>
 
+
+
+
         <?php echo $this->Session->flash('auth');?>
 		<div id="main_content">
+
+        <?php if ($authGroup) { 
+              echo $this->Html->link('Logout', '/ff_users/logout', array('class' => 'button'));
+              } ?>
+
     		<?php 
                 echo $content_for_layout; ?>  
 		</div>								<!--main_content end-->

@@ -55,6 +55,17 @@ var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 function beforeFilter() {
 
+         //Change Auth default User model
+         $this->Auth->userModel = 'FfUser';
+
+         //Customize Auth error messages
+         $this->Auth->loginError = __("Wrong password, please try again.",true);
+         $this->Auth->authError  = __("You do not have the authority to access this page.",true);
+
+
+         //Allow global access to front page
+         $this->Auth->allowedActions = array('display');
+
          //Global root ACO 
          $this->Auth->actionPath = 'controllers/';
 
@@ -62,8 +73,13 @@ function beforeFilter() {
          //Configure Auth component
          $this->Auth->authorize = 'actions';
          $this->Auth->loginAction = array('controller' => 'ff_users', 'action' => 'login');
-         $this->Auth->logoutRedirect = array('controller' => 'ff_users', 'action' => 'logout');
-         $this->Auth->loginRedirectk = array('controller' => 'polls', 'action' => 'index');
+         $this->Auth->logoutRedirect = array('controller' => 'ff_users', 'action' => 'login');
+         $this->Auth->loginRedirect  = array('controller' => '/', 'action' => '/');
+
+
+                $data = $this->Auth->user();
+                $authGroup = $data['FfUser']['group_id'];
+                $this->set(compact('authGroup'));
 
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){

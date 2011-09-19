@@ -31,6 +31,13 @@ class FfUser extends AppModel {
         var $actsAs = array('Acl' => array('type' => 'requester'));
  
 
+
+  function bindNode($ff_user) {
+           return array('model' => 'Group', 'foreign_key' => $ff_user['FfUser']['group_id']);
+  
+  }
+
+
   function parentNode() {
     if (!$this->id && empty($this->data)) {
         return null;

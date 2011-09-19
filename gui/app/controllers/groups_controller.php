@@ -26,12 +26,13 @@ class GroupsController extends AppController{
 
       var $name = 'Groups';
 
-/*
+
 
       function beforeFilter() {
             parent::beforeFilter();
             $this->Auth->allow(array('*'));
-      }*/
+      }
+
 
 
       function index() {
@@ -59,7 +60,7 @@ class GroupsController extends AppController{
 	}
 
         //REMOVE!!!
-	function build_acl_XXXXX() {
+	function build_acl() {
 		if (!Configure::read('debug')) {
 			return $this->_stop();
 		}

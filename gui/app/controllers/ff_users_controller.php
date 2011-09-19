@@ -26,22 +26,25 @@ class FfUsersController extends AppController{
 
       var $name = 'FfUsers';
 
-/*
 
+/*
       function beforeFilter() {
-            parent::beforeFilter();
-            $this->Auth->allow(array('*'));
+//            parent::beforeFilter();
+//            $this->Auth->allow(array('*'));
+//           $this->Auth->allow(array('logout'));
+
       }
+
 */
 
 
-/*
        function beforeFilter(){
                  parent::beforeFilter();
+                 $this->Auth->allow('logout');
 
         }
 
-*/
+
 
       function login(){
 
@@ -58,6 +61,7 @@ class FfUsersController extends AppController{
       
 
       function logout(){
+
 
                $this->Session->setFlash('You are logged out.');
                $this->redirect($this->Auth->logout());
@@ -108,7 +112,22 @@ class FfUsersController extends AppController{
     //allow users to read but not write
     $group->id = 2;
     $this->Acl->deny($group, 'controllers');
-    $this->Acl->allow($group, 'controllers/Polls');
+
+    //Polls
+    $this->Acl->deny($group, 'controllers/Polls');
+    $this->Acl->allow($group, 'controllers/Polls/index');
+    $this->Acl->allow($group, 'controllers/Polls/view');
+
+
+    //Leave a message
+    $this->Acl->deny($group, 'controllers/Messages');
+    $this->Acl->allow($group, 'controllers/Messages/index');
+    $this->Acl->allow($group, 'controllers/Messages/disp');
+    $this->Acl->allow($group, 'controllers/Messages/archive');
+    $this->Acl->allow($group, 'controllers/Messages/edit');
+    $this->Acl->allow($group, 'controllers/Messages/view');
+
+    //Call data record
     $this->Acl->allow($group, 'controllers/Cdr');
 
     echo "all done";

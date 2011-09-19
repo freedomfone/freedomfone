@@ -58,6 +58,7 @@ function beforeFilter() {
          //Change Auth default User model
          $this->Auth->userModel = 'FfUser';
 
+
          //Customize Auth error messages
          $this->Auth->loginError = __("Wrong password, please try again.",true);
          $this->Auth->authError  = __("You do not have the authority to access this page.",true);
@@ -79,7 +80,8 @@ function beforeFilter() {
 
                 $data = $this->Auth->user();
                 $authGroup = $data['FfUser']['group_id'];
-                $this->set(compact('authGroup'));
+                $authUser  = $data['FfUser']['username'];
+                $this->set(compact('authGroup', 'authUser'));
 
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){
@@ -552,7 +554,7 @@ return $result;
 
      function refreshAll(){
 
-
+/*
      $this->requestAction('/polls/refresh/manual');
      $this->requestAction('/messages/refresh');
      $this->requestAction('/cdr/refresh/manual');
@@ -560,7 +562,7 @@ return $result;
      $this->requestAction('/processes/refresh/manual');
      $this->requestAction('/channels/refresh/manual');
      $this->requestAction('/bin/refresh/manual');
-
+*/
         return true;
      }
 

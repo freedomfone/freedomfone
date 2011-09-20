@@ -55,7 +55,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
     <?=$html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
- <?=$javascript->includeScript('confirmSubmit');?>  <!-- Confirmation of form submit -->
+    <?php echo $javascript->includeScript('confirmSubmit'); ?>  <!-- Confirmation of form submit -->
     <?php echo $html->script('prototype');?>
     <?php echo $html->script('scriptaculous.js?load=builder,effects');?>
     <?php echo $html->script('modalbox');?>

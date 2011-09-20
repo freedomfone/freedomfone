@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * overview.ctp	- Show CDR statistics
- * version 	- 2.0.1215
+ * overview.ctp	- Show system statistics (front page)
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -89,13 +89,16 @@ echo $form->end();
                        $message['Message']['sender'],
                        $time->format('Y/m/d H:i',$message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
-	               $this->Html->image("icons/edit.png", array("alt" => __("Edit message",true), "title" => __("Edit message",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id']))),
-                       $download,
+	               array($this->Html->image("icons/edit.png", array("alt" => __("Edit message",true), "title" => __("Edit message",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id']))).' '.$this->Access->showBlock($authGroup, $download), array('align' => 'center')),
                        $listen
                        );
                  }
         }
      }
+
+
+
+
 
         $message_total = sizeof($messages);
     }
@@ -114,7 +117,7 @@ echo $form->end();
      echo "<table cellspacing=0>";
      echo $html->tableHeaders(array (__('Application',true),__('No of entries',true),__('Percentage',true)));
      echo $html->tableCells($stat);
-     echo $html->tableHeaders(array(false,$total,100*($lamCount+$ivrCount+$pollCount+$otherCount)/$all),false,array('align' => 'center'));
+     echo $html->tableHeaders(array(false,$total,100*($lamCount+$ivrCount+$pollCount+$otherCount)/$all.' %'),false,array('align' => 'center'));
 
      echo "</table>";
 
@@ -130,7 +133,7 @@ echo $form->end();
              echo $html->div('instruction', __('The table below shows the five most recent new messages',true));
         }
         echo "<table width='600px' cellspacing=0>";
-        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('Edit',true),'',__('Listen',true)));
+        echo $html->tableHeaders(array (__('Sender',true),__('Time',true),__('Length',true),__('Actions',true),__('Listen',true)));
         echo $html->tableCells($rows);
         echo "</table>";
      }
@@ -152,11 +155,12 @@ echo $form->end();
 
 	   $question = $html->link($poll['Poll']['question'],"/polls/view/{$poll['Poll']['id']}");
 	   $code     = $poll['Poll']['code'];
-	   $start    = $time->format('Y/m/d H:i', $poll['Poll']['start_time']);
-	   $end      = $time->format('Y/m/d H:i', $poll['Poll']['end_time']);
+	   $start    = array($time->format('Y/m/d H:i', $poll['Poll']['start_time']), array('align' => 'center'));
+	   $end      = array($time->format('Y/m/d H:i', $poll['Poll']['end_time']), array('align' => 'center'));
 
            $view     = $this->Html->image("icons/view.png", array("alt" => __("View results",true), "title" => __("View results",true), "url" => array("controller" => "polls", "action" => "view", $poll['Poll']['id'])));
-           $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id'])));
+
+           $edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id']))));
 
 
            $row[$key] = array(
@@ -165,15 +169,14 @@ echo $form->end();
 		array($votes,array('align' =>'center')),
 		$start,
 		$end,
-                array($view,array('align' => 'center')),
-                array($edit,array('align' => 'center')));
+                array($view.' '.$edit,array('align' => 'center')));
 
 
 
      }
 
      echo "<table width='80%' cellspacing=0>";
-     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Results',true),__('Edit',true)), false,array('align' => 'center'));
+     echo $html->tableHeaders(array(__("Status",true),__("Question",true),__("Code",true),__("Valid votes",true),__("Open",true),__("Close",true),__('Actions',true)), false,array('align' => 'center'));
      echo $html->tableCells($row);
      echo "</table>";
 

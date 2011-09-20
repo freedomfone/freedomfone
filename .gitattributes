@@ -329,6 +329,7 @@ gui/app/views/ff_users/index.ctp -text
 gui/app/views/ff_users/login.ctp -text
 gui/app/views/groups/add.ctp -text
 gui/app/views/groups/index.ctp -text
+gui/app/views/helpers/access.php -text
 gui/app/views/helpers/csv.php -text
 gui/app/views/helpers/empty -text
 gui/app/views/helpers/flash.php -text

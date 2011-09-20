@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
- * version 		 	- 2.0.1160
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *

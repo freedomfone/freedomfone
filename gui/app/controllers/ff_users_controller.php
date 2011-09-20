@@ -73,6 +73,11 @@ class FfUsersController extends AppController{
 	function index() {
 
                 $this->set('title_for_layout', __('Freedomfone Users',true));
+
+                $this->loadModel('Group');
+                $options = $this->Group->find('list');
+                $this->set(compact('options'));
+
 		$this->FfUser->recursive = 0;
 		$this->set('ff_users', $this->paginate());
 
@@ -127,8 +132,89 @@ class FfUsersController extends AppController{
     $this->Acl->allow($group, 'controllers/Messages/edit');
     $this->Acl->allow($group, 'controllers/Messages/view');
 
-    //Call data record
-    $this->Acl->allow($group, 'controllers/Cdr');
+
+    //Categories
+    $this->Acl->deny($group, 'controllers/Categories');
+    $this->Acl->allow($group, 'controllers/Categories/index');
+
+    //Tags
+    $this->Acl->deny($group, 'controllers/Tags');
+    $this->Acl->allow($group, 'controllers/Tags/index');
+
+
+    //Leave-a-message
+    $this->Acl->deny($group, 'controllers/LmMenus');
+    $this->Acl->allow($group, 'controllers/LmMenus/index');
+
+    //Incoming SMS
+    $this->Acl->deny($group, 'controllers/Bin');
+    $this->Acl->allow($group, 'controllers/Bin/index');
+
+    //Language Selectors and Voice menus
+    $this->Acl->deny($group, 'controllers/IvrMenus');
+    $this->Acl->allow($group, 'controllers/ivrMenus/index');
+
+    //Content
+    $this->Acl->deny($group, 'controllers/Nodes');
+    $this->Acl->allow($group, 'controllers/Nodes/index');
+
+    //Users
+    $this->Acl->deny($group, 'controllers/Users');
+    $this->Acl->allow($group, 'controllers/Users/index');
+    $this->Acl->allow($group, 'controllers/Users/view');
+
+    //Phone books
+    $this->Acl->deny($group, 'controllers/PhoneBooks');
+    $this->Acl->allow($group, 'controllers/PhoneBooks/index');
+
+    //DIALER COMPONENT DISABLED FOR 3.0 //
+    /*
+    //Campaigns
+    $this->Acl->deny($group, 'controllers/Campaigns');
+    $this->Acl->allow($group, 'controllers/Campaigns/index');
+
+    //Callback services
+    $this->Acl->deny($group, 'controllers/CallbackServices');
+    $this->Acl->allow($group, 'controllers/CallbackServices/index');
+
+    //Callbacks
+    $this->Acl->deny($group, 'controllers/Callbacks');
+    $this->Acl->allow($group, 'controllers/Callbacks/index');
+
+    //Callback settings
+    $this->Acl->deny($group, 'controllers/CallbackSettings');
+    $this->Acl->allow($group, 'controllers/CallbackSettings/index');
+
+    */
+
+    //System data (CDR)
+    $this->Acl->deny($group, 'controllers/Cdr');
+    $this->Acl->allow($group, 'controllers/Cdr/index');
+    $this->Acl->allow($group, 'controllers/Cdr/statistics');
+    $this->Acl->allow($group, 'controllers/Cdr/general');
+    $this->Acl->allow($group, 'controllers/Cdr/overview');
+    
+    //Dashboard
+    $this->Acl->deny($group, 'controllers/Processes');
+    $this->Acl->allow($group, 'controllers/Processes/index');
+    
+    //Settings
+    $this->Acl->deny($group, 'controllers/Settings');
+    $this->Acl->allow($group, 'controllers/Settings/index');
+
+    //GSM channels
+    $this->Acl->deny($group, 'controllers/Channels');
+    $this->Acl->allow($group, 'controllers/Channels/index');
+    $this->Acl->deny($group, 'controllers/OfficeRoute');
+    $this->Acl->allow($group, 'controllers/OfficeRoute/index');
+
+    //Logs
+    $this->Acl->deny($group, 'controllers/Logs');
+
+    //Authentication
+    $this->Acl->deny($group, 'controllers/FfUsers');
+    $this->Acl->deny($group, 'controllers/Groups');
+
 
     echo "all done";
     exit;

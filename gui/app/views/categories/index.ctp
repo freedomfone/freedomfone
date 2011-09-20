@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all categories (used in Leave-a-message)
- * version 	- 2.0.1139
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,14 +22,12 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Categories', '/categories');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Categories',true), '/categories');
+
+$this->Access->showButton($authGroup, 'Category', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 
 
-
-echo $form->create('Category',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
 echo "<h1>".__("Categories",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {                                                     
@@ -44,13 +42,20 @@ echo "<h1>".__("Categories",true)."</h1>";
       		   $description = $category['Category']['longname'];		   
                    $edit        = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "categories", "action" => "edit", $category['Category']['id'])));
                    $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "categories", "action" => "delete", $category['Category']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this category?',true)."');"));
-      		   
-                   $row[$key] = array($title, $description,$edit,$delete);
+      	
+                   $row[$key] = array($title, $description, $edit.' '.$delete);
+                   if($authGroup != 1) { unset($row[$key][2]);}
+
 
         }
 
         echo "<table width='500px' cellspacing=0 >";
-        echo $html->tableHeaders(array(__('Category',true),__('Description',true),__('Edit',true),__('Delete',true)));
+
+        $headers = array(__('Category',true),__('Description',true), __('Actions', true));
+        if($authGroup != 1 ){ unset($headers[2]); }
+        echo $html->tableHeaders($headers);
+
+        
         echo $html->tableCells($row);
         echo "</table>";
 

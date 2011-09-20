@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List polls with view, edit and delete options
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -21,7 +21,7 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Polls', '/polls');
+echo $html->addCrumb(__('Polls',true), '/polls');
 
     $session->flash();
 
@@ -29,10 +29,9 @@ echo $html->addCrumb('Polls', '/polls');
    echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
    echo $form->end();
 
-   echo $form->create('Poll',array('type' => 'post','action'=> 'add'));
-   echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-   echo $form->end();
 
+   $this->Access->showButton($authGroup, 'Poll', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
+  
    $info   = $html->link($html->image('icons/bulb.png'), array('controller' => 'pages/polls/', 'action' => 'tip'), array('title' => 'Tool tip', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,null,false);
    echo $html->div('frameInfo', $info);
    echo "<h1>".__("Polls",true)."</h1>";
@@ -56,13 +55,11 @@ echo $html->addCrumb('Polls', '/polls');
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->format('Y/m/d H:i',$poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i',$poll['Poll']['end_time']);
-//           $view     = $html->link($html->image("icons/view.png", array("title" => __("Results",true))), array('controller' => 'polls', 'action' => 'view',$poll['Poll']['id'] ), array('title' => 'Poll results', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"),null,false,false);
-
            $view     = '<a href="/freedomfone/polls/view/'.$poll['Poll']['id'].'" title= "Results" onclick="Modalbox.show(this.href, {title: this.title, width: 950}); return false;"><img src="/freedomfone/img/icons/view.png"/></a>&nbsp;';
 
-           $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id'])));
+           $edit     = $this->Access->showBlock($authGroup , $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id']))));
 
-           $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "polls", "action" => "delete", $poll['Poll']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this poll?',true)."');"));
+           $delete   = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "polls", "action" => "delete", $poll['Poll']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this poll?',true)."');")));
 
 
            $row[$key] = array(

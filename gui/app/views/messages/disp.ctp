@@ -57,8 +57,7 @@ $ext = Configure::read('EXTENSIONS');
  	__("Category",true),
  	__("Date",true),
  	__("Length",true),
-        '',
-        '',
+        __("Actions",true),
 	__("Listen",true)));
 
  
@@ -90,8 +89,7 @@ $ext = Configure::read('EXTENSIONS');
 		array($category,array('align'=>'center')),
 		$created,		
 		array($length,array('align'=>'center')),
-		array($edit,array('align'=>'center')),
-		array($download,array('align'=>'center')),
+		array($edit.' '.$this->Access->showBlock($authGroup, $download ) ,array('align'=>'center')),
 		array($listen,array('align'=>'center')));
 		
 
@@ -101,11 +99,14 @@ $ext = Configure::read('EXTENSIONS');
      echo $html->tableCells($row);
      echo "</table>";
 
-     echo "<table cellspacing = 0 class = 'none'>";
-     echo $html->tableCells(array(__('Perform action on selected',true).': ',
-     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-     $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
-     echo "</table>";
+     if($authGroup == 1) {
+                   echo "<table cellspacing = 0 class = 'none'>";
+                   echo $html->tableCells(array(__('Perform action on selected',true).': ',
+                   $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
+                   $form->submit( __('Move to Archive',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
+                   echo "</table>";
+     }
+
      echo $form->end();
 
      if($paginator->counter(array('format' => '%pages%'))>1){

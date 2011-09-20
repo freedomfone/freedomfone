@@ -48,7 +48,7 @@ App::import('Core','L10n');
 
 class AppController extends Controller {
 
-var $helpers = array('Html','Form','Ajax','Javascript','Session','Paginator','Text','Time');
+var $helpers = array('Html','Form','Ajax','Javascript','Session','Paginator','Text','Time','Access');
 var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 
@@ -673,8 +673,15 @@ return $result;
 
  }
 
+    function authAccess($msg){
 
+             if($authGroup == 1){
+                return $msg;
+             } else {
+                return false;
+             }
 
+     }
 
 }
 ?>

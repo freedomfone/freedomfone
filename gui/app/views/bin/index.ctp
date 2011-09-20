@@ -33,11 +33,7 @@ echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-
-echo $form->create('Bin',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
+$this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightAlone', __('Export',true), 'submit', 'button');
 
 
 
@@ -47,10 +43,7 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
      if ($data){
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'Bin'));
-?>
-<input type="button" class='button' name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Bin)">
-<input type="button" class='button' name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Bin)">
-<?
+echo $this->Access->showCheckbox($authGroup, 'document.Bin');
 
 echo "<table width='95%' cellspacing=0>";
 
@@ -61,7 +54,7 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Type",true), 'mode'),
  	$paginator->sort(__("Protocol",true), 'proto'),
  	$paginator->sort(__("Sender",true), 'sender'),
-	''));
+	__('Action',true)));
 
       foreach ($data as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
@@ -69,11 +62,19 @@ echo $html->tableHeaders(array(
 	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];
-	$sender    = $entry['Bin']['sender'];
+	$sender   = $entry['Bin']['sender'];
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');"));
 
 
-     	$row[$key] = array($id, $body, $created, $mode, $proto, $sender, array($delete,array('align'=>'center')));
+     	$row[$key] = array(
+                     $this->Access->showBlock($authGroup, $id), 
+                     $body, 
+                     $created, 
+                     $mode, 
+                     $proto, 
+                     $this->Access->showBlock($authGroup, $sender), 
+                     array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
+                     );
 
 	}
 
@@ -81,8 +82,9 @@ echo $html->tableHeaders(array(
      echo $html->tableCells($row);
      echo "</table>"; 
 
-
-     echo $html->div('',$form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button')));
+     if($authGroup == 1) {
+          echo $html->div('',$form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button')));
+     }
 
      if($paginator->counter(array('format' => '%pages%'))>1){
            echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));

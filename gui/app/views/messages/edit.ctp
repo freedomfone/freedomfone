@@ -46,7 +46,7 @@
 		      'empty'   => "--- ".__('No rate',true)." ---");
 
         $options_status = array('options' => array ('1'=>__("Active",true),'0'=>__("Archive",true)),
-		          'label'   => false);
+          'label'   => false);
 
 
      if($current[0]-1 >= 0){
@@ -84,10 +84,9 @@
      echo $form->hidden('source',array('value'=>$source));
      echo $form->input('id',array('type'=>'hidden','value'=>$this->data['Message']['id']));
 
-
      echo $html->tableCells(array (
      array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'45'))),
-     array(__("Status",true),	$form->input('status',$options_status)),
+     array(__("Status",true),	$this->Access->showBlock($authGroup, $form->input('status',$options_status), $options_status['options'][$this->data['Message']['status']])),
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),
@@ -114,9 +113,9 @@
      array(__("Created",true),	date('Y-m-d H:i:s',$data['Message']['created'])),
      array(__("Modified",true), $modified = $this->element('message_status',array('modified'=>$data['Message']['modified']))),
      array(__("Length",true),   $formatting->epochToWords($data['Message']['length'])),
-     array(__("Caller",true),   $data['Message']['sender']),
+     array(__("Caller",true),   $this->Access->showBlock($authGroup, $data['Message']['sender'])),
      array(__("Quick hangup",true), $this->element('message_status',array('quickHangup' => $data['Message']['quick_hangup']))),
-     array(__("Download",true), $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $data['Message']['id'])))),
+     array(__("Download",true), $this->Access->showBlock($authGroup, $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $data['Message']['id']))))),
      array(__("Listen",true),	$this->element('player',array('url'=>$data['Message']['url'],'file'=>$data['Message']['file'],'title'=>$data['Message']['title'],'id'=>$data['Message']['id'])))
      ),array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";

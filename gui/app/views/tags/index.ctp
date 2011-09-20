@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all tags (used in Leave-a-message)
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  *
  * Version: MPL 1.1
  *
@@ -22,16 +22,10 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Message Centre', '');
-echo $html->addCrumb('Tags', '/tags');
+echo $html->addCrumb(__('Message Centre',true), '');
+echo $html->addCrumb(__('Tags',true), '/tags');
 
-
-
-echo $form->create('Tag',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-
+$this->Access->showButton($authGroup, 'Tag', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 echo "<h1>".__("Tags",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {                                                     
@@ -42,19 +36,22 @@ echo "<h1>".__("Tags",true)."</h1>";
    if ($tags){
 
       echo "<table width='400px' cellspacing = 0>";
-      echo $html->tableHeaders(array(__('Tag',true),__('Description',true),__('Edit',true),__('Delete',true)));
+      $headers = array(__('Tag',true),__('Description',true), __('Actions', true));
+      if($authGroup != 1 ){ unset($headers[2]); }
 
+      echo $html->tableHeaders($headers);
 
       	      foreach ($tags as $key => $tag){
 
       	      	         $title       = $tag['Tag']['name'];
  			 $description = $tag['Tag']['longname'];		   
-                         $edit        = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "tags", "action" => "edit", $tag['Tag']['id'])));     											      						   
-                        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "tags", "action" => "delete", $tag['Tag']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this tag?',true)."');"));
+                         $edit        = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "tags", "action" => "edit", $tag['Tag']['id']))));
+                         $delete      = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "tags", "action" => "delete", $tag['Tag']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this tag?',true)."');")));
 
-     $row[$key] = array($title, $description,$edit,$delete);
+                         $row[$key] = array($title, $description, $edit.' '.$delete);
+                         if($authGroup != 1) { unset($row[$key][2]);}
 
-      		     }
+              }
 
      echo $html->tableCells($row,array('class'=>'darker'));
       echo "</table>";

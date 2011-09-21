@@ -32,7 +32,7 @@ class PhoneBooksController extends AppController {
 
 	function index() {
 
-                $this->set('title_for_layout', _('Phone books',true));
+                $this->set('title_for_layout', __('Phone books',true));
 		$this->PhoneBook->recursive = 0;
 		$this->set('data', $this->paginate());
 

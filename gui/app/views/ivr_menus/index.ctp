@@ -27,9 +27,7 @@ echo $html->addCrumb(__('Voice menus',true), '/ivr_menus');
 
 $ext = Configure::read('EXTENSIONS');
 
-echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
+$this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 
 $info = __('Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components associated with telephony keypad selections.',true);
 
@@ -53,8 +51,7 @@ echo "<h1>".__('Voice menus',true)."</h1>";
  		$paginator->sort(__("Service",true), 'instance_id'),
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Last modified",true), 'modified'),
-		__("Edit",true),
-		__("Delete",true)));
+		__("Actions",true)));
 
           echo $form->hidden('source',array('value'=>'index'));
 
@@ -65,16 +62,15 @@ echo "<h1>".__('Voice menus',true)."</h1>";
 		$title      = $ivr_menu['IvrMenu']['title'];
 		$modified   = $time->niceShort($ivr_menu['IvrMenu']['modified']);
 
-	        $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ivr_menus", "action" => "edit", $ivr_menu['IvrMenu']['id'])));
-                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id'].'/ivr'), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');"));
+	        $edit       = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ivr_menus", "action" => "edit", $ivr_menu['IvrMenu']['id']))));
+                $delete     = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id'].'/ivr'), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');")));
 
 
      		$row[$key] = array(
 			   $instance,
 			   $title,
 			   $modified,
-			   array($edit,array('align'=>'center')),
-			   array($delete,array('align'=>'center')));
+			   array($edit.' '.$delete,array('align'=>'center')));
 			   }
 
 

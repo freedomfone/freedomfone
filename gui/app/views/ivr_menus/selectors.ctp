@@ -26,9 +26,9 @@ echo $html->addCrumb(__('IVR Centre',true), '');
 echo $html->addCrumb(__('Language selectors',true), '/selectors');
 
 
-echo $form->create('IvrMenu',array('type' => 'post','action'=> 'add_selector'));
-echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
+$this->Access->showButton($authGroup, 'IvrMenu', 'add_selector', 'frameRightAlone', __('Create new',true), 'submit', 'button');
+
+
 $ext = Configure::read('EXTENSIONS');
 
 echo "<h1>".__('Language selectors',true)."</h1>";
@@ -48,8 +48,7 @@ echo "<h1>".__('Language selectors',true)."</h1>";
  		$paginator->sort(__("Title",true), 'title'),
  		$paginator->sort(__("Type",true), 'type'),
  		$paginator->sort(__("Last modified",true), 'modified'),
-		__("Edit",true),
-		__("Delete",true)));
+		__("Actions",true)));
           
 		
 
@@ -58,16 +57,15 @@ echo "<h1>".__('Language selectors',true)."</h1>";
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$modified     = $time->niceShort($switcher['IvrMenu']['modified']);
-                $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "selectors", "action" => "edit", $switcher['IvrMenu']['id'])));  
-                $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "selectors", "action" => "delete", $switcher['IvrMenu']['id'].'/switcher'), "onClick" => "return confirm('".__('Are you sure you wish to delete this language selector?',true)."');"));   
+                $edit         = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "selectors", "action" => "edit", $switcher['IvrMenu']['id']))));  
+                $delete       = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "selectors", "action" => "delete", $switcher['IvrMenu']['id'].'/switcher'), "onClick" => "return confirm('".__('Are you sure you wish to delete this language selector?',true)."');")));
 
      		$row[$key] = array(
                            $instance_id,
 			   $title,
 			   $type,
                            $modified,		
-			   array($edit,array('align'=>'center')),
-			   array($delete,array('align'=>'center')));
+			   array($edit.' '.$delete,array('align'=>'center')));
 			   }
 
 

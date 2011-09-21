@@ -29,9 +29,7 @@ echo $html->addCrumb(__('Content',true), '/nodes');
 $ivr = Configure::read('IVR_SETTINGS');
 
 
-echo $form->create('Node',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightAlone',$form->submit(__('Upload new',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
+$this->Access->showButton($authGroup, 'Node', 'add', 'frameRightAlone', __('Upload new',true), 'submit', 'button');
 
 
   echo "<h1>".__('Content',true)."</h1>";
@@ -51,9 +49,7 @@ echo $form->end();
  	//$paginator->sort(__("Category",true), 'Category.name'),
  	$paginator->sort(__("Created",true), 'created'),
 	__("Duration",true),
-	__("Edit",true),
-	__("Delete",true),
-	__("Download",true),
+	__("Actions",true),
 	__("Listen",true)));
 
       echo $form->hidden('source',array('value'=>'index'));
@@ -65,19 +61,16 @@ echo $form->end();
 	      //$category = $node['Category']['name'];
 	      $created  = $time->niceShort($node['Node']['created']);
 	      $duration = $formatting->epochToWords($node['Node']['duration']);
-	      $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "nodes", "action" => "edit", $node['Node']['id'])));
-                $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "nodes", "action" => "delete", $node['Node']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this content?',true)."');"));
-
-	      $download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "nodes", "action" => "download", $node['Node']['id'])));
+	      $edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "nodes", "action" => "edit", $node['Node']['id']))));
+              $delete   = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "nodes", "action" => "delete", $node['Node']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this content?',true)."');")));
+	      $download = $this->Access->showBlock($authGroup, $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "nodes", "action" => "download", $node['Node']['id']))));
 
 	      $listen   = $this->element('player',array('path'=>$path,'file'=>$node['Node']['file'],'title'=>$title, 'id'=> $node['Node']['id']));
      	      $row[$key] = array(
 		array($title,array('align'=>'left')),
 		array($created,array('align'=>'left','width'=>'125px')),
 		array($duration,array('align'=>'left','width'=>'80px')),
-		array($edit,array('align'=>'center','width'=>'30px')),
-		array($delete,array('align'=>'center','width'=>'30px')),
-		array($download,array('align'=>'center','width'=>'30px')),
+		array($edit.' '.$delete.' '.$download,array('align'=>'center','width'=>'90px')),
 		array($listen,array('align'=>'left','width'=>'200px')));	
 
 	}

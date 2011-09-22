@@ -152,8 +152,8 @@ class FfUsersController extends AppController{
 
     //Language Selectors and Voice menus
     $this->Acl->deny($group, 'controllers/IvrMenus');
-    $this->Acl->allow($group, 'controllers/ivrMenus/index');
-    $this->Acl->allow($group, 'controllers/ivrMenus/selectors');
+    $this->Acl->allow($group, 'controllers/IvrMenus/index');
+    $this->Acl->allow($group, 'controllers/IvrMenus/selectors');
 
     //Content
     $this->Acl->deny($group, 'controllers/Nodes');

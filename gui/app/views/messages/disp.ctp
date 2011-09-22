@@ -65,7 +65,7 @@ $ext = Configure::read('EXTENSIONS');
         $service      = $message['Message']['instance_id'];
         $title      = $message['Message']['title'];
         $title_div  = $html->div('',$text->truncate($title,20,array('ending' => '...','exact' => true,'html' => false)),array('title' => $title),false);
-	$sender     = $message['Message']['sender'];
+	$sender     = $this->Access->showBlock($authGroup, $message['Message']['sender']);
 	$rate       = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category   = $message['Category']['name'];
 	$created    = date('y/m/d H:i',$message['Message']['created']);
@@ -73,7 +73,7 @@ $ext = Configure::read('EXTENSIONS');
 
         $edit       = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id'])));
         $download   = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $message['Message']['id'])));
-	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
+	$listen     = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
         $row[$key] = array($id,
      		array($status,array('align'=>'center')),

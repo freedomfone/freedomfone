@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edit existing phone books (used in Contacts)
- * version 	- 2.0.1139
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,10 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Phone books', '/phone_books');
-echo $html->addCrumb('Edit', '/phone_books/edit/'.$this->data['PhoneBook']['id']);
-
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Phone books',true), '/phone_books');
+echo $html->addCrumb(__('Edit',true), '/phone_books/edit/'.$this->data['PhoneBook']['id']);
 
 
       if($this->data){

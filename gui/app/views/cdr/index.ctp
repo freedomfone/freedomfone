@@ -37,32 +37,22 @@ echo $form->create('Cdr',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo $form->create('Cdr',array('type' => 'post','action'=> 'output'));
-echo $html->div('frameRightAlone',$form->submit(__('Export all',true),  array('name' =>'all', 'class' => 'button')));
-echo $form->end();
+$this->Access->showButton($authGroup, 'Cdr', 'output', 'frameRightTrans', __('Export all',true), 'all', 'button');
+$this->Access->showButton($authGroup, 'Cdr', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
+$this->Access->showButton($authGroup, 'Cdr', 'delete', 'frameRightTrans', __('Delete',true), 'submit', 'button');
 
 
-echo $form->create('Cdr',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-echo $form->create('Cdr',array('type' => 'post','action'=> 'delete'));
-echo $html->div('frameRightAlone',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
 
 
 echo "<h1>".__('Call Data Records',true)."</h1>";
+
+
      if ($cdr){
+
 
      echo $html->div("",$paginator->counter(array('format' => __("CDR:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('Cdr',array('type' => 'post','action'=> 'process','name'  => 'Cdr'));
 
-     
-     ?>
-     <input type="button" name="CheckAll" class="button" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.Cdr)">
-     <input type="button" name="UnCheckAll" class="button" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.Cdr)">
-     <?
-     echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg));
 
      echo "<table width='800px' cellspacing = 0>";
      echo $html->tableHeaders(array(
@@ -80,7 +70,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
  
       foreach ($cdr as $key => $entry){
 
-	$id = "<input name='cdr[$key]['Cdr']' type='checkbox' value='".$entry['Cdr']['id']."' id='check' class='check'>";
+	$id = $this->Access->showBlock($authGroup, "<input name='cdr[$key]['Cdr']' type='checkbox' value='".$entry['Cdr']['id']."' id='check' class='check'>");
 
 	$date  	     = date('Y-m-d',$entry['Cdr']['epoch']);
 	$time  	     = date('H:i:s A',$entry['Cdr']['epoch']);
@@ -91,7 +81,10 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
 
 
+
 	if (!$caller_number = $entry['Cdr']['caller_number']) {  $caller_number='';}
+
+
 	$delete   = $html->link($html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/del/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
 
 
@@ -102,7 +95,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 		$time,
 		$type,		
 		$call_id,
-		$caller_number,
+		$this->Access->showBlock($authGroup, $caller_number, 'XXX'),
 		$title,
                 $application
 		);
@@ -113,7 +106,12 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
      echo $html->tableCells($row);
      echo "</table>";
+
+     echo $this->Access->showCheckbox($authGroup, 'document.Cdr', 'frameLeftTrans');
+     echo $this->Access->showBlock($authGroup, $this->Html->div('frameLeftTrans', $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg))));
+
      echo $form->end();
+
 
      if($paginator->counter(array('format' => '%pages%'))>1){
            echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));

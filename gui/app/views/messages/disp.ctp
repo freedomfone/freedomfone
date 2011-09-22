@@ -24,9 +24,11 @@
 
 echo $ajax->div("service_div");
 
+
 echo $form->create('Message',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'disp', 'class' => 'button')));
 echo $form->end();
+echo $this->Access->showCheckbox($authGroup, 'document.Message','frameRightTrans');
 
 $ext = Configure::read('EXTENSIONS');
 
@@ -34,18 +36,11 @@ $ext = Configure::read('EXTENSIONS');
      if ($messages){
 
      echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
-
      echo $form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
-
-
-     ?>
-     <input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.Message)">
-     <input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)"> 
-     <?
-
-
      echo $form->hidden('source',array('value'=>'index'));
 
+
+     echo $html->div('empty',false);
      echo "<table width='95%' cellspacing  = '0'>";
      echo $html->tableHeaders(array(
 	'',

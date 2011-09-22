@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * office_route_controller.ctp	- Controller for OfficeRoute channels.
- * version 			- 1.0.364
+ * version 			- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -87,7 +87,7 @@ class OfficeRouteController extends AppController{
 
    function edit($id ){
 
-      	$this->pageTitle = __('Edit OfficeRoute',true);           
+        $this->set('title_for_layout', __('Edit OfficeRoute',true));
 
 
 	  // No id, or empty form

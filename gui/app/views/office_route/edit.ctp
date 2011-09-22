@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit office route channel
- * version 	- 1.0.362
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,20 +22,18 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('GSM channels', '/channels');
-
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('GSM channels',true), '/channels');
 
 
 	if($this->data){
 
-                echo $html->addCrumb('Edit Officeroute', '/office_route/edit/'.$this->data['OfficeRoute']['id']);
+                echo $html->addCrumb(__('Edit Officeroute',true), '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
                 $msg1 = __("Edit channel",true);
                 $msg2 = __("slot",true);
 		echo "<h1>".$msg1." (".$msg2.":".$this->data['OfficeRoute']['id'].")</h1>";
 		
-
 
 
    	  	if ($messages = $session->read('Message.multiFlash')) {

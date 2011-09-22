@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all users in system
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -29,18 +29,15 @@ echo $html->addCrumb(__('Users',true), '/users');
 echo $javascript->includeScript('toggle');
 
 
+
 echo $form->create('User',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightTrans', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo $form->create('User',array('type' => 'post','action'=> 'add'));
-echo $html->div('frameRightTrans',$form->submit(__('Add user',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
+$this->Access->showButton($authGroup, 'User', 'add', 'frameRightTrans', __('Add user',true), 'submit', 'button');
 
-?>
-<div class='frameRightTrans'><input type="button" class="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.User)"></div>
-<div class='frameRightTrans'><input type="button" class="button" name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(document.User)"></div>
-<?
+
+echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans');
 
 
      echo "<h1>".__('Users',true)."</h1>";
@@ -99,7 +96,12 @@ echo $form->end();
 
         echo $form->input('User.'.$user['User']['id'].'.name',array('type'=>'hidden', 'value' => $user['User']['name']));
         $status='';
-	$id = "<input name='user[$key]['User']' type='checkbox' value='".$user['User']['id']."' id='check' class='check'>";
+
+        if($authGroup == 1 ){
+                      $id = "<input name='user[$key]['User']' type='checkbox' value='".$user['User']['id']."' id='check' class='check'>";
+        } else {
+                      $id = false;
+        }
 
 	if($user['User']['new']){
 		$status = $html->image("icons/star.png",array("title" => __("New",true)));
@@ -114,13 +116,9 @@ echo $form->end();
 
         $phone_numbers = false;
         $info = false;
-        
-
         $view     = '<a href="/freedomfone/users/view/'.$user['User']['id'].'" title="User details" onclick="Modalbox.show(this.href, {title: this.title, width: 950}); return false;"><img src="/freedomfone/img/icons/view.png"/></a>&nbsp;';
-
-	$edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "users", "action" => "edit", $user['User']['id'])));
-
-        $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "users", "action" => "delete", $user['User']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this user?',true)."');"));
+	$edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "users", "action" => "edit", $user['User']['id']))));
+        $delete   = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "users", "action" => "delete", $user['User']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this user?',true)."');")));
 
           
              foreach($user['PhoneNumber'] as  $number){
@@ -137,7 +135,7 @@ echo $form->end();
 		$email,
 		$skype,
 		$acl,
-		$info,		
+		$this->Access->showBlock($authGroup, $info,'XXX'),		
 		array($view.' '.$edit.' '.$delete, array('align' => 'center', 'width' => '80px')));
 	}
      
@@ -145,18 +143,21 @@ echo $form->end();
        echo "</table>";
 
 
-       echo "<table cellspacing = '0' class='none'>";
-       echo $html->tableCells(array(__('Perform action on selected',true).': ',
-       $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
-       $form->submit(__('Merge',true),  array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
-       echo "</table>";
+       if($authGroup == 1) {
+                     echo "<table cellspacing = '0' class='none'>";
+                     echo $html->tableCells(array(__('Perform action on selected',true).': ',
+                     $form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button')),
+                     $form->submit(__('Merge',true),  array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
+                     echo "</table>";
 
-       echo "<table cellspacing = '0' class='none'>";
-       echo $html->tableCells(array(
-       $form->input('add_phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options_slim,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')),
-       $form->submit( __('Add to phone book',true), array('name' =>'data[Submit]', 'class' => 'button')),
-       $form->submit( __('Remove from phone book',true), array('name' =>'data[Submit]', 'class' => 'button'))), array('class' => 'none'),array('class' => 'none'));
-       echo "</table>";
+                     echo "<table cellspacing = '0' class='none'>";
+                     echo $html->tableCells(array(
+                     $form->input('add_phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options_slim,'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')),
+                     $form->submit( __('Add to phone book',true), array('name' =>'data[Submit]', 'class' => 'button')),
+                     $form->submit( __('Remove from phone book',true), array('name' =>'data[Submit]', 'class' => 'button'))), array('class' => 'none'),array('class' => 'none'));
+                     echo "</table>";
+                     }
+
        echo $form->end();
 
      if($paginator->counter(array('format' => '%pages%'))>1){

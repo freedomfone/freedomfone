@@ -60,7 +60,7 @@ class PhoneBooksController extends AppController {
 
 	function edit($id = null) {
 
-                $this->set('title_for_layout', _('Edit Phone book',true));
+                $this->set('title_for_layout', __('Edit Phone book',true));
 
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid id', true));

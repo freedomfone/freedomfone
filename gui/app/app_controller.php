@@ -79,7 +79,8 @@ function beforeFilter() {
 
 
                 $data = $this->Auth->user();
-                $authGroup = $data['FfUser']['group_id'];
+ 
+               $authGroup = $data['FfUser']['group_id'];
                 $authUser  = $data['FfUser']['username'];
                 $this->set(compact('authGroup', 'authUser'));
 

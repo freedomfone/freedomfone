@@ -56,11 +56,7 @@ echo "<h1>".__('Health',true)."</h1>";
         if ($epoch > $running){
           $running = $epoch;}
 
-	$starttime = __("Running since",true).": ".$time->niceShort($running);
-
-
-
-
+	$start_time = __("Running since",true).": ".$time->niceShort($running);
       	$status	    =  $this->element('process_status',array('status'=>$entry['Process']['status'],'mode'=>'image'));
 	$title      = $entry['Process']['title'];
 	$last_seen  = __("Last seen",true).": ".$last;
@@ -96,8 +92,21 @@ echo "<h1>".__('Health',true)."</h1>";
 	}
     	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
-     echo "<table width='80%' cellspacing = 0>";
-     echo $html->tableHeaders(array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true)));
+
+        $headers = array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true));
+
+        if($authGroup != 1){
+              unset($headers[4]);
+              unset($headers[5]);
+              foreach($row as $key => $line){
+                   unset($row[$key][4]);
+                   unset($row[$key][5]);
+               }
+       }
+
+       
+     echo "<table cellspacing = 0>";
+     echo $html->tableHeaders($headers);
      echo $html->tableCells($row);
      echo "</table>"; 
 

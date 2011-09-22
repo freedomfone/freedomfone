@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List GSM channels
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-  echo $html->addCrumb('Dashboard', '');
-  echo $html->addCrumb('GSM channels', '/channels');
+  echo $html->addCrumb(__('Dashboard',true), '');
+  echo $html->addCrumb(__('GSM channels',true), '/channels');
 
   if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
@@ -33,6 +33,7 @@
   echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
   echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
   echo $form->end();
+
   echo "<h1>".__('GSM channels',true)."</h1>";
 
      echo "<h3>".__('Office Route',true)."</h3>";
@@ -65,7 +66,7 @@
 			$modified               = $time->niceShort($entry['OfficeRoute']['modified']);
 
 			if($sim_inserted==__('Yes',true)){ 
-			   $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/office_route/edit/{$entry['OfficeRoute']['id']}",null, null, false);
+                           $edit =  $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "office_route", "action" => "edit", $entry['OfficeRoute']['id']))));
         		}
 
      			$row[] = array($slot, $title, $msisdn, $sim_inserted, $signal_level, $imsi, $network_registration, $operator_name, $modified,$edit);
@@ -84,7 +85,7 @@
                         __('Network registration',true),
                         __('Operator',true),
                         __('Last updated',true),
-                       __('Edit',true)));
+                        __('Actions',true)));
      		echo $html->tableCells($row);
      		echo "</table>"; 
      }
@@ -113,13 +114,11 @@
 	$imei            = $entry['Channel']['imei'];
 	$imsi            = $entry['Channel']['imsi'];
 	$signal          = $entry['Channel']['got_signal'];
-        $edit     = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/channels/edit/{$entry['Channel']['id']}",null, null, false);
+        $edit            =  $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "channels", "action" => "edit", $entry['Channel']['id']))));
 
      	$row[] = array($interface_id,$title, $msisdn, $interface_name,$imei,$imsi,array($signal,array('align'=>'center')),$epoch,$edit);
 
 	}
-
-
 
 
 
@@ -133,7 +132,7 @@
                         __('IMSI',true),
                         __('Signal level',true),
                         __('Last updated',true),
-                        __('Edit',true)));
+                        __('Actions',true)));
      echo $html->tableCells($row);
      echo "</table>"; 
 

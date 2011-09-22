@@ -32,8 +32,10 @@ echo $javascript->includeScript('toggle');
 echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
+$this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
+echo $this->Access->showCheckbox($authGroup, 'document.Bin','frameRightTrans');
 
-$this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightAlone', __('Export',true), 'submit', 'button');
+
 
 
 
@@ -43,7 +45,7 @@ echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %
      if ($data){
 
 echo $form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'Bin'));
-echo $this->Access->showCheckbox($authGroup, 'document.Bin');
+
 
 echo "<table width='95%' cellspacing=0>";
 
@@ -72,7 +74,7 @@ echo $html->tableHeaders(array(
                      $created, 
                      $mode, 
                      $proto, 
-                     $this->Access->showBlock($authGroup, $sender), 
+                     $this->Access->showBlock($authGroup, $sender,'XXX'), 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );
 

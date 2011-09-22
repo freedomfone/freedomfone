@@ -194,10 +194,18 @@ class FfUsersController extends AppController{
     $this->Acl->allow($group, 'controllers/Cdr/statistics');
     $this->Acl->allow($group, 'controllers/Cdr/general');
     $this->Acl->allow($group, 'controllers/Cdr/overview');
+
+
+    //Monitor IVR
+    $this->Acl->deny($group, 'controllers/MonitorIvr');
+    $this->Acl->allow($group, 'controllers/MonitorIvr/index');
+
     
     //Dashboard
     $this->Acl->deny($group, 'controllers/Processes');
     $this->Acl->allow($group, 'controllers/Processes/index');
+    $this->Acl->allow($group, 'controllers/Processes/refresh');
+    $this->Acl->allow($group, 'controllers/Processes/system');
     
     //Settings
     $this->Acl->deny($group, 'controllers/Settings');
@@ -206,8 +214,9 @@ class FfUsersController extends AppController{
     //GSM channels
     $this->Acl->deny($group, 'controllers/Channels');
     $this->Acl->allow($group, 'controllers/Channels/index');
+    $this->Acl->allow($group, 'controllers/Channels/refresh');
     $this->Acl->deny($group, 'controllers/OfficeRoute');
-    $this->Acl->allow($group, 'controllers/OfficeRoute/index');
+    $this->Acl->allow($group, 'controllers/OfficeRoute/refresh');
 
     //Logs
     $this->Acl->deny($group, 'controllers/Logs');

@@ -29,19 +29,16 @@ echo $html->addCrumb('Settings', '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-
-
-
-
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
 $msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
 $msgAccessLevel .= "<li>".__('is connected to the Internet, and has a public IP address, select Internet.',true)."<br/></li>"; 
 $msgAccessLevel .= "<li>".__('is connected to a local area network (LAN), select Local Area Network.',true)."<br/></li>"; 
 $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<br/></li></ul>"; 
 
+
  	if ($messages = $session->read('Message.multiFlash')) {
             foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-   	   }
+	}
 
 
 	foreach ($data as $key => $unit){
@@ -66,14 +63,16 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	    }
 
 
-	     $rows[] = array("Time zone",$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$entry['value_string'])));
+             $timezone = $entry['value_string'];
+	     $rows[] = array("Time zone",$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$timezone)));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	    
 
 	  } elseif ($entry['name']=='country'){
 
 
-	     $rows[] = array("Country", $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$entry['value_string'])));
+             $country = $entry['value_string'];
+	     $rows[] = array("Country", $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$country)));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 
           }
@@ -107,6 +106,11 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 }
 
+        if($authGroup != 1){
+                      $rows[0][1] = $languages[$lang_selected]; 
+                      $rows[1][1] = $timezone;
+                      $rows[2][1] = $countries[$country];  
+                      }
 
      
 	//Display language and timezone table
@@ -118,12 +122,18 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 	//Display IP address table
         echo "<h2>".__("IP address",true)."</h2>";                                                                                                                                                                                                      
-        echo $html->div('instruction', $msgAccessLevel);
+        echo $this->Access->showBlock($authGroup, $html->div('instruction', $msgAccessLevel));
 	echo "<table cellspacing=0 class='stand-alone'>";
-	echo $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+
+        if($authGroup != 1){
+	echo $html->tableCells(array($html->div('instruction', __('Your current IP address is',true).': '.$current_IP)),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
+        }
+
+        echo $this->Access->showBlock($authGroup, $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone')));
         echo "</table>";
 
-        //Dispaly Save button
-	echo $html->div('button_center', $form->end(__('Save',true)));
+        //Display Save button
+        echo $this->Access->showBlock($authGroup, $html->div('button_center', $form->end(__('Save',true))));
+
 
 ?>

@@ -57,13 +57,13 @@
 
    }
 
-   function showCheckbox($authGroup, $name){
+   function showCheckbox($authGroup, $name, $div= null){
 
    if($authGroup == 1){
 
    ?>
-   <input type="button" class='button' name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(<? echo $name; ?>)">
-   <input type="button" class='button' name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(<? echo $name; ?>)">
+   <div class='<? echo $div; ?>'><input type="button" class='button' name="CheckAll" value="<? echo __('Check All',true);?>" onClick="checkAll(<? echo $name; ?>)"></div>
+   <div class='<? echo $div; ?>'><input type="button" class='button' name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(<? echo $name; ?>)"></div>
    <?
    }
 

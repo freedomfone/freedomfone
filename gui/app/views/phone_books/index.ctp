@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- List all phone books (used for Contacts)
- * version 	- 2.0.1139
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,12 +22,10 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Phone books', '/phone_books');
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Phone books',true), '/phone_books');
 
-   echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
-   echo $html->div('frameRightAlone',$form->submit(__('Create new',true),  array('name' =>'submit', 'class' => 'button')));
-   echo $form->end();
+$this->Access->showButton($authGroup, 'PhoneBook', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 
    echo "<h1>".__("Phone books",true)."</h1>";
 
@@ -44,21 +42,18 @@ echo $html->addCrumb('Phone books', '/phone_books');
 
 
       echo "<table width='500px' class='collapsed' cellspacing=0>";
-      echo $html->tableHeaders(array(__('Phone book',true),__('Description',true),__('Edit',true),__('Delete',true),__('Export',true)));
+      echo $html->tableHeaders(array(__('Phone book',true),__('Description',true),__('Actions',true)));
 
       	   foreach ($data as $key => $phone_book){
 
       	      $title 	= $phone_book['PhoneBook']['name'];
       	      $description = $phone_book['PhoneBook']['description'];		   
-
-	      $edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "phone_books", "action" => "edit", $phone_book['PhoneBook']['id'])));
-
-              $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "phone_books", "action" => "delete", $phone_book['PhoneBook']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this phone book?',true)."');"));
-	
-	      $export     = $this->Html->image("icons/export-16.png", array("alt" => __("Export",true), "title" => __("Export",true), "url" => array("controller" => "phone_books", "action" => "export", $phone_book['PhoneBook']['id'])));
+	      $edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "phone_books", "action" => "edit", $phone_book['PhoneBook']['id']))));
+              $delete   = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "phone_books", "action" => "delete", $phone_book['PhoneBook']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this phone book?',true)."');")));
+	      $export   = $this->Access->showBlock($authGroup, $this->Html->image("icons/export-16.png", array("alt" => __("Export",true), "title" => __("Export",true), "url" => array("controller" => "phone_books", "action" => "export", $phone_book['PhoneBook']['id']))));
 
 
-              $row[$key] = array($title, $description,$edit,$delete, $export);
+              $row[$key] = array($title, $description,$edit.' '.$delete.' '.$export);
 
 
             }

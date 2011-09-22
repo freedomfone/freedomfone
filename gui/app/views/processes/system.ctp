@@ -93,16 +93,16 @@ echo $html->addCrumb(__('About',true), '/processes/system');
 
 
      echo "<h2>".__("Freedom Fone",true)."</h2>";
-     $row0[] = array(__('Version',true),__('Freedom Fone',true)." ".VERSION." (<a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a>)");
+     $row0[] = array(array(__('Version',true), array('width' => '200px')),__('Freedom Fone',true)." ".VERSION." (<a href='http://en.wikipedia.org/wiki/African_Wild_Dog'>".VERSION_NAME."</a>)");
      $row0[] = array(__('SVN revision',true),$svn);
      echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
-     echo $html->tableCells($row0,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
+     echo $html->tableCells($row0 ,array('class' =>'stand-alone'),array('class' =>'stand-alone'));
      echo "</table>"; 
 
 
 
      echo "<h2>".__("Software",true)."</h2>";
-     $row1[] = array(__("Operating system",true), $string); 
+     $row1[] = array( array(__("Operating system",true), array('width' => '200px')), $string); 
      $row1[] = array(__("FreeSWITCH",true), $version[1]); 
      $row1[] = array(__("Web server",true), apache_get_version());
      $row1[] = array(__("MySQL",true), mysql_get_server_info());
@@ -113,7 +113,7 @@ echo $html->addCrumb(__('About',true), '/processes/system');
 
 
      echo "<h2>".__("Environment",true)."</h2>";
-      $row2[] = array(__("IP address",true), $ip_address); 
+      $row2[] = array(array(__("IP address",true), array('width' => '200px')), $ip_address); 
       $row2[] = array(__("Language",true), $lang); 
       $row2[] = array(__("System time",true), date('Y-m-d H:i A').' ('.$timezone.')'); 
 

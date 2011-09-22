@@ -37,18 +37,10 @@ echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'output'));
-echo $html->div('frameRightAlone',$form->submit(__('Export all',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
 
-echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'export'));
-echo $html->div('frameRightAlone',$form->submit(__('Export',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'delete'));
-echo $html->div('frameRightAlone',$form->submit(__('Delete',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
+$this->Access->showButton($authGroup, 'MonitorIvr', 'output', 'frameRightTrans', __('Export all',true), 'submit', 'button');
+$this->Access->showButton($authGroup, 'MonitorIvr', 'export', 'frameRightTrans', __('Export',true),     'submit', 'button');
+$this->Access->showButton($authGroup, 'MonitorIvr', 'delete', 'frameRightTrans', __('Delete',true),     'submit', 'button');
 
 
 echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
@@ -58,13 +50,11 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
      echo $html->div("",$paginator->counter(array('format' => __("Entries:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
      echo $form->create('MonitorIvr',array('type' => 'post','action'=> 'process','name'  => 'MonitorIvr'));
-     
-     ?>
-     <input class="button" type="button" name="CheckAll" value="<?php echo __("Check All",true);?>" onClick="checkAll(document.MonitorIvr)">
-     <input class="button" type="button" name="UnCheckAll" value="<? echo __("Uncheck All",true);?>" onClick="uncheckAll(document.MonitorIvr)">
-     <?
-     echo $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete));
 
+     echo $this->Access->showCheckbox($authGroup, 'document.MonitorIvr', 'frameLeftTrans');     
+     echo $this->Access->showBlock($authGroup, $this->Html->div('frameLeftTrans', $form->submit(__('Delete selected',true),  array('name' =>'data[Submit]', 'class' => 'button','onClick'=>$msg_delete))));
+
+     echo $this->Html->div('empty',false);
      echo "<table width='95%' cellspacing=0>";
      echo $html->tableHeaders(array(
 	'',
@@ -76,7 +66,6 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
  	$paginator->sort(__("Pressed",true), 'digit'),
  	$paginator->sort(__("To",true), 'service'),
  	$paginator->sort(__("Title",true), 'title'),
-
  	$paginator->sort(__("Type",true), 'type'),
 	''));
 
@@ -86,17 +75,13 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
       foreach ($data as $key => $entry){
 
 
-	$id = "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>";
-	$date  	     = date('Y-m-d',$entry['MonitorIvr']['epoch']);
-	$time  	     = date('H:i:s',$entry['MonitorIvr']['epoch']);
-	$ivr_code    = $text->truncate($entry['MonitorIvr']['ivr_code'],20, array('ending' => '...','exact' => true,'html' => false));
-	$call_id     = $text->truncate($entry['MonitorIvr']['call_id'],8, array('ending' => false,'exact' => true,'html' => false));
-
-	$digit       = $entry['MonitorIvr']['digit'];
-	
-	$caller_number  = $entry['MonitorIvr']['caller_number'];
-
-
+	$id             = $this->Access->showBlock($authGroup, "<input name='monitor_ivr[$key][MonitorIvr]' type='checkbox' value='".$entry['MonitorIvr']['id']."' id='check' class='check'>");
+	$date  	        = date('Y-m-d',$entry['MonitorIvr']['epoch']);
+	$time           = date('H:i:s',$entry['MonitorIvr']['epoch']);
+	$ivr_code       = $text->truncate($entry['MonitorIvr']['ivr_code'],20, array('ending' => '...','exact' => true,'html' => false));
+	$call_id        = $text->truncate($entry['MonitorIvr']['call_id'],8, array('ending' => false,'exact' => true,'html' => false));
+	$digit          = $entry['MonitorIvr']['digit'];
+	$caller_number  = $this->Access->showBlock($authGroup, $entry['MonitorIvr']['caller_number']);
 	$type_tmp = $entry['MonitorIvr']['type'];
         $title = false;
 	$service = false;
@@ -119,6 +104,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 
 
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
+        
 
         $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "monitor_ivr", "action" => "del", $entry['MonitorIvr']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');"));
 
@@ -130,11 +116,12 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 		$call_id_old=$call_id;
 		}
 
-     $row = array($id,
+     $row = array(
+                $this->Access->showBlock($authGroup, $id),
 		$date,
 		$time,
 		$call_id,
-		$caller_number,
+		$this->Access->showBlock($authGroup, $caller_number),
 		$ivr_code,
 		array($digit,array('align'=>'center')),
                 $service,

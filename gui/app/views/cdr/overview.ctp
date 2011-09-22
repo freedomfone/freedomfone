@@ -58,7 +58,7 @@ echo $form->end();
 	     break;
 
 	     case 'bin':
-	     $otherCount = $otherCount + 1;
+     $otherCount = $otherCount + 1;
 	     break;
 	     }
         }
@@ -86,7 +86,7 @@ echo $form->end();
 	        $listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>__('New message',true),'id'=>$message['Message']['id']));
 
                  $rows[] = array(
-                       $message['Message']['sender'],
+                       $this->Access->showBlock($authGroup, $message['Message']['sender'],'XXX'),
                        $time->format('Y/m/d H:i',$message['Message']['created']), 
                        $formatting->epochToWords($message['Message']['length']),
 	               array($this->Html->image("icons/edit.png", array("alt" => __("Edit message",true), "title" => __("Edit message",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id']))).' '.$this->Access->showBlock($authGroup, $download), array('align' => 'center')),

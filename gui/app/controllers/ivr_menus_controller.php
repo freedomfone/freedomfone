@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_menus_controller.php	- Controller for IVR menus. Manages CRUD operations. Creating ivr.xml files.
- * version 		 	- 2.0.1175
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -42,7 +42,7 @@ class IvrMenusController extends AppController{
    function index(){
 
         $this->set('title_for_layout', __('Voice menus',true));           
-    	$this->layout = 'jquery';
+
    	//Avoid fetching associated data
 	$this->IvrMenu->recursive = 0;
 

@@ -29,7 +29,7 @@ echo $html->addCrumb(__('Content',true), '/nodes');
 $ivr = Configure::read('IVR_SETTINGS');
 
 
-$this->Access->showButton($authGroup, 'Node', 'add', 'frameRightAlone', __('Upload new',true), 'submit', 'button');
+$this->Access->showButton($authGroup, 'Node', 'add', 'frameRightTrans', __('Upload new',true), 'submit', 'button');
 
 
   echo "<h1>".__('Content',true)."</h1>";
@@ -41,7 +41,9 @@ $this->Access->showButton($authGroup, 'Node', 'add', 'frameRightAlone', __('Uplo
 
    if ($nodes){
 
+
       echo $html->div("paginator",$paginator->counter(array('format' => __("Entry:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));  
+      echo $this->Html->div("empty", false);  
       echo $form->create('Node',array('type' => 'post','action'=> 'process'));
       echo "<table width='95%' cellspacing=0>";
       echo $html->tableHeaders(array(

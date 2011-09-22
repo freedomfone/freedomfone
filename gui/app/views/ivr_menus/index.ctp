@@ -29,12 +29,15 @@ $ext = Configure::read('EXTENSIONS');
 
 $this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 
-$info = __('Voice Menu| This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages.| A Voice menu consists of:| Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu|  Menu Options: audio files or components associated with telephony keypad selections.',true);
 
-echo $html->div('frameInfo', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-//echo $html->div('frameInfo', $html->image('icons/bulb.png',array('alt'=>'Tooltips', 'title' => $info, 'url' => '#', 'class'=>'infobox')));
+   $info = $html->link(
+                        $this->Html->image("icons/bulb.png"),
+                        "/pages/ivr_menus/tip",
+                        array("escape" => false, "title" => __("Tool tip", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
 
-echo "<h1>".__('Voice menus',true)."</h1>";
+   echo $html->div('frameInfo', $info);
+   echo "<h1>".__('Voice menus',true)."</h1>";
 
 
      if ($messages = $session->read('Message.multiFlash')) {

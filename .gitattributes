@@ -373,6 +373,7 @@ gui/app/views/nodes/add.ctp -text
 gui/app/views/nodes/edit.ctp -text
 gui/app/views/nodes/index.ctp -text
 gui/app/views/office_route/edit.ctp -text
+gui/app/views/pages/ivr_menus/tip.ctp -text
 gui/app/views/pages/polls/index.ctp -text
 gui/app/views/pages/polls/tip.ctp -text
 gui/app/views/pages/polls/view.ctp -text

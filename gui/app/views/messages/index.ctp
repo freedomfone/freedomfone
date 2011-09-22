@@ -29,7 +29,7 @@
 
       echo "<h1>".__('Audio Messages',true)."</h1>";
       echo $html->div('feedback', __('Please select one or more criteria below.',true));
-      $rates = array(1,2,3,4,5);
+      $rates = array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5);
       $limits = array(10 => 10, 25 => 25, 50 => 50);
       $order = array('Category.id' => __('Category',true),'Message.rate' => __('Rate',true), 'Message.instance_id' => __('Service',true),'Message.length' => __('Length',true), 'Message.created' => __('Time',true),'Message.new' => __('New message',true));
       $dir = array('ASC' => __('Ascending', true), 'DESC' => __('Descending',true));

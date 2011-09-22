@@ -30,10 +30,15 @@ echo $html->addCrumb(__('Polls',true), '/polls');
    echo $form->end();
 
 
-   $this->Access->showButton($authGroup, 'Poll', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
-  
-   $info   = $html->link($html->image('icons/bulb.png'), array('controller' => 'pages/polls/', 'action' => 'tip'), array('title' => 'Tool tip', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,null,false);
+   $this->Access->showButton($authGroup, 'Poll', 'add', 'frameRightTrans', __('Create new',true), 'submit', 'button');
+   $info = $html->link(
+                        $this->Html->image("icons/bulb.png"),
+                        "/pages/polls/tip",
+                        array("escape" => false, "title" => __("Tool tip", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
+
    echo $html->div('frameInfo', $info);
+
    echo "<h1>".__("Polls",true)."</h1>";
 
    if ($messages = $session->read('Message.multiFlash')) {

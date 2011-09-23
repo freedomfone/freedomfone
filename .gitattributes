@@ -313,7 +313,6 @@ gui/app/views/elements/callback_status.ctp -text
 gui/app/views/elements/channel_signal_level.ctp -text
 gui/app/views/elements/dialer_status.ctp -text
 gui/app/views/elements/flash_message.ctp -text
-gui/app/views/elements/menu.ctp -text
 gui/app/views/elements/menuAdmin.ctp -text
 gui/app/views/elements/menuUser.ctp -text
 gui/app/views/elements/menu_next.ctp -text

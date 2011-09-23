@@ -138,7 +138,11 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Users",true),'/users'); ?>
+<?php echo $html->link(__("Callers",true),'/users'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("System users",true),'/ff_users'); ?>
 </li>
 
 <li class='last'>

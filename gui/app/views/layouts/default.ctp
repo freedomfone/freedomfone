@@ -76,7 +76,14 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 	 <div class="header">
          <? if (isset ($authUser)){ echo $html->div('login',__("Logged in as",true).": ".$authUser); } ?> </div>
 
-	 <div id="top_nav"><?php echo $this->element('menu'); ?>		<!-- horizonal menu -->
+	 <div id="top_nav"><?php 
+              if($authGroup == 1){
+                            echo $this->element('menuAdmin'); 
+              } else {
+                             echo $this->element('menuUser');
+              } 
+
+              ?>		<!-- horizonal menu -->
 
         <?php 
           if(isset($authGroup)){

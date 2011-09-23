@@ -22,7 +22,8 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb(__('Authentication',true), '/ff_users');
+      echo $html->addCrumb(__('User management',true), '');
+      echo $html->addCrumb(__('System Users',true), '/ff_users');
 
 
       echo $form->create('FfUser',array('type' => 'post','action'=> 'add'));
@@ -30,7 +31,7 @@
       echo $form->end();
 
 
-      echo "<h1>".__("Freedom Fone Users",true)."</h1>";
+      echo "<h1>".__("System Users",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {                                                     
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  
@@ -39,8 +40,8 @@
 
    if ($ff_users){
 
-      echo "<table width='400px' cellspacing = 0>";
-      echo $html->tableHeaders(array(__('Name',true),__('Group',true),__('Edit',true),__('Delete',true)));
+      echo "<table  cellspacing = 0>";
+      echo $html->tableHeaders(array(__('Name',true),__('Group',true),__('Actions',true)));
 
 
       	      foreach ($ff_users as $key => $ff_user){
@@ -50,7 +51,11 @@
                          $edit       = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ff_users", "action" => "edit", $ff_user['FfUser']['id'])));
                          $delete     = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ff_users", "action" => "delete", $ff_user['FfUser']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this user?',true)."');"));
 
-     $row[$key] = array($name, $group, $edit,$delete);
+                         $row[$key] = 
+                            array(array($name, array('width' => '150px')), 
+                            array($group,array('width' => '50px')),
+                            array($edit.' '.$delete, array('align' => 'center','width' => '50px'))
+                        );
 
       		     }
 

@@ -45,11 +45,6 @@
 <?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
-<li>
-<?php echo $html->link(__("Create poll",true),'/polls/add/'); ?>
-</li>
-
-
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -197,11 +192,6 @@
 
 <li>
 <?php echo $html->link(__("GSM channels",true),'/channels'); ?>
-</li>
-
-
-<li>
-<?php echo $html->link(__("Logs",true),'/logs'); ?>
 </li>
 
 

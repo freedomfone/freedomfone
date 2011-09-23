@@ -99,11 +99,24 @@ class FfUsersController extends AppController{
 				$this->redirect(array('action'=>'index'));
 			} 
 		}
-                
-
-
-
+               
 	}
+
+
+       function delete ($id){
+
+         if($id != 1 ){
+    	     if($this->FfUser->delete($id,true)) {
+    	         $this->_flash(__('The user been deleted.',true),'success');
+	         $this->redirect(array('action' => '/index'));
+	     }
+         } else {
+                $this->_flash(__('You can not delete the Admin user.',true),'success');
+	        $this->redirect(array('action' => '/index'));
+         }
+
+     }
+
 
    //Set Auth permissions:: REMOVE WHEN DONE!
 

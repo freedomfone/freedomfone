@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * view.ctp	- View poll result
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,16 +22,20 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Polls', '/polls');
-Configure::write('debug', 0);
+echo $html->addCrumb(__('Polls',true), '/polls');
 
 echo $form->create('Poll',array('type' => 'post','action'=> 'view/'.$data["Poll"]["id"]));
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
 
-$info   = $html->link($html->image('icons/bulb.png'), array('controller' => 'pages/polls', 'action' => 'view'), array('title' => 'Tool tip', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 600}); return false;"),null,null,false);
-echo $html->div('frameInfo', $info);
+   $info = $html->link(
+                        $this->Html->image("icons/bulb.png"),
+                        "/pages/polls/view",
+                        array("escape" => false, "title" => __("Tool tip", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
+
+   echo $html->div('frameInfo', $info);
 
 
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
- * votes_controller.php		- Does nothing.
- * version 		 	- 1.0.368
+ * votes_controller.php		- Add and Delete votes from Polls.
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -56,6 +56,7 @@ class VotesController extends AppController{
 
                 $votes = $this->Vote->find('all', array('conditions' => array('poll_id' => $this->data['Vote']['poll_id']), 'recursive' => -1));
                 $poll_id = $this->data['Vote']['poll_id'];
+
                 $this->set(compact('votes','poll_id'));
                 $this->render($view,'ajax');
            }
@@ -66,20 +67,21 @@ class VotesController extends AppController{
     Configure::write('debug', 0);
 
        if($id && $poll_id){
+
+               $votes = $this->Vote->find('all', array('conditions' => array('poll_id' => $poll_id), 'recursive' => -1));
+               $this->set(compact('votes','poll_id'));
+
                 
-                if ($this->Vote->del($id)){
-               
-                   $votes = $this->Vote->find('all', array('conditions' => array('poll_id' => $poll_id), 'recursive' => -1));
-                   $poll = $poll_id;          
-                   $this->set(compact('votes','poll'));
+                if ($this->Vote->delete($id)){
+             
                    $this->render('add_success','ajax');
+
                 } else {
+
                   $this->render('add_failure','ajax');
+
                 }
-       } else {
-
-
-       }
+       } 
     }
 
 

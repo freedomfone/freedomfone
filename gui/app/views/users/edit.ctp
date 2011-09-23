@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * edit.ctp	- Edits user data in phone book
- * version 	- 2.0.1244
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -24,9 +24,9 @@
 
 
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Users', '/users');
-echo $html->addCrumb('Edit', '/users/edit/'.$this->data['User']['id']);
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Users',true), '/users');
+echo $html->addCrumb(__('Edit',true), '/users/edit/'.$this->data['User']['id']);
 
 
 
@@ -90,10 +90,11 @@ echo $form->end();
 
      foreach ($phonenumbers as $key => $number){
 
-
-
-//$html->image("icons/delete.png")
-             $delete = $ajax->link(__("Delete",true),'/phone_numbers/delete/'.$number['PhoneNumber']['id'].'/'.$data['User']['id'], array('update' => 'numbers'), null, 1);
+             $delete = $ajax->link($this->Html->image("icons/delete.png"),
+                                   array('controller' => 'phone_numbers', 'action' => 'delete', $number['PhoneNumber']['id'].'/'.$data['User']['id']),
+                                   array('update' => 'numbers', 'escape' => false), 
+                                   __('Are you sure you want to delete this number?', true), 
+                                   true);
              $row[] = array(__('Phone number',true), $number['PhoneNumber']['number'], $delete);
 
      }

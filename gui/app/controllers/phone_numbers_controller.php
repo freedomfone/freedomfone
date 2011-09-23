@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * phone_numbers_controller.php	- Controller for phone numbers
- * version 		 	- 1.0.368
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -65,9 +65,10 @@ class PhoneNumbersController extends AppController {
 
     Configure::write('debug', 0);
 
+
        if($id && $user_id){
                 
-                if ($this->PhoneNumber->del($id)){
+                if ($this->PhoneNumber->delete($id)){
                
                    $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $user_id), 'recursive' => -1));
                    $user = $user_id;

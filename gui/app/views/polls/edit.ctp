@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit existing poll
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,7 +22,7 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb('Polls', '/polls');
+echo $html->addCrumb(__('Polls',true), '/polls');
 
 
      if($this->data){
@@ -87,7 +87,14 @@ echo $html->addCrumb('Polls', '/polls');
 
      foreach ($votes as $key => $vote){
 
-             $delete = $ajax->link("delete",'/votes/delete/'.$vote['Vote']['id'].'/'.$this->data['Poll']['id'], array('update' => 'votes'), null, 1);
+
+             $delete = $ajax->link($this->Html->image("icons/delete.png"),
+                                   array('controller' => 'votes', 'action' => 'delete', $vote['Vote']['id'].'/'.$this->data['Poll']['id']),
+                                   array('update' => 'votes', 'escape' => false), 
+                                   __('Are you sure you want to delete this option?', true), 
+                                   true);
+
+
              $row[] = array(__('Option',true).' '.($key+1), $vote['Vote']['chtext'], $delete);
 
      }

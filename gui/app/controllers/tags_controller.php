@@ -65,6 +65,9 @@ class TagsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
+
+
+
 			if ($this->Tag->save($this->data)) {
 				$this->_flash(__('The tag has been edited.', true),'success');
 				$this->redirect(array('action'=>'index'));

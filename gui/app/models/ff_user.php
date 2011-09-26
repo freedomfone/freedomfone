@@ -26,10 +26,59 @@ class FfUser extends AppModel {
 
 	var $name = 'FfUser';
 	
-	var $hasMany = array('Poll'); 
         var $belongsTo = array('Group');
         var $actsAs = array('Acl' => array('type' => 'requester'));
  
+
+function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+
+      $this->validate = array(
+	'username' => array(
+			'alphaNumeric' => array(
+                                       'required' => true,
+                                       'empty' => false,
+ 				       'rule' => 'alphaNumeric',
+ 				       'message' => __('Letters and numbers only. No spaces or special characters allowed.',true)
+ 				       ),
+ 			'between' => array(
+                                       'required' => true,
+                                       'empty' => false,
+ 				       'rule' => array('between', 5, 20),
+ 				       'message' => __('Between 5 to 20 characters',true)
+ 				       ),
+	                'isUnique' =>array(
+                                       'required' => true,
+                                       'empty' => false,
+				       'rule' => 'isUnique',
+				       'message' => __('This username is already in use.',true)
+				     )
+ 		),
+	'password' => array(
+ 			'between' => array(
+                                       'required' => false,
+                                       'empty' => false,
+ 				       'rule' => array('between', 5, 50),
+ 				       'message' => __('The password must be between 5 to 50 characters',true)
+ 				       ),
+			'compareFieldValues' => array(
+        			       'rule' => array('compareValues', 'pwd_repeat' ),
+        			       'message' => __('The passwords do not match.',true)
+                		       ),
+ 		),
+	);
+}
+
+
+    function compareValues( $data, $field){
+
+        if($data['password'] == $this->data['FfUser'][$field]){
+                 return true;
+        } else {
+                 return false;
+        }
+
+    }
 
 
   function bindNode($ff_user) {
@@ -53,6 +102,9 @@ class FfUser extends AppModel {
         return array('Group' => array('id' => $groupId));
     }
   }
+
+
+
 
 }
 ?>

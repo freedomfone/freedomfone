@@ -32,11 +32,14 @@
 
 
       echo "<h1>".__("System Users",true)."</h1>";
-      echo  $this->Session->flash();
 
-     if ($messages = $session->read('Message.multiFlash')) {                                                     
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  
-        }  
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
+
 
 
    if ($ff_users){

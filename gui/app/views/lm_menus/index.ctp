@@ -36,9 +36,13 @@ echo "<h1>".__('Manage Leave-a-message',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
 
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);               
+                }
         }
+
 
 
      	if ($lm_menus){

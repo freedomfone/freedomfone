@@ -28,9 +28,12 @@ echo $html->addCrumb(__('Tags',true), '/tags');
 $this->Access->showButton($authGroup, 'Tag', 'add', 'frameRightAlone', __('Create new',true), 'submit', 'button');
 echo "<h1>".__("Tags",true)."</h1>";
 
-     if ($messages = $session->read('Message.multiFlash')) {                                                     
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);                                  
-        }  
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);               
+                }
+        }
 
 
    if ($tags){

@@ -51,7 +51,7 @@ class FfUsersController extends AppController{
         $this->set('title_for_layout', __('Login',true));
 
          if ($this->Session->read('Auth.FfUser')) {
-            $this->Session->setFlash('You are logged in!');
+            $this->_flash('You are logged in!');
             $this->redirect('/', null, false);
          }
   
@@ -63,7 +63,7 @@ class FfUsersController extends AppController{
       function logout(){
 
 
-               $this->Session->setFlash('You are logged out.');
+               $this->_flash('You are logged out.');
                $this->redirect($this->Auth->logout());
 
 
@@ -73,6 +73,12 @@ class FfUsersController extends AppController{
 	function index() {
 
                 $this->set('title_for_layout', __('Freedomfone Users',true));
+
+                 $this->_flash(__('Success message.', true),'success');
+                 $this->_flash(__('Warning message.', true),'warning');
+                 $this->_flash(__('Error message.', true),'error');
+
+
 
                 $this->loadModel('Group');
                 $options = $this->Group->find('list');
@@ -105,13 +111,13 @@ class FfUsersController extends AppController{
                          $this->FfUser->id = $this->FfUser->getLastInsertId();
                          $this->FfUser->saveField('password', $this->Auth->password($this->data['FfUser']['pwd']));
 
-			 $this->Session->setFlash(__('New user has been created.', true),'success');
+			 $this->_flash(__('New user has been created.', true),'success');
 			 $this->redirect(array('action'=>'index'));
 
 		    } else {
 
                          $errors = $this->FfUser->invalidFields(); 
-			 $this->Session->setFlash($errors['password'],'error');
+			 $this->_flash($errors['password'],'error');
 
                     }
 
@@ -152,13 +158,16 @@ class FfUsersController extends AppController{
 
                          $this->FfUser->saveField('password', $this->Auth->password($this->data['FfUser']['pwd']));
 
-			 $this->Session->setFlash(__('User has been updated.', true),'success');
+
+
+
+			 $this->_flash(__('User has been updated.', true),'success');
 			 $this->redirect(array('action'=>'index'));
 
 		    } else {
 
                          $errors = $this->FfUser->invalidFields(); 
-			 $this->Session->setFlash($errors['password'], 'error');
+			 $this->_flash($errors['password'], 'error');
 
                     }
 
@@ -181,11 +190,11 @@ class FfUsersController extends AppController{
 
          if($id != 1 ){
     	     if($this->FfUser->delete($id,true)) {
-    	         $this->Session->setFlash(__('The user been deleted.',true),'success');
+    	         $this->_flash(__('The user been deleted.',true),'success');
 	         $this->redirect(array('action' => '/index'));
 	     }
          } else {
-                $this->Session->setFlash(__('You can not delete the Admin user.',true),'success');
+                $this->_flash(__('You can not delete the Admin user.',true),'success');
 	        $this->redirect(array('action' => '/index'));
          }
 

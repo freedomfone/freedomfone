@@ -103,16 +103,20 @@ function beforeFilter() {
     }
 
 
-function _flash($message,$type='message') {
-  $messages = (array)$this->Session->read('Message.multiFlash');
-  $messages[] = array(
-	  'message'=>$message, 
-          'layout'=>'default',
-          'element'=>'default',
-	  'params'=>array('class'=>$type),
+
+
+
+    function _flash($message, $type = 'message') {
+
+        $messages = (array)$this->Session->read('Message');
+        $messages[] = array(
+	            'message' => $message, 
+                    'element' => 'default',
+	            'params'  => array('class'=>$type),
 	  );
-	  $this->Session->write('Message.multiFlash', $messages);
- }
+
+	  $this->Session->write('Message', $messages);
+     }
 							
 
 

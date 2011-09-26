@@ -29,14 +29,15 @@
 
       echo "<h1>".__("Add user",true)."</h1>";
       
-
+      echo $this->Session->flash();
 
       echo $form->create('FfUser',array('type' => 'post','action'=> 'add'));
       echo "<table cellspacing=0 'class'='stand-alone'>";
 
       echo $html->tableCells(array (
            array(__("Username",true),	        $form->input('username', array('label' => false))),
-           array(__("Password",true),	        $form->input('password', array('label' => false))),
+           array(__("Password",true),	        $form->input('pwd', array('type' => 'password', 'label' => false, 'value' => ''))),
+           array(__("Repeat password",true),	$form->input('pwd_repeat', array('type' => 'password','label' => false, 'value' => ''))),
            array(__("Group", true),             $form->input('group_id',array('type'=>'select','options'=>$options,'label'=> false))),
            array('',	$form->end(__('Save',true)))),
            array('class'=>'stand-alone'),array('class'=>'stand-alone'));

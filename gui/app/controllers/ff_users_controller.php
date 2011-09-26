@@ -94,12 +94,86 @@ class FfUsersController extends AppController{
 
 		if (!empty($this->data)) {
 
-  			if ($this->FfUser->save($this->data)) {
-				$this->_flash(__('New user has been created.', true),'success');
-				$this->redirect(array('action'=>'index'));
-			} 
+                    //Set password to non-hashed for validation
+                    $this->data['FfUser']['password'] = $this->data['FfUser']['pwd']; 
+                    $this->FfUser->set($this->data);
+
+  		    if ($this->FfUser->save($this->data)) {
+
+
+                         //If data is saved/validated, update password field with hashed version	               
+                         $this->FfUser->id = $this->FfUser->getLastInsertId();
+                         $this->FfUser->saveField('password', $this->Auth->password($this->data['FfUser']['pwd']));
+
+			 $this->Session->setFlash(__('New user has been created.', true),'success');
+			 $this->redirect(array('action'=>'index'));
+
+		    } else {
+
+                         $errors = $this->FfUser->invalidFields(); 
+			 $this->Session->setFlash($errors['password'],'error');
+
+                    }
+
+
+ 
 		}
                
+	}
+
+	function edit($id = null) {
+
+                $this->set('title_for_layout', __('Edit User',true));
+
+		if (!$id && empty($this->data)) {
+			$this->_flash(__('Invalid option', true),'warning');
+			$this->redirect(array('action'=>'index'));
+		}
+
+
+		if (!empty($this->data)) {
+
+
+                    //Set password to non-hashed for validation
+                    $this->data['FfUser']['password'] = $this->data['FfUser']['pwd']; 
+
+                    //If password is left blank, do not validate
+                    if(!$this->data['FfUser']['pwd']){
+                      unset($this->data['FfUser']['password']);
+
+                    }
+
+                    $this->FfUser->set($this->data);
+
+  		    if ($this->FfUser->save($this->data)) {
+
+                         //If data is saved/validated, update password field with hashed version	               
+                         $this->FfUser->id = $id;
+
+                         $this->FfUser->saveField('password', $this->Auth->password($this->data['FfUser']['pwd']));
+
+			 $this->Session->setFlash(__('User has been updated.', true),'success');
+			 $this->redirect(array('action'=>'index'));
+
+		    } else {
+
+                         $errors = $this->FfUser->invalidFields(); 
+			 $this->Session->setFlash($errors['password'], 'error');
+
+                    }
+
+
+ 
+		}
+
+
+                   $this->loadModel('Group');
+                   $groups =  $this->Group->find('list');
+                   $this->set(compact('groups'));
+	           $this->data = $this->FfUser->read(null, $id);
+
+
+
 	}
 
 
@@ -107,11 +181,11 @@ class FfUsersController extends AppController{
 
          if($id != 1 ){
     	     if($this->FfUser->delete($id,true)) {
-    	         $this->_flash(__('The user been deleted.',true),'success');
+    	         $this->Session->setFlash(__('The user been deleted.',true),'success');
 	         $this->redirect(array('action' => '/index'));
 	     }
          } else {
-                $this->_flash(__('You can not delete the Admin user.',true),'success');
+                $this->Session->setFlash(__('You can not delete the Admin user.',true),'success');
 	        $this->redirect(array('action' => '/index'));
          }
 

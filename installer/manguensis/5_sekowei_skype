@@ -1,0 +1,13 @@
+cd /usr/local/src/freeswitch-1.0.6/src/mod/endpoints/mod_skypopen/configs; gcc -Wall -ggdb skypopen_auth.c -o skypopen_auth -lX11
+apt-get install xauth nspluginwrapper
+#FIX LTS
+#The following extra packages will be installed:
+#  ia32-libs lib32asound2 lib32bz2-1.0 lib32gcc1 lib32ncurses5 lib32stdc++6 lib32v4l-0 lib32z1 libc6-i386 libice6 libsm6
+#  libv4l-0 libxt6
+#Suggested packages:
+#  lib32asound2-plugins
+
+#root@c14:/usr/local/skype-2.0.0.72# skypopen_auth $DISPLAY        
+#Skype instance found on display 'localhost:10.0', with id #102760490
+#RECEIVED==> ERROR 68
+#RECEIVED==> OK

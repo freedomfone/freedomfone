@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * poll.php		- Model for poll. Manages validation of poll creation, and refresh data from spooler.
- * version 		- 2.0.1160
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -32,7 +32,7 @@ class Poll extends AppModel{
                         	       'dependent' => true)
 				       ); 
 
-      var $belongsTo = array('FfUser');
+
 
 
 function __construct($id = false, $table = null, $ds = null) {

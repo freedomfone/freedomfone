@@ -54,4 +54,15 @@ Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'un
 
 
 Configure::load('config');
+
+/**
+ *
+ * Set default log location to /opt/freedomfone/tmp/
+ */
+
+CakeLog::config('default', array(
+ 'engine' => 'FileLog',
+ 'path' => LOG_DIR,
+  ));
+
 ?>

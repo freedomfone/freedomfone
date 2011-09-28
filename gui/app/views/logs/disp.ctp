@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * disp.ctp	- Display Freedom Fone logs
- * version 	- 1.0.354
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -24,7 +24,7 @@
 
 
       echo $ajax->div("log_div");
-      $file = '../tmp/logs/'.$this->data['Log']['type'].'.log';
+      $file = LOG_DIR.$this->data['Log']['type'].'.log';
 
       if (file_exists($file)){
 	$handle = fopen($file,'r');

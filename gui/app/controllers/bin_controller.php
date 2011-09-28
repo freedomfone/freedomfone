@@ -31,14 +31,14 @@ class BinController extends AppController{
       var $scaffold;
 
 
-      function refresh($method = null){
+/*      function refresh($method = null){
 
            $this->autoRender = false;
            $this->logRefresh('bin',$method); 
            $this->Bin->refresh($method);
 
       }
-
+*/
 
       function index(){
 
@@ -116,6 +116,13 @@ class BinController extends AppController{
     }
 
 
+    function refresh(){
+
+
+             $this->Bin->sweep();
+
+
+    }
 
 
 

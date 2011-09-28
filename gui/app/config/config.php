@@ -194,4 +194,35 @@ $config['OR_SNMP']= array(
                               'community' => 'public' , 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                              ));
+
+$config['SWEEP_CONFIG'] = array(
+                        'enable' => 1,                 //1 = enable, 0 = diable 
+                        'mode'   => 'low'              //low or high
+                        );
+
+$config['SWEEP_SETTINGS'] = array(
+                          'Bin'           => array('low'  => array('sender' => NULL),
+                                                   'high' => array('sender' => NULL),
+                                          ),
+                          'Cdr'           => array('low'  => array('caller_name' => NULL),
+                                                   'high' => array('caller_name' => NULL),
+                                          ),
+                          'MonitorIvr'   => array('low'  => array('caller_number' => NULL),
+                                                   'high' => array('caller_number' => NULL),
+                                          ),
+                          'PhoneNumber' => array('low'  => array('number' => NULL),
+                                                   'high' => array('number' => NULL),
+                                          ),
+                          'User'         => array('low'  => false,
+                                                  'high'  => array('name' => NULL, 'surname' => NULL, 'email' => NULL, 'skype' => NULL, 'organization' => NULL),                                                   
+                                          ),
+                                  );
+
+
+
+
+
+
+
+
 ?>

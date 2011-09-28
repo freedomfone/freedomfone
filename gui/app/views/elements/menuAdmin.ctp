@@ -145,6 +145,11 @@
 <?php echo $html->link(__("System users",true),'/ff_users'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("System Sweep",true),'/ff_users'); ?>
+</li>
+
+
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
 <?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>

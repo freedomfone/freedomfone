@@ -57,7 +57,7 @@ class GroupsController extends AppController{
 		}
 
 
-	}
+}
 
         //REMOVE!!!
 	function build_acl() {

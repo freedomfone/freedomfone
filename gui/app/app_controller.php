@@ -66,7 +66,7 @@ function beforeFilter() {
 
 
          //Allow global access to front page
-         $this->Auth->allowedActions = array('display');
+         $this->Auth->allowedActions = array('display','refresh');
 
          //Global root ACO 
          $this->Auth->actionPath = 'controllers/';
@@ -688,6 +688,30 @@ return $result;
              }
 
      }
+
+
+    function sweep(){
+
+          $config   = Configure::read('SWEEP_CONFIG');
+          $settings = Configure::read('SWEEP_SETTINGS');
+          $mode = $config['mode'];
+
+          if($config['enable'] && $mode ){
+
+             foreach($settings as $model => $data){
+           
+                $this->loadModel($model);
+
+                if($data[$mode]){
+                 $this->$model->updateAll($data[$mode]); 
+                }
+
+            }
+
+          }
+
+    }
+
 
 }
 ?>

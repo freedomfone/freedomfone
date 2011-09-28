@@ -57,7 +57,8 @@ Configure::load('config');
 
 /**
  *
- * Set default log location to /opt/freedomfone/tmp/
+ * Set default log location to /opt/freedomfone/log/
+ *
  */
 
 CakeLog::config('default', array(

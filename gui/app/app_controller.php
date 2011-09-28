@@ -55,6 +55,7 @@ var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 function beforeFilter() {
 
+
          //Change Auth default User model
          $this->Auth->userModel = 'FfUser';
 
@@ -559,7 +560,7 @@ return $result;
 
      function refreshAll(){
 
-/*
+
      $this->requestAction('/polls/refresh/manual');
      $this->requestAction('/messages/refresh');
      $this->requestAction('/cdr/refresh/manual');
@@ -567,7 +568,7 @@ return $result;
      $this->requestAction('/processes/refresh/manual');
      $this->requestAction('/channels/refresh/manual');
      $this->requestAction('/bin/refresh/manual');
-*/
+
         return true;
      }
 

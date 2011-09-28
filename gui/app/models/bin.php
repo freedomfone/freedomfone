@@ -78,6 +78,27 @@ class Bin extends AppModel{
 
 	}
 
+        function sweep(){
+
+          $model = $this->name;
+          $config   = Configure::read('SWEEP_CONFIG');
+          $settings = Configure::read('SWEEP_SETTINGS');
+
+
+          if($config['enable']){
+
+              $mode = $config['mode'];
+              $data = $settings[$model][$mode];
+
+              if($data) {
+                        $this->updateAll($data);
+              }
+
+          }
+
+        }
+
+
 }
 
 ?>

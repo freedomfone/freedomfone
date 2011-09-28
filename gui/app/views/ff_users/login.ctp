@@ -23,10 +23,17 @@
  ***************************************************************************/
 
      echo $html->addCrumb(__('Authentication',true), 'ff_users');
-     echo $html->addCrumb(__('Login',true), 'ff_users/login');
+     echo $html->addCrumb(__('Login',true), '/ff_users/login');
 
      echo "<h1>".__("Login",true)."</h1>";
      echo $this->Session->flash('auth');
+
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
 
 
       $options	  = array('label' => false);

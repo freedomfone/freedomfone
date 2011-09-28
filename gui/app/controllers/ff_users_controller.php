@@ -27,17 +27,6 @@ class FfUsersController extends AppController{
       var $name = 'FfUsers';
 
 
-/*
-      function beforeFilter() {
-//            parent::beforeFilter();
-//            $this->Auth->allow(array('*'));
-//           $this->Auth->allow(array('logout'));
-
-      }
-
-*/
-
-
        function beforeFilter(){
                  parent::beforeFilter();
                  $this->Auth->allow('logout');
@@ -63,7 +52,7 @@ class FfUsersController extends AppController{
       function logout(){
 
 
-               $this->_flash('You are logged out.');
+               $this->_flash('You are logged out.','success');
                $this->redirect($this->Auth->logout());
 
 
@@ -73,12 +62,6 @@ class FfUsersController extends AppController{
 	function index() {
 
                 $this->set('title_for_layout', __('Freedomfone Users',true));
-
-                 $this->_flash(__('Success message.', true),'success');
-                 $this->_flash(__('Warning message.', true),'warning');
-                 $this->_flash(__('Error message.', true),'error');
-
-
 
                 $this->loadModel('Group');
                 $options = $this->Group->find('list');
@@ -263,26 +246,6 @@ class FfUsersController extends AppController{
     //Phone books
     $this->Acl->deny($group, 'controllers/PhoneBooks');
     $this->Acl->allow($group, 'controllers/PhoneBooks/index');
-
-    //DIALER COMPONENT DISABLED FOR 3.0 //
-    /*
-    //Campaigns
-    $this->Acl->deny($group, 'controllers/Campaigns');
-    $this->Acl->allow($group, 'controllers/Campaigns/index');
-
-    //Callback services
-    $this->Acl->deny($group, 'controllers/CallbackServices');
-    $this->Acl->allow($group, 'controllers/CallbackServices/index');
-
-    //Callbacks
-    $this->Acl->deny($group, 'controllers/Callbacks');
-    $this->Acl->allow($group, 'controllers/Callbacks/index');
-
-    //Callback settings
-    $this->Acl->deny($group, 'controllers/CallbackSettings');
-    $this->Acl->allow($group, 'controllers/CallbackSettings/index');
-
-    */
 
     //System data (CDR)
     $this->Acl->deny($group, 'controllers/Cdr');

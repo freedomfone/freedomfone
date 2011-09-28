@@ -111,9 +111,10 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `ff_users` WRITE;
 /*!40000 ALTER TABLE `ff_users` DISABLE KEYS */;
-INSERT INTO `ff_users` VALUES (1,'admin','',1,'2011-09-19 13:34:47','2011-09-19 13:34:47');
+INSERT INTO `ff_users` VALUES (1,'admin','6f04cfa963380dee68a9bfe8bdff14784af284a7',1,'2011-09-19 13:34:47','2011-09-19 13:34:47');
 /*!40000 ALTER TABLE `ff_users` ENABLE KEYS */;
 UNLOCK TABLES;
+
 
 --
 -- Table structure for table `groups`

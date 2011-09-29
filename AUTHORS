@@ -1,0 +1,37 @@
+The Initial Developer of the Original Code is IT46 AB.
+Code developed in cooperation with the Kubatana Trust of Zimbabwe
+info@freedomfone.org
+
+Authors: Louise Berthilson (louise@it46.se)
+         Alberto Escudero-Pascual (aep@it46.se)
+
+Contributors: Giovanni Maruzzelli (gmaruzz@gmail.com)
+              Brenda Burrell (bren@kubatana.net)
+---------------------------------------------------------
+
+Freedom Fone is also free software, enjoy the freedoms!
+
+* freeswitch
+	Open source telephony platform
+	http://www.freeswitch.org/
+
+* freeswitch scripts
+	Using Mozilla Spidermonkey Javascript engine
+	http://www.mozilla.org/js/spidermonkey/
+
+* gsmopen 
+	New release of former celliax FreeSWITCH endpoint
+	http://www.gsmopen.org/
+
+* dispatcher
+	Was baked with CakePHP 1.2.5	
+	http://cakephp.org/
+
+* iwatch
+	File system monitoring
+	http://iwatch.sourceforge.net/
+
+* audio player
+	A Flash MP3 Player
+	http://wpaudioplayer.com/license/
+

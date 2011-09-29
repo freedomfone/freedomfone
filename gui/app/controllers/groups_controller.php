@@ -27,14 +27,6 @@ class GroupsController extends AppController{
       var $name = 'Groups';
 
 
-
-      function beforeFilter() {
-            parent::beforeFilter();
-            $this->Auth->allow(array('*'));
-      }
-
-
-
       function index() {
 
                 $this->set('title_for_layout', __('Freedomfone Groups',true));
@@ -44,6 +36,7 @@ class GroupsController extends AppController{
 
 	}
 
+        /*
        function add() {
 
                 $this->set('title_for_layout', __('Add Group',true));
@@ -55,9 +48,7 @@ class GroupsController extends AppController{
 				$this->redirect(array('action'=>'index'));
 			} 
 		}
-
-
-}
+      }*/
 
         //REMOVE!!!
 	function build_acl() {

@@ -27,8 +27,8 @@ class FfUsersController extends AppController{
       var $name = 'FfUsers';
 
 
-
        function beforeFilter(){
+
                  parent::beforeFilter();
                  $this->Auth->allow('logout');
 
@@ -38,6 +38,7 @@ class FfUsersController extends AppController{
 
       function login(){
 
+
         $this->set('title_for_layout', __('Login',true));
 
          if ($this->Session->read('Auth.FfUser')) {
@@ -45,6 +46,7 @@ class FfUsersController extends AppController{
             $this->redirect('/', null, false);
          }
   
+
       }       
 
 
@@ -169,7 +171,7 @@ class FfUsersController extends AppController{
 
 	}
 
-/*
+
        function delete ($id){
 
          if($id != 1 ){
@@ -184,14 +186,23 @@ class FfUsersController extends AppController{
 
         }
 
-*/
-        function delete(){
 
+        function sweep(){
 
-                 $this->sweep();
-                 $this->_flash(__('Freedom Fone has been sweeped.',true),'success');
-	         $this->redirect(array('action' => '/index'));
+     	         if(isset($this->params['form']['submit'])) {
 
+                       unset($this->params['form']['submit']);
+                      
+                       
+                      $status =  $this->headerGetStatus('');   
+
+                       if($status) {                     
+                                   $this->_flash(__('Freedom Fone has successfully been sweeped.',true),'success');
+                       } else {
+                                   $this->_flash(__('Sweeping failed. Please review your Sweeper settings.',true),'error');
+                       }
+
+                  } 
         }
 
 

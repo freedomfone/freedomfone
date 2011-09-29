@@ -55,7 +55,7 @@ var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 function beforeFilter() {
 
-
+  
          //Change Auth default User model
          $this->Auth->userModel = 'FfUser';
 
@@ -79,11 +79,10 @@ function beforeFilter() {
          $this->Auth->loginRedirect  = array('controller' => '/', 'action' => '/');
 
 
-                $data = $this->Auth->user();
- 
-               $authGroup = $data['FfUser']['group_id'];
-                $authUser  = $data['FfUser']['username'];
-                $this->set(compact('authGroup', 'authUser'));
+              $data = $this->Auth->user();
+              $authGroup = $data['FfUser']['group_id'];
+              $authUser  = $data['FfUser']['username'];
+              $this->set(compact('authGroup', 'authUser'));
 
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){
@@ -581,6 +580,7 @@ return $result;
      }
 
 
+
      function headerGetStatus($header){
 
               $status = false;
@@ -610,10 +610,6 @@ return $result;
                 case 'HTTP/1.1 400 BAD REQUEST':
                 $status = 5;
                 break;
-
-
-
-
 
               }
 
@@ -690,25 +686,52 @@ return $result;
      }
 
 
-    function sweep(){
+     function system_sweeper(){
+
 
           $config   = Configure::read('SWEEP_CONFIG');
           $settings = Configure::read('SWEEP_SETTINGS');
           $mode = $config['mode'];
+          $status = true;
+
+
+
 
           if($config['enable'] && $mode ){
 
              foreach($settings as $model => $data){
-           
+
+                foreach($data[$mode] as $key => $value){
+
+                      $data[$mode][$key] = "'".$value."'";
+
+                }           
                 $this->loadModel($model);
 
                 if($data[$mode]){
-                 $this->$model->updateAll($data[$mode]); 
+
+                $status = $this->$model->updateAll($data[$mode]); 
+
+                if(!$status){
+                        return false;
                 }
 
-            }
+
+                }
+             }
+
+             return true;
+
+
+          } else {
+
+            return false;
 
           }
+
+ 
+
+
 
     }
 

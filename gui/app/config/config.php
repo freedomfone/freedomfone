@@ -197,12 +197,12 @@ $config['OR_SNMP']= array(
 
 $config['SWEEP_CONFIG'] = array(
                         'enable' => 1,                 //1 = enable, 0 = diable 
-                        'mode'   => 'low'              //low or high
+                        'mode'   => 'high'              //low or high
                         );
 
 $config['SWEEP_SETTINGS'] = array(
                           'Bin'           => array('low'  => array('sender' => NULL),
-                                                   'high' => array('sender' => NULL),
+                                                   'high' => array('sender' => '555666'),
                                           ),
                           'Cdr'           => array('low'  => array('caller_name' => NULL),
                                                    'high' => array('caller_name' => NULL),
@@ -214,7 +214,7 @@ $config['SWEEP_SETTINGS'] = array(
                                                    'high' => array('number' => NULL),
                                           ),
                           'User'         => array('low'  => false,
-                                                  'high'  => array('name' => NULL, 'surname' => NULL, 'email' => NULL, 'skype' => NULL, 'organization' => NULL),                                                   
+                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => NULL, 'skype' => NULL, 'organization' => NULL),                                                   
                                           ),
                                   );
 

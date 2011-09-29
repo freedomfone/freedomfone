@@ -115,44 +115,49 @@ BASE=/opt/freedomfone/
     if yesno --default no ">> "; then
         cp $BASE/sweeper/iwatch/iwatch.xml.sec $BASE/audio_bot/iwatch/iwatch.xml 
 	/etc/init.d/iwatch restart
-    echo "*** DONE SEC ***"
+    	echo "  *** DONE SEC ***"
     else
         cp $BASE/sweeper/iwatch/iwatch.xml.orig $BASE/audio_bot/iwatch/iwatch.xml 
 	/etc/init.d/iwatch restart
-    echo "*** DONE ***"
+    	echo "  *** DONE ***"
     fi
+
+
+####
     echo "Do you want to disable Web server logs of the visitors to the website (default: no)?"
     if yesno --default no ">> "; then
         cp $BASE/sweeper/apache2/freedomfone.sec /etc/apache2/sites-enabled/freedomfone
         /etc/init.d/apache2 restart 
-    echo "*** DONE SEC ***"
+    	echo "  *** DONE SEC ***"
     else
         cp $BASE/sweeper/apache2/freedomfone.orig /etc/apache2/sites-enabled/freedomfone
         /etc/init.d/apache2 restart 
-    echo "*** DONE ***"
+    	echo "  *** DONE ***"
     fi
+
+####
     echo "Do you want to disable telephony logs (default: no)?"
     if yesno --default no ">> "; then
        cp $BASE/sweeper/freeswitch/logfile.conf.xml.sec /opt/freeswitch/conf/autoload_configs/logfile.conf.xml
        /etc/init.d/freeswitch stop
-       /etc/init.d/dispatcher stop
+       /etc/init.d/dispatcher_in stop
        su - root  /etc/init.d/freeswitch start
-       /etc/init.d/dispatcher start
-    echo "*** DONE SEC ***"
+       /etc/init.d/dispatcher_in start
+    	echo "  *** DONE SEC ***"
     else
        cp $BASE/sweeper/freeswitch/logfile.conf.xml.orig /opt/freeswitch/conf/autoload_configs/logfile.conf.xml
        /etc/init.d/freeswitch stop
-       /etc/init.d/dispatcher stop
+       /etc/init.d/dispatcher_in stop
        su - root  /etc/init.d/freeswitch start
-       /etc/init.d/dispatcher start
-    echo "*** DONE ***"
-    else
+       /etc/init.d/dispatcher_in start
+    	echo "  *** DONE ***"
     fi
+####
     echo "Do you want to delete all existing logs (default: no)?"
     if yesno --default no ">> "; then
-	delete_logs();
+	delete_logs
     else
-        echo "Keeping logs";
+        echo "  *** DONE ***";
     fi
 
 

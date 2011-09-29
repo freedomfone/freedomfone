@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add.ctp	- Create new tag (used in Leave-a-message)
- * version 	- 1.0.362
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb('Message Centre', '');
-      echo $html->addCrumb('Tags', '/tags');
-      echo $html->addCrumb('Add', '/tags/add');
+      echo $html->addCrumb(__('Message Centre',true), '');
+      echo $html->addCrumb(__('Tags',true), '/tags');
+      echo $html->addCrumb(__('Add',true), '/tags/add');
 
       echo "<h1>".__("Create tag",true)."</h1>";
 

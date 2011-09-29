@@ -271,7 +271,6 @@ gui/app/webroot/css/modalbox.css -text
 gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
-gui/app/webroot/freedomfone -text
 gui/app/webroot/img/bg.jpg -text
 gui/app/webroot/img/icons/accept.png -text
 gui/app/webroot/img/icons/add.png -text
@@ -336,7 +335,6 @@ gui/app/webroot/swf/musicplayer.swf -text
 gui/app/webroot/swf/player.swf -text
 gui/app/webroot/swf/xspf_player_slim.swf -text
 gui/app/webroot/themed/ff/css/style.css -text
-gui/app/webroot/xml_curl -text
 gui/cake/LICENSE.txt -text
 gui/cake/VERSION.txt -text
 gui/cake/basics.php -text

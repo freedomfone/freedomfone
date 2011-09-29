@@ -143,7 +143,12 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 		foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
-	  		     $line = array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$formatting->epochToWords($data['length']));
+	  		     $line = array( $data['title'], 
+				            date('M d Y',$data['epoch']),
+					    date('H:i:s A',$data['epoch']),
+				            $this->Access->showBlock($authGroup, $data['caller_number']),
+				            $formatting->epochToWords($data['length'])
+			                   );
                                if($app == 'lam') { $line[] = $this->element('message_status',array('quickHangup' => $data['quick_hangup']));}
                              $rows[] = $line;
 	     		     }

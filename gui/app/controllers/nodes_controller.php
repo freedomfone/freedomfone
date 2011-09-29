@@ -70,7 +70,6 @@ class NodesController extends AppController{
 
    	   $this->Node->set( $this->data );
  
-
   	   if ($this->Node->validates()){
 
               if ($files[0]['error']==1 && !$files[0]['size']) {

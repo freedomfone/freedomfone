@@ -106,8 +106,7 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
 	if (!$caller_number = $entry['MonitorIvr']['caller_number']) {  $caller_number='';}
         
 
-        $delete      = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "monitor_ivr", "action" => "del", $entry['MonitorIvr']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');"));
-
+        $delete      = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "monitor_ivr", "action" => "del", $entry['MonitorIvr']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');")));
 
 		//change class
 		if($call_id_old != $call_id){ 

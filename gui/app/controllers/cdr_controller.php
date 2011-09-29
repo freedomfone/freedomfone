@@ -117,11 +117,13 @@ class CdrController extends AppController{
         }
 
         $this->loadModel('IvrMenu');
+	$ivr = array();
         $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
         $ivr_data = $this->IvrMenu->find('list');
         foreach($ivr_data as $key => $title){ $ivr[$title] = $title;}       
 
         $this->loadModel('LmMenu');
+	$lam = array();
         $lam_data = $this->LmMenu->find('list');
         foreach($lam_data as $key => $title){ $lam[$title] = $title;}       
 

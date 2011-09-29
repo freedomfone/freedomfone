@@ -72,6 +72,7 @@ function beforeFilter() {
          $this->Auth->actionPath = 'controllers/';
 
 
+
          //Configure Auth component
          $this->Auth->authorize = 'actions';
          $this->Auth->loginAction = array('controller' => 'ff_users', 'action' => 'login');
@@ -83,7 +84,6 @@ function beforeFilter() {
               $authGroup = $data['FfUser']['group_id'];
               $authUser  = $data['FfUser']['username'];
               $this->set(compact('authGroup', 'authUser'));
-
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){
 		$timezone = $this->getTimezone();
@@ -695,33 +695,39 @@ return $result;
           $status = true;
 
 
-
-
           if($config['enable'] && $mode ){
 
              foreach($settings as $model => $data){
 
-                foreach($data[$mode] as $key => $value){
+                if(isset($data[$mode])){
+
+                    foreach($data[$mode] as $key => $value){
 
                       $data[$mode][$key] = "'".$value."'";
 
-                }           
-                $this->loadModel($model);
+                    }           
+                    $this->loadModel($model);
 
-                if($data[$mode]){
 
-                $status = $this->$model->updateAll($data[$mode]); 
+                    if($data[$mode]){
 
-                if(!$status){
+                        $status = $this->$model->updateAll($data[$mode]); 
+
+                        if(!$status){
+                           return false;
+                        }
+                    }
+
+                  } else {
+                
                         return false;
-                }
+                
+                  }
 
 
-                }
              }
 
              return true;
-
 
           } else {
 

@@ -27,6 +27,12 @@ class GroupsController extends AppController{
       var $name = 'Groups';
 
 
+   function beforeFilter() {
+    parent::beforeFilter();
+    $this->Auth->allow(array('*'));
+    }
+
+
       function index() {
 
                 $this->set('title_for_layout', __('Freedomfone Groups',true));

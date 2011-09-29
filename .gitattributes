@@ -334,6 +334,7 @@ gui/app/views/ff_users/add.ctp -text
 gui/app/views/ff_users/edit.ctp -text
 gui/app/views/ff_users/index.ctp -text
 gui/app/views/ff_users/login.ctp -text
+gui/app/views/ff_users/sweep.ctp -text
 gui/app/views/groups/add.ctp -text
 gui/app/views/groups/index.ctp -text
 gui/app/views/helpers/access.php -text

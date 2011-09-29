@@ -27,6 +27,13 @@ class FfUsersController extends AppController{
       var $name = 'FfUsers';
 
 
+   function beforeFilter() {
+    parent::beforeFilter();
+    $this->Auth->allow(array('*'));
+    }
+
+
+/*
        function beforeFilter(){
 
                  parent::beforeFilter();
@@ -34,7 +41,7 @@ class FfUsersController extends AppController{
 
         }
 
-
+*/
 
       function login(){
 
@@ -191,10 +198,9 @@ class FfUsersController extends AppController{
 
      	         if(isset($this->params['form']['submit'])) {
 
-                       unset($this->params['form']['submit']);
-                      
-                       
-                      $status =  $this->headerGetStatus('');   
+                      unset($this->params['form']['submit']);
+                                             
+                      $status =  $this->system_sweeper();   
 
                        if($status) {                     
                                    $this->_flash(__('Freedom Fone has successfully been sweeped.',true),'success');

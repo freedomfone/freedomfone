@@ -197,7 +197,7 @@ $config['OR_SNMP']= array(
 
 $config['SWEEP_CONFIG'] = array(
                         'enable' => 1,                 //1 = enable, 0 = diable 
-                        'mode'   => 'high'              //low or high
+                        'mode'   => 'high',             //low  = phone numbers only, high = phone numbers and user data (name, email etc.)
                         );
 
 $config['SWEEP_SETTINGS'] = array(
@@ -205,16 +205,16 @@ $config['SWEEP_SETTINGS'] = array(
                                                    'high' => array('sender' => '555666'),
                                           ),
                           'Cdr'           => array('low'  => array('caller_name' => NULL),
-                                                   'high' => array('caller_name' => NULL),
+                                                   'high' => array('caller_name' => '555666'),
                                           ),
                           'MonitorIvr'   => array('low'  => array('caller_number' => NULL),
-                                                   'high' => array('caller_number' => NULL),
+                                                   'high' => array('caller_number' => '555666'),
                                           ),
                           'PhoneNumber' => array('low'  => array('number' => NULL),
-                                                   'high' => array('number' => NULL),
+                                                   'high' => array('number' => '555666'),
                                           ),
-                          'User'         => array('low'  => false,
-                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => NULL, 'skype' => NULL, 'organization' => NULL),                                                   
+                          'User'         => array('low'  => array(),
+                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => 'john.doe@gmail.com', 'skype' => 'john.doe', 'organization' => NULL),                                                   
                                           ),
                                   );
 

@@ -91,7 +91,6 @@ gui/app/tests/cases/models/empty -text
 gui/app/tests/fixtures/empty -text
 gui/app/tests/groups/empty -text
 gui/app/tmp/cache/models/empty -text
-gui/app/tmp/cache/persistent/cake_core_object_map -text
 gui/app/tmp/cache/persistent/empty -text
 gui/app/tmp/cache/views/empty -text
 gui/app/tmp/logs/empty -text

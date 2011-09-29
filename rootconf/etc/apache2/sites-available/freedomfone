@@ -14,7 +14,7 @@
 	#AllowOverride: all (mode_rewrite.so)
 
 	<Directory /opt/freedomfone/gui>
-		Options Indexes FollowSymLinks MultiViews
+		Options -Indexes FollowSymLinks MultiViews
 		AllowOverride all 
 	</Directory>
 

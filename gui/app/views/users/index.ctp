@@ -42,9 +42,12 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
      echo "<h1>".__('Users',true)."</h1>";
 
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-     }
+   // Multiple Flash messages
+   if ($messages = $this->Session->read('Message')) {
+       foreach($messages as $key => $value) {
+              echo $this->Session->flash($key);
+       }
+    }
 
    $options_slim = $options;
    $options[0] = __('All phone books',0);

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add_selector.ctp	- Create new language selector
- * version 	        - 1.3.1500
+ * version 	        - 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -32,9 +32,14 @@ echo "<h1>".__("Create Language Selector",true)."</h1>";
 $ivr_default  = Configure::read('IVR_DEFAULT');
 $ivr = Configure::read('IVR_SETTINGS');
 
-        if($session->check('Message.flash')){
-                  $session->flash();
-		}  
+
+   // Multiple Flash messages
+   if ($messages = $this->Session->read('Message')) {
+        foreach($messages as $key => $value) {
+             echo $this->Session->flash($key);
+        }
+    }
+
 	
 $commentTitle   = "<span class='formHelp'>".__("Name of IVR",true)."</span>";
 $commentLong    = "<span class='formHelp'>".__("Long greeting message:include a brief description of the services offered and the menu alternatives.",true)."</span>";

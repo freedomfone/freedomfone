@@ -39,10 +39,14 @@ $this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('C
    echo $html->div('frameInfo', $info);
    echo "<h1>".__('Voice menus',true)."</h1>";
 
+       // Multiple Flash messages
+       if ($messages = $this->Session->read('Message')) {
+            foreach($messages as $key => $value) {
+                       echo $this->Session->flash($key);
+            }
+       }
 
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-        }
+
 
 
 	echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";

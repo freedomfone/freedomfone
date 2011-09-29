@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * edit.ctp	- Edit node (aka Menu Option for Voice Menu)
- * version 	- 2.0.1175
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -33,9 +33,13 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 		echo "<h1>".__("Edit Content",true)."</h1>";
 		
-   	  	if ($messages = $session->read('Message.multiFlash')) {
-                   foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-         	   }
+                // Multiple Flash messages
+                if ($messages = $this->Session->read('Message')) {
+                   foreach($messages as $key => $value) {
+                                     echo $this->Session->flash($key);
+                   }
+                }
+
 
 
       		$path = $ivr['path'].$ivr['dir_node'];

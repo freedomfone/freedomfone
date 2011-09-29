@@ -25,9 +25,14 @@
   echo $html->addCrumb(__('Dashboard',true), '');
   echo $html->addCrumb(__('GSM channels',true), '/channels');
 
-  if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-  }
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
+
+
 
   $generated  = $session->read('Channel.refresh');
   echo $form->create('Channel',array('type' => 'post','action'=> 'index'));

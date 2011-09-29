@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * env.ctp	- Set environment settings
- * version 	- 2.0.1230
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,8 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('Dashboard', '');
-echo $html->addCrumb('Settings', '/settings');
+echo $html->addCrumb(__('Dashboard',true), '');
+echo $html->addCrumb(__('Settings',true), '/settings');
 
 
 echo "<h1>".__("Settings",true)."</h1>";
@@ -36,9 +36,12 @@ $msgAccessLevel .= "<li>".__('is connected to a local area network (LAN), select
 $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<br/></li></ul>"; 
 
 
- 	if ($messages = $session->read('Message.multiFlash')) {
-            foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-	}
+   // Multiple Flash messages
+   if ($messages = $this->Session->read('Message')) {
+       foreach($messages as $key => $value) {
+              echo $this->Session->flash($key);
+       }
+    }
 
 
 	foreach ($data as $key => $unit){

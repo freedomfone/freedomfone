@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * add.ctp	- Create new phone book (used for Contacts)
- * version 	- 2.0.1139
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,17 +22,18 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('User Management', '');
-echo $html->addCrumb('Phone books', '/phone_books');
-echo $html->addCrumb('Add', '/phone_books/add');
+echo $html->addCrumb(__('User Management',true), '');
+echo $html->addCrumb(__('Phone books',true), '/phone_books');
+echo $html->addCrumb(__('Add',true), '/phone_books/add');
 
 echo "<h1>".__("Create Phone book",true)."</h1>";
 
-   if ($messages = $session->read('Message.multiFlash')) {
-   
-       foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-   
-   }
+   // Multiple Flash messages
+   if ($messages = $this->Session->read('Message')) {
+       foreach($messages as $key => $value) {
+              echo $this->Session->flash($key);
+       }
+    }
 
 
 

@@ -34,11 +34,12 @@ echo $html->addCrumb(__('GSM channels',true), '/channels');
                 $msg2 = __("slot",true);
 		echo "<h1>".$msg1." (".$msg2.":".$this->data['OfficeRoute']['id'].")</h1>";
 		
-
-
-   	  	if ($messages = $session->read('Message.multiFlash')) {
-                   foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-         	   }
+                // Multiple Flash messages
+                if ($messages = $this->Session->read('Message')) {
+                   foreach($messages as $key => $value) {
+                                     echo $this->Session->flash($key);
+                   }
+                }
 
                 echo $html->div('frameLeft');
 

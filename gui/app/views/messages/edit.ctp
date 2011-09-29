@@ -72,10 +72,13 @@
      //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
 
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
 
-   	  if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-         }
 
 
      echo $form->create('Message',array('type' => 'post','action'=> 'edit'));

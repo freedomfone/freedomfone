@@ -38,10 +38,12 @@ $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight di
 
      echo "<h1>".__("Edit Leave a Message IVR",true)."</h1>";
 
-     if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
         }
-
 
 
 //         echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));

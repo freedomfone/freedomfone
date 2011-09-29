@@ -41,9 +41,13 @@ echo $html->addCrumb(__('Polls',true), '/polls');
 
    echo "<h1>".__("Polls",true)."</h1>";
 
-   if ($messages = $session->read('Message.multiFlash')) {
-                foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-   }
+   // Multiple Flash messages
+   if ($messages = $this->Session->read('Message')) {
+       foreach($messages as $key => $value) {
+              echo $this->Session->flash($key);
+       }
+    }
+
 
    if ($polls){
 

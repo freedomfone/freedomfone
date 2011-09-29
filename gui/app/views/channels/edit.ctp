@@ -31,11 +31,13 @@ echo $html->addCrumb(__('GSM channels',true), '/channels');
 
                 echo $html->addCrumb(__('Edit Mobigater',true), '/channels/edit/'.$this->data['Channel']['id']);
 		echo "<h1>".__("Edit channel",true)."</h1>";
-		
 
-   	  	if ($messages = $session->read('Message.multiFlash')) {
-                   foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-         	   }
+                // Multiple Flash messages
+                if ($messages = $this->Session->read('Message')) {
+                   foreach($messages as $key => $value) {
+                                     echo $this->Session->flash($key);
+                   }
+                }
 
 
 		echo $form->create('Channel', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );

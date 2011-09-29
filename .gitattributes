@@ -1252,7 +1252,6 @@ sweeper/iwatch/iwatch.xml -text
 sweeper/iwatch/iwatch.xml.orig -text
 sweeper/iwatch/iwatch.xml.sec -text
 sweeper/security_conf.sh -text
-sweeper/yesno.sh -text
 xml_curl/Mod_XML_Curl_Outline.png -text
 xml_curl/README -text
 xml_curl/core.xml -text

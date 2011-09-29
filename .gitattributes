@@ -289,4 +289,3 @@ gui/app/webroot/swf/player.swf -text
 gui/app/webroot/swf/xspf_player_slim.swf -text
 gui/app/webroot/themed/ff/css/style.css -text
 gui/app/webroot/xml_curl -text
-gui/index.php -text

@@ -1,0 +1,37 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+###############################################################################
+# Freedom Fone rc.local        
+
+echo "Freedom Fone: Waiting 10 seconds for network interface to settle"
+
+# Village Telco bridge via 192.168.1.59 supernode
+#/sbin/route add -net 10.130.1.0 netmask 255.255.255.0 gw 192.168.1.59 
+
+# Interface Aliasing for OfficeRoute
+/sbin/ifconfig eth0:0 192.168.1.250 netmask 255.255.255.0 up
+/etc/init.d/gsmopen start
+#
+#FIXME! Why ALSA needs environmental variables to deal with device permissions? 
+#
+su - root /etc/init.d/freeswitch start
+sleep 10
+/etc/init.d/gsmopen reload
+sleep 10
+/etc/init.d/gsmopen reload
+sleep 10
+/etc/init.d/dispatcher_in start
+
+
+###############################################################################
+exit 0

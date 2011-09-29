@@ -1,0 +1,10 @@
+************************************************************************
+* Service name: Incoming dispatcher
+* Software packages: PHP CLI, esl library
+* Funtionality: Attends freeswitch events and interfaces with event spooler
+* Latest version:
+* Changelog: 
+* 		2011-09-29 Changed log configuration to /opt structure 
+*                          Schemas under sql
+*                          Init.d merged with rootconf
+************************************************************************

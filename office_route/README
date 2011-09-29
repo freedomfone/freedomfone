@@ -1,0 +1,9 @@
+************************************************************************
+* Service name: Office Route POP3 Daemon for SMS delivery
+* Software packages: php, pop3 class, spidermonkey/js script
+* Funtionality: Retrieves mails from Office Route and triggers SMS events using ESL
+*    $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
+*
+* Latest version: Sekowei
+* Changelog: 2011-09-29 
+************************************************************************

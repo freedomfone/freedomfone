@@ -1,3 +1,5 @@
+#!/bin/bash 
+#Fix permissions in the Scripts and XML_CURL areas
 chmod 755 /opt/freeswitch/
 find /opt/freeswitch/scripts -type f | grep -v '\.svn' | xargs chown freeswitch:daemon
 find /opt/freeswitch/scripts -type f | grep -v '\.svn' | xargs chmod 0644

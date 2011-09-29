@@ -108,32 +108,56 @@ function yesno()
     [[ "$ans" = "y" || "$ans" == "yes" ]]
 }
 
-
+BASE=/opt/freedomfone/
 # Questions start here
     
-    echo "Do you want to activate syslog messages when an audio message arrives (default: no)?"
-    if yesno --default no "Audio Bot Syslog Logging? "; then
-        echo "You answered yes"
+    echo "Do you want to disable syslog messages and internal mail notification when an audio message arrives (default: no)?"
+    if yesno --default no ">> "; then
+        cp $BASE/sweeper/iwatch/iwatch.xml.sec $BASE/audio_bot/iwatch/iwatch.xml 
+	/etc/init.d/iwatch restart
+    echo "*** DONE SEC ***"
     else
-        echo "You answered no"
+        cp $BASE/sweeper/iwatch/iwatch.xml.orig $BASE/audio_bot/iwatch/iwatch.xml 
+	/etc/init.d/iwatch restart
+    echo "*** DONE ***"
     fi
-    echo "Do you want to activate e-mail notification when an audio message arrives (default: no)?"
-    if yesno --default no "Audio Bot E-mail notification? "; then
-        echo "You answered yes"
+    echo "Do you want to disable Web server logs of the visitors to the website (default: no)?"
+    if yesno --default no ">> "; then
+        cp $BASE/sweeper/apache2/freedomfone.sec /etc/apache2/sites-enabled/freedomfone
+        /etc/init.d/apache2 restart 
+    echo "*** DONE SEC ***"
     else
-        echo "You answered no"
+        cp $BASE/sweeper/apache2/freedomfone.orig /etc/apache2/sites-enabled/freedomfone
+        /etc/init.d/apache2 restart 
+    echo "*** DONE ***"
     fi
-    echo "Do you want to keep Web server logs of the visitors to the website (default: no)?"
-    if yesno --default no "Apache Webserver logging? "; then
-        echo "You answered yes"
+    echo "Do you want to disable telephony logs (default: no)?"
+    if yesno --default no ">> "; then
+       cp $BASE/sweeper/freeswitch/logfile.conf.xml.sec /opt/freeswitch/conf/autoload_configs/logfile.conf.xml
+       /etc/init.d/freeswitch stop
+       /etc/init.d/dispatcher stop
+       su - root  /etc/init.d/freeswitch start
+       /etc/init.d/dispatcher start
+    echo "*** DONE SEC ***"
     else
-        echo "You answered no"
+       cp $BASE/sweeper/freeswitch/logfile.conf.xml.orig /opt/freeswitch/conf/autoload_configs/logfile.conf.xml
+       /etc/init.d/freeswitch stop
+       /etc/init.d/dispatcher stop
+       su - root  /etc/init.d/freeswitch start
+       /etc/init.d/dispatcher start
+    echo "*** DONE ***"
+    else
     fi
-    echo "Do you want to keep telephony logs (default: no)?"
-    if yesno --default no "Freeswitch telephony platform logging? "; then
-        echo "You answered yes"
+    echo "Do you want to delete all existing logs (default: no)?"
+    if yesno --default no ">> "; then
+	delete_logs();
     else
-        echo "You answered no"
+        echo "Keeping logs";
     fi
 
- 
+
+function delete_logs() {
+
+echo "..."
+
+}

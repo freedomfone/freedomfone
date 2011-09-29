@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<!DOCTYPE config SYSTEM "/etc/iwatch/iwatch.dtd" >
+
+<config>
+<guard email="freedomfone@localhost" name="Audio Bot"></guard>
+<watchlist>
+<title>Audio Converter Robot</title>
+<contactpoint email="root@localhost" name="FreedomFone Administrator"/>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/100/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/101/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/102/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/103/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/104/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/105/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/106/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/107/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/108/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/109/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/110/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/111/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/112/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/113/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/114/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/115/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/116/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/117/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/118/messages</path>
+<path type="single" events="close_write" syslog="on" alert="on" filter="^(.*)\.meta$" exec="/opt/freedomfone/audio_bot/filters/meta2mp3.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/119/messages</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/100/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/101/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/102/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/103/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/104/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/105/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/106/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/107/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/108/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/109/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/110/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/111/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/112/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/113/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/114/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/115/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/116/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/117/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/118/audio_menu</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/leave_message/119/audio_menu</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/nodes</path>
+
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/100/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/101/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/102/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/103/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/104/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/105/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/106/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/107/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/108/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/109/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/110/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/111/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/112/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/113/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/114/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/115/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/116/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/117/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/118/ivr</path>
+<path type="single" events="moved_to" syslog="on" alert="on" filter="^(.*)\.(wav|mp3)$" exec="/opt/freedomfone/audio_bot/filters/w2m.sh %f">/opt/freeswitch/scripts/freedomfone/ivr/119/ivr</path>
+</watchlist>
+</config>
+

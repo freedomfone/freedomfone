@@ -1,16 +1,23 @@
-//
-// Creates permission per group/controller action
-// Run from ff_users controller, remove when done.
-//
-//
+/****** 
+ *
+ * Creates permission per group/controller action
+ * Run from ff_users controller, remove when done.
+ * 
+ *****/
+
+
+   //Set Auth permissions:: REMOVE WHEN DONE!
+
    function initDB() {
     $group =& $this->FfUser->Group;
 
-    //Allow Admins to everything
+    //Allow admins to everything
     $group->id = 1;     
     $this->Acl->allow($group, 'controllers');
+
+
  
-    //Allow Users to read but not write
+    //allow users to read but not write
     $group->id = 2;
     $this->Acl->deny($group, 'controllers');
 
@@ -18,6 +25,7 @@
     $this->Acl->deny($group, 'controllers/Polls');
     $this->Acl->allow($group, 'controllers/Polls/index');
     $this->Acl->allow($group, 'controllers/Polls/view');
+    $this->Acl->allow($group, 'controllers/Polls/refresh');
 
 
     //Leave a message
@@ -27,6 +35,7 @@
     $this->Acl->allow($group, 'controllers/Messages/archive');
     $this->Acl->allow($group, 'controllers/Messages/edit');
     $this->Acl->allow($group, 'controllers/Messages/view');
+    $this->Acl->allow($group, 'controllers/Messages/refresh');
 
 
     //Categories
@@ -45,6 +54,7 @@
     //Incoming SMS
     $this->Acl->deny($group, 'controllers/Bin');
     $this->Acl->allow($group, 'controllers/Bin/index');
+    $this->Acl->allow($group, 'controllers/Bin/refresh');
 
     //Language Selectors and Voice menus
     $this->Acl->deny($group, 'controllers/IvrMenus');
@@ -70,11 +80,13 @@
     $this->Acl->allow($group, 'controllers/Cdr/statistics');
     $this->Acl->allow($group, 'controllers/Cdr/general');
     $this->Acl->allow($group, 'controllers/Cdr/overview');
+    $this->Acl->allow($group, 'controllers/Cdr/refresh');
 
 
     //Monitor IVR
     $this->Acl->deny($group, 'controllers/MonitorIvr');
     $this->Acl->allow($group, 'controllers/MonitorIvr/index');
+    $this->Acl->allow($group, 'controllers/MonitorIvr/refresh');
 
     
     //Dashboard
@@ -82,6 +94,7 @@
     $this->Acl->allow($group, 'controllers/Processes/index');
     $this->Acl->allow($group, 'controllers/Processes/refresh');
     $this->Acl->allow($group, 'controllers/Processes/system');
+    $this->Acl->allow($group, 'controllers/Processes/refresh');
     
     //Settings
     $this->Acl->deny($group, 'controllers/Settings');
@@ -101,6 +114,7 @@
     $this->Acl->deny($group, 'controllers/FfUsers');
     $this->Acl->deny($group, 'controllers/Groups');
 
-    echo "All done";
+
+    echo "all done";
     exit;
-}
+  }

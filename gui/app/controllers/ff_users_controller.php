@@ -27,13 +27,7 @@ class FfUsersController extends AppController{
       var $name = 'FfUsers';
 
 
-   function beforeFilter() {
-    parent::beforeFilter();
-    $this->Auth->allow(array('*'));
-    }
 
-
-/*
        function beforeFilter(){
 
                  parent::beforeFilter();
@@ -41,7 +35,7 @@ class FfUsersController extends AppController{
 
         }
 
-*/
+
 
       function login(){
 

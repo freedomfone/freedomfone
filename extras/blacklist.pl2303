@@ -1,2 +1,0 @@
-# We blacklist pl2303 for freedomfone and Mobigater
-blacklist pl2303

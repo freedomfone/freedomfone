@@ -9,12 +9,6 @@ documentation/users/Freedom_Fone_v1.6_Other_Devices.pdf -text
 documentation/users/Freedom_Fone_v1.6_Troubleshooting.pdf -text
 documentation/users/Freedom_Fone_v2.0_Quick_Start_Guide.pdf -text
 gui/.htaccess -text
-gui/apache2/envvars -text
-gui/apache2/freedomfone -text
-gui/apache2/freedomfone.nginx.nolog -text
-gui/apache2/index.html -text
-gui/apache2/nginx/sites-available/default -text
-gui/apache2/nginx/sites-enabled/freedomfone -text
 gui/app/.htaccess -text
 gui/app/app_controller.php -text
 gui/app/app_model.php -text

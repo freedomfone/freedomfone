@@ -18,7 +18,7 @@
 		AllowOverride all 
 	</Directory>
 
-
+	ErrorDocument 403 "Sorry, Fred can't allow you access today!" 
 	LogLevel warn
 	ErrorLog /opt/freedomfone/log/gui-error.log
 	CustomLog /opt/freedomfone/log/gui-access.log combined

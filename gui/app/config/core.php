@@ -309,7 +309,7 @@
  */
 
 
-define ('BASE_DIR', '/usr/local/freedomfone/');
+define ('BASE_DIR', '/opt/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
 define ('LOG_DIR', '/opt/freedomfone/log/');

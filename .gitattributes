@@ -1244,6 +1244,7 @@ sweeper/README -text
 sweeper/apache2/freedomfone -text
 sweeper/apache2/freedomfone.orig -text
 sweeper/apache2/freedomfone.sec -text
+sweeper/example -text
 sweeper/freeswitch/logfile.conf.xml -text
 sweeper/freeswitch/logfile.conf.xml.orig -text
 sweeper/freeswitch/logfile.conf.xml.sec -text

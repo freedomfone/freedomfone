@@ -1,0 +1,21 @@
+Do you want to disable syslog messages and internal mail notification when an audio message arrives (default: no)?
+>> 
+ * Freedom Fome: Stopping iwatch daemon                                  [ OK ] 
+ * Freedom Fone: Starting iwatch daemon                                  [ OK ] 
+  *** DONE ***
+Do you want to disable Web server logs of the visitors to the website (default: no)?
+>> 
+ * Restarting web server apache2
+                                                                         [ OK ]
+  *** DONE ***
+Do you want to disable telephony logs (default: no)?
+>> yes
+ * Freedom Fone: Stopping Freeswitch freeswitch                          [ OK ] 
+ * Freedom Fone: Stopping dispatcher                                     [ OK ] 
+ * Freedom Fone: Starting Freeswitch freeswitch                          [ OK ] 
+ * Freedom Fone: Starting dispatcher                                     [ OK ] 
+  *** DONE SEC ***
+Do you want to delete all existing logs (default: no)?
+>> no
+  *** DONE ***
+

@@ -31,9 +31,6 @@ echo $html->addCrumb(__('Create',true), '/lm_menus/add');
 $lm_settings = Configure::read('LM_SETTINGS');
 $lm_default  = Configure::read('LM_DEFAULT');
 
-
-$info = __("Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file.",true);
-
       echo "<h1>".__("Create Leave a Message IVR",true)."</h1>";
 
         // Multiple Flash messages
@@ -44,9 +41,18 @@ $info = __("Leave-a-message| The Leave-a-message voice menu consists of eight di
         }
 
 
-echo $html->div('frameInfoLeft', $html->link($html->image('icons/bulb.png',array('alt'=>'Tooltips')),'#',array('class'=>'infobox','title'=>$info),null,false));
-echo "<div class ='instruction'>".__("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true)."</div>";
-echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
+
+  $info = $html->link(
+                        $this->Html->image("icons/bulb.png"),
+                        "/pages/lm_menus/tip",
+                        array("escape" => false, "title" => __("Tool tip", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
+
+   echo $html->div('frameInfo', $info);
+
+   echo $this->Html->div('instruction', __("Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu.",true));
+   echo $this->Html->div('instruction', __("You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon.",true));
+   echo $this->Html->div('instruction', __("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true));
 
 $min = ' '.__('min',true);
 $commentWelcome  = "<div class='formComment'>".__("Default",true).': '.$lm_default['lmWelcomeMessage']."</div>";

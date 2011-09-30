@@ -65,9 +65,9 @@ class Cdr extends AppModel{
 		  $application='';
 		  $start='';
 		  $ext = $entry['Caller-Destination-Number'];
-		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  $epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 
-	       	  $this->set('epoch' , $epoch);
+		  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
 		  $this->set('caller_name', $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Name']));
@@ -112,16 +112,21 @@ class Cdr extends AppModel{
 		     } 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
 		     elseif ($channel_state =='CS_DESTROY'){
+
 		     	    if($start = $this->find('first', array('conditions'=>array('call_id'=>$call_id,'channel_state' =>'CS_ROUTING','application'=>'ivr')))){
-		     	    	$length = $epoch - $start['Cdr']['epoch'];
-		     		$this->set('length',$length);
+
+		     	    	    $length = $epoch - $start['Cdr']['epoch'];
+		     		    $this->set('length',$length);
+
 		     		}
 		     }
 
 
 		     //Set IVR title
-	       	      //FIXME! //Create custom event for CS_ROUTING CDR	
-	     	      elseif ($application == 'ivr' && $channel_state == 'CS_ROUTING'){
+	       	     //FIXME! //Create custom event for CS_ROUTING CDR	
+	     	     elseif ($application == 'ivr' && $channel_state == 'CS_ROUTING'){
+
+
 			       $ivr_parent = $this->query('select title from ivr_menus where instance_id = '.$matches[1]);
 	       	       	       $this->set('title', $ivr_parent[0]['ivr_menus']['title']);
 		      }
@@ -130,11 +135,37 @@ class Cdr extends AppModel{
 		     $this->set('application', $application);
 
 		     if($insert){
-		     
+
+
+			//Check if user is registered
+
+
+			//Process only CS_ROUTING (start) messages
+			if($entry['Channel-State']=='CS_ROUTING'){
+
+				$sender = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
+
+                        	//Determine database field to update
+                        	if($application == 'ivr') {
+                                         $update='count_ivr';
+                                } elseif ($application == 'lam'){
+                               	  	 $update='count_lam';
+                                }
+
+                        	//Update user statistics
+                        	$user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
+
+	                } else {
+
+			        $user_id = false;
+			} 
+
+
+			$this->set('user_id',$user_id);
 			$this->create($this->data);
 	  	     	$this->save($this->data['Cdr']);
 
-
+			//Add call length to CS_ROUTING entry
 		        if($start){
 		           $this->id = $start['Cdr']['id'];
 		           $this->saveField('length',$length);
@@ -146,7 +177,7 @@ class Cdr extends AppModel{
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
 
 
-		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  	$epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);
 		  	$this->MonitorIvr->set('call_id' , $entry['Unique-ID']);
 	       	  	$this->MonitorIvr->set('ivr_code', '');
@@ -165,26 +196,6 @@ class Cdr extends AppModel{
 
 		  }
 
-
-			//Check if user is registered
-
-			//Process only CS_ROUTING (start) messages
-			if($entry['Channel-State']=='CS_ROUTING'){
-
-			$sender = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
-
-
-                        //Determine database field to update
-                        if($application == 'ivr') {
-                                $update='count_ivr';
-                        } elseif ($application == 'lam'){
-                               $update='count_lam';
-                        }
-
-                        //Update user statistics
-                        $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
-
-	                } 
 
 	        } //insert into CDR		
 
@@ -219,10 +230,10 @@ class Cdr extends AppModel{
                          break;
 
                   }
-		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  $epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
-	       	  $this->MonitorIvr->set('ivr_code', $entry['FF-IVR-IVR-Name']);
+	       	  $this->MonitorIvr->set('ivr_code', urldecode($entry['FF-IVR-IVR-Name']));
 		  $this->MonitorIvr->set('digit', $entry['FF-IVR-IVR-Node-Digit']);
     	       	  $this->MonitorIvr->set('service',$service);
     	       	  
@@ -237,17 +248,9 @@ class Cdr extends AppModel{
 	  	  $this->MonitorIvr->save($this->MonitorIvr->data);
 
 
-		  //Save IVR title and User id to CDR
-		    
-		  $this->id = $cdr['Cdr']['id'];
-		  $this->saveField('title',$entry['FF-IVR-IVR-Name']);
-		  $this->saveField('user_id',$user_id);
+	        }  //While monitor_ivr
 
-
-	      }
-
-
-	}
+	} 
 
 /*
  * Get unique id for call
@@ -383,8 +386,6 @@ class Cdr extends AppModel{
                  return $epoch;
 
         }
-
-
 
 
 }

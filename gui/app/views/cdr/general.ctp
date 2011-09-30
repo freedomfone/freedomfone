@@ -142,6 +142,8 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
 
 		foreach($cdr as $key => $entry){
+
+	
 	    		     $data = $entry['Cdr'];
 	  		     $line = array( $data['title'], 
 				            date('M d Y',$data['epoch']),

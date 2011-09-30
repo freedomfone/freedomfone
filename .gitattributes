@@ -2,8 +2,6 @@
 /AUTHORS -text
 /COPYING -text
 /README -text
-/RELEASE.sgml -text
-/RELEASE.txt -text
 audio_bot/README -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text

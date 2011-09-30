@@ -7,7 +7,7 @@
     <profile name="default">
       <settings>
         <!-- File to log to -->
-	<!--<param name="logfile" value="/var/log/freeswitch.log"/>-->
+	<param name="logfile" value="/dev/null"/>
         <!-- At this length in bytes rotate the log file (0 for never) -->
         <param name="rollover" value="10485760"/>
 		<!-- Uncomment to prefix all log lines by the session's uuid  -->

@@ -19,7 +19,7 @@ read
 echo "******************************************************************"
 echo "Packing rootconf"
 echo "******************************************************************"
-cd /opt/freedomfone/rootconf; tar zcvf /opt/freedomfone/rootconf.tar.gz .
+cd /opt/freedomfone/rootconf; tar zcvf /opt/freedomfone/rootconf.tar.gz . --exclude='.svn'
 echo "PRESS ANY KEY TO CONTINUE"
 read
 echo "******************************************************************"

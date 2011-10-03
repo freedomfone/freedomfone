@@ -1247,6 +1247,7 @@ sweeper/example -text
 sweeper/freeswitch/logfile.conf.xml -text
 sweeper/freeswitch/logfile.conf.xml.orig -text
 sweeper/freeswitch/logfile.conf.xml.sec -text
+sweeper/gui_sweeper/gui_sweeper.php -text
 sweeper/iwatch/README -text
 sweeper/iwatch/iwatch.xml -text
 sweeper/iwatch/iwatch.xml.orig -text

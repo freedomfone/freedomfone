@@ -164,7 +164,6 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
                  }  else {
 
-
 		
                          //Id OK, form data OK -> Save and redirect to Index
                          foreach($this->data['LmMenuFile'] as $key => $file){

@@ -31,7 +31,6 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
    function index(){
 
-
     $this->set('title_for_layout', __('Leave-a-Message IVR Menus',true));
 
 
@@ -108,6 +107,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
               if ($this->LmMenu->save($this->data['LmMenu'])) {
 
+
                  if(array_key_exists('urls', $fileOK)) {
 
                       foreach ($fileOK['urls'] as $key =>  $url ){
@@ -138,10 +138,10 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
    }
 
  }
+
    function edit($id) {
 
 
-                
                 $this->set('title_for_layout', __('Edit Leave-a-Message',true));
 
                  $lm_settings = Configure::read('LM_SETTINGS');
@@ -150,10 +150,11 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                  $fileData = array();
 
                  //Incorrect id -> redirect to index
-                          if(!$id){
+                 if(!$id){
                           
                         $this->redirect(array('action' =>'/'));
-                                 } 
+                 } 
+
                  //Id OK, no form data -> display data
                  elseif  ($id && empty($this->data)) {
 
@@ -162,8 +163,13 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                         $this->data = $this->LmMenu->findById($id);
 
                  }  else {
+
+
+		
                          //Id OK, form data OK -> Save and redirect to Index
                          foreach($this->data['LmMenuFile'] as $key => $file){
+
+
                                                     
                              if ($file['size']){
                                  $file['fileName']=$key;
@@ -178,7 +184,8 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                           $this->LmMenu->id = $id;
 
                           if ($this->LmMenu->save($this->data['LmMenu'])) {
-                        
+
+
                                  if(array_key_exists('urls', $fileOK)) {
 
                                         foreach ($fileOK['urls'] as $key =>  $url ){

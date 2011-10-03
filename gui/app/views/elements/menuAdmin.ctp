@@ -146,7 +146,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("System Sweep",true),'/ff_users/sweep'); ?>
+<?php echo $html->link(__("System Sweeper",true),'/ff_users/sweep'); ?>
 </li>
 
 

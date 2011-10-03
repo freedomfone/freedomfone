@@ -411,8 +411,6 @@ class IvrMenusController extends AppController{
   
    function edit($id = null){
 
-
-
         $this->set('title_for_layout',  __('Edit Voice menu',true));           
 
             $ivr_settings = Configure::read('IVR_SETTINGS');
@@ -431,6 +429,7 @@ class IvrMenusController extends AppController{
 
 	  //No submitted form data. Fetch data from db and display
     	  elseif(empty($this->data['IvrMenu'])){
+
 
 		//Set id
 		$this->IvrMenu->id = $id;

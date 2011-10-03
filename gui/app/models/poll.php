@@ -127,7 +127,6 @@ function checkDate($data,$field){
 
    function futureDate($data, $field){
 
-   	       date_default_timezone_set(Configure::read('Config.timezone'));
 
                 if (strtotime($data[$field]) < time()){
                         return FALSE;
@@ -150,7 +149,7 @@ function checkDate($data,$field){
 
     function beforeSave(){
 
-        date_default_timezone_set(Configure::read('Config.timezone'));
+
 	$start = strtotime($this->data['Poll']['start_time']);
 	$end   = strtotime($this->data['Poll']['end_time']);
 	$now = time();

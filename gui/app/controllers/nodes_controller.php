@@ -61,6 +61,7 @@ class NodesController extends AppController{
 	// Form data exist, save and redirect to Index
 	if (!empty($this->data)) {
 
+
 	   //Fetch form data
 	   $files = array();
 	   $files[0] = $this->data['Node']['file'];

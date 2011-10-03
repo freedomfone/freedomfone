@@ -190,7 +190,7 @@ $config['OR_MIB']= array(
                 );
 
 $config['OR_SNMP']= array(
-                        array('ip_addr'   => '91.226.180.180' ,
+                        array('ip_addr'   => '192.168.1.46',
                               'community' => 'public' , 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                              ));
@@ -204,8 +204,8 @@ $config['SWEEP_SETTINGS'] = array(
                           'Bin'           => array('low'  => array('sender' => NULL),
                                                    'high' => array('sender' => '555666'),
                                           ),
-                          'Cdr'           => array('low'  => array('caller_name' => NULL),
-                                                   'high' => array('caller_name' => '555666'),
+                          'Cdr'           => array('low'  => array('caller_number' => NULL),
+                                                   'high' => array('caller_number' => '555666'),
                                           ),
                           'MonitorIvr'   => array('low'  => array('caller_number' => NULL),
                                                    'high' => array('caller_number' => '555666'),
@@ -217,12 +217,6 @@ $config['SWEEP_SETTINGS'] = array(
                                                   'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => 'john.doe@gmail.com', 'skype' => 'john.doe', 'organization' => NULL),                                                   
                                           ),
                                   );
-
-
-
-
-
-
 
 
 ?>

@@ -195,6 +195,7 @@ deb_builder/scripts/freedomfone/sms/README -text
 deb_builder/scripts/freedomfone/sms/main.js -text
 deb_builder/scripts/freedomfone/tickle/main.js -text
 deb_builder/src/mod/endpoints/mod_gsmopen/mod_gsmopen.cpp -text
+/demo_install.sh -text
 dispatcher_in/README -text
 dispatcher_in/config.php -text
 dispatcher_in/dispatcherESL.php -text

@@ -77,11 +77,16 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
          <? if (isset ($authUser)){ echo $html->div('login',__("Logged in as",true).": ".$authUser); } ?> </div>
 
 	 <div id="top_nav"><?php 
+           if(isset($authGroup)){
               if($authGroup == 1){
                             echo $this->element('menuAdmin'); 
               } else {
                              echo $this->element('menuUser');
               } 
+           } else {
+                 echo $this->element('menuUser');
+           }
+
 
               ?>		<!-- horizonal menu -->
 

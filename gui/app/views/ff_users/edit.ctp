@@ -29,8 +29,12 @@
         echo $html->addCrumb(__('Edit',true), '/ff_users/edit/'.$this->data['FfUser']['id']);
         echo "<h1>".__("Edit User",true)."</h1>";
 
-        echo $this->Session->flash();
-
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
 
 
         $options    = array('label' =>  false, 'value' => '','type' => 'password');

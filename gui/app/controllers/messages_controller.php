@@ -282,7 +282,7 @@ class MessagesController extends AppController{
 
      	     $title = $this->Message->getTitle($id);
 
-    	     if($this->Message->del($id))
+    	     if($this->Message->delete($id))
 	     {
 	     $this->Session->setFlash('Message with title "'.$title.'" has been deleted.');
 	     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
@@ -321,7 +321,7 @@ class MessagesController extends AppController{
 	     	     if ($id) {
 			   $this->Message->id = $id;
 			   if ($action == __('Delete',true)){
-		     	       if ($this->Message->del($id)){
+		     	       if ($this->Message->delete($id)){
 				     $title = $this->Message->getTitle($id);
 				     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
 			        }

@@ -283,7 +283,7 @@ class UsersController extends AppController{
     	     	        foreach ($entries as $key => $id){
 
 		     	   $data = $this->User->getIdentifier($id);
-		     	   if ($this->User->del($id)){
+		     	   if ($this->User->delete($id)){
 				$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['User']['name']." ".$data['User']['surname']."}", "user");
 			   }
                         }
@@ -347,11 +347,10 @@ class UsersController extends AppController{
                                  } 
                            }
 
-                           $this->User->del($tmp['User']['id']);
+                           $this->User->delete($tmp['User']['id']);
                         }
 
                       if($this->User->PhoneNumber->validates()){
-debug($core);
                         $this->User->id = $core['User']['id'];
                         $this->User->save($core['User'], array('validate' => false));
                         $this->User->PhoneNumber->saveAll($core['PhoneNumber']);      

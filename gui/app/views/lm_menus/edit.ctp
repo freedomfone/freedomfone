@@ -65,17 +65,16 @@ $input1_3 = $input1_4 = false;
 $input2_3 = $input2_4 = false;
 
 
+
      echo $form->create('LmMenu', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
      echo $form->hidden('instance_id',array('value'=>$this->data['LmMenu']['instance_id']));
-
-     
-
-echo $form->hidden('lmInvalidMessage');                                                                                           
-echo $form->hidden('lmLongMessage');                                                                                              
-echo $form->hidden('lmSelectMessage');                                                                                            
-echo $form->hidden('lmDeleteMessage');                                                                                            
-echo $form->hidden('lmSaveMessage');                                                                                              
-echo $form->hidden('lmGoodbyeMessage'); 
+     echo $form->hidden('id', array('value' => $this->data['LmMenu']['id']));                                                                                           
+     echo $form->hidden('lmInvalidMessage');                                                                                           
+     echo $form->hidden('lmLongMessage');                                                                                              
+     echo $form->hidden('lmSelectMessage');                                                                                            
+     echo $form->hidden('lmDeleteMessage');                                                                                            
+     echo $form->hidden('lmSaveMessage');                                                                                              
+     echo $form->hidden('lmGoodbyeMessage'); 
 
      // ** General settings **//
      echo "<fieldset><legend>".__('General settings',true)."</legend>";

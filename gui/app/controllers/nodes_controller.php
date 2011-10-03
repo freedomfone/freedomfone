@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * nodes_controller.php		- Controller for nodes (aka Menu options). Used in IVR's (voice menus).
- * version 		 	- 1.0.368
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -26,7 +26,7 @@ class NodesController extends AppController{
 
       var $name = 'Nodes';
       var $helpers = array('Html', 'Session','Form','Formatting','Flash');
-      var  $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
+      var $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
     
      	
 
@@ -38,10 +38,10 @@ class NodesController extends AppController{
 	$this->Node->recursive = 0; 
 
         if(isset($this->params['named']['limit'])) { 
-	     $this->Session->write('messages_limit',$this->params['named']['limit']);
+	     $this->Session->write('nodes_limit',$this->params['named']['limit']);
 	}
-	elseif($this->Session->check('messages_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('messages_limit');
+	elseif($this->Session->check('nodes_limit')) { 
+	     $this->paginate['limit'] = $this->Session->read('nodes_limit');
 	}	
 
 
@@ -169,7 +169,6 @@ $this->render();
           // Retrieve data from database and display 
     	  elseif(empty($this->data['Node'])){
 
-
 		$this->Node->id = $id;
 		$this->data = $this->Node->read(null,$id);
 
@@ -178,12 +177,7 @@ $this->render();
           //Fetch form data 
 	  else {
 
-
-
           $this->Node->set( $this->data );	       
-
-
-
 
           //If title is ok, save
           if ($this->Node->validates(array('fieldList' => array('title')))){

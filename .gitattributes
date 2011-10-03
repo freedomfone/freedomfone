@@ -1,6 +1,8 @@
 * text=auto !eol
+/.dependencies -text
 /AUTHORS -text
 /COPYING -text
+/INSTALL -text
 /README -text
 audio_bot/README -text
 audio_bot/filters/meta2mp3.sh -text
@@ -16,6 +18,7 @@ config/officeroute_sms_config.php -text
 config/officeroute_snmp_config.php -text
 cron/README -text
 cron/crontab -text
+/db_install.sh -text
 deb_builder/conf/autoload_configs/README -text
 deb_builder/conf/autoload_configs/acl.conf.xml -text
 deb_builder/conf/autoload_configs/alsa.conf.xml -text
@@ -220,6 +223,8 @@ documentation/users/Freedom_Fone_v1.6_Audacity_Cheat_Sheet.pdf -text
 documentation/users/Freedom_Fone_v1.6_Other_Devices.pdf -text
 documentation/users/Freedom_Fone_v1.6_Troubleshooting.pdf -text
 documentation/users/Freedom_Fone_v2.0_Quick_Start_Guide.pdf -text
+/download.sh -text
+/download_bin.sh -text
 esl/README -text
 esl/legacy/INSTALL -text
 esl/legacy/fs_sock.php -text

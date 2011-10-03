@@ -1,0 +1,42 @@
+
+STEP 1. Install Ubuntu 10.04-3 i386 Desktop edition
+
+STEP 2. Install subversion
+# apt-get install subversion
+
+STEP 3. Download Freedom Fone builder
+# mkdir -p /opt/freedomfone
+# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+
+STEP 4. Install packages and dependencies
+  The software dependencies will allow you to run and build freeswitch with Freedom Fone dependencies. 
+
+# cd /opt/freedomfone; chmod 755 download.sh; ./download.sh
+
+STEP 5. Download pre-compiled packages for Freeswitch and Cepstral
+
+# cd /opt/freedomfone; chmod 755 download_bin.sh;  ./download_bin.sh
+
+STEP 6. Install Cepstral, accept default values (/opt/swift as installation directory)
+
+# cd /opt/freedomfone; tar zxvf Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz; cd  /opt/freedomfone/Cepstral_Allison-8kHz_i386-linux_5.1.0; ./install.sh
+
+STEP 7. Install Freeswitch for Freedom Fone
+
+# cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-8_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-8_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-8_i386.deb
+
+STEP 8. Install rootconf, that contains default configurations for PHP5, Apache2, iwatch, cron and startup services
+
+# cd /opt/freedomfone; chmod 755 rootconf_install.sh; ./rootconf_install.sh
+
+STEP 9. Install DB Schemas
+
+#cd /opt/freedomfone; chmod 755 db_install.sh; ./db_install.sh 
+
+STEP 10. Reboot or run /etc/rc.local
+
+#/etc/rc.local
+
+Point your browser to http://localhost/freedomfone
+Username: Admin
+Password: thefone

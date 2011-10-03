@@ -185,14 +185,14 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 $path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
+             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => false,'exact' => true,'html' => false));
        }
        foreach($voicemenu as $key => $entry){
-             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
+             $voicemenu[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => false,'exact' => true,'html' => false));
        }
 
        foreach($nodes['title'] as $key => $entry){
-             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => 'false','exact' => true,'html' => false));
+             $nodes['title'][$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],array('ending' => false,'exact' => true,'html' => false));
        }
 
      for($i=0;$i<8;$i++){

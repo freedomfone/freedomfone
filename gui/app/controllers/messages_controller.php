@@ -129,17 +129,17 @@ class MessagesController extends AppController{
          $this->Session->write('messages_dir',$dir);
       } elseif (!$dir = $this->Session->read('messages_dir')){
 
-        $dir = false;
-
-      }
+        $dir ='desc';
  
-     if($data['order']){
+	}
+     
+      if($data['order']){
           if($data['order'] == 'Message.new'){ $dir = 'DESC';}
          $order = $data['order'].' '.$dir;
          $this->Session->write('messages_order',$order);
       } elseif (!$order = $this->Session->read('messages_order')){
 
-        $order = false;
+        $order = 'Message.created '.$dir;
       }
 
 

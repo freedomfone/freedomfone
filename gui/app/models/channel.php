@@ -54,7 +54,7 @@ class Channel extends AppModel{
 
 	  	$interface_id = $entry['interface_id'];
 	  	$interface_name = $entry['interface_name'];
-	        $epoch 	= floor($entry['Event-Date-Timestamp']/1000000);
+	        $epoch 	= intval(floor($entry['Event-Date-Timestamp']/1000000));
 
 		$this->set('epoch' , $epoch);
 		$this->set('interface_name' , $entry['interface_name']);

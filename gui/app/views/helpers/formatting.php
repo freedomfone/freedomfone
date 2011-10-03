@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * formatting.php	- Helper for formatting of timestamps.
- * version 		- 1.0.362
+ * version 		- 3.0.1500 
  * 
  * Version: MPL 1.1
  *
@@ -34,10 +34,10 @@
     /*** return value ***/
     $ret = "";
 
-    $hours = floor( $seconds/3600 );
+    $hours = intval(floor( $seconds/3600 ));
     $partdays = fmod($seconds, 86400);
     $parthours = fmod($partdays, 3600);
-    $minutes = floor( $parthours/60 );
+    $minutes = intval(floor( $parthours/60 ));
     $seconds = fmod($parthours, 60);
 
     /*** get the hours ***/

@@ -1,0 +1,56 @@
+SECURE STORAGE FOR MEDIA AND LOG FILES WITH TRUECRYPT
+
+* Download Truecrypt Linux 32 bits
+# cd /opt/freedomfone; wget http://www.it46.se/freedomfone/manguensis/truecrypt-7.1-linux-console-x86.tar.gz
+
+* Install Truecrypt 
+# cd /opt/freedomfone; tar zxvf truecrypt-7.1-linux-console-x86.tar.gz; ./truecrypt-7.1-linux-console-x86
+
+* Insert a USB key and find out the device name
+#dmesg
+[ 5263.460936] scsi 4:0:0:0: Direct-Access     General  USB Flash Disk   0.00 PQ: 0 ANSI: 2
+[ 5263.462622] sd 4:0:0:0: Attached scsi generic sg2 type 0
+[ 5263.463555] sd 4:0:0:0: [sdc] 3948544 512-byte logical blocks: (2.02 GB/1.88 GiB)
+[ 5263.464230] sd 4:0:0:0: [sdc] Write Protect is off
+[ 5263.464241] sd 4:0:0:0: [sdc] Mode Sense: 00 00 00 00
+[ 5263.464249] sd 4:0:0:0: [sdc] Assuming drive cache: write through
+[ 5263.471161] sd 4:0:0:0: [sdc] Assuming drive cache: write through
+[ 5263.471374]  sdc: sdc1
+[ 5263.613346] sd 4:0:0:0: [sdc] Assuming drive cache: write through
+[ 5263.613583] sd 4:0:0:0: [sdc] Attached SCSI removable disk
+
+In our example "sdc1"
+
+* Create a truecrypt partition in the key
+# truecrypt -c /dev/sdc1
+(choose Normal, default values for encryption and Linux ext4 filesystem if you plan to read it in the future in a Linux box)
+Formating can take up to 20 minutes depending on the USB key size
+Do not forget to select a secure password. 
+
+* Mount the encrypted USB
+# truecrypt --slot=1 /dev/sdc1
+We should have the USB mounted under /media/truecrypt1/
+
+* Logs and Scripts contain sensitive data
+/opt/freedomfone/log
+/opt/freeswitch/scripts
+
+Let us move both folders into the encrypted USB
+
+# mv /opt/freedomfone/log /media/truecrypt1/
+# mv /opt/freeswitch/scripts /media/truecrypt1/
+
+Create symlinks from original folders to new secure storage
+
+/opt/freedomfone/log -> /media/truecrypt1/log
+/opt/freeswitch/scripts ->  /media/truecrypt1/scripts
+
+# cd /opt/freedomfone; ln -s /media/truecrypt1/log .
+# cd /opt/freeswitch;  ln -s /media/truecrypt1/scripts . 
+
+* Restart services
+# /etc/init.d/iwatch restart
+# /etc/init.d/freeswitch restart
+# /etc/init.d/dispatcher_in restart
+
+ 

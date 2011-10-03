@@ -1,3 +1,4 @@
+*** BUILDING FREEDOM FONE 3.0 in a i386 ARCH ***
 
 STEP 1. Install Ubuntu 10.04-3 i386 Desktop edition
 
@@ -28,6 +29,8 @@ STEP 7. Install Freeswitch for Freedom Fone
 STEP 8. Install rootconf, that contains default configurations for PHP5, Apache2, iwatch, cron and startup services
 
 # cd /opt/freedomfone; chmod 755 rootconf_install.sh; ./rootconf_install.sh
+# cd /opt/freedomfone; chmod 755 fix_perms_gui.sh; ./fix_perms_gui.sh
+# cd /opt/freedomfone; chmod 755 fix_perms_fs.sh; ./fix_perms_fs.sh
 
 STEP 9. Install DB Schemas
 

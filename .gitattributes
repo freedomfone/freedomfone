@@ -18,6 +18,7 @@ config/gui_config_sweeper.php -text
 config/locale -text
 config/officeroute_sms_config.php -text
 config/officeroute_snmp_config.php -text
+config/sweeper_config.php -text
 cron/README -text
 cron/crontab -text
 /db_install.sh -text

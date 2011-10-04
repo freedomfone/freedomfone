@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * sweeper.php	- Configuration parameters for the System Sweeper
+ * sweeper.php	- Configuration parameters for the Frontent Sweeper
  * version 	- 3.0.1500
  * 
  * Version: MPL 1.1

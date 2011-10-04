@@ -59,4 +59,33 @@ instead of the "moved_to". As we have two different filesystems in the system, f
 # /etc/init.d/freeswitch restart
 # /etc/init.d/dispatcher_in restart
 
+* If you need to automate the boot process you need to ensure that the USB is mounted before starting the services
+
+truecrypt /dev/sdc1
+Enter mount directory [default]: 
+Enter password for /dev/sdc1: 
+Enter keyfile [none]: 
+Protect hidden volume (if any)? (y=Yes/n=No) [No]: 
+
+Comment the boot sequence in /etc/rc.local
+
+#FIXME! Why ALSA needs environmental variables to deal with device permissions? 
+#
+#su - root /etc/init.d/freeswitch start
+#sleep 10
+#/etc/init.d/gsmopen reload
+#sleep 10
+#/etc/init.d/gsmopen reload
+#sleep 10
+#/etc/init.d/dispatcher_in start
+
+And create a start script that mounts the unit first e.g
+
+#!/bin/bash
+truecrypt /dev/sdc1
+su - root /etc/init.d/freeswitch start
+sleep 10
+/etc/init.d/gsmopen reload
+/etc/init.d/dispatcher_in start
+/etc/init.d/iwatch restart
  

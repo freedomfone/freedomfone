@@ -41,7 +41,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
 
 	if($this->data && $this->data['IvrMenu']['ivr_type']=='switcher'){
 
-                echo $html->addCrumb('Edit', '/selectors/edit/'.$this->data['IvrMenu']['id']);
+                echo $html->addCrumb(__('Edit',true), '/selectors/edit/'.$this->data['IvrMenu']['id']);
 
                 $switcher = $this->data['IvrMenu'];
 

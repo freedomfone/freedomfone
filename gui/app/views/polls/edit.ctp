@@ -26,7 +26,7 @@ echo $html->addCrumb(__('Polls',true), '/polls');
 
 
      if($this->data){
-           echo $html->addCrumb('Edit', '/polls/edit/'.$this->data['Poll']['id']);
+           echo $html->addCrumb(__('Edit',true), '/polls/edit/'.$this->data['Poll']['id']);
 	   echo "<h1>".__("Edit Poll",true)."</h1>";
 
 	   $session->flash();

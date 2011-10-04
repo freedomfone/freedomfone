@@ -29,7 +29,7 @@ $ivr = Configure::read('IVR_SETTINGS');
 
 	if($this->data){
 
-                echo $html->addCrumb('Edit', '/nodes/edit/'.$this->data['Node']['id']);
+                echo $html->addCrumb(__('Edit',true), '/nodes/edit/'.$this->data['Node']['id']);
 
 		echo "<h1>".__("Edit Content",true)."</h1>";
 		

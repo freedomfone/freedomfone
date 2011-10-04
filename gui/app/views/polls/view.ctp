@@ -41,7 +41,7 @@ echo $form->end();
 
    if ($data){
 
-        echo $html->addCrumb('View', '/polls/view/'.$data['Poll']['id']);
+        echo $html->addCrumb(__('View',true), '/polls/view/'.$data['Poll']['id']);
 	echo "<h1>".__("Question",true).": ".$data['Poll']['question']." ";
 
 	echo $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $data['Poll']['id'])));

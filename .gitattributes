@@ -368,7 +368,6 @@ gui/app/tmp/logs/empty -text
 gui/app/tmp/sessions/empty -text
 gui/app/tmp/tests/empty -text
 gui/app/vendors/ESL.php -text
-gui/app/vendors/dialout.php -text
 gui/app/vendors/ivr_xml.php -text
 gui/app/vendors/shells/tasks/empty -text
 gui/app/vendors/shells/templates/empty -text

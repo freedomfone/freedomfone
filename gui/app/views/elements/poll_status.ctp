@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * poll_status.ctp	- Show Pending/Open/Closed icons depending on given status
- * version 		- 1.0.362
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

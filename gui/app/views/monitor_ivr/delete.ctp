@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * delete.ctp	- Display form for deleting IVR monitoring data.
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Monitoring', '/monitor_ivr');
-echo $html->addCrumb('Delete', '/monitor_ivr/delete');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Monitoring',true), '/monitor_ivr');
+echo $html->addCrumb(__('Delete',true), '/monitor_ivr/delete');
 
 
 echo "<h1>".__("Delete monitoring data",true)."</h1>";

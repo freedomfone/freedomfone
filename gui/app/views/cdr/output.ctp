@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * output.ctp	- Create cvs file 
- * version 	- 1.0.353
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -23,14 +23,14 @@
  ***************************************************************************/
 
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
-		$csv->addRow($line);
+      $line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
+      $csv->addRow($line);
 
 	if($data){
 
 		foreach($data as $entry){
 	
-		$line = array( date('Y-m-d',$entry['Cdr']['epoch']),
+		    $line = array( date('Y-m-d',$entry['Cdr']['epoch']),
 		               date('Y',$entry['Cdr']['epoch']),
 		      	       date('m',$entry['Cdr']['epoch']),
 			       date('d',$entry['Cdr']['epoch']),
@@ -41,17 +41,13 @@
 			       $entry['Cdr']['application'],
 			       $entry['Cdr']['proto']);
 
-		$csv->addRow($line);
+		     $csv->addRow($line);
 
 		}
 
 	}
-		$prefix=date('Y-m-d');
-		echo $csv->render($prefix."_".__('CDR',true)."_".$select_option);  
-		$csv->render(false);
-
-
-
-
+	$prefix=date('Y-m-d');
+	echo $csv->render($prefix."_".__('CDR',true)."_".$select_option);  
+	$csv->render(false);
 
 ?>

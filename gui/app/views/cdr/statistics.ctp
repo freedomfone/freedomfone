@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * overview.ctp	- Show CDR statistics
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Statistics', '/cdr/statistics')
-;
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Statistics',true), '/cdr/statistics');
 
 $session->flash();
 

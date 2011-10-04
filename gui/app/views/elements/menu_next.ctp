@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * menu_next.ctp	- Simple menu used for FF functionality pages to display previous and next
- * version 		- 1.0.362
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

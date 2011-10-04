@@ -13,6 +13,8 @@ audio_bot/iwatch/iwatch.xml -text
 config/README -text
 config/dispatcher_in_config.php -text
 config/gui_config_core.php -text
+config/gui_config_database.php -text
+config/gui_config_sweeper.php -text
 config/locale -text
 config/officeroute_sms_config.php -text
 config/officeroute_snmp_config.php -text

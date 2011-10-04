@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * user.php		- Model for managing users through the address book
- * version 		- 2.0.1160
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

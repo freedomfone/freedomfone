@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * log.php	- Model for Freedom Fone logs
- * version 	- 1.0.359
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *

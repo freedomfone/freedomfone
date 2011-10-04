@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * ivr_xml.php		- Class for creating XML files for Voice menus
- * version 		- 1.0.360
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * spooler_ff.php	- Class for connecting to spooler database and fetch new events.
- * version 		- 1.0.360
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

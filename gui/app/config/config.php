@@ -44,14 +44,6 @@ $config['lm_in']= array(
 	       'database' => 'spooler_in',
 	       );
 
-
-$config['callback_in']= array(
-      	       'host'     => 'localhost',
-	       'user'     => 'callback_in',
-	       'password' => 'thefone',
-	       'database' => 'spooler_in',
-	       );
-
 $config['monitor_ivr']= array(
       	       'host'     => 'localhost',
 	       'user'     => 'monitor_ivr',
@@ -131,23 +123,6 @@ $config['IVR_DEFAULT']=	array(
 		'ivrExitMessage'   => 'Thank you and good bye.');
 
 
-$config['CALLBACK_DEFAULT']=	array(
-                'response_type'                =>  array ('4100' =>'IVR','2100' =>'Leave-a-Message'),
-                'max_retries'                  => array('3' => 3, '5' => 5 ,'7' => 7, '10' => 10, '15' => 15),
-                'retry_interval'               => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min', '600' => '10 min', '900' => '15 min','1800' => '30 min', '3600' => '1 hour'),
-                'max_duration'                 => array('60' => '1 min', '120' => '2 min','180' => '3 min','240' => '4 min','300' => '5 min'),
-                'status_all'                   => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '5' => __('Abort',true), '6' => __('Pause',true), '7' => __('Process',true)),
-                'status'                       => array('1' => __('Pending',true), '2' => __('Failure',true), '3' => __('Retry',true), '4' => __('Success',true), '7' => __('Process',true)),
-                'campaign_status'              => array('1' => __('Start',true), '2' => __('Pause',true), '3' => __('Abort',true), '4' => __('End',true)),
-                'max_calls_user'               => array(0 => __('Unlimited', true) , 1 => 1, 5 => 5, 10 => 10, 25 => 25, 50 => 50),
-                'max_calls_user_default'       => 10,
-                'max_calls_user_day'           => array(0 => __('Unlimited', true), 1 => 1, 5 => 5, 10 => 10),
-                'max_calls_user_day_default'   => 5,
-                'max_calls_total'              => array(0 => __('Unlimited', true), 50 => 50, 100 => 100, 250 => 250, 500 => 500, 1000 => 1000),
-                'max_calls_total_default'      => 250,
-                );
-
-
 $config['IVR_MONITOR']=	array(
 	        'script'             => 'scripts/freedomfone/monitor_ivr/main.js'
 		);
@@ -195,28 +170,6 @@ $config['OR_SNMP']= array(
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                              ));
 
-$config['SWEEP_CONFIG'] = array(
-                        'enable' => 1,                 //1 = enable, 0 = diable 
-                        'mode'   => 'high',             //low  = phone numbers only, high = phone numbers and user data (name, email etc.)
-                        );
-
-$config['SWEEP_SETTINGS'] = array(
-                          'Bin'           => array('low'  => array('sender' => NULL),
-                                                   'high' => array('sender' => '555666'),
-                                          ),
-                          'Cdr'           => array('low'  => array('caller_number' => NULL),
-                                                   'high' => array('caller_number' => '555666'),
-                                          ),
-                          'MonitorIvr'   => array('low'  => array('caller_number' => NULL),
-                                                   'high' => array('caller_number' => '555666'),
-                                          ),
-                          'PhoneNumber' => array('low'  => array('number' => NULL),
-                                                   'high' => array('number' => '555666'),
-                                          ),
-                          'User'         => array('low'  => array(),
-                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => 'john.doe@gmail.com', 'skype' => 'john.doe', 'organization' => NULL),                                                   
-                                          ),
-                                  );
 
 
 ?>

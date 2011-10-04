@@ -8,15 +8,16 @@ STEP 2. Install subversion
 STEP 3. Download Freedom Fone builder
 # mkdir -p /opt/freedomfone
 # cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+# cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies
-  The software dependencies will allow you to run and build freeswitch with Freedom Fone dependencies. 
+The software dependencies will allow you to run and build freeswitch with Freedom Fone dependencies. 
 
-# cd /opt/freedomfone; chmod 755 download.sh; ./download.sh
+# cd /opt/freedomfone; ./download.sh
 
 STEP 5. Download pre-compiled packages for Freeswitch and Cepstral
 
-# cd /opt/freedomfone; chmod 755 download_bin.sh;  ./download_bin.sh
+# cd /opt/freedomfone; ./download_bin.sh
 
 STEP 6. Install Cepstral, accept default values (/opt/swift as installation directory)
 
@@ -24,17 +25,19 @@ STEP 6. Install Cepstral, accept default values (/opt/swift as installation dire
 
 STEP 7. Install Freeswitch for Freedom Fone
 
-# cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-8_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-8_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-8_i386.deb
+# cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-9_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-9_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-9_i386.deb
 
 STEP 8. Install rootconf, that contains default configurations for PHP5, Apache2, iwatch, cron and startup services
 
-# cd /opt/freedomfone; chmod 755 rootconf_install.sh; ./rootconf_install.sh
-# cd /opt/freedomfone; chmod 755 fix_perms_gui.sh; ./fix_perms_gui.sh
-# cd /opt/freedomfone; chmod 755 fix_perms_fs.sh; ./fix_perms_fs.sh
+# cd /opt/freedomfone; ./rootconf_install.sh
 
-STEP 9. Install DB Schemas
-
-#cd /opt/freedomfone; chmod 755 db_install.sh; ./db_install.sh 
+STEP 9. Install DB Schemas and demo data
+# cd /opt/freedomfone; ./db_install.sh 
+#(optional)
+# cd /opt/freedomfone; ./demo_install.sh  
+#(/optional)
+# cd /opt/freedomfone; ./fix_perms_gui.sh
+# cd /opt/freedomfone; ./fix_perms_fs.sh
 
 STEP 10. Reboot or run /etc/rc.local
 

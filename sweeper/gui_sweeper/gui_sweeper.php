@@ -3,58 +3,53 @@
  * Sweeps sensitive user data from the Freedom Fone database (GUI). 
  * This sweeper has the same effect as running the System Sweeper from the Freedom Fone user interface. 
  *
+ * If the Sweeper is enabled, this script updates the CakePHP database 
+ * according to the settings in the Sweeper config file (/opt/freedomfone/config/gui_config_sweeper.php).
+ *
  */
 
 
+include_once('config.php');
+include_once(SVNROOT.'config/gui_config_database.php');
+include_once(SVNROOT.'config/gui_config_sweeper.php');
 
-$_Mode = 1;  //0 = low, 1 = high
+
+$sweep_config  = $config['SWEEP_CONFIG'];
+$sweep_queries = $config['SWEEP_SETTINGS'];
+$db_config     = get_class_vars('DATABASE_CONFIG');
+
+
+$_Mode   = $sweep_config['mode'];  
+$_Enable = $sweep_config['enable'];
+
 $_FreedomfoneDB = array(
-       'host'     => 'localhost',
-       'database' => 'freedomfone',
-       'user'     => 'freedomfone',
-       'password' => 'thefone',
+       'host'     => $db_config['default']['host'],
+       'database' => $db_config['default']['database'],
+       'user'     => $db_config['default']['login'],
+       'password' => $db_config['default']['password'],
        );
-$_LogFile = '/opt/freedomfone/log/gui_sweeper.log';
-
-//Bin (other SMS)
-$query['bin'][0] = "update bin set sender = NULL";
-$query['bin'][1] = "update bin set sender = NULL";
-
-//Call data records (CDR)
-$query['cdr'][0] = "update cdr set caller_number = NULL";
-$query['cdr'][1] = "update cdr set caller_number = NULL";
-
-//Monitor IVR
-$query['monitor_ivr'][0] = "update monitor_ivr set caller_number = NULL";
-$query['monitor_ivr'][1] = "update monitor_ivr set caller_number = NULL";
-
-//Callers phone numbers
-$query['phone_numbers'][0] = "delete from phone_numbers";
-$query['phone_numbers'][1] = "delete from phone_numbers";
-
-//Callers user data
-$query['users'][0] = "select * from users";
-$query['users'][1] = "update users set name = 'John', surname = 'Doe', email = 'john.doe@gmail.com', skype = 'john.doe', organization = NULL";
-
-
-//******************************************************************************//
 
 $handle = fopen($_LogFile,'a');
 global $handle;
 $link = db_connect($_FreedomfoneDB);
 
 
-   foreach($query as $key => $entry){
+ if($_Enable){
 
-      $result = mysql_query($entry[$_Mode]);
 
-      if (!$result) {
-         sweeper_log('Invalid query: ' . mysql_error());
-      } else {
-         sweeper_log('GUI sweeper executed on model: '.$key);
-      }
+	foreach($sweep_queries as $key => $entry){
 
-   }
+	       $model = $_Models[$key];
+    	       $data = $entry[$_Mode];
+   	       $result = mysql_query(getQuery($data, $model, $_Mode));
+
+      	       if (!$result) {
+               	  sweeper_log('Invalid query: ' . mysql_error());
+      	       } else {
+                  sweeper_log('GUI sweeper executed on model: '.$key);
+      	       }
+ 	}
+  }
 
 
 
@@ -92,11 +87,32 @@ function db_connect($initial_vars){
 
    global $handle;
 
-
    	    $string = date('M d H:i:s')." ".$msg."\n";
 	    fwrite($handle, $string);
 
 
    }
+
+
+/**
+ * Create MySQL query
+ *
+ * @param array $data
+ * 
+ */
+
+ function getQuery($data, $model, $mode){
+
+ 	  $string = false;
+
+ 	  foreach($data as $key => $value){
+
+	     $string .= $key.' = "'.$value.'",';
+	  
+	  }
+
+ 	  $query = "update ".$model." set ".rtrim($string,',');
+	  return $query;
+ }
 
 ?>

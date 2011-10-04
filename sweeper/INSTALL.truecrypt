@@ -35,12 +35,12 @@ We should have the USB mounted under /media/truecrypt1/
 /opt/freedomfone/log
 /opt/freeswitch/scripts
 
-Let us move both folders into the encrypted USB
+* Let us move both folders into the encrypted USB
 
 # mv /opt/freedomfone/log /media/truecrypt1/
 # mv /opt/freeswitch/scripts /media/truecrypt1/
 
-Create symlinks from original folders to new secure storage
+* Create symlinks from original folders to new secure storage
 
 /opt/freedomfone/log -> /media/truecrypt1/log
 /opt/freeswitch/scripts ->  /media/truecrypt1/scripts
@@ -48,6 +48,12 @@ Create symlinks from original folders to new secure storage
 # cd /opt/freedomfone; ln -s /media/truecrypt1/log .
 # cd /opt/freeswitch;  ln -s /media/truecrypt1/scripts . 
 
+* The Audio_Bot (iwatch) configuration needs to be changed to monitor the "close_write" signals of the file system
+instead of the "moved_to". As we have two different filesystems in the system, files are no longer
+*moved* from /tmp -> service_folder during file upload. Files uploaded to /tmp are re-written in /media/truecrypt
+
+# cp /opt/freedomfone/sweeper/iwatch/iwatch.xml.tc.sec /opt/freedomfone/audio_bot/iwatch.xml
+ 
 * Restart services
 # /etc/init.d/iwatch restart
 # /etc/init.d/freeswitch restart

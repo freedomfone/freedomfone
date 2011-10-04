@@ -430,7 +430,6 @@ gui/app/views/ivr_menus/selectors.ctp -text
 gui/app/views/layouts/ajax.ctp -text
 gui/app/views/layouts/default.ctp -text
 gui/app/views/layouts/flash_error.ctp -text
-gui/app/views/layouts/jquery.ctp -text
 gui/app/views/layouts/js/empty -text
 gui/app/views/layouts/json/default.ctp -text
 gui/app/views/layouts/rss/empty -text

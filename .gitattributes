@@ -342,7 +342,6 @@ gui/app/models/phone_number.php -text
 gui/app/models/poll.php -text
 gui/app/models/process.php -text
 gui/app/models/setting.php -text
-gui/app/models/switcher.php -text
 gui/app/models/tag.php -text
 gui/app/models/user.php -text
 gui/app/models/vote.php -text

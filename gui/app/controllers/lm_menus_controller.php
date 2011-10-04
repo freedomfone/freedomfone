@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
-* lm_menus_controller.php- Controller for Leave-a-message IVR menu.
-* version  - 1.0.368
+* lm_menus_controller.php  - Controller for Leave-a-message IVR menu.
+* version  		   - 3.0.1500
  * 
  * Version: MPL 1.1
  *

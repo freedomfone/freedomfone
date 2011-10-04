@@ -33,15 +33,15 @@ class NodesController extends AppController{
       function index(){
 
 
-      	$this->pageTitle = __('Content',true);           
+        $this->set('title_for_layout', __('Content',true)); 
         $this->paginate['limit'] = 10;
 	$this->Node->recursive = 0; 
 
         if(isset($this->params['named']['limit'])) { 
-	     $this->Session->write('nodes_limit',$this->params['named']['limit']);
+	     $this->Session->write('messages_limit',$this->params['named']['limit']);
 	}
-	elseif($this->Session->check('nodes_limit')) { 
-	     $this->paginate['limit'] = $this->Session->read('nodes_limit');
+	elseif($this->Session->check('messages_limit')) { 
+	$this->paginate['limit'] = $this->Session->read('messages_limit');
 	}	
 
 
@@ -53,7 +53,7 @@ class NodesController extends AppController{
 
    function add(){
 
-      	$this->pageTitle = __('Upload content',true);           
+        $this->set('title_for_layout', __('Upload content',true));
 
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
@@ -154,7 +154,7 @@ $this->render();
 
    function edit($id=null){
 
-      	$this->pageTitle = __('Edit content',true);           
+        $this->set('title_for_layout', __('Edit content',true));
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
         $_titleOK = $_fileOK = true;
@@ -169,6 +169,7 @@ $this->render();
           // Retrieve data from database and display 
     	  elseif(empty($this->data['Node'])){
 
+
 		$this->Node->id = $id;
 		$this->data = $this->Node->read(null,$id);
 
@@ -177,7 +178,12 @@ $this->render();
           //Fetch form data 
 	  else {
 
+
+
           $this->Node->set( $this->data );	       
+
+
+
 
           //If title is ok, save
           if ($this->Node->validates(array('fieldList' => array('title')))){

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * processes_controller.ctp	- Controller for processes. Manages start,stop,status of incoming and outgoing dispatcher.
- * version 			- 1.0.364
+ * version 			- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -33,7 +33,8 @@ class ProcessesController extends AppController{
 
       function index(){
 
-      	$this->pageTitle = __('Health',true);
+
+        $this->set('title_for_layout', __('Health',true));
 
 	$this->requestAction('/processes/refresh');
 

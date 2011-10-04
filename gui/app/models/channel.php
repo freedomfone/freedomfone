@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * channel.php		- Model for GSM channels based in GSMopen.
- * version 		- 1.0.440
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

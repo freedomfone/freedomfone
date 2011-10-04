@@ -1,7 +1,7 @@
 <?
 /****************************************************************************
  * phone_book.php	- Model for Phone book. One user can belong to one or more phone books. One phone book contains one or more contacts.
- * version 		- 1.0.359
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

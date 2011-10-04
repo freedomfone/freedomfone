@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * switcher.php		- Model for language switchers
- * version 		- 1.0.360
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * cdr.php		- Model for CDR. Manages refresh from spooler.
- * version 		- 1.0.353
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

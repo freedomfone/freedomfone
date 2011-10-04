@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * bin.php		- Model for SMS that does not match existing polls (aka 'Other SMS'). Manages refresh method from spooler.
- * version 		- 2.0.1160
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

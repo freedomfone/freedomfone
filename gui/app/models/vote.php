@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * vote.php		- Model for poll votes. Manages validation of poll options when addding/creating polls.
- * version 		- 1.0.367
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

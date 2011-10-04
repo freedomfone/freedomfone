@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * services.ctp         - Converts variations of service names to huam readable format
- * version 		- 2.0.1220
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

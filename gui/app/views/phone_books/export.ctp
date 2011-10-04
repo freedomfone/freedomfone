@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * export.ctp	- Export of phone book 
- * version 	- 2.0.1127
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -20,7 +20,7 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
- ***************************************************************************/debug($phonebook_name);
+ ***************************************************************************/
 
         //Calculate max number of phone numbers for each entry
 

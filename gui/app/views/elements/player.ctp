@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * player.ctp			- Uses AudioPlayer to stream mp3 files
- * version 			- 2.0.1160
+ * version 			- 3.0.1500
  * 
 
  * Audio Player is a WordPress plugin developed by Martin Laine.

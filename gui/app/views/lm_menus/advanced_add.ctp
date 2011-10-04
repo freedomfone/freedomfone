@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * advanced_add.ctp	- AJAX view for advanced LAM settings (create LAM)
- * version 	        - 2.0.1041
+ * version 	        - 3.0.1500
  * 
  * Version: MPL 1.1
  *

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * add.ctp	- Create new poll
- * version 	- 2.0.1170
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -21,8 +21,8 @@
  *
  *
 ***************************************************************************/
-echo $html->addCrumb('Polls', '/polls');
-echo $html->addCrumb('Create', '/polls/add');
+echo $html->addCrumb(__('Polls',true), '/polls');
+echo $html->addCrumb(__('Create',true), '/polls/add');
 
 echo $javascript->link('addRemoveElements');
 

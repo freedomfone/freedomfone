@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * menulight.php	- Helper for creating horizontal menu based on Previous and Next
- * version 		- 1.0.362
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,11 +22,6 @@
  *
  *
  ***************************************************************************/
- /* /app/views/helpers/menulight.php 
-  *
-  * 
-  *
-  */
 
  class MenulightHelper extends AppHelper {
 

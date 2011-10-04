@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * message_status.ctp	- Shows status (Active/Archive), Rate and Modified for Leave-a-message messages
- * version 		- 1.0.362
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *

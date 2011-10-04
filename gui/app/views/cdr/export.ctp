@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * export.ctp	- Display form for export of CDR.
- * version 	- 2.0.1160
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -22,9 +22,9 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb('System data', '');
-echo $html->addCrumb('Call data records', '/cdr');
-echo $html->addCrumb('Export', '/cdr/export');
+echo $html->addCrumb(__('System data',true), '');
+echo $html->addCrumb(__('Call data records',true), '/cdr');
+echo $html->addCrumb(__('Export',true), '/cdr/export');
 
 
 echo "<h1>".__("Export CDR",true)."</h1>";

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * channel_signal_level.ctp	- Show signal level of GSM channels in Text format (covert from dBm)
- * version 		        - 2.0.1050
+ * version 		        - 3.0.1500
  * 
  * Version: MPL 1.1
  *

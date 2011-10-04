@@ -23,10 +23,10 @@
  ***************************************************************************/
 
       echo $html->addCrumb(__('User management',true), '');
-      echo $html->addCrumb(__('System Sweeper',true), '/ff_users/sweep');
+      echo $html->addCrumb(__('Frontend Sweeper',true), '/ff_users/sweep');
 
 
-      echo "<h1>".__("System Sweeper",true)."</h1>";
+      echo "<h1>".__("Frontend Sweeper",true)."</h1>";
 
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {
@@ -37,8 +37,8 @@
 
 
       echo $form->create('FfUser',array('type' => 'post','action'=> 'sweep'));
-      echo $this->Html->div('instruction', __('The System Sweeper wipes out all confidential information (such as name, email and phone numbers) from Freedom Fone.',true));
-      echo $this->Html->div('instruction', __('To wipe out Freedom Fone logs, please refer to XXX',true));
+      echo $this->Html->div('instruction', __('The Frontend Sweeper wipes out all confidential information (such as name, email and phone numbers) from Freedom Fone.',true));
+      echo $this->Html->div('instruction', __('To wipe out Freedom Fone logs, please use the Backend Sweeper.',true));
       echo $form->submit(__('Start Sweeper',true),  array('name' =>'submit', 'class' => 'save_button'));
 
 

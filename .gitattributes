@@ -388,9 +388,7 @@ gui/app/views/cdr/overview.ctp -text
 gui/app/views/cdr/statistics.ctp -text
 gui/app/views/channels/edit.ctp -text
 gui/app/views/channels/index.ctp -text
-gui/app/views/elements/callback_status.ctp -text
 gui/app/views/elements/channel_signal_level.ctp -text
-gui/app/views/elements/dialer_status.ctp -text
 gui/app/views/elements/error.ctp -text
 gui/app/views/elements/menuAdmin.ctp -text
 gui/app/views/elements/menuUser.ctp -text

@@ -31,15 +31,6 @@ class BinController extends AppController{
       var $scaffold;
 
 
-/*      function refresh($method = null){
-
-           $this->autoRender = false;
-           $this->logRefresh('bin',$method); 
-           $this->Bin->refresh($method);
-
-      }
-*/
-
       function index(){
 
            $this->Bin->refresh('manual');

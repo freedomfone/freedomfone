@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * logs_controller.php		- Displays log files
- * version 		 	- 2.0.1170
+ * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *

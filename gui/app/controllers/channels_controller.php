@@ -55,7 +55,7 @@ class ChannelsController extends AppController{
       $this->set('data',$data);
 
       $this->Channel->fsCommand("gsmopen_dump list");
-      $this->pageTitle = __('GSM channels',true);
+      $this->set('title_for_layout', __('GSM channels',true));
       $this->requestAction('/channels/refresh');
       $this->set('gsmopen',$this->Channel->find('all'));
 
@@ -75,7 +75,7 @@ class ChannelsController extends AppController{
 
    function edit($id ){
 
-      	$this->pageTitle = __('Edit Mobigater',true);           
+        $this->set('title_for_layout', __('Edit Mobigater',true));  
 
 
 	  // No id, or empty form

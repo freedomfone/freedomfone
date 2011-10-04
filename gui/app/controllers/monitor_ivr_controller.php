@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * monitor_ivr_controller.ctp	- Display,delete,export monitoring data.
- * version 	- 1.0.353
+ * version 			- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -33,7 +33,7 @@ class MonitorIvrController extends AppController{
       function index(){
 
              $this->refreshAll();
-	     $this->pageTitle = __('Monitor Voice Menus',true);
+             $this->set('title_for_layout', __('Monitor Voice Menus',true));
 
     	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
 	     $this->MonitorIvr->recursive = 0; 
@@ -90,7 +90,7 @@ class MonitorIvrController extends AppController{
 
       function export(){
 
-       $this->pageTitle = __('Export monitoring data',true);
+       $this->set('title_for_layout', __('Export monitoring data',true));
 
         $start = $this->MonitorIvr->Cdr->getEpoch('first');  
         $end   = time()+900;
@@ -152,7 +152,7 @@ class MonitorIvrController extends AppController{
 
     function delete(){
 
-    $this->pageTitle = __('Delete monitoring data',true);
+     $this->set('title_for_layout', __('Delete monitoring data',true));
 
       if ($this->data['MonitorIvr']){
       	 $start	  = $this->data['MonitorIvr']['start_time'];

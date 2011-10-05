@@ -32,7 +32,8 @@ echo $javascript->includeScript('toggle');
 echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
-$this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
+
+echo $this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
 echo $this->Access->showCheckbox($authGroup, 'document.Bin','frameRightTrans');
 
 
@@ -65,7 +66,7 @@ echo $html->tableHeaders(array(
 	$mode     = $entry['Bin']['mode'];
 	$proto    = $entry['Bin']['proto'];
 	$sender   = $entry['Bin']['sender'];
-        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this entry?',true)."');"));
+        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this entry?',true)."');"));
 
 
      	$row[$key] = array(

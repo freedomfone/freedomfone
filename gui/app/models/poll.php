@@ -42,7 +42,7 @@ function __construct($id = false, $table = null, $ds = null) {
         'question' => array(
             'rule'=>array('minLength', 10),
 	    'required' => true,
-            'message'=> __('A valid question is required.',true)
+            'message'=> __('A valid question is required (Min 10 characters).',true)
 	    ),
 	'code' => array(
 			'alphaNumeric' => array(

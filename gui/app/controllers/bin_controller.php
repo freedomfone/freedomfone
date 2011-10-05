@@ -98,7 +98,8 @@ class BinController extends AppController{
     function export(){
 
     	     Configure::write('debug', 0);
-    	     $this->set('data', $this->Bin->findAll()); 
+    	     $this->set('data', $this->Bin->find('all')); 
+
 
     	     $this->layout = null;
     	     $this->autoLayout = false;

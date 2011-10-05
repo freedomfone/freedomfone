@@ -86,9 +86,9 @@ class MessagesController extends AppController{
                 $message_id[] = $message['id'];
            }
            if(isset($message_id)){
-           $conditions['Message.id'] = $message_id;
+              $conditions['Message.id'] = $message_id;
            } else {
-           $no_match = true;
+             $no_match = true;
            }
 
 
@@ -157,6 +157,7 @@ class MessagesController extends AppController{
 
          $this->refreshAll();
          $this->Session->write('Message.source', 'index');
+
 
          $conditions['Message.status'] = 1;
          if(!$no_match){      

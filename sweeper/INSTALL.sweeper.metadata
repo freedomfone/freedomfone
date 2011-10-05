@@ -11,9 +11,11 @@ takes as input a mp3 file and removes its ID3 tags info
 
 WAV
 ===
-standard wav files do not support any meta data but some WAV files
-can contain meta data in the extended header. In the example we can 
-see the meta data stored by Audacity in the RIFF meta header.
+Standard wav files do not support any meta data but some WAV files
+can contain meta data taking advantage of  Resource Interchange File Format (RIFF)
+INFO extended header.
+
+In the example we can see some  meta data stored by Audacity in the RIFF meta header.
 
 0000000   R   I   F   F  \b   & 034  \0   W   A   V   E   f   m   t    
 0000010 020  \0  \0  \0 001  \0 002  \0   D   �  \0  \0 020   � 002  \0
@@ -26,24 +28,33 @@ see the meta data stored by Audacity in the RIFF meta header.
 0000080 214   % 034  \0   �   �   a   �   �   �   j   �   �   �   m   �
 0000090   �   �   l   �   �   �   q   �   �   �   l   �   �   �   \   �
 
-A simple way to delete the meta data is to re-encode the file using
+A possible way to delete the meta data is to re-encode the file using
 a utility like sox.
 
 The audio filter /opt/freedomfome/sweeper/sweeper_audio_metadata.sh
 takes as input a wav file and converts it to a standard file without meta header.
 In both cases the original file is overwritten.
 
-Who to run the audio meta data sweeper?
+How do I run the sweeper for audio meta data?
+==============================================
 
-You can run the sweeper from the command line or create a cronjob.
 
-For example for WAV sweeping 
+It is up to you to decide how you want to customize this feature and the level of
+personal identifiable information that you expect to be in your files.
+
+You can run the sweeper as part of a cronjob, a daily task or integrate it in the
+audio_bot daemon.
+
+Cleaning metadata for WAV files is as simple as running the following command:
 # find /opt/freedomfone/freeswitch/scripts/ . -type f -name "*.wav" -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
 
-and for MP3 sweeping 
+Notice that we are using *sox* for re-encoding so it can take sometime when you
+have thousand of files to sweep.
+
+If you want to sweep MP3 files:
 # find /opt/freedomfone/freeswitch/scripts/ . -type f -name "*.wav" -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
 
 or for both types of files
-
 # find /opt/freedomfone/freeswitch/scripts/ .  -type f \( -name '*.mp3' -o -name '*.mp3' \) -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
+
 

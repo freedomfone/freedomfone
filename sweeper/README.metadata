@@ -1,0 +1,49 @@
+This version of Freedom Fone supports the possibility of cleaning
+meta data from audio files.
+
+MP3
+===
+
+mp3 files with ID3 meta tags can be deleted using mp3info.
+The audio filter /opt/freedomfome/sweeper/sweeper_audio_metadata.sh
+takes as input a mp3 file and removes its ID3 tags info 
+
+
+WAV
+===
+standard wav files do not support any meta data but some WAV files
+can contain meta data in the extended header. In the example we can 
+see the meta data stored by Audacity in the RIFF meta header.
+
+0000000   R   I   F   F  \b   & 034  \0   W   A   V   E   f   m   t    
+0000010 020  \0  \0  \0 001  \0 002  \0   D   �  \0  \0 020   � 002  \0
+0000020 004  \0 020  \0   L   I   S   T   P  \0  \0  \0   I   N   F   O
+0000030   I   N   A   M 016  \0  \0  \0   P   e   r   s   o   n   a   l
+0000040       D   A   T   A  \0   I   A   R   T  \n  \0  \0  \0   J   o
+0000050   h   n       D   o   e  \0  \0   I   C   M   T 016  \0  \0  \0
+0000060   C   o   m   m   e   n   t       D   A   T   A  \0  \0   I   C
+0000070   R   D 006  \0  \0  \0   2   0   1   1  \0  \0   d   a   t   a
+0000080 214   % 034  \0   �   �   a   �   �   �   j   �   �   �   m   �
+0000090   �   �   l   �   �   �   q   �   �   �   l   �   �   �   \   �
+
+A simple way to delete the meta data is to re-encode the file using
+a utility like sox.
+
+The audio filter /opt/freedomfome/sweeper/sweeper_audio_metadata.sh
+takes as input a wav file and converts it to a standard file without meta header.
+In both cases the original file is overwritten.
+
+Who to run the audio meta data sweeper?
+
+You can run the sweeper from the command line or create a cronjob.
+
+For example for WAV sweeping 
+# find /opt/freedomfone/freeswitch/scripts/ . -type f -name "*.wav" -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
+
+and for MP3 sweeping 
+# find /opt/freedomfone/freeswitch/scripts/ . -type f -name "*.wav" -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
+
+or for both types of files
+
+# find /opt/freedomfone/freeswitch/scripts/ .  -type f \( -name '*.mp3' -o -name '*.mp3' \) -exec /opt/freedomfone/sweeper/sweeper_audio_metadata.sh {} \;
+

@@ -26,7 +26,7 @@ class NodesController extends AppController{
 
       var $name = 'Nodes';
       var $helpers = array('Html', 'Session','Form','Formatting','Flash');
-      var $paginate = array('page' => 1, 'order' => array( 'Node.created' => 'desc')); 
+      var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Node.created' => 'desc')); 
     
      	
 
@@ -34,7 +34,6 @@ class NodesController extends AppController{
 
 
         $this->set('title_for_layout', __('Content',true)); 
-        $this->paginate['limit'] = 10;
 	$this->Node->recursive = 0; 
 
         if(isset($this->params['named']['limit'])) { 
@@ -45,8 +44,8 @@ class NodesController extends AppController{
 	}	
 
 
-     	     $this->set('nodes',$this->Node->find('all',array('order'=>'Node.created ASC')));
-	     $this->set('nodes',$this->paginate());
+        $this->set('nodes',$this->Node->find('all',array('order'=>'Node.created ASC')));
+        $this->set('nodes',$this->paginate());
      }
 
 

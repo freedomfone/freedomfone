@@ -1284,9 +1284,9 @@ rootconf/etc/php5/apache2/php.ini -text
 rootconf/etc/rc.local -text
 rootconf/var/www/index.html -text
 /rootconf_install.sh -text
+sweeper/INSTALL.sweeper.metadata -text
 sweeper/INSTALL.truecrypt -text
 sweeper/README -text
-sweeper/README.metadata -text
 sweeper/apache2/freedomfone -text
 sweeper/apache2/freedomfone.orig -text
 sweeper/apache2/freedomfone.sec -text

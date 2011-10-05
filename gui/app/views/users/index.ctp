@@ -119,7 +119,13 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
         $phone_numbers = false;
         $info = false;
-        $view     = '<a href="/freedomfone/users/view/'.$user['User']['id'].'" title="User details" onclick="Modalbox.show(this.href, {title: this.title, width: 950}); return false;"><img src="/freedomfone/img/icons/view.png"/></a>&nbsp;';
+        $view = $html->link(
+                        $this->Html->image("icons/view.png"),
+                        "/users/view/".$user['User']['id'],
+                        array("escape" => false, "title" => __("User details", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 950}); return false;"),
+                        false);
+
+
 	$edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "users", "action" => "edit", $user['User']['id']))));
         $delete   = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "users", "action" => "delete", $user['User']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this user?',true)."');")));
 

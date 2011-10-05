@@ -158,7 +158,12 @@ echo $form->end();
 	   $start    = array($time->format('Y/m/d H:i', $poll['Poll']['start_time']), array('align' => 'center'));
 	   $end      = array($time->format('Y/m/d H:i', $poll['Poll']['end_time']), array('align' => 'center'));
 
-           $view     = $this->Html->image("icons/view.png", array("alt" => __("View results",true), "title" => __("View results",true), "url" => array("controller" => "polls", "action" => "view", $poll['Poll']['id'])));
+           $view = $html->link(
+                        $this->Html->image("icons/view.png"),
+                        "/polls/view/".$poll['Poll']['id'],
+                        array("escape" => false, "title" => __("View results", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
+
 
            $edit     = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id']))));
 

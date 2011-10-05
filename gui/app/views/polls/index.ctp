@@ -64,7 +64,14 @@ echo $html->addCrumb(__('Polls',true), '/polls');
 	   $code     = $poll['Poll']['code'];
 	   $start    = $time->format('Y/m/d H:i',$poll['Poll']['start_time']);
 	   $end      = $time->format('Y/m/d H:i',$poll['Poll']['end_time']);
-           $view     = '<a href="/freedomfone/polls/view/'.$poll['Poll']['id'].'" title= "Results" onclick="Modalbox.show(this.href, {title: this.title, width: 950}); return false;"><img src="/freedomfone/img/icons/view.png"/></a>&nbsp;';
+
+           $view = $html->link(
+                        $this->Html->image("icons/view.png"),
+                        "/polls/view/".$poll['Poll']['id'],
+                        array("escape" => false, "title" => __("View results", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 500}); return false;"),
+                        false);
+
+
 
            $edit     = $this->Access->showBlock($authGroup , $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "polls", "action" => "edit", $poll['Poll']['id']))));
 

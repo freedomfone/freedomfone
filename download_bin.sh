@@ -1,9 +1,9 @@
 #!/bin/bash
 REPO=http://www.it46.se/freedomfone/manguensis/
 DOWNLOAD=/opt/freedomfone/
-#CEPSTRAL=Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz
-#FREESWITCH=freeswitch_1.0.head-git.master.20110530.ffone-8_i386.deb
-#FREESWITCH_LANG=freeswitch-lang-en_1.0.head-git.master.20110530.ffone-8_i386.deb
+CEPSTRAL=Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz
+FREESWITCH=freeswitch_1.0.head-git.master.20110530.ffone-8_i386.deb
+FREESWITCH_LANG=freeswitch-lang-en_1.0.head-git.master.20110530.ffone-8_i386.deb
 FREESWITCH_SPIDERMONKEY=freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-8_i386.deb
 
 for i in $CEPSTRAL $FREESWITCH $FREESWITCH_LANG $FREESWITCH_SPIDERMONKEY; do

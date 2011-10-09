@@ -23,7 +23,7 @@ case "$1" in
 	configure)
 		if ! getent passwd freeswitch >/dev/null; then
 			adduser --disabled-password  --quiet --system \
-			--home /pt/freeswitch \
+			--home /opt/freeswitch \
 			--gecos "FreeSWITCH Voice Platform" --ingroup daemon \
 			freeswitch
 			adduser freeswitch audio

@@ -74,8 +74,9 @@
 
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {
-                foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);
+
+                foreach($messages as $key => $value) {                
+                  if(is_int($key)){ echo $this->Session->flash($key);}
                 }
         }
 

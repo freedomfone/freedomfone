@@ -88,18 +88,13 @@ function beforeFilter() {
 	 if(!$timezone = $this->Session->read('Config.timezone')){
 		$timezone = $this->getTimezone();
 	 }
+         date_default_timezone_set($timezone);
 
-
-                date_default_timezone_set($timezone);
-                $locale = Configure::read('Config.language');
-
-
-             if ($locale && file_exists(VIEWS . $locale . DS . $this->viewPath)) {
-
-                        // e.g. use /app/views/fre/pages/tos.ctp instead of /app/views/pages/tos.ctp
-                        $this->viewPath = $locale . DS . $this->viewPath;
-              }
-
+	 if(!$locale = $this->Session->read('Config.langauge')){
+		$locale = $this->getLanguage();
+                Configure::write('Config.language', $locale);
+	 }
+  
     }
 
 
@@ -421,6 +416,17 @@ return $result;
      	    $this->Setting =& new Setting();
          }
     	 $entry = $this->Setting->findByName('timezone');
+	 return $entry['Setting']['value_string'];
+     }
+
+     function getLanguage(){
+
+
+        if (!isset($this->Setting)) {
+     	    $this->loadModel('Setting');   
+     	    $this->Setting =& new Setting();
+         }
+    	 $entry = $this->Setting->findByName('language');
 	 return $entry['Setting']['value_string'];
      }
 

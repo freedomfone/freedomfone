@@ -31,7 +31,7 @@ echo "<h1>".__("Tags",true)."</h1>";
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {
                 foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);               
+                  if(is_int($key)){ echo $this->Session->flash($key);}
                 }
         }
 
@@ -49,7 +49,7 @@ echo "<h1>".__("Tags",true)."</h1>";
       	      	         $title       = $tag['Tag']['name'];
  			 $description = $tag['Tag']['longname'];		   
                          $edit        = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "tags", "action" => "edit", $tag['Tag']['id']))));
-                         $delete      = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "tags", "action" => "delete", $tag['Tag']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this tag?',true)."');")));
+                         $delete      = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "tags", "action" => "delete", $tag['Tag']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this tag?',true)."');")));
 
                          $row[$key] = array($title, $description, $edit.' '.$delete);
                          if($authGroup != 1) { unset($row[$key][2]);}

@@ -33,7 +33,7 @@ echo "<h1>".__("Categories",true)."</h1>";
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {
                 foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);               
+                  if(is_int($key)){ echo $this->Session->flash($key);}
                 }
         }
 

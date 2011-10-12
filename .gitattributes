@@ -12,6 +12,7 @@ audio_bot/filters/wav2mp3.sh -text
 audio_bot/iwatch/iwatch.xml -text
 config/README -text
 config/dispatcher_in_config.php -text
+config/gui_config.php -text
 config/gui_config_core.php -text
 config/gui_config_database.php -text
 config/gui_config_sweeper.php -text

@@ -1262,6 +1262,7 @@ gui/cake/tests/test_app/webroot/theme/test_theme/css/webroot_test.css -text
 gui/cake/tests/test_app/webroot/theme/test_theme/img/cake.power.gif -text
 gui/cake/tests/test_app/webroot/theme/test_theme/img/test.jpg -text
 gui/index.php -text
+l10n/README -text
 l10n/Status -text
 l10n/manguensis/esp/LC_MESSAGES/default.po -text
 l10n/manguensis/fre/LC_MESSAGES/default.po -text

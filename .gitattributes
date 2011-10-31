@@ -1295,6 +1295,7 @@ rootconf/etc/init.d/freeswitch -text
 rootconf/etc/init.d/gsmopen -text
 rootconf/etc/init.d/iwatch -text
 rootconf/etc/ld.so.conf.d/cepstral.conf -text
+rootconf/etc/logrotate.d/freedomfone -text
 rootconf/etc/modprobe.d/blacklist-freedomfone.conf -text
 rootconf/etc/php5/apache2/php.ini -text
 rootconf/etc/rc.local -text

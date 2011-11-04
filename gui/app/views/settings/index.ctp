@@ -52,7 +52,7 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 	    $lang_selected = $entry['value_string'];
 	    $languages = Configure::read('LANGUAGES');
-	    $rows[] = array('Language', $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
+	    $rows[] = array(__('Language',true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
 	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	     
 	  } 
@@ -67,7 +67,7 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 
              $timezone = $entry['value_string'];
-	     $rows[] = array("Time zone",$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$timezone)));
+	     $rows[] = array(__("Time zone",true),$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$timezone)));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	    
 
@@ -75,7 +75,7 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 
              $country = $entry['value_string'];
-	     $rows[] = array("Country", $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$country)));
+	     $rows[] = array(__("Country",true), $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$country)));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 
           }

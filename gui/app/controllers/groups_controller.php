@@ -31,7 +31,7 @@ class GroupsController extends AppController{
 
       function index() {
 
-                $this->set('title_for_layout', __('Freedomfone Groups',true));
+                $this->set('title_for_layout', __('Freedom Fone Groups',true));
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->paginate());
 

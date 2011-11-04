@@ -181,7 +181,7 @@ class FfUsersController extends AppController{
 	         $this->redirect(array('action' => '/index'));
 	     }
          } else {
-                $this->_flash(__('You can not delete the Admin user.',true),'success');
+                $this->_flash(__('You cannot delete the Admin user.',true),'success');
 	        $this->redirect(array('action' => '/index'));
          }
 
@@ -197,7 +197,7 @@ class FfUsersController extends AppController{
                       $status =  $this->system_sweeper();   
 
                        if($status) {                     
-                                   $this->_flash(__('Freedom Fone has successfully been sweeped.',true),'success');
+                                   $this->_flash(__('Freedom Fone has successfully been swept.',true),'success');
                        } else {
                                    $this->_flash(__('Sweeping failed. Please review your Sweeper settings.',true),'error');
                        }

@@ -28,7 +28,7 @@ echo $html->addCrumb(__('GSM channels',true), '/channels');
 
 	if($this->data){
 
-                echo $html->addCrumb(__('Edit Officeroute',true), '/office_route/edit/'.$this->data['OfficeRoute']['id']);
+                echo $html->addCrumb(__('Edit OfficeRoute',true), '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
                 $msg1 = __("Edit channel",true);
                 $msg2 = __("slot",true);

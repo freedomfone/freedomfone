@@ -45,6 +45,7 @@ class CallbackServicesController extends AppController{
                  $this->pageTitle   = __('Callback Services',true);
                  $services = $this->paginate('CallbackService');
 
+
                  if($this->data){
 
                         $this->CallbackService->updateAll(array('CallbackService.tickle' => 0));
@@ -62,7 +63,6 @@ class CallbackServicesController extends AppController{
                        $services[$key]['CallbackService']['service_name'] = $result['service_name'];
                        $services[$key]['CallbackService']['application'] = $result['application'];
                  }
-
 
                  $this->set(compact('services'));    
         }
@@ -145,7 +145,7 @@ class CallbackServicesController extends AppController{
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
-                       if ( $header_status  == 1) {
+                      if ( $header_status  == 1) {
 
                            $results   = json_decode($results,true);
                            $nf_phone_book_id  = $results['phonebook'][0]['id'];   
@@ -158,8 +158,10 @@ class CallbackServicesController extends AppController{
 
                         } elseif ($header_status == 2)  {                      
       	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
-                        } elseif ($header_status == 5)  {                      
-      	                 $this->_flash(__('The dialer is not configured properly.', true)." (".$header.")", 'error');
+                        } elseif ($header_status == 5)  {
+
+       	                       $this->_flash(__('Please change your campaign settings, or modify the Dialer Settings of your Newfies installation.',true).'<br/>'.$results, 'error');                      
+
                         } elseif ($header_status == 6)  {                      
       	                 $this->_flash(__('Authentication failed with selected dialer.', true)." (".$header.")", 'error');
                        }
@@ -181,6 +183,62 @@ class CallbackServicesController extends AppController{
          }
 
 
+/*
+ *
+ * Delete Callback service (AJAX)
+ *
+ *
+ */
+
+    function delete($id = null){
+
+    Configure::write('debug', 0);
+      $dialer = Configure::read('DIALER');
+      
+       if($id && $data= $this->CallbackService->find('first', array('conditions' => array('id'=> $id)))){
+
+              $HttpSocket = new HttpSocket();
+              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/delete_cascade/'.$data['CallbackService']['nf_campaign_id'], false, $request); 
+              $header  = $HttpSocket->response['raw']['status-line'];
+
+                    if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
+                        $results   = json_decode($results,true);
+
+                        $this->CallbackService->id= $id;
+
+                        if ($this->CallbackService->delete($id,true)){
+
+
+                           $callback_services = $this->paginate('CallbackService');
+
+
+                           foreach($callback_services as $key => $callback_service){
+
+                                         $result = $this->getServiceName($callback_service['CallbackService']['extension']);
+                                         $callback_services[$key]['CallbackService']['service_name'] = $result['service_name'];
+                                         $callback_services[$key]['CallbackService']['application']  = $result['application'];
+                           }
+
+
+                           $this->set('data',$callback_services);
+                           $this->_flash(__('The callback service has been deleted.',true), 'success');
+                           $this->render('delete_success','ajax');
+                        }
+                    } else {
+
+       	              $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
+                      $this->redirect(array('action'=>''));   	                     
+
+                    } 
+       } else {
+
+                      $this->_flash(__('There is no callback service with this id.',true), 'error');
+                      $this->redirect(array('action'=>'index'));   	                     
+
+       }
+
+    }
 
 
 /*
@@ -190,7 +248,7 @@ class CallbackServicesController extends AppController{
  *
  */
 
-    function delete($id){
+/*    function delete($id){
 
     Configure::write('debug', 0);
 
@@ -203,7 +261,7 @@ class CallbackServicesController extends AppController{
 
         }
         
-    }
+    }*/
 
 /*
  *

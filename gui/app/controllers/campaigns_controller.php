@@ -69,6 +69,7 @@ class CampaignsController extends AppController{
    	   $dialer = Configure::read('DIALER');
 
                $phonebooks = $this->getPhoneBooks();
+               if(!$phonebooks){ $this->_flash(__('There is no valid phone book in the system. Please create a phone book (with one or more users) before you create the campaign.',true), 'warning');}
 
                $this->loadModel('IvrMenu');
                $ivr = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'ivr'), 'fields' => array('instance_id','title'),'recursive' => 0));
@@ -154,10 +155,11 @@ class CampaignsController extends AppController{
                   if($this->Campaign->saveAll($this->data, array('validate' => 'only'))){
 
                         $HttpSocket = new HttpSocket();
+                    
+
                         $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
                         $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
                         $header  = $HttpSocket->response['raw']['status-line'];
-
                         $status = $this->headerGetStatus($header);
 
                         if ( $status == 1) {
@@ -206,7 +208,7 @@ class CampaignsController extends AppController{
 
                          } elseif( $status == 5){
 
-       	                       $this->_flash(__('There is no such VoIP gateway in the Dialer.',true), 'error');
+       	                       $this->_flash($results.'<br/>'.__('Please change your campaign settings, or modify the Dialer Settings of your Newfies installation.',true), 'error');
 
                          }  else {
        	               
@@ -248,6 +250,7 @@ class CampaignsController extends AppController{
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
               $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/delete_cascade/'.$data['Campaign']['nf_campaign_id'], false, $request); 
               $header  = $HttpSocket->response['raw']['status-line'];
+
 
                     if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
                         $results   = json_decode($results,true);
@@ -309,7 +312,10 @@ class CampaignsController extends AppController{
               $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id, $socket_data, $request); 
               $header = $HttpSocket->response['raw']['status-line'];
 
-
+debug($nf_campaign_id);
+debug($socket_data);
+debug($results);
+debug($header);
               if ($this->headerGetStatus($header) == 1) {           
 
        	         $this->_flash(__('The campaign status has successfully been changed.',true), 'success');                           	
@@ -426,6 +432,7 @@ class CampaignsController extends AppController{
          } 
 
 	 $this->Campaign->Callback->bindModel(array('belongsTo' => array('User' => array('ClassName' => 'user_id'))));   
+	 $this->Campaign->Callback->unbindModel(array('belongsTo'=> array('CallbackService')));
          $param = array('conditions' => $conditions, 'order' => $order_by);
          $campaigns = $this->Campaign->Callback->find('all', $param);
 

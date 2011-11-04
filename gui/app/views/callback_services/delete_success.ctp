@@ -32,12 +32,8 @@
 
                    $row[$key] = array(
                                 $entry['CallbackService']['code'],
-                                $entry['CallbackService']['extension'],
-                                $entry['CallbackService']['max_retries'],
-                                $entry['CallbackService']['retry_interval'],
-                                $entry['CallbackService']['max_duration'],
-                                $entry['CallbackService']['max_calls_user'],
-                                $entry['CallbackService']['max_calls_user_day'],
+                                $formatting->appMatch($entry['CallbackService']['application']),
+                                $entry['CallbackService']['service_name'],
                                 $entry['CallbackService']['max_calls_total'],
                                 $entry['CallbackService']['calls_total'],
                                 $entry['CallbackService']['start_time'],
@@ -47,10 +43,8 @@
 
            }
 
-
-
             echo "<table width='90%' cellspacing =0>";
-            echo $html->tableHeaders(array(__("Code",true),__("Service",true),__("Max retires",true),__("Retry interval",true),__("Max duration",true),__("Max calls/user",true),__("Max calls/user/day",true),__("Max calls total",true),__("Total calls placed",true),__("Start time",true),__("End time",true),__("Actions",true)));
+            echo $html->tableHeaders(array(__("SMS Code",true),__("Application",true),__("Name",true),__("Max calls total",true),__("Calls placed",true),__("Start time",true),__("End time",true),__("Actions",true)));
             echo $html->tableCells($row);
             echo "</table>";
             echo "</div>";

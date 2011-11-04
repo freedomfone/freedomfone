@@ -30,9 +30,11 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
      echo "<h1>".__("Create Campaign",true)."</h1>";
 
-     if ($messages = $session->read('Message.multiFlash')) {
+        if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
         }
+
+  if($phonebooks){
 
      echo $form->create('Campaign',array('type' => 'post','action'=> 'add'));
 
@@ -132,6 +134,14 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
       echo $form->end(__('Save',true));
 
+      } else {
+
+        echo $form->create('PhoneBook',array('type' => 'post','action'=> 'add'));
+        echo $html->div('frameRightTrans',$form->submit(__('Create phone book',true),  array('name' =>'submit', 'class' => 'button')));
+        echo $form->end();
+
+
+      }
 
 
 ?>

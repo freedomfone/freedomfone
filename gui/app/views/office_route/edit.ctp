@@ -27,7 +27,7 @@
 
 	if($this->data){
 
-                echo $html->addCrumb('Edit Officeroute', '/office_route/edit/'.$this->data['OfficeRoute']['id']);
+                echo $html->addCrumb('Edit OfficeRoute', '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
                 $msg1 = __("Edit channel",true);
                 $msg2 = __("slot",true);

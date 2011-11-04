@@ -58,7 +58,7 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                      $entry = $this->LmMenu->nextInstance();
 
                      if(!$entry['id']){
-                        $this->_flash(__('There are no idle instance for a new Leave-a-message IVR menu. Please delete an existing menu, and try again. Maximum menus: 20.',true), 'warning');
+                        $this->_flash(__('There is no idle instance for a new Leave-a-message IVR menu. Please delete an existing menu, and try again. Maximum menus: 20.',true), 'warning');
                         $this->redirect(array('action' =>'/'));
                      } else {
  

@@ -73,6 +73,7 @@ class SettingsController extends AppController {
 
 	           Configure::write('Config.language', $lang);
                    $this->Session->write('Config.language', $lang);         
+
              
                    Configure::write('Config.timezone', $timezone); 
                    $bool = date_default_timezone_set(Configure::read('Config.timezone'));

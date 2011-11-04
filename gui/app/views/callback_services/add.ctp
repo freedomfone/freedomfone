@@ -22,7 +22,7 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb__('Callback Service',true), '/callback_services');
+echo $html->addCrumb(__('Callback Service',true), '/callback_services');
 echo $html->addCrumb(__('Create',true), '/callback_services/add');
 
 

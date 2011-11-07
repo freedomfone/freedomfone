@@ -1,5 +1,5 @@
 // * file_name    - Leave a Message for Freedom Fone 
-// * version      - 1.0.800 
+// * version      - 1.0.1600 
  
 // * ***** BEGIN LICENSE BLOCK *****
 // * Version: MPL 1.1
@@ -80,6 +80,9 @@ var lmId = argv[0];
 //  Fetching the Freeswitch local IP for the LAM event 
 var lmIP = argv[1]; 
 
+// Maximum recording length in seconds (2 minutes).
+var lmMaxreclen = 120;
+
 // TTS texts are loaded here. File generated from GUI
 //
 //FIXME! We will love to do this reading a XML file and not a JS.
@@ -101,8 +104,6 @@ var lmSaveAudio = lmDir + "/audio_menu/lmSave.wav";
 var lmGoodbyeAudio = lmDir + "/audio_menu/lmGoodbye.wav";
 var lmLongAudio = lmDir + "/audio_menu/lmLong.wav";
 
-// Maximum recording length in seconds (2 minutes).
-var lmMaxreclen = 120;
 
 // Artificial silences for sleep session.execute. 
 // FIXME! Play with this value and provide reference values

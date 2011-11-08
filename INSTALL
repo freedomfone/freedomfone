@@ -46,3 +46,22 @@ STEP 10. Reboot or run /etc/rc.local
 Point your browser to http://localhost/freedomfone
 Username: Admin
 Password: thefone
+
+
+*** Updating a running installation ***
+
+A running installation can be updated by upgrading/reinstalling the freeswitch packages that bundle the components
+that we use. 
+
+Download the latest versions and run:
+
+#cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-10_i386.deb
+
+#cd /opt/freedomfone; ./fix_perms_gui.sh
+#cd /opt/freedomfone; ./fix_perms_fs.sh
+
+Other components of the system can be updated using Subversion. 
+Subversion changes can alter the permissions, so you need to run
+the fix_perms scripts after any update.
+
+

@@ -110,8 +110,8 @@ class BinController extends AppController{
 
     function refresh(){
 
+             $this->Bin->refresh();
 
-             $this->Bin->sweep();
 
 
     }

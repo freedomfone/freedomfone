@@ -34,7 +34,7 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
  if(isset($this->params['form']['action'])) {	
 	
-     if ($this->params['form']['action']==__('Export',true)){
+     if ($this->params['form']['action']==__('Export',true) && $authGroup == 1){
 
 	     $export=true;
 
@@ -126,9 +126,11 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    $buttons=array();
 	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));
-     	    if($cdr){ 
+
+     	    if($cdr && $authGroup == 1){ 
 	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
              }
+
 	     echo $html->tableCells($buttons,array('class' => 'none'),array('class' => 'none'));
 	     echo "</table>";
 	     echo $form->end();

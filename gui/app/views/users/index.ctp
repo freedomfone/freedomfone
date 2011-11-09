@@ -25,6 +25,9 @@
 echo $html->addCrumb(__('User Management',true), '');
 echo $html->addCrumb(__('Users',true), '/users');
 
+$config   = Configure::read('SWEEP_CONFIG');
+$settings = Configure::read('SWEEP_SETTINGS');
+$mode     = $config['mode'];
 
 echo $javascript->includeScript('toggle');
 
@@ -96,7 +99,6 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
  
       foreach ($users as $key => $user){
-
         echo $form->input('User.'.$user['User']['id'].'.name',array('type'=>'hidden', 'value' => $user['User']['name']));
         $status='';
 
@@ -139,12 +141,12 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
         $row[$key] = array($id,
      		array($status,array('align'=>'center')),
-     		array($name,array('width' => '100px')),
-     		array($surname,array('width' => '100px')),
+     		array($this->Access->showBlock($authGroup, $name, $settings['User'][$mode]['name']),array('width' => '100px')),
+     		array($this->Access->showBlock($authGroup, $surname, $settings['User'][$mode]['surname']),array('width' => '100px')),
 		$email,
 		$skype,
 		$acl,
-		$this->Access->showBlock($authGroup, $info,'XXX'),		
+		$this->Access->showBlock($authGroup, $info,$settings['PhoneNumber'][$mode]['number']),		
 		array($view.' '.$edit.' '.$delete, array('align' => 'center', 'width' => '80px')));
 	}
      

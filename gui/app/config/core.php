@@ -33,7 +33,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', 0);
 
 /**
  * CakePHP Log Level:
@@ -321,5 +321,5 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','3.0');
+define ('VERSION','2.S');
 define ('VERSION_NAME','Manguensis');

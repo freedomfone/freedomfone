@@ -28,8 +28,13 @@
 
 
       echo "<h1>".__("Add System User",true)."</h1>";
-      
-      echo $this->Session->flash();
+
+        // Multiple Flash messages
+        if ($messages = $this->Session->read('Message')) {
+                foreach($messages as $key => $value) {
+                 echo $this->Session->flash($key);
+                }
+        }
 
       echo $form->create('FfUser',array('type' => 'post','action'=> 'add'));
       echo "<table cellspacing=0 'class'='stand-alone'>";

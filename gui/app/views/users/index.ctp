@@ -53,7 +53,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
     }
 
    $options_slim = $options;
-   $options[0] = __('All phone books',0);
+   $options[0] = __('All users',0);
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 

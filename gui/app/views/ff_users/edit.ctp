@@ -27,7 +27,7 @@
       if($this->data){
 
         echo $html->addCrumb(__('Edit',true), '/ff_users/edit/'.$this->data['FfUser']['id']);
-        echo "<h1>".__("Edit User",true)."</h1>";
+        echo "<h1>".__("Edit System User",true)."</h1>";
 
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {

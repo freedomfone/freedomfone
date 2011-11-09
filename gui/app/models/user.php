@@ -69,7 +69,8 @@ function __construct($id = false, $table = null, $ds = null) {
                         'format' => array(
                                         'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'required' =>  true,
-                                        'message'  => __('Only letters, spaces and hyphens.',true)
+                                        'message'  => __('Name required (letters, spaces and hyphens).',true),
+				        'allowEmpty' => false
                                         ),
  			'between' => array(
  				       'rule' => array('between', 1, 20),
@@ -79,7 +80,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
 
         'surname' => array(
-                       'foramt' => array(
+                       'format' => array(
                                         'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
                                         'allowEmpty' =>  true,
                                         'message'  => __('Only letters, spaces and hyphens.',true)

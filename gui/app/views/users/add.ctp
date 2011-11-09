@@ -23,11 +23,11 @@
  ***************************************************************************/
 
 echo $html->addCrumb(__('User Management',true), '');
-echo $html->addCrumb(__('Users',true), '/users');
+echo $html->addCrumb(__('Callers',true), '/users');
 echo $html->addCrumb(__('Add',true), '/users/add');
 
 
-     echo "<h1>".__("Add User",true)."</h1>";
+     echo "<h1>".__("Add Caller",true)."</h1>";
 
      echo $form->create('User',array('type' => 'post','action'=> 'add'));
      echo $form->hidden('new',array('value'=>0));

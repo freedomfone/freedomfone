@@ -47,7 +47,7 @@ Configure::write('debug', 0);
 
    
     //** START LEFT FRAME **//
-     $row[] = array($html->div('table_sub_header',__('User data',true)), false);
+     $row[] = array($html->div('table_sub_header',__('Caller data',true)), false);
      $row[] = array(__("Name",true),			 $data['User']['name']);
      $row[] = array(__("Surname",true),			 $data['User']['surname']);
      $row[] = array(__("Email",true),			 $data['User']['email']);
@@ -96,7 +96,7 @@ Configure::write('debug', 0);
     }
     else {
 
-    echo "<h1>".__("No user with this id exists",true)."</h1>";
+    echo "<h1>".__("No caller with this id exists",true)."</h1>";
    
     }
 

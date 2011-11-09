@@ -43,7 +43,7 @@ class UsersController extends AppController{
       function index(){
 
         $this->refreshAll();
-       $this->set('title_for_layout', __('Users',true));
+       $this->set('title_for_layout', __('Callers',true));
 
         $this->User->recursive = 1;         
 
@@ -99,6 +99,7 @@ class UsersController extends AppController{
 
              $phone_book_id = $this->Session->read('users_phone_book_id');
              $data = $this->User->PhoneBook->findById($phone_book_id);
+
              if ($data['User']){
                 foreach ($data['User'] as $key => $user){
                      $user_id[] = $user['id'];
@@ -133,7 +134,7 @@ class UsersController extends AppController{
 
      function view($id){
 
-       $this->set('title_for_layout', __('Users details',true));
+       $this->set('title_for_layout', __('Caller details',true));
 
       	   $this->User->id = $id;
       	   $this->set('data',$this->User->findById($id));       
@@ -144,7 +145,7 @@ class UsersController extends AppController{
 
     function edit($id = null)    {  
 
-             $this->set('title_for_layout', __('Edit User',true));
+             $this->set('title_for_layout', __('Edit Caller',true));
 
              if(isset($this->params['form']['submit'])) {
 	        if ($this->params['form']['submit']==__('Refresh',true)){
@@ -221,11 +222,14 @@ class UsersController extends AppController{
 
     function process (){
    
+
 	    //One or more users selected
 	    if(array_key_exists('user',$this->params['form'])){
 
 		$entries = $this->params['form']['user'];
     	    	$action = $this->params['data']['Submit'];
+
+debug($entries);
 
                 switch($action){
 
@@ -234,6 +238,7 @@ class UsersController extends AppController{
 
                         $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
     	     	        foreach ($entries as $key => $id){
+
 
                                 $user_id = $id;
                                 $phonebooks = $this->User->findById($user_id);
@@ -245,14 +250,20 @@ class UsersController extends AppController{
                                 }
                                 $phone_book_id[] = $phone_book_id_selected;
                                 $phone_book_id = array_unique($phone_book_id);
-                                $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
+                                //  $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
 
 
-                                $this->User->id = $user_id;
-                                $this->User->save($data);
+                                $data[] = array('User' => array('id' => $user_id ), 'PhoneBook' => array('id' => $phone_book_id_selected)); 
+                         
+
 
                         }
+
+                        debug($data);
                         
+                        $this->User->PhoneBook->save($data);
+exit;
+
                         break;
 
                         case __('Remove from phone book',true): 
@@ -374,7 +385,7 @@ class UsersController extends AppController{
     function add() {
 
 
-        $this->set('title_for_layout', __('Add User',true));
+        $this->set('title_for_layout', __('Add Caller',true));
     	
 	$acls = $this->User->Acl->find('list');
  	$this->set(compact('acls'));

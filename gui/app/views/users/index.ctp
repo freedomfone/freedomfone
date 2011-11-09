@@ -23,7 +23,7 @@
  ***************************************************************************/
 
 echo $html->addCrumb(__('User Management',true), '');
-echo $html->addCrumb(__('Users',true), '/users');
+echo $html->addCrumb(__('Callers',true), '/users');
 
 $config   = Configure::read('SWEEP_CONFIG');
 $settings = Configure::read('SWEEP_SETTINGS');
@@ -37,13 +37,13 @@ echo $form->create('User',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightTrans', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
-$this->Access->showButton($authGroup, 'User', 'add', 'frameRightTrans', __('Add user',true), 'submit', 'button');
+$this->Access->showButton($authGroup, 'User', 'add', 'frameRightTrans', __('Add caller',true), 'submit', 'button');
 
 
 echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans');
 
 
-     echo "<h1>".__('Users',true)."</h1>";
+     echo "<h1>".__('Callers',true)."</h1>";
 
    // Multiple Flash messages
    if ($messages = $this->Session->read('Message')) {
@@ -53,7 +53,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
     }
 
    $options_slim = $options;
-   $options[0] = __('All users',0);
+   $options[0] = __('All callers',0);
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
@@ -81,7 +81,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
         }
 
-        echo $html->div("paginator'",$paginator->counter(array('format' => __("User",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ".$suffix)));
+        echo $html->div("paginator'",$paginator->counter(array('format' => __("Caller",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ".$suffix)));
         echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
         echo "<table class='collapsed' cellspacing=0>";
@@ -124,7 +124,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
         $view = $html->link(
                         $this->Html->image("icons/view.png"),
                         "/users/view/".$user['User']['id'],
-                        array("escape" => false, "title" => __("User details", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 950}); return false;"),
+                        array("escape" => false, "title" => __("Caller details", true), "onClick" => "Modalbox.show(this.href, {title: this.title, width: 950}); return false;"),
                         false);
 
 

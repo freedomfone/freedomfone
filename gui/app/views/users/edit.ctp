@@ -25,7 +25,7 @@
 
 
 echo $html->addCrumb(__('User Management',true), '');
-echo $html->addCrumb(__('Users',true), '/users');
+echo $html->addCrumb(__('Callers',true), '/users');
 echo $html->addCrumb(__('Edit',true), '/users/edit/'.$this->data['User']['id']);
 
 
@@ -38,7 +38,7 @@ echo $form->end();
  if($data = $this->data){
 
      $button = $form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'save_button'));
-     echo "<h1>".__("Edit User",true)."</h1>";
+     echo "<h1>".__("Edit Caller",true)."</h1>";
      echo $html->div('content_wrap_inline');
 
 
@@ -66,7 +66,7 @@ echo $form->end();
    
     //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
-     $row[] = array($html->div('table_sub_header',__('User data',true)), array($button,''));
+     $row[] = array($html->div('table_sub_header',__('Caller data',true)), array($button,''));
      $row[] = array(__("Name",true),			 $form->input('name',array('label'=>false)));
      $row[] = array(__("Surname",true),			 $form->input('surname',array('label'=>false)));
      $row[] = array(__("Email",true),			 $form->input('email',array('label'=>false)));

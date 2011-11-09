@@ -99,9 +99,11 @@ class CdrController extends AppController{
 	}
 
 
+
        $this->paginate = array('conditions'=> array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'),'limit'=>$pageCount);
 	$this->set('select_option','all');
         $cdrExport = $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc')));
+
 
         } else {
         
@@ -138,7 +140,7 @@ class CdrController extends AppController{
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action']==__('Export',true)){     
+	     if ($this->params['form']['action'] ==__('Export',true)){     
   	       Configure::write('debug', 0);
     	       $this->layout = null;
     	       $this->autoLayout = false;

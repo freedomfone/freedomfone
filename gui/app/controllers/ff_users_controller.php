@@ -65,7 +65,7 @@ class FfUsersController extends AppController{
 
 	function index() {
 
-                $this->set('title_for_layout', __('Freedomfone Users',true));
+                $this->set('title_for_layout', __('System Users',true));
 
                 $this->loadModel('Group');
                 $options = $this->Group->find('list');
@@ -79,7 +79,7 @@ class FfUsersController extends AppController{
 
 	function add() {
 
-               $this->set('title_for_layout', __('Add User',true));
+               $this->set('title_for_layout', __('Add System User',true));
                $this->loadModel('Group');
                $options = $this->Group->find('list');
                $this->set(compact('options'));
@@ -116,7 +116,7 @@ class FfUsersController extends AppController{
 
 	function edit($id = null) {
 
-                $this->set('title_for_layout', __('Edit User',true));
+                $this->set('title_for_layout', __('Edit System User',true));
 
 		if (!$id && empty($this->data)) {
 			$this->_flash(__('Invalid option', true),'warning');

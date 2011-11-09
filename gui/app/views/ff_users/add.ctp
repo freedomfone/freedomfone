@@ -27,7 +27,7 @@
       echo $html->addCrumb(__('Add',true), '/ff_users/add');
 
 
-      echo "<h1>".__("Add user",true)."</h1>";
+      echo "<h1>".__("Add System User",true)."</h1>";
       
       echo $this->Session->flash();
 

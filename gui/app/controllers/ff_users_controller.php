@@ -123,30 +123,27 @@ class FfUsersController extends AppController{
 			$this->redirect(array('action'=>'index'));
 		}
 
-
 		if (!empty($this->data)) {
-
 
                     //Set password to non-hashed for validation
                     $this->data['FfUser']['password'] = $this->data['FfUser']['pwd']; 
 
                     //If password is left blank, do not validate
                     if(!$this->data['FfUser']['pwd']){
+
                       unset($this->data['FfUser']['password']);
 
                     }
 
                     $this->FfUser->set($this->data);
 
-  		    if ($this->FfUser->save($this->data)) {
+  		    if ($this->FfUser->save($this->data) && key_exists('password',$this->data['FfUser']) ) {
+
 
                          //If data is saved/validated, update password field with hashed version	               
                          $this->FfUser->id = $id;
 
                          $this->FfUser->saveField('password', $this->Auth->password($this->data['FfUser']['pwd']));
-
-
-
 
 			 $this->_flash(__('User has been updated.', true),'success');
 			 $this->redirect(array('action'=>'index'));
@@ -154,10 +151,14 @@ class FfUsersController extends AppController{
 		    } else {
 
                          $errors = $this->FfUser->invalidFields(); 
-			 $this->_flash($errors['password'], 'error');
+                         if(key_exists('password', $errors)){
+			    $this->_flash($errors['password'], 'error');
+                         }
 
                     }
 
+			 $this->_flash(__('User has been updated.', true),'success');
+			 $this->redirect(array('action'=>'index'));
 
  
 		}

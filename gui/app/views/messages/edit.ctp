@@ -90,7 +90,8 @@
 
      echo $html->tableCells(array (
      array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'45'))),
-     array(__("Status",true),	$this->Access->showBlock($authGroup, $form->input('status',$options_status), $options_status['options'][$this->data['Message']['status']])),
+     array(__("Status",true),	$form->input('status',$options_status)),
+
      array(__("Rate",true),	$form->input('rate',$options_rate)),
      array(__("Category",true),	$form->input('category_id',array('type'=>'select','options'=>$categories, 'empty'=>"--- ".__('No category',true)." ---",'label'=>false))),
      array(array(__("Comment",true),array('valign'=>'top')),	$form->input('comment',array('type'=>'textarea','label'=>false,'cols'=>45))),

@@ -29,9 +29,6 @@ class SettingsController extends AppController {
 
 	function index() {
 
-
-              $this->set('title_for_layout', __('Settings',true));
-
 	      //Fetch form data and process
               if (!empty($this->data)) {
 				
@@ -95,6 +92,8 @@ class SettingsController extends AppController {
 
 		}
 		 
+              $this->set('title_for_layout', __('Settings',true));
+
               //Display form data               
 
 	      $external = $this->Setting->getIP('external');
@@ -106,6 +105,8 @@ class SettingsController extends AppController {
 	      $this->set('data',$this->Setting->findAllByType('env'));
  	      $this->set(compact('external','internal','countries'));
 	      $this->render();       
+
+
          
 	 }
 

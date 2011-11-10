@@ -81,6 +81,10 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
 
 	$edit     = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "messages", "action" => "edit", $message['Message']['id'])));
 	$download = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "messages", "action" => "download", $message['Message']['id'])));
+
+	$actions = array($edit.' '.$this->Access->showBlock($authGroup, $download ) ,array('align'=>'center'));
+
+
 	$listen   = $this->element('player',array('url'=>$message['Message']['url'],'file'=>$message['Message']['file'],'title'=>$title,'id'=>$message['Message']['id']));
 
         $row[$key] = array(
@@ -93,7 +97,7 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
 		array($category,array('align'=>'center')),
 		$created,		
 		array($length,array('align'=>'center')),
-		array($edit.' '.$download,array('align'=>'center')),
+                $actions,
 		array($listen,array('align'=>'center')));
 		
 

@@ -51,6 +51,7 @@ class UsersController extends AppController{
 
             $this->Session->write('users_phone_book_id',false);
 
+
         } else {
 
            if(isset($this->params['named']['sort'])) { 
@@ -89,7 +90,9 @@ class UsersController extends AppController{
 
 
              //Show all phone books
-             } elseif ( isset($phone_book_id) && $phone_book_id ==0 ){
+             } elseif ( isset($phone_book_id) && $phone_book_id == 0 ){
+             $this->Session->write('users_phone_book_id', $phone_book_id);
+
 
              $users = $this->paginate('User');
              $this->set(compact('users'));    
@@ -98,7 +101,10 @@ class UsersController extends AppController{
              } elseif ( !$phone_book_id  && $this->Session->read('users_phone_book_id')){
 
              $phone_book_id = $this->Session->read('users_phone_book_id');
+     
              $data = $this->User->PhoneBook->findById($phone_book_id);
+
+
 
              if ($data['User']){
                 foreach ($data['User'] as $key => $user){
@@ -127,6 +133,7 @@ class UsersController extends AppController{
          $this->loadModel('PhoneBook');
          $options = $this->PhoneBook->find('list');
          $this->set(compact('options','users'));
+
 
       }
 

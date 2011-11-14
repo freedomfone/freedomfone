@@ -113,11 +113,14 @@ class PollsController extends AppController{
 	 //Save vote data
 	 $this->Poll->Vote->create($this->data['Vote']);
 	 $this->Poll->Vote->saveAll($this->data['Vote'],array('validate' => false));
+         $this->log('[INFO] POLL CREATED, Id: '.$id, 'poll');    	     
 
          if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
-            $this->_flash(__("The poll has been created. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
+            $this->_flash(__("The poll has been created. Please note that the poll's closing time has already passed.",true),'warning');                               
+                            $this->log('[WARNING] Poll closing time has passed, Id: '.$id, 'poll');                                                                                                                      
          } else {                                                                                                                                                                                                                                                              
-          $this->_flash(__("The poll has successfully been created.",true),'success');                                                                                                                                                                                          
+          $this->_flash(__("The poll has successfully been created.",true),'success');
+
          }        
 	
 
@@ -137,7 +140,7 @@ class PollsController extends AppController{
     	     if($this->Poll->delete($id,true))
 	     {
     	     $this->_flash(__('The following poll has been deleted',true).': '.$title, 'success');
-	     $this->log('Msg: POLL DELETED; Id:title: '.$id.":".$title, 'poll');	
+             $this->log('[INFO] POLL DELETED, Id: '.$id.', Title: '.$title, 'poll');    	     
 	     $this->redirect(array('action' => '/index'));
 
 
@@ -155,7 +158,7 @@ class PollsController extends AppController{
        if($result > 2){
     	     if($this->Poll->Vote->delete($id,true))
 	     {
-	     $this->log('Msg: POLL OPTION DELETED; Id: '.$id, 'poll');	
+             $this->log('[INFO] POLL OPTION DELETED, Id: '.$id, 'poll');    	     
 	     $this->redirect(array('action' => '/edit/'.$poll_id));
 	     }
        } else {
@@ -194,11 +197,15 @@ class PollsController extends AppController{
 	            //Save poll data
 
 	            $this->Poll->save($this->data['Poll']);
+                    $this->log('[INFO] POLL EDITED, Id: '.$id, 'poll');    	     
 
                          if ( $this->Poll->find('first', array('conditions' => array('id' => $id, 'status' =>2)))){                                                                                                                                                                            
-                            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');                                                                                                                                       
-                         } else {                                                                                                                                                                                                                                                              
-                            $this->_flash(__("The poll has been updated.",true),'success');                                                                                                                                                                                                       
+                            $this->_flash(__("The poll has been updated. Please note that the poll's closing time has already passed.",true),'warning');
+                            $this->log('[WARNING] Poll closing time has passed, Id: '.$id, 'poll');
+                                   
+                         } else {
+                      
+                            $this->_flash(__("The poll has been updated.",true),'success');
                          }    
 	
                         $this->redirect(array('action' => 'index'));

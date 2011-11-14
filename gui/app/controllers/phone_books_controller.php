@@ -43,7 +43,7 @@ class PhoneBooksController extends AppController {
 
 	function add() {
 
-                $this->set('title_for_layout', _('Add Phone book',true));
+                $this->set('title_for_layout', __('Add Phone book',true));
 
 
 		if (!empty($this->data)) {

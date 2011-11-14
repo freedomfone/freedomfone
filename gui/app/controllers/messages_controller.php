@@ -261,9 +261,11 @@ class MessagesController extends AppController{
 
 	if($this->Message->saveAll($this->data)){
 
+                $title = $this->Message->getTitle($id);
 		$this->Message->save($this->data['Tag']);
 		$this->_flash(__('The entry has been updated',true),'success');
-    	     
+	        $this->log('[INFO] MESSAGE EDITED, Id: '.$id.', Title: '.$title, 'message');    	     
+
 		$submit   = $this->params['data']['Submit'];
 
 		if ($submit == __('Save',true) ){		   
@@ -286,7 +288,7 @@ class MessagesController extends AppController{
     	     if($this->Message->delete($id))
 	     {
 	     $this->Session->setFlash('Message with title "'.$title.'" has been deleted.');
-	     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
+             $this->log('[INFO] MESSAGE DELETED, Id: '.$id.', Title: '.$title, 'message');    	     
 	    
 	     }
 
@@ -321,17 +323,21 @@ class MessagesController extends AppController{
     	     	foreach ($entries as $key => $id){
 	     	     if ($id) {
 			   $this->Message->id = $id;
+                           $title = $this->Message->getTitle($id);
 			   if ($action == __('Delete',true)){
 		     	       if ($this->Message->delete($id)){
-				     $title = $this->Message->getTitle($id);
-				     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
+
+                                     $this->log('[INFO] MESSAGE DELETED, Id: '.$id.', Title: '.$title, 'message');    	     
+
 			        }
 			    } elseif ($action == __('Move to Archive',true)){
 				$this->Message->saveField('status',0);
- 	      			$this->log('ARCHIVE Message '.$id, 'leave_message');		       
+                                $this->log('[INFO] MESSAGE ARCHIVED, Id: '.$id.', Title: '.$title, 'message');    	     
+
 			    }  elseif ($action == __('Activate',true)){
 				$this->Message->saveField('status',1);
- 	      			$this->log('Msg: MESSAGE ACTIVATED '.$id, 'leave_message');		       
+                                $this->log('[INFO] MESSAGE ACTIVATED, Id: '.$id.', Title: '.$title, 'message');    	     
+
 			    }
 		        }
 	             } //foreach

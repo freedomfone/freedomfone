@@ -179,8 +179,9 @@ class IvrMenusController extends AppController{
         if ($this->IvrMenu->saveAll($this->data )){
 
 
-	   //Retrieve id of saved poll
+	   //Retrieve id of saved IVR
 	   $id = $this->IvrMenu->getLastInsertId();
+           $this->log("[INFO] ADD IVR, Id: ".$id, "ivr");	
 
 		foreach($this->data['IvrMenuFile'] as $key => $file){
 
@@ -209,7 +210,7 @@ class IvrMenusController extends AppController{
                                            $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
 
-		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
+		   			   $this->log("[INFO] ADD IVR, New audio file: ".$url, "ivr");
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
 					
@@ -218,7 +219,7 @@ class IvrMenusController extends AppController{
 			if(array_key_exists('errors', $fileOK)) {
 
 				   foreach ($fileOK['errors'] as $key => $error ){
-				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
+				   	   $this->log("[ERROR] ADD IVR, File upload: ".$error, 'ivr');	
 					   $this->_flash($error, 'error');
 
 				    }
@@ -342,7 +343,7 @@ class IvrMenusController extends AppController{
 
 	   //Retrieve id of saved poll
 	   $id = $this->IvrMenu->getLastInsertId();
-
+           $this->log("[INFO] ADD SELECTOR, Id: ".$id, "ivr");	
 		foreach($this->data['IvrMenuFile'] as $key => $file){
 
 
@@ -370,7 +371,7 @@ class IvrMenusController extends AppController{
                                            $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
 
-		   			   $this->log("Msg: INFO; Action: IVR edit; Type: new audio file; Code: ".$url, "ivr");
+		   			   $this->log("[INFO] EDIT SELECTOR, New audio file: ".$url, "ivr");
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 				   }
 					
@@ -379,7 +380,7 @@ class IvrMenusController extends AppController{
 			if(array_key_exists('errors', $fileOK)) {
 
 				   foreach ($fileOK['errors'] as $key => $error ){
-				   	   $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');	
+				   	   $this->log("[ERROR] UPLOAD ERROR, Error: ".$error, 'ivr');	
 					   $this->_flash($error, 'error');
 
 				    }
@@ -422,7 +423,7 @@ class IvrMenusController extends AppController{
 	  if (!$id && empty($this->data)){
 
 	     $this->_flash(__('Invalid option', true),'warning'); 
-  	     $this->log("Msg: WARNING; Action: IVR edit; Type: incorrect id; Code: ".$id, "ivr");	
+  	     $this->log("[WARNING] EDIT IVR, Incorrect id: ".$id, "ivr");	
 	     $this->redirect(array('action'=>'index')); 
 	  }
 
@@ -490,7 +491,7 @@ class IvrMenusController extends AppController{
    
                                            $this->IvrMenu->saveField($field,$name);
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
-					   $this->log("Msg: INFO; Action: Edit menu; Type: ".$url."; Code: N/A", "ivr");
+					   $this->log("[INFO] EDIT IVR, New file uploaded: ".$url, "ivr");
 				   }
 					
 			}
@@ -559,6 +560,7 @@ class IvrMenusController extends AppController{
 
 
          $this->IvrMenu->saveAll($this->data);
+         $this->log("[INFO] EDIT IVR, Id: ".$id, "ivr");	
 
 	 //Update IVR xml file
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   
@@ -568,7 +570,7 @@ class IvrMenusController extends AppController{
 
 	//Redirect to index
 	$this->redirect(array('action' => 'index'));
-
+       
 
 	 } 
 
@@ -622,7 +624,8 @@ class IvrMenusController extends AppController{
 
                           $this->IvrMenu->writeIVRCommon();
                           $this->_flash(__('The selected entry has been deleted.',true),'success');
-                   
+  	                  $this->log("[INFO] DELETE ".$type.", Id: ".$id, "ivr");	                   
+
                        }
 
                 }
@@ -630,6 +633,7 @@ class IvrMenusController extends AppController{
                 //LAM is active -> warning flash
                 } else {
 
+  	          $this->log("[WARNING] DELETE IVR, IVR member of other voice menu: ".$id, "ivr");	
                   $this->_flash(__('The selected entry could not be deleted since it is a member of another Voice Menu.',true),'warning');
             
                 }
@@ -637,6 +641,7 @@ class IvrMenusController extends AppController{
 
            } else {
    
+              $this->log("[WARNING] DELETE IVR, Id does not exists: ".$id, "ivr");	
               $this->_flash(__('No entry with this id exist. Please try again.',true),'error');
 
            }
@@ -717,7 +722,7 @@ class IvrMenusController extends AppController{
 	  if (!$id && empty($this->data)){
 
 	     $this->_flash(__('Invalid option', true),'warning'); 
-  	     $this->log("WARNING; Action: Edit; Type: Incorrect id (".$id.")", "switcher");	
+  	     $this->log("[WARNING] EDIT SELECTOR, Incorrect id: ".$id, "ivr");	
 	     $this->redirect(array('action'=>'selector')); 
 	  }
 
@@ -764,7 +769,7 @@ class IvrMenusController extends AppController{
 				$file['fileName'] = $key;
 				$fileData[]       = $file;
 			}  elseif ($file['error']==1 && !$file['size']) {
-			        $this->log("ERROR; Action: Upload file; Type: filesize (".$file['size'].")", "switcher");								
+			        $this->log("[ERROR] EDIT SELECTOR, Upload file, Type: filesize (".$file['size'].")", "ivr");								
                                 $this->_flash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'],'error');			
 		        }		  
 		   }
@@ -780,7 +785,7 @@ class IvrMenusController extends AppController{
                                 foreach ($fileOK['urls'] as $key => $url ){
 
 					   $this->_flash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
-					   $this->log("INFO; Action: Edit switcher; Type: ".$url, "switcher");
+					   $this->log("[INFO] EDIT SELECTOR, File uploaded: ".$url, "ivr");
 					   $name= $fileData[$key]['name'];
                                            $field = $fileData[$key]['fileName'];
                                            $this->IvrMenu->saveField($field,$name);
@@ -794,7 +799,7 @@ class IvrMenusController extends AppController{
 
 				foreach ($fileOK['errors'] as $key => $error){
 					$this->_flash(__('Success',true).' : '.$error, 'error');				
-					$this->log("ERROR; Action: Upload file; Type: ".$error, "switcher");								
+					$this->log("[ERROR] EDIT SELECTOR, File upload: ".$error, "ivr");								
 				}
 			}
 
@@ -850,6 +855,8 @@ class IvrMenusController extends AppController{
 	 $this->IvrMenu->writeIVR($id);
 	 $this->IvrMenu->writeIVRCommon();
 
+
+         $this->log("[INFO] EDIT SELECTOR, Id: ".$id, "ivr");	
 	 $this->redirect(array('action' => 'selectors'));
 
 

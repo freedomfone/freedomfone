@@ -82,7 +82,7 @@ class Message extends AppModel {
       			      'quick_hangup'    => $entry['FF-OnQuickHangup'],
                               );
 
-	       $this->log('INFO: NEW MESSAGE {sender: '.$entry['FF-CallerID'].'}', 'leave_message');	
+	       $this->log('[INFO] NEW MESSAGE, Sender: '.$entry['FF-CallerID'], 'message');	
 	       $this->create();
 	       $this->save($data);
 

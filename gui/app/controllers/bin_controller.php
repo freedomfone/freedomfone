@@ -64,17 +64,19 @@ class BinController extends AppController{
     	 if(!empty($this->data['Bin'])){
 
     	     $entry = $this->data['Bin'];
-
     	     foreach ($entry as $key => $id){
 
 	       	   $this->Bin->id = $id;
+       	           $body = $this->Bin->getBody($id);
   	       	   if ($this->Bin->delete($id)){
-	       	      $body = $this->Bin->getBody($id);
-    		      $this->log('Message: BIN ENTRY DELETED; Id: '.$id."; Body:".$body, 'bin');
-		      }
+
+                      $this->log('[INFO], SMS DELETED; Id: '.$id.', Body:'.$body, 'bin');
+    		      
+		   }
 
 	      }
 	  }
+
 	  $this->redirect(array('action' => 'index'));
 
     }
@@ -89,7 +91,7 @@ class BinController extends AppController{
     	     if($this->Bin->delete($id))
 	     {
 		$this->Session->setFlash('Entry with message body "'.$body.'" has been deleted.');
-	     	$this->log('Message: MESSAGE DELETED; Id: '.$id."; Body:".$body, 'bin');
+                $this->log('[INFO], SMS DELETED; Id: '.$id.", Body:".$body, 'bin');
 	     	$this->redirect(array('action' => 'index'));
 	     }
 

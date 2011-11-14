@@ -68,7 +68,7 @@ class Bin extends AppModel{
               $this->create();   
      	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto, 'user_id' => $user_id);   
 	      $result = $this->save($data);
-	      $this->log("Message: ".$mode."; Body: ".$entry['Body']."; From: ".$sender."; Timestamp: ".$created, "bin"); 
+	      $this->log("[INFO] New SMS, Body: ".$entry['Body'].", From: ".$sender.", Timestamp: ".$created, "bin"); 
 
 
               //Create CDR

@@ -376,12 +376,12 @@ function __construct($id = false, $table = null, $ds = null) {
 
     	    $this->Mapping->deleteAll(array('Mapping.ivr_menu_id' => $id),true);
 
-                $this->log("INFO; DELETE MAPPINGS, {Id:".$id."}", "ivr");
+                $this->log("[INFO] DELETE MAPPINGS, Id:".$id, "ivr");
                    
    
                 if($this->delete($id,true)){
 
-		   $this->log("INFO; DELETE IVR {Id: ".$id."}", "ivr");
+
                    return true;
 
                 } else {

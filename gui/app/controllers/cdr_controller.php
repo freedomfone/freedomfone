@@ -354,13 +354,12 @@ class CdrController extends AppController{
 		$this->render();
 	 }           
   }
+                                                                                                                                                                   
 
-
-                                                                                                                                                                                                   
-
-      function overview(){                                                                                                                                                                               
+      function overview(){
 
         $this->refreshAll();
+
 
         $this->set('title_for_layout', __('System Overview',true));
 

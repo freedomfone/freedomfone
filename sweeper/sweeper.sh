@@ -163,6 +163,14 @@ BASE=/opt/freedomfone/
 
 function delete_logs() {
 
-echo "..."
+       /etc/init.d/freeswitch stop
+       /etc/init.d/dispatcher_in stop
+       /etc/init.d/apache2 stop
+       echo "WARNING! All logs will be deleted. Press any key to continue or CTRL-C to Abort" 
+       read 
+       rm -Rf /opt/freedomfone/*.log
+       /etc/init.d/dispatcher_in start
+       /etc/init.d/apache2 start
+       su - root  /etc/init.d/freeswitch start
 
 }

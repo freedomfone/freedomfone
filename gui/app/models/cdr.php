@@ -109,6 +109,7 @@ class Cdr extends AppModel{
 		        $lm_menu = $this->query("select * from lm_menus where instance_id = $instance_id ");
 		        $this->set('title',$lm_menu[0]['lm_menus']['title']);
 
+                        $this->log("[INFO] NEW CDR, Application: ".$application.", Type: ".$entry['Channel-State'].", Call-ID: ".$entry['Unique-ID'].", Epoch: ".$entry['Event-Date-Timestamp'], "cdr"); 
 		     } 
 		     //IVR: Epoch diff of CS_ROUTING and CS_DESTROY
 		     elseif ($channel_state =='CS_DESTROY'){
@@ -191,8 +192,9 @@ class Cdr extends AppModel{
 		  	$this->MonitorIvr->create($this->MonitorIvr->data);
 	  	  	$this->MonitorIvr->save($this->MonitorIvr->data);
 
-		  	$this->log("Channel state: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "cdr"); 
-		  	$this->log("Type: ".$entry['Channel-State']."; Call-ID: ".$entry['Unique-ID']."; Timestamp: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
+                        $this->log("[INFO] NEW CDR, Application: ".$application. ", Type: ".$entry['Channel-State'].", Call-ID: ".$entry['Unique-ID'].", Epoch: ".$entry['Event-Date-Timestamp'], "cdr"); 
+		  	$this->log("[INFO] NEW ENTRY, Type: ".$entry['Channel-State'].", Call-ID: ".$entry['Unique-ID'].", Epoch: ".$entry['Event-Date-Timestamp'], "monitor_ivr");
+
 
 		  }
 

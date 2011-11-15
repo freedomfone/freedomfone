@@ -185,7 +185,7 @@ class CdrController extends AppController{
     	     if($this->Cdr->delete($id))
 	     {
 	     $this->Session->setFlash('CDR with Call ID "'.$call_id.'" has been deleted.');
-	     $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
+	     $this->log("[INFO] CDR DELETE,Call-ID: ".$call_id, "cdr"); 
 	     }
 
              $this->redirect(array('action' => 'index'));
@@ -209,7 +209,8 @@ class CdrController extends AppController{
 		       $this->Cdr->id = $id;
 		       $call_id = $this->Cdr->getCallId($id);
      	       	       if ($this->Cdr->delete($id)){
-	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
+                              $this->log("[INFO] CDR DELETE,Call-ID: ".$call_id, "cdr"); 
+	     		      
 		       }
 		    }
 	         } //foreach

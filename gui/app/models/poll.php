@@ -199,7 +199,7 @@ function checkDate($data,$field){
 		$votes_chtext 	=  trim($_message[1]);
 		$sender		=  $this->sanitizePhoneNumber($entry['from']);
 		$proto		=  $entry['proto'];
-	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
+	        $created 	=  intval(floor($entry['Event-Date-Timestamp']/1000000));
 		$matched      	=  false;
 
 
@@ -300,8 +300,10 @@ function checkDate($data,$field){
 	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
 
 
-                        //Log poll vote (visible under Logs)
-	                $this->log("[INFO] New vote".$mode.", Body: ".$body.", Timestamp: ".date('c',$created), "poll"); 
+
+                        //Log poll vote
+	                $this->log("[INFO] NEW VOTE, ".$mode.", Body: ".$body.", Timestamp: ".date('c',$created), "poll"); 
+                        $this->log("[INFO] NEW CDR, Application: ".$application.", Epoch: ".$created, "cdr");
 
 
 	} //while

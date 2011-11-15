@@ -65,7 +65,7 @@ function beforeFilter() {
          $this->Auth->authError  = __("You do not have the authority to access this page.",true);
 
 
-         //Allow global access to front page
+         //Allow global access to pages and refresh methods
          $this->Auth->allowedActions = array('display','refresh');
 
          //Global root ACO 
@@ -77,7 +77,10 @@ function beforeFilter() {
          $this->Auth->authorize = 'actions';
          $this->Auth->loginAction = array('controller' => 'ff_users', 'action' => 'login');
          $this->Auth->logoutRedirect = array('controller' => 'ff_users', 'action' => 'login');
-         $this->Auth->loginRedirect  = array('controller' => '/', 'action' => '/');
+//         $this->Auth->loginRedirect  = array('controller' => '/', 'action' => '/');
+
+         $this->Auth->loginRedirect  = array('controller' => 'cdr', 'action' => 'overview');
+
 
 
               $data = $this->Auth->user();
@@ -254,41 +257,41 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 					} else {
 						$result['urls'][$key] = false;
 						$result['errors'][$key] = "The file could not be uploaded. Please contact the system administrator.";
-						$this->log("Msg: ERROR; Action: file upload; Type: move_uploaded_file; Code: N/A","ivr");
+						$this->log("[ERROR] File upload, Move_uploaded_file","ivr");
 											}
 					break;
 				case 1:
 					// an error occured
 					$result['errors'][$key] = "Error uploading $filename. The file is too large.";
-					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: filesize php.ini; Code: ".$file['error'],"ivr");
+					$this->log("[ERROR] File upload: ".$filename.", Type: filesize php.ini, ".$file['error'],"ivr");
 
 					break;
 
 				case 2:
 					// an error occured
 					$result['errors'][$key] = "Error uploading $filename. The file is too large.";
-					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: filesize html; Code: ".$file['error'],"ivr");
+					$this->log("[ERROR] File upload: ".$filename.", Type: filesize html, ".$file['error'],"ivr");
 					break;
 
 
 				case 3:
 					// an error occured
 					$result['errors'][$key] = "Error uploading $filename. The file was only partially uploaded.";
-					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: partial upload; Code: ".$file['error'],"ivr");
+					$this->log("[ERROR] File upload ".$filename.", Type: partial upload, ".$file['error'],"ivr");
 					break;
 
 
 				case 4:
 					// an error occured
 					$result['errors'][$key] = "No file selected. Please try again.";
-					$this->log("Msg: ERROR; Action: file upload; Type: no file selected; Code: ".$file['error'],"ivr");
+					$this->log("[ERROR] File upload,  Type: no file selected, Code: ".$file['error'],"ivr");
 					break;
 
 
 				default:
 					// an error occured
 					$result['errors'][$key] = "System error uploading $filename. Please contact the system administrator.";
-					$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: Unknown; Code: ".$file['error'],"ivr");
+					$this->log("[ERROR] File upload: ".$filename.", Type: Unknown,  ".$file['error'],"ivr");
 					break;
 			} //switch
 
@@ -296,7 +299,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 
 		} elseif ($file['error']==4){
 			$result['errors'][$key] = __("No file selected. Please try again.",true);
-			$this->log("Msg: ERROR; Action: file upload; Type: no file selected; Code: ".$file['error'],"ivr");
+			$this->log("[ERROR] File upload, Type: no file selected, ".$file['error'],"ivr");
 			
 		}
 
@@ -304,7 +307,7 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 			// unacceptable file type
 
 			$result['errors'][] = __('Failure (invalid file type)',true).' : '.$file['name'];
-			$this->log("Msg: ERROR; Action: file upload (".$filename."); Type: invalid file type; Code: ".$file['error'],"ivr");
+			$this->log("[ERROR] File upload ".$filename.", Type: invalid file type, ".$file['error'],"ivr");
 		}
 	} //foreach
 
@@ -404,7 +407,7 @@ return $result;
 	if (!$method){ 
 	   $method = 'manual'; 
 	   }
-	$this->log( $model."; Mode: ".$method, "refresh"); 
+	$this->log("[INFO] Model: ".$model.", Mode: ".$method, "refresh"); 
 
      }
 

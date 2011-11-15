@@ -26,6 +26,9 @@
       echo $ajax->div("log_div");
       $file = LOG_DIR.$this->data['Log']['type'].'.log';
 
+   //Log type selected
+   if($this->data['Log']['type']){
+
       if (file_exists($file)){
 	$handle = fopen($file,'r');
 
@@ -37,11 +40,13 @@
     	   fclose($handle);
 	
 	}
+
       } else {
 
       echo $html->div('warning',__('No log file of this type exists',true));
 
       }
+    }
 
       echo $ajax->divEnd("log_div");
 	

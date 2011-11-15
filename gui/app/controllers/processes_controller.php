@@ -90,7 +90,6 @@ class ProcessesController extends AppController{
 		$pid = $this->Process->getPid($this->data['Process']['name']);
 
 		//Process is not running
-//		if(!$this->Process->isRunning($this->data['Process']['pid'])){
 
 		   if(!$this->Process->isRunning($pid)){
 
@@ -107,7 +106,11 @@ class ProcessesController extends AppController{
 		        $this->data['Process']['interupt']= '';	
 			$this->Process->save($this->data);
 		      	$this->_flash($this->data['Process']['title']." ".__("started",true),'success');
+                        $this->log("[INFO] DISPATCHER STARTED", "health"); 
+
 		   } else {
+
+                        $this->log("[WARNING] FAILED ATTEMPT TO START DISPATCHER, DISPATCHER IS ALREADY RUNNING", "health"); 
 		   	$this->_flash($this->data['Process']['title']." ".__("is already running",true),'success');
 		   }
 	 	 } 
@@ -132,6 +135,7 @@ class ProcessesController extends AppController{
 			//Process is NOT running
 			if(!$this->Process->isRunning($pid)){
 
+                                $this->log("[WARNING] FAILED ATTEMPT TO STOP DISPATCHER, DISPATCHER IS NOT RUNNING", "health"); 
 				$this->_flash($this->data['Process']['title']." ".__("is not running",true),'success');
 
 				} else {
@@ -149,6 +153,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['interupt']= __('Manual',true);	
 	      	      		$this->Process->save($this->data);
 		      		$this->_flash($this->data['Process']['title']." ".__("stopped",true),'success');
+                                $this->log("[INFO] DISPATCHER STOPPED", "health"); 
 				}
 		  
 			} 
@@ -164,6 +169,7 @@ class ProcessesController extends AppController{
 		      		$this->data['Process']['interupt']= _('Manual',true);	
 	      	      		$this->Process->save($this->data);
 			       $this->_flash($this->data['Process']['title']." ".__("stopped",true),'success');
+                               $this->log("[INFO] DISPATCHER STOPPED", "health"); 
 			}
 
 

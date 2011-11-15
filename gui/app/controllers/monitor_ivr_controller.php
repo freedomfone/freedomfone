@@ -50,7 +50,7 @@ class MonitorIvrController extends AppController{
     	     if($this->MonitorIvr->delete($id))
 	     {
 	     $this->Session->setFlash('Entry  with Call ID "'.$call_id.'" has been deleted.');
-	     $this->log("Action: entry deleted; Call-ID: ".$call_id, "monitor_ivr"); 
+	     $this->log("[INFO] ENTRY DELETED, Call-ID: ".$call_id, "monitor_ivr"); 
 	     }
 
              $this->redirect(array('action' => 'index'));
@@ -78,7 +78,8 @@ class MonitorIvrController extends AppController{
 		       if ($action == __('Delete selected',true)){
     	     	       	   $call_id = $this->MonitorIvr->getCallId($id);
      	       	  	   if ($this->MonitorIvr->delete($id)){
-	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "monitor_ivr"); 
+	                      $this->log("[INFO] ENTRY DELETED, Call-ID: ".$call_id, "monitor_ivr"); 
+
 			    }
 			}
 		    }
@@ -185,6 +186,7 @@ class MonitorIvrController extends AppController{
 
 	 $param = array('MonitorIvr.epoch >=' => $start_epoch, 'MonitorIvr.epoch <=' => $end_epoch);
     	 $this->set('data', $this->MonitorIvr->deleteAll($param)); 
+         $this->log("[INFO] ENTRIES DELETED, Start: ".date('c',$start_epoch).", End: ".date('c',$end_epoch), "monitor_ivr"); 
 
 	 $this->redirect(array('action' => 'index'));
 	 }

@@ -52,8 +52,10 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
        }
     }
 
+
    $options_slim = $options;
    $options[0] = __('All callers',0);
+
 
      echo $form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
@@ -143,8 +145,8 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
      		array($status,array('align'=>'center')),
      		array($this->Access->showBlock($authGroup, $name, $settings['User'][$mode]['name']),array('width' => '100px')),
      		array($this->Access->showBlock($authGroup, $surname, $settings['User'][$mode]['surname']),array('width' => '100px')),
-		$email,
-		$skype,
+     		array($this->Access->showBlock($authGroup, $email, $settings['User'][$mode]['email']),array('width' => '100px')),
+     		array($this->Access->showBlock($authGroup, $skype, $settings['User'][$mode]['skype']),array('width' => '100px')),
 		$acl,
 		$this->Access->showBlock($authGroup, $info,$settings['PhoneNumber'][$mode]['number']),		
 		array($view.' '.$edit.' '.$delete, array('align' => 'center', 'width' => '80px')));

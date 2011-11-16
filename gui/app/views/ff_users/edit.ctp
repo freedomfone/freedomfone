@@ -22,7 +22,8 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb(__('Authentication',true), '/ff_users');
+      echo $html->addCrumb(__('User management',true), '');
+      echo $html->addCrumb(__('System Users',true), '/ff_users');
 
       if($this->data){
 

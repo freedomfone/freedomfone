@@ -164,6 +164,9 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
 
                  }  else {
 
+
+                   //Verify that title is set
+                   if($this->data['LmMenu']['title']){
 		
                          //Id OK, form data OK -> Save and redirect to Index
                          foreach($this->data['LmMenuFile'] as $key => $file){
@@ -205,6 +208,13 @@ var $helpers = array('Flash','Session','Javascript','Ajax');
                                 $this->_flash(__('Your data could not be saved. Please, try again.',true),'warning');
                          }
                         $this->redirect(array('action' => '/'));
+                        } else {
+
+                          $this->_flash(__('Please enter a title for the menu.',true),'error');
+
+
+                        }
+
                  } //else
 
    }

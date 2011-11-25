@@ -56,6 +56,7 @@ CREATE TABLE `bin` (
   `created` int(10) unsigned default NULL,
   `mode` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
+  `channel` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

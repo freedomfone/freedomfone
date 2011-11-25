@@ -31,7 +31,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Home",true),'/'); ?>
+<?php echo $html->link(__("Overview",true),'/overview'); ?>
 </li>
 
 

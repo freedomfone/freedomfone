@@ -428,7 +428,7 @@ public $ext;
                  $newdoc->load($this->file_core);
 
                  foreach ($filename as $key => $file){
-debug($file);
+
                          //Fetch XML code from instance
                          $menu = new DOMDocument;
                          $menu->load($file);

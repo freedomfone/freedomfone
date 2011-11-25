@@ -55,7 +55,7 @@ echo $html->tableHeaders(array(
  	$paginator->sort(__("Message",true), 'body'),
  	$paginator->sort(__("Time",true), 'created'),
  	$paginator->sort(__("Type",true), 'mode'),
- 	$paginator->sort(__("Protocol",true), 'proto'),
+ 	$paginator->sort(__("Channel",true), 'channel'),
  	$paginator->sort(__("Sender",true), 'sender'),
 	__('Action',true)));
 
@@ -64,7 +64,7 @@ echo $html->tableHeaders(array(
 	$body     = array($entry['Bin']['body'], array('width' => '600px'));
 	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$mode     = $entry['Bin']['mode'];
-	$proto    = $entry['Bin']['proto'];
+	$channel  = $entry['Bin']['channel'];
 	$sender   = $entry['Bin']['sender'];
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this entry?',true)."');"));
 
@@ -74,7 +74,7 @@ echo $html->tableHeaders(array(
                      $body, 
                      $created, 
                      $mode, 
-                     $proto, 
+                     $channel, 
                      $this->Access->showBlock($authGroup, $sender,'XXX'), 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );

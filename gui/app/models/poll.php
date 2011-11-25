@@ -279,10 +279,12 @@ function checkDate($data,$field){
 		// CHECK B: INCORRECT VOTE (no matching code)
 
 			
-			 //ADD TO TRASH
+			 //ADD TO BIN
 	   		 $mode=__("Unclassified",true);
 			 $application = 'bin';
-			 $result = $this->query("insert into bin (body,sender,created,mode,proto)values ('$body','$sender','$created','$mode','$proto')");
+			// $result = $this->query("insert into bin (body,sender,created,mode,proto,channel)values ('$body','$sender','$created','$mode','$proto', $this->protoToChannel($proto))");
+
+			 $result = $this->query("insert into bin (body,sender,created,mode,proto,channel)values ('$body','$sender','$created','$mode','$proto', '".$this->protoToChannel($proto)."')");
 	        }
 
 

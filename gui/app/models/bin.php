@@ -66,7 +66,8 @@ class Bin extends AppModel{
 
               //Save bin data
               $this->create();   
-     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode,'proto'=>$proto, 'user_id' => $user_id);   
+
+     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode, 'proto' => $proto, 'channel' => $this->protoToChannel($proto), 'user_id' => $user_id);   
 	      $result = $this->save($data);
 	      $this->log("[INFO] NEW SMS, Body: ".$entry['Body'].", From: ".$sender.", Epoch: ".$created, "bin"); 
 

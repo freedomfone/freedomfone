@@ -167,6 +167,27 @@ class AppModel extends Model {
 
 
 
+     function protoToChannel($proto){
+
+              $channel = 'N/A';
+
+
+              switch($proto){
+
+              case 'GSM':
+              $channel = 'OfficeRoute';
+              break;
+
+              case 'SMS':
+              $channel = 'Mobigater';
+              break;
+
+
+              }
+
+              return $channel;
+
+     }
 
 
 

@@ -456,6 +456,7 @@ gui/app/views/pages/lm_menus/tip.ctp -text
 gui/app/views/pages/polls/index.ctp -text
 gui/app/views/pages/polls/tip.ctp -text
 gui/app/views/pages/polls/view.ctp -text
+gui/app/views/pages/welcome.ctp -text
 gui/app/views/phone_books/add.ctp -text
 gui/app/views/phone_books/edit.ctp -text
 gui/app/views/phone_books/export.ctp -text

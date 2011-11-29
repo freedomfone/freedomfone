@@ -319,6 +319,9 @@ class CdrController extends AppController{
      		$param = array('conditions' => array('application !=' => ''));
         }
 
+        $param['fields']    = array('Cdr.application');
+        $param['recursive'] = 0;
+
        	$this->set('cdr', $this->Cdr->find('all',$param)); 
         $start = $this->Cdr->getEpoch('first');  
         $end   = time()+900;
@@ -379,7 +382,9 @@ class CdrController extends AppController{
 
         $this->refreshAll();
         $this->pageTitle = __('System Overview',true);                                                                                                                                                   
-        $this->set('cdr',$this->Cdr->find('all'));
+     
+        $this->set('cdr',$this->Cdr->find('all',array('fields' => array('Cdr.application'), 'recursive' => 0)));  
+
 
                 //Fetch data from unassociated models                                                                                                                                                    
                 $this->loadModel('IvrMenu');                                                                                                                                                             

@@ -303,7 +303,11 @@ class CdrController extends AppController{
      		$param = array('conditions' => array('application !=' => ''));
         }
 
-       	$this->set('cdr', $this->Cdr->find('all',$param)); 
+        $param['fields']    = array('Cdr.application');
+        $param['recursive'] = 0;
+
+
+      	$this->set('cdr', $this->Cdr->find('all',$param)); 
         $start = $this->Cdr->getEpoch('first');  
         $end   = time()+900;
         $this->set(compact('start','end'));
@@ -363,23 +367,23 @@ class CdrController extends AppController{
 
 
         $this->set('title_for_layout', __('System Overview',true));
+        $this->set('cdr',$this->Cdr->find('all',array('fields' => array('Cdr.application'), 'recursive' => 0)));
 
-        $this->set('cdr',$this->Cdr->find('all'));
 
-                //Fetch data from unassociated models                                                                                                                                                    
-                $this->loadModel('IvrMenu');                                                                                                                                                             
-                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                   
-                $ivr = $this->IvrMenu->find('all');                                                                                                                                                      
-                                                                                                                                                                                                         
-                $this->loadModel('Message');                                                                                                                                                             
-                $messages = $this->Message->find('all', array('order' => array('Message.created DESC')));  
-                                                                                                                                                                                                         
-                $this->loadModel('Bin');                                                                                                                                                                 
-                $bin = $this->Bin->find('all');                                                                                                                                                          
-                                                                                                                                                                                                         
+                //Fetch data from unassociated models
+                $this->loadModel('IvrMenu');                                  
+                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));           
+                $ivr = $this->IvrMenu->find('all');
+                                                                                        
+                $this->loadModel('Message');
+                $messages = $this->Message->find('all', array('order' => array('Message.created DESC'))); 
+                $this->loadModel('Bin');
+                $bin = $this->Bin->find('all');
+
                 $this->loadModel('Poll');               
                 $this->Poll->unbindModel(array('hasMany' => array('User')));                                
                 $polls = $this->Poll->find('all');
+
                 $this->set(compact('messages','bin','polls','ivr'));
                 $this->render(); 
 

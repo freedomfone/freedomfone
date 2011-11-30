@@ -346,7 +346,6 @@ gui/app/models/tag.php -text
 gui/app/models/user.php -text
 gui/app/models/vote.php -text
 gui/app/plugins/empty -text
-gui/app/sql/UPDATE_freedomfone_1.6.5-04_TO_2.0.sql -text
 gui/app/sql/build_acl.php -text
 gui/app/sql/freedomfone_db_auth_schema.sql -text
 gui/app/sql/freedomfone_db_createdb_user.sql -text

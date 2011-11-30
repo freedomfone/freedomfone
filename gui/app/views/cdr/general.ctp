@@ -41,9 +41,9 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
 		$csv->addRow($line);
 
-	if($cdrExport){
+	if($cdr){
 
-		foreach($cdrExport as $key => $entry){
+		foreach($cdr as $key => $entry){
 
                 if(!$entry['Cdr']['length']){$entry['Cdr']['length'] = 0;}
  

@@ -42,7 +42,7 @@ $config['SWEEP_SETTINGS'] = array(
                                                    'high' => array('number' => '555666'),
                                           ),
                           'User'         => array('low'  => array(),
-                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => 'john.doe@gmail.com', 'skype' => 'john.doe', 'organization' => NULL),                                                   
+                                                  'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => false, 'skype' => 'john.doe', 'organization' => NULL),                                                   
                                           ),
                                   );
 

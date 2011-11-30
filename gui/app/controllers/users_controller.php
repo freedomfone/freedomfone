@@ -236,7 +236,7 @@ class UsersController extends AppController{
 		$entries = $this->params['form']['user'];
     	    	$action = $this->params['data']['Submit'];
 
-debug($entries);
+
 
                 switch($action){
 
@@ -257,26 +257,22 @@ debug($entries);
                                 }
                                 $phone_book_id[] = $phone_book_id_selected;
                                 $phone_book_id = array_unique($phone_book_id);
-                                //  $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
 
-
-                                $data[] = array('User' => array('id' => $user_id ), 'PhoneBook' => array('id' => $phone_book_id_selected)); 
-                         
-
-
+                                unset($this->data);
+                                $this->data = $this->User->findById($user_id);
+                                $this->data['PhoneBook'] = $phone_book_id;
+                                $this->User->save($this->data);
                         }
-
-                        debug($data);
-                        
-                        $this->User->PhoneBook->save($data);
-exit;
-
                         break;
 
                         case __('Remove from phone book',true): 
                         
                         $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
                         foreach ($entries as $key => $id){
+                        
+                                unset($phonebooks);
+                                unset($phone_book_id);
+                                $phone_book_id = array();
 
                                 $user_id = $id;
                                 $phonebooks = $this->User->findById($user_id);
@@ -287,9 +283,20 @@ exit;
 
                                 $key = array_search($phone_book_id_selected, $phone_book_id);
                                 unset($phone_book_id[$key]);                                 
-                                $data = array('User' => array('name' => $this->data['User'][$user_id]['name']) , 'PhoneBook' =>array('PhoneBook' => $phone_book_id));
-                                $this->User->id = $user_id;
-                                $this->User->save($data);
+
+
+                                unset($this->data);
+                                $this->data = $this->User->findById($user_id);
+
+                               if(!sizeof($phone_book_id)){
+                                     $this->data['PhoneBook'][0] = false;
+                                } else {
+                                     $this->data['PhoneBook'] = $phone_book_id;
+                                }
+        
+
+                                $this->User->save($this->data);
+
 
                         }
 
@@ -355,7 +362,7 @@ exit;
                                 }
                            }
 
-//                           unset($core['PhoneBooks']);
+
                            if($tmp['PhoneBook']){
                                 foreach($tmp['PhoneBook'] as $i => $phone_book){
   
@@ -384,7 +391,7 @@ exit;
               }     //array_key_exists 
 		 
 
-	     $this->redirect(array('action' => '/'));
+//	     $this->redirect(array('action' => '/'));
 
     }
 

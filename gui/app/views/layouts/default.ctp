@@ -119,5 +119,8 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
          <?php echo "( Memory: ".round(memory_get_peak_usage()/1000000).' MB)'; ?>         
          </div>
 </div>										<!--wrapper end-->
+
+<?php echo $this->element('sql_dump'); ?>
+
 </body>
 </html>

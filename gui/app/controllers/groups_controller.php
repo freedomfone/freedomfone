@@ -26,32 +26,13 @@ class GroupsController extends AppController{
 
       var $name = 'Groups';
 
-
-
-
       function index() {
 
                 $this->set('title_for_layout', __('Freedom Fone Groups',true));
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->paginate());
 
-
 	}
-
-        /*
-       function add() {
-
-                $this->set('title_for_layout', __('Add Group',true));
-
-		if (!empty($this->data)) {
-
-  			if ($this->Group->save($this->data)) {
-				$this->_flash(__('New group has been created.', true),'success');
-				$this->redirect(array('action'=>'index'));
-			} 
-		}
-      }*/
-
 
 }
 

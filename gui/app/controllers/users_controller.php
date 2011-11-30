@@ -391,7 +391,7 @@ class UsersController extends AppController{
               }     //array_key_exists 
 		 
 
-//	     $this->redirect(array('action' => '/'));
+	     $this->redirect(array('action' => '/'));
 
     }
 

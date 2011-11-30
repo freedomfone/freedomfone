@@ -101,7 +101,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
  
       foreach ($users as $key => $user){
-        echo $form->input('User.'.$user['User']['id'].'.name',array('type'=>'hidden', 'value' => $user['User']['name']));
+  
         $status='';
 
         if($authGroup == 1 ){

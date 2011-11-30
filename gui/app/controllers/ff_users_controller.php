@@ -189,13 +189,12 @@ class FfUsersController extends AppController{
         }
 
 
-        function sweep(){
+        function system_sweeper(){
 
      	         if(isset($this->params['form']['submit'])) {
 
                       unset($this->params['form']['submit']);
-                                             
-                      $status =  $this->system_sweeper();   
+                      $status =  $this->sweeper();   
 
                        if($status) {                     
                                    $this->_flash(__('Freedom Fone has successfully been swept.',true),'success');

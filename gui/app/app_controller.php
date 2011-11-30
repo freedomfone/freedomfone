@@ -696,8 +696,7 @@ return $result;
      }
 
 
-     function system_sweeper(){
-
+     function sweeper(){
 
           $config   = Configure::read('SWEEP_CONFIG');
           $settings = Configure::read('SWEEP_SETTINGS');
@@ -744,10 +743,6 @@ return $result;
             return false;
 
           }
-
- 
-
-
 
     }
 

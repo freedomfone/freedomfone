@@ -504,6 +504,7 @@ gui/app/webroot/img/icons/export.png -text
 gui/app/webroot/img/icons/listen.png -text
 gui/app/webroot/img/icons/lock.png -text
 gui/app/webroot/img/icons/lock_unlock.png -text
+gui/app/webroot/img/icons/login.png -text
 gui/app/webroot/img/icons/logout.png -text
 gui/app/webroot/img/icons/music.png -text
 gui/app/webroot/img/icons/new.png -text

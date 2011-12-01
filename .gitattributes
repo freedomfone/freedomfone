@@ -318,6 +318,7 @@ gui/app/controllers/tags_controller.php -text
 gui/app/controllers/users_controller.php -text
 gui/app/controllers/votes_controller.php -text
 gui/app/index.php -text
+gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text

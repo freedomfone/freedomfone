@@ -133,8 +133,8 @@ class ff_event {
      function deleteEntry($id){
 
      $table = $this->table;
+     $result = mysql_query("delete from $table where id = $id");
 
-     $result = mysql_query("delete $table where id = $id");
      	     if (!$result) {
 
 		return false;
@@ -208,6 +208,8 @@ class ff_event {
 		      break;
 
 		      case 'delete':
+                      echo "delete";
+		      
 		      $this->deleteEntry($data['id']);
 		      break;
 

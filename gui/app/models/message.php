@@ -66,7 +66,7 @@ class Message extends AppModel {
     	          die(printf("Unable to authenticate\r\n"));
 	   }
 
- 	   while ($entry = $obj->getNext('update')){
+ 	   while ($entry = $obj->getNext('delete')){
 
 	       $created = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	       $length  = intval(floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000));   

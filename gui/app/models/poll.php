@@ -191,7 +191,7 @@ function checkDate($data,$field){
 	       }
 
 
-      	    while ($entry = $obj->getNext('update')){
+      	    while ($entry = $obj->getNext('delete')){
 
 	        $body 	        =  $entry['Body']; 
 		$_message	=  explode(' ',$body);

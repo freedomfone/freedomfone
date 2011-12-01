@@ -50,7 +50,7 @@ class Channel extends AppModel{
     	      die(printf("Unable to authenticate\r\n"));
 	  }
 
-      	  while ($entry = $obj->getNext('update')){
+      	  while ($entry = $obj->getNext('delete')){
 
 	  	$interface_id = $entry['interface_id'];
 	  	$interface_name = $entry['interface_name'];

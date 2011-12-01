@@ -56,7 +56,7 @@ class Cdr extends AppModel{
 	      }
 
 
-      	      while ($entry = $obj->getNext('update')){
+      	      while ($entry = $obj->getNext('delete')){
 
 	          $channel = $entry['Channel-Name'];
 	      	  $channel_state = $entry['Channel-State'];
@@ -211,7 +211,7 @@ class Cdr extends AppModel{
     	       	  die(printf("Unable to authenticate\r\n"));
 	      }
 
-      	      while ($entry = $obj->getNext('update')){
+      	      while ($entry = $obj->getNext('delete')){
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * cdr_controller.php	- Display, delete, export of CDR, System Overview page (Home) 
- * version 		- 2.5.1160
+ * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -43,7 +43,7 @@ class CdrController extends AppController{
       function general($action = null){
 
          $this->refreshAll();
-         $this->pageTitle = __('Reporting',true);
+         $this->set('title_for_layout', __('Reporting',true));
 
          if(isset($this->params['named']['limit'])) { 
 	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
@@ -79,6 +79,7 @@ class CdrController extends AppController{
         $this->Cdr->unbindModel(array('belongsTo' => array('User')));
         $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
 
+
         //Fetch All CDR
         if(!$title){
 
@@ -98,51 +99,56 @@ class CdrController extends AppController{
            }
 	}
 
+
         $fields = array('title', 'epoch', 'caller_number', 'length', 'quick_hangup','proto');
 
-        $this->paginate = array('conditions '=> array(
-                                                'epoch < '   => $this->Session->read('cdr_end'),
-                                                'epoch > '   => $this->Session->read('cdr_start'),
-                                                'application'=> $this->Session->read('cdr_app'),
+        $this->paginate = array(
+                          'conditions' => array('epoch < '    => $this->Session->read('cdr_end'),
+                                                'epoch > '    => $this->Session->read('cdr_start'),
+                                                'application' => $this->Session->read('cdr_app')
                                                 ),
-                                'order'     => array('Cdr.epoch desc'),
-                                'limit'     => $pageCount,
-                                'fields'    => $fields,
-                                'recursive' => 0,
-                                );
+                          'order'      => array('Cdr.epoch desc'),
+                          'limit'      => $pageCount,
+                          'fields'     => $fields,
+                          'recursive'  => 0,
+                          );
 
 	$this->set('select_option','all');
 
 
         } else {
 
-         $fields = array('title', 'epoch', 'caller_number', 'length', 'quick_hangup','proto');    
+        $fields = array('title', 'epoch', 'caller_number', 'length', 'quick_hangup','proto');
+
         
          //Fetch CDR by Title
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
 
-       
-         $this->paginate = array('conditions' => array(
-                                                 'epoch < '=> $this->Session->read('cdr_end'),
-                                                 'epoch > '=> $this->Session->read('cdr_start'),
-                                                 'application'=> $this->Session->read('cdr_app'),
-                                                 'title'=>$title
-                                                 ),
-                                 'order'     => array('Cdr.epoch desc'),
-                                 'recursive' => 0,
-                                 'fields'    => $fields,
-                                 );
+
+         $this->paginate = array(
+                         'conditions' => array(
+                                                'epoch < '=> $this->Session->read('cdr_end'),
+                                                'epoch > '=> $this->Session->read('cdr_start'),
+                                                'application'=> $this->Session->read('cdr_app'),
+                                                'title'=>$title
+                                                ),
+                         'order'      => array('Cdr.epoch desc'),
+                         'fields'     => $fields,
+                         'recursive'  => 0
+                         );
 
 	 $this->set('select_option','selected');
 
         }
 
         $this->loadModel('IvrMenu');
+	$ivr = array();
         $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
         $ivr_data = $this->IvrMenu->find('list');
         foreach($ivr_data as $key => $title){ $ivr[$title] = $title;}       
 
         $this->loadModel('LmMenu');
+	$lam = array();
         $lam_data = $this->LmMenu->find('list');
         foreach($lam_data as $key => $title){ $lam[$title] = $title;}       
 
@@ -156,7 +162,7 @@ class CdrController extends AppController{
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action']==__('Export',true)){     
+	     if ($this->params['form']['action'] ==__('Export',true)){     
   	       Configure::write('debug', 0);
     	       $this->layout = null;
     	       $this->autoLayout = false;
@@ -171,7 +177,7 @@ class CdrController extends AppController{
       function index(){
 
          $this->refreshAll();
-         $this->pageTitle = __('Call Data Records',true);
+         $this->set('title_for_layout', __('Call Data Records',true));
          $this->Session->write('Cdr.source', 'index');
 
           if(isset($this->params['named']['sort'])) { 
@@ -198,16 +204,17 @@ class CdrController extends AppController{
 
     	     $call_id = $this->Cdr->getCallId($id);
 
-    	     if($this->Cdr->del($id))
+    	     if($this->Cdr->delete($id))
 	     {
 	     $this->Session->setFlash('CDR with Call ID "'.$call_id.'" has been deleted.');
-	     $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
+	     $this->log("[INFO] CDR DELETE,Call-ID: ".$call_id, "cdr"); 
 	     }
 
              $this->redirect(array('action' => 'index'));
 
 
     }
+
 
     function process (){
 
@@ -223,8 +230,9 @@ class CdrController extends AppController{
     	     	    if ($id) {
 		       $this->Cdr->id = $id;
 		       $call_id = $this->Cdr->getCallId($id);
-     	       	       if ($this->Cdr->del($id)){
-	     		      $this->log("Action: entry deleted; Call-ID: ".$call_id, "cdr"); 
+     	       	       if ($this->Cdr->delete($id)){
+                              $this->log("[INFO] CDR DELETE,Call-ID: ".$call_id, "cdr"); 
+	     		      
 		       }
 		    }
 	         } //foreach
@@ -240,8 +248,6 @@ class CdrController extends AppController{
 
     function output (){
 
-    
-     $export = true;
 
       if ($this->data['Cdr'] ){
       	 $start	  = $this->data['Cdr']['start_time'];
@@ -273,42 +279,23 @@ class CdrController extends AppController{
       	 $start_epoch = strtotime($start);
       	 $end_epoch = strtotime($end);
 
-         $this->data['Cdr']['start_time'] = $start_epoch;
-         $this->data['Cdr']['end_time'] = $end_epoch;
-
-
-         if($this->Cdr->SaveAll($this->data, array('validate' => 'only'))){
-
-	        $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
-                $this->set('data', $this->Cdr->find('all',$param)); 
-
-          } else {
-
-                    if(array_key_exists('end_time', $error = $this->Cdr->invalidFields())){
-      	                 $this->_flash($error['end_time'],'error');
-	                 $this->redirect(array('action' => 'export'));
-
-                    }
-          }
+	 $param = array('conditions' => array('epoch >=' => $start_epoch, 'epoch <=' => $end_epoch));
+    	 $this->set('data', $this->Cdr->find('all',$param)); 
 
        } else {
 
            //Export all entries
-    	   $this->set('data', $this->Cdr->findAll()); 
+    	   $this->set('data', $this->Cdr->find('all')); 
 	   $this->set('select_option','all');	   
-
-
         }
 
 
-
          $this->set(compact('select_option'));
+
   	     Configure::write('debug', 0);
     	     $this->layout = null;
     	     $this->autoLayout = false;
-    	     $this->render();  
-
-       
+    	     $this->render();   
     }
 
 
@@ -326,11 +313,11 @@ class CdrController extends AppController{
       function statistics(){
 
         $this->refreshAll();
-       	$this->pageTitle = __('Call Data Records',true)." : ".__('Overview',true);
+ 
+        $this->set('title_for_layout', __('Call Data Records',true)).": ".__('Overview',true);
 
 
         if($this->data){
-
 		$epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
      		$param = array('conditions' => array('epoch >=' => $epoch['start'], 'epoch <=' => $epoch['end'],'application !=' => ''));
 
@@ -341,7 +328,8 @@ class CdrController extends AppController{
         $param['fields']    = array('Cdr.application');
         $param['recursive'] = 0;
 
-       	$this->set('cdr', $this->Cdr->find('all',$param)); 
+
+      	$this->set('cdr', $this->Cdr->find('all',$param)); 
         $start = $this->Cdr->getEpoch('first');  
         $end   = time()+900;
         $this->set(compact('start','end'));
@@ -393,32 +381,31 @@ class CdrController extends AppController{
 		$this->render();
 	 }           
   }
+                                                                                                                                                                   
 
-
-                                                                                                                                                                                                   
-
-      function overview(){                                                                                                                                                                               
+      function overview(){
 
         $this->refreshAll();
-        $this->pageTitle = __('System Overview',true);                                                                                                                                                   
-     
-        $this->set('cdr',$this->Cdr->find('all',array('fields' => array('Cdr.application'), 'recursive' => 0)));  
 
 
-                //Fetch data from unassociated models                                                                                                                                                    
-                $this->loadModel('IvrMenu');                                                                                                                                                             
-                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                   
-                $ivr = $this->IvrMenu->find('all');                                                                                                                                                      
-                                                                                                                                                                                                         
-                $this->loadModel('Message');                                                                                                                                                             
-                $messages = $this->Message->find('all', array('order' => array('Message.created DESC')));  
-                                                                                                                                                                                                         
-                $this->loadModel('Bin');                                                                                                                                                                 
-                $bin = $this->Bin->find('all');                                                                                                                                                          
-                                                                                                                                                                                                         
+        $this->set('title_for_layout', __('System Overview',true));
+        $this->set('cdr',$this->Cdr->find('all',array('fields' => array('Cdr.application'), 'recursive' => 0 )));
+
+
+                //Fetch data from unassociated models
+                $this->loadModel('IvrMenu');                                  
+                $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));           
+                $ivr = $this->IvrMenu->find('all');
+                                                                                        
+                $this->loadModel('Message');
+                $messages = $this->Message->find('all', array('order' => array('Message.created DESC'))); 
+                $this->loadModel('Bin');
+                $bin = $this->Bin->find('all');
+
                 $this->loadModel('Poll');               
                 $this->Poll->unbindModel(array('hasMany' => array('User')));                                
                 $polls = $this->Poll->find('all');
+
                 $this->set(compact('messages','bin','polls','ivr'));
                 $this->render(); 
 

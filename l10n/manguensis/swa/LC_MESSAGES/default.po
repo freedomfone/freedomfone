@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-10-11 17:22+0200\n"
+"POT-Creation-Date: 2011-12-01 11:02+0100\n"
 "PO-Revision-Date: 2010-03-15 15:26+0100\n"
 "Last-Translator: Louise Berthilson <louise@it46.se>\n"
 "Language-Team: Tri Labs Translators\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "You do not have the authority to access this page."
 msgstr ""
 
-#: app_controller.php:303;303
+#: app_controller.php:301;301
 msgid "No file selected. Please try again."
 msgstr "Hakuna faili lililochaguliwa.  Jaribu tena."
 
-#: app_controller.php:311;311
+#: app_controller.php:309;309
 msgid "Failure (invalid file type)"
 msgstr ""
 
@@ -85,28 +85,29 @@ msgstr ""
 msgid "Reporting"
 msgstr ""
 
-#: controllers/cdr_controller.php:141;141 views/bin/index.ctp:36;36
-#: views/cdr/export.ctp:27;40;40;27;40;40 views/cdr/general.ctp:37;130;37;130
+#: controllers/cdr_controller.php:165;165 views/bin/index.ctp:36;36
+#: views/cdr/export.ctp:27;40;40;27;40;40 views/cdr/general.ctp:37;131;37;131
 #: views/cdr/index.ctp:41;41 views/monitor_ivr/export.ctp:27;39;39;27;39;39
 #: views/monitor_ivr/index.ctp:42;42 views/phone_books/index.ctp:52;52;52;52
 msgid "Export"
 msgstr "Hamisha"
 
-#: controllers/cdr_controller.php:156;292;156;292 views/cdr/index.ctp:47;47
+#: controllers/cdr_controller.php:180;317;180;317 views/cdr/index.ctp:47;47
 msgid "Call Data Records"
 msgstr "Makumbukumbu ya Data za Miito"
 
-#: controllers/cdr_controller.php:203;203
+#: controllers/cdr_controller.php:227;227
 #: controllers/monitor_ivr_controller.php:78;78 views/bin/index.ctp:89;89
 #: views/cdr/index.ctp:111;111 views/monitor_ivr/index.ctp:55;55
 msgid "Delete selected"
 msgstr ""
 
-#: controllers/cdr_controller.php:292;292
+#: controllers/cdr_controller.php:317;317 views/elements/menuAdmin.ctp:34;34
+#: views/elements/menuUser.ctp:34;34
 msgid "Overview"
 msgstr ""
 
-#: controllers/cdr_controller.php:363;363 views/cdr/overview.ctp:111;111
+#: controllers/cdr_controller.php:391;391 views/cdr/overview.ctp:111;111
 msgid "System Overview"
 msgstr ""
 
@@ -131,56 +132,55 @@ msgstr ""
 
 #: controllers/ff_users_controller.php:43;43
 #: views/ff_users/login.ctp:26;28;46;26;28;46
+#: views/layouts/default.ctp:100;100;100;100
 msgid "Login"
 msgstr ""
 
-#: controllers/ff_users_controller.php:68;68
-msgid "Freedomfone Users"
+#: controllers/ff_users_controller.php:68;68 views/ff_users/edit.ctp:26;26
+#: views/ff_users/index.ctp:26;34;26;34
+msgid "System Users"
 msgstr ""
 
-#: controllers/ff_users_controller.php:82;82
-#: controllers/users_controller.php:377;377 views/users/add.ctp:30;30
-msgid "Add User"
+#: controllers/ff_users_controller.php:82;82 views/ff_users/add.ctp:30;30
+msgid "Add System User"
 msgstr ""
 
 #: controllers/ff_users_controller.php:101;101
 msgid "New user has been created."
 msgstr ""
 
-#: controllers/ff_users_controller.php:119;119
-#: controllers/users_controller.php:147;147 views/ff_users/edit.ctp:30;30
-#: views/users/edit.ctp:41;41
-msgid "Edit User"
+#: controllers/ff_users_controller.php:119;119 views/ff_users/edit.ctp:31;31
+msgid "Edit System User"
 msgstr ""
 
 #: controllers/ff_users_controller.php:122;122
-#: controllers/ivr_menus_controller.php:424;719;424;719
+#: controllers/ivr_menus_controller.php:425;724;425;724
 #: views/ivr_menus/edit_selector.ctp:97;97
 msgid "Invalid option"
 msgstr "Chaguo batili"
 
-#: controllers/ff_users_controller.php:151;151
+#: controllers/ff_users_controller.php:148;160;148;160
 msgid "User has been updated."
 msgstr ""
 
-#: controllers/ff_users_controller.php:180;180
+#: controllers/ff_users_controller.php:181;181
 msgid "The user been deleted."
 msgstr ""
 
-#: controllers/ff_users_controller.php:184;184
-msgid "You can not delete the Admin user."
+#: controllers/ff_users_controller.php:185;185
+msgid "You cannot delete the Admin user."
 msgstr ""
 
 #: controllers/ff_users_controller.php:200;200
-msgid "Freedom Fone has successfully been sweeped."
+msgid "Freedom Fone has successfully been swept."
 msgstr ""
 
 #: controllers/ff_users_controller.php:202;202
 msgid "Sweeping failed. Please review your Sweeper settings."
 msgstr ""
 
-#: controllers/groups_controller.php:34;34
-msgid "Freedomfone Groups"
+#: controllers/groups_controller.php:31;31 views/groups/index.ctp:33;33
+msgid "Freedom Fone Groups"
 msgstr ""
 
 #: controllers/ivr_menus_controller.php:44;44 views/cdr/overview.ctp:113;113
@@ -200,56 +200,56 @@ msgid ""
 "Menu, and try again."
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:192;353;469;192;353;469
+#: controllers/ivr_menus_controller.php:193;354;470;193;354;470
 #: controllers/nodes_controller.php:76;205;76;205
 msgid "File upload failure (filesize exceeds maximum)"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:213;374;492;503;782;796;213;374;492;503;782;796
-#: controllers/lm_menus_controller.php:115;192;115;192
+#: controllers/ivr_menus_controller.php:214;375;493;504;787;801;214;375;493;504;787;801
+#: controllers/lm_menus_controller.php:115;195;115;195
 #: controllers/nodes_controller.php:231;231
 msgid "Success"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:253;253
+#: controllers/ivr_menus_controller.php:254;254
 msgid "Add Language Selector"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:271;271
+#: controllers/ivr_menus_controller.php:272;272
 msgid ""
 "There are no more Selectors available. Please delete an inactive Selector, "
 "and try again."
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:414;414
+#: controllers/ivr_menus_controller.php:415;415
 msgid "Edit Voice menu"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:624;624
+#: controllers/ivr_menus_controller.php:626;626
 msgid "The selected entry has been deleted."
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:633;633
+#: controllers/ivr_menus_controller.php:637;637
 msgid ""
 "The selected entry could not be deleted since it is a member of another "
 "Voice Menu."
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:640;640
-#: controllers/lm_menus_controller.php:283;283
+#: controllers/ivr_menus_controller.php:645;645
+#: controllers/lm_menus_controller.php:293;293
 msgid "No entry with this id exist. Please try again."
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:691;691
+#: controllers/ivr_menus_controller.php:696;696
 msgid "Language Selectors"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:711;711
+#: controllers/ivr_menus_controller.php:716;716
 msgid "Edit Language Selector"
 msgstr ""
 
-#: controllers/ivr_menus_controller.php:768;768
-#: controllers/lm_menus_controller.php:100;177;100;177
+#: controllers/ivr_menus_controller.php:773;773
+#: controllers/lm_menus_controller.php:100;180;100;180
 msgid "The following file could not be uploaded due to file size restrictions"
 msgstr "Faili hili halijapakiliwa kwa sababu ukubwa unazidi upeo"
 
@@ -263,15 +263,15 @@ msgstr ""
 
 #: controllers/lm_menus_controller.php:60;60
 msgid ""
-"There are no idle instance for a new Leave-a-message IVR menu. Please delete "
+"There is no idle instance for a new Leave-a-message IVR menu. Please delete "
 "an existing menu, and try again. Maximum menus: 20."
 msgstr ""
 
-#: controllers/lm_menus_controller.php:127;205;127;205
+#: controllers/lm_menus_controller.php:127;208;127;208
 msgid "Your data could not be saved. Please, try again."
 msgstr "Data zako hazikuweza kuhifadhiwa. Tafadhali, jaribu tena."
 
-#: controllers/lm_menus_controller.php:135;135
+#: controllers/lm_menus_controller.php:135;213;135;213
 msgid "Please enter a title for the menu."
 msgstr ""
 
@@ -280,16 +280,16 @@ msgstr ""
 msgid "Edit Leave-a-Message"
 msgstr ""
 
-#: controllers/lm_menus_controller.php:265;265
+#: controllers/lm_menus_controller.php:275;275
 msgid "The selected menu has been deleted."
 msgstr ""
 
-#: controllers/lm_menus_controller.php:274;274
+#: controllers/lm_menus_controller.php:284;284
 msgid ""
 "The default conf file could not be restored. Please check file permissions."
 msgstr ""
 
-#: controllers/lm_menus_controller.php:290;290
+#: controllers/lm_menus_controller.php:300;300
 msgid ""
 "The selected menu could not be deleted since it is a member of another IVR."
 msgstr ""
@@ -302,18 +302,18 @@ msgstr ""
 msgid "Leave-a-Message Archive"
 msgstr ""
 
-#: controllers/messages_controller.php:265;265
-#: controllers/users_controller.php:192;192
+#: controllers/messages_controller.php:266;266
+#: controllers/users_controller.php:200;200
 msgid "The entry has been updated"
 msgstr ""
 
-#: controllers/messages_controller.php:269;269 views/categories/add.ctp:41;41
+#: controllers/messages_controller.php:271;271 views/categories/add.ctp:41;41
 #: views/categories/edit.ctp:48;48 views/channels/edit.ctp:57;57;57;57
-#: views/ff_users/add.ctp:42;42 views/ff_users/edit.ctp:53;53
+#: views/ff_users/add.ctp:47;47 views/ff_users/edit.ctp:54;54
 #: views/groups/add.ctp:39;39 views/ivr_menus/add.ctp:149;149
 #: views/ivr_menus/disp.ctp:48;48 views/ivr_menus/edit.ctp:260;260
 #: views/ivr_menus/edit_selector.ctp:199;199 views/lm_menus/add.ctp:115;115
-#: views/lm_menus/edit.ctp:141;141 views/messages/edit.ctp:101;101;101;101
+#: views/lm_menus/edit.ctp:141;141 views/messages/edit.ctp:102;102;102;102
 #: views/nodes/add.ctp:52;52 views/nodes/edit.ctp:64;64
 #: views/office_route/edit.ctp:56;56;56;56 views/phone_books/add.ctp:51;51
 #: views/phone_books/edit.ctp:50;50 views/polls/add.ctp:94;94
@@ -323,31 +323,31 @@ msgstr ""
 msgid "Save"
 msgstr "Hifadhi"
 
-#: controllers/messages_controller.php:324;324
-#: controllers/users_controller.php:281;281 views/bin/index.ctp:69;69;69;69
+#: controllers/messages_controller.php:327;327
+#: controllers/users_controller.php:306;306 views/bin/index.ctp:69;69;69;69
 #: views/categories/index.ctp:47;47;47;47 views/cdr/delete.ctp:27;38;27;38
 #: views/cdr/index.ctp:42;88;42;88 views/ff_users/index.ctp:56;56;56;56
 #: views/groups/index.ctp:46;52;52;46;52;52
 #: views/ivr_menus/index.ctp:73;73;73;73
 #: views/ivr_menus/selectors.ctp:66;66;66;66
-#: views/lm_menus/index.ctp:68;68;68;68 views/messages/archive.ctp:107;107
-#: views/messages/disp.ctp:100;100 views/messages/edit.ctp:102;102;102;102
+#: views/lm_menus/index.ctp:68;68;68;68 views/messages/archive.ctp:112;112
+#: views/messages/disp.ctp:100;100 views/messages/edit.ctp:103;103;103;103
 #: views/monitor_ivr/delete.ctp:27;40;40;27;40;40
 #: views/monitor_ivr/index.ctp:43;109;109;43;109;109
 #: views/nodes/index.ctp:73;73;73;73 views/phone_books/index.ctp:51;51;51;51
 #: views/phone_numbers/add_failure.ctp:9;9 views/polls/index.ctp:78;78;78;78
 #: views/tags/index.ctp:52;52;52;52
 #: views/users/disp.ctp:35;35;73;81;35;35;73;81
-#: views/users/index.ctp:130;130;158;130;130;158
+#: views/users/index.ctp:134;134;162;134;134;162
 msgid "Delete"
 msgstr "Futa"
 
-#: controllers/messages_controller.php:329;329 views/messages/disp.ctp:101;101
+#: controllers/messages_controller.php:333;333 views/messages/disp.ctp:101;101
 msgid "Move to Archive"
 msgstr "Hamisha kwenye nyaraka"
 
-#: controllers/messages_controller.php:332;332
-#: views/messages/archive.ctp:108;108
+#: controllers/messages_controller.php:337;337
+#: views/messages/archive.ctp:113;113
 msgid "Activate"
 msgstr "Amilisha"
 
@@ -355,12 +355,12 @@ msgstr "Amilisha"
 msgid "Monitor Voice Menus"
 msgstr ""
 
-#: controllers/monitor_ivr_controller.php:93;93
+#: controllers/monitor_ivr_controller.php:94;94
 #: views/monitor_ivr/export.ctp:29;29
 msgid "Export monitoring data"
 msgstr ""
 
-#: controllers/monitor_ivr_controller.php:155;155
+#: controllers/monitor_ivr_controller.php:156;156
 #: views/monitor_ivr/delete.ctp:30;30
 msgid "Delete monitoring data"
 msgstr ""
@@ -409,6 +409,7 @@ msgid "Your changes have been saved."
 msgstr ""
 
 #: controllers/office_route_controller.php:90;90
+#: views/office_route/edit.ctp:31;31
 msgid "Edit OfficeRoute"
 msgstr ""
 
@@ -417,6 +418,10 @@ msgstr ""
 #: views/phone_books/add.ctp:26;26 views/phone_books/edit.ctp:26;26
 #: views/phone_books/index.ctp:26;30;26;30 views/users/add.ctp:46;46
 msgid "Phone books"
+msgstr ""
+
+#: controllers/phone_books_controller.php:46;46
+msgid "Add Phone book"
 msgstr ""
 
 #: controllers/phone_books_controller.php:52;52
@@ -461,13 +466,13 @@ msgstr ""
 # No version information was available in the source files.
 #
 #: controllers/polls_controller.php:62;62
-#: controllers/users_controller.php:150;150 views/bin/index.ctp:33;33
+#: controllers/users_controller.php:158;158 views/bin/index.ctp:33;33
 #: views/cdr/index.ctp:37;37 views/cdr/overview.ctp:30;30
 #: views/cdr/statistics.ctp:33;33 views/channels/index.ctp:39;39
 #: views/messages/disp.ctp:29;29 views/monitor_ivr/index.ctp:37;37
 #: views/polls/index.ctp:29;29 views/polls/view.ctp:28;28
 #: views/processes/index.ctp:34;34 views/users/edit.ctp:34;34
-#: views/users/index.ctp:34;34
+#: views/users/index.ctp:37;37
 msgid "Refresh"
 msgstr "Onyesha Upya"
 
@@ -475,50 +480,50 @@ msgstr "Onyesha Upya"
 msgid "Create Poll"
 msgstr ""
 
-#: controllers/polls_controller.php:118;118
+#: controllers/polls_controller.php:119;119
 msgid ""
 "The poll has been created. Please note that the poll's closing time has "
 "already passed."
 msgstr ""
 
-#: controllers/polls_controller.php:120;120
+#: controllers/polls_controller.php:122;122
 msgid "The poll has successfully been created."
 msgstr ""
 
-#: controllers/polls_controller.php:134;134
+#: controllers/polls_controller.php:137;137
 msgid "Delete Poll"
 msgstr ""
 
-#: controllers/polls_controller.php:139;139
+#: controllers/polls_controller.php:142;142
 msgid "The following poll has been deleted"
 msgstr ""
 
-#: controllers/polls_controller.php:163;163
+#: controllers/polls_controller.php:166;166
 msgid "Poll option could not be deleted. A poll needs at least two options."
 msgstr ""
 "Chaguo la kura halikuweza kufutwa. Kura inahitaji angalau machaguo mawili."
 
-#: controllers/polls_controller.php:174;174 views/polls/edit.ctp:30;30
+#: controllers/polls_controller.php:177;177 views/polls/edit.ctp:30;30
 msgid "Edit Poll"
 msgstr "Hariri kura"
 
-#: controllers/polls_controller.php:177;177
+#: controllers/polls_controller.php:180;180
 msgid "Invalid Poll"
 msgstr "Kura batili"
 
-#: controllers/polls_controller.php:199;199
+#: controllers/polls_controller.php:203;203
 msgid ""
 "The poll has been updated. Please note that the poll's closing time has "
 "already passed."
 msgstr ""
 
-#: controllers/polls_controller.php:201;201
+#: controllers/polls_controller.php:208;208
 msgid "The poll has been updated."
 msgstr ""
 
 #: controllers/processes_controller.php:37;37
 #: views/elements/menuAdmin.ctp:197;197 views/elements/menuUser.ctp:183;183
-#: views/processes/index.ctp:26;37;26;37
+#: views/logs/index.ctp:32;32 views/processes/index.ctp:26;37;26;37
 msgid "Health"
 msgstr ""
 
@@ -528,36 +533,36 @@ msgstr ""
 msgid "About"
 msgstr "Kuhusu"
 
-#: controllers/processes_controller.php:109;109
+#: controllers/processes_controller.php:108;108
 msgid "started"
 msgstr "anzishwa"
 
-#: controllers/processes_controller.php:111;111
+#: controllers/processes_controller.php:114;114
 msgid "is already running"
 msgstr "tayari inaendeshwa"
 
-#: controllers/processes_controller.php:135;135
+#: controllers/processes_controller.php:139;139
 msgid "is not running"
 msgstr "haiendeshwi"
 
-#: controllers/processes_controller.php:140;140
+#: controllers/processes_controller.php:144;144
 msgid "No pid found. Contact system admin."
 msgstr "Hakuna pid iliyopatikana. Wasiliana na msimamizi wa mfumo."
 
-#: controllers/processes_controller.php:149;149
+#: controllers/processes_controller.php:153;153
 msgid "Manual"
 msgstr "Kwa mkono"
 
-#: controllers/processes_controller.php:151;166;151;166
+#: controllers/processes_controller.php:155;171;155;171
 msgid "stopped"
 msgstr "simamishwa"
 
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#: controllers/processes_controller.php:158;158
+#: controllers/processes_controller.php:163;163
 msgid "was already stopped"
 msgstr "tayari imesimamishwa"
 
-#: controllers/settings_controller.php:33;33
+#: controllers/settings_controller.php:95;95
 #: views/elements/menuAdmin.ctp:203;203 views/elements/menuUser.ctp:189;189
 #: views/settings/index.ctp:26;29;26;29
 msgid "Settings"
@@ -597,35 +602,43 @@ msgstr "Lebo haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 msgid "The selected tag has been deleted."
 msgstr "Lebo iliyochaguliwa imefutwa."
 
-#: controllers/users_controller.php:46;46 views/elements/menuUser.ctp:136;136
-#: views/users/add.ctp:26;26 views/users/edit.ctp:28;28
-#: views/users/index.ctp:26;43;26;43
-msgid "Users"
+#: controllers/users_controller.php:46;46 views/elements/menuAdmin.ctp:141;141
+#: views/elements/menuUser.ctp:136;136 views/users/add.ctp:26;26
+#: views/users/edit.ctp:28;28 views/users/index.ctp:26;46;26;46
+msgid "Callers"
 msgstr ""
 
-#: controllers/users_controller.php:136;136
-msgid "Users details"
+#: controllers/users_controller.php:144;144 views/users/index.ctp:129;129
+msgid "Caller details"
 msgstr ""
 
-#: controllers/users_controller.php:213;213
+#: controllers/users_controller.php:155;155 views/users/edit.ctp:41;41
+msgid "Edit Caller"
+msgstr ""
+
+#: controllers/users_controller.php:221;221
 msgid "Selected user has been deleted."
 msgstr ""
 
-#: controllers/users_controller.php:233;233 views/users/add.ctp:46;46
-#: views/users/index.ctp:165;165
+#: controllers/users_controller.php:244;244 views/users/add.ctp:46;46
+#: views/users/index.ctp:169;169
 msgid "Add to phone book"
 msgstr ""
 
-#: controllers/users_controller.php:258;258 views/users/index.ctp:166;166
+#: controllers/users_controller.php:268;268 views/users/index.ctp:170;170
 msgid "Remove from phone book"
 msgstr ""
 
-#: controllers/users_controller.php:293;293 views/users/disp.ctp:82;82
-#: views/users/index.ctp:159;159
+#: controllers/users_controller.php:318;318 views/users/disp.ctp:82;82
+#: views/users/index.ctp:163;163
 msgid "Merge"
 msgstr ""
 
-#: controllers/users_controller.php:392;392
+#: controllers/users_controller.php:402;402 views/users/add.ctp:30;30
+msgid "Add Caller"
+msgstr ""
+
+#: controllers/users_controller.php:417;417
 msgid "New user has been added"
 msgstr ""
 
@@ -646,7 +659,7 @@ msgstr "Jina hili tayari limetumika."
 msgid "Please enter a description using 1 to 50 characters"
 msgstr "Andika maelezo. Tumia kati ya herufi 1 hadi 50."
 
-#: models/cdr.php:245;245 views/monitor_ivr/index.ctp:97;97
+#: models/cdr.php:247;247 views/monitor_ivr/index.ctp:97;97
 msgid "tag"
 msgstr "lebo"
 
@@ -778,12 +791,16 @@ msgstr ""
 msgid "Please supply a valid skype name."
 msgstr ""
 
-#: models/user.php:72;85;72;85
-msgid "Only letters, spaces and hyphens."
+#: models/user.php:72;72
+msgid "Name required (letters, spaces and hyphens)."
 msgstr ""
 
-#: models/user.php:76;89;76;89
+#: models/user.php:77;90;77;90
 msgid "Between 1 to 20 characters"
+msgstr ""
+
+#: models/user.php:86;86
+msgid "Only letters, spaces and hyphens."
 msgstr ""
 
 #: models/vote.php:44;44
@@ -803,13 +820,13 @@ msgstr "Chaguo si la pekee"
 msgid "Date and Time"
 msgstr "Tarehe na Saa"
 
-#: views/bin/export.ctp:28;28 views/cdr/general.ctp:158;158
-#: views/messages/disp.ctp:53;53
+#: views/bin/export.ctp:28;28 views/cdr/general.ctp:160;160
+#: views/messages/archive.ctp:56;56 views/messages/disp.ctp:53;53
 msgid "Date"
 msgstr "Tarehe"
 
 #: views/bin/export.ctp:28;28 views/bin/index.ctp:56;56
-#: views/cdr/general.ctp:41;158;41;158 views/cdr/index.ctp:61;61
+#: views/cdr/general.ctp:41;160;41;160 views/cdr/index.ctp:61;61
 #: views/cdr/output.ctp:26;26 views/cdr/overview.ctp:136;136
 #: views/messages/index.ctp:34;34 views/monitor_ivr/index.ctp:62;62
 #: views/monitor_ivr/output.ctp:28;28
@@ -821,7 +838,7 @@ msgid "Message"
 msgstr "Ujumbe"
 
 #: views/bin/export.ctp:28;28 views/bin/index.ctp:59;59
-#: views/cdr/overview.ctp:136;136 views/messages/archive.ctp:52;52
+#: views/cdr/overview.ctp:136;136
 msgid "Sender"
 msgstr "Mtumaji"
 
@@ -832,6 +849,11 @@ msgstr "Mtumaji"
 msgid "Type"
 msgstr "Aina"
 
+#: views/bin/export.ctp:28;28 views/bin/index.ctp:58;58
+#: views/cdr/general.ctp:41;41
+msgid "Channel"
+msgstr ""
+
 #: views/bin/export.ctp:41;41
 msgid "OtherSMS"
 msgstr "SMS Nyingine"
@@ -840,16 +862,16 @@ msgstr "SMS Nyingine"
 #: views/categories/edit.ctp:25;25 views/categories/index.ctp:25;25
 #: views/elements/menuAdmin.ctp:63;63 views/elements/menuUser.ctp:58;58
 #: views/lm_menus/add.ctp:25;25 views/lm_menus/edit.ctp:25;25
-#: views/lm_menus/index.ctp:25;25 views/messages/archive.ctp:25;25
-#: views/messages/edit.ctp:34;34 views/messages/index.ctp:27;27
-#: views/tags/add.ctp:25;25 views/tags/edit.ctp:25;25
-#: views/tags/index.ctp:25;25
+#: views/lm_menus/index.ctp:25;25 views/logs/index.ctp:32;32
+#: views/messages/archive.ctp:25;25 views/messages/edit.ctp:34;34
+#: views/messages/index.ctp:27;27 views/tags/add.ctp:25;25
+#: views/tags/edit.ctp:25;25 views/tags/index.ctp:25;25
 msgid "Message Centre"
 msgstr ""
 
 #: views/bin/index.ctp:26;43;26;43 views/cdr/overview.ctp:115;115
 #: views/cdr/statistics.ctp:86;86 views/elements/menuAdmin.ctp:89;89
-#: views/elements/menuUser.ctp:84;84
+#: views/elements/menuUser.ctp:84;84 views/logs/index.ctp:32;32
 msgid "Incoming SMS"
 msgstr ""
 
@@ -861,20 +883,16 @@ msgstr "Ujumbe:"
 #: views/bin/index.ctp:44;44 views/cdr/index.ctp:53;53
 #: views/messages/archive.ctp:38;38 views/messages/disp.ctp:38;38
 #: views/monitor_ivr/index.ctp:51;51 views/nodes/index.ctp:51;51
-#: views/users/index.ctp:81;81
+#: views/users/index.ctp:86;86
 msgid "-"
 msgstr "-"
 
 #: views/bin/index.ctp:44;44 views/cdr/index.ctp:53;53
 #: views/messages/archive.ctp:38;38 views/messages/disp.ctp:38;38
 #: views/monitor_ivr/index.ctp:51;51 views/nodes/index.ctp:51;51
-#: views/users/index.ctp:81;81
+#: views/users/index.ctp:86;86
 msgid "of"
 msgstr "ya"
-
-#: views/bin/index.ctp:58;58 views/cdr/output.ctp:26;26
-msgid "Protocol"
-msgstr "Itifaki"
 
 #: views/bin/index.ctp:60;60
 msgid "Action"
@@ -884,23 +902,23 @@ msgstr ""
 msgid "Are you sure you want to delete this entry?"
 msgstr "Una uhakika unataka kufuta ingizo hili?"
 
-#: views/bin/index.ctp:93;93 views/cdr/general.ctp:169;169
+#: views/bin/index.ctp:93;93 views/cdr/general.ctp:171;171
 #: views/cdr/index.ctp:117;117 views/messages/disp.ctp:108;111;108;111
 #: views/monitor_ivr/index.ctp:142;142 views/nodes/index.ctp:92;92
-#: views/users/index.ctp:173;173
+#: views/users/index.ctp:177;177
 msgid "Previous"
 msgstr ""
 
-#: views/bin/index.ctp:93;93 views/cdr/general.ctp:169;169
+#: views/bin/index.ctp:93;93 views/cdr/general.ctp:171;171
 #: views/cdr/index.ctp:117;117 views/messages/disp.ctp:108;113;108;113
 #: views/monitor_ivr/index.ctp:142;142 views/nodes/index.ctp:92;92
-#: views/users/index.ctp:173;173
+#: views/users/index.ctp:177;177
 msgid "Next"
 msgstr ""
 
-#: views/bin/index.ctp:97;97 views/cdr/general.ctp:173;173
+#: views/bin/index.ctp:97;97 views/cdr/general.ctp:175;175
 #: views/cdr/index.ctp:121;121 views/monitor_ivr/index.ctp:146;146
-#: views/nodes/index.ctp:96;96 views/users/index.ctp:176;176
+#: views/nodes/index.ctp:96;96 views/users/index.ctp:180;180
 msgid "Entries per page "
 msgstr ""
 
@@ -916,8 +934,8 @@ msgid "Add Category"
 msgstr "Ongeza Kategoria"
 
 #: views/categories/add.ctp:39;39 views/categories/edit.ctp:45;45
-#: views/categories/index.ctp:57;57 views/messages/archive.ctp:54;54
-#: views/messages/disp.ctp:52;52 views/messages/edit.ctp:95;95
+#: views/categories/index.ctp:57;57 views/messages/archive.ctp:55;55
+#: views/messages/disp.ctp:52;52 views/messages/edit.ctp:96;96
 #: views/messages/index.ctp:34;49;34;49
 msgid "Category"
 msgstr "Kategoria"
@@ -933,20 +951,19 @@ msgstr "Maelezo"
 #: views/categories/edit.ctp:35;35 views/categories/index.ctp:46;46;46;46
 #: views/cdr/overview.ctp:168;168;168;168
 #: views/channels/index.ctp:74;74;122;122;74;74;122;122
-#: views/ff_users/edit.ctp:29;29 views/ff_users/index.ctp:55;55;55;55
+#: views/ff_users/edit.ctp:30;30 views/ff_users/index.ctp:55;55;55;55
 #: views/groups/index.ctp:46;51;51;46;51;51 views/ivr_menus/edit.ctp:53;53
 #: views/ivr_menus/edit_selector.ctp:44;44
 #: views/ivr_menus/index.ctp:72;72;72;72
 #: views/ivr_menus/selectors.ctp:65;65;65;65 views/lm_menus/edit.ctp:31;31
-#: views/lm_menus/index.ctp:67;67;67;67
-#: views/messages/archive.ctp:57;81;81;57;81;81
+#: views/lm_menus/index.ctp:67;67;67;67 views/messages/archive.ctp:82;82;82;82
 #: views/messages/disp.ctp:74;74;74;74 views/nodes/edit.ctp:32;32
 #: views/nodes/index.ctp:72;72;72;72 views/phone_books/edit.ctp:27;27
 #: views/phone_books/index.ctp:50;50;50;50 views/polls/edit.ctp:29;29
 #: views/polls/index.ctp:76;76;76;76 views/polls/view.ctp:47;47;47;47
 #: views/tags/edit.ctp:35;35 views/tags/index.ctp:51;51;51;51
 #: views/users/disp.ctp:33;72;33;72 views/users/edit.ctp:29;29
-#: views/users/index.ctp:129;129;129;129
+#: views/users/index.ctp:133;133;133;133
 msgid "Edit"
 msgstr "Hariri"
 
@@ -964,8 +981,8 @@ msgid "Use in message"
 msgstr "Tumia kwenye ujumbe"
 
 #: views/categories/edit.ctp:54;54 views/channels/edit.ctp:62;62
-#: views/errors/missing_action.ctp:26;26 views/ff_users/edit.ctp:61;61
-#: views/lm_menus/edit.ctp:145;145 views/messages/edit.ctp:131;131
+#: views/errors/missing_action.ctp:26;26 views/ff_users/edit.ctp:62;62
+#: views/lm_menus/edit.ctp:145;145 views/messages/edit.ctp:132;132
 #: views/office_route/edit.ctp:63;63 views/polls/edit.ctp:127;127
 #: views/polls/view.ctp:124;124 views/tags/edit.ctp:56;56
 msgid "This page does not exist."
@@ -985,10 +1002,10 @@ msgstr ""
 #: views/categories/index.ctp:57;57 views/cdr/overview.ctp:136;184;136;184
 #: views/channels/index.ctp:93;140;93;140 views/ff_users/index.ctp:48;48
 #: views/ivr_menus/index.ctp:61;61 views/ivr_menus/selectors.ctp:56;56
-#: views/lm_menus/index.ctp:56;56 views/messages/disp.ctp:55;55
-#: views/nodes/index.ctp:60;60 views/phone_books/index.ctp:44;44
-#: views/polls/index.ctp:93;93 views/tags/index.ctp:42;42
-#: views/users/index.ctp:94;94
+#: views/lm_menus/index.ctp:56;56 views/messages/archive.ctp:58;58
+#: views/messages/disp.ctp:55;55 views/nodes/index.ctp:60;60
+#: views/phone_books/index.ctp:44;44 views/polls/index.ctp:93;93
+#: views/tags/index.ctp:42;42 views/users/index.ctp:99;99
 msgid "Actions"
 msgstr ""
 
@@ -1056,13 +1073,13 @@ msgstr "Mwezi"
 msgid "Day"
 msgstr "Siku"
 
-#: views/cdr/general.ctp:41;158;41;158 views/cdr/index.ctp:65;65
+#: views/cdr/general.ctp:41;160;41;160 views/cdr/index.ctp:65;65
 #: views/channels/edit.ctp:46;46 views/channels/index.ctp:85;133;85;133
 #: views/ivr_menus/add_selector.ctp:62;62
 #: views/ivr_menus/edit_selector.ctp:65;65 views/ivr_menus/index.ctp:59;59
 #: views/ivr_menus/selectors.ctp:53;53 views/lm_menus/add.ctp:81;81
 #: views/lm_menus/edit.ctp:81;81 views/lm_menus/index.ctp:54;54
-#: views/messages/archive.ctp:51;51 views/messages/disp.ctp:49;49
+#: views/messages/archive.ctp:52;52 views/messages/disp.ctp:49;49
 #: views/messages/edit.ctp:92;92 views/monitor_ivr/index.ctp:68;68
 #: views/monitor_ivr/output.ctp:28;28 views/nodes/add.ctp:44;44
 #: views/nodes/edit.ctp:54;54 views/nodes/index.ctp:56;56
@@ -1070,23 +1087,21 @@ msgstr "Siku"
 msgid "Title"
 msgstr "Kichwa"
 
-#: views/cdr/general.ctp:41;158;41;158 views/cdr/index.ctp:64;64
-#: views/cdr/output.ctp:26;26 views/messages/disp.ctp:50;50
-#: views/messages/edit.ctp:120;120
+#: views/cdr/general.ctp:41;160;41;160 views/cdr/index.ctp:64;64
+#: views/cdr/output.ctp:26;26 views/messages/archive.ctp:53;53
+#: views/messages/disp.ctp:50;50 views/messages/edit.ctp:121;121
+#: views/users/index.ctp:86;86
 msgid "Caller"
 msgstr ""
 
-#: views/cdr/general.ctp:41;41
-msgid "Channel"
-msgstr ""
-
-#: views/cdr/general.ctp:41;158;41;158 views/cdr/overview.ctp:136;136
-#: views/messages/archive.ctp:56;56 views/messages/disp.ctp:54;54
-#: views/messages/edit.ctp:119;119 views/messages/index.ctp:34;34
+#: views/cdr/general.ctp:41;160;41;160 views/cdr/overview.ctp:136;136
+#: views/messages/archive.ctp:57;57 views/messages/disp.ctp:54;54
+#: views/messages/edit.ctp:120;120 views/messages/index.ctp:34;34
 msgid "Length"
 msgstr "Urefu"
 
 #: views/cdr/general.ctp:68;68 views/cdr/output.ctp:50;50
+#: views/logs/index.ctp:32;32
 msgid "CDR"
 msgstr "MDM"
 
@@ -1113,15 +1128,15 @@ msgstr "Programu-tumizi"
 msgid "View"
 msgstr "Angalia"
 
-#: views/cdr/general.ctp:142;142
+#: views/cdr/general.ctp:144;144
 msgid "Number of records found:"
 msgstr ""
 
-#: views/cdr/general.ctp:160;160 views/messages/edit.ctp:121;121
+#: views/cdr/general.ctp:162;162 views/messages/edit.ctp:122;122
 msgid "Quick hangup"
 msgstr ""
 
-#: views/cdr/general.ctp:180;180 views/messages/archive.ctp:123;123
+#: views/cdr/general.ctp:182;182 views/messages/archive.ctp:128;128
 #: views/messages/disp.ctp:122;122 views/monitor_ivr/index.ctp:151;151
 msgid "No records found."
 msgstr ""
@@ -1161,6 +1176,10 @@ msgstr ""
 msgid "Call Id"
 msgstr ""
 
+#: views/cdr/output.ctp:26;26
+msgid "Protocol"
+msgstr "Itifaki"
+
 #: views/cdr/overview.ctp:84;84;84;84
 msgid "Download audio file"
 msgstr ""
@@ -1185,9 +1204,9 @@ msgstr "Acha-ujumbe"
 #: views/cdr/overview.ctp:114;114 views/cdr/statistics.ctp:85;85
 #: views/elements/menuAdmin.ctp:40;40 views/elements/menuUser.ctp:40;40
 #: views/elements/services.ctp:44;44
-#: views/helpers/formatting.php:76;104;76;104 views/pages/polls/index.ctp:4;4
-#: views/pages/polls/tip.ctp:4;4 views/users/edit.ctp:132;132
-#: views/users/view.ctp:82;82
+#: views/helpers/formatting.php:76;104;76;104 views/logs/index.ctp:32;32
+#: views/pages/polls/index.ctp:4;4 views/pages/polls/tip.ctp:4;4
+#: views/users/edit.ctp:132;132 views/users/view.ctp:82;82
 msgid "Poll"
 msgstr "Kura"
 
@@ -1213,7 +1232,7 @@ msgid "The table below shows the five most recent new messages"
 msgstr ""
 
 #: views/cdr/overview.ctp:136;136 views/messages/archive.ctp:59;59
-#: views/messages/disp.ctp:56;56 views/messages/edit.ctp:123;123
+#: views/messages/disp.ctp:56;56 views/messages/edit.ctp:124;124
 #: views/nodes/edit.ctp:58;58 views/nodes/index.ctp:61;61
 msgid "Listen"
 msgstr "Sikiliza"
@@ -1366,11 +1385,6 @@ msgstr ""
 msgid "Excellent"
 msgstr ""
 
-#: views/elements/menuAdmin.ctp:34;34 views/elements/menuUser.ctp:34;34
-#: views/layouts/default.ctp:102;102
-msgid "Home"
-msgstr "Nyumbani"
-
 #: views/elements/menuAdmin.ctp:44;44 views/elements/menuUser.ctp:44;44
 msgid "Manage polls"
 msgstr "Simamia kura"
@@ -1396,8 +1410,8 @@ msgstr ""
 #: views/ivr_menus/add.ctp:25;25 views/ivr_menus/add_selector.ctp:25;25
 #: views/ivr_menus/edit.ctp:25;25 views/ivr_menus/edit_selector.ctp:26;26
 #: views/ivr_menus/index.ctp:25;25 views/ivr_menus/selectors.ctp:25;25
-#: views/nodes/add.ctp:26;26 views/nodes/edit.ctp:25;25
-#: views/nodes/index.ctp:25;25
+#: views/logs/index.ctp:32;32 views/nodes/add.ctp:26;26
+#: views/nodes/edit.ctp:25;25 views/nodes/index.ctp:25;25
 msgid "IVR Centre"
 msgstr ""
 
@@ -1416,21 +1430,18 @@ msgstr ""
 msgid "User Management"
 msgstr ""
 
-#: views/elements/menuAdmin.ctp:141;141
-msgid "Callers"
-msgstr ""
-
 #: views/elements/menuAdmin.ctp:145;145
 msgid "System users"
 msgstr ""
 
-#: views/elements/menuAdmin.ctp:149;149 views/ff_users/sweep.ctp:26;29;26;29
+#: views/elements/menuAdmin.ctp:149;149
+#: views/ff_users/system_sweeper.ctp:26;29;26;29
 msgid "Frontend Sweeper"
 msgstr ""
 
 #: views/elements/menuAdmin.ctp:176;176 views/elements/menuUser.ctp:162;162
-#: views/monitor_ivr/delete.ctp:26;26 views/monitor_ivr/export.ctp:26;26
-#: views/monitor_ivr/index.ctp:26;26
+#: views/logs/index.ctp:32;32 views/monitor_ivr/delete.ctp:26;26
+#: views/monitor_ivr/export.ctp:26;26 views/monitor_ivr/index.ctp:26;26
 msgid "Monitoring"
 msgstr "Ufuatiliaji"
 
@@ -1528,44 +1539,39 @@ msgstr ""
 msgid "This view does not exist."
 msgstr ""
 
-#: views/ff_users/add.ctp:26;26 views/ff_users/edit.ctp:25;25
-#: views/ff_users/login.ctp:25;25 views/groups/add.ctp:26;26
-#: views/groups/index.ctp:25;25
+#: views/ff_users/add.ctp:26;26 views/ff_users/login.ctp:25;25
+#: views/groups/add.ctp:26;26 views/groups/index.ctp:25;25
 msgid "Authentication"
 msgstr ""
 
-#: views/ff_users/add.ctp:30;30 views/ff_users/index.ctp:30;30
-#: views/users/index.ctp:37;37
-msgid "Add user"
-msgstr ""
-
-#: views/ff_users/add.ctp:38;38 views/ff_users/edit.ctp:49;49
+#: views/ff_users/add.ctp:43;43 views/ff_users/edit.ctp:50;50
 msgid "Username"
 msgstr ""
 
-#: views/ff_users/add.ctp:39;39 views/ff_users/login.ctp:45;45
+#: views/ff_users/add.ctp:44;44 views/ff_users/login.ctp:45;45
 msgid "Password"
 msgstr ""
 
-#: views/ff_users/add.ctp:40;40 views/ff_users/edit.ctp:52;52
+#: views/ff_users/add.ctp:45;45 views/ff_users/edit.ctp:53;53
 msgid "Repeat password"
 msgstr ""
 
-#: views/ff_users/add.ctp:41;41 views/ff_users/edit.ctp:50;50
+#: views/ff_users/add.ctp:46;46 views/ff_users/edit.ctp:51;51
 #: views/ff_users/index.ctp:48;48 views/groups/index.ctp:46;46
 msgid "Group"
 msgstr ""
 
-#: views/ff_users/edit.ctp:51;51
-msgid "New password"
-msgstr ""
-
-#: views/ff_users/index.ctp:25;25 views/ff_users/sweep.ctp:25;25
+#: views/ff_users/edit.ctp:25;25 views/ff_users/index.ctp:25;25
+#: views/ff_users/system_sweeper.ctp:25;25
 msgid "User management"
 msgstr ""
 
-#: views/ff_users/index.ctp:26;34;26;34
-msgid "System Users"
+#: views/ff_users/edit.ctp:52;52
+msgid "New password"
+msgstr ""
+
+#: views/ff_users/index.ctp:30;30
+msgid "Add user"
 msgstr ""
 
 #: views/ff_users/index.ctp:48;48 views/groups/add.ctp:38;38
@@ -1573,11 +1579,11 @@ msgstr ""
 #: views/phone_books/add.ctp:49;49 views/phone_books/edit.ctp:47;47
 #: views/phone_books/export.ctp:37;37 views/users/add.ctp:39;39
 #: views/users/disp.ctp:66;66 views/users/edit.ctp:70;70
-#: views/users/index.ctp:88;88 views/users/view.ctp:51;51
+#: views/users/index.ctp:93;93 views/users/view.ctp:51;51
 msgid "Name"
 msgstr "Jina"
 
-#: views/ff_users/index.ctp:56;56 views/users/index.ctp:130;130
+#: views/ff_users/index.ctp:56;56 views/users/index.ctp:134;134
 msgid "Are you sure you wish to delete this user?"
 msgstr ""
 
@@ -1591,17 +1597,17 @@ msgstr ""
 msgid "User name"
 msgstr ""
 
-#: views/ff_users/sweep.ctp:40;40
+#: views/ff_users/system_sweeper.ctp:40;40
 msgid ""
 "The Frontend Sweeper wipes out all confidential information (such as name, "
 "email and phone numbers) from Freedom Fone."
 msgstr ""
 
-#: views/ff_users/sweep.ctp:41;41
+#: views/ff_users/system_sweeper.ctp:41;41
 msgid "To wipe out Freedom Fone logs, please use the Backend Sweeper."
 msgstr ""
 
-#: views/ff_users/sweep.ctp:42;42
+#: views/ff_users/system_sweeper.ctp:42;42
 msgid "Start Sweeper"
 msgstr ""
 
@@ -1611,10 +1617,6 @@ msgstr ""
 
 #: views/groups/index.ctp:29;29
 msgid "Add group"
-msgstr ""
-
-#: views/groups/index.ctp:33;33
-msgid "Freedom Fone Groups"
 msgstr ""
 
 #: views/groups/index.ctp:52;52
@@ -1653,8 +1655,7 @@ msgstr "sekunde"
 msgid "Voice menu"
 msgstr "Menyu ya sauti"
 
-#: views/helpers/formatting.php:88;88 views/users/edit.ctp:136;136
-#: views/users/view.ctp:86;86
+#: views/helpers/formatting.php:88;88 views/users/view.ctp:86;86
 msgid "Callback"
 msgstr "Kurudisha-mwito"
 
@@ -1808,9 +1809,8 @@ msgstr "Usitumie faili lililopakiwa"
 #: views/ivr_menus/edit_selector.ctp:85;103;85;103
 #: views/lm_menus/advanced_edit.ctp:57;57;79;79;102;102;125;125;148;148;170;170;57;57;79;79;102;102;125;125;148;148;170;170
 #: views/lm_menus/edit.ctp:99;99;124;124;99;99;124;124
-#: views/messages/archive.ctp:58;82;82;58;82;82
-#: views/messages/disp.ctp:75;75;75;75
-#: views/messages/edit.ctp:122;122;122;122;122;122
+#: views/messages/archive.ctp:83;83;83;83 views/messages/disp.ctp:75;75;75;75
+#: views/messages/edit.ctp:123;123;123;123;123;123
 #: views/nodes/edit.ctp:47;47;47;47 views/nodes/index.ctp:74;74;74;74
 msgid "Download"
 msgstr "Pakua"
@@ -1867,8 +1867,8 @@ msgid "Audio files should be recorded in mono, 8KHz, and be maximum 10MB."
 msgstr "Mafaili sikizi yarekodiwe mono, KHz8, yenye upeo wa 10MB."
 
 #: views/ivr_menus/index.ctp:58;58 views/ivr_menus/selectors.ctp:52;52
-#: views/lm_menus/index.ctp:53;53 views/messages/disp.ctp:48;48
-#: views/messages/index.ctp:34;34
+#: views/lm_menus/index.ctp:53;53 views/messages/archive.ctp:51;51
+#: views/messages/disp.ctp:48;48 views/messages/index.ctp:34;34
 msgid "Service"
 msgstr ""
 
@@ -1901,6 +1901,10 @@ msgstr ""
 #: views/layouts/default.ctp:96;96;96;96
 msgid "Logout"
 msgstr ""
+
+#: views/layouts/default.ctp:105;105
+msgid "Home"
+msgstr "Nyumbani"
 
 #: views/lm_menus/add.ctp:26;26 views/lm_menus/edit.ctp:26;26
 msgid "Administration"
@@ -1964,6 +1968,10 @@ msgstr "Matini ya awali"
 
 #: views/lm_menus/add.ctp:102;102 views/lm_menus/edit.ctp:115;115
 msgid "Step 2: Record message instructions"
+msgstr ""
+
+#: views/lm_menus/add.ctp:111;111 views/lm_menus/edit.ctp:137;137
+msgid "Advanced options"
 msgstr ""
 
 #: views/lm_menus/advanced_add.ctp:44;44
@@ -2074,7 +2082,7 @@ msgstr "Ujumbe wa kutaharifu"
 msgid "Manage Leave-a-message"
 msgstr ""
 
-#: views/lm_menus/index.ctp:55;55 views/messages/edit.ctp:117;117
+#: views/lm_menus/index.ctp:55;55 views/messages/edit.ctp:118;118
 #: views/nodes/index.ctp:58;58
 msgid "Created"
 msgstr "Undwa"
@@ -2089,12 +2097,24 @@ msgid ""
 "new</i> button to the right."
 msgstr ""
 
-#: views/logs/disp.ctp:42;42
+#: views/logs/disp.ctp:46;46
 msgid "No log file of this type exists"
 msgstr ""
 
 #: views/logs/index.ctp:30;30
-msgid "Select log file to view"
+msgid "Select log file to view."
+msgstr ""
+
+#: views/logs/index.ctp:32;32
+msgid "Cron and refresh"
+msgstr ""
+
+#: views/logs/index.ctp:32;32
+msgid "Debug"
+msgstr ""
+
+#: views/logs/index.ctp:32;32
+msgid "Error"
 msgstr ""
 
 #: views/logs/index.ctp:34;34
@@ -2106,29 +2126,25 @@ msgid "Archived messages"
 msgstr "Ujumbe uliohifadhiwa kwenye nyaraka"
 
 #: views/messages/archive.ctp:50;71;50;71 views/messages/disp.ctp:47;64;47;64
-#: views/users/disp.ctp:14;65;14;65 views/users/index.ctp:87;110;87;110
+#: views/users/disp.ctp:14;65;14;65 views/users/index.ctp:92;114;92;114
 msgid "New"
 msgstr "Mpya"
 
-#: views/messages/archive.ctp:53;53 views/messages/disp.ctp:51;51
-#: views/messages/edit.ctp:94;94 views/messages/index.ctp:34;50;34;50
+#: views/messages/archive.ctp:54;54 views/messages/disp.ctp:51;51
+#: views/messages/edit.ctp:95;95 views/messages/index.ctp:34;50;34;50
 msgid "Rate"
 msgstr "Kadiria"
 
-#: views/messages/archive.ctp:55;55
-msgid "Income"
-msgstr ""
-
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#: views/messages/archive.ctp:114;114
+#: views/messages/archive.ctp:119;119
 msgid "No of messages per page: "
 msgstr "Idadi ya jumbe kwa ukurasa: "
 
-#: views/messages/archive.ctp:118;118
+#: views/messages/archive.ctp:123;123
 msgid "All"
 msgstr "Zote"
 
-#: views/messages/disp.ctp:99;99 views/users/index.ctp:157;157
+#: views/messages/disp.ctp:99;99 views/users/index.ctp:161;161
 msgid "Perform action on selected"
 msgstr ""
 
@@ -2152,29 +2168,29 @@ msgstr ""
 msgid "Edit Message"
 msgstr "Hariri ujumbe"
 
-#: views/messages/edit.ctp:95;95
+#: views/messages/edit.ctp:96;96
 msgid "No category"
 msgstr ""
 
-#: views/messages/edit.ctp:96;96
+#: views/messages/edit.ctp:97;97
 msgid "Comment"
 msgstr ""
 
-#: views/messages/edit.ctp:97;97 views/messages/index.ctp:48;48
+#: views/messages/edit.ctp:98;98 views/messages/index.ctp:48;48
 #: views/tags/add.ctp:40;40 views/tags/edit.ctp:46;46
 #: views/tags/index.ctp:42;42
 msgid "Tag"
 msgstr "Lebo"
 
-#: views/messages/edit.ctp:97;97
+#: views/messages/edit.ctp:98;98
 msgid "No tag"
 msgstr ""
 
-#: views/messages/edit.ctp:102;102
+#: views/messages/edit.ctp:103;103
 msgid "Are you sure you wish to delete this message?"
 msgstr ""
 
-#: views/messages/edit.ctp:118;118
+#: views/messages/edit.ctp:119;119
 msgid "Modified"
 msgstr "Rekebishwa"
 
@@ -2334,12 +2350,16 @@ msgid ""
 "i> button to the right."
 msgstr ""
 
-#: views/office_route/edit.ctp:31;31
-msgid "Edit Officeroute"
-msgstr ""
-
 #: views/office_route/edit.ctp:34;34
 msgid "slot"
+msgstr ""
+
+#: views/pages/welcome.ctp:3;3
+msgid "Welcome to Freedom Fone"
+msgstr "Karibu Freedom Fone"
+
+#: views/pages/welcome.ctp:5;5
+msgid "Please click on the pad lock in the upper right corner to log in."
 msgstr ""
 
 #: views/pages/ivr_menus/tip.ctp:5;5
@@ -2510,19 +2530,19 @@ msgstr ""
 
 #: views/phone_books/export.ctp:37;37 views/users/add.ctp:40;40
 #: views/users/disp.ctp:67;67 views/users/edit.ctp:71;71
-#: views/users/index.ctp:89;89 views/users/view.ctp:52;52
+#: views/users/index.ctp:94;94 views/users/view.ctp:52;52
 msgid "Surname"
 msgstr ""
 
 #: views/phone_books/export.ctp:37;37 views/users/add.ctp:41;41
 #: views/users/disp.ctp:68;68 views/users/edit.ctp:72;72
-#: views/users/index.ctp:90;90 views/users/view.ctp:53;53
+#: views/users/index.ctp:95;95 views/users/view.ctp:53;53
 msgid "Email"
 msgstr ""
 
 #: views/phone_books/export.ctp:37;37 views/users/add.ctp:42;42
 #: views/users/disp.ctp:69;69 views/users/edit.ctp:73;73
-#: views/users/index.ctp:91;91 views/users/view.ctp:54;54
+#: views/users/index.ctp:96;96 views/users/view.ctp:54;54
 msgid "Skype"
 msgstr ""
 
@@ -2787,7 +2807,7 @@ msgstr ""
 msgid "IP address"
 msgstr ""
 
-#: views/processes/system.ctp:117;117
+#: views/processes/system.ctp:117;117 views/settings/index.ctp:55;55
 msgid "Language"
 msgstr ""
 
@@ -2810,6 +2830,14 @@ msgstr ""
 
 #: views/settings/index.ctp:36;36
 msgid "is not networked, select Local machine."
+msgstr ""
+
+#: views/settings/index.ctp:70;70
+msgid "Time zone"
+msgstr ""
+
+#: views/settings/index.ctp:78;78
+msgid "Country"
 msgstr ""
 
 #: views/settings/index.ctp:85;85
@@ -2854,23 +2882,23 @@ msgstr ""
 msgid "Alternative phone numbers"
 msgstr ""
 
-#: views/users/disp.ctp:70;70 views/users/index.ctp:92;92
+#: views/users/disp.ctp:70;70 views/users/index.ctp:97;97
 msgid "Acl"
 msgstr ""
 
-#: views/users/disp.ctp:71;71 views/users/index.ctp:93;93
+#: views/users/disp.ctp:71;71 views/users/index.ctp:98;98
 msgid "Phone"
 msgstr ""
 
 #: views/users/edit.ctp:69;69 views/users/view.ctp:50;50
-msgid "User data"
+msgid "Caller data"
 msgstr ""
 
 #: views/users/edit.ctp:75;75 views/users/view.ctp:56;56
 msgid "Access control list (ACL)"
 msgstr ""
 
-#: views/users/edit.ctp:76;76 views/users/index.ctp:58;164;58;164
+#: views/users/edit.ctp:76;76 views/users/index.ctp:63;168;63;168
 msgid "Select phone book"
 msgstr ""
 
@@ -2882,32 +2910,32 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: views/users/edit.ctp:148;148 views/users/view.ctp:99;99
+#: views/users/edit.ctp:147;147
 msgid "No user with this id exists"
 msgstr ""
 
-#: views/users/index.ctp:53;53
-msgid "All phone books"
+#: views/users/index.ctp:40;40
+msgid "Add caller"
 msgstr ""
 
-#: views/users/index.ctp:58;58
+#: views/users/index.ctp:57;57
+msgid "All callers"
+msgstr ""
+
+#: views/users/index.ctp:63;63
 msgid "Submit"
 msgstr ""
 
-#: views/users/index.ctp:77;77
+#: views/users/index.ctp:82;82
 msgid "from phone book"
 msgstr ""
 
-#: views/users/index.ctp:81;81
-msgid "User"
-msgstr ""
-
-#: views/users/index.ctp:125;125
-msgid "User details"
-msgstr ""
-
-#: views/users/index.ctp:180;180
+#: views/users/index.ctp:184;184
 msgid "There are no users in the selected phone book."
+msgstr ""
+
+#: views/users/view.ctp:99;99
+msgid "No caller with this id exists"
 msgstr ""
 
 #: views/votes/add_failure.ctp:26;26
@@ -3225,9 +3253,6 @@ msgstr ""
 # (pofilter) unchanged: please translate
 #~ msgid "aka"
 #~ msgstr "jina lengine"
-
-#~ msgid "Welcome to Freedom Fone"
-#~ msgstr "Karibu Freedom Fone"
 
 #~ msgid ""
 #~ "<p>Does your community need access to information but has limited or no "

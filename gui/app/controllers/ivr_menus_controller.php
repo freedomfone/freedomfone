@@ -512,7 +512,7 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
-
+               //Edit existing mappings
                 foreach($this->data['Mapping'] as $key => $entry){
 
                    switch($entry['type']){
@@ -554,10 +554,30 @@ class IvrMenusController extends AppController{
 
                     break;
 
+                   } //switch
+
+
+                  //Add new mappings
+                  if(!$entry['type'] && ($entry['node_id'] || $entry['lam_id'] || $entry['ivr_id'])){
+
+                     if($entry['node_id']){ 
+                            $type == 'node';
+                     } elseif ($entry['lam_id']) { 
+                            $type = 'lam';
+                     } elseif ($entry['ivr_id']) {
+                            $type = 'ivr';
+                     }
+	            $this->data['Mapping'][$key]['type']= $type;                                     
+                   
                    }
+                  
+
                 }
 
 
+
+
+debug($this->data);
 
          $this->IvrMenu->saveAll($this->data);
          $this->log("[INFO] EDIT IVR, Id: ".$id, "ivr");	

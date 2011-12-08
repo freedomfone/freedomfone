@@ -58,8 +58,6 @@ public $ext;
      $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
 
      $this->file_individual	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
-
-//     $this->file_common            = WWW_ROOT.$ivr_settings['curl']."ivr.xml";
      $this->file_common	           = BASE_DIR.$ivr_settings['curl']."ivr.xml"; 
      $this->file_core              = BASE_DIR.$ivr_settings['curl']."core.xml"; 
 

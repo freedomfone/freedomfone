@@ -277,8 +277,6 @@ esl/native/php.ini -text
 esl/native/samples/single_command.php -text
 esl/native/samples/test.php -text
 /fix_perms_all.sh -text
-/fix_perms_fs.sh -text
-/fix_perms_gui.sh -text
 /freeswitch -text
 gui/.htaccess -text
 gui/app/.htaccess -text

@@ -3,6 +3,7 @@
 /AUTHORS -text
 /COPYING -text
 /INSTALL -text
+/PASSWORD -text
 /README -text
 /RELEASE.txt -text
 audio_bot/README -text

@@ -1,4 +1,4 @@
-Freedom Fone 2.S - Lycaon Sekowei (Security Edition)
+Freedom Fone 2.S - Lycaon Manguensis (Security Edition)
 
 $2.S.1$
 
@@ -6,7 +6,8 @@ Copyright © 2009-2011 IT46 AB it46@it46.se
 
 $Date: 2011/12/01 10:11:19$
 
-Sekowei security edition has arrived! The six release of Freedom Fone.
+Manguensis Freedom Fone security edition has arrived! 
+This is the six release of Freedom Fone.
 
 Freedom Fone is an open source vCMS. A vCMS is a Voice Content Management that
 allows you to deliver and receive audio content via the GSM network or a SIP

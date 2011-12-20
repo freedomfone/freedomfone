@@ -35,37 +35,41 @@ class SettingsController extends AppController {
 	      //Fetch form data and process
               if (!empty($this->data)) {
 				
-		  if(array_key_exists('Setting', $this->data)){
+	         if(array_key_exists('Setting', $this->data)){
 		     $ip_radio = $this->data['Setting']['ip_radio'];
 		     unset($this->data['Setting']);
-		  }
+		 }
 
-                        $i=false;	
-		 foreach ($this->data as $id => $entry){
+                 $i=false;	
+		 
+               foreach ($this->data as $id => $entry){
 
-		 if ($id==1){ $lang = $entry['value'];}
-		 if ($id==6){ $timezone = $entry['value'];}
-		 if ($id==8){ 
+                 //Language
+		 if ($id == 1){ 
+                    $lang      = $entry['value'];
+		    $data[$id] = array('id'=>$id,'value_string'=>$entry['value']);
+                 }
 
-                    $country_id = $entry['value'];
-                    $this->loadModel('Country');
-                    $country = $this->Country->findById($country_id, array('fields' => 'countryprefix'));
-                    $data[9]= array('id'=>9, 'value_int'=>$country['Country']['countryprefix']);
+                 //Timezone
+		 elseif ($id == 6){ 
+                    $timezone = $entry['value'];
+                    $data[$id] = array('id'=>$id,'value_string'=>$entry['value']);
+                 }
 
+                 //Prefix
+		 elseif ($id == 8){ 
+                    $data[$id]= array('id'=>$id, 'value_int'=>$entry['value']);
                  }
 
 		 //IP address
-
-		 if ($id==5 ) {
+		 elseif ($id == 5 ) {
 		      if ( !isset($entry['value'])){
-		      $entry['value'] = $ip_radio;
-		     }
-		     $ip_addr = $entry['value'];
-		     
+		         $entry['value'] = $ip_radio;
+		      }
+		      $ip_addr = $entry['value'];
+		      $data[$id]= array('id'=>$id,'value_string'=>$entry['value']);
+		  }
 
-		 }
-
-		 $data[$id]= array('id'=>$id,'value_string'=>$entry['value']);
 
 		 }
 
@@ -92,6 +96,7 @@ class SettingsController extends AppController {
 		   $this->_flash('Invalid IP address ('.$ip_addr.') Please try again.','error');
 		   }
 
+debug($data);
 		   $this->Setting->saveAll($data['Settings']);															            
 
 		}
@@ -102,7 +107,7 @@ class SettingsController extends AppController {
 	      $internal = $this->Setting->getIP('internal');
 
               $this->loadModel('Country');
-              $countries = $this->Country->find('list');
+              $countries = $this->Country->find('list', array('fields' => array('countryprefix', 'name')));
 
 	      $this->set('data',$this->Setting->findAllByType('env'));
  	      $this->set(compact('external','internal','countries'));

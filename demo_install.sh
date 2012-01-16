@@ -19,5 +19,6 @@ cp $DEMODIR/ivr_nodes/* $SVNROOT/gui/app/webroot/freedomfone/ivr/nodes/
 cp $DEMODIR/ivr_ivr/*.mp3   $SVNROOT/gui/app/webroot/freedomfone/ivr/100/ivr/
 cp $DEMODIR/ivr_ivr/*.wav   $SVNROOT/gui/app/webroot/freedomfone/ivr/100/ivr/
 cp $DEMODIR/ivr_ivr/ivr.xml   $SVNROOT/gui/app/webroot/freedomfone/ivr/100/conf/
+cp $DEMODIR/ivr_ivr/ivr.xml   $SVNROOT/xml_curl/
 cp $DEMODIR/lam_ivr/*   $SVNROOT/gui/app/webroot/freedomfone/leave_message/100/audio_menu/
 cp $DEMODIR/lam_inbox/* $SVNROOT/gui/app/webroot/freedomfone/leave_message/100/messages/

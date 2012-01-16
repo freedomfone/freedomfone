@@ -3,17 +3,15 @@
   <section name="configuration">
     <configuration name="ivr.conf" description="IVR menus">
       <menus>
-        <menu name="freedomfone_ivr_100" tts-engine="cepstral" tts-voice="allison" greet-long="file_long.wav" greet-short="file_short.wav" invalid-sound="file_invalid.wav" exit-sound="file_exit.wav" timeout="3000" inter-digit-timeout="2000" max-failures="10" max-timeouts="4" digit-len="1">
-          <entry action="menu-exec-app" digits="1" param="play_and_get_digits 1 1 1 1000 # $${base_dir}/scripts/freedomfone/ivr/nodes/1292926356_Press_1._cholera_menu_ch_1_symptoms_and_prevention.wav 4. Invalid. cholera_invalid_selection.wav"/>
-          <entry action="menu-exec-app" digits="1" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '1' '1' '${caller_id_number}' '${destination_number}'"/>
+        <menu name="freedomfone_ivr_100" tts-engine="cepstral" tts-voice="allison" greet-long="$${base_dir}/scripts/freedomfone/ivr/100/ivr/file_long.wav" greet-short="$${base_dir}/scripts/freedomfone/ivr/100/ivr/file_short.wav" invalid-sound="$${base_dir}/scripts/freedomfone/ivr/100/ivr/file_invalid.wav" exit-sound="$${base_dir}/scripts/freedomfone/ivr/100/ivr/file_exit.wav" timeout="3000" inter-digit-timeout="2000" max-failures="10" max-timeouts="4" digit-len="1">
           <entry action="menu-exec-app" digits="2" param="play_and_get_digits 1 1 1 1000 # $${base_dir}/scripts/freedomfone/ivr/nodes/1292926376_Press_2._cholera_menu_ch_2_treatment.wav 4. Invalid. cholera_invalid_selection.wav"/>
-          <entry action="menu-exec-app" digits="2" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '2' '2' '${caller_id_number}' '${destination_number}'"/>
+          <entry action="menu-exec-app" digits="2" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '2' '2' 'Node' '${caller_id_number}' '${destination_number}'"/>
           <entry action="menu-exec-app" digits="3" param="play_and_get_digits 1 1 1 1000 # $${base_dir}/scripts/freedomfone/ivr/nodes/1292926427_Press_3._cholera_menu_ch_3_where_to_go.wav 4. Invalid. cholera_invalid_selection.wav"/>
-          <entry action="menu-exec-app" digits="3" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '3' '3' '${caller_id_number}' '${destination_number}'"/>
+          <entry action="menu-exec-app" digits="3" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '3' '3' 'Node' '${caller_id_number}' '${destination_number}'"/>
           <entry action="menu-exec-app" digits="4" param="play_and_get_digits 1 1 1 1000 # $${base_dir}/scripts/freedomfone/ivr/nodes/1292926445_Press_4._cholera_menu_ch_4_feature_tsitsi_unicef.wav 4. Invalid. cholera_invalid_selection.wav"/>
-          <entry action="menu-exec-app" digits="4" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '4' '4' '${caller_id_number}' '${destination_number}'"/>
-          <entry action="menu-exec-app" digits="5" param="transfer 2100 XML default"/>
-          <entry action="menu-exec-app" digits="5" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '5' 'lam' '${caller_id_number}' '${destination_number}'"/>
+          <entry action="menu-exec-app" digits="4" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '4' '4' 'Node' '${caller_id_number}' '${destination_number}'"/>
+          <entry action="menu-sub" digits="5" param="freedomfone_ivr_100"/>
+          <entry action="menu-exec-app" digits="5" param="javascript $${base_dir}/scripts/freedomfone/monitor_ivr/main.js ${uuid} 'Cholera' '5' '1' 'IvrMenu' '${caller_id_number}' '${destination_number}'"/>
           <entry action="menu-top" digits="9"/>
           <entry action="menu-back" digits="0"/>
         </menu>

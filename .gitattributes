@@ -297,6 +297,10 @@ esl/native/php.ini -text
 esl/native/samples/single_command.php -text
 esl/native/samples/test.php -text
 /fix_perms_all.sh -text
+fixes/20120119/freedomfone.conf -text
+fixes/20120119/rc.local -text
+fixes/20120119/rc.local.freedomfone -text
+fixes/20120119_startup.sh -text
 /freeswitch -text
 gui/.htaccess -text
 gui/app/.htaccess -text

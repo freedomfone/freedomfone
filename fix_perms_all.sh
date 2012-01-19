@@ -6,6 +6,7 @@ addgroup freeswitch freeswitch
 echo "log: log folder is writable by dispatcher_in, freeswitch and apache2"
 chmod 777 /opt/freedomfone/log
 chown -Rf www-data:www-data /opt/freedomfone/log
+chown -Rf freeswitch:www-data /opt/freedomfone/log/freeswitch.log
 
 echo "gui: gui files writable by www-data"
 find /opt/freedomfone/gui/ -type f | grep -v '\.svn' | xargs chmod 664 

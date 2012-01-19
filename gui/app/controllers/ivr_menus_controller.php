@@ -577,7 +577,7 @@ class IvrMenusController extends AppController{
 
 
 
-debug($this->data);
+
 
          $this->IvrMenu->saveAll($this->data);
          $this->log("[INFO] EDIT IVR, Id: ".$id, "ivr");	

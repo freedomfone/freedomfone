@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * settings_controller.php	- Controller for changing global settings
- * version 		 	- 3.0.1500
+ * version 		 	- 2.0.1170
  * 
  * Version: MPL 1.1
  *
@@ -29,40 +29,49 @@ class SettingsController extends AppController {
 
 	function index() {
 
+
+              $this->pageTitle = __('Settings',true);
+
 	      //Fetch form data and process
               if (!empty($this->data)) {
 				
-		  if(array_key_exists('Setting', $this->data)){
+	         if(array_key_exists('Setting', $this->data)){
 		     $ip_radio = $this->data['Setting']['ip_radio'];
 		     unset($this->data['Setting']);
-		  }
+		 }
 
-                        $i=false;	
-		 foreach ($this->data as $id => $entry){
+                 $i=false;	
 
-		 if ($id==1){ $lang = $entry[1]['value'];}
-		 if ($id==6){ $timezone = $entry[6]['value'];}
-		 if ($id==8){ 
 
-                    $country_id = $entry[8]['value'];
-                    $this->loadModel('Country');
-                    $country = $this->Country->findById($country_id, array('fields' => 'countryprefix'));
-                    $data[9]= array('id'=>9, 'value_int'=>$country['Country']['countryprefix']);
+               foreach ($this->data as $id => $entry){
 
+
+                 //Language
+		 if ($id == 1){ 
+                    $lang      = $entry[1]['value'];
+		    $data[$id] = array('id'=>$id,'value_string'=>$entry[1]['value']);
+                 }
+
+                 //Timezone
+		 elseif ($id == 6){ 
+                    $timezone = $entry[6]['value'];
+                    $data[$id] = array('id'=>$id,'value_string'=>$entry[6]['value']);
+                 }
+
+                 //Prefix
+		 elseif ($id == 8){ 
+                    $data[$id]= array('id'=>$id, 'value_int'=>$entry[8]['value']);
                  }
 
 		 //IP address
+		 elseif ($id == 5 ) {
+		      if ( !isset($entry[5]['value'])){
+		         $entry[5]['value'] = $ip_radio;
+		      }
+		      $ip_addr = $entry[5]['value'];
+		      $data[$id]= array('id'=>$id,'value_string'=>$entry[5]['value']);
+		  }
 
-		 if ($id == 5 ) {
-		      if ( !isset($entry['value'])){
-		      $entry[5]['value'] = $ip_radio;
-		     }
-		     $ip_addr = $entry[5]['value'];
-		     
-
-		 }
-
-		 $data[$id]= array('id'=>$id,'value_string'=>$entry[$id]['value']);
 
 		 }
 
@@ -70,6 +79,7 @@ class SettingsController extends AppController {
 
 	           Configure::write('Config.language', $lang);
                    $this->Session->write('Config.language', $lang);         
+
              
                    Configure::write('Config.timezone', $timezone); 
                    $bool = date_default_timezone_set(Configure::read('Config.timezone'));
@@ -88,25 +98,22 @@ class SettingsController extends AppController {
 		   $this->_flash('Invalid IP address ('.$ip_addr.') Please try again.','error');
 		   }
 
+
 		   $this->Setting->saveAll($data['Settings']);															            
 
 		}
 		 
-              $this->set('title_for_layout', __('Settings',true));
-
               //Display form data               
 
 	      $external = $this->Setting->getIP('external');
 	      $internal = $this->Setting->getIP('internal');
 
               $this->loadModel('Country');
-              $countries = $this->Country->find('list');
+              $countries = $this->Country->find('list', array('fields' => array('countryprefix', 'name')));
 
 	      $this->set('data',$this->Setting->findAllByType('env'));
  	      $this->set(compact('external','internal','countries'));
 	      $this->render();       
-
-
          
 	 }
 

@@ -1,7 +1,7 @@
 <?php 
 /****************************************************************************
  * env.ctp	- Set environment settings
- * version 	- 3.0.1500
+ * version 	- 2.0.1230
  * 
  * Version: MPL 1.1
  *
@@ -29,24 +29,23 @@ echo $html->addCrumb(__('Settings',true), '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
+
+
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
 $msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
 $msgAccessLevel .= "<li>".__('is connected to the Internet, and has a public IP address, select Internet.',true)."<br/></li>"; 
 $msgAccessLevel .= "<li>".__('is connected to a local area network (LAN), select Local Area Network.',true)."<br/></li>"; 
 $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<br/></li></ul>"; 
 
-
-   // Multiple Flash messages
-   if ($messages = $this->Session->read('Message')) {
-       foreach($messages as $key => $value) {
-              echo $this->Session->flash($key);
-       }
-    }
+ 	if ($messages = $session->read('Message.multiFlash')) {
+            foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
+   	   }
 
 
 	foreach ($data as $key => $unit){
 
 	  $entry = $unit['Setting'];
+
 
 	  if ($entry['name']=='language'){
 
@@ -66,17 +65,15 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	    }
 
 
-             $timezone = $entry['value_string'];
-	     $rows[] = array(__("Time zone",true),$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$timezone)));
+	     $rows[] = array(__("Time zone",true),$form->input($entry['id'].'.value',array('options'=>$zones,'label'=>false,'selected'=>$entry['value_string'])));
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	    
 
-	  } elseif ($entry['name']=='country'){
+	  } elseif ($entry['name']=='prefix'){
 
 
-             $country = $entry['value_string'];
-	     $rows[] = array(__("Country",true), $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$country)));
-	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+	     $rows[] = array(__("Country",true), $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$entry['value_int'])));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_int'));
 
           }
 
@@ -109,12 +106,6 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 }
 
-        if($authGroup != 1){
-                      $rows[0][1] = $languages[$lang_selected]; 
-                      $rows[1][1] = $timezone;
-                      $rows[2][1] = $countries[$country];  
-                      }
-
      
 	//Display language and timezone table
 	echo "<h2>".__("Environment settings",true)."</h2>";
@@ -125,18 +116,12 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 	//Display IP address table
         echo "<h2>".__("IP address",true)."</h2>";                                                                                                                                                                                                      
-        echo $this->Access->showBlock($authGroup, $html->div('instruction', $msgAccessLevel));
+        echo $html->div('instruction', $msgAccessLevel);
 	echo "<table cellspacing=0 class='stand-alone'>";
-
-        if($authGroup != 1){
-	echo $html->tableCells(array($html->div('instruction', __('Your current IP address is',true).': '.$current_IP)),array('class' => 'stand-alone'),array('class' => 'stand-alone'));
-        }
-
-        echo $this->Access->showBlock($authGroup, $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone')));
+	echo $html->tableCells($radio,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
         echo "</table>";
 
-        //Display Save button
-        echo $this->Access->showBlock($authGroup, $html->div('button_center', $form->end(__('Save',true))));
-
+        //Dispaly Save button
+	echo $html->div('button_center', $form->end(__('Save',true)));
 
 ?>

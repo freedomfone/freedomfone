@@ -484,7 +484,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,'language',0,'eng',0,'env'),(2,'length',0,NULL,20,'lam'),(3,'silence',0,NULL,60,'lam'),(4,'domain',0,'http://demo.freedomfone.org',0,'env'),(5,'ip_address',0,'127.0.0.1',0,'env'),(6,'timezone',0,'Africa/Harare',250,'env'),(7,'overwrite_event',0,'',1,'env'),(8,'country',0,'239',0,'env'),(9,'prefix',0,NULL,263,'env');
+INSERT INTO `settings` VALUES (1,'language',0,'eng',0,'env'),(2,'length',0,NULL,20,'lam'),(3,'silence',0,NULL,60,'lam'),(4,'domain',0,'http://demo.freedomfone.org',0,'env'),(5,'ip_address',0,'127.0.0.1',0,'env'),(6,'timezone',0,'Africa/Harare',250,'env'),(7,'overwrite_event',0,'',1,'env'),(8,'prefix',0,NULL,263,'env');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 

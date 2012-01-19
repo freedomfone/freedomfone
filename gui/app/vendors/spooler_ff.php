@@ -208,7 +208,7 @@ class ff_event {
 		      break;
 
 		      case 'delete':
-                      echo "delete";
+                      //echo "delete";
 		      
 		      $this->deleteEntry($data['id']);
 		      break;

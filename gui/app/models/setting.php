@@ -37,7 +37,7 @@ class Setting extends AppModel{
 	    break;
 
 	    case 'external':
-	    $cmd = "/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo";
+	    $cmd = "/usr/bin/wget http://wim.freedomfone.org/wim/ -O - -q echo";
   	    $op = array();
             exec($cmd,$op);
 

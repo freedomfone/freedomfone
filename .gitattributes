@@ -301,10 +301,12 @@ fixes/20120119/freedomfone.conf -text
 fixes/20120119/rc.local -text
 fixes/20120119/rc.local.freedomfone -text
 fixes/20120119_startup.sh -text
+fixes/20120120_delete.sh -text
 fixes/20120123/freedomfone_db_schema.sql -text
 fixes/20120123/index.ctp -text
 fixes/20120123/ivr_menus_controller.php -text
 fixes/20120123/settings_controller.php -text
+fixes/20120123_country_prefix.sh -text
 /freeswitch -text
 gui/.htaccess -text
 gui/app/.htaccess -text

@@ -404,7 +404,7 @@ return $result;
 
         //$pid = (int)$op[0]; 
 
-     $external = exec("/usr/bin/wget www.whatismyip.com/automation/n09230945.asp -O - -q echo ",$op_internal);
+     $external = exec("/usr/bin/wget http://wim.freedomfone.org/wim/ -O - -q echo ",$op_internal);
      $internal = exec("/sbin/ip addr show dev eth0 | sed -e's/^.*inet \([^ ]*\)\/.*$/\1/;t;d'" ,$op_external);
 
      return array($op_internal[0], $op_external[0]);

@@ -50,7 +50,7 @@
  */
 
 Inflector::rules('singular', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
-Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array('bin','monitor_ivr','cdr','MonitorIvr','OfficeRoute','office_route')));
+Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array('bin','monitor_ivr','cdr','MonitorIvr','OfficeRoute','office_route','api')));
 
 
 Configure::load('config');

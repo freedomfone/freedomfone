@@ -327,6 +327,7 @@ gui/app/config/schema/db_acl.php -text
 gui/app/config/schema/i18n.php -text
 gui/app/config/schema/sessions.php -text
 gui/app/config/sweeper.php -text
+gui/app/controllers/api_controller.php -text
 gui/app/controllers/bin_controller.php -text
 gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text
@@ -355,6 +356,7 @@ gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
+gui/app/models/api.php -text
 gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/category.php -text

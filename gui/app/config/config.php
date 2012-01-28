@@ -157,17 +157,19 @@ $config['CALLBACK_DEFAULT']=	array(
 
                 
 $config['DIALER'] = array(
-                  'host'           => 'http://newfies.it46.se:9080/',
-                  'campaign'       => 'api/dialer_campaign/campaign/',
-                  'contact'        => 'api/dialer_campaign/contact/',
+                  'host'           => 'http://t2.it46.se:8008/',
+                  'campaign'       => 'api/v1/campaign/',
+                  'campaign_delete'=> 'api/v1/campaign_delete_cascade/',
+                  'campaign_subscriber'        => 'api/v1/campaignsubscriber/',
+                  'contact'        => 'api/v1/contact/',
                   'callrequest'    => 'api/dialer_cdr/callrequest/',
-                  'user'           => 'admin',
-                  'pwd'            => 'freedomfone',
+                  'user'           => 'root',
+                  'pwd'            => 'newfies',
                   'account'        => '',
                   'a-leg_gateway'  => 1,
-                  'b-leg_gateway'  => 1,
-                  'frequency'      => '60',
-                  'call_timeout'   => '60',
+                  'b-leg_gateway'  => 2,
+                  'frequency'      => 10,
+                  'call_timeout'   => 10,
                   'voip_app'       => 1,
                   'caller_id'      => '123456'
                   );
@@ -201,7 +203,13 @@ $config['LANGUAGES'] = array(
                             'eng' => __('English',true),
                             'swa' => __('Swahili',true),
                             'esp' => __('Spanish',true)
-                                                  );
+                            );
+
+$config['ACL'] = array(
+                        1 =>  __('None',true),
+                        2 =>  __('White',true),
+                        3 =>  __('Black',true),
+                                );
 
 $config['RSS']	= array(
 	      'path' =>'http://freedomfone.org/updates.xml',

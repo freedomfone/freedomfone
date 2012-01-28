@@ -68,8 +68,8 @@ class Message extends AppModel {
 
  	   while ($entry = $obj->getNext('update')){
 
-	       $created = floor($entry['Event-Date-Timestamp']/1000000);
-	       $length  = floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000);   
+	       $created = intval(floor($entry['Event-Date-Timestamp']/1000000));
+	       $length  = intval(floor(($entry['FF-FinishTimeEpoch']-$entry['FF-StartTimeEpoch'])/1000));   
 	       $mode = $entry['FF-CallerID'];
 	       $value = $entry['FF-CallerName'];
 

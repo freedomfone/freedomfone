@@ -28,7 +28,7 @@ class UsersController extends AppController{
 
       var $helpers = array('Flash','Formatting','Session','Text','Ajax','Html','Javascript');      
 
-      var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
+      var  $paginate = array('page' => 1, 'order' => array( 'User.id' => 'desc', 'User.name' => 'asc'));
       var $components = array('RequestHandler');
 
 
@@ -41,6 +41,8 @@ class UsersController extends AppController{
 
 
       function index(){
+
+
 
         $this->refreshAll();
         $this->pageTitle = __('Users',true);
@@ -173,10 +175,10 @@ class UsersController extends AppController{
 
 		$this->data = $this->User->read(null,$id);
 		$phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
-		$acls 	    	    = $this->User->Acl->find('list');
+		
  		$phonebook 	    = $this->User->PhoneBook->find('list');
 
- 		$this->set(compact('acls','phonebook','phonenumbers','neighbors'));
+ 		$this->set(compact('phonebook','phonenumbers','neighbors'));
               
               }
 
@@ -195,9 +197,8 @@ class UsersController extends AppController{
 
                                 $phonenumbers = $this->User->PhoneNumber->find('all',array('conditions' =>array('User.id' => $id)));
                                 
-                                $acls 	    	    = $this->User->Acl->find('list');
  		                $phonebook 	    = $this->User->PhoneBook->find('list');
- 		                $this->set(compact('acls','phonebook','phonenumbers'));
+ 		                $this->set(compact('phonebook','phonenumbers'));
 
                       }
 
@@ -323,7 +324,7 @@ class UsersController extends AppController{
                            $core['User']['modified'] = max(array($core['User']['modified'],$tmp['User']['modified']));
                            $core['User']['first_epoch'] = min(array($core['User']['first_epoch'],$tmp['User']['first_epoch']));
                            $core['User']['last_epoch'] = max(array($core['User']['last_epoch'],$tmp['User']['last_epoch']));
-                           $core['User']['acl_id'] = max(array($core['User']['acl_id'],$tmp['User']['acl_id']));
+                           $core['User']['acl'] = max(array($core['User']['acl'],$tmp['User']['acl']));
 
                            $j = sizeof($core['PhoneNumber']);
                            unset($core['PhoneNumber']);
@@ -375,8 +376,7 @@ class UsersController extends AppController{
 
 
     	$this->pageTitle = __('Add User',true);
-	$acls = $this->User->Acl->find('list');
- 	$this->set(compact('acls'));
+
 
         //Fetch form data and save
 	if (!empty($this->data)) {

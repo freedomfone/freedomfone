@@ -45,6 +45,8 @@ echo $form->end();
 
      echo "<h1>".__('Users',true)."</h1>";
 
+        $acls  = Configure::read('ACL');
+        
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }
@@ -89,7 +91,7 @@ echo $form->end();
  	$paginator->sort(__("Surname",true), 'User.surname'),
  	$paginator->sort(__("Email",true), 'User.email'),
 	$paginator->sort(__("Skype",true), 'User.skype'),
-	$paginator->sort(__("Acl",true), 'Acl.name'),
+	$paginator->sort(__("Acl",true), 'User.acl'),
  	__("Phone",true),
 	__("Actions",true)));
 
@@ -109,8 +111,7 @@ echo $form->end();
 	$surname  = $user['User']['surname'];
 	$email    = $text->autoLinkEmails($user['User']['email']);
 	$skype    = $user['User']['skype'];
-	$acl      = $user['Acl']['name'];
-
+	$acl      = $acls[$user['User']['acl']];
 
         $phone_numbers = false;
         $info = false;

@@ -25,6 +25,7 @@
 echo $html->addCrumb(__('User Management',true), '');
 echo $html->addCrumb(__('Users',true), '/users');
 echo $html->addCrumb(__('Add',true), '/users/add');
+$acls  = Configure::read('ACL');
 
 
      echo "<h1>".__("Add User",true)."</h1>";

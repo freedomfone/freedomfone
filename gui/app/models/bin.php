@@ -56,7 +56,7 @@ class Bin extends AppModel{
 
      	   while ($entry = $obj->getNext('update')){
 
-	      $created  = floor($entry['Event-Date-Timestamp']/1000000);
+	      $created  = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
            

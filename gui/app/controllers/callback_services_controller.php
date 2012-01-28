@@ -52,7 +52,6 @@ class CallbackServicesController extends AppController{
                         $this->CallbackService->id = $this->data['CallbackService']['tickle'];
                         $this->CallbackService->saveField('tickle',1);
 
-
                  } 
 
  
@@ -140,16 +139,24 @@ class CallbackServicesController extends AppController{
                              );
 
                         $HttpSocket = new HttpSocket();
-                        $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-                        $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], $socket_data, $request); 
+                        $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
+                                           'header' => array('Content-Type' =>'application/json')
+                                         );
+
+                        
+                        $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], json_encode($socket_data), $request); 
+                        $results = json_decode($results);
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
                       if ( $header_status  == 1) {
 
-                           $results   = json_decode($results,true);
-                           $nf_phone_book_id  = $results['phonebook'][0]['id'];   
-                           $nf_campaign_id    = $results['id'];   
+                          $location = explode($dialer['campaign'], $HttpSocket->response['header']['Location']);
+                          $nf_campaign_id = trim($location[1],'/');
+
+                           //FIX THIS!!
+                           $nf_phone_book_id  = $nf_campaign_id;
+
                            $this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['CallbackService']['nf_campaign_id'] = $nf_campaign_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
@@ -157,16 +164,17 @@ class CallbackServicesController extends AppController{
                            $this->redirect(array('action'=>'index'));
 
                         } elseif ($header_status == 2)  {                      
-      	                 $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
+
+      	                   $this->_flash(__('The SMS code is already in use in the dialer. Please try again with another code.', true), 'error');
+
                         } elseif ($header_status == 5)  {
 
-       	                       $this->_flash(__('Please change your campaign settings, or modify the Dialer Settings of your Newfies installation.',true).'<br/>'.$results, 'error');                      
+       	                   $this->_flash($results->chk_campaign[0].'<br/>'.__('Please change your campaign settings, or modify the Dialer Settings of your Newfies installation.',true), 'error');
 
                         } elseif ($header_status == 6)  {                      
-      	                 $this->_flash(__('Authentication failed with selected dialer.', true)." (".$header.")", 'error');
+      	                 
+                            $this->_flash(__('Authentication failed with selected dialer.', true)." (".$header.")", 'error');
                        }
-
-
 
                   } else {
 

@@ -15,31 +15,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `acls`
---
-
-DROP TABLE IF EXISTS `acls`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `acls` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Dumping data for table `acls`
---
-
-LOCK TABLES `acls` WRITE;
-/*!40000 ALTER TABLE `acls` DISABLE KEYS */;
-INSERT INTO `acls` VALUES (1,'None','No criteria'),(2,'White','Allow always'),(3,'Black','Deny always');
-/*!40000 ALTER TABLE `acls` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `bin`
@@ -56,31 +31,6 @@ CREATE TABLE `bin` (
   `created` int(10) unsigned default NULL,
   `mode` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `callbacks`
---
-
-
-DROP TABLE IF EXISTS `callbacks`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `callbacks` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `campaign_id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `type` varchar(10) default NULL,
-  `retries` tinyint(3) unsigned default '0',
-  `status` smallint(6) default '1',
-  `phone_number` varchar(200) default NULL,
-  `last_attempt` int(11) default NULL,
-  `epoch` int(11) unsigned default NULL,
-  `callback_service_id` int(11) unsigned default NULL,
-  `state` smallint(6) default NULL,
-  `nf_campaign_subscriber_id` int(11) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -164,7 +114,7 @@ CREATE TABLE `callbacks` (
   `retries` tinyint(3) unsigned default '0',
   `status` smallint(6) default '1',
   `state` tinyint(4) default '1',
-  `phone_number` int(11) unsigned default NULL,
+  `phone_number` varchar(20) default NULL,
   `last_attempt` int(11) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -665,7 +615,7 @@ CREATE TABLE `users` (
   `first_epoch` int(11) unsigned default NULL,
   `last_app` varchar(10) default NULL,
   `last_epoch` int(11) unsigned default NULL,
-  `acl_id` int(11) unsigned default '0',
+  `acl` int(11) unsigned default '0',
   `new` tinyint(4) default '1',
 
   PRIMARY KEY  (`id`)

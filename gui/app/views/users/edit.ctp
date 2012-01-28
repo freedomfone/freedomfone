@@ -34,6 +34,7 @@ echo $form->create('User',array('type' => 'post','controller' => 'users', 'actio
 echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
 
+$acls  = Configure::read('ACL');
 
  if($data = $this->data){
 
@@ -62,7 +63,6 @@ echo $form->end();
                   $last_seen = date('Y-m-d',$value);
      }
 
-
    
     //** START LEFT FRAME **//
      echo "<div class='frameLeft'>";
@@ -72,7 +72,7 @@ echo $form->end();
      $row[] = array(__("Email",true),			 $form->input('email',array('label'=>false)));
      $row[] = array(__("Skype",true),			 $skype);
      $row[] = array(__("Organization",true),		 $form->input('organization',array('label'=>false)));
-     $row[] = array(__("Access control list (ACL)",true), $form->input('acl_id',array('type'=>'select','options'=> $acls, 'label'=>false)));
+     $row[] = array(__("Access control list (ACL)",true), $form->input('acl',array('type'=>'select','options'=> $acls, 'label'=>false)));
      $row[] = array(array(__("Phone book",true),array('valign'=>'top')),		 $form->input('PhoneBook',array('type'=>'select','multiple' => true, 'options'=>$phonebook, 'empty'=>'- '.__('Select phone book',true).' -','label'=>false)));
      
      

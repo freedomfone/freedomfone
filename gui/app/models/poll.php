@@ -181,6 +181,15 @@ function checkDate($data,$field){
 
      function refresh(){
 
+       // Update status of polls (use beforeSave to update status)
+        $this->unbindModel(array('hasMany' => array('User')));
+	$data = $this->findAll();
+	foreach ($data as $key => $entry){
+		$this->save($entry);
+
+	}
+
+
       $array = Configure::read('poll_in');
  
 	       $obj = new ff_event($array);	       
@@ -199,7 +208,7 @@ function checkDate($data,$field){
 		$votes_chtext 	=  trim($_message[1]);
 		$sender		=  $this->sanitizePhoneNumber($entry['from']);
 		$proto		=  $entry['proto'];
-	        $created 	= floor($entry['Event-Date-Timestamp']/1000000);
+	        $created 	=  intval(floor($entry['Event-Date-Timestamp']/1000000));
 		$matched      	=  false;
 
 
@@ -308,13 +317,6 @@ function checkDate($data,$field){
 
 	} //while
 
-        $this->unbindModel(array('hasMany' => array('User')));
-
-	// Update status of polls (use beforeSave to update status)
-	$data = $this->findAll();
-	foreach ($data as $key => $entry){
-		$this->save($entry);
-	}
 
 
    }

@@ -97,7 +97,7 @@ function __construct($id = false, $table = null, $ds = null) {
 		  $application='';
 		  $start='';
 		  $ext = $entry['Caller-Destination-Number'];
-		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  $epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 
 	       	  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
@@ -178,7 +178,7 @@ function __construct($id = false, $table = null, $ds = null) {
 		  if($application =='ivr' || ($channel_state=='CS_DESTROY' && $this->MonitorIvr->find('count',array('conditions' => array('MonitorIvr.call_id' => $call_id))))){
 
 
-		  	$epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  	$epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	       	  	$this->MonitorIvr->set('epoch' , $epoch);
 		  	$this->MonitorIvr->set('call_id' , $entry['Unique-ID']);
 	       	  	$this->MonitorIvr->set('ivr_code', '');
@@ -251,7 +251,7 @@ function __construct($id = false, $table = null, $ds = null) {
                          break;
 
                   }
-		  $epoch = floor($entry['Event-Date-Timestamp']/1000000);
+		  $epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	       	  $this->MonitorIvr->set('epoch' , $epoch);
 		  $this->MonitorIvr->set('call_id' , $entry['FF-IVR-Unique-ID']);
 	       	  $this->MonitorIvr->set('ivr_code', $entry['FF-IVR-IVR-Name']);

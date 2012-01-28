@@ -4,6 +4,7 @@
 
       
       echo $form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
+      $acls  = Configure::read('ACL');
 
       foreach ($users as $key => $user){
 
@@ -18,7 +19,7 @@
 	$surname     = $user['User']['surname'];
 	$email     = $text->autoLinkEmails($user['User']['email']);
 	$skype     = $user['User']['skype'];
-	$acl       = $user['Acl']['name'];
+	$acl       = $acls[$user['User']['acl']];
 
         $phone = false;
         $phone_numbers = false;
@@ -65,7 +66,7 @@
  	$paginator->sort(__("Surname",true), 'surname'),
  	$paginator->sort(__("Email",true), 'email'),
 	$paginator->sort(__("Skype",true), 'skype'),
- 	$paginator->sort(__("Acl",true), 'Acl.name'),
+ 	$paginator->sort(__("Acl",true), 'acl'),
  	$paginator->sort(__("Phone",true), 'phone'),
 	__("Edit",true),
 	__("Delete",true)));

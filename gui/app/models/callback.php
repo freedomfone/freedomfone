@@ -75,7 +75,7 @@ function __construct($id = false, $table = null, $ds = null) {
      	   while ($entry = $obj->getNext('update')){
 
               $code             = $entry['Body'];
-	      $created          = floor($entry['Event-Date-Timestamp']/1000000);
+	      $created          = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	      $type             = $entry['FF-Type'];
 	      $sender           = $this->sanitizePhoneNumber($entry['from']);
               $time             = time();
@@ -98,7 +98,7 @@ function __construct($id = false, $table = null, $ds = null) {
                     $this->log('ERROR refresh: CALLBACK QUOTA EXCEEDED', 'callback');		       
               } 
               //User ACL
-              elseif($user['User']['acl_id'] == 3){
+              elseif($user['User']['acl'] == 3){
 
                      //callback_denied (reason: user ACL)
                     $this->log('ERROR refresh: USER ACL', 'callback');   
@@ -301,7 +301,7 @@ function __construct($id = false, $table = null, $ds = null) {
       $application = 'callback_in';
       $created = time();
  
-         $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1,'name' => $name);
+         $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl'=>1,'name' => $name);
          $this->User->create(); 
          if ($this->User->save($user)){
                 $user_id = $this->User->getLastInsertId();

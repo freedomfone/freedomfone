@@ -25,8 +25,6 @@
 class User extends AppModel {
 
 	var $name = 'User';
-	
-	var $belongsTo = array('Acl'); 
 
         var $hasMany = array('PhoneNumber' => array(
                         	       'order' => 'PhoneNumber.id ASC',

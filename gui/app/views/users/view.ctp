@@ -23,6 +23,7 @@
  ***************************************************************************/
 
 echo $html->addCrumb(__('User Management',true), '');
+$acls  = Configure::read('ACL');
 Configure::write('debug', 0);
 
  if($data){
@@ -43,7 +44,6 @@ Configure::write('debug', 0);
 
      }
 
-//     echo $html->div('content_wrap_inline');     
    
     //** START LEFT FRAME **//
      $row[] = array($html->div('table_sub_header',__('User data',true)), false);
@@ -52,7 +52,7 @@ Configure::write('debug', 0);
      $row[] = array(__("Email",true),			 $data['User']['email']);
      $row[] = array(__("Skype",true),			 $data['User']['skype']);
      $row[] = array(__("Organization",true),		 $data['User']['organization']);
-     $row[] = array(__("Access control list (ACL)",true), $data['Acl']['name']);
+     $row[] = array(__("Access control list (ACL)",true), $acls[$data['User']['acl']]);
      $row[] = array(array(__("Phone numbers",true),array('valign'=>'top')), implode('<br/>',$phonenumber));
      $row[] = array(array(__("Phone book",true),array('valign'=>'top')), implode('<br/>',$phonebook));
      

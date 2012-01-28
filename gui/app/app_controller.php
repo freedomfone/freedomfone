@@ -559,13 +559,10 @@ return $result;
 
               switch(trim($header)){
 
-                case 'HTTP/1.0 200 OK':
+                case 'HTTP/1.1 201 CREATED':
                 $status = 1;
                 break;
 
-                case 'HTTP/1.1 200 OK':
-                $status = 1;
-                break;
               
                 case 'HTTP/1.1 409 CONFLICT':
                 $status = 2;
@@ -587,10 +584,9 @@ return $result;
                 $status = 6;
                 break;
 
-
-
-
-
+                case 'HTTP/1.1 200 OK':
+                $status = 7;
+                break;
 
 
               }
@@ -643,7 +639,11 @@ return $result;
   function getPhoneBooks(){
 
         $this->loadModel('User');
-        $users  = $this->User->find('all');
+        $param['fields']    = array('User.id');
+        $this->User->unbindModel(array('belongsTo' => array('Acl'), 'hasMany' => array('Message', 'Cdr', 'PhoneNumber')));
+        $users  = $this->User->find('all', $param);
+
+
         foreach($users as $user){
             foreach($user['PhoneBook'] as $key => $entry){
                   $id[] = $entry['id'];

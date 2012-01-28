@@ -31,7 +31,7 @@
    unset($options[4]);
 
    echo $form->create('Campaign', array('type' => 'post', 'action' => 'set_status','enctype' => 'multipart/form-data') );  
-
+debug($campaign);
   if ($campaign){
 
    echo $form->input('id',array('type'=>'hidden','value'=>$campaign['Campaign']['id']));

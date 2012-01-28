@@ -112,7 +112,7 @@ class CampaignsController extends AppController{
                         $user_id[] = $entry['PhoneNumber']['user_id'];
                   }
               
-
+debug($phone_numbers);
  
 
                   foreach ($phone_numbers as $key => $phone_number){
@@ -125,12 +125,13 @@ class CampaignsController extends AppController{
 
                   }
 
+
                   $startingdate    = strtotime($this->dateToString($campaign['start_time']));
                   $expirationdate   = strtotime($this->dateToString($campaign['end_time']));
 
                   $socket_data = array(
                              'name'             => $campaign['name'], 
-                             'callerid'        => $dialer['caller_id'],
+                             'callerid'         => $dialer['caller_id'],
                              'startingdate'     => $startingdate, 
                              'expirationdate'   => $expirationdate, 
                              'frequency'        => $dialer['frequency'],
@@ -196,32 +197,32 @@ class CampaignsController extends AppController{
                                    
                                    if ( $status == 1) {
 
-                                   $location = explode($dialer['campaign_subscriber'], $HttpSocket->response['header']['Location']);
-                                   $nf_campaign_subscriber_id = trim($location[1],'/');
+                                      $location = explode($dialer['campaign_subscriber'], $HttpSocket->response['header']['Location']);
+                                      $nf_campaign_subscriber_id = trim($location[1],'/');
 
-                                   $this->data[$key]['Callrequest']['nf_campaign_subscriber_id'] = $nf_campaign_subscriber_id;
-                                   $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
-                                   $this->data[$key]['Callrequest']['status'] = 1;
-                                   $this->data[$key]['Callrequest']['state'] = 1;
-                                   $this->data[$key]['Callrequest']['epoch'] = time();
+                                      $this->data[$key]['Callrequest']['nf_campaign_subscriber_id'] = $nf_campaign_subscriber_id;
+                                      $this->data[$key]['Callrequest']['campaign_id'] = $campaign_id;
+                                      $this->data[$key]['Callrequest']['status'] = 1;
+                                      $this->data[$key]['Callrequest']['state'] = 1;
+                                      $this->data[$key]['Callrequest']['epoch'] = time();
 
 	                             $this->Campaign->Callback->create($this->data[$key]['Callrequest']);
 	                             $this->Campaign->Callback->saveAll($this->data[$key]['Callrequest'],array('validate' => false));
 
                                    } else {
 
-                                    if(array_key_exists('chk_contact_no', $results)){ 
+                                      if(array_key_exists('chk_contact_no', $results)){ 
                                         $this->_flash($results['chk_contact_no'][0].'<br/>'.__('The following user has not been added to the campaign:',true)." ".$contact, 'error');
-                                    }
-                                    $this->redirect(array('action'=>'index'));
+                                      }
+                                    
                                    }
 
 
+                           }                  
 
-       	                   $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
+                           $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
    	                   $this->redirect(array('action'=>'index'));
 
-                           }                          
 
                          } elseif( $status == 5){
                              $results = get_object_vars($results);
@@ -231,7 +232,7 @@ class CampaignsController extends AppController{
 
                          }  else {
        	               
-                         $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
+                             $this->_flash(__('Dialer API Error (campaign POST).',true).' '.$header, 'error');                           	
 
                          }
 
@@ -369,7 +370,7 @@ class CampaignsController extends AppController{
    function overview($id = null){
 
 
-        Configure::write('debug',0);
+//        Configure::write('debug',0);
         $data = $this->Campaign->findById($id);
 	$this->set('campaign', $data);  
 

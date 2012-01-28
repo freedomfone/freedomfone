@@ -56,7 +56,7 @@ $commentGoodbye  = "<div class='formComment'>".__("Default",true).': '.$lm_defau
 
 $commentTitle     = $html->div('formComment', __('Name of this Leave-a-message IVR menu.',true));
 $commentMaxreclen = $html->div('formComment', __('Maximum duration of voice message left by user.',true));
-$commentForceTTS  = $html->div('formComment', __('Check the box to force Text-to-speach (ignore uploaded files)',true));
+$commentForceTTS  = $html->div('formComment', __('Check the box to force Text-to-speech (ignore uploaded files)',true));
 $options          = array('60' => '1'.$min, '120' => '2'.$min, '180' => '3'.$min, '240' => '4'.$min , '300' => '5'.$min, '900' => __('Unlimited',true)); 
 
 

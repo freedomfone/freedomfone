@@ -37,7 +37,7 @@ $commentLong   = "<span class='formHelp'>".__("Long greeting message:include a b
 $commentShort  = "<span class='formHelp'>".__("Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2.",true)."</span>";
 
 $commentExit   = "<span class='formHelp'>".__("Message played before Freedom Fone finishes (hangs) the call. ",true)."</span>";
-$commentInvalid   = "<span class='formHelp'>".__("Message played efter incorrect input (digit pressed) from user. ",true)."</span>";
+$commentInvalid   = "<span class='formHelp'>".__("Message played after incorrect input (digit pressed) from user. ",true)."</span>";
 
 $commentOption1  = "<span class='formHelp'>".__("Select option for alternative 1.",true)."</span>";
 $commentOption2  = "<span class='formHelp'>".__("Select option for alternative 2.",true)."</span>";

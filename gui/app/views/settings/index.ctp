@@ -31,8 +31,6 @@ echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
 
 
-
-
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
 $msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
 $msgAccessLevel .= "<li>".__('is connected to the Internet, and has a public IP address, select Internet.',true)."<br/></li>"; 
@@ -70,11 +68,11 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	    
 
-	  } elseif ($entry['name']=='country'){
+	  } elseif ($entry['name']=='prefix'){
 
 
-	     $rows[] = array(__("Country",true), $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$entry['value_string'])));
-	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
+	     $rows[] = array(__("Country",true), $form->input($entry['id'].'.value',array('options'=>$countries,'label'=>false,'selected'=>$entry['value_int'])));
+	     echo $form->hidden($entry['id'].'.field',array('value'=>'value_int'));
 
           }
 
@@ -106,7 +104,6 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	}
 
 }
-
 
      
 	//Display language and timezone table

@@ -51,7 +51,7 @@
       	      foreach ($ff_users as $key => $ff_user){
 
       	      	         $name       = $ff_user['FfUser']['username'];
- 			 $group      = $options[$ff_user['FfUser']['group_id']];
+ 			 $group      = __($options[$ff_user['FfUser']['group_id']],true);
                          $edit       = $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ff_users", "action" => "edit", $ff_user['FfUser']['id'])));
                          $delete     = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ff_users", "action" => "delete", $ff_user['FfUser']['id']), "onClick" => "return confirm('".__('Are you sure you wish to delete this user?',true)."');"));
 

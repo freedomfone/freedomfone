@@ -42,13 +42,19 @@ class FfUsersController extends AppController{
 
         $this->set('title_for_layout', __('Login',true));
 
+
+
+
          if ($this->Session->read('Auth.FfUser')) {
             $this->_flash(__('You are logged in!',true));
             $this->redirect('/', null, false);
          }
+
+
+
   
 
-      }       
+      } 
 
 
       
@@ -73,6 +79,14 @@ class FfUsersController extends AppController{
 
 		$this->FfUser->recursive = 0;
 		$this->set('ff_users', $this->paginate());
+
+
+                $res = $this->FfUser->findByUsername('Admin');
+                if( $res['FfUser']['password'] == '6f04cfa963380dee68a9bfe8bdff14784af284a7'){
+                    $this->_flash(__('Default password is currently in use for Admin. Please change the password as soon as possible using Edit functionality below.',true));
+                } 
+
+
 
 
 	}

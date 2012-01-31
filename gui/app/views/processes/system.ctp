@@ -63,7 +63,7 @@ echo $html->addCrumb(__('About',true), '/processes/system');
      }
    }
 
-     $lang = Configure::read('LANGUAGES.'.$language);
+     $lang = __(Configure::read('LANGUAGES.'.$language),true);
 
 
      echo "<h1>".__("About",true)."</h1>";

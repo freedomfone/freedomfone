@@ -95,7 +95,7 @@ class SettingsController extends AppController {
 		   } else {
 
 		   unset($data['Settings'][5]);
-		   $this->_flash('Invalid IP address ('.$ip_addr.') Please try again.','error');
+		   $this->_flash(__('Invalid IP address',true)."(".$ip_addr.")".__('Please try again.',true),'error');
 		   }
 
 

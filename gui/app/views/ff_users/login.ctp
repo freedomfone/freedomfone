@@ -41,7 +41,7 @@
       echo "<table cellspacing=0 'class'='stand-alone'>";
 
       echo $html->tableCells(array (
-           array(__("User name",true),	        $form->input('username',$options)),
+           array(__("Username",true),	        $form->input('username',$options)),
            array(__("Password",true),	        $form->input('password',$options)),
            array('',	$form->end(__('Login',true)))),
            array('class'=>'stand-alone'),array('class'=>'stand-alone'));

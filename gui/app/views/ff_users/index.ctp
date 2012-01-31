@@ -45,7 +45,7 @@
    if ($ff_users){
 
       echo "<table  cellspacing = 0>";
-      echo $html->tableHeaders(array(__('Name',true),__('Group',true),__('Actions',true)));
+      echo $html->tableHeaders(array(__('Username',true),__('Group',true),__('Actions',true)));
 
 
       	      foreach ($ff_users as $key => $ff_user){

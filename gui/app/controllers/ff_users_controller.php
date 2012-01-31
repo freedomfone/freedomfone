@@ -43,7 +43,7 @@ class FfUsersController extends AppController{
         $this->set('title_for_layout', __('Login',true));
 
          if ($this->Session->read('Auth.FfUser')) {
-            $this->_flash('You are logged in!');
+            $this->_flash(__('You are logged in!',true));
             $this->redirect('/', null, false);
          }
   
@@ -56,7 +56,7 @@ class FfUsersController extends AppController{
       function logout(){
 
 
-               $this->_flash('You are logged out.','success');
+               $this->_flash(__('You are logged out.',true),'success');
                $this->redirect($this->Auth->logout());
 
 

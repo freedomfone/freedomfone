@@ -77,10 +77,19 @@ function beforeFilter() {
          $this->Auth->authorize = 'actions';
          $this->Auth->loginAction = array('controller' => 'ff_users', 'action' => 'login');
          $this->Auth->logoutRedirect = array('controller' => 'ff_users', 'action' => 'login');
-//         $this->Auth->loginRedirect  = array('controller' => '/', 'action' => '/');
+
+
+         //Checking of default Admin password is in use
+         $this->loadModel('FfUser');
+         $res = $this->FfUser->findByUsername('Admin');
+         if( $res['FfUser']['password'] == '6f04cfa963380dee68a9bfe8bdff14784af284a7'){
+                       $this->Auth->loginRedirect  = array('controller' => 'ff_users', 'action' => 'index');
+
+          } else {
 
          $this->Auth->loginRedirect  = array('controller' => 'cdr', 'action' => 'overview');
 
+         }
 
 
               $data = $this->Auth->user();

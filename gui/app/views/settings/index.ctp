@@ -29,7 +29,7 @@ echo $html->addCrumb(__('Settings',true), '/settings');
 echo "<h1>".__("Settings",true)."</h1>";
 echo $form->create('Setting',array('type' => 'post','action'=> 'index'));
 
-
+$languages = Configure::read('LANGUAGES');
 
 $msgAccessLevel =  __('Please select appropriate IP address of your Freedom Fone installation.',true)."<br/>";
 $msgAccessLevel .=  __('If the server: ',true)."<br/><ul>";
@@ -50,7 +50,12 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 	  if ($entry['name']=='language'){
 
 	    $lang_selected = $entry['value_string'];
-	    $languages = Configure::read('LANGUAGES');
+
+            foreach ($languages as $key => $language){
+                    $languages[$key] = __($language,true);
+            }
+
+
 	    $rows[] = array(__('Language',true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
 	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	     

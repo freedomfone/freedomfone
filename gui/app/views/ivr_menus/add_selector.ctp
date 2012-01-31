@@ -84,7 +84,7 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 
 
 echo $form->create("IvrMenu");
-          $opt = array('ivr'=>'Voice Menus','lam'=>'Leave-a-message','node' => 'Content');
+          $opt = array('ivr'=>__('Voice Menus',true),'lam'=>__('Leave-a-message',true),'node' => __('Content',true));
           echo $form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
 
                          $opt = array(

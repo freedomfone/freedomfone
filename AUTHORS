@@ -1,0 +1,36 @@
+The Freedom Fone software is open source software licensed under
+Mozilla Public License 1.1
+
+The Initial Developer of the Original Code is IT46 AB.
+http://www.it46.se
+
+Freedom Fone runs thanks to other open source projects.
+
+* freeswitch
+	Open source telephony platform
+	http://www.freeswitch.org/
+
+* freeswitch scripts
+	Using Mozilla Spidermonkey Javascript engine
+	http://www.mozilla.org/js/spidermonkey/
+
+* gsmopen 
+	New release of former celliax FreeSWITCH endpoint
+	http://www.gsmopen.org/
+
+* CakePHP
+	a MVC framework for PHP
+	http://cakephp.org/
+
+* iwatch
+	File system monitoring
+	http://iwatch.sourceforge.net/
+
+* audio player
+	A Flash MP3 Player
+	http://wpaudioplayer.com/license/
+
+Freedom Fone development has been possible thanks to the support of 
+the Kubatana Trust of Zimbabwe, an online community of Zimbabwean
+activists.
+

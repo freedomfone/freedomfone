@@ -3157,7 +3157,7 @@ msgid "Activity"
 msgstr ""
 
 #: views/users/edit.ctp:147
-msgid "No callerwith this id exists"
+msgid "No caller with this id exists"
 msgstr ""
 
 #: views/users/index.ctp:40

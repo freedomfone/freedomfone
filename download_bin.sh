@@ -1,5 +1,5 @@
 #!/bin/bash
-REPO=http://www.it46.se/freedomfone/manguensis/
+REPO=http://archive.freedomfone.org/installer/
 DOWNLOAD=/opt/freedomfone/
 CEPSTRAL=Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz
 BUILD=12

@@ -46,7 +46,7 @@ echo $html->addCrumb(__('Edit',true), '/phone_books/edit/'.$this->data['PhoneBoo
      echo $html->tableCells(array (
      	  array(array(__("Name",true),array('width' =>'150px')),	        $form->input('name',$options_name)),
      	  array(__("Description",true),                                         $form->input('description',$options_longname)),
-     	  array(array(__("Add user to phone book",true),array('valign' => 'top')),		                        $form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>"-- ".__('Use in none',true)." --"))),
+     	  array(array(__("Add caller to phone book",true),array('valign' => 'top')),		                        $form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>"-- ".__('Use in none',true)." --"))),
      	  array('',	$form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 
     echo "</table>";

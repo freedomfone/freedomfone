@@ -181,7 +181,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
      } else {
 
-     echo $html->div('feedback',__('There are no users in the selected phone book.', true));
+     echo $html->div('feedback',__('There are no callers in the selected phone book.', true));
 
      }
 

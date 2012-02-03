@@ -414,7 +414,7 @@ class UsersController extends AppController{
                         $id = $this->User->getLastInsertId();
                         $this->data['PhoneNumber']['user_id'] = $id;
                         $this->User->PhoneNumber->saveAll($this->data['PhoneNumber']);
-			$this->_flash(__('New user has been added', true),'success');
+			$this->_flash(__('New caller has been added', true),'success');
 			$this->redirect(array('action'=>'index'));
 		} 
 

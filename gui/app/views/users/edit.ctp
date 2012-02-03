@@ -144,7 +144,7 @@ echo $form->end();
     }
     else {
 
-    echo "<h1>".__("No callerwith this id exists",true)."</h1>";
+    echo "<h1>".__("No caller with this id exists",true)."</h1>";
     }
 
  

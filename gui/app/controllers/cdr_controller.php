@@ -45,6 +45,7 @@ class CdrController extends AppController{
          $this->refreshAll();
          $this->set('title_for_layout', __('Reporting',true));
 
+         //Set page limit
          if(isset($this->params['named']['limit'])) { 
 	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
          } elseif($this->Session->check('cdr_limit')) { 
@@ -52,7 +53,7 @@ class CdrController extends AppController{
          }	
 
          //User arrived from other page, reset session variables
-         if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
+         if(strpos(getenv("HTTP_REFERER"),'/cdr/general')=== 0){
 
             $this->Session->write('cdr_start', $this->Cdr->getEpoch('first')-900);
             $this->Session->write('cdr_end',time()+900);
@@ -60,21 +61,21 @@ class CdrController extends AppController{
          }
 
         $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
-
         if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
         if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 
-
         $app   = $this->data['Cdr']['application'];
-        if ($app) {$this->Session->write('cdr_app',$app);}
+        if ($app) {$this->Session->write('cdr_app',$app);} else { $app = $this->Session->read('cdr_app');}
 
         $title=false;
 
-        if($app =='ivr'){ 
-      	      $title   = $this->data['Cdr']['title_ivr'];
-        } elseif ($app =='lam') {
-	      $title   = $this->data['Cdr']['title_lam'];
-        }
+        if($app == 'ivr') { $field = 'title_ivr';}
+        elseif($app == 'lam') { $field = 'title_lam';}
+
+        if(!$title = $this->data['Cdr'][$field]) { $title = $this->Session->read('title');}
+
+        $this->Session->write('title',$title);
+
 
         $this->Cdr->unbindModel(array('belongsTo' => array('User')));
         $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));

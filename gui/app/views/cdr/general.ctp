@@ -106,14 +106,16 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$app));
 	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$app));
 
-	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam,'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
-	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All Voice Menus',true).' -'));
+	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam, 'selected' => $this->Session->read('title'),'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
+	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr, 'selected' => $this->Session->read('title'), 'label'=>'','empty'=>'- '.__('All Voice Menus',true).' -'));
 
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (
      	    	 array(__('Application',true),$radio1,$menu_lam,$radio2,$menu_ivr)
       		 ),array('class' => 'none'), array('class' => 'none'));
             echo "</table>";
+
+
 
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (

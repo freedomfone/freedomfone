@@ -68,7 +68,7 @@ $config['gsmopen']= array(
 	       	      
 $config['public_api']= array(
                'user'      => 'api',
-               'password' => 'freddyboy',
+               'password' => 'thefone',
                );
 
 /*

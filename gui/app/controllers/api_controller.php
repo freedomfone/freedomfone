@@ -102,12 +102,9 @@ class ApiController extends AppController{
                  switch($key){
 
                     case 'sender':  
-                    if(is_numeric($value)){
-                         $params[] = array( 'Bin.sender' => $value);
-                    } else {
-                         $bad_request = true;
-                    }
-                    break;
+                    
+                        $params[] = array( 'Bin.sender' => $value);
+                        break;
 
                  }
 
@@ -273,7 +270,7 @@ class ApiController extends AppController{
            $not_found   = false;
 
            parse_str(file_get_contents("php://input"),$post_vars);
-           $post_vars['instance_id'] = $instance_id;
+           $post_vars['instance_id'] = substr($instance_id,1);
            $keys = array('id','user_id','category_id','rate','new','quick_hangup','tag_id','instance_id');
 
            if(!$this->Api->validPostVars($post_vars,$keys)){
@@ -371,6 +368,7 @@ class ApiController extends AppController{
 
            $message = $this->Message->find('all', array('conditions' => $params));
            if(!$message){ 
+
                           $not_found = true;
            } else {
 

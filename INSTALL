@@ -38,13 +38,10 @@ STEP 9. Install DB Schemas and demo data
 #(/optional)
 # cd /opt/freedomfone; ./fix_perms_all.sh
 
-STEP 10. Reboot or run /etc/rc.local
+STEP 10. Fix the boot process with upstart 
 
-#/etc/rc.local
-
-Point your browser to http://localhost/freedomfone
-Username: Admin
-Password: thefone
+Apply the upstart patch
+#cd /opt/freedomfone/fixes; ./20120119_startup.sh 
 
 
 *** Updating a running installation ***
@@ -54,7 +51,7 @@ that we use.
 
 Download the latest versions and run:
 
-#cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-10_i386.deb
+#cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-12_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-12_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-12_i386.deb
 
 #cd /opt/freedomfone; chmod 755 fix_perms_all.sh
 #cd /opt/freedomfone; ./fix_perms_all.sh

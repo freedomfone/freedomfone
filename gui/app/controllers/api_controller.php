@@ -31,7 +31,7 @@ class ApiController extends AppController{
 
 	   $auth = Configure::read('public_api');
  
-               $this->Security->loginOptions = array('type' => 'basic', 'realm' => 'MyRealm');
+               $this->Security->loginOptions = array('type' => 'digest', 'realm' => 'MyRealm');
                $this->Security->loginUsers = array($auth['user'] => $auth['password']);
                $this->Security->requireLogin();
 

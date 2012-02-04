@@ -380,6 +380,7 @@ class Cdr extends AppModel{
                     case 'first':
                     $data = $this->find('first');
                     $epoch = $data['Cdr']['epoch'];
+
                     break;
 
 

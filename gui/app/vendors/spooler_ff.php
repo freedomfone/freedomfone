@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * spooler_ff.php	- Class for connecting to spooler database and fetch new events.
- * version 		- 1.0.360
+ * version 		- 4.0.1700
  * 
  * Version: MPL 1.1
  *
@@ -134,7 +134,7 @@ class ff_event {
 
      $table = $this->table;
 
-     $result = mysql_query("delete $table where id = $id");
+     $result = mysql_query("delete from $table where id = $id");
      	     if (!$result) {
 
 		return false;

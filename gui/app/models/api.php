@@ -41,6 +41,7 @@ class Api extends AppModel{
  */
   function validPostVars($post_vars,$keys){
 
+
            $status = true;
 
            foreach($post_vars as $key => $var){

@@ -289,7 +289,7 @@ class Process extends AppModel{
 
         function getSVN(){
 
-	    $cmd = "svnversion /usr/local/freedomfone";
+	    $cmd = "svnversion /opt/freedomfone";
   	    $op = array();
 	    exec($cmd,$op);
 	    $svn = $op[0]; 

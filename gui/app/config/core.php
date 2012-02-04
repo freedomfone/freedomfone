@@ -38,7 +38,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 /**
  * Application wide charset encoding
  */
@@ -231,7 +231,7 @@
  */
 
 
-define ('BASE_DIR', '/usr/local/freedomfone/');
+define ('BASE_DIR', '/opt/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
 
@@ -242,8 +242,8 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','2.5');
-define ('VERSION_NAME','Lycaon Sekowei');
+define ('VERSION','2.D');
+define ('VERSION_NAME','Lycaon Suyo');
 
 
 

@@ -68,6 +68,7 @@ class CdrController extends AppController{
         if ($app) {$this->Session->write('cdr_app',$app);} else { $app = $this->Session->read('cdr_app');}
 
         $title=false;
+        $field = false;
 
         if($app == 'ivr') { $field = 'title_ivr';}
         elseif($app == 'lam') { $field = 'title_lam';}

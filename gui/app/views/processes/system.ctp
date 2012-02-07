@@ -70,7 +70,6 @@ echo $html->addCrumb(__('About',true), '/processes/system');
 
 
      //Software updates
-     echo "<h2>".__("Software updates",true)."</h2>";
 
      if ($items){
        echo "<h2>".__("Software updates",true)."</h2>";

@@ -39,12 +39,14 @@
 
 class AppModel extends Model {
 
-
      function sanitizePhoneNumber($number){
 
        if($number){
 
         if(preg_match('/%/',$number)){ $number = urldecode($number);}
+       
+         if(preg_match('/^[%2B0-9]+$/', $number)){
+
 
           $entry = $this->query("select value_int from settings where name = 'prefix'");
           $prefix =  $entry[0]['settings']['value_int'];
@@ -64,14 +66,13 @@ class AppModel extends Model {
             $number = '00'.$prefix.ltrim($number,'0');
 
           }
-
+         }
         }
 
         return $number;
 
 
      }
-
 
 
      function headerGetStatus($header){
@@ -100,6 +101,11 @@ class AppModel extends Model {
                 case 'HTTP/1.1 204 NO CONTENT':
                 $status = 4;
                 break;
+
+                case 'HTTP/1.1 400 BAD REQUEST':
+                $status = 5;
+                break;
+
 
 
 

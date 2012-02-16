@@ -32,33 +32,33 @@ if(isSet($status,$mode)){
                   break;
 
                   case 2:
-                  $status_image = 'failure.png';
-                  $status_text =  __('Failure', true);
+                  $status_image = 'pause.png';
+                  $status_text =  __('Paused', true);
                   break;
 
                   case 3:
-                  $status_image = 'retry.png';
-                  $status_text =  __('Retry', true);
+                  $status_image = 'abort.png';
+                  $status_text =  __('Aborted', true);
                   break;
 
                   case 4:
-                  $status_image = 'success.png';
-                  $status_text =  __('Success', true);
+                  $status_image = 'failure.png';
+                  $status_text =  __('Failed', true);
                   break;
 
                   case 5:
-                  $status_image = 'abort.png';
-                  $status_text =  __('Abort', true);
+                  $status_image = 'complete.png';
+                  $status_text =  __('Completed', true);
                   break;
 
                   case 6:
-                  $status_image = 'pause.png';
-                  $status_text =  __('Pause', true);
+                  $status_image = 'process.png';
+                  $status_text =  __('In process', true);
                   break;
 
                   case 7:
-                  $status_image = 'process.png';
-                  $status_text =  __('Process', true);
+                  $status_image = 'no_auth.png';
+                  $status_text =  __('Not authorized', true);
                   break;
 
 

@@ -27,7 +27,9 @@
    echo "<div id='campaign_div' class='campaign_did'></div>";                                           
    echo "<div id='user_div' class='user_did'></div>";                                           
 
-   $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
+   $options1 = array(1 => __('Start',true), 3 => __('Abort',true));
+   $options2 = array(2 => __('Pause',true),3 => __('Abort',true));
+
    echo $form->create('Campaign',array('type' => 'post','action'=> 'status'));
 
     if ($campaigns){
@@ -63,15 +65,25 @@
                      break;
 
                 }
+	
+	     $status = $campaign['Callback']['status'];
+	     if( $status == 2){
+	        $change_status = $form->input('Callback.'.$key.'.status',array('type'=>'select','options'=>$options1,'label'=> false,'empty' => '-- '.__("Change status",true).' --'));
+	     } elseif ($status == 1 || $status == 6 ){
+	        $change_status = $form->input('Callback.'.$key.'.status',array('type'=>'select','options'=>$options2,'label'=> false,'empty' => '-- '.__("Change status",true).' --'));
+	     } else {
+
+	        $change_status = false;
+	     }
 
               $row[] = array(
                        $icon.'&nbsp;&nbsp;'.$campaign_link,
                        array(date('Y-m-d H:i A',$campaign['Campaign']['created']), array('align' => 'center')),
                        $user_link,
-                       array($this->element ('dialer_status', array('status' => $campaign['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
                        array($campaign['Campaign']['extension'], array('align' => 'center')),
                        array($campaign['Callback']['retries'], array('align' => 'center')),
-                       $form->input('Callback.'.$key.'.state',array('type'=>'select','options'=>$options,'label'=> false,'selected' => $campaign['Callback']['state']))
+                       array($this->element ('dialer_status', array('status' => $campaign['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
+                       $change_status
                        );
 
 
@@ -84,10 +96,10 @@
 	__("Campaign",true),
 	 __("Created",true),
  	 __("User",true), 
- 	 __("Call status",true),
  	 __("Service ID",true),
  	 __("Attempts",true),
- 	 __("Callback status",true)));
+ 	 __("Call status",true),
+ 	 __("Actions",true)));
 
         echo $html->tableCells($row);
         echo "</table>";

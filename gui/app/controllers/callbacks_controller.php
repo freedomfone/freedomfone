@@ -55,6 +55,106 @@ class CallbacksController extends AppController{
  *
  */
 
+  function newfies_refresh2($mode = null){
+
+          $this->autoRender = false;
+   	  $dialer = Configure::read('DIALER');
+
+	  //Find unique list of campaign id (with active callbacks)
+	  $campaigns = $this->Callback->find('list', array('fields'=>'campaign_id','group' => 'campaign_id', 'conditions'=> array('Callback.status'=> array(1,2,3))));
+
+	  foreach ($campaigns as $key => $campaign_id){
+
+	     //Find list of phone numbers and campaign id
+	     $id_contact = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.campaign_id' => $campaign_id)));
+
+	     $contact_status = $this->Callback->find('all', array('fields' => array('phone_number','status'), 'conditions' => array('Callback.campaign_id' => $campaign_id)));
+	     debug($contact_status);
+
+	     $this->loadModel('Campaign');
+             $this->Campaign->unbindModel(array('hasMany' => array('Callback')));
+	     $campaign = $this->Campaign->findById($campaign_id, false);
+
+             //** CAMPAIGN_SUBSCRIBER::GET **//
+             $HttpSocket = new HttpSocket();
+             $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
+             $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].'/'.$campaign['Campaign']['nf_campaign_id'].'/', false,  $request); 
+             $header = $HttpSocket->response['raw']['status-line'];
+
+                     if ($this->headerGetStatus($header) == 7) {     
+
+                        $results = json_decode($results,true);
+
+			  foreach($results as $callback){
+			  	$id		            = array_keys($id_contact, $callback['contact']);
+
+                        	$this->Callback->id 	    = $id[0];
+                       		$this->data['status'] 	    = $callback['status'];
+                        	$this->data['last_attempt'] = $callback['last_attempt'];
+                        	$this->data['retries'] 	    = $callback['count_attempt'];
+                        	$this->Callback->save($this->data);
+
+
+                               //Callback completed, add to statistics
+                               if($callback['status'] == 5 && $entry['Callback']['status'] != 5 && $entry['CallbackService']['nf_campaign_id']){
+
+                                 $this->Callback->CallbackService->id = $entry['CallbackService']['id'];
+                                 $this->data['calls_total'] = $entry['CallbackService']['calls_total']+1;
+                                 $this->Callback->CallbackService->save($this->data);
+
+                               }
+
+			  }
+
+
+
+		     }
+	  }
+
+  }
+
+
+  function newfies_refresh($mode = null){
+
+
+          $this->autoRender = false;
+   	  $dialer = Configure::read('DIALER');
+
+          $result = $this->Callback->find('all', array(
+                                                 'fields' => array('Callback.id','Campaign.nf_campaign_id','Callback.status','Callback.nf_campaign_subscriber_id'),
+                                                 'conditions' => array(
+								 'Campaign.end_time >=' => date('Y-m-d G:i:s'),
+								 'Callback.status' => array(1,2,3,6),
+                                                 )));
+
+
+					
+
+          foreach($result as $key => $callback){
+
+             $HttpSocket = new HttpSocket();
+             $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
+             $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].$callback['Callback']['nf_campaign_subscriber_id'].'/', false,  $request); 
+             $header = $HttpSocket->response['raw']['status-line'];
+
+             if ($this->headerGetStatus($header) == 7) {     
+	     	$results = json_decode($results,true);
+		debug($results['status']);
+                $this->Callback->id = $callback['Callback']['id'];
+                $this->Callback->saveField('status',$results['status']);
+
+
+	     } else {
+
+               $this->log("FAILURE: newfies_refresh; Callback id: ".$callback['Callback']['id']."; Mode: ".$mode, "callback"); 
+
+	     }
+
+	   }
+
+  }
+
+
    function dialer_refresh($mode = null){
 
           $this->autoRender = false;
@@ -64,6 +164,9 @@ class CallbacksController extends AppController{
                                                  'conditions' => array('Callback.status' => array(1,2,3))
                                                  ));
 
+
+debug($result);
+
              //** CONTACT::GET **//
              $HttpSocket = new HttpSocket();
              $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
@@ -71,7 +174,7 @@ class CallbacksController extends AppController{
              foreach($result as $entry){
 
                      if(! $nf_campaign_id = $entry['Campaign']['nf_campaign_id']) { $nf_campaign_id = $entry['CallbackService']['nf_campaign_id']; }
-                     $results = $HttpSocket->get($dialer['host'].$dialer['contact'].'/'.$nf_campaign_id.'/'.$entry['Callback']['phone_number'], false,  $request); 
+                     $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].'/'.$nf_campaign_id.'/'.$entry['Callback']['phone_number'], false,  $request); 
                      $header = $HttpSocket->response['raw']['status-line'];
 
                      if ($this->headerGetStatus($header) == 1) {     

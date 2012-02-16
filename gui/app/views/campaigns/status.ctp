@@ -39,7 +39,7 @@ $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
    
      echo $form->create("Callback");
      $input1 = $form->input('campaign_id',array('id'=>'ServiceType2','type'=>'select','options'=>$campaign,'label'=> false,'empty'=>'-- '.__('Select campaign',true).' --'));
-     $input2 = $form->input('status',array('id'=>'ServiceType1','type'=>'select','options'=>$callback_default['status'],'label'=> false,'empty'=>'-- '.__('Select call status',true).' --'));         
+     $input2 = $form->input('status',array('id'=>'ServiceType1','type'=>'select','options'=>$callback_default['callback_status'],'label'=> false,'empty'=>'-- '.__('Select call status',true).' --'));         
      $input3 = $form->input('order',array('id'=>'ServiceType3','type'=>'select','options'=>$order,'label'=> false,'empty'=>'-- '.__('Order by',true).' --'));
      $input4 = $form->input('dir',array('id'=>'ServiceType4','type'=>'select','options'=>$dir,'label'=> false,'empty'=>'-- '.__('Direction',true).' --'));
 

@@ -17,23 +17,20 @@
         }
 
         $total   = sizeof($status);
-        $pending = $number->toPercentage(100*sizeof(array_keys($status,1))/$total,0);
-        $failure = $number->toPercentage(100*sizeof(array_keys($status,2))/$total,0);
-        $retry   = $number->toPercentage(100*sizeof(array_keys($status,3))/$total,0);
-        $success = $number->toPercentage(100*sizeof(array_keys($status,4))/$total,0);
-        $abort   = $number->toPercentage(100*sizeof(array_keys($status,5))/$total,0);
-        $pause   = $number->toPercentage(100*sizeof(array_keys($status,6))/$total,0);
-        $process = $number->toPercentage(100*sizeof(array_keys($status,7))/$total,0);
+        $pending     = $number->toPercentage(100*sizeof(array_keys($status,1))/$total,0);
+        $pause       = $number->toPercentage(100*sizeof(array_keys($status,2))/$total,0);
+        $abort       = $number->toPercentage(100*sizeof(array_keys($status,3))/$total,0);
+        $failed       = $number->toPercentage(100*sizeof(array_keys($status,4))/$total,0);
+        $completed   = $number->toPercentage(100*sizeof(array_keys($status,5))/$total,0);
+        $process     = $number->toPercentage(100*sizeof(array_keys($status,6))/$total,0);
+        $no_auth     = $number->toPercentage(100*sizeof(array_keys($status,7))/$total,0);
 
-
+           $row[] = array(__('Completed',true), $completed);
            $row[] = array(__('Pending',true), $pending);
-           $row[] = array(__('Failure',true), $failure);
-           $row[] = array(__('Retry',true), $retry);
-           $row[] = array(__('Success',true), $success);
-           $row[] = array(__('Abort',true), $abort);
-           $row[] = array(__('Pause',true), $pause);
            $row[] = array(__('Processing',true), $process);
-
+           $row[] = array(__('Paused',true), $pause);
+           $row[] = array(__('Failed',true), $failed);
+           $row[] = array(__('Aborted',true), $abort);
  
            echo "<table width='95%' cellspacing  = '0' class = 'none'>";
            echo $html->tableCells($row,array('class'=>'none'),array('class'=>'none'));

@@ -70,7 +70,9 @@ class CampaignsController extends AppController{
            $phonebooks = $this->getPhoneBooks();
 
                
-             if(!$phonebooks){ $this->_flash(__('There is no valid phone book in the system. Please create a phone book (with one or more users) before you create the campaign.',true), 'warning');}
+             if(!$phonebooks){ 
+	     		      $this->_flash(__('There is no valid phone book in the system. Please create a phone book (with one or more users) before you create the campaign.',true), 'warning');
+             }
 
                $this->loadModel('IvrMenu');
                $ivr = $this->IvrMenu->find('list',array('conditions' => array('ivr_type' => 'ivr'), 'fields' => array('instance_id','title'),'recursive' => 0));
@@ -112,7 +114,7 @@ class CampaignsController extends AppController{
                         $user_id[] = $entry['PhoneNumber']['user_id'];
                   }
               
-debug($phone_numbers);
+
  
 
                   foreach ($phone_numbers as $key => $phone_number){
@@ -163,23 +165,23 @@ debug($phone_numbers);
                       $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
                                            'header' => array('Content-Type' =>'application/json')
                                          );
-                      $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], json_encode($socket_data), $request); 
+                      $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_POST'], json_encode($socket_data), $request); 
                       $results  = json_decode($results);
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
 
-
                         if ( $status == 1) {  //201 Created (POST Campaign)
 
                           //Get Newfies campaign id
-                          $location = explode($dialer['campaign'], $HttpSocket->response['header']['Location']);
+                          $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);
                           $nf_campaign_id = trim($location[1],'/');
 
                           //Get Newfies phone book id
-                          $results = $HttpSocket->get($dialer['host'].$dialer['campaign'].$nf_campaign_id.'/?format=json', false, $request); 
-                          $results = json_decode($results);
+                          $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_GET'].$nf_campaign_id.'/?format=json', false, $request); 
+                          $results = json_decode($results,true);
 
-                           $nf_phone_book_id = $results->phonebook[0]->id;                        
+
+                           $nf_phone_book_id = $results['phonebook'][0]['id'];                        
                            $this->data['Campaign']['status'] = 1;
                            $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['Campaign']['nf_campaign_id'] = $nf_campaign_id;
@@ -190,14 +192,15 @@ debug($phone_numbers);
                            foreach ($phone_numbers as $key => $contact) {
 
                                    $campaign_subscriber = array('phonebook_id' => $nf_phone_book_id, 'contact' => $contact);
-                                   $results = $HttpSocket->post($dialer['host'].$dialer['campaign_subscriber'], json_encode($campaign_subscriber), $request); 
+                                   $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_POST'], json_encode($campaign_subscriber), $request);
+
                                    $results = json_decode($results,true);
                                    $header  = $HttpSocket->response['raw']['status-line'];
                                    $status = $this->headerGetStatus($header);
-                                   
+
                                    if ( $status == 1) {
 
-                                      $location = explode($dialer['campaign_subscriber'], $HttpSocket->response['header']['Location']);
+                                      $location = explode($dialer['path'].$dialer['campaign_subscriber_POST'], $HttpSocket->response['header']['Location']);
                                       $nf_campaign_subscriber_id = trim($location[1],'/');
 
                                       $this->data[$key]['Callrequest']['nf_campaign_subscriber_id'] = $nf_campaign_subscriber_id;
@@ -218,16 +221,18 @@ debug($phone_numbers);
                                    }
 
 
-                           }                  
+                           }             
 
                            $this->_flash(__('The campaign has successfully been created.',true), 'success');                           	 
    	                   $this->redirect(array('action'=>'index'));
 
 
                          } elseif( $status == 5){
+
                              $results = get_object_vars($results);
                               if(array_key_exists('chk_campaign', $results)){ $this->_flash($results['chk_campaign'][0].'<br/>'.__('Please delete a campaign before creating a new.',true), 'error');}
                               elseif(array_key_exists('chk_campaign_name',$results)){ $this->_flash($results['chk_campaign_name'][0].'<br/>'.__('Please select a campaign name that is not in use.',true), 'error');}
+			      elseif(array_key_exists('chk_duration',$results)){ $this->_flash($results['chk_duration'][0], 'error');}
 
 
                          }  else {
@@ -270,7 +275,7 @@ debug($phone_numbers);
                                            'header' => array('Content-Type' =>'application/json')
                                          );
 
-              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign_delete'].$data['Campaign']['nf_campaign_id'].'/', false, $request); 
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['path'].$dialer['campaign_DELETE'].$data['Campaign']['nf_campaign_id'].'/', false, $request); 
 
 
               $header  = $HttpSocket->response['raw']['status-line'];
@@ -340,8 +345,9 @@ debug($phone_numbers);
                                          );
 
 
-              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id.'/', json_encode($socket_data), $request); 
+              $results = $HttpSocket->put($dialer['host'].$dialer['path'].$dialer['campaign_PUT'].$nf_campaign_id.'/', json_encode($socket_data), $request); 
               $header = $HttpSocket->response['raw']['status-line'];
+
 
               if ($this->headerGetStatus($header) == 4) {           
 
@@ -397,29 +403,31 @@ debug($phone_numbers);
                                            'header' => array('Content-Type' =>'application/json')
                                          );
 
-
-
              foreach($this->data['Callback'] as $key => $entry){
 
-debug($entry);
-                    $results = $HttpSocket->put($dialer['host'].$dialer['campaign_subscriber'].$entry['nf_campaign_id'], 
-                                                json_encode(array('contact' => $entry['phone_number'], 'status' => $entry['state'])),
+	     //Update entry if Status is changed
+	     if(array_key_exists('status', $entry)){
+
+                    $results = $HttpSocket->put($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_PUT'].$entry['nf_campaign_id'].'/', 
+                                                json_encode(array('contact' => $entry['phone_number'], 'status' => $entry['status'])),
                                                 $request
-                                                );               
+                                                );
+
                     $header = $HttpSocket->response['raw']['status-line'];
 
-                    if ($this->headerGetStatus($header) == 1) {           
+                    if ($this->headerGetStatus($header) == 4) {           
 
                        $this->loadModel('Callback');
                        $this->Callback->id = $entry['id'];
-                       $this->Callback->saveField('state',$entry['state']);
+                       $this->Callback->saveField('status',$entry['status']);
 
                    }
 
-              }
+            }
+           }
+            $this->_flash(__('Call status successfully updated.',true), 'info');
 
-         } 
-
+	 }
 
         $campaign         = $this->Campaign->find('list', array('fields' => array('Campaign.id','Campaign.name')));
 
@@ -530,49 +538,44 @@ debug($entry);
 
 /*
  *
- * Refresh of Campaign request from Dialer
+ * Refresh of Campaign status from Newfies
  *
  *
  */
 
-   function dialer_refresh($mode = null){
+   function newfies_refresh($mode = null){
+
 
           $this->autoRender = false;
    	  $dialer = Configure::read('DIALER');
-          $result = $this->Campaign->find('all', array('fields' => 'Campaign.id'));
+          $result = $this->Campaign->find('all', array('recursive' => false, 'fields' => array('Campaign.id', 'Campaign.nf_campaign_id'), 'conditions' => array('Campaign.end_time >=' => date('Y-m-d G:i:s'))));
 
-         
-             //** CAMPAIGN::GET **//
+          foreach($result as $key => $campaign){
+
              $HttpSocket = new HttpSocket();
              $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
-             $results = $HttpSocket->get($dialer['host'].$dialer['campaign'], false,  $request); 
+             $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_GET'].$campaign['Campaign']['nf_campaign_id'].'/', false,  $request); 
              $header = $HttpSocket->response['raw']['status-line'];
 
 
-             if ($this->headerGetStatus($header) == 1) {     
-
-                $results = json_decode($results,true);
-
-                foreach ($results as $key => $campaign){
-       
-                       $id = $campaign['id'];
-                       if($data = $this->Campaign->find('first', array('conditions' => array('nf_phone_book_id' => $id)))){
-                               $this->Campaign->id = $data['Campaign']['id'];
-                               $this->Campaign->saveField('status',$campaign['status']);
-                               $this->log("SUCCESS: dialer_refresh; Dialer id: ".$id."; Mode: ".$mode, "campaign");
-                       } 
-                }
-             
-             } else {
-
-                      $this->log("FAILURE: dialer_refresh; Campaign id: ".$data['Campaign']['id']."; Mode: ".$mode, "campaign"); 
-             }
+             if ($this->headerGetStatus($header) == 7) {     
+	     	$results = json_decode($results,true);
+                $this->Campaign->id = $campaign['Campaign']['id'];
+                $this->Campaign->saveField('status',$results['status']);
 
 
-   }
+	     } else {
 
+               $this->log("FAILURE: newfies_refresh; Campaign id: ".$campaign['Campaign']['id']."; Mode: ".$mode, "campaign"); 
+
+	     }
+
+	   }
+
+  }
 
 
 }
+
 
 ?>

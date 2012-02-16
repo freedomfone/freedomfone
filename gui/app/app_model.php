@@ -79,7 +79,7 @@ class AppModel extends Model {
 
               $status = false;
 
-
+debug($header);
               switch(trim($header)){
 
                 case 'HTTP/1.0 200 OK':

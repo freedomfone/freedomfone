@@ -94,7 +94,7 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `callback_settings` WRITE;
 /*!40000 ALTER TABLE `callback_settings` DISABLE KEYS */;
-INSERT INTO `callback_settings` VALUES (1,120,180,5,5,10);
+INSERT INTO `callback_settings` VALUES (1,120,180,5,5,3);
 /*!40000 ALTER TABLE `callback_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +108,6 @@ SET character_set_client = utf8;
 CREATE TABLE `callbacks` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `campaign_id` int(10) unsigned NOT NULL,
-  `job_id` int(11) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `type` varchar(10) default NULL,
   `retries` tinyint(3) unsigned default '0',
@@ -116,6 +115,7 @@ CREATE TABLE `callbacks` (
   `state` tinyint(4) default '1',
   `phone_number` varchar(20) default NULL,
   `last_attempt` int(11) default NULL,
+  `nf_campaign_subscriber_id` int(10) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -615,7 +615,7 @@ CREATE TABLE `users` (
   `first_epoch` int(11) unsigned default NULL,
   `last_app` varchar(10) default NULL,
   `last_epoch` int(11) unsigned default NULL,
-  `acl` int(11) unsigned default '0',
+  `acl` int(11) unsigned default '1',
   `new` tinyint(4) default '1',
 
   PRIMARY KEY  (`id`)

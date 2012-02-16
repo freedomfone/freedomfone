@@ -151,7 +151,8 @@ $config['EXT_MAPPING'] = array(
 $config['LANGUAGES'] = array(
                             'eng' => __('English',true),
                             'swa' => __('Swahili',true),
-                            'esp' => __('Spanish',true)
+                            'esp' => __('Spanish',true),
+                            'fre' => __('French',true)
                                                   );
 
 $config['RSS']	= array(

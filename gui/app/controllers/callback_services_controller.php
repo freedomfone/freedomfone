@@ -136,6 +136,7 @@ class CallbackServicesController extends AppController{
                              'extra_data'       => $extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
+                             'status'  		=> '1',
                              );
 
                         $HttpSocket = new HttpSocket();
@@ -144,20 +145,21 @@ class CallbackServicesController extends AppController{
                                          );
 
                         
-                        $results = $HttpSocket->post($dialer['host'].$dialer['campaign'], json_encode($socket_data), $request); 
+                        $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_POST'], json_encode($socket_data), $request); 
                         $results = json_decode($results);
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
+debug($header);
                       if ( $header_status  == 1) {
 
-                          $location = explode($dialer['campaign'], $HttpSocket->response['header']['Location']);
+                          $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);
                           $nf_campaign_id = trim($location[1],'/');
 
                            //FIX THIS!!
-                           $nf_phone_book_id  = $nf_campaign_id;
+                           //$nf_phone_book_id  = $nf_campaign_id;
 
-                           $this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
+                           //$this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['CallbackService']['nf_campaign_id'] = $nf_campaign_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
@@ -200,14 +202,15 @@ class CallbackServicesController extends AppController{
 
     function delete($id = null){
 
-    Configure::write('debug', 0);
+    Configure::write('debug', 3);
       $dialer = Configure::read('DIALER');
       
-       if($id && $data= $this->CallbackService->find('first', array('conditions' => array('id'=> $id)))){
+
+       if($id && $data= $this->CallbackService->find('first', array('conditions' => array('CallbackService.id'=> $id)))){
 
               $HttpSocket = new HttpSocket();
               $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results    = $HttpSocket->delete($dialer['host'].$dialer['campaign'].'/delete_cascade/'.$data['CallbackService']['nf_campaign_id'], false, $request); 
+              $results    = $HttpSocket->delete($dialer['host'].$dialer['path'].$dialer['campaign_DELETE'].$data['CallbackService']['nf_campaign_id'].'/', false, $request); 
               $header  = $HttpSocket->response['raw']['status-line'];
 
                     if ($this->headerGetStatus($header) == 4) {  //NO CONTENT (OK)                    
@@ -236,7 +239,7 @@ class CallbackServicesController extends AppController{
                     } else {
 
        	              $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
-                      $this->redirect(array('action'=>''));   	                     
+                      $this->redirect(array('action'=>'/'));   	                     
 
                     } 
        } else {
@@ -403,9 +406,9 @@ class CallbackServicesController extends AppController{
 
               $nf_campaign_id = $data['nf_campaign_id'];
 
-              $startingdate    = strtotime($this->dateToString($data['start_time']));
+              $startingdate     = strtotime($this->dateToString($data['start_time']));
               $expirationdate   = strtotime($this->dateToString($data['end_time']));
-              $type = $this->data['CallbackService']['type'];
+              $type 		= $this->data['CallbackService']['type'];
        
 
               $key = $type."_instance_id";
@@ -424,35 +427,40 @@ class CallbackServicesController extends AppController{
                              'callmaxduration'  => $data['max_duration'],
                              'maxretry'         => $data['max_retries'],
                              'intervalretry'    => $data['retry_interval'],
-                             'calltimeout'      => $dialer['call_timeout'],
-                             'aleg_gateway'     => $dialer['a-leg_gateway'],
-                             'voipapp'          => 1, 
-                             'voipapp_data'     => $extension,
-                             'daily_start_time' => '00:00:00',
-                             'daily_stop_time'  => '23:59:59',
+                             'extra_data'       => $extension,
                              );
 
+
               $HttpSocket = new HttpSocket();
-              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-              $results = $HttpSocket->put($dialer['host'].$dialer['campaign'].$nf_campaign_id, $socket_data, $request); 
+              $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
+                                           'header' => array('Content-Type' =>'application/json')
+                                         );
+
+              $results = $HttpSocket->put($dialer['host'].$dialer['path'].$dialer['campaign_PUT'].$nf_campaign_id.'/', json_encode($socket_data), $request); 
+
+
               $header = $HttpSocket->response['raw']['status-line'];
 
-
-              if ($this->headerGetStatus($header) == 1) {           
+              if ($this->headerGetStatus($header) == 4) {           
 
 	        $this->CallbackService->save($data);
 
        	         $this->_flash(__('The callback service has successfully been updated.',true), 'success');                           	
-
+         	 $this->redirect(array('action'=>'index'));
 
               } else {
 
+	      	     $results = json_decode($results);
+                     $results = get_object_vars($results);
 
-       	                $this->_flash(__('Dialer API Error.',true).' '.$header, 'error');
+                   if(array_key_exists('chk_frequency', $results)){ 
+                        $this->_flash($results['chk_frequency'][0], 'error');
+                   }
+  
 
               }
 
-                        $this->redirect(array('action'=>'index'));
+               
 
              } else
 

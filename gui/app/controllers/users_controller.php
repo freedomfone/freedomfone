@@ -383,6 +383,8 @@ class UsersController extends AppController{
 
 
 		$this->User->set( $this->data );
+
+
 		if ($this->User->save($this->data['User'])) {
 
                         $id = $this->User->getLastInsertId();

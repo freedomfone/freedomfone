@@ -167,6 +167,7 @@ class CampaignsController extends AppController{
                                          );
                       $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_POST'], json_encode($socket_data), $request); 
                       $results  = json_decode($results);
+
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
 
@@ -195,6 +196,7 @@ class CampaignsController extends AppController{
                                    $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_POST'], json_encode($campaign_subscriber), $request);
 
                                    $results = json_decode($results,true);
+
                                    $header  = $HttpSocket->response['raw']['status-line'];
                                    $status = $this->headerGetStatus($header);
 

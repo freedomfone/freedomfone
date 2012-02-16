@@ -43,7 +43,7 @@ $acls  = Configure::read('ACL');
      array(__("Skype",true),			$skype = $form->input('skype',array('label'=>false))),
      array(__("Phone number",true),		$form->input('PhoneNumber.number',array('label'=>false))),
      array(__("Organization",true),		$form->input('organization',array('label'=>false))),
-     array(__("ACL",true),			$form->input('acl_id',array('type'=>'select','options'=>$acls, 'label'=>false))),
+     array(__("ACL",true),			$form->input('acl',array('type'=>'select','options'=>$acls, 'label'=>false))),
      array(__("Add to phone book", true),       $form->input('PhoneBook.id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'label'=> false,'empty'=>'-- '.__('Phone books',true).' --'))),
      array($form->submit(__('Save',true),  array('name' =>'data[Submit]', 'class' => 'save_button')),'')
      ),array('class' => 'blue'),array('class' => 'blue'));

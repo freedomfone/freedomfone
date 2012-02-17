@@ -57,7 +57,7 @@ class SettingsController extends AppController {
                  }
 
                  //Prefix
-		 elseif ($id == 8){ 
+		 elseif ($id == 9){ 
                     $data[$id]= array('id'=>$id, 'value_int'=>$entry['value']);
                  }
 
@@ -96,7 +96,7 @@ class SettingsController extends AppController {
 		   $this->_flash('Invalid IP address ('.$ip_addr.') Please try again.','error');
 		   }
 
-debug($data);
+
 		   $this->Setting->saveAll($data['Settings']);															            
 
 		}

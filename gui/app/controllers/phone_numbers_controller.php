@@ -37,6 +37,7 @@ class PhoneNumbersController extends AppController {
 
              if($this->data['PhoneNumber']['number']){
 
+	       $this->data['PhoneNumber']['number'] = $this->sanitizePhoneNumber($this->data['PhoneNumber']['number']);
                 $this->PhoneNumber->create();
                 if ($this->PhoneNumber->save($this->data)){
                 

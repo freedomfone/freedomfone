@@ -155,7 +155,7 @@ class MessagesController extends AppController{
         $page = 1;
       } 
 
-         $this->refreshAll();
+        
          $this->Session->write('Message.source', 'index');
 
 
@@ -181,8 +181,6 @@ class MessagesController extends AppController{
 
       function archive(){
 
-         $this->refreshAll();
- 
          $this->set('title_for_layout', __('Leave-a-Message Archive',true));
          $this->Session->write('Message.source', 'archive');
      

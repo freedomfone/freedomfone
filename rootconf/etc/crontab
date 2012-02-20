@@ -22,13 +22,15 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # App: Leave a message
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/messages/refresh/cron  >/dev/null 2>&1
 # App: Call/Event data records
-*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh/cron  >/dev/null 2>&1
+#*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh/cron  >/dev/null 2>&1
 # App: Datamining of IVR options
-*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh/cron  >/dev/null 2>&1
+#*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh/cron  >/dev/null 2>&1
 # App: System Health
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh/cron  >/dev/null 2>&1
 # App: GSMOPEN 
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh/cron  >/dev/null 2>&1
+# App: OfficeRoute 
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/office_route/refresh/cron  >/dev/null 2>&1
 # App: Other SMS - The Bin 
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
 # App: Dialer - Newfies

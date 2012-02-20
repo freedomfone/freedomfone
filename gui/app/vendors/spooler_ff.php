@@ -181,11 +181,25 @@ class ff_event {
      * @return array $data
      * 
      */
-     function getNext($action){
+    function lock(){
+
+    mysql_query("use spooler_in");
+    mysql_query("LOCK TABLES ".$this->table." WRITE");
+
+    } 
+
+    function unlock(){
+
+    mysql_query("UNLOCK TABLES");
+
+    } 
+
+    function getNext($action){
 
      $table = $this->table;
 
-     $result = mysql_query("select * from $table where status=0 order by id asc limit 0,1;");
+
+     $result = mysql_query("select * from $table where status = 0 order by id asc limit 0,1;");
 
 
 
@@ -208,7 +222,6 @@ class ff_event {
 		      break;
 
 		      case 'delete':
-                      //echo "delete";
 		      
 		      $this->deleteEntry($data['id']);
 		      break;
@@ -216,11 +229,15 @@ class ff_event {
 
 		      }
 		
+               // mysql_query("UNLOCK TABLES");
+
 		return  $data;
 
 		}
 
 		else {
+
+                     //mysql_query("UNLOCK TABLES");
 		     return 0;
 		     }
 		}

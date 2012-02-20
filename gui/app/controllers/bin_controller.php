@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * bin_controller.php		- Controller for Incoming SMS
- * version 		 	- 3.0.1500
+ * version 		 	- 3.0.1700
  * 
  * Version: MPL 1.1
  *
@@ -31,13 +31,17 @@ class BinController extends AppController{
       var $scaffold;
 
 
-      function index(){
+    function refresh(){
 
-           $this->Bin->refresh('manual');
+             $this->autoRender = false;
+             $this->Bin->refresh();
 
+    }
 
-           $this->set('title_for_layout', __('SMS Incoming',true));
-           $this->Session->write('Bin.source', 'index');
+    function index(){
+
+          $this->set('title_for_layout', __('SMS Incoming',true));
+          $this->Session->write('Bin.source', 'index');
 
           if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('bin_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -108,16 +112,6 @@ class BinController extends AppController{
 
     	     $this->render();    
     }
-
-
-    function refresh(){
-
-             $this->Bin->refresh();
-
-
-
-    }
-
 
 
 }

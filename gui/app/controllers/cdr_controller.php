@@ -42,7 +42,6 @@ class CdrController extends AppController{
 
       function general($action = null){
 
-         $this->refreshAll();
          $this->set('title_for_layout', __('Reporting',true));
 
          //Set page limit
@@ -178,7 +177,6 @@ class CdrController extends AppController{
 
       function index(){
 
-         $this->refreshAll();
          $this->set('title_for_layout', __('Call Data Records',true));
          $this->Session->write('Cdr.source', 'index');
 
@@ -314,8 +312,6 @@ class CdrController extends AppController{
 
       function statistics(){
 
-        $this->refreshAll();
- 
         $this->set('title_for_layout', __('Call Data Records',true)).": ".__('Overview',true);
 
 
@@ -386,9 +382,6 @@ class CdrController extends AppController{
                                                                                                                                                                    
 
       function overview(){
-
-        $this->refreshAll();
-
 
         $this->set('title_for_layout', __('System Overview',true));
         $this->set('cdr',$this->Cdr->find('all',array('fields' => array('Cdr.application'), 'recursive' => 0)));

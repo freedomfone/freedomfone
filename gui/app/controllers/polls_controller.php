@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * polls_controller.php		- Controller for polls. Manages CRUD operations on polls and votes.
- * version 		 	- 3.0.1500
+ * version 		 	- 3.0.1700
  * 
  * Version: MPL 1.1
  *
@@ -43,10 +43,8 @@ class PollsController extends AppController{
 
       function index(){
 
-        $this->Poll->refresh();
+
         $this->set('title_for_layout', __('Manage Polls',true));
-
-
         $this->Poll->unbindModel(array('hasMany' => array('User')));
         $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));
 
@@ -55,18 +53,10 @@ class PollsController extends AppController{
 
      function view($id){
 
-  
         $this->set('title_for_layout', __('View Poll',true).' : '.$this->Poll->getTitle($id));
-
-     	if(isset($this->params['form']['submit'])) {
-		if ($this->params['form']['submit']==__('Refresh',true)){
-	   	   $this->requestAction('/polls/refresh');
-     	   	}
-	}	  
-
-      	   $this->Poll->id = $id;
-      	   $data = $this->Poll->findById($id);
-           $this->set(compact('data'));
+        $this->Poll->id = $id;
+        $data = $this->Poll->findById($id);
+        $this->set(compact('data'));
 
       }
 

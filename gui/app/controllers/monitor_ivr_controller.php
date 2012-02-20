@@ -32,9 +32,7 @@ class MonitorIvrController extends AppController{
 
       function index(){
 
-             $this->refreshAll();
              $this->set('title_for_layout', __('Monitor Voice Menus',true));
-
     	     $this->MonitorIvr->unbindModel(array('belongsTo' => array('Cdr')));
 	     $this->MonitorIvr->recursive = 0; 
    	     $data = $this->paginate('MonitorIvr');
@@ -60,9 +58,8 @@ class MonitorIvrController extends AppController{
 
       function refresh(){
 
-
       $this->autoRender = false;
-//      $this->MonitorIvr->Cdr->refresh();
+      $this->MonitorIvr->Cdr->refresh();
 
       }
 

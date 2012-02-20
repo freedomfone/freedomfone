@@ -56,16 +56,17 @@ class Cdr extends AppModel{
 	      }
 
 
-      	      while ($entry = $obj->getNext('delete')){
+              $obj->lock();
+      	      while ($entry = $obj->getNext('update')){
 
-	          $channel = $entry['Channel-Name'];
-	      	  $channel_state = $entry['Channel-State'];
-	      	  $answer_state = $entry['Answer-State'];
-		  $call_id = $entry['Unique-ID'];
-		  $application='';
-		  $start='';
-		  $ext = $entry['Caller-Destination-Number'];
-		  $epoch = intval(floor($entry['Event-Date-Timestamp']/1000000));
+	          $channel        = $entry['Channel-Name'];
+	      	  $channel_state  = $entry['Channel-State'];
+	      	  $answer_state   = $entry['Answer-State'];
+		  $call_id        = $entry['Unique-ID'];
+		  $ext            = $entry['Caller-Destination-Number'];
+		  $epoch          = intval(floor($entry['Event-Date-Timestamp']/1000000));
+		  $application    = '';
+		  $start          = '';
 
 		  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
@@ -79,6 +80,7 @@ class Cdr extends AppModel{
 	 	  $proto = $this->getProto($channel);
        	          $this->set('proto',$proto);
 
+                  //Determine application (IVR or LAM)
 		  foreach($mapping as $app => $reg){
 		       preg_match($reg,$ext,$matches);
 		         if($matches){	
@@ -107,6 +109,7 @@ class Cdr extends AppModel{
 		        $this->set('quick_hangup',$message['Message']['quick_hangup']);
                                
 		        $lm_menu = $this->query("select * from lm_menus where instance_id = $instance_id ");
+
 		        $this->set('title',$lm_menu[0]['lm_menus']['title']);
 
                         $this->log("[INFO] NEW CDR, Application: ".$application.", Type: ".$entry['Channel-State'].", Call-ID: ".$entry['Unique-ID'].", Epoch: ".$entry['Event-Date-Timestamp'], "cdr"); 
@@ -202,6 +205,9 @@ class Cdr extends AppModel{
 	        } //insert into CDR		
 
 	      }  //while
+
+              $obj->unlock();
+
 
               //** Fetch MONITOR_IVR from spooler **//
       	      $array = Configure::read('monitor_ivr');

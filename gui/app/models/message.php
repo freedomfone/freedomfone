@@ -66,6 +66,7 @@ class Message extends AppModel {
     	          die(printf("Unable to authenticate\r\n"));
 	   }
 
+
  	   while ($entry = $obj->getNext('delete')){
 
 	       $created = intval(floor($entry['Event-Date-Timestamp']/1000000));
@@ -87,6 +88,7 @@ class Message extends AppModel {
 	       $this->save($data);
 
                //Check if CDR with the same call_id exists with length=false
+
                 $this->query("UPDATE cdr set length = ".$length.", quick_hangup = '".$entry['FF-OnQuickHangup']."' where call_id = '".$entry['FF-FileID']."' and channel_state='CS_ROUTING'");
 
            } 

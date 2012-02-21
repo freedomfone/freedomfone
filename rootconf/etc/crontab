@@ -33,8 +33,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
 # App: Dialer - Newfies
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/campaigns/dialer_refresh/cron  >/dev/null 2>&1
-# App: Sweeper 
-#*/1 * * * * root /usr/bin/php /opt/freedomfone/sweeper/gui_sweeper/gui_sweeper.php  >/dev/null 2>&1
+# App: Callback requests
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/callbacks/refresh/cron  >/dev/null 2>&1
 #########################################################################################################
 
 

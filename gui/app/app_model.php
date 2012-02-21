@@ -74,21 +74,16 @@ class AppModel extends Model {
 
      }
 
-
      function headerGetStatus($header){
 
               $status = false;
 
-debug($header);
               switch(trim($header)){
 
-                case 'HTTP/1.0 200 OK':
+                case 'HTTP/1.1 201 CREATED':
                 $status = 1;
                 break;
 
-                case 'HTTP/1.1 200 OK':
-                $status = 1;
-                break;
               
                 case 'HTTP/1.1 409 CONFLICT':
                 $status = 2;
@@ -106,7 +101,13 @@ debug($header);
                 $status = 5;
                 break;
 
+                case 'HTTP/1.1 401 UNAUTHORIZED':
+                $status = 6;
+                break;
 
+                case 'HTTP/1.1 200 OK':
+                $status = 7;
+                break;
 
 
               }

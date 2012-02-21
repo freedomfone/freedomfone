@@ -79,12 +79,10 @@ function __construct($id = false, $table = null, $ds = null) {
 	      $type             = $entry['FF-Type'];
 	      $sender           = $this->sanitizePhoneNumber($entry['from']);
               $time             = time();
-
-
               $user             = $this->getCallbackUser($sender);             
               $callback_service = $this->getCallbackService($code);  
               $limits           = $this->getUserUsage($sender,$callback_service['id']);
-     
+     	      debug($entry);
               //CallbackService Open
               if(strtotime($callback_service['end_time']) < $time || strtotime($callback_service['start_time']) > $time){
 
@@ -134,17 +132,22 @@ function __construct($id = false, $table = null, $ds = null) {
                 }
  
 
-                //** Create Newfie contact (contact::write) **// 
-                $contact = array('phonebook_id' => $callback_service['nf_phone_book_id'], 'contact' =>  $sender);
+                //** Create Newfie CampaignSubscriber **// 
+                $campaign_subscriber = array('phonebook_id' => $callback_service['nf_phone_book_id'], 'contact' => $sender);
                 $HttpSocket = new HttpSocket();
-                $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-
-                $results = $HttpSocket->post($dialer['host'].$dialer['contact'], $contact, $request); 
+                $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
+                                              'header' => array('Content-Type' =>'application/json')
+                                    );
+                $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_POST'], json_encode($campaign_subscriber), $request); 
                 $results = json_decode($results);
+		
                 $header  = $HttpSocket->response['raw']['status-line'];
 
                 if ($this->headerGetStatus($header) == 1) {
 
+                  $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].$callback_service['nf_campaign_id'].'/'.$sender, $request); 
+		  $results = json_decode($results);
+debug($results);
                   unset($callback);
                   $callback['callback_service_id'] = $callback_service['id'];
                   $callback['nf_campaign_subscriber_id'] = '';
@@ -155,11 +158,11 @@ function __construct($id = false, $table = null, $ds = null) {
                   $callback['state'] = 1; 
                   $callback['phone_number'] = $sender;
                   $callback['last_attempts'] = false; 
-                  $callback['epoch'] = $created;
+                  $callback['created'] = $created;
 
                   $this->create();
                   $this->save($callback);
-
+		  debug($callback);
 
 
                   } else {
@@ -258,7 +261,7 @@ function __construct($id = false, $table = null, $ds = null) {
 
               $time = time() - 86400;
               $total = $this->find('count', array('conditions' => array('Callback.callback_service_id' => $callback_service_id, 'Callback.phone_number' => $phone_number, 'Callback.status' => array(1,2,5))));
-              $day   = $this->find('count', array('conditions' => array('Callback.callback_service_id' => $callback_service_id, 'Callback.phone_number' => $phone_number, 'Callback.status' => array(1,2,5),'Callback.epoch >' => $time)));
+              $day   = $this->find('count', array('conditions' => array('Callback.callback_service_id' => $callback_service_id, 'Callback.phone_number' => $phone_number, 'Callback.status' => array(1,2,5),'Callback.created >' => $time)));
 
               return array('total' => $total, 'day' => $day);
      }

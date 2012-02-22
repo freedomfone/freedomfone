@@ -51,7 +51,7 @@ $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
      echo $html->tableCells(array(array($input1, $input2, $input5), array($input3, $input4, false)),array('class'=>'none'),array('class'=>'none'));
      echo "</table>";
 
-     $opt = array("update" => "service_div","url" => "disp","frequency" => "0.2" );
+     $opt = array("update" => "service_div","url" => "disp","frequency" => "0.1" );
      echo $ajax->observeForm("CallbackAddForm",$opt);
      echo $form->end();
      echo "<div id='service_div' style=''></div>";

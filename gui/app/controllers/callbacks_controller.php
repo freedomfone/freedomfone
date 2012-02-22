@@ -50,12 +50,12 @@ class CallbacksController extends AppController{
 
 /*
  *
- * Refresh of callback status from Dialer
+ * Refresh of Campaign call status from Dialer
  *
  *
  */
 
-  function newfies_refresh2($mode = null){
+  function newfies_campaign_refresh($mode = null){
 
           $this->autoRender = false;
    	  $dialer = Configure::read('DIALER');
@@ -109,6 +109,88 @@ class CallbacksController extends AppController{
 
 
 		     }
+	  }
+
+  }
+
+
+/*
+ *
+ * Refresh of Callback Service call status from Dialer
+ *
+ *
+ */
+
+  function newfies_callback_refresh($mode = null){
+
+          $this->autoRender = false;
+   	  $dialer = Configure::read('DIALER');
+	  $calls_total = false;
+
+	  //Find unique list of callback service id (with active callbacks)
+	  $callbacks = $this->Callback->find('list', array('fields'=> 'callback_service_id','group' => 'callback_service_id', 'conditions'=> array('Callback.status'=> array(1,2,3), 'Callback.callback_service_id != ' => NULL)));
+
+
+	  //For each Callback Service
+	  foreach ($callbacks as $callback_service_id){
+
+	     //Find list of phone numbers and callback service id
+	     $id_callback = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
+
+debug($id_callback);
+	     $callbacks_per_cs = $this->Callback->find('all', array('fields' => array('id', 'phone_number','status'), 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
+
+	     foreach($callbacks_per_cs as  $entry){
+	            $_status[$entry['Callback']['id']]['status']	= $entry['Callback']['status'];
+	       	    $_status[$entry['Callback']['id']]['phone_number']  = $entry['Callback']['phone_number'];
+	     }
+
+	     debug($_status);
+
+	     $this->loadModel('CallbackService');
+             $this->CallbackService->unbindModel(array('hasMany' => array('Callback')));
+	     $callback_service = $this->CallbackService->findById($callback_service_id, false);
+
+             //** CAMPAIGN_SUBSCRIBER::GET **//
+             $HttpSocket = new HttpSocket();
+             $request = array('auth' => array('method' => 'Basic', 'user' => $dialer['user'],'pass' => $dialer['pwd']));
+             $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].'/'.$callback_service['CallbackService']['nf_campaign_id'].'/', false,  $request); 
+             $header = $HttpSocket->response['raw']['status-line'];
+
+                     if ($this->headerGetStatus($header) == 7) {     
+
+                        $results = json_decode($results,true);
+
+			  foreach($results as $callback){
+
+			  	$id		            = array_keys($id_callback, $callback['contact']);
+				$id			    = $id[0];
+                        	$this->Callback->id 	    = $id;
+                       		$this->data['status'] 	    = $callback['status'];
+                        	$this->data['last_attempt'] = $callback['last_attempt'];
+                        	$this->data['retries'] 	    = $callback['count_attempt'];
+
+                        	$this->Callback->save($this->data);
+
+                               //Callback completed, add to statistics
+                               if($callback['status'] == 5 && $_status[$id]['status'] != 5 ){
+			         $calls_total .=+1;
+
+                               }
+
+			  }
+
+
+
+		     }
+		     
+		                
+                                 $this->Callback->CallbackService->id = $callback_service_id;
+				 $this->Callback->CallbackService->updateAll(
+					array('CallbackService.calls_total'=>'CallbackService.calls_total+'.$calls_total), 
+					array('CallbackService.id'=>$callback_service_id)
+										);
+
 	  }
 
   }

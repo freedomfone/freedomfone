@@ -27,7 +27,9 @@
    echo "<div id='callback_service_div'></div>";                                           
    echo "<div id='user_div' class='user_did'></div>";                                           
 
-   $options = array(1 => __('Start',true), 2 => __('Pause',true),3 => __('Abort',true));
+   $options1 = array(1 => __('Start',true), 3 => __('Abort',true));
+   $options2 = array(2 => __('Pause',true),3 => __('Abort',true));
+
    echo $form->create('CallbackService',array('type' => 'post','action'=> 'status'));
 
     if ($callback_services){
@@ -65,19 +67,31 @@
 
                 }
 
+	     $status = $callback_service['Callback']['status'];
+	     if( $status == 2){
+	        $change_status = $form->input('Callback.'.$key.'.status',array('type'=>'select','options'=>$options1,'label'=> false,'empty' => '-- '.__("Change status",true).' --'));
+	     } elseif ($status == 1 || $status == 6 ){
+	        $change_status = $form->input('Callback.'.$key.'.status',array('type'=>'select','options'=>$options2,'label'=> false,'empty' => '-- '.__("Change status",true).' --'));
+	     } else {
+
+	        $change_status = false;
+	     }
+
+
               $row[] = array(
                        $callback_service_link,
                        $icon,
                        array(date('Y-m-d H:i A',$callback_service['CallbackService']['created']), array('align' => 'center')),
                        $user_link,
-                       array($this->element ('dialer_status', array('status' => $callback_service['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
+		       array($callback_service['CallbackService']['extension'], array('align' => 'center')),
                        array($callback_service['Callback']['type'], array('align' => 'center')),
-                       array($callback_service['CallbackService']['extension'], array('align' => 'center')),
                        array($callback_service['Callback']['retries'], array('align' => 'center')),
-                       $form->input('Callback.'.$key.'.state',array('type'=>'select','options'=>$options,'label'=> false,'selected' => $callback_service['Callback']['state']))
+		       array($this->element('dialer_status', array('status' => $callback_service['Callback']['status'],'mode' => 'text')), array('align' => 'center')),
+		       $change_status,                       
                        );
 
 
+//$form->input('Callback.'.$key.'.status',array('type'=>'select','options'=>$options,'label'=> false,'empty' => '-- '.__('Change status',true).' --' ))
 
         }
 
@@ -88,11 +102,11 @@
         false,
 	 __("Created",true),
  	 __("User",true), 
- 	 __("Call status",true),
- 	 __("Type",true),
  	 __("Service ID",true),
+ 	 __("Type",true),
  	 __("Attempts",true),
- 	 __("Callback status",true)));
+ 	 __("Call status",true),
+ 	 __("Action",true)));
 
         echo $html->tableCells($row);
         echo "</table>";

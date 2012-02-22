@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * callback_services_controller.php	- Controller for SMS based Callback Services.
- * version 		 	        - 2.5.1450
+ * version 		 	        - 2.5.1700
  * 
  * Version: MPL 1.1
  *
@@ -150,16 +150,18 @@ class CallbackServicesController extends AppController{
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
-debug($header);
                       if ( $header_status  == 1) {
 
+                          //Get Newfies campaign id
                           $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);
                           $nf_campaign_id = trim($location[1],'/');
 
-                           //FIX THIS!!
-                           //$nf_phone_book_id  = $nf_campaign_id;
+                          //Get Newfies phone book id
+                          $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_GET'].$nf_campaign_id.'/?format=json', false, $request); 
+                          $results = json_decode($results,true);
+                          $nf_phone_book_id = $results['phonebook'][0]['id'];                        
 
-                           //$this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
+                           $this->data['CallbackService']['nf_phone_book_id'] = $nf_phone_book_id;
                            $this->data['CallbackService']['nf_campaign_id'] = $nf_campaign_id;
                            $this->CallbackService->saveAll($this->data['CallbackService'],array('validate' => false));
 
@@ -202,7 +204,7 @@ debug($header);
 
     function delete($id = null){
 
-    Configure::write('debug', 3);
+    Configure::write('debug', 0);
       $dialer = Configure::read('DIALER');
       
 
@@ -290,19 +292,25 @@ debug($header);
         if(!empty($this->data)){
 
               $HttpSocket = new HttpSocket();
-              $request    = array('auth' => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']));
-
+              $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
+                                           'header' => array('Content-Type' =>'application/json')
+                                         );
 
           if(array_key_exists('Callback', $this->data)){
              foreach($this->data['Callback'] as $key => $entry){
 
-                    $results = $HttpSocket->put($dialer['host'].$dialer['contact'].$entry['nf_campaign_id'].'/'.$entry['phone_number'], array('status' => $entry['state']), $request);               
+                    $results = $HttpSocket->put($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_PUT'].$entry['nf_campaign_id'].'/', 
+                                                json_encode(array('contact' => $entry['phone_number'], 'status' => $entry['status'])),
+                                                $request
+                                                );
+
+
                     $header = $HttpSocket->response['raw']['status-line'];
-                    if ($this->headerGetStatus($header) == 1) {           
+                    if ($this->headerGetStatus($header) == 4) {           
 
                        $this->loadModel('Callback');
                        $this->Callback->id = $entry['id'];
-                       $this->Callback->saveField('state',$entry['state']);
+                       $this->Callback->saveField('status',$entry['status']);
 
                    }
 

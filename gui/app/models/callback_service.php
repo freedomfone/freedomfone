@@ -157,6 +157,14 @@ function checkDate($data,$field){
 
 	}
 
+function getCallbackService($code){
+
+         $this->unbindModel(array('hasMany' => array('Callback')));
+	 $data = $this->findByCode($code);
+	 return array('nf_phone_book_id' => $data['CallbackService']['nf_phone_book_id'], 
+	              'nf_campaign_id'   => $data['CallbackService']['nf_campaign_id']);
+
+	 }
 
 
 }

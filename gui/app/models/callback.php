@@ -82,7 +82,7 @@ function __construct($id = false, $table = null, $ds = null) {
               $user             = $this->getCallbackUser($sender);             
               $callback_service = $this->getCallbackService($code);  
               $limits           = $this->getUserUsage($sender,$callback_service['id']);
-     	      debug($entry);
+
               //CallbackService Open
               if(strtotime($callback_service['end_time']) < $time || strtotime($callback_service['start_time']) > $time){
 
@@ -133,24 +133,28 @@ function __construct($id = false, $table = null, $ds = null) {
  
 
                 //** Create Newfie CampaignSubscriber **// 
-                $campaign_subscriber = array('phonebook_id' => $callback_service['nf_phone_book_id'], 'contact' => $sender);
+		App::import('model','CallbackService');
+		$callbackService = new CallbackService();
+		$data = $callbackService->getCallbackService($code);
+
+                $campaign_subscriber = array('phonebook_id' => $data['nf_phone_book_id'], 'contact' => $sender);
+
                 $HttpSocket = new HttpSocket();
                 $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 
                                               'header' => array('Content-Type' =>'application/json')
                                     );
                 $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_POST'], json_encode($campaign_subscriber), $request); 
-                $results = json_decode($results);
-		
+                $results = json_decode($results,true);
                 $header  = $HttpSocket->response['raw']['status-line'];
 
                 if ($this->headerGetStatus($header) == 1) {
 
-                  $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].$callback_service['nf_campaign_id'].'/'.$sender, $request); 
-		  $results = json_decode($results);
-debug($results);
+                  $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].$data['nf_campaign_id'].'/'.$sender.'/', false,$request);  
+		  $results = json_decode($results,true);
+
                   unset($callback);
                   $callback['callback_service_id'] = $callback_service['id'];
-                  $callback['nf_campaign_subscriber_id'] = '';
+                  $callback['nf_campaign_subscriber_id'] = $results[0]['campaign_subscriber_id'];
                   $callback['user_id'] = $user_id;
                   $callback['type'] = $type;
                   $callback['retries'] = 0; 
@@ -162,7 +166,6 @@ debug($results);
 
                   $this->create();
                   $this->save($callback);
-		  debug($callback);
 
 
                   } else {

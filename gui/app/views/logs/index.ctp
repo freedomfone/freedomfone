@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * index.ctp	- Form for selecting Freedom Fone logs
- * version 	- 2.0.1170
+ * version 	- 3.5.1700
  * 
  * Version: MPL 1.1
  *
@@ -31,7 +31,20 @@ echo $html->addCrumb(__('Logs',true), '/logs');
 	echo $form->create("Log");
 
 
-        $opt = array('poll'=>__('Poll',true),'bin' => __('SMS',true),'leave_message'=>__('Message Centre',true),'ivr' => __('IVR Centre',true),'cdr' => __('CDR',true), 'monitor_ivr' => __('Monitoring',true), 'process' => __('Health',true), 'refresh' => __('Cron and refresh',true), 'debug'=> __('Debug',true),'error' => __('Error',true));
+        $opt = array(
+	     'callback' 	=> __('Callback service',true), 
+	     'campaign' 	=> __('Campaign',true), 
+	     'cdr' 		=> __('CDR',true), 
+	     'refresh' 		=> __('Cron and refresh',true), 
+	     'debug'		=> __('Debug',true),
+	     'error' 		=> __('Error',true),
+	     'process' 		=> __('Health',true), 
+	     'ivr' 		=> __('IVR Centre',true),
+	     'leave_message'	=> __('Message Centre',true),
+	     'monitor_ivr' 	=> __('Monitoring',true), 
+	     'poll'		=> __('Poll',true),
+	     'bin' 		=> __('SMS',true),
+	     );
 
 	echo $form->input("type",array("id"=>"LogType","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select log file",true).' --'));
 	$opt = array(

@@ -4,7 +4,9 @@
     RewriteRule    ^$    webroot/    [L]
     RewriteRule    (.*) webroot/$1    [L]
  </IfModule>
-#Allow from localhost
-#Allow from 127.0.0.1
-#Allow from 91.226.180
-#Satisfy Any
+#Order deny,allow 
+#Deny from all
+#Allow from localhost 
+#Allow from 127.0.0.1 
+#Allow from 91.226.180        //Allow access from IP network
+#Allow from 192.168.1.1       //Allow access from single IP address

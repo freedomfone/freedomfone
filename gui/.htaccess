@@ -1,14 +1,3 @@
-<IfDefine ffone_basic_auth>
-AuthName "Basic Authentication"
-AuthType Basic
-AuthUserFile /usr/local/freedomfone/config/ffone_basic_auth.htpasswd
-require valid-user
-order deny,allow
-deny from all
-allow from 127.0.0.1
-satisfy any
-</IfDefine>
-
 <IfModule mod_rewrite.c>
    RewriteBase /freedomfone
    RewriteEngine on

@@ -355,6 +355,7 @@ gui/app/index.php -text
 gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
+gui/app/locale/fre/LC_MESSAGES/default.po -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
 gui/app/models/api.php -text
 gui/app/models/behaviors/empty -text

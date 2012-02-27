@@ -174,13 +174,14 @@ $config['DIALER'] = array(
                   'campaign_DELETE'		 => 'campaign_delete_cascade/',
                   'campaign_subscriber_POST'     => 'campaignsubscriber/',
                   'campaign_subscriber_PUT'      => 'campaignsubscriber/',
-                  'campaign_subscriber_GET'  	 => 'campaignsubscriber/',
+                  'campaign_subscriber_GET'  	 => 'campaignsubscriber_per_campaign/',
                   'account'        => '',
                   'a-leg_gateway'  => 1,
                   'b-leg_gateway'  => 2,
                   'frequency'      => 10,
                   'call_timeout'   => 10,
-                  'voip_app'       => 1,
+                  'object_id'      => 1,
+		  'content_type'   => 'voice_app',
                   'caller_id'      => '123456'
                   );
 

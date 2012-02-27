@@ -142,10 +142,11 @@ class CampaignsController extends AppController{
                              'intervalretry'    => $campaign['retry_interval'],
                              'calltimeout'      => $dialer['call_timeout'],
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
-                             'voipapp'          => $dialer['voip_app'], 
+                             'object_id'        => $dialer['object_id'], 
                              'extra_data'       => $extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
+			     'content_type'	=> $dialer['content_type'],
                              'monday'           => 1,
                              'tuesday'          => 1,
                              'wednesday'        => 1,
@@ -170,6 +171,7 @@ class CampaignsController extends AppController{
 
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
+
 
                         if ( $status == 1) {  //201 Created (POST Campaign)
 
@@ -339,7 +341,7 @@ class CampaignsController extends AppController{
               $data = $this->Campaign->findById($id);
               $nf_campaign_id = $data['Campaign']['nf_campaign_id'];
 
-              $socket_data = array('status' => $status);
+              $socket_data = array('status' => $status,'content_type' => $dialer['content_type']);
               $HttpSocket = new HttpSocket();
 
               $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 

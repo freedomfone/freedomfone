@@ -68,8 +68,12 @@ class CallbacksController extends AppController{
 	     //Find list of phone numbers and campaign id
 	     $id_contact = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.campaign_id' => $campaign_id)));
 
-	     $contact_status = $this->Callback->find('all', array('fields' => array('phone_number','status'), 'conditions' => array('Callback.campaign_id' => $campaign_id)));
-	     debug($contact_status);
+	     $callbacks_per_cmp = $this->Callback->find('all', array('fields' => array('phone_number','status','nf_campaign_subscriber_id'), 'conditions' => array('Callback.campaign_id' => $campaign_id)));
+
+	     foreach($callbacks_per_cmp as $key => $entry){
+	            $_status[$entry['Callback']['nf_campaign_subscriber_id']]['status']	       = $entry['Callback']['status'];
+	       	    $_status[$entry['Callback']['nf_campaign_subscriber_id']]['phone_number']  = $entry['Callback']['phone_number'];
+	     }
 
 	     $this->loadModel('Campaign');
              $this->Campaign->unbindModel(array('hasMany' => array('Callback')));
@@ -81,13 +85,13 @@ class CallbacksController extends AppController{
              $results = $HttpSocket->get($dialer['host'].$dialer['path'].$dialer['campaign_subscriber_GET'].'/'.$campaign['Campaign']['nf_campaign_id'].'/', false,  $request); 
              $header = $HttpSocket->response['raw']['status-line'];
 
+
                      if ($this->headerGetStatus($header) == 7) {     
 
                         $results = json_decode($results,true);
 
 			  foreach($results as $callback){
 			  	$id		            = array_keys($id_contact, $callback['contact']);
-
                         	$this->Callback->id 	    = $id[0];
                        		$this->data['status'] 	    = $callback['status'];
                         	$this->data['last_attempt'] = $callback['last_attempt'];
@@ -95,20 +99,9 @@ class CallbacksController extends AppController{
                         	$this->Callback->save($this->data);
 
 
-                               //Callback completed, add to statistics
-                               if($callback['status'] == 5 && $entry['Callback']['status'] != 5 && $entry['CallbackService']['nf_campaign_id']){
+                           }
 
-                                 $this->Callback->CallbackService->id = $entry['CallbackService']['id'];
-                                 $this->data['calls_total'] = $entry['CallbackService']['calls_total']+1;
-                                 $this->Callback->CallbackService->save($this->data);
-
-                               }
-
-			  }
-
-
-
-		     }
+		       }
 	  }
 
   }
@@ -137,7 +130,6 @@ class CallbacksController extends AppController{
 	     //Find list of phone numbers and callback service id
 	     $id_callback = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
 
-debug($id_callback);
 	     $callbacks_per_cs = $this->Callback->find('all', array('fields' => array('id', 'phone_number','status'), 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
 
 	     foreach($callbacks_per_cs as  $entry){
@@ -145,7 +137,6 @@ debug($id_callback);
 	       	    $_status[$entry['Callback']['id']]['phone_number']  = $entry['Callback']['phone_number'];
 	     }
 
-	     debug($_status);
 
 	     $this->loadModel('CallbackService');
              $this->CallbackService->unbindModel(array('hasMany' => array('Callback')));
@@ -221,7 +212,6 @@ debug($id_callback);
 
              if ($this->headerGetStatus($header) == 7) {     
 	     	$results = json_decode($results,true);
-		debug($results['status']);
                 $this->Callback->id = $callback['Callback']['id'];
                 $this->Callback->saveField('status',$results['status']);
 
@@ -247,7 +237,6 @@ debug($id_callback);
                                                  ));
 
 
-debug($result);
 
              //** CONTACT::GET **//
              $HttpSocket = new HttpSocket();

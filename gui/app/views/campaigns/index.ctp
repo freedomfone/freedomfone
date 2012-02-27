@@ -59,7 +59,7 @@ echo $form->end();
               }
 
            echo "<div id ='campaign'>";  
-        echo "<table width='800px' class='collapsed' cellspacing=0>";
+        echo "<table width='1000px' class='collapsed' cellspacing=0>";
         echo $html->tableHeaders(array(
  	     $paginator->sort(__("Campaign",true), 'name'),
  	     $paginator->sort(__("Application",true), 'application'),

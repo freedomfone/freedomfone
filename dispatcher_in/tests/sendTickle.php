@@ -13,7 +13,8 @@
  */ 
 
 require_once('../config.php');
-require_once('../../esl/php/fs_sock.php');
+require_once('/opt/freedomfone/esl/legacy/fs_sock.php');
+//require_once('../../esl/php/fs_sock.php');
 
 
 global $_SocketParam;
@@ -42,8 +43,8 @@ define('FS_SOCK_DEBUG', true);
 	   while ($i){
 
 
-    	   $cmd = "jsrun freedomfone/sms/tickle.js '".$argv[1]."' 'tickle'";
-echo $cmd;
+    	   $cmd = "jsrun freedomfone/sms/tickle.js '".$argv[1]."'";
+	   echo $cmd;
     	   $i++;
 
     

@@ -112,10 +112,10 @@ CREATE TABLE `callbacks` (
   `type` varchar(10) default NULL,
   `retries` tinyint(3) unsigned default '0',
   `status` smallint(6) default '1',
-  `state` tinyint(4) default '1',
   `phone_number` varchar(20) default NULL,
   `last_attempt` int(11) default NULL,
   `nf_campaign_subscriber_id` int(10) unsigned NOT NULL,
+  `epoch` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

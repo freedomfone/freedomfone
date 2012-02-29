@@ -115,6 +115,7 @@ CREATE TABLE `callbacks` (
   `phone_number` varchar(20) default NULL,
   `last_attempt` int(11) default NULL,
   `nf_campaign_subscriber_id` int(10) unsigned NOT NULL,
+  `callback_service_id` int(10) unsigned,
   `epoch` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

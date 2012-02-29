@@ -18,6 +18,7 @@
         <FF-InstanceID><xsl:value-of select="FF-InstanceID"/></FF-InstanceID>
         <FF-CallerID><xsl:value-of select="FF-CallerID"/></FF-CallerID>
         <FF-CallerName><xsl:value-of select="FF-CallerName"/></FF-CallerName>
+        <From><xsl:value-of select="FF-CallerID"/></From>
         <FF-To><xsl:value-of select="FF-To"/></FF-To>
         <FF-StartTimeEpoch><xsl:value-of select="FF-StartTimeEpoch"/></FF-StartTimeEpoch>
 	<FF-FinishTimeEpoch><xsl:value-of select="FF-FinishTimeEpoch"/></FF-FinishTimeEpoch>

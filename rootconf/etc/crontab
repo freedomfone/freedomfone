@@ -31,10 +31,14 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh/cron  >/dev/null 2>&1
 # App: Other SMS - The Bin 
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
-# App: Dialer - Newfies
-*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/campaigns/dialer_refresh/cron  >/dev/null 2>&1
-# App: Callback requests
+# App: Incoming Dialer requests (SMS or Tickle)
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/callbacks/refresh/cron  >/dev/null 2>&1
+# App: Campaigns refresh from Newfies
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/campaigns/newfies_refresh  >/dev/null 2>&1
+# App: Refresh of calls originated from Campaigns
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/callbacks/newfies_campaign_refresh  >/dev/null 2>&1
+# App: Refresh of calls originated from Callback services
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/callbacks/newfies_callback_refresh  >/dev/null 2>&1
 #########################################################################################################
 
 

@@ -23,7 +23,6 @@
 ***************************************************************************/
 echo $html->addCrumb(__('Callback Service',true), '/callback_services');
 
-
      echo "<h1>".__("Callback Services",true)."</h1>";
 
      if ($messages = $session->read('Message.multiFlash')) {
@@ -39,6 +38,15 @@ echo $html->addCrumb(__('Callback Service',true), '/callback_services');
         echo $form->end();
 
         if ($services){
+
+	 //Show disable tickle
+	 if($tickle){
+	   $default = false;
+	  } else {
+	   $default = true;
+	  } 
+	   $tickle_disable = $form->radio("CallbackService.tickle",array(0 => ''),array('legend' => false, 'default' => $default));
+	  
 
         echo $form->create('CallbackService',array('type' => 'post','action'=> 'index', 'enctype' => 'multipart/form-data'));
            foreach ($services as $key => $entry){
@@ -61,10 +69,15 @@ echo $html->addCrumb(__('Callback Service',true), '/callback_services');
            }
 
 
-           echo "<div id ='callback_services'>";  
-            echo "<table width='90%' cellspacing =0>";
+          echo "<div id ='callback_services'>";  
+	  echo $html->div("instructions", __("To disable the Tickle service, select the radio button below. To enable the Tickle service, select one of the radio buttons in the list of Callback Services.",true)); 
 
-            echo $html->tableHeaders(array(
+	  echo "<table cellspacing=0 class='none'>";
+	  echo $html->tableCells(array($tickle_disable, __("Disable Tickle service", true)),array('class' => 'none'),array('class' => 'none'));
+	  echo "</table>";
+
+          echo "<table width='90%' cellspacing =0>";
+          echo $html->tableHeaders(array(
                              __('Tickle',true),
                   	     $paginator->sort(__("SMS Code",true), 'code'),
                   	     $paginator->sort(__("Application",true), 'application'),
@@ -76,10 +89,10 @@ echo $html->addCrumb(__('Callback Service',true), '/callback_services');
                              __('Actions',true),
                              ));
 
-            echo $html->tableCells($row);
-            echo "</table>";
-            echo "</div>";
-      echo $form->end(__('Save',true));
+          echo $html->tableCells($row);
+          echo "</table>";
+          echo "</div>";
+          echo $form->end(__('Save',true));
 
 
          }

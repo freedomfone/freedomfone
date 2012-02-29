@@ -45,16 +45,19 @@ class CallbackServicesController extends AppController{
                  $this->pageTitle   = __('Callback Services',true);
                  $services = $this->paginate('CallbackService');
 
-
+		 
                  if($this->data){
 
                         $this->CallbackService->updateAll(array('CallbackService.tickle' => 0));
-                        $this->CallbackService->id = $this->data['CallbackService']['tickle'];
-                        $this->CallbackService->saveField('tickle',1);
+			if($this->data['CallbackService']['tickle']){		
+                    	     $this->CallbackService->id = $this->data['CallbackService']['tickle'];
+                             $this->CallbackService->saveField('tickle',1);
+			}
+                 }
 
-                 } 
 
- 
+		 $tickle = $this->CallbackService->find('first', array('recursive' => false));
+
 
                  foreach($services as $key => $service){
 
@@ -63,7 +66,7 @@ class CallbackServicesController extends AppController{
                        $services[$key]['CallbackService']['application'] = $result['application'];
                  }
 
-                 $this->set(compact('services'));    
+                 $this->set(compact('services','tickle'));    
         }
 
 

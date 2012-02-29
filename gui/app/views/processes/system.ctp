@@ -93,7 +93,6 @@ echo $html->addCrumb(__('About',true), '/processes/system');
      echo "</table>"; 
 
 
-
      echo "<h2>".__("Software",true)."</h2>";
      $row1[] = array(__("Operating system",true), $string); 
      $row1[] = array(__("FreeSWITCH",true), $version[1]); 

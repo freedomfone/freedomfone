@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * campaign_controller.php	- Controller for managing callback Campaigns
- * version 		 	- 2.5.1200
+ * version 		 	- 2.5.1700
  * 
  * Version: MPL 1.1
  *
@@ -171,7 +171,6 @@ class CampaignsController extends AppController{
 
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
-
 
                         if ( $status == 1) {  //201 Created (POST Campaign)
 
@@ -379,11 +378,8 @@ class CampaignsController extends AppController{
  */
    function overview($id = null){
 
-
-//        Configure::write('debug',0);
         $data = $this->Campaign->findById($id);
 	$this->set('campaign', $data);  
-
    
    }
 

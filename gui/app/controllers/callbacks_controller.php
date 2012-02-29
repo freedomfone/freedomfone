@@ -160,7 +160,6 @@ class CallbacksController extends AppController{
                        		$this->data['status'] 	    = $callback['status'];
                         	$this->data['last_attempt'] = $callback['last_attempt'];
                         	$this->data['retries'] 	    = $callback['count_attempt'];
-
                         	$this->Callback->save($this->data);
 
                                //Callback completed, add to statistics
@@ -168,19 +167,15 @@ class CallbacksController extends AppController{
 			         $calls_total .=+1;
 
                                }
-
 			  }
-
-
-
-		     }
-		     
-		                
-                                 $this->Callback->CallbackService->id = $callback_service_id;
-				 $this->Callback->CallbackService->updateAll(
-					array('CallbackService.calls_total'=>'CallbackService.calls_total+'.$calls_total), 
-					array('CallbackService.id'=>$callback_service_id)
-										);
+		   }
+		   if($calls_total){
+                     $this->Callback->CallbackService->id = $callback_service_id;
+		     $this->Callback->CallbackService->updateAll(
+			array('CallbackService.calls_total'=>'CallbackService.calls_total+'.$calls_total), 
+			array('CallbackService.id'=>$callback_service_id)
+			);
+	           }
 
 	  }
 

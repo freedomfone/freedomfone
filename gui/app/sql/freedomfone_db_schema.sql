@@ -117,6 +117,7 @@ CREATE TABLE `callbacks` (
   `nf_campaign_subscriber_id` int(10) unsigned NOT NULL,
   `callback_service_id` int(10) unsigned,
   `epoch` int(10) unsigned default NULL,
+  `created` int(10) unsigned default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

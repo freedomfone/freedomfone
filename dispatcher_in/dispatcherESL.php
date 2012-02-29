@@ -56,6 +56,8 @@ $host = $_SocketParam['host'];
 $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
+
+
 $mypid = getmypid();
 
       //Set default values
@@ -331,8 +333,6 @@ function applyRules($string){
 	 	      break;
 
                       case 'callback':
-
-
                       $application[]='callback_in';
 		      logESL("Application match: callback (call/Skype)","INFO",2); 
 	 	      break;             
@@ -347,6 +347,7 @@ function applyRules($string){
                 }
                 elseif ($event_name=='CUSTOM') {
 
+
 	               switch($event_subclass){
 
 	                 case 'leave_a_message':
@@ -355,7 +356,6 @@ function applyRules($string){
 	 	         break;
 
 	                 case 'tickle':
-
 	                 $application[]='tickle';
 			 logESL("Application match: callback/tickle","INFO",2); 
                          break;
@@ -417,25 +417,35 @@ function applyRules($string){
 
 function XML2SQL($table,$string){
 
-	     $xml   = simplexml_load_string($string); 
+	     $xml      = simplexml_load_string($string); 
 	     $headers  = $xml->headers;
+	     $insert   = true;
 
 	     foreach ($headers->children() as $child){
 	     	     $fields[] = $child->getName();
 		     $values[] = $child[0];
 	     }
 
-
              if(in_array('tickle',$table)){
+
                   $table[0]  =  'callback_in';
                   $result =  getCallbackServices();
-
                   $fields[] = 'Body';
                   $values[] = $result['tickle']; 
-                  
-              }                 
 
-	     return insertValues($table,$fields,$values);
+	          if(!$result['tickle']){ $insert = false;}            
+              }
+
+
+	      if(!$insert){
+	      print_r("tickel disavled");
+	         logESL("Tickle failed. Service disabled","INFO",1);
+		 return true; 
+	      } else {
+	      print_r("tickel ok");
+	        return insertValues($table,$fields,$values);
+	      }
+
 }
 
 

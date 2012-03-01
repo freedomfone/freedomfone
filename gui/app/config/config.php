@@ -177,7 +177,6 @@ $config['DIALER'] = array(
                   'campaign_subscriber_GET'  	 => 'campaignsubscriber_per_campaign/',
                   'account'        => '',
                   'a-leg_gateway'  => 1,
-                  'b-leg_gateway'  => 2,
                   'frequency'      => 10,
                   'call_timeout'   => 10,
                   'object_id'      => 1,

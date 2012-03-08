@@ -1,158 +1,172 @@
 # Emanuel Feruzi <emanuel.feruzi@trilabs.co.tz>, 2010
+# Martin <martin@kamusi.org>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2011-10-11 17:33+0200\n"
-"PO-Revision-Date: 2010-03-15 15:26+0100\n"
-"Last-Translator: Louise Berthilson <louise@it46.se>\n"
-"Language-Team: Tri Labs Translators\n"
+"Project-Id-Version: Freedom Fone manguensis\n"
+"POT-Creation-Date: 2012-03-08 21:17+0100\n"
+"PO-Revision-Date: 2012-03-07 20:48+0200\n"
+"Last-Translator: Martin <martin@kamusi.org>\n"
+"Language-Team: Kamusi Project International\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sw\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.3.1\n"
+"X-Generator: Virtaal 0.7.1\n"
 
-#: /app_controller.php:267
+#: /app_controller.php:264
 msgid "No file selected. Please try again."
 msgstr "Hakuna faili lililochaguliwa.  Jaribu tena."
 
-#: /app_controller.php:275
+#: /app_controller.php:272
 msgid "Failure (invalid file type)"
-msgstr ""
+msgstr "Kushindwa (aina ya faili ni batili)"
 
-#: /app_model.php:147
+#: /app_model.php:154
 msgid "Unknown user"
-msgstr ""
+msgstr "Mtumiaji haujulikani"
 
-#: /config/config.php:145;146 /views/callback_services/view.ctp:30
+#: /config/config.php:146 /views/callback_services/view.ctp:30
 #: /views/callbacks/batch.ctp:29 /views/callbacks/disp_manage.ctp:58
-#: /views/campaigns/overview.ctp:59 /views/campaigns/view.ctp:29
+#: /views/campaigns/overview.ctp:60 /views/campaigns/view.ctp:29
 #: /views/elements/dialer_status.ctp:31 /views/elements/poll_status.ctp:31;48
 msgid "Pending"
 msgstr "Inasubiria"
 
-#: /config/config.php:145;146 /views/callback_services/view.ctp:31
-#: /views/callbacks/batch.ctp:30 /views/callbacks/disp_manage.ctp:59
-#: /views/campaigns/overview.ctp:60 /views/campaigns/view.ctp:30
-#: /views/elements/dialer_status.ctp:36
-msgid "Failure"
+#: /config/config.php:147 /views/campaigns/overview.ctp:62
+#: /views/campaigns/view.ctp:31 /views/elements/dialer_status.ctp:36
+msgid "Paused"
 msgstr ""
 
-#: /config/config.php:145;146 /views/callback_services/view.ctp:32
-#: /views/callbacks/batch.ctp:31 /views/callbacks/disp_manage.ctp:60
-#: /views/campaigns/overview.ctp:61 /views/campaigns/view.ctp:31
-#: /views/elements/dialer_status.ctp:41
-msgid "Retry"
+#: /config/config.php:148 /views/campaigns/overview.ctp:64
+#: /views/campaigns/view.ctp:33 /views/elements/dialer_status.ctp:41
+msgid "Aborted"
 msgstr ""
 
-#: /config/config.php:145;146
-#: /controllers/ivr_menus_controller.php:213;374;493;504;783;797
-#: /controllers/lm_menus_controller.php:115;186
-#: /controllers/nodes_controller.php:236 /views/callback_services/view.ctp:33
-#: /views/callbacks/batch.ctp:32 /views/callbacks/disp_manage.ctp:61
-#: /views/campaigns/overview.ctp:62 /views/campaigns/view.ctp:32
-#: /views/elements/dialer_status.ctp:46
-msgid "Success"
+#: /config/config.php:149 /views/campaigns/overview.ctp:63
+#: /views/campaigns/view.ctp:32 /views/elements/dialer_status.ctp:46
+msgid "Failed"
 msgstr ""
 
-#: /config/config.php:145;147 /views/callback_services/disp.ctp:30
-#: /views/callback_services/view.ctp:34 /views/callbacks/batch.ctp:33
-#: /views/callbacks/disp.ctp:32 /views/callbacks/disp_manage.ctp:28;62
-#: /views/campaigns/overview.ctp:63 /views/campaigns/status_disp.ctp:30
-#: /views/campaigns/view.ctp:33 /views/elements/dialer_status.ctp:51
-msgid "Abort"
+#: /config/config.php:150 /views/campaigns/overview.ctp:59
+#: /views/campaigns/view.ctp:28 /views/elements/dialer_status.ctp:51
+msgid "Completed"
 msgstr ""
 
-#: /config/config.php:145;147 /views/callback_services/disp.ctp:30
-#: /views/callback_services/view.ctp:35 /views/callbacks/batch.ctp:34
-#: /views/callbacks/disp.ctp:32 /views/callbacks/disp_manage.ctp:28;63
-#: /views/campaigns/overview.ctp:64 /views/campaigns/status_disp.ctp:30
-#: /views/campaigns/view.ctp:34 /views/elements/dialer_status.ctp:56
-msgid "Pause"
+#: /config/config.php:151 /views/elements/dialer_status.ctp:56
+msgid "In process"
 msgstr ""
 
-#: /config/config.php:145;146 /views/elements/dialer_status.ctp:61
-msgid "Process"
+#: /config/config.php:152 /views/elements/dialer_status.ctp:61
+msgid "Not authorized"
 msgstr ""
 
-#: /config/config.php:147 /views/callback_services/disp.ctp:30
+#: /config/config.php:154 /views/callback_services/disp.ctp:30
 #: /views/callbacks/disp.ctp:32 /views/callbacks/disp_manage.ctp:28
 #: /views/campaigns/status_disp.ctp:30 /views/processes/index.ctp:72;99
 msgid "Start"
 msgstr "Anzisha"
 
-#: /config/config.php:147
+#: /config/config.php:154 /views/callback_services/disp.ctp:31
+#: /views/callback_services/view.ctp:35 /views/callbacks/batch.ctp:34
+#: /views/callbacks/disp.ctp:32 /views/callbacks/disp_manage.ctp:28;63
+#: /views/campaigns/status_disp.ctp:31
+msgid "Pause"
+msgstr ""
+
+#: /config/config.php:154 /views/callback_services/disp.ctp:30;31
+#: /views/callback_services/view.ctp:34 /views/callbacks/batch.ctp:33
+#: /views/callbacks/disp.ctp:32 /views/callbacks/disp_manage.ctp:28;62
+#: /views/campaigns/status_disp.ctp:30;31
+msgid "Abort"
+msgstr ""
+
+#: /config/config.php:154
 msgid "End"
 msgstr ""
 
-#: /config/config.php:148;150;152 /views/lm_menus/add.ctp:60
+#: /config/config.php:155;157;159 /views/lm_menus/add.ctp:60
 #: /views/lm_menus/edit.ctp:60
 msgid "Unlimited"
-msgstr ""
+msgstr "Bila mpaka"
 
-#: /config/config.php:201
+#: /config/config.php:213
 msgid "English"
-msgstr ""
+msgstr "Kiingereza"
 
-#: /config/config.php:202
+#: /config/config.php:214
 msgid "Swahili"
+msgstr "Kiswahili"
+
+#: /config/config.php:215
+msgid "Spanish"
+msgstr "Kihispania"
+
+#: /config/config.php:216
+msgid "French"
+msgstr "Kifaransa"
+
+#: /config/config.php:220
+msgid "None"
 msgstr ""
 
-#: /config/config.php:203
-msgid "Spanish"
+#: /config/config.php:221
+msgid "White"
+msgstr ""
+
+#: /config/config.php:222
+msgid "Black"
 msgstr ""
 
 #: /controllers/bin_controller.php:46
 msgid "SMS Incoming"
-msgstr ""
+msgstr "Ujumbe Mfupi Unaofika"
 
 #: /controllers/callback_services_controller.php:45
-#: /views/callback_services/index.ctp:27
+#: /views/callback_services/index.ctp:26
 #: /views/callback_services/status.ctp:24
 msgid "Callback Services"
 msgstr ""
 
-#: /controllers/callback_services_controller.php:160
+#: /controllers/callback_services_controller.php:176
 msgid ""
 "The SMS code is already in use in the dialer. Please try again with another "
 "code."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:163
-#: /controllers/campaigns_controller.php:211
+#: /controllers/callback_services_controller.php:180
 msgid ""
 "Please change your campaign settings, or modify the Dialer Settings of your "
 "Newfies installation."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:166
+#: /controllers/callback_services_controller.php:184
 msgid "Authentication failed with selected dialer."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:225
+#: /controllers/callback_services_controller.php:242
 msgid "The callback service has been deleted."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:230;443
-#: /controllers/campaigns_controller.php:278;326
+#: /controllers/callback_services_controller.php:247
+#: /controllers/campaigns_controller.php:312;362
 msgid "Dialer API Error."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:236
+#: /controllers/callback_services_controller.php:253
 msgid "There is no callback service with this id."
 msgstr ""
 
-#: /controllers/callback_services_controller.php:275
+#: /controllers/callback_services_controller.php:292
 msgid "Callback service status"
 msgstr ""
 
-#: /controllers/callback_services_controller.php:386
+#: /controllers/callback_services_controller.php:409
 #: /views/callback_services/edit.ctp:33
 msgid "Edit Callback Service"
 msgstr ""
 
-#: /controllers/callback_services_controller.php:437
+#: /controllers/callback_services_controller.php:460
 msgid "The callback service has successfully been updated."
 msgstr ""
 
@@ -165,47 +179,54 @@ msgstr ""
 msgid "Create campaign"
 msgstr ""
 
-#: /controllers/campaigns_controller.php:72
+#: /controllers/campaigns_controller.php:74
 msgid ""
 "There is no valid phone book in the system. Please create a phone book (with "
 "one or more users) before you create the campaign."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:197
-msgid "Dialer API Error (contact POST)."
+#: /controllers/campaigns_controller.php:221
+msgid "The following user has not been added to the campaign:"
 msgstr ""
 
-#: /controllers/campaigns_controller.php:202
+#: /controllers/campaigns_controller.php:229
 msgid "The campaign has successfully been created."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:207
-msgid "The Campaign name is already in use. Please try again."
+#: /controllers/campaigns_controller.php:236
+msgid "Please delete a campaign before creating a new."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:216
+#: /controllers/campaigns_controller.php:237
+msgid "Please select a campaign name that is not in use."
+msgstr ""
+
+#: /controllers/campaigns_controller.php:243
 msgid "Dialer API Error (campaign POST)."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:225
+#: /controllers/campaigns_controller.php:252
 msgid "Please select a Service."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:273
+#: /controllers/campaigns_controller.php:307
 msgid "The campaign has been deleted."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:284
+#: /controllers/campaigns_controller.php:318
 msgid "There is no campaign with this id."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:321
+#: /controllers/campaigns_controller.php:357
 msgid "The campaign status has successfully been changed."
 msgstr ""
 
-#: /controllers/campaigns_controller.php:363
-#: /views/callback_services/disp.ctp:95 /views/campaigns/status_disp.ctp:90
+#: /controllers/campaigns_controller.php:396
 msgid "Callback status"
+msgstr ""
+
+#: /controllers/campaigns_controller.php:428
+msgid "Call status successfully updated."
 msgstr ""
 
 #: /controllers/categories_controller.php:31 /views/categories/add.ctp:27
@@ -216,7 +237,7 @@ msgstr "Kategoria"
 
 #: /controllers/categories_controller.php:39
 msgid "Add category"
-msgstr ""
+msgstr "Ongeza kategoria"
 
 #: /controllers/categories_controller.php:44;100
 msgid "The category has been saved"
@@ -224,7 +245,7 @@ msgstr "Kategoria imehifadhiwa"
 
 #: /controllers/categories_controller.php:62
 msgid "Edit category"
-msgstr ""
+msgstr "Hariri kategoria"
 
 #: /controllers/categories_controller.php:65
 msgid "Invalid Category"
@@ -237,56 +258,56 @@ msgstr "Kategoria haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 
 #: /controllers/categories_controller.php:123
 msgid "The category has been deleted."
-msgstr ""
+msgstr "Kategoria imefutwa."
 
 #: /controllers/cdr_controller.php:46 /views/cdr/general.ctp:26
 #: /views/elements/menu.ctp:200
 msgid "Reporting"
-msgstr ""
+msgstr "Simulizi"
 
-#: /controllers/cdr_controller.php:140 /views/bin/index.ctp:38
+#: /controllers/cdr_controller.php:165 /views/bin/index.ctp:38
 #: /views/cdr/export.ctp:27;45;45 /views/cdr/general.ctp:38;132
 #: /views/cdr/index.ctp:46 /views/monitor_ivr/export.ctp:27;39;39
 #: /views/monitor_ivr/index.ctp:45 /views/phone_books/index.ctp:47;55
 msgid "Export"
 msgstr "Hamisha"
 
-#: /controllers/cdr_controller.php:155;310 /views/cdr/index.ctp:54
+#: /controllers/cdr_controller.php:180;317 /views/cdr/index.ctp:54
 msgid "Call Data Records"
 msgstr "Makumbukumbu ya Data za Miito"
 
-#: /controllers/cdr_controller.php:201
+#: /controllers/cdr_controller.php:227
 #: /controllers/monitor_ivr_controller.php:78 /views/bin/index.ctp:84
 #: /views/cdr/index.ctp:65 /views/monitor_ivr/index.ctp:66
 msgid "Delete selected"
-msgstr ""
+msgstr "Futa iliyochaguliwa"
 
-#: /controllers/cdr_controller.php:310 /views/campaigns/index.ctp:70
+#: /controllers/cdr_controller.php:317 /views/campaigns/index.ctp:70
 msgid "Overview"
-msgstr ""
+msgstr "Mandhari ya Jumla"
 
-#: /controllers/cdr_controller.php:381 /views/cdr/overview.ctp:107
+#: /controllers/cdr_controller.php:391 /views/cdr/overview.ctp:107
 msgid "System Overview"
-msgstr ""
+msgstr "Mandhari ya Jumla ya Mfumo"
 
 #: /controllers/channels_controller.php:50
 msgid "OfficeRoute SNMP daemon is not running."
-msgstr ""
+msgstr "Programu-tumizi OfficeRoute SNMP haiendeshwi."
 
 #: /controllers/channels_controller.php:58 /views/channels/edit.ctp:26
 #: /views/channels/index.ctp:26;36 /views/elements/menu.ctp:228
 #: /views/office_route/edit.ctp:26
 msgid "GSM channels"
-msgstr "Mikondo ya GSM"
+msgstr "Waya za simu za GSM"
 
 #: /controllers/channels_controller.php:78 /views/channels/edit.ctp:32
 msgid "Edit Mobigater"
-msgstr ""
+msgstr "Hariri Mobigater"
 
 #: /controllers/channels_controller.php:83
 #: /controllers/office_route_controller.php:95
 msgid "Invalid option."
-msgstr ""
+msgstr "Chaguo batili."
 
 #: /controllers/ivr_menus_controller.php:44 /views/cdr/overview.ctp:109
 #: /views/cdr/statistics.ctp:84 /views/elements/menu.ctp:114
@@ -297,32 +318,41 @@ msgstr "Menyu za sauti"
 
 #: /controllers/ivr_menus_controller.php:69
 msgid "Add Voice Menu"
-msgstr ""
+msgstr "Ongeza Menyu ya Sauti"
 
 #: /controllers/ivr_menus_controller.php:106
 msgid ""
 "There are no more Voice Menus available. Please delete an inactive Voice "
 "Menu, and try again."
 msgstr ""
+"Menyu za Sauti zaidi hazipatikani. Futa Menyu ya Sauti isiyotumiwa na jaribu "
+"tena."
 
 #: /controllers/ivr_menus_controller.php:192;353;470
 #: /controllers/nodes_controller.php:81;210
 msgid "File upload failure (filesize exceeds maximum)"
-msgstr ""
+msgstr "Faili lilishindwa kupakia (ukubwa wa faili unazidi upeo)"
+
+#: /controllers/ivr_menus_controller.php:213;374;493;504;783;797
+#: /controllers/lm_menus_controller.php:115;186
+#: /controllers/nodes_controller.php:236 /views/callback_services/view.ctp:33
+#: /views/callbacks/batch.ctp:32 /views/callbacks/disp_manage.ctp:61
+msgid "Success"
+msgstr "Mafanikio"
 
 #: /controllers/ivr_menus_controller.php:253
 msgid "Add Language Selector"
-msgstr ""
+msgstr "Ongeza Kiteuzi cha Lugha"
 
 #: /controllers/ivr_menus_controller.php:271
 msgid ""
 "There are no more Selectors available. Please delete an inactive Selector, "
 "and try again."
-msgstr ""
+msgstr "Viteuzi zaidi havipatikani. Futa Kiteuzi kisichotumiwa na jaribu tena."
 
 #: /controllers/ivr_menus_controller.php:416
 msgid "Edit Voice menu"
-msgstr ""
+msgstr "Hariri menyu ya sauti"
 
 #: /controllers/ivr_menus_controller.php:426;720
 #: /views/ivr_menus/edit_selector.ctp:93 /views/switchers/edit.ctp:82
@@ -331,26 +361,28 @@ msgstr "Chaguo batili"
 
 #: /controllers/ivr_menus_controller.php:625
 msgid "The selected entry has been deleted."
-msgstr ""
+msgstr "Ingizo lililochaguliwa kimefutwa."
 
 #: /controllers/ivr_menus_controller.php:634
 msgid ""
 "The selected entry could not be deleted since it is a member of another "
 "Voice Menu."
 msgstr ""
+"Ingizo lililochaguliwa halikuweza kufutwa kwa sababu ni sehemu ya Menyu ya "
+"Sauti nyingine."
 
 #: /controllers/ivr_menus_controller.php:641
 #: /controllers/lm_menus_controller.php:275
 msgid "No entry with this id exist. Please try again."
-msgstr ""
+msgstr "Hakuna ingizo lenye kitambulisho hiki. Jaribu tena."
 
 #: /controllers/ivr_menus_controller.php:692
 msgid "Language Selectors"
-msgstr ""
+msgstr "Viteuzi vya Lugha"
 
 #: /controllers/ivr_menus_controller.php:712
 msgid "Edit Language Selector"
-msgstr ""
+msgstr "Hariri Kiteuzi cha Lugha"
 
 #: /controllers/ivr_menus_controller.php:769
 #: /controllers/lm_menus_controller.php:101;172
@@ -359,17 +391,19 @@ msgstr "Faili hili halijapakiliwa kwa sababu ukubwa unazidi upeo"
 
 #: /controllers/lm_menus_controller.php:35
 msgid "Leave-a-Message IVR Menus"
-msgstr ""
+msgstr "Menyu za Sauti za Acha-Ujumbe"
 
 #: /controllers/lm_menus_controller.php:50;74
 msgid "Create Leave-a-Message"
-msgstr ""
+msgstr "Unda Acha-Ujumbe"
 
 #: /controllers/lm_menus_controller.php:61
 msgid ""
-"There are no idle instance for a new Leave-a-message IVR menu. Please delete "
+"There is no idle instance for a new Leave-a-message IVR menu. Please delete "
 "an existing menu, and try again. Maximum menus: 20."
 msgstr ""
+"Hakuna nafasi isiyotumiwa kwa menyu ya sauti mpya ya Acha-Ujumbe. Tafadhali "
+"futa menyu iliyopo, na jaribu tena. Upeo wa menyu: 20."
 
 #: /controllers/lm_menus_controller.php:127;199
 msgid "Your data could not be saved. Please, try again."
@@ -377,46 +411,50 @@ msgstr "Data zako hazikuweza kuhifadhiwa. Tafadhali, jaribu tena."
 
 #: /controllers/lm_menus_controller.php:135
 msgid "Please enter a title for the menu."
-msgstr ""
+msgstr "Tafadhali andika kichwa kwa menyu hii."
 
 #: /controllers/lm_menus_controller.php:145
 #: /controllers/messages_controller.php:218
 msgid "Edit Leave-a-Message"
-msgstr ""
+msgstr "Hariri Acha-Ujumbe"
 
 #: /controllers/lm_menus_controller.php:257
 msgid "The selected menu has been deleted."
-msgstr ""
+msgstr "Menyu iliochaguliwa imefutwa."
 
 #: /controllers/lm_menus_controller.php:266
 msgid ""
 "The default conf file could not be restored. Please check file permissions."
 msgstr ""
+"Faili la usanidi wa chaguo-msingi halikuweza kurejeshwa. Tafadhali tazama "
+"vibali vya mafaili."
 
 #: /controllers/lm_menus_controller.php:282
 msgid ""
 "The selected menu could not be deleted since it is a member of another IVR."
 msgstr ""
+"Menyu iliyochaguliwa haikuweza kufutwa kwa sababu ni sehemu ya Menyu ya "
+"Sauti nyingine."
 
 #: /controllers/messages_controller.php:57
 msgid "Leave-a-Message Inbox"
-msgstr ""
+msgstr "Kikasha Pokezi cha Acha-Ujumbe"
 
 #: /controllers/messages_controller.php:182
 msgid "Leave-a-Message Archive"
-msgstr ""
+msgstr "Nyaraka ya Acha-Ujumbe"
 
 #: /controllers/messages_controller.php:259
-#: /controllers/users_controller.php:191
+#: /controllers/users_controller.php:193
 msgid "The entry has been updated"
-msgstr ""
+msgstr "Ingizo limesasishwa"
 
 #: /controllers/messages_controller.php:263
-#: /views/callback_services/add.ctp:139 /views/callback_services/disp.ctp:99
-#: /views/callback_services/edit.ctp:152 /views/callback_services/index.ctp:82
+#: /views/callback_services/add.ctp:139 /views/callback_services/disp.ctp:113
+#: /views/callback_services/edit.ctp:152 /views/callback_services/index.ctp:95
 #: /views/callback_settings/index.ctp:63 /views/callbacks/add.ctp:130
 #: /views/callbacks/disp.ctp:94 /views/campaigns/add.ctp:135
-#: /views/campaigns/overview.ctp:53;53 /views/campaigns/status_disp.ctp:94
+#: /views/campaigns/overview.ctp:53;53 /views/campaigns/status_disp.ctp:106
 #: /views/categories/add.ctp:41 /views/categories/edit.ctp:48
 #: /views/channels/edit.ctp:55;55 /views/ivr_menus/add.ctp:149
 #: /views/ivr_menus/disp.ctp:47 /views/ivr_menus/edit.ctp:255
@@ -425,15 +463,15 @@ msgstr ""
 #: /views/nodes/add.ctp:52 /views/nodes/edit.ctp:65
 #: /views/office_route/edit.ctp:55;55 /views/phone_books/add.ctp:50
 #: /views/phone_books/edit.ctp:49 /views/polls/add.ctp:94
-#: /views/polls/edit.ctp:41 /views/settings/index.ctp:127
+#: /views/polls/edit.ctp:41 /views/settings/index.ctp:124
 #: /views/switchers/add.ctp:115 /views/switchers/edit.ctp:151
-#: /views/tags/add.ctp:42 /views/tags/edit.ctp:49 /views/users/add.ctp:47
-#: /views/users/edit.ctp:40
+#: /views/tags/add.ctp:42 /views/tags/edit.ctp:49 /views/users/add.ctp:48
+#: /views/users/edit.ctp:41
 msgid "Save"
 msgstr "Hifadhi"
 
 #: /controllers/messages_controller.php:318
-#: /controllers/users_controller.php:280 /views/bin/index.ctp:73
+#: /controllers/users_controller.php:281 /views/bin/index.ctp:73
 #: /views/campaigns/delete_success.ctp:59 /views/campaigns/index.ctp:71
 #: /views/categories/index.ctp:46;53 /views/cdr/delete.ctp:27;38
 #: /views/cdr/index.ctp:50;95 /views/ivr_menus/index.ctp:55;66
@@ -443,7 +481,7 @@ msgstr "Hifadhi"
 #: /views/monitor_ivr/index.ctp:49;121 /views/nodes/index.ctp:55;69
 #: /views/phone_books/index.ctp:47;54 /views/polls/index.ctp:61
 #: /views/switchers/index.ctp:45;56 /views/tags/index.ctp:45;53
-#: /views/users/disp.ctp:34;71;79 /views/users/index.ctp:121;148
+#: /views/users/disp.ctp:35;72;80 /views/users/index.ctp:122;149
 msgid "Delete"
 msgstr "Futa"
 
@@ -457,16 +495,16 @@ msgstr "Amilisha"
 
 #: /controllers/monitor_ivr_controller.php:36
 msgid "Monitor Voice Menus"
-msgstr ""
+msgstr "Fuatia Menyu za Sauti"
 
 #: /controllers/monitor_ivr_controller.php:93 /views/monitor_ivr/export.ctp:29
 msgid "Export monitoring data"
-msgstr ""
+msgstr "Hamisha data za ufuatiliaji"
 
 #: /controllers/monitor_ivr_controller.php:155
 #: /views/monitor_ivr/delete.ctp:30
 msgid "Delete monitoring data"
-msgstr ""
+msgstr "Futa data za ufuatiliaji"
 
 #: /controllers/nodes_controller.php:36 /views/elements/menu.ctp:119
 #: /views/elements/services.ctp:29 /views/ivr_menus/add.ctp:142
@@ -474,15 +512,15 @@ msgstr ""
 #: /views/ivr_menus/selectors.ctp:40 /views/nodes/add.ctp:27
 #: /views/nodes/edit.ctp:26 /views/nodes/index.ctp:26;37
 msgid "Content"
-msgstr ""
+msgstr "Maudhui"
 
 #: /controllers/nodes_controller.php:60
 msgid "Upload content"
-msgstr ""
+msgstr "Pakia maudhui"
 
 #: /controllers/nodes_controller.php:104
 msgid "The menu option has been created."
-msgstr ""
+msgstr "Chaguo la menyu imeundwa."
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
@@ -500,7 +538,7 @@ msgstr ""
 
 #: /controllers/nodes_controller.php:161
 msgid "Edit content"
-msgstr ""
+msgstr "Hariri maudhui"
 
 #: /controllers/nodes_controller.php:169
 msgid "Invalid audio file"
@@ -508,63 +546,63 @@ msgstr "Faili ya sikizi batili"
 
 #: /controllers/nodes_controller.php:248
 msgid "Your changes have been saved."
-msgstr ""
+msgstr "Mabadiliko yako yamehifadhiwa."
 
 #: /controllers/office_route_controller.php:90
 msgid "Edit OfficeRoute"
-msgstr ""
+msgstr "Hariri OfficeRoute"
 
 #: /controllers/phone_books_controller.php:35 /views/elements/menu.ctp:136
 #: /views/phone_books/add.ctp:26 /views/phone_books/edit.ctp:26
-#: /views/phone_books/index.ctp:26;32 /views/users/add.ctp:46
+#: /views/phone_books/index.ctp:26;32 /views/users/add.ctp:47
 msgid "Phone books"
-msgstr ""
+msgstr "Vitabu vya simu"
 
 #: /controllers/phone_books_controller.php:46
 msgid "Add Phone book"
-msgstr ""
+msgstr "Ongeza kitabu cha simu"
 
 #: /controllers/phone_books_controller.php:51
 msgid "The phone book has been created"
-msgstr ""
+msgstr "Kitabu cha simu kimeundwa"
 
 #: /controllers/phone_books_controller.php:54
 msgid "The phone book could not be saved. Please, try again."
-msgstr ""
+msgstr "Kitabu cha simu hakikuweza kuhifadhiwa. Tafadhali jaribu tena."
 
 #: /controllers/phone_books_controller.php:62 /views/phone_books/edit.ctp:32
 msgid "Edit Phone book"
-msgstr ""
+msgstr "Hariri kitabu cha simu"
 
 #: /controllers/phone_books_controller.php:65
 msgid "Invalid id"
-msgstr ""
+msgstr "Kita batili"
 
 #: /controllers/phone_books_controller.php:72
 msgid "The phone book has been updated."
-msgstr ""
+msgstr "Kitabu cha simu kimesasishwa."
 
 #: /controllers/phone_books_controller.php:75
 msgid "The data could not be saved. Please, try again."
-msgstr ""
+msgstr "Data haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 
 #: /controllers/phone_books_controller.php:95
 msgid "The selected phone book has been deleted."
-msgstr ""
+msgstr "Kitabu cha simu kilichochaguliwa kimefutwa."
 
 #: /controllers/polls_controller.php:47
 msgid "Manage Polls"
-msgstr ""
+msgstr "Simamia Kura"
 
 #: /controllers/polls_controller.php:58
 msgid "View Poll"
-msgstr ""
+msgstr "Tazama Kura"
 
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # No version information was available in the source files.
 #
-#: /controllers/polls_controller.php:61 /controllers/users_controller.php:149
+#: /controllers/polls_controller.php:61 /controllers/users_controller.php:151
 #: /views/bin/index.ctp:33 /views/cdr/index.ctp:37 /views/cdr/overview.ctp:30
 #: /views/cdr/statistics.ctp:33 /views/channels/index.ctp:34
 #: /views/messages/disp.ctp:28 /views/monitor_ivr/index.ctp:37
@@ -576,25 +614,25 @@ msgstr "Onyesha Upya"
 
 #: /controllers/polls_controller.php:75 /views/polls/add.ctp:29
 msgid "Create Poll"
-msgstr ""
+msgstr "Unda Kura"
 
 #: /controllers/polls_controller.php:117
 msgid ""
 "The poll has been created. Please note that the poll's closing time has "
 "already passed."
-msgstr ""
+msgstr "Kura imeundwa. Uwe mwangalifu kwamba mwisho wa kura ulishatokea."
 
 #: /controllers/polls_controller.php:119
 msgid "The poll has successfully been created."
-msgstr ""
+msgstr "Kura imefanikiwa kuundwa."
 
 #: /controllers/polls_controller.php:133
 msgid "Delete Poll"
-msgstr ""
+msgstr "Futa Kura"
 
 #: /controllers/polls_controller.php:138
 msgid "The following poll has been deleted"
-msgstr ""
+msgstr "Kura inayofuata imefutwa"
 
 #: /controllers/polls_controller.php:162
 msgid "Poll option could not be deleted. A poll needs at least two options."
@@ -613,16 +651,16 @@ msgstr "Kura batili"
 msgid ""
 "The poll has been updated. Please note that the poll's closing time has "
 "already passed."
-msgstr ""
+msgstr "Kura imesasishwa. Uwe mwangalifu kwamba mwisho wa kura ulishatokea."
 
 #: /controllers/polls_controller.php:200
 msgid "The poll has been updated."
-msgstr ""
+msgstr "Kura imesasishwa."
 
 #: /controllers/processes_controller.php:36 /views/elements/menu.ctp:217
-#: /views/processes/index.ctp:26;37
+#: /views/logs/index.ctp:41 /views/processes/index.ctp:26;37
 msgid "Health"
-msgstr ""
+msgstr "Afya"
 
 #: /controllers/processes_controller.php:64 /views/elements/menu.ctp:238
 #: /views/processes/system.ctp:27;69
@@ -643,7 +681,9 @@ msgstr "haiendeshwi"
 
 #: /controllers/processes_controller.php:138
 msgid "No pid found. Contact system admin."
-msgstr "Hakuna pid iliyopatikana. Wasiliana na msimamizi wa mfumo."
+msgstr ""
+"Hakuna maarifa binafsi yanayoweza kutambulisha watu kugunduliwa. Wasiliana "
+"na msimamizi wa mfumo."
 
 #: /controllers/processes_controller.php:147
 msgid "Manual"
@@ -688,7 +728,7 @@ msgstr "Lebo batili"
 
 #: /controllers/tags_controller.php:69
 msgid "The tag has been edited."
-msgstr ""
+msgstr "Lebo imehaririwa."
 
 #: /controllers/tags_controller.php:72
 msgid "The tag could not be saved. Please, try again."
@@ -698,65 +738,65 @@ msgstr "Lebo haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 msgid "The selected tag has been deleted."
 msgstr "Lebo iliyochaguliwa imefutwa."
 
-#: /controllers/users_controller.php:46 /views/elements/menu.ctp:141
+#: /controllers/users_controller.php:48 /views/elements/menu.ctp:141
 #: /views/users/add.ctp:26 /views/users/edit.ctp:28
 #: /views/users/index.ctp:26;46
 msgid "Users"
 msgstr ""
 
-#: /controllers/users_controller.php:134 /views/callbacks/user.ctp:7
-#: /views/campaigns/user.ctp:7 /views/users/index.ctp:119
+#: /controllers/users_controller.php:136 /views/callbacks/user.ctp:7
+#: /views/campaigns/user.ctp:7 /views/users/index.ctp:120
 msgid "User details"
 msgstr ""
 
-#: /controllers/users_controller.php:146 /views/users/edit.ctp:41
+#: /controllers/users_controller.php:148 /views/users/edit.ctp:42
 msgid "Edit User"
 msgstr ""
 
-#: /controllers/users_controller.php:212
+#: /controllers/users_controller.php:213
 msgid "Selected user has been deleted."
-msgstr ""
+msgstr "Mtumiaji aliyechaguliwa amefutwa."
 
-#: /controllers/users_controller.php:232 /views/users/add.ctp:46
-#: /views/users/index.ctp:155
+#: /controllers/users_controller.php:233 /views/users/add.ctp:47
+#: /views/users/index.ctp:156
 msgid "Add to phone book"
-msgstr ""
+msgstr "Ongeza kwenye kitabu cha simu"
 
-#: /controllers/users_controller.php:257 /views/users/index.ctp:156
+#: /controllers/users_controller.php:258 /views/users/index.ctp:157
 msgid "Remove from phone book"
-msgstr ""
+msgstr "Futa kutoka kitabu cha simu"
 
-#: /controllers/users_controller.php:292 /views/users/disp.ctp:80
-#: /views/users/index.ctp:149
+#: /controllers/users_controller.php:293 /views/users/disp.ctp:81
+#: /views/users/index.ctp:150
 msgid "Merge"
-msgstr ""
+msgstr "Changanisha"
 
-#: /controllers/users_controller.php:377 /views/users/add.ctp:30
+#: /controllers/users_controller.php:378 /views/users/add.ctp:31
 msgid "Add User"
 msgstr ""
 
-#: /controllers/users_controller.php:391
+#: /controllers/users_controller.php:394
 msgid "New user has been added"
 msgstr ""
 
 #: /models/api.php:173
 msgid "No file found"
-msgstr ""
+msgstr "Hakuna faili lolote lililogunduliwa"
 
-#: /models/bin.php:47 /models/poll.php:283
+#: /models/bin.php:47 /models/poll.php:292
 msgid "Unclassified"
-msgstr "Isiyoainishwa"
+msgstr "Zisizoainishwa"
 
 #: /models/callback.php:53 /models/callback_service.php:45;50
 #: /models/campaign.php:41
 msgid "You must select a service."
 msgstr ""
 
-#: /models/callback.php:123
+#: /models/callback.php:121
 msgid "Callback tickle"
 msgstr ""
 
-#: /models/callback.php:125
+#: /models/callback.php:123
 msgid "Callback SMS"
 msgstr ""
 
@@ -771,7 +811,7 @@ msgstr ""
 #: /models/callback_service.php:67 /models/ivr_menu.php:42
 #: /models/switcher.php:39
 msgid "A title is required. Minimum 3 characters."
-msgstr "Kichwa cha habari kinahitajika. Kuanzia herufi 3 na kuendelea."
+msgstr "Kichwa cha habari kinahitajika. Herufi 3 au zaidi."
 
 #: /models/callback_service.php:72
 msgid "A title is required. Maximum 10 characters."
@@ -818,11 +858,11 @@ msgstr "Ukubwa wa faili unazidi mpaka wa upeo (10MB)"
 
 #: /models/node.php:49
 msgid "Minimum 3 characters."
-msgstr ""
+msgstr "Herufi 3 au zaidi."
 
 #: /models/node.php:53
 msgid "This title is already in use."
-msgstr ""
+msgstr "Kichwa hiki tayari kimetumika."
 
 #: /models/node.php:67
 msgid "Invalid file type (valid formats: mp3 and wav)."
@@ -834,19 +874,21 @@ msgstr "Hakuna faili lolote lililochaguliwa"
 
 #: /models/phone_book.php:48
 msgid "Please enter a valid description using 1 to 50 characters"
-msgstr ""
+msgstr "Andika maelezo halali. Tumia kati ya herufi 1 hadi 50."
 
 #: /models/phone_number.php:39
 msgid "This phone number is already in use"
-msgstr ""
+msgstr "Nambari ya simu hii tayari imetumika"
 
 #: /models/phone_number.php:44
 msgid "Invalid phone number format (numbers and plus (+) sign are allowed)."
 msgstr ""
+"Umbizo batili wa nambari ya simu (namba na alama ya kujumlisha (+) "
+"zinaruhusiwa)."
 
 #: /models/poll.php:44
 msgid "A valid question is required."
-msgstr "Swali halali linahitajika."
+msgstr ""
 
 #: /models/poll.php:49 /models/vote.php:48
 msgid "Letters and numbers only. No spaces or special characters allowed."
@@ -858,29 +900,29 @@ msgstr "Kati ya herufi 1 mpaka 10"
 
 #: /models/poll.php:57
 msgid "This SMS code is already in use."
-msgstr "Msimbo wa SMS hii tayari imetumika."
+msgstr "Msimbo huu wa ujumbe mfupi tayari imetumika."
 
-#: /models/poll.php:230
+#: /models/poll.php:239
 msgid "Valid, early"
 msgstr "Halali, mapema"
 
-#: /models/poll.php:237
+#: /models/poll.php:246
 msgid "Valid, open"
 msgstr "Halali, funguliwa"
 
-#: /models/poll.php:243
+#: /models/poll.php:252
 msgid "Valid, closed"
 msgstr "Halali, fungwa"
 
-#: /models/poll.php:256
+#: /models/poll.php:265
 msgid "Invalid, early"
 msgstr "Batili, mapema"
 
-#: /models/poll.php:262
+#: /models/poll.php:271
 msgid "Invalid, open"
 msgstr "Batili, funguliwa"
 
-#: /models/poll.php:269
+#: /models/poll.php:278
 msgid "Invalid, closed"
 msgstr "Batili, fungwa"
 
@@ -892,29 +934,29 @@ msgstr "Haiongozwi"
 msgid "This description is already in use."
 msgstr "Maelezo haya tayari yanatumika."
 
-#: /models/user.php:48
+#: /models/user.php:46
 msgid "Between 1 to 35 characters"
-msgstr ""
+msgstr "Kati ya herufi 1 mpaka 35"
 
-#: /models/user.php:53
+#: /models/user.php:51
 msgid "Please supply a valid email address."
-msgstr ""
+msgstr "Tafadhali weka anwani ya barua pepe halali."
 
-#: /models/user.php:58
+#: /models/user.php:56
 msgid "This email address is already in use."
-msgstr ""
+msgstr "Anwani hii ya barua pepe tayari inatumiwa."
 
-#: /models/user.php:65
+#: /models/user.php:63
 msgid "Please supply a valid skype name."
-msgstr ""
+msgstr "Tafadhali weka jina halali la Skype."
 
-#: /models/user.php:72;85
+#: /models/user.php:70;83
 msgid "Only letters, spaces and hyphens."
-msgstr ""
+msgstr "Herufi, nafasi, na vistariungio tu."
 
-#: /models/user.php:76;89
+#: /models/user.php:74;87
 msgid "Between 1 to 20 characters"
-msgstr ""
+msgstr "Kati ya herufi 1 mpaka 20"
 
 #: /models/vote.php:44
 msgid "Between 1 to 10 characters."
@@ -956,7 +998,7 @@ msgid "Sender"
 msgstr "Mtumaji"
 
 #: /views/bin/export.ctp:28 /views/bin/index.ctp:61
-#: /views/callback_services/disp.ctp:92
+#: /views/callback_services/disp.ctp:106
 #: /views/callback_services/status.ctp:31;47 /views/callbacks/disp.ctp:84
 #: /views/callbacks/index.ctp:29 /views/callbacks/manage_batch.ctp:30
 #: /views/campaigns/status.ctp:29 /views/cdr/index.ctp:72
@@ -968,22 +1010,22 @@ msgstr "Aina"
 
 #: /views/bin/export.ctp:41
 msgid "OtherSMS"
-msgstr "SMS Nyingine"
+msgstr "Ujumbe mfupi mwingine"
 
 #: /views/bin/index.ctp:25 /views/categories/add.ctp:26
 #: /views/categories/edit.ctp:25 /views/categories/index.ctp:25
 #: /views/elements/menu.ctp:63 /views/lm_menus/add.ctp:25
 #: /views/lm_menus/edit.ctp:25 /views/lm_menus/index.ctp:25
-#: /views/messages/archive.ctp:25 /views/messages/edit.ctp:32
-#: /views/messages/index.ctp:27 /views/tags/add.ctp:25 /views/tags/edit.ctp:25
-#: /views/tags/index.ctp:25
+#: /views/logs/index.ctp:43 /views/messages/archive.ctp:25
+#: /views/messages/edit.ctp:32 /views/messages/index.ctp:27
+#: /views/tags/add.ctp:25 /views/tags/edit.ctp:25 /views/tags/index.ctp:25
 msgid "Message Centre"
-msgstr ""
+msgstr "Kituo cha Ujumbe"
 
 #: /views/bin/index.ctp:26;44 /views/cdr/overview.ctp:111
 #: /views/cdr/statistics.ctp:86 /views/elements/menu.ctp:89
 msgid "Incoming SMS"
-msgstr ""
+msgstr "Ujumbe fupi zinazofika"
 
 #: /views/bin/index.ctp:45 /views/messages/archive.ctp:37
 #: /views/messages/disp.ctp:36
@@ -993,14 +1035,14 @@ msgstr "Ujumbe:"
 #: /views/bin/index.ctp:45 /views/cdr/index.ctp:57
 #: /views/messages/archive.ctp:37 /views/messages/disp.ctp:36
 #: /views/monitor_ivr/index.ctp:59 /views/nodes/index.ctp:46
-#: /views/users/index.ctp:81
+#: /views/users/index.ctp:83
 msgid "-"
 msgstr "-"
 
 #: /views/bin/index.ctp:45 /views/cdr/index.ctp:57
 #: /views/messages/archive.ctp:37 /views/messages/disp.ctp:36
 #: /views/monitor_ivr/index.ctp:59 /views/nodes/index.ctp:46
-#: /views/users/index.ctp:81
+#: /views/users/index.ctp:83
 msgid "of"
 msgstr "ya"
 
@@ -1026,21 +1068,21 @@ msgstr "Una uhakika unataka kufuta ingizo hili?"
 
 #: /views/bin/index.ctp:87 /views/cdr/general.ctp:164 /views/cdr/index.ctp:119
 #: /views/messages/disp.ctp:111;114 /views/monitor_ivr/index.ctp:153
-#: /views/nodes/index.ctp:89 /views/users/index.ctp:161
+#: /views/nodes/index.ctp:89 /views/users/index.ctp:162
 msgid "Previous"
-msgstr ""
+msgstr "Iliyotangulia"
 
 #: /views/bin/index.ctp:87 /views/cdr/general.ctp:164 /views/cdr/index.ctp:119
 #: /views/messages/disp.ctp:111;116 /views/monitor_ivr/index.ctp:153
-#: /views/nodes/index.ctp:89 /views/users/index.ctp:161
+#: /views/nodes/index.ctp:89 /views/users/index.ctp:162
 msgid "Next"
-msgstr ""
+msgstr "Ifuatayo"
 
 #: /views/bin/index.ctp:91 /views/cdr/general.ctp:168 /views/cdr/index.ctp:123
 #: /views/monitor_ivr/index.ctp:157 /views/nodes/index.ctp:93
-#: /views/users/index.ctp:164
+#: /views/users/index.ctp:165
 msgid "Entries per page "
-msgstr ""
+msgstr "Maingizo kwenye kila ukurasa"
 
 #: /views/callback_services/add.ctp:25 /views/callback_services/edit.ctp:24
 #: /views/callback_services/index.ctp:24
@@ -1052,7 +1094,7 @@ msgstr ""
 #: /views/ivr_menus/add.ctp:27 /views/ivr_menus/add_selector.ctp:27
 #: /views/lm_menus/add.ctp:27 /views/polls/add.ctp:25
 msgid "Create"
-msgstr ""
+msgstr "Unda"
 
 #: /views/callback_services/add.ctp:33
 msgid "Create Callback Service"
@@ -1066,7 +1108,7 @@ msgstr ""
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/callback_services/add.ctp:47 /views/polls/view.ctp:44
 msgid "SMS code"
-msgstr "Mfumo wa SMS"
+msgstr "Mfumo wa ujumbe mfupi"
 
 #: /views/callback_services/add.ctp:48
 msgid "3-10 alpha-numeric characters."
@@ -1079,7 +1121,7 @@ msgstr ""
 #: /views/ivr_menus/edit.ctp:235;237;239
 #: /views/ivr_menus/edit_selector.ctp:174;176;178
 msgid "Select entry"
-msgstr ""
+msgstr "Chagua ingizo"
 
 #: /views/callback_services/add.ctp:85 /views/callback_services/edit.ctp:98
 #: /views/callbacks/add.ctp:86
@@ -1094,7 +1136,7 @@ msgstr ""
 #: /views/switchers/edit.ctp:115 /views/users/edit.ctp:129
 #: /views/users/view.ctp:82
 msgid "Voice Menu"
-msgstr ""
+msgstr "Menyu ya Sauti"
 
 #: /views/callback_services/add.ctp:85 /views/callback_services/edit.ctp:98
 #: /views/callbacks/add.ctp:86 /views/campaigns/add.ctp:89
@@ -1109,7 +1151,7 @@ msgstr "Acha-Ujumbe"
 #: /views/lm_menus/index.ctp:47 /views/messages/disp.ctp:53
 #: /views/messages/index.ctp:33
 msgid "Service"
-msgstr ""
+msgstr "Huduma"
 
 #: /views/callback_services/add.ctp:100 /views/callback_services/edit.ctp:113
 #: /views/callback_services/view.ctp:10 /views/callback_settings/index.ctp:52
@@ -1163,7 +1205,7 @@ msgstr ""
 
 #: /views/callback_services/add.ctp:115 /views/callback_services/edit.ctp:128
 msgid "Max calls"
-msgstr "Upeo wa idadi ya miito"
+msgstr ""
 
 #: /views/callback_services/add.ctp:116
 msgid "Maximum number of calls for this service."
@@ -1183,7 +1225,7 @@ msgstr ""
 
 #: /views/callback_services/add.ctp:133
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/edit.ctp:146 /views/callback_services/index.ctp:74
+#: /views/callback_services/edit.ctp:146 /views/callback_services/index.ctp:87
 #: /views/callback_services/view.ctp:6 /views/callbacks/add.ctp:124
 #: /views/callbacks/batch.ctp:6 /views/campaigns/add.ctp:129
 #: /views/campaigns/delete_success.ctp:57 /views/campaigns/index.ctp:68
@@ -1197,7 +1239,7 @@ msgstr "Muda wa kuanza"
 
 #: /views/callback_services/add.ctp:134
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/edit.ctp:147 /views/callback_services/index.ctp:75
+#: /views/callback_services/edit.ctp:147 /views/callback_services/index.ctp:88
 #: /views/callback_services/view.ctp:7 /views/callbacks/add.ctp:125
 #: /views/callbacks/batch.ctp:7 /views/campaigns/add.ctp:130
 #: /views/campaigns/delete_success.ctp:58 /views/campaigns/index.ctp:69
@@ -1210,7 +1252,7 @@ msgid "End time"
 msgstr "Muda wa kumaliza"
 
 #: /views/callback_services/delete_success.ctp:31
-#: /views/callback_services/edit.ctp:25 /views/callback_services/index.ctp:47
+#: /views/callback_services/edit.ctp:25 /views/callback_services/index.ctp:55
 #: /views/categories/edit.ctp:35 /views/categories/index.ctp:45;53
 #: /views/cdr/overview.ctp:132;173 /views/channels/index.ctp:68;87;116;136
 #: /views/ivr_menus/edit.ctp:53 /views/ivr_menus/edit_selector.ctp:44
@@ -1221,21 +1263,21 @@ msgstr "Muda wa kumaliza"
 #: /views/phone_books/edit.ctp:27 /views/phone_books/index.ctp:47;53
 #: /views/polls/edit.ctp:30 /views/polls/index.ctp:60 /views/polls/view.ctp:43
 #: /views/switchers/index.ctp:44;55 /views/tags/edit.ctp:35
-#: /views/tags/index.ctp:45;52 /views/users/disp.ctp:33;70
-#: /views/users/edit.ctp:29 /views/users/index.ctp:120
+#: /views/tags/index.ctp:45;52 /views/users/disp.ctp:34;71
+#: /views/users/edit.ctp:29 /views/users/index.ctp:121
 msgid "Edit"
 msgstr "Hariri"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:69 /views/polls/add.ctp:42
+#: /views/callback_services/index.ctp:82 /views/polls/add.ctp:42
 #: /views/polls/edit.ctp:53
 msgid "SMS Code"
-msgstr "Mfumo wa SMS"
+msgstr "Mfumo wa Ujumbe Mfupi"
 
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:70
+#: /views/callback_services/index.ctp:83
 #: /views/campaigns/delete_success.ctp:54 /views/campaigns/index.ctp:65
 #: /views/cdr/general.ctp:115 /views/cdr/index.ctp:76 /views/cdr/output.ctp:26
 #: /views/cdr/overview.ctp:114 /views/cdr/statistics.ctp:82
@@ -1243,72 +1285,83 @@ msgid "Application"
 msgstr "Programu-tumizi"
 
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:71 /views/callbacks/add.ctp:43
+#: /views/callback_services/index.ctp:84 /views/callbacks/add.ctp:43
 #: /views/callbacks/disp_manage.ctp:55 /views/callbacks/user.ctp:8
 #: /views/campaigns/add.ctp:47 /views/campaigns/delete_success.ctp:55
 #: /views/campaigns/index.ctp:66 /views/campaigns/overview.ctp:56
 #: /views/campaigns/user.ctp:8 /views/ivr_menus/add.ctp:60
 #: /views/ivr_menus/edit.ctp:75 /views/phone_books/add.ctp:48
-#: /views/phone_books/edit.ctp:46 /views/phone_books/export.ctp:37
-#: /views/users/add.ctp:39 /views/users/disp.ctp:64 /views/users/edit.ctp:70
-#: /views/users/index.ctp:88 /views/users/view.ctp:50
+#: /views/phone_books/edit.ctp:46 /views/users/add.ctp:40
+#: /views/users/disp.ctp:65 /views/users/edit.ctp:70 /views/users/index.ctp:90
+#: /views/users/view.ctp:50
 msgid "Name"
 msgstr "Jina"
 
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:72
+#: /views/callback_services/index.ctp:85
 msgid "Max calls total"
 msgstr ""
 
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:73
+#: /views/callback_services/index.ctp:86
 msgid "Calls placed"
 msgstr ""
 
 #: /views/callback_services/delete_success.ctp:47
-#: /views/callback_services/index.ctp:76 /views/polls/index.ctp:76
-#: /views/users/index.ctp:94
+#: /views/callback_services/index.ctp:89 /views/campaigns/status_disp.ctp:102
+#: /views/polls/index.ctp:76 /views/users/index.ctp:96
 msgid "Actions"
+msgstr "Vitendo"
+
+#: /views/callback_services/disp.ctp:72;74
+#: /views/campaigns/status_disp.ctp:71;73
+msgid "Change status"
 msgstr ""
 
-#: /views/callback_services/disp.ctp:87 /views/callback_services/status.ctp:31
+#: /views/callback_services/disp.ctp:101
+#: /views/callback_services/status.ctp:31 /views/logs/index.ctp:35
 msgid "Callback service"
 msgstr ""
 
-#: /views/callback_services/disp.ctp:89 /views/callback_services/status.ctp:31
-#: /views/callbacks/disp.ctp:81 /views/callbacks/index.ctp:29
-#: /views/callbacks/manage_batch.ctp:30 /views/campaigns/status.ctp:29
-#: /views/campaigns/status_disp.ctp:85 /views/lm_menus/index.ctp:49
-#: /views/messages/edit.ctp:114 /views/nodes/index.ctp:52
-#: /views/switchers/index.ctp:42
+#: /views/callback_services/disp.ctp:103
+#: /views/callback_services/status.ctp:31 /views/callbacks/disp.ctp:81
+#: /views/callbacks/index.ctp:29 /views/callbacks/manage_batch.ctp:30
+#: /views/campaigns/status.ctp:29 /views/campaigns/status_disp.ctp:97
+#: /views/lm_menus/index.ctp:49 /views/messages/edit.ctp:114
+#: /views/nodes/index.ctp:52 /views/switchers/index.ctp:42
 msgid "Created"
 msgstr "Undwa"
 
-#: /views/callback_services/disp.ctp:90 /views/callback_services/status.ctp:31
-#: /views/callbacks/disp.ctp:82 /views/callbacks/index.ctp:29
-#: /views/callbacks/manage_batch.ctp:30 /views/campaigns/status.ctp:29
-#: /views/campaigns/status_disp.ctp:86 /views/users/index.ctp:81
+#: /views/callback_services/disp.ctp:104
+#: /views/callback_services/status.ctp:31 /views/callbacks/disp.ctp:82
+#: /views/callbacks/index.ctp:29 /views/callbacks/manage_batch.ctp:30
+#: /views/campaigns/status.ctp:29 /views/campaigns/status_disp.ctp:98
+#: /views/users/index.ctp:83
 msgid "User"
 msgstr ""
 
-#: /views/callback_services/disp.ctp:91 /views/callback_services/index.ctp:38
-#: /views/campaigns/status_disp.ctp:87
-msgid "Call status"
-msgstr ""
-
-#: /views/callback_services/disp.ctp:93 /views/callback_services/status.ctp:31
-#: /views/callbacks/disp.ctp:85 /views/callbacks/index.ctp:29
-#: /views/callbacks/manage_batch.ctp:30 /views/campaigns/status.ctp:29
-#: /views/campaigns/status_disp.ctp:88
+#: /views/callback_services/disp.ctp:105
+#: /views/callback_services/status.ctp:31 /views/callbacks/disp.ctp:85
+#: /views/callbacks/index.ctp:29 /views/callbacks/manage_batch.ctp:30
+#: /views/campaigns/status.ctp:29 /views/campaigns/status_disp.ctp:99
 msgid "Service ID"
 msgstr ""
 
-#: /views/callback_services/disp.ctp:94 /views/callback_services/status.ctp:31
-#: /views/callbacks/disp.ctp:86 /views/callbacks/index.ctp:29
-#: /views/callbacks/manage_batch.ctp:30 /views/campaigns/status.ctp:29
-#: /views/campaigns/status_disp.ctp:89
+#: /views/callback_services/disp.ctp:107
+#: /views/callback_services/status.ctp:31 /views/callbacks/disp.ctp:86
+#: /views/callbacks/index.ctp:29 /views/callbacks/manage_batch.ctp:30
+#: /views/campaigns/status.ctp:29 /views/campaigns/status_disp.ctp:100
 msgid "Attempts"
 msgstr ""
+
+#: /views/callback_services/disp.ctp:108 /views/callback_services/index.ctp:37
+#: /views/campaigns/status_disp.ctp:101
+msgid "Call status"
+msgstr ""
+
+#: /views/callback_services/disp.ctp:109
+msgid "Action"
+msgstr "Kitendo"
 
 #: /views/callback_services/edit.ctp:120 /views/callback_settings/index.ctp:59
 #: /views/callbacks/add.ctp:108 /views/campaigns/add.ctp:111
@@ -1327,7 +1380,7 @@ msgstr ""
 msgid "Maxumum number of calls for this service."
 msgstr ""
 
-#: /views/callback_services/index.ctp:34 /views/categories/index.ctp:31
+#: /views/callback_services/index.ctp:33 /views/categories/index.ctp:31
 #: /views/ivr_menus/index.ctp:31 /views/ivr_menus/selectors.ctp:30
 #: /views/lm_menus/index.ctp:32 /views/phone_books/index.ctp:29
 #: /views/polls/index.ctp:33 /views/switchers/index.ctp:26
@@ -1335,7 +1388,18 @@ msgstr ""
 msgid "Create new"
 msgstr "Unda mpya"
 
-#: /views/callback_services/index.ctp:68
+#: /views/callback_services/index.ctp:73
+msgid ""
+"To disable the Tickle service, select the radio button below. To enable the "
+"Tickle service, select one of the radio buttons in the list of Callback "
+"Services."
+msgstr ""
+
+#: /views/callback_services/index.ctp:76
+msgid "Disable Tickle service"
+msgstr ""
+
+#: /views/callback_services/index.ctp:81
 #: /views/callback_services/status.ctp:30
 msgid "Tickle"
 msgstr ""
@@ -1344,7 +1408,7 @@ msgstr ""
 #: /views/callbacks/disp_manage.ctp:65 /views/callbacks/index.ctp:29
 #: /views/callbacks/manage_batch.ctp:30 /views/callbacks/status.ctp:25
 #: /views/campaigns/delete_success.ctp:56 /views/campaigns/index.ctp:28;67
-#: /views/campaigns/overview.ctp:66 /views/campaigns/status.ctp:29
+#: /views/campaigns/overview.ctp:65 /views/campaigns/status.ctp:29
 #: /views/cdr/overview.ctp:173 /views/messages/edit.ctp:92
 #: /views/polls/index.ctp:76 /views/polls/view.ctp:109
 #: /views/processes/index.ctp:99
@@ -1352,21 +1416,21 @@ msgid "Status"
 msgstr "Hali"
 
 #: /views/callback_services/status.ctp:30 /views/elements/services.ctp:41
-#: /views/users/edit.ctp:131 /views/users/view.ctp:84
+#: /views/logs/index.ctp:46 /views/users/edit.ctp:131 /views/users/view.ctp:84
 msgid "SMS"
-msgstr ""
+msgstr "Ujumbe mfupi"
 
 #: /views/callback_services/status.ctp:32 /views/callbacks/index.ctp:30
 #: /views/callbacks/manage_batch.ctp:31 /views/campaigns/status.ctp:31
 #: /views/messages/index.ctp:34
 msgid "Ascending"
-msgstr ""
+msgstr "Kuumbia"
 
 #: /views/callback_services/status.ctp:32 /views/callbacks/index.ctp:30
 #: /views/callbacks/manage_batch.ctp:31 /views/campaigns/status.ctp:31
 #: /views/messages/index.ctp:34
 msgid "Descending"
-msgstr ""
+msgstr "Kuteremua"
 
 #: /views/callback_services/status.ctp:33
 msgid "Callback Service Status"
@@ -1383,7 +1447,7 @@ msgstr ""
 #: /views/callback_services/status.ctp:45 /views/callbacks/index.ctp:42
 #: /views/campaigns/status.ctp:43 /views/messages/index.ctp:52
 msgid "Order by"
-msgstr ""
+msgstr "Panga kwa"
 
 #: /views/callback_services/status.ctp:46 /views/callbacks/index.ctp:43
 #: /views/campaigns/status.ctp:44
@@ -1395,9 +1459,19 @@ msgstr ""
 msgid "Initialization time"
 msgstr ""
 
+#: /views/callback_services/view.ctp:31 /views/callbacks/batch.ctp:30
+#: /views/callbacks/disp_manage.ctp:59
+msgid "Failure"
+msgstr ""
+
+#: /views/callback_services/view.ctp:32 /views/callbacks/batch.ctp:31
+#: /views/callbacks/disp_manage.ctp:60
+msgid "Retry"
+msgstr ""
+
 #: /views/callback_services/view.ctp:36 /views/callbacks/batch.ctp:35
-#: /views/callbacks/disp_manage.ctp:64 /views/campaigns/overview.ctp:65
-#: /views/campaigns/view.ctp:35
+#: /views/callbacks/disp_manage.ctp:64 /views/campaigns/overview.ctp:61
+#: /views/campaigns/view.ctp:30
 msgid "Processing"
 msgstr ""
 
@@ -1407,7 +1481,7 @@ msgstr ""
 
 #: /views/callback_settings/index.ctp:30
 msgid "Callback settings"
-msgstr "Mipangilio ya kurudisha-mwito"
+msgstr ""
 
 #: /views/callback_settings/index.ctp:53
 msgid "Default number of retires for a callback."
@@ -1436,7 +1510,7 @@ msgstr ""
 #: /views/phone_books/index.ctp:47 /views/users/edit.ctp:76
 #: /views/users/view.ctp:57
 msgid "Phone book"
-msgstr ""
+msgstr "Kitabu cha simu"
 
 #: /views/callbacks/add.ctp:46 /views/campaigns/add.ctp:50
 msgid "Select phonebook to dial."
@@ -1456,9 +1530,9 @@ msgstr ""
 msgid "Set status"
 msgstr ""
 
-#: /views/callbacks/disp_manage.ctp:52 /views/users/index.ctp:58
+#: /views/callbacks/disp_manage.ctp:52 /views/users/index.ctp:60
 msgid "Submit"
-msgstr ""
+msgstr "Wasilisha"
 
 #: /views/callbacks/disp_manage.ctp:56 /views/campaigns/overview.ctp:57
 msgid "Start Time"
@@ -1485,36 +1559,33 @@ msgid "Manage batches"
 msgstr ""
 
 #: /views/callbacks/user.ctp:9 /views/campaigns/user.ctp:9
-#: /views/phone_books/export.ctp:37 /views/users/add.ctp:40
-#: /views/users/disp.ctp:65 /views/users/edit.ctp:71 /views/users/index.ctp:89
-#: /views/users/view.ctp:51
+#: /views/users/add.ctp:41 /views/users/disp.ctp:66 /views/users/edit.ctp:71
+#: /views/users/index.ctp:91 /views/users/view.ctp:51
 msgid "Surname"
-msgstr ""
+msgstr "Jina la ukoo"
 
 #: /views/callbacks/user.ctp:10 /views/campaigns/user.ctp:10
 #: /views/phone_numbers/add_failure.ctp:4
-#: /views/phone_numbers/add_success.ctp:3 /views/users/disp.ctp:36
+#: /views/phone_numbers/add_success.ctp:3 /views/users/disp.ctp:37
 #: /views/users/edit.ctp:89 /views/users/view.ctp:56
 msgid "Phone numbers"
-msgstr ""
+msgstr "Nambari za simu"
 
 #: /views/callbacks/user.ctp:11 /views/campaigns/user.ctp:11
-#: /views/phone_books/export.ctp:37 /views/users/add.ctp:42
-#: /views/users/disp.ctp:67 /views/users/edit.ctp:73 /views/users/index.ctp:91
-#: /views/users/view.ctp:53
+#: /views/users/add.ctp:43 /views/users/disp.ctp:68 /views/users/edit.ctp:73
+#: /views/users/index.ctp:93 /views/users/view.ctp:53
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: /views/callbacks/user.ctp:12 /views/campaigns/user.ctp:12
-#: /views/phone_books/export.ctp:37 /views/users/add.ctp:41
-#: /views/users/disp.ctp:66 /views/users/edit.ctp:72 /views/users/index.ctp:90
-#: /views/users/view.ctp:52
+#: /views/users/add.ctp:42 /views/users/disp.ctp:67 /views/users/edit.ctp:72
+#: /views/users/index.ctp:92 /views/users/view.ctp:52
 msgid "Email"
-msgstr ""
+msgstr "Barua pepe"
 
 #: /views/campaigns/add.ctp:24 /views/campaigns/delete_success.ctp:53
 #: /views/campaigns/index.ctp:24;64 /views/campaigns/status.ctp:29
-#: /views/campaigns/status_disp.ctp:84
+#: /views/campaigns/status_disp.ctp:96 /views/logs/index.ctp:36
 msgid "Campaign"
 msgstr ""
 
@@ -1587,7 +1658,7 @@ msgstr "Hariri Kategoria"
 #: /views/categories/edit.ctp:40 /views/phone_books/edit.ctp:48
 #: /views/tags/edit.ctp:48
 msgid "Use in none"
-msgstr ""
+msgstr "Usitumie"
 
 #: /views/categories/edit.ctp:47 /views/tags/edit.ctp:48
 msgid "Use in message"
@@ -1599,26 +1670,26 @@ msgstr "Tumia kwenye ujumbe"
 #: /views/office_route/edit.ctp:62 /views/polls/edit.ctp:121
 #: /views/polls/view.ctp:118 /views/tags/edit.ctp:56
 msgid "This page does not exist."
-msgstr ""
+msgstr "Ukurasa huu haupo."
 
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
 #: /views/categories/index.ctp:46
 msgid "Are you sure you want to delete this category?"
-msgstr "Una uhakika unataka kufuta kategoria hii?"
+msgstr ""
 
 #: /views/categories/index.ctp:59
 msgid ""
 "No categories exist. Please create one by clicking the <i>Create new</i> "
 "button to the right."
 msgstr ""
+"Hakuna kategoria yoyote. Tafadhali unda moja ukibofya kitufe <i>Unda mpya</"
+"i> upande wa kulia."
 
 #: /views/cdr/delete.ctp:25 /views/cdr/export.ctp:25 /views/cdr/general.ctp:25
 #: /views/cdr/index.ctp:26 /views/cdr/statistics.ctp:25
 #: /views/elements/menu.ctp:182 /views/monitor_ivr/delete.ctp:25
 #: /views/monitor_ivr/export.ctp:25 /views/monitor_ivr/index.ctp:25
 msgid "System data"
-msgstr ""
+msgstr "Data ya mfumo"
 
 #: /views/cdr/delete.ctp:26 /views/cdr/export.ctp:26 /views/cdr/index.ctp:27
 #: /views/elements/menu.ctp:187
@@ -1627,7 +1698,7 @@ msgstr "Makumbukumbu ya data za miito"
 
 #: /views/cdr/delete.ctp:29
 msgid "Delete Call Data Records"
-msgstr ""
+msgstr "Futa Makumbukumbu ya Data za Miito"
 
 #: /views/cdr/export.ctp:30
 msgid "Export CDR"
@@ -1671,11 +1742,11 @@ msgstr "Kichwa"
 #: /views/cdr/output.ctp:26 /views/messages/disp.ctp:55
 #: /views/messages/edit.ctp:117
 msgid "Caller"
-msgstr ""
+msgstr "Mpigaji"
 
 #: /views/cdr/general.ctp:42
 msgid "Channel"
-msgstr ""
+msgstr "Waya ya simu"
 
 #: /views/cdr/general.ctp:42;153 /views/cdr/overview.ctp:132
 #: /views/messages/archive.ctp:55 /views/messages/disp.ctp:59
@@ -1683,21 +1754,21 @@ msgstr ""
 msgid "Length"
 msgstr "Urefu"
 
-#: /views/cdr/general.ctp:69 /views/cdr/output.ctp:50
+#: /views/cdr/general.ctp:69 /views/cdr/output.ctp:50 /views/logs/index.ctp:37
 msgid "CDR"
 msgstr "MDM"
 
 #: /views/cdr/general.ctp:82
 msgid "Reporting of incoming calls"
-msgstr ""
+msgstr "Simulizi la miito iliyofika"
 
 #: /views/cdr/general.ctp:110
 msgid "All Leave-a-message"
-msgstr ""
+msgstr "Acha-ujumbe zote"
 
 #: /views/cdr/general.ctp:111
 msgid "All Voice Menus"
-msgstr ""
+msgstr "Menyu za Sauti Zote"
 
 #: /views/cdr/general.ctp:130 /views/cdr/statistics.ctp:98;98
 #: /views/polls/view.ctp:41
@@ -1706,20 +1777,20 @@ msgstr "Angalia"
 
 #: /views/cdr/general.ctp:144
 msgid "Number of records found:"
-msgstr ""
+msgstr "Idadi ya makumbukumbu yaliyogunduliwa:"
 
 #: /views/cdr/general.ctp:155 /views/messages/edit.ctp:118
 msgid "Quick hangup"
-msgstr ""
+msgstr "Kata simu chapu"
 
 #: /views/cdr/general.ctp:175 /views/messages/archive.ctp:121
 #: /views/messages/disp.ctp:125 /views/monitor_ivr/index.ctp:162
 msgid "No records found."
-msgstr ""
+msgstr "Hakuna kumbukumbu lililogunduliwa"
 
 #: /views/cdr/index.ctp:32 /views/monitor_ivr/index.ctp:34
 msgid "Are you sure that you want to delete the selected entries?"
-msgstr ""
+msgstr "Una uhakika unataka kufuta maingizo yaliyoteuliwa?"
 
 #: /views/cdr/index.ctp:41 /views/monitor_ivr/index.ctp:41
 msgid "Export all"
@@ -1738,7 +1809,7 @@ msgstr "Tarehe (MwakaMweziSiku)"
 #: /views/cdr/index.ctp:73 /views/monitor_ivr/index.ctp:73
 #: /views/monitor_ivr/output.ctp:27
 msgid "Call ID"
-msgstr "TAM ya mwito"
+msgstr "Kitambulisho cha mwito"
 
 #: /views/cdr/index.ctp:95
 msgid "Are you sure you want to delete this CDR?"
@@ -1746,23 +1817,23 @@ msgstr "Una uhakika unataka kufuta MDM hii?"
 
 #: /views/cdr/index.ctp:129
 msgid "No records found"
-msgstr ""
+msgstr "Hakuna kumbukumbu lililogunduliwa"
 
 #: /views/cdr/output.ctp:26
 msgid "Call Id"
-msgstr ""
+msgstr "Kitambulisho cha mwito"
 
 #: /views/cdr/overview.ctp:84
 msgid "Download audio file"
-msgstr ""
+msgstr "Pakua faili sikizi"
 
 #: /views/cdr/overview.ctp:85 /views/messages/index.ctp:33
 msgid "New message"
-msgstr ""
+msgstr "Ujumbe mpya"
 
 #: /views/cdr/overview.ctp:91;157 /views/messages/edit.ctp:34
 msgid "Edit message"
-msgstr ""
+msgstr "Hariri ujumbe"
 
 #: /views/cdr/overview.ctp:108 /views/cdr/statistics.ctp:83
 #: /views/elements/services.ctp:33 /views/helpers/formatting.php:80;108
@@ -1774,8 +1845,8 @@ msgstr "Acha-ujumbe"
 
 #: /views/cdr/overview.ctp:110 /views/cdr/statistics.ctp:85
 #: /views/elements/menu.ctp:40 /views/elements/services.ctp:44
-#: /views/helpers/formatting.php:76;104 /views/users/edit.ctp:128
-#: /views/users/view.ctp:81
+#: /views/helpers/formatting.php:76;104 /views/logs/index.ctp:45
+#: /views/users/edit.ctp:128 /views/users/view.ctp:81
 msgid "Poll"
 msgstr "Kura"
 
@@ -1790,15 +1861,15 @@ msgstr "Asilimia"
 
 #: /views/cdr/overview.ctp:125
 msgid "New Messages"
-msgstr ""
+msgstr "Ujumbe Mpya"
 
 #: /views/cdr/overview.ctp:126
 msgid "Total number of messages"
-msgstr ""
+msgstr "Idadi ya ujumbe kwa jumla"
 
 #: /views/cdr/overview.ctp:129
 msgid "The table below shows the five most recent new messages"
-msgstr ""
+msgstr "Jedwali hapo chini linaonyesha ujumbe tano za mwisho"
 
 #: /views/cdr/overview.ctp:132 /views/messages/archive.ctp:58
 #: /views/messages/disp.ctp:62 /views/messages/edit.ctp:120
@@ -1815,7 +1886,7 @@ msgstr "Kura"
 
 #: /views/cdr/overview.ctp:156
 msgid "View results"
-msgstr ""
+msgstr "Angalia matokeo"
 
 #: /views/cdr/overview.ctp:173 /views/polls/add.ctp:40
 #: /views/polls/edit.ctp:51 /views/polls/index.ctp:76 /views/polls/view.ctp:42
@@ -1842,7 +1913,7 @@ msgstr "Funga"
 #: /views/cdr/overview.ctp:173 /views/polls/index.ctp:59
 #: /views/polls/view.ctp:47
 msgid "Results"
-msgstr ""
+msgstr "Matokeo"
 
 #: /views/cdr/statistics.ctp:26 /views/elements/menu.ctp:192
 #: /views/users/edit.ctp:122 /views/users/view.ctp:75
@@ -1862,13 +1933,13 @@ msgstr "Paneli dhibiti"
 
 #: /views/channels/edit.ctp:33 /views/office_route/edit.ctp:32
 msgid "Edit channel"
-msgstr ""
+msgstr "Hariri waya ya simu"
 
 #: /views/channels/edit.ctp:45 /views/channels/index.ctp:80;130
-#: /views/office_route/edit.ctp:48 /views/phone_books/export.ctp:42
-#: /views/users/add.ctp:43 /views/users/edit.ctp:94
+#: /views/office_route/edit.ctp:48 /views/users/add.ctp:44
+#: /views/users/edit.ctp:94
 msgid "Phone number"
-msgstr ""
+msgstr "Nambari ya simu"
 
 #: /views/channels/edit.ctp:46 /views/channels/index.ctp:83;133
 msgid "IMSI"
@@ -1880,47 +1951,47 @@ msgstr "IMEI"
 
 #: /views/channels/index.ctp:38
 msgid "Office Route"
-msgstr ""
+msgstr "Office Route"
 
 #: /views/channels/index.ctp:42
 msgid "SNMP daemon is not running."
-msgstr ""
+msgstr "Programu-tumizi SNMP haiendeshwi"
 
 #: /views/channels/index.ctp:67 /views/elements/message_status.ctp:80
 msgid "Yes"
-msgstr ""
+msgstr "Ndiyo"
 
 #: /views/channels/index.ctp:78
 msgid "Slot"
-msgstr ""
+msgstr "Mfuo"
 
 #: /views/channels/index.ctp:81
 msgid "Sim inserted"
-msgstr ""
+msgstr "SIM imechomekwa"
 
 #: /views/channels/index.ctp:82;134
 msgid "Signal level"
-msgstr ""
+msgstr "Kiwango cha mawimbi"
 
 #: /views/channels/index.ctp:84
 msgid "Network registration"
-msgstr ""
+msgstr "Usajili wa mtandao"
 
 #: /views/channels/index.ctp:85 /views/office_route/edit.ctp:49
 msgid "Operator"
-msgstr ""
+msgstr "Mtoa huduma"
 
 #: /views/channels/index.ctp:86;135
 msgid "Last updated"
-msgstr ""
+msgstr "Mara ya mwisho kusasishwa"
 
 #: /views/channels/index.ctp:94
 msgid "There are no OfficeRoute units connected to your system."
-msgstr ""
+msgstr "Hakuna kifaa cha OfficeRoute kilichounganishwa na mfumo wako."
 
 #: /views/channels/index.ctp:99
 msgid "Mobigater"
-msgstr ""
+msgstr "Mobigater"
 
 #: /views/channels/index.ctp:128
 msgid "Interface id"
@@ -1932,7 +2003,7 @@ msgstr "Jina la kiolesura"
 
 #: /views/channels/index.ctp:143
 msgid "There are no Mobigater units connected to your system."
-msgstr ""
+msgstr "Hakuna kifaa cha Mobigater kilichounganishwa na mfumo wako."
 
 #: /views/channels/index.ctp:147 /views/processes/index.ctp:104
 msgid "Generated"
@@ -1940,23 +2011,23 @@ msgstr "Zalishwa"
 
 #: /views/elements/callback_status.ctp:28
 msgid "Rejected"
-msgstr "Kataliwa"
+msgstr ""
 
 #: /views/elements/callback_status.ctp:32
 msgid "Accepted"
-msgstr "Kubaliwa"
+msgstr ""
 
 #: /views/elements/channel_signal_level.ctp:41
 msgid "Poor"
-msgstr ""
+msgstr "Mbaya"
 
 #: /views/elements/channel_signal_level.ctp:45
 msgid "Good"
-msgstr ""
+msgstr "Nzuri"
 
 #: /views/elements/channel_signal_level.ctp:49
 msgid "Excellent"
-msgstr ""
+msgstr "Bora"
 
 #: /views/elements/menu.ctp:34 /views/layouts/default.ctp:81
 #: /views/layouts/jquery.ctp:89
@@ -1969,40 +2040,40 @@ msgstr "Simamia kura"
 
 #: /views/elements/menu.ctp:49
 msgid "Create poll"
-msgstr ""
+msgstr "Unda kura"
 
 #: /views/elements/menu.ctp:67 /views/messages/edit.ctp:28
 #: /views/messages/index.ctp:28
 msgid "Inboxes"
-msgstr ""
+msgstr "Vikasha pokezi"
 
 #: /views/elements/menu.ctp:72
 msgid "Archives"
-msgstr ""
+msgstr "Nyaraka"
 
 #: /views/elements/menu.ctp:85
 msgid "Manage LAM"
-msgstr ""
+msgstr "Simamia Acha-Ujumbe"
 
 #: /views/elements/menu.ctp:104 /views/ivr_menus/add.ctp:25
 #: /views/ivr_menus/add_selector.ctp:25 /views/ivr_menus/edit.ctp:25
 #: /views/ivr_menus/edit_selector.ctp:26 /views/ivr_menus/index.ctp:25
-#: /views/ivr_menus/selectors.ctp:25 /views/nodes/add.ctp:26
-#: /views/nodes/edit.ctp:25 /views/nodes/index.ctp:25
+#: /views/ivr_menus/selectors.ctp:25 /views/logs/index.ctp:42
+#: /views/nodes/add.ctp:26 /views/nodes/edit.ctp:25 /views/nodes/index.ctp:25
 msgid "IVR Centre"
-msgstr ""
+msgstr "Kituo cha Menyu za Sauti"
 
 #: /views/elements/menu.ctp:108 /views/ivr_menus/add_selector.ctp:26
 #: /views/ivr_menus/edit_selector.ctp:27 /views/ivr_menus/selectors.ctp:26;34
 msgid "Language selectors"
-msgstr ""
+msgstr "Viteuzi vya lugha"
 
 #: /views/elements/menu.ctp:132 /views/phone_books/add.ctp:25
 #: /views/phone_books/edit.ctp:25 /views/phone_books/index.ctp:25
 #: /views/users/add.ctp:25 /views/users/edit.ctp:27 /views/users/index.ctp:25
 #: /views/users/view.ctp:25
 msgid "User Management"
-msgstr ""
+msgstr "Usimamizi wa Watumiaji"
 
 #: /views/elements/menu.ctp:155
 msgid "Dialer"
@@ -2012,34 +2083,35 @@ msgstr ""
 msgid "Callback services"
 msgstr ""
 
-#: /views/elements/menu.ctp:196 /views/monitor_ivr/delete.ctp:26
-#: /views/monitor_ivr/export.ctp:26 /views/monitor_ivr/index.ctp:26
+#: /views/elements/menu.ctp:196 /views/logs/index.ctp:44
+#: /views/monitor_ivr/delete.ctp:26 /views/monitor_ivr/export.ctp:26
+#: /views/monitor_ivr/index.ctp:26
 msgid "Monitoring"
 msgstr "Ufuatiliaji"
 
 #: /views/elements/menu.ctp:233 /views/logs/index.ctp:26;29
 msgid "Logs"
-msgstr ""
+msgstr "Batli"
 
 #: /views/elements/menu.ctp:251
 msgid "Help"
-msgstr ""
+msgstr "Msaada"
 
 #: /views/elements/menu.ctp:256
 msgid "Downloads"
-msgstr ""
+msgstr "Faili kupakuliwa"
 
 #: /views/elements/menu.ctp:262
 msgid "Website"
-msgstr ""
+msgstr "Tovuti"
 
 #: /views/elements/menu.ctp:266
 msgid "Wiki/SVN"
-msgstr ""
+msgstr "Wiki/SVN"
 
 #: /views/elements/menu.ctp:271
 msgid "Feedback"
-msgstr ""
+msgstr "Mawazo"
 
 #: /views/elements/message_status.ctp:29 /views/messages/archive.ctp:26
 #: /views/messages/edit.ctp:28;48
@@ -2054,18 +2126,18 @@ msgstr "Hai"
 msgid "N/A"
 msgstr "Haipatikani"
 
-#: /views/elements/message_status.ctp:63 /views/phone_books/export.ctp:61
-#: /views/users/edit.ctp:60 /views/users/view.ctp:30
+#: /views/elements/message_status.ctp:63 /views/users/edit.ctp:61
+#: /views/users/view.ctp:31
 msgid "Never"
 msgstr "Kamwe"
 
 #: /views/elements/message_status.ctp:86
 msgid "No"
-msgstr ""
+msgstr "Hapana"
 
 #: /views/elements/player.ctp:62
 msgid "No Flash plugin installed"
-msgstr ""
+msgstr "Hakuna programu-jalizi ya Flash iliyosakinishwa"
 
 #: /views/elements/player.ctp:66
 msgid "No audio file available"
@@ -2089,7 +2161,7 @@ msgstr "Washwa"
 
 #: /views/errors/missing_view.ctp:26
 msgid "This view does not exist."
-msgstr ""
+msgstr "Muonekano huo haupo."
 
 # (pofilter) long: checks whether a translation is much longer than the original string
 #: /views/helpers/formatting.php:47
@@ -2111,11 +2183,11 @@ msgstr "Menyu ya sauti"
 
 #: /views/helpers/formatting.php:92
 msgid "Other SMS"
-msgstr "SMS Nyingine"
+msgstr "Ujumbe mfupi mwingine"
 
 #: /views/ivr_menus/add.ctp:30
 msgid "Create voice menu"
-msgstr "Tengeneza menyu ya sauti"
+msgstr "Unda menyu ya sauti"
 
 #: /views/ivr_menus/add.ctp:39 /views/ivr_menus/add_selector.ctp:39
 #: /views/ivr_menus/edit.ctp:35
@@ -2198,23 +2270,23 @@ msgstr "Machaguo ya menyu"
 #: /views/ivr_menus/add.ctp:128 /views/ivr_menus/disp.ctp:39
 #: /views/ivr_menus/edit.ctp:233 /views/ivr_menus/edit_selector.ctp:172
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /views/ivr_menus/add_selector.ctp:30
 msgid "Create Language Selector"
-msgstr ""
+msgstr "Unda Kiteuzi cha Lugha"
 
 #: /views/ivr_menus/add_selector.ctp:83
 msgid "Select service"
-msgstr ""
+msgstr "Chagua huduma"
 
 #: /views/ivr_menus/edit.ctp:39
 msgid "Message played before Freedom Fone finishes (hangs) the call. "
-msgstr ""
+msgstr "Ujumbe kuchezeshwa kabla Freedom Fone hajamaliza mwito."
 
 #: /views/ivr_menus/edit.ctp:40
-msgid "Message played efter incorrect input (digit pressed) from user. "
-msgstr ""
+msgid "Message played after incorrect input (digit pressed) from user. "
+msgstr "Ujumbe kuchezeshwa kama mtumiaji akikosa (akibonyeza namba batili)."
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
 # (pofilter) startcaps: checks that the message starts with the correct capitalisation
@@ -2267,33 +2339,33 @@ msgstr "Ujumbe batili"
 
 #: /views/ivr_menus/edit.ctp:259
 msgid "This IVR does not exist."
-msgstr ""
+msgstr "Menyu ya sauti hio haipo."
 
 #: /views/ivr_menus/edit_selector.ctp:33
 msgid "Name of language selector"
-msgstr ""
+msgstr "Jina la kiteuzi cha lugha"
 
 #: /views/ivr_menus/edit_selector.ctp:34 /views/switchers/add.ctp:33
 #: /views/switchers/edit.ctp:28
 msgid "Brief instruction how to reach each language menu."
-msgstr ""
+msgstr "Maelezo mafupi kuhusu namna ya kupata kila menyu ya lugha."
 
 #: /views/ivr_menus/edit_selector.ctp:35 /views/switchers/add.ctp:34
 #: /views/switchers/edit.ctp:29
 msgid "Warning that the user has pressed an invalid option."
-msgstr ""
+msgstr "Onyo kwamba mtumiaji amebonyeza chaguo batili."
 
 #: /views/ivr_menus/edit_selector.ctp:39
 msgid "Edit language selector"
-msgstr ""
+msgstr "Hariri kiteuzi cha lugha"
 
 #: /views/ivr_menus/edit_selector.ctp:115 /views/switchers/edit.ctp:104
 msgid "Services"
-msgstr ""
+msgstr "Huduma"
 
 #: /views/ivr_menus/edit_selector.ctp:201
 msgid "This language selector does not exist."
-msgstr ""
+msgstr "Kiteuzi cha lugha hiki hakipo."
 
 #: /views/ivr_menus/index.ctp:34
 msgid ""
@@ -2308,7 +2380,7 @@ msgstr ""
 #: /views/ivr_menus/index.ctp:45 /views/lm_menus/add.ctp:45
 #: /views/lm_menus/edit.ctp:50 /views/lm_menus/index.ctp:35
 msgid "Audio files should be recorded in mono, 8KHz, and be maximum 10MB."
-msgstr "Mafaili sikizi yarekodiwe mono, KHz8, yenye upeo wa 10MB."
+msgstr "Mafaili sikizi yarekodiwe mono, KHz8, yenye upeo wa MB10."
 
 #: /views/ivr_menus/index.ctp:53 /views/ivr_menus/selectors.ctp:50
 msgid "Last modified"
@@ -2316,11 +2388,11 @@ msgstr "Rekebisho la mwisho"
 
 #: /views/ivr_menus/index.ctp:66
 msgid "Are you sure you want to delete this voice menu?"
-msgstr "Unahakika unataka kufuta menyu ya sauti hii?"
+msgstr ""
 
 #: /views/ivr_menus/index.ctp:82
 msgid "There are no voice menus created."
-msgstr ""
+msgstr "Hakuna menyu za sauti zilizoundwa."
 
 #: /views/ivr_menus/selectors.ctp:62
 msgid "Are you sure you want to delete this language selector?"
@@ -2331,10 +2403,12 @@ msgid ""
 "No language selectors exist. Please create one by clicking the <i>Create "
 "new</i> button to the right."
 msgstr ""
+"Hakuna kiteuzi cha lugha chochote. Tafadhali unda kimoja ukibofya kitufe "
+"<i>Unda mpya</i> upande wa kulia."
 
 #: /views/lm_menus/add.ctp:26 /views/lm_menus/edit.ctp:26
 msgid "Administration"
-msgstr ""
+msgstr "Usimamizi"
 
 # (pofilter) acronyms: acronyms should not be translated: GUI
 #: /views/lm_menus/add.ctp:35 /views/lm_menus/edit.ctp:37
@@ -2354,8 +2428,8 @@ msgid ""
 msgstr ""
 "Acha-ujumbe| Menyu ya sauti ya acha-ujumbe inajumuisha ujumbe nane tofauti. "
 "Kila ujumbe unaweza kutengenezwa kwa njia tatu tofauti:| (1) faili sikizi "
-"maalum lililogeuzwa kufaa| (2) matini ya kusautishwa, yaliyogeuzwa kufaa, "
-"au| (3) matini ya kusautishwa, ya chaguo-msingi.|| Kama msimamizi amehusisha "
+"maalum lililogeuzwa kufaa| (2) matini kusautishwa, yaliyogeuzwa kufaa, au| "
+"(3) matini ya kusautishwa, ya chaguo-msingi.|| Kama msimamizi amehusisha "
 "faili sikizi na ujumbe, faili hilo litachezwa kwa mpigaji atakapoingia "
 "kwenye menyu ya sauti.| Kama hakuna faili sikizi limelowekwa kwa ajili ya "
 "ujumbe, lakini kuna matini maalum, matini yatasautishwa na kuchezwa kwa "
@@ -2368,7 +2442,7 @@ msgstr ""
 
 #: /views/lm_menus/add.ctp:37
 msgid "Create Leave a Message IVR"
-msgstr ""
+msgstr "Unda menyu ya sauti ya Acha-Ujumbe"
 
 #: /views/lm_menus/add.ctp:44 /views/lm_menus/edit.ctp:49
 msgid ""
@@ -2377,30 +2451,36 @@ msgid ""
 "IVR Menu. You can listen to your uploaded audio files by pressing the Play "
 "button or download a copy of the files by using the Download icon."
 msgstr ""
+"Tafadhali pakia faili sikizi ama .mp3 au .wav kwa kila ujumbe. Kama hakuna "
+"faili sikizi, matini ya awali yatatumiwa kwenye menyu ya sauti ya Acha-"
+"Ujumbe. Unaweza kusikia mafaili sikizi uliyopakia ukibofya kitufe Chezesha, "
+"au pakua nakala ya mafaili ukitumia ikoni ya Kupakua."
 
 #: /views/lm_menus/add.ctp:57 /views/lm_menus/edit.ctp:57
 msgid "Name of this Leave-a-message IVR menu."
-msgstr ""
+msgstr "Jina la menyu ya sauti hii ya Acha-ujumbe"
 
 #: /views/lm_menus/add.ctp:58
 msgid "Maximum duration of voice message left by user."
-msgstr ""
+msgstr "Upeo wa kipindi wa ujumbe wa sauti kutoka mtumiaji."
 
 #: /views/lm_menus/add.ctp:59 /views/lm_menus/edit.ctp:59
-msgid "Check the box to force Text-to-speach (ignore uploaded files)"
+msgid "Check the box to force Text-to-speech (ignore uploaded files)"
 msgstr ""
+"Tia alama katika kisanduku ili kushurutisha matini kusautishwa (puuza "
+"mafaili yaliyopakiwa)"
 
 #: /views/lm_menus/add.ctp:70 /views/lm_menus/edit.ctp:80
 msgid "General settings"
-msgstr ""
+msgstr "Mipangilio ya kawaida"
 
 #: /views/lm_menus/add.ctp:72 /views/lm_menus/edit.ctp:82
 msgid "Message duration"
-msgstr ""
+msgstr "Kipindi cha ujumbe"
 
 #: /views/lm_menus/add.ctp:74 /views/lm_menus/edit.ctp:84
 msgid "Do not use uploaded files"
-msgstr ""
+msgstr "Usitumie mafaili yaliyopakiwa"
 
 #: /views/lm_menus/add.ctp:82 /views/lm_menus/edit.ctp:91
 msgid "Step 1: Welcome message"
@@ -2415,7 +2495,11 @@ msgstr "Matini ya awali"
 
 #: /views/lm_menus/add.ctp:92 /views/lm_menus/edit.ctp:114
 msgid "Step 2: Record message instructions"
-msgstr ""
+msgstr "Hatua 2: Rekodi maelezo ya ujumbe"
+
+#: /views/lm_menus/add.ctp:101 /views/lm_menus/edit.ctp:134
+msgid "Advanced options"
+msgstr "Machaguo ya juu"
 
 #: /views/lm_menus/advanced_add.ctp:44 /views/lm_menus/advanced_edit.ctp:44
 msgid ""
@@ -2423,6 +2507,8 @@ msgid ""
 "the caller to finish the call by pressing # instead of hanging up (in Step "
 "2)."
 msgstr ""
+"Ukichagua kuwezesha huduma ya juu ya Acha-Ujumbe, mwambie mpigaji amalize "
+"mwito kwa kubonyeza # badala ya kukata simu (katika Hatua 2)."
 
 #: /views/lm_menus/advanced_add.ctp:48 /views/lm_menus/advanced_edit.ctp:48
 msgid "Step 3: Invalid message"
@@ -2466,19 +2552,19 @@ msgstr "Hifadhi ujumbe"
 
 #: /views/lm_menus/edit.ctp:40
 msgid "Edit Leave a Message IVR"
-msgstr ""
+msgstr "Hariri Menyu ya Sauti ya Acha-Ujumbe"
 
 #: /views/lm_menus/edit.ctp:58
 msgid "Maximum duration (seconds) of voice message left by user."
-msgstr ""
+msgstr "Upeo wa kipindi (sekunde) wa ujumbe wa sauti kutoka mtumiaji."
 
 #: /views/lm_menus/edit.ctp:116
 msgid "Inform Message"
-msgstr "Ujumbe wa kutaharifu"
+msgstr "Ujumbe wa Maagizo"
 
 #: /views/lm_menus/index.ctp:34
 msgid "Manage Leave-a-message"
-msgstr ""
+msgstr "Simamia Acha-ujumbe"
 
 #: /views/lm_menus/index.ctp:59
 msgid "Are you sure you want to delete this Leave-a-message IVR menu?"
@@ -2489,25 +2575,39 @@ msgid ""
 "No Leave-a-Message menus exist. Please create one by clicking the <i>Create "
 "new</i> button to the right."
 msgstr ""
+"Hakuna menyu ya Acha-Ujumbe yoyote. Tafadhali unda moja ukibofya kitufe "
+"<i>Unda mpya</i> upande wa kulia."
 
 #: /views/logs/disp.ctp:42
 msgid "No log file of this type exists"
-msgstr ""
+msgstr "Hakuna faili la batli la aina hii"
 
 #: /views/logs/index.ctp:30
 msgid "Select log file to view"
 msgstr ""
 
-#: /views/logs/index.ctp:34
+#: /views/logs/index.ctp:38
+msgid "Cron and refresh"
+msgstr "Ratibisha na kuonyesha upya"
+
+#: /views/logs/index.ctp:39
+msgid "Debug"
+msgstr "Eua"
+
+#: /views/logs/index.ctp:40
+msgid "Error"
+msgstr "Kosa"
+
+#: /views/logs/index.ctp:49
 msgid "Select log file"
-msgstr ""
+msgstr "Chagua faili la batli"
 
 #: /views/messages/archive.ctp:33
 msgid "Archived messages"
 msgstr "Ujumbe uliohifadhiwa kwenye nyaraka"
 
 #: /views/messages/archive.ctp:49;70 /views/messages/disp.ctp:52;70
-#: /views/users/disp.ctp:14;63 /views/users/index.ctp:87;105
+#: /views/users/disp.ctp:15;64 /views/users/index.ctp:89;107
 msgid "New"
 msgstr "Mpya"
 
@@ -2529,21 +2629,21 @@ msgstr "Idadi ya jumbe kwa ukurasa: "
 msgid "All"
 msgstr "Zote"
 
-#: /views/messages/disp.ctp:104 /views/users/index.ctp:147
+#: /views/messages/disp.ctp:104 /views/users/index.ctp:148
 msgid "Perform action on selected"
-msgstr ""
+msgstr "Fanya kitendo kwenye iliyochaguliwa"
 
 #: /views/messages/edit.ctp:45
 msgid "No rate"
-msgstr ""
+msgstr "Bila kadirio"
 
 #: /views/messages/edit.ctp:55
 msgid "Previous message"
-msgstr ""
+msgstr "Ujumbe uliotangulia"
 
 #: /views/messages/edit.ctp:60
 msgid "Next message"
-msgstr ""
+msgstr "Ujumbe unaofuata"
 
 #: /views/messages/edit.ctp:69
 msgid "Edit Message"
@@ -2551,11 +2651,11 @@ msgstr "Hariri ujumbe"
 
 #: /views/messages/edit.ctp:94
 msgid "No category"
-msgstr ""
+msgstr "Hakuna kategoria"
 
 #: /views/messages/edit.ctp:95
 msgid "Comment"
-msgstr ""
+msgstr "Maoni"
 
 #: /views/messages/edit.ctp:96 /views/messages/index.ctp:47
 #: /views/tags/add.ctp:40 /views/tags/edit.ctp:46 /views/tags/index.ctp:45
@@ -2564,11 +2664,11 @@ msgstr "Lebo"
 
 #: /views/messages/edit.ctp:96
 msgid "No tag"
-msgstr ""
+msgstr "Hakuna lebo"
 
 #: /views/messages/edit.ctp:101
 msgid "Are you sure you want to delete this message?"
-msgstr "Unahakika unataka kufuta ujumbe huu?"
+msgstr ""
 
 #: /views/messages/edit.ctp:115 /views/switchers/index.ctp:43
 msgid "Modified"
@@ -2580,27 +2680,27 @@ msgstr "Ujumbe wa sauti"
 
 #: /views/messages/index.ctp:30
 msgid "Please select one or more criteria below."
-msgstr ""
+msgstr "Tafadhali chagua kigezo kimoja au zaidi hapo chini."
 
 #: /views/messages/index.ctp:50
 msgid "LAM Service"
-msgstr ""
+msgstr "Huduma ya Acha-Ujumbe"
 
 #: /views/messages/index.ctp:53
 msgid "Sorting direction"
-msgstr ""
+msgstr "Uelekeo wa kupanga"
 
 #: /views/messages/index.ctp:54
 msgid "Entries per page"
-msgstr ""
+msgstr "Maingizo kwenye kila ukurasa"
 
 #: /views/messages/index.ctp:56
 msgid "Selection criteria"
-msgstr ""
+msgstr "Vigezo vya uteuzi"
 
 #: /views/messages/index.ctp:64
 msgid "Order and direction"
-msgstr ""
+msgstr "Utaratibu na uelekezo"
 
 #: /views/monitor_ivr/erase.ctp:25
 msgid "Erase monitoring data"
@@ -2620,7 +2720,7 @@ msgstr "Maingizo:"
 
 #: /views/monitor_ivr/index.ctp:74
 msgid "Caller ID"
-msgstr ""
+msgstr "Kitambulisho cha Mpigaji"
 
 #: /views/monitor_ivr/index.ctp:75
 msgid "From"
@@ -2628,11 +2728,11 @@ msgstr "Kutoka"
 
 #: /views/monitor_ivr/index.ctp:76
 msgid "Pressed"
-msgstr ""
+msgstr "Bonyezwa"
 
 #: /views/monitor_ivr/index.ctp:77
 msgid "To"
-msgstr ""
+msgstr "Kwenda"
 
 #: /views/monitor_ivr/index.ctp:104 /views/monitor_ivr/output.ctp:35
 msgid "start"
@@ -2659,7 +2759,7 @@ msgstr "Tarakimu"
 
 #: /views/monitor_ivr/output.ctp:27
 msgid "Caller number"
-msgstr "Namba ya mpigaji"
+msgstr "Nambari ya mpigaji"
 
 #: /views/monitor_ivr/output.ctp:59
 msgid "MonitorIvr"
@@ -2667,11 +2767,11 @@ msgstr "Fuatilia Menyu ya Sauti"
 
 #: /views/nodes/add.ctp:28
 msgid "Upload"
-msgstr ""
+msgstr "Pakia"
 
 #: /views/nodes/add.ctp:32
 msgid "Upload Content"
-msgstr ""
+msgstr "Pakia Maudhui"
 
 #: /views/nodes/add.ctp:46
 msgid "Valid formats: wav and mp3"
@@ -2679,7 +2779,7 @@ msgstr "Umbizo halali: wav na mp3"
 
 #: /views/nodes/edit.ctp:37
 msgid "Edit Content"
-msgstr ""
+msgstr "Hariri Maudhui"
 
 #: /views/nodes/edit.ctp:57
 msgid ""
@@ -2690,7 +2790,7 @@ msgstr ""
 
 #: /views/nodes/edit.ctp:58 /views/nodes/index.ctp:53
 msgid "Duration"
-msgstr ""
+msgstr "Kipindi"
 
 #: /views/nodes/edit.ctp:70
 msgid "No Menu Option with that id exists"
@@ -2713,14 +2813,16 @@ msgid ""
 "No content items exist. Please upload content by clicking the <i>Upload new</"
 "i> button to the right."
 msgstr ""
+"Hakuna kipengee cha maudhui chochote. Tafadhali pakia kimoja ukibofya kitufe "
+"<i>Pakia mpya</i> upande wa kulia."
 
 #: /views/office_route/edit.ctp:33
 msgid "slot"
-msgstr ""
+msgstr "mfuo"
 
 #: /views/phone_books/add.ctp:29
 msgid "Create Phone book"
-msgstr ""
+msgstr "Unda kitabu cha simu"
 
 #: /views/phone_books/edit.ctp:48
 msgid "Add user to phone book"
@@ -2728,55 +2830,7 @@ msgstr ""
 
 #: /views/phone_books/edit.ctp:56
 msgid "No phone book with this id exists"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37 /views/users/add.ctp:44
-#: /views/users/edit.ctp:74 /views/users/view.ctp:54
-msgid "Organization"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37 /views/users/edit.ctp:123
-#: /views/users/view.ctp:76
-msgid "In the system since"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "Poll count"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "Voice menu count"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "Leave-a-message count"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "SMS count"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "Callback count"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37 /views/users/edit.ctp:125
-#: /views/users/view.ctp:78
-msgid "First application"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37 /views/users/edit.ctp:126
-#: /views/users/view.ctp:79
-msgid "Last application"
-msgstr ""
-
-#: /views/phone_books/export.ctp:37
-msgid "Last active"
-msgstr ""
-
-#: /views/phone_books/export.ctp:47
-msgid "PhoneBook"
-msgstr ""
+msgstr "Hakuna kitabu cha simu chenye kitambulisho hiki"
 
 #: /views/phone_books/index.ctp:54
 msgid "Are you sure you want to delete this phone book?"
@@ -2787,17 +2841,21 @@ msgid ""
 "No phone books exist. Please create one by clicking the <i>Create new</i> "
 "button to the right."
 msgstr ""
+"Hakuna kitabu cha simu chochote. Tafadhali unda kimoja ukibofya kitufe "
+"<i>Unda mpya</i> upande wa kulia."
 
 #: /views/phone_numbers/add_failure.ctp:3
 msgid ""
 "Duplicated or invalid phone number format (numbers and plus (+) sign are "
 "allowed)."
 msgstr ""
+"Nambari maradufu au kwenye umbizo batili (namba na alama ya kujumlisha (+) "
+"zinaruhusiwa)."
 
 #: /views/phone_numbers/add_failure.ctp:9
 #: /views/phone_numbers/add_success.ctp:8
 msgid "Number"
-msgstr ""
+msgstr "Nambari"
 
 #: /views/polls/add.ctp:41 /views/polls/edit.ctp:52
 msgid "Define a concrete question using simple language"
@@ -2825,21 +2883,23 @@ msgid ""
 "Please note that all votes associated with a poll option will be deleted "
 "together with the poll option."
 msgstr ""
+"Uwe mwangalifu kwamba kura zote zilizopigwa zinazohusishwa na chaguo la kura "
+"zitafutwa pamoja na chaguo la kura hilo."
 
 #: /views/polls/edit.ctp:108
 msgid "Add option"
-msgstr ""
+msgstr "Ongeza chaguo"
 
 #: /views/polls/index.ctp:61
 msgid "Are you sure you want to delete this poll?"
-msgstr "Unahakika unataka kufuta kura hii?"
+msgstr ""
 
 #: /views/polls/index.ctp:76
 msgid "Total Votes"
-msgstr ""
+msgstr "Jumla ya Kura Zilizopigwa"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#: /views/polls/index.ctp:80 /views/processes/system.ctp:111
+#: /views/polls/index.ctp:80 /views/processes/system.ctp:110
 msgid "System time"
 msgstr "Muda wa mfumo"
 
@@ -2848,6 +2908,8 @@ msgid ""
 "No polls exist. Please create one by clicking the <i>Create new</i> button "
 "to the right."
 msgstr ""
+"Hakuna kura yoyote. Tafadhali unda moja ukibofya kitufe <i>Unda mpya</i> "
+"upande wa kulia."
 
 #: /views/polls/view.ctp:54
 msgid "Options"
@@ -2887,7 +2949,7 @@ msgid "Not running"
 msgstr "Haiendeshi"
 
 # (pofilter) unchanged: please translate
-#: /views/processes/index.ctp:96 /views/processes/system.ctp:99
+#: /views/processes/index.ctp:96 /views/processes/system.ctp:98
 msgid "FreeSWITCH"
 msgstr "FreeSWITCH"
 
@@ -2901,7 +2963,7 @@ msgstr "Namna ya kuzimwa"
 
 #: /views/processes/system.ctp:73
 msgid "Software updates"
-msgstr ""
+msgstr "Masasisho ya programu"
 
 #: /views/processes/system.ctp:88;89
 msgid "Freedom Fone"
@@ -2909,85 +2971,97 @@ msgstr "Freedom Fone"
 
 #: /views/processes/system.ctp:89
 msgid "Version"
-msgstr ""
+msgstr "Toleo"
 
 #: /views/processes/system.ctp:90
 msgid "SVN revision"
-msgstr ""
+msgstr "Masahihisho ya SVN"
 
-#: /views/processes/system.ctp:97
+#: /views/processes/system.ctp:96
 msgid "Software"
 msgstr "Programu"
 
-#: /views/processes/system.ctp:98
+#: /views/processes/system.ctp:97
 msgid "Operating system"
-msgstr ""
+msgstr "Mfumo endeshi"
 
-#: /views/processes/system.ctp:100
+#: /views/processes/system.ctp:99
 msgid "Web server"
 msgstr "Seva ya tovuti"
 
 # (pofilter) unchanged: please translate
-#: /views/processes/system.ctp:101
+#: /views/processes/system.ctp:100
 msgid "MySQL"
 msgstr "MySQL"
 
-#: /views/processes/system.ctp:102
+#: /views/processes/system.ctp:101
 msgid "Dispatcher"
 msgstr "Kitolewacho"
 
-#: /views/processes/system.ctp:108
+#: /views/processes/system.ctp:107
 msgid "Environment"
-msgstr ""
+msgstr "Mazingira"
 
-#: /views/processes/system.ctp:109 /views/settings/index.ctp:120
+#: /views/processes/system.ctp:108 /views/settings/index.ctp:117
 msgid "IP address"
-msgstr ""
+msgstr "Anwani ya IP (itifaki ya wavuti)"
 
-#: /views/processes/system.ctp:110
+#: /views/processes/system.ctp:109 /views/settings/index.ctp:53
 msgid "Language"
-msgstr ""
+msgstr "Lugha"
 
-#: /views/settings/index.ctp:36
+#: /views/settings/index.ctp:34
 msgid "Please select appropriate IP address of your Freedom Fone installation."
 msgstr ""
+"Tafadhali chagua anwani ya IP (itifaki ya wavuti) inayofaa kwa usakinishaji "
+"wako wa Freedom Fone"
 
-#: /views/settings/index.ctp:37
+#: /views/settings/index.ctp:35
 msgid "If the server: "
-msgstr ""
+msgstr "Kama seva:"
 
-#: /views/settings/index.ctp:38
+#: /views/settings/index.ctp:36
 msgid ""
 "is connected to the Internet, and has a public IP address, select Internet."
 msgstr ""
+"imeunganishwa na Wavuti, na ina anwani ya IP inayopatikana kutoka nje, "
+"chagua Wavuti."
 
-#: /views/settings/index.ctp:39
+#: /views/settings/index.ctp:37
 msgid "is connected to a local area network (LAN), select Local Area Network."
-msgstr ""
+msgstr "imeunganishwa na mtandao wa kiambo (LAN), chagua Mtandao wa Kiambo."
 
-#: /views/settings/index.ctp:40
+#: /views/settings/index.ctp:38
 msgid "is not networked, select Local machine."
-msgstr ""
+msgstr "haijaunganishwa na mtandao, chagua Tarakilishi ya kiambo."
+
+#: /views/settings/index.ctp:67
+msgid "Time zone"
+msgstr "Majira ya saa"
+
+#: /views/settings/index.ctp:74
+msgid "Country"
+msgstr "Nchi"
+
+#: /views/settings/index.ctp:81
+msgid "Internet"
+msgstr "Wavuti"
+
+#: /views/settings/index.ctp:82
+msgid "Local Area Network"
+msgstr "Mtandao wa Kiambo"
 
 #: /views/settings/index.ctp:83
-msgid "Internet"
-msgstr ""
-
-#: /views/settings/index.ctp:84
-msgid "Local Area Network"
-msgstr ""
-
-#: /views/settings/index.ctp:85
 msgid "Local machine"
-msgstr ""
+msgstr "Tarakilishi ya kiambo"
 
-#: /views/settings/index.ctp:92
+#: /views/settings/index.ctp:90
 msgid "Your current IP address is"
-msgstr ""
+msgstr "Anwani yako ya IP (itifaki ya wavuti) ni"
 
-#: /views/settings/index.ctp:113
+#: /views/settings/index.ctp:110
 msgid "Environment settings"
-msgstr ""
+msgstr "Mipangilio ya mazingira"
 
 #: /views/switchers/add.ctp:25
 msgid "Create language switcher"
@@ -2999,11 +3073,11 @@ msgstr ""
 
 #: /views/switchers/add.ctp:60
 msgid "Menu entries"
-msgstr "Maingizo ya menyu"
+msgstr ""
 
 #: /views/switchers/add.ctp:104 /views/switchers/edit.ctp:141
 msgid "Press"
-msgstr "Bonyeza"
+msgstr ""
 
 #: /views/switchers/add.ctp:105 /views/switchers/edit.ctp:143
 msgid "Select voice menu"
@@ -3035,7 +3109,7 @@ msgstr ""
 
 #: /views/tags/add.ctp:29
 msgid "Create tag"
-msgstr ""
+msgstr "Unda lebo"
 
 #: /views/tags/index.ctp:53
 msgid "Are you sure you want to delete this tag?"
@@ -3046,26 +3120,32 @@ msgid ""
 "No tags exist. Please create one by clicking the <i>Create new</i> button to "
 "the right."
 msgstr ""
+"Hakuna lebo yoyote. Tafadhali unda moja ukibofya kitufe <i>Unda mpya</i> "
+"upande wa kulia."
 
-#: /views/users/add.ctp:45
+#: /views/users/add.ctp:45 /views/users/edit.ctp:74 /views/users/view.ctp:54
+msgid "Organization"
+msgstr "Shirika"
+
+#: /views/users/add.ctp:46
 msgid "ACL"
-msgstr ""
+msgstr "ODU"
 
-#: /views/users/disp.ctp:34 /views/users/index.ctp:121
+#: /views/users/disp.ctp:35 /views/users/index.ctp:122
 msgid "Are you sure you want to delete this user?"
 msgstr ""
 
-#: /views/users/disp.ctp:44
+#: /views/users/disp.ctp:45
 msgid "Alternative phone numbers"
-msgstr ""
+msgstr "Nyambari za simu nyingine"
 
-#: /views/users/disp.ctp:68 /views/users/index.ctp:92
+#: /views/users/disp.ctp:69 /views/users/index.ctp:94
 msgid "Acl"
-msgstr ""
+msgstr "Odu"
 
-#: /views/users/disp.ctp:69 /views/users/index.ctp:93
+#: /views/users/disp.ctp:70 /views/users/index.ctp:95
 msgid "Phone"
-msgstr ""
+msgstr "Simu"
 
 #: /views/users/edit.ctp:69 /views/users/view.ctp:49
 msgid "User data"
@@ -3073,19 +3153,31 @@ msgstr ""
 
 #: /views/users/edit.ctp:75 /views/users/view.ctp:55
 msgid "Access control list (ACL)"
-msgstr ""
+msgstr "Orodha dhibiti ufikivu (ODU)"
 
-#: /views/users/edit.ctp:76 /views/users/index.ctp:58;154
+#: /views/users/edit.ctp:76 /views/users/index.ctp:60;155
 msgid "Select phone book"
-msgstr ""
+msgstr "Chagua kitabu cha simu"
 
 #: /views/users/edit.ctp:108
 msgid "Add phone number"
-msgstr ""
+msgstr "Ongeza nambari ya simu"
+
+#: /views/users/edit.ctp:123 /views/users/view.ctp:76
+msgid "In the system since"
+msgstr "Katika mfumo kutoka"
+
+#: /views/users/edit.ctp:125 /views/users/view.ctp:78
+msgid "First application"
+msgstr "Matumizi ya kwanza"
+
+#: /views/users/edit.ctp:126 /views/users/view.ctp:79
+msgid "Last application"
+msgstr "Matumizi ya mwisho"
 
 #: /views/users/edit.ctp:127 /views/users/view.ctp:80
 msgid "Activity"
-msgstr ""
+msgstr "Shughuli"
 
 #: /views/users/edit.ctp:144 /views/users/view.ctp:98
 msgid "No user with this id exists"
@@ -3093,1228 +3185,491 @@ msgstr ""
 
 #: /views/users/index.ctp:37
 msgid "Add user"
-msgstr ""
+msgstr "Ongeza mtumiaji"
 
-#: /views/users/index.ctp:53
+#: /views/users/index.ctp:55
 msgid "All phone books"
 msgstr ""
 
-#: /views/users/index.ctp:77
+#: /views/users/index.ctp:79
 msgid "from phone book"
-msgstr ""
+msgstr "kutoka kitabu cha simu"
 
-#: /views/users/index.ctp:168
+#: /views/users/index.ctp:169
 msgid "There are no users in the selected phone book."
 msgstr ""
 
 #: /views/votes/add_failure.ctp:3
 msgid "Invalid format"
-msgstr ""
+msgstr "Umbizo batili"
+
+#~ msgid "Wrong password, please try again."
+#~ msgstr "Kosa la nywila, tafadhali jaribu tena."
+
+#~ msgid "You do not have the authority to access this page."
+#~ msgstr "Huna mamlaka kufikia katika ukurasa huu."
+
+#~ msgid "Login"
+#~ msgstr "Ingia"
+
+#~ msgid "You are logged in!"
+#~ msgstr "Umeingia!"
+
+#~ msgid "You are logged out."
+#~ msgstr "Umeaga."
+
+#~ msgid "System Users"
+#~ msgstr "Watumiaji wa Mfumo"
+
+#~ msgid ""
+#~ "Default password is currently in use for Admin. Please change the "
+#~ "password as soon as possible using the Edit function below."
+#~ msgstr ""
+#~ "Nywila ya chaguo-msingi inatumiwa sasa kwa Msimamizi. Tafadhali badilisha "
+#~ "nywila moja kwa moja ukitumia Hariri hapo chini."
+
+# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
+#~ msgid "Add System User"
+#~ msgstr "Ongeza Mtumiaji wa Mfumo"
+
+#~ msgid "New user has been created."
+#~ msgstr "Mtumiaji mpya ameundwa."
+
+#~ msgid "Edit System User"
+#~ msgstr "Hariri Mtumiaji wa Mfumo"
+
+#~ msgid "User has been updated."
+#~ msgstr "Mtumiaji amesasishwa."
+
+#~ msgid "The user been deleted."
+#~ msgstr "Mtumiaji huyu amefutwa."
+
+#~ msgid "You cannot delete the Admin user."
+#~ msgstr "Huwezekani kufuta mtumiaji Msimamizi."
+
+#~ msgid "Freedom Fone has successfully been swept."
+#~ msgstr "Freedom Fone imefanikiwa kufagiwa."
+
+#~ msgid "Sweeping failed. Please review your Sweeper settings."
+#~ msgstr ""
+#~ "Kufagia kumeshindwa. Tafadhali hakikisha mipangilio yako ya Ufagizi."
+
+#~ msgid "Freedom Fone Groups"
+#~ msgstr "Vikundi vya Freedom Fone"
+
+#~ msgid "Invalid IP address"
+#~ msgstr "Anwani batili ya IP"
+
+#~ msgid "Please try again."
+#~ msgstr "Tafadhali jaribu tena."
+
+#~ msgid "Callers"
+#~ msgstr "Wapigaji"
+
+#~ msgid "Caller details"
+#~ msgstr "Maarifa ya wapigaji"
+
+#~ msgid "Edit Caller"
+#~ msgstr "Hariri Mpigaji"
+
+#~ msgid "Add Caller"
+#~ msgstr "Ongeza Mpigaji"
+
+#~ msgid "New caller has been added"
+#~ msgstr "Mpigaji mpya ameongezwa"
+
+#~ msgid "Between 5 to 20 characters"
+#~ msgstr "Kati ya herufi 5 mpaka 20"
+
+#~ msgid "This username is already in use."
+#~ msgstr "Jina la mtumiaji hili tayari limetumika."
+
+#~ msgid "The password must be between 5 to 50 characters"
+#~ msgstr "Lazima nywila iwe kati ya herufi 5 hadi 50"
+
+#~ msgid "The passwords do not match."
+#~ msgstr "Nywila hazifanani."
+
+#~ msgid "A valid question is required (Min 10 characters)."
+#~ msgstr "Swali halali ni lazima (herufi 10 au zaidi)."
+
+#~ msgid "Name required (letters, spaces and hyphens)."
+#~ msgstr "Jina ni lazima (herufi, nafasi, na vistariungio)."
+
+#~ msgid "Are you sure you wish to delete this category?"
+#~ msgstr "Una uhakika unataka kufuta kategoria hii?"
+
+#~ msgid "System users"
+#~ msgstr "Watumiaji wa mfumo"
+
+#~ msgid "Frontend Sweeper"
+#~ msgstr "Ufagizi wa Maarifa Binafsi"
+
+#~ msgid "This page does not exist. Missing controller."
+#~ msgstr "Ukurasa huo haupo. Hakuna kidhibiti."
+
+#~ msgid "Authentication"
+#~ msgstr "Uhalalishaji"
+
+#~ msgid "Username"
+#~ msgstr "Jina la mtumiaji"
+
+#~ msgid "Password"
+#~ msgstr "Nywila"
+
+#~ msgid "Repeat password"
+#~ msgstr "Andika nywila tena"
+
+#~ msgid "Group"
+#~ msgstr "Kikundi"
+
+#~ msgid "User management"
+#~ msgstr "Usimamizi wa watumiaji"
+
+#~ msgid "New password"
+#~ msgstr "Nywila mpya"
+
+#~ msgid "Are you sure you wish to delete this user?"
+#~ msgstr "Una uhakika unataka kufuta mtumiaji huyu?"
+
+#~ msgid ""
+#~ "No users exist. Please add one by clicking the <i>Add User</i> button to "
+#~ "the right."
+#~ msgstr ""
+#~ "Hakuna mtumiaji yeyote. Tafadhali ongeza mmoja ukibofya kitufe <i>Unda "
+#~ "Mtumiaji</i> upande wa kulia."
+
+#~ msgid ""
+#~ "The Frontend Sweeper wipes out all confidential information (such as "
+#~ "name, email and phone numbers) from Freedom Fone."
+#~ msgstr ""
+#~ "Ufagizi wa Maarifa Binafsi unafuta mambo yote yanayoweza kutambulisha "
+#~ "watumiaji (kama jina, barua pepe, na nambari za simu) kutoka Freedom Fone."
+
+#~ msgid "To wipe out Freedom Fone logs, please use the Backend Sweeper."
+#~ msgstr "Kufuta batli za Freedom Fone, tafadhali tumia Ufagizi wa Nyuma"
+
+#~ msgid "Start Sweeper"
+#~ msgstr "Anza Ufagizi"
+
+#~ msgid "Add Group"
+#~ msgstr "Ongeza Kikundi"
+
+#~ msgid "Add group"
+#~ msgstr "Ongeza kikundi"
+
+#~ msgid "Are you sure you wish to delete this group?"
+#~ msgstr "Una uhakika unataka kufuta kikundi hiki?"
+
+#~ msgid ""
+#~ "No groups exist. Please add one by clicking the <i>Add Group</i> button "
+#~ "to the right."
+#~ msgstr ""
+#~ "Hakuna kikundi chochote. Tafadhali ongeza kimoja ukibofya kitufe <i>Unda "
+#~ "Kikundi</i> upande wa kulia."
+
+#~ msgid "Voice Menus"
+#~ msgstr "Menyu za Sauti"
+
+#~ msgid "Tool tip"
+#~ msgstr "Kidokezo cha zana"
+
+#~ msgid "Are you sure you wish to delete this voice menu?"
+#~ msgstr "Una uhakika unataka kufuta menyu ya sauti hii?"
+
+#~ msgid "Are you sure you wish to delete this language selector?"
+#~ msgstr "Una uhakika unataka kufuta kiteuzi cha lugha hiki?"
+
+#~ msgid "Logged in as"
+#~ msgstr "Umeingia kama"
+
+#~ msgid "Logout"
+#~ msgstr "Toka"
+
+#~ msgid ""
+#~ "Please upload either an .mp3 or a .wav audio file for each message. If no "
+#~ "audio file is present, the fallback text will be used in the Leave-a-"
+#~ "Message IVR Menu."
+#~ msgstr ""
+#~ "Tafadhali pakia faili sikizi la aina .mp3 au .wav kwa kila ujumbe. Kama "
+#~ "hakuna faili sikizi, matini ya awali yatatumiwa katika menyu ya sauti ya "
+#~ "Acha-Ujumbe."
+
+#~ msgid ""
+#~ "You can listen to your uploaded audio files by pressing the Play button "
+#~ "or download a copy of the files by using the Download icon."
+#~ msgstr ""
+#~ "Unaweza kusikia mafaili sikizi uliyopakia ukibofya kitufe Chezesha, au "
+#~ "pakua nakala ya mafaili ukitumia ikoni ya Kupakua."
+
+#~ msgid "Are you sure you wish to delete this Leave-a-message IVR menu?"
+#~ msgstr "Una uhakika unataka kufuta menyu ya sauti hii ya Acha-ujumbe?"
+
+#~ msgid "Select log file to view."
+#~ msgstr "Chagua faili la batli kuangalia."
+
+#~ msgid "Inbox"
+#~ msgstr "Kikasha pokezi"
+
+#~ msgid "Are you sure you wish to delete this message?"
+#~ msgstr "Una uhakika unataka kufuta ujumbe huu?"
+
+#~ msgid "Are you sure you wish to delete this entry?"
+#~ msgstr "Una uhakika unataka kufuta ingizo hili?"
+
+#~ msgid "Are you sure you wish to delete this content?"
+#~ msgstr "Una uhakika unataka kufuta maudhui haya?"
+
+#~ msgid "Welcome to Freedom Fone"
+#~ msgstr "Karibu kwenye Freedom Fone"
+
+#~ msgid "Please click on the padlock in the upper right corner to log in."
+#~ msgstr ""
+#~ "Kuingia, tafadhali bonyeza kufuli kwenye pembe ya juu, upande wa kulia."
+
+#~ msgid ""
+#~ "This component allows you to build a variety of personal Voice Menus "
+#~ "based on customized audio files, or synthesized text messages."
+#~ msgstr ""
+#~ "Kijenzi hiki kinakuwezesha kujenga Menyu za Sauti binafsi mbalimbali, "
+#~ "kutumia mafaili sikizi yaliyogeuzwa kufaa, au ujumbe wa matini "
+#~ "uliosautishwa."
+
+#~ msgid "A Voice menu consists of:"
+#~ msgstr "Menyu ya sauti inayo:"
+
+#~ msgid ""
+#~ "Menu Instructions: a set of mandatory voice messages, such as a Welcome "
+#~ "message, and instructions on how to navigate through the menu."
+#~ msgstr ""
+#~ "Maelezo ya Menyu: fungu la ujumbe za sauti za lazima, kama ujumbe wa "
+#~ "kukaribisha, na maelezo kuhusu namna ya kutumia menyu."
+
+#~ msgid ""
+#~ "Menu Options: audio files or components associated with telephony keypad "
+#~ "selections."
+#~ msgstr ""
+#~ "Machaguo ya Menyu: mafaili sikizi au vijenzi vilivyohusishwa na viteuzi "
+#~ "vya kibao-namba cha simu."
+
+#~ msgid ""
+#~ "The Leave-a-message voice menu consists of eight different messages. Each "
+#~ "message can be generated in three different ways:"
+#~ msgstr ""
+#~ "Menyu ya sauti ya Acha-ujumbe inayo ujumbe nane tofauti. Kuna namna tatu "
+#~ "tofauti kutengeneza kila ujumbe:"
+
+#~ msgid "Customized audio files"
+#~ msgstr "Mafaili sikizi yaliyogeuzwa kufaa"
+
+#~ msgid "Customized text to speech"
+#~ msgstr "Matini kusautishwa yaliyogeuzwa kufaa"
+
+#~ msgid "Default text to speech"
+#~ msgstr "Matini kusautishwa ya chaguo-msingi"
+
+#~ msgid ""
+#~ "If the administrator associates an audio file with a message, that file "
+#~ "will be played to the caller when she enters the voice menu."
+#~ msgstr ""
+#~ "Kama msimamizi akihusisha faili sikizi na ujumbe, faili hilo "
+#~ "litachezeshwa kwa mpigaji kwa mpigaji akiingia menyu ya sauti."
+
+#~ msgid ""
+#~ "If no audio file is provided for a message, but a customized text message "
+#~ "exists, the text message will be synthesized and played to the caller."
+#~ msgstr ""
+#~ "Kama hukuna faili sikizi lililopewa kwa ujumbe, lakini ujumbe wa matini "
+#~ "yaliyogeuzwa kufaa upo, ujumbe wa matini utasautishwa na utachezeshwa kwa "
+#~ "mpigaji."
+
+#~ msgid ""
+#~ "If neither an audio file, nor a customized text is provided, the default "
+#~ "text will be synthesized and played to the user.|The audio files must be "
+#~ "uploaded in .mp3 or .wav format through the user interface. Once "
+#~ "uploaded, they can be listened to from the administration GUI via the "
+#~ "built-in Flashplayer. Audio files can at any time be overwritten with a "
+#~ "new audio file."
+#~ msgstr ""
+#~ "Kama hakuna faili sikizi wala matini yaliyogeuzwa kufaa, matini ya awali "
+#~ "yatasautishwa na kuchezeshwa kwa mtumiaji.|Ni lazima kutumia kiolesura "
+#~ "cha watumiaji kupakia mafaili sikizi kwa umbizo wa .mp3 au .wav. Baada ya "
+#~ "kupakiwa, yataweza kusikilizwa kutoka kiolesura cha usimamizi kwa "
+#~ "Flashplayer iliyojengwa ndani. Inawezekana kubadilisha mafaili sikizi "
+#~ "wakati wowote."
+
+#~ msgid ""
+#~ "The Poll service allows end users to participate in polls by sending SMSs "
+#~ "to Freedom Fone."
+#~ msgstr ""
+#~ "Huduma ya Kura inawezesha watumiaji wa hatima kushiriki kwenye kura "
+#~ "wakituma ujumbe mfupi kwenda Freedom Fone."
+
+#~ msgid ""
+#~ "The Freedom Fone administrator has the ability to create, edit and delete "
+#~ "polls."
+#~ msgstr ""
+#~ "Msimamizi wa Freedom Fone ana uwezekano wa kuunda, kuhariri, na kufuta "
+#~ "kura."
+
+#~ msgid ""
+#~ "The administrator can at any time edit the above listed fields. Of "
+#~ "course, it is not recommended to change the question, code or answers to "
+#~ "a poll, once it has been opened to the public."
+#~ msgstr ""
+#~ "Msimamizi anaweza kuhariri nyuga zinazoorodheshwa hapo juu, wakati "
+#~ "wowote. Lakini, haipendekezwi kubadilisha swali, msimbo, au majibu ya "
+#~ "kura, baada ya kuifungua kwa hadhara."
+
+#~ msgid ""
+#~ "Before a poll is opened, and after it has been closed, no poll votes are "
+#~ "registered for the poll."
+#~ msgstr ""
+#~ "Kabla Kura haijafunguliwa, na baada ya kufungwa, kura zinazopigwa "
+#~ "hazisajiliwi."
+
+#~ msgid ""
+#~ "For each poll, once it has started, the administrator can at anytime, "
+#~ "view the interim or final result in terms of number of votes per answer, "
+#~ "and percentage of total votes per answer."
+#~ msgstr ""
+#~ "Kwa kila kura, baada ya kuanza, msimamizi wakati wowote anaweza kuangalia "
+#~ "matokeo ya muda au ya mwisho, ama idadi ya kura zilizopigwa kwa kila "
+#~ "jibu, au asilimia ya jumla ya kura zilizopigwa kila jibu."
+
+#~ msgid "Classification of votes"
+#~ msgstr "Uainishaji wa kura"
+
+#~ msgid ""
+#~ "The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, "
+#~ "or <i>incorrect</i>:"
+#~ msgstr ""
+#~ "Mfumo unaainisha kura zote zinazofika kama <i>halali</i>, <i>batili</i>, "
+#~ "au <i>si sahihi</i>:"
+
+#~ msgid ""
+#~ "Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: "
+#~ "Received before the poll opened.</li><li>In time: Received while the poll "
+#~ "was open.</li><li>Late: Received after the poll was closed.</li></"
+#~ "ul>Early votes will be registered as \"Valid, early\". The number of "
+#~ "early votes per poll option is presented in a separate column under the "
+#~ "View poll page. Early votes will not be added to the Total votes accepted "
+#~ "for the poll."
+#~ msgstr ""
+#~ "Kura halali:</b> msimbo wa kura sahihi, na chaguo la kura sahihi|"
+#~ "<ul><li>Mapema: Ilipokelewa kabla kura haijafunguliwa.</li><li>Kuwahiwa: "
+#~ "Ilipokelewa wakati kura ilifunguliwa.</li><li>Kuchelewa: Ilipokelewa "
+#~ "baada ya kura kufungwa.</li></ul>Kura mapema zitasajiliwa kama \"Halali, "
+#~ "mapema\". Idadi ya kura mapema kwa kila chaguo la kura inaonyeshwa katika "
+#~ "safuwima tofauti chini ya ukurasa wa Tazama kura. Kura mapema "
+#~ "hazitajumlishwa na Jumla ya kura zilizopigwa zinazokubaliwa kwenye kura."
+
+#~ msgid ""
+#~ "Late votes will be registered as \"Valid, late\". The number of late "
+#~ "votes per poll option is presented in a separate column under the View "
+#~ "poll page. Late votes will not be added to the Total votes accepted for "
+#~ "the poll."
+#~ msgstr ""
+#~ "Kura zinazochelewa zitasajiliwa kama \"Halali, kuchelewa\". Idadi ya kura "
+#~ "zilizochelewa kwa kila chaguo la kura inaonyeshwa katika safuwima tofauti "
+#~ "chini ya ukurasa wa Tazama kura. Kura zinazochelewa hazitajumlishwa na "
+#~ "Jumla ya kura zilizopigwa zinazokubaliwa kwenye kura."
+
+#~ msgid ""
+#~ "<b>Invalid vote:</b> correct poll code, but a non-matching poll option"
+#~ msgstr ""
+#~ "<b>Kura batili:</b> msimbo wa kura ni sahili, lakini chaguo la kura "
+#~ "halifanani"
+
+#~ msgid ""
+#~ "Invalid votes are registered as votes, but classified as \"invalid\". "
+#~ "\"Early\", \"late\" and \"on-time\" invalid votes are registered."
+#~ msgstr ""
+#~ "Kura batili zinasajiliwa kama kura, lakini zinaainishwa kama \"batili\". "
+#~ "Kura \"mapema\", \"kuchelewa\", na \"kuwahiwa\" zinasajiliwa."
+
+#~ msgid ""
+#~ "Only \"on-time\" invalid votes are incorporated into the Total number of "
+#~ "votes (in time) summary."
+#~ msgstr ""
+#~ "Kura batili za \"kuwahiwa\" tu zinajumlishwa katika muhtasari ya Jumla ya "
+#~ "kura zilizopigwa (kuwahi)"
+
+#~ msgid ""
+#~ "Invalid vote totals are provided to give deployers an idea of how SMS "
+#~ "errors might impact on poll results."
+#~ msgstr ""
+#~ "Jumla ya kura batili zinaonyeshwa ili kufundisha wasimamizi namna matokeo "
+#~ "ya kura yaweza kuathiriwa na makosa ya ujumbe fupi."
+
+#~ msgid "<b>Incorrect vote:</b> Non-matching poll code"
+#~ msgstr "<b>Kura siyo sahihi:</b> Msimbo wa kura haufanani"
+
+#~ msgid ""
+#~ "Incorrect votes that cannot be matched to any existing poll, will be "
+#~ "classified as an incoming SMS and will be stored under \"Incoming SMS\". "
+#~ "The SMS will be classified as \"Unclassified\"."
+#~ msgstr ""
+#~ "Kura zisizo sahihi ambazo hazilingani na kura yoyote, zitaainishwa kama "
+#~ "ujumbe fupi zilizofika, na zitahifadhiwa chini ya \"Ujumbe fupi zilizofika"
+#~ "\". Ujumbe mfupi utaainishwa kama \"Zisizoainishwa\"."
+
+#~ msgid "Add caller to phone book"
+#~ msgstr "Ongeza mpigaji kwenye kitabu cha simu"
+
+#~ msgid "Poll count"
+#~ msgstr "Idadi ya kura"
+
+#~ msgid "Voice menu count"
+#~ msgstr "Idadi ya menyu za sauti"
+
+#~ msgid "Leave-a-message count"
+#~ msgstr "Idadi ya acha-ujumbe"
+
+#~ msgid "SMS count"
+#~ msgstr "Idadi ya ujumbe mfupi"
+
+#~ msgid "Callback count"
+#~ msgstr "Idadi ya kurudisha-mwito"
+
+#~ msgid "Last active"
+#~ msgstr "Mara ya mwisho kuwa amilifu"
+
+#~ msgid "PhoneBook"
+#~ msgstr "Kitabu cha Simu"
+
+#~ msgid "Are you sure you wish to delete this phone book?"
+#~ msgstr "Una uhakika unataka kufuta kitabu cha simu hiki?"
+
+#~ msgid "Are you sure you want to delete this number?"
+#~ msgstr "Unahakika unataka kufuta nambari hii?"
+
+#~ msgid "Are you sure you want to delete this option?"
+#~ msgstr "Unahakika unataka kufuta chaguo hili?"
+
+#~ msgid "Are you sure you wish to delete this poll?"
+#~ msgstr "Una uhakika unataka kufuta kura hii?"
+
+#~ msgid "There are no software updates available"
+#~ msgstr "Hakuna sasisho la programu lolote linalopatikana"
+
+#~ msgid "Caller data"
+#~ msgstr "Data ya mpigaji"
+
+#~ msgid "No caller with this id exists"
+#~ msgstr "Hakuna mpigaji mwenye kitambulisho hicho"
+
+#~ msgid "Add caller"
+#~ msgstr "Ongeza mpigaji"
+
+#~ msgid "All callers"
+#~ msgstr "Wapigaji wote"
+
+#~ msgid "There are no callers in the selected phone book."
+#~ msgstr "Hakuna mpigaji wowote katika kitabu cha simu kilichochaguliwa"
 
 #~ msgid "The folling file could not be uploaded due to invalid file type:"
 #~ msgstr "Faili hili halijapakiliwa kwa sababu ya aina batili ya faili:"
 
 #~ msgid "Invalid page"
 #~ msgstr "Kurasa batili"
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid "The selected category has been deleted."
-#~ msgstr "Kategoria iliyochaguliwa imefutwa."
-
-#~ msgid "System Health :: GSM channels"
-#~ msgstr "Afya ya mfumo :: Mikondo ya GSM"
-
-#~ msgid "The voice menu has been created!"
-#~ msgstr "Menyu ya sauti imetengenezwa!"
-
-#~ msgid "The voice menu has been deleted."
-#~ msgstr "Menyu ya sauti imefutwa."
-
-#~ msgid "Invalid Entry"
-#~ msgstr "Ingizo batili"
-
-#~ msgid "Save & Next"
-#~ msgstr "Hifadhi & Ifuatayo"
-
-#~ msgid "Save & Index"
-#~ msgstr "Hifadhi & Kielezo"
-
-#~ msgid "The voice menu node has been created."
-#~ msgstr "Fundo la menyu ya sauti imetengenezwa."
-
-#~ msgid "No file selected"
-#~ msgstr "Hakuna faili lililochaguliwa"
-
-#~ msgid "The settings has been saved"
-#~ msgstr "Mipangilio imehifadhiwa"
-
-#~ msgid "The poll has been added to the database"
-#~ msgstr "Kura imeongezwa kwenye hifadhidata"
-
-#~ msgid "The follwing poll has been deleted"
-#~ msgstr "Kura ifuatayo imefutwa"
-
-#~ msgid "The poll has been edited."
-#~ msgstr "Kura imehaririwa."
-
-#~ msgid "System Health"
-#~ msgstr "Afya ya Mfumo"
-
-#~ msgid "System Software"
-#~ msgstr "Programu ya mfumo"
-
-#~ msgid "The Tag could not be saved. Please, try again."
-#~ msgstr "Lebo hii haikuweza hifadhiwa. Tafadhali jaribu tena."
-
-#~ msgid "Alphabets and numbers only"
-#~ msgstr "Herufi na tarakimu tu"
-
-#~ msgid "Body"
-#~ msgstr "Gimba"
-
-#~ msgid "Arrival"
-#~ msgstr "Ufikaji"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "No of entries per page: "
-#~ msgstr "Idadi ya maingizo kwa ukurasa: "
-
-#~ msgid "Show callback records"
-#~ msgstr "Onyesha rekodi za kurudisha-miito"
-
-#~ msgid "Callback requests"
-#~ msgstr "Maombi ya kurudisha-miito"
-
-#~ msgid "Records"
-#~ msgstr "Makumbukumbu"
-
-#~ msgid "to"
-#~ msgstr "kwenda"
-
-#~ msgid "Mode"
-#~ msgstr "Hali-tumizi"
-
-#~ msgid "No limit"
-#~ msgstr "Hakuna mpaka"
-
-#~ msgid "Default response"
-#~ msgstr "Jibu la chaguo-msingi"
-
-#~ msgid "Default callback response"
-#~ msgstr "Jibu la chaguo-msingi la kurudisha-mwito"
-
-#~ msgid "Limit the number of calls per user per day."
-#~ msgstr "Zuia idadi ya miito kwa mtumiaji kwa siku."
-
-#~ msgid "Period"
-#~ msgstr "Kipindi"
-
-#~ msgid "-- Use in none --"
-#~ msgstr "-- Usitumie --"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid "No category with this id exists"
-#~ msgstr "Hakuna kategoria yenye kitambulisho hiki"
-
-#~ msgid "Manage Categories"
-#~ msgstr "Ongoza Kategoria"
-
-#~ msgid ""
-#~ "No categories exist. Please create one by clicking the 'Create new' "
-#~ "button to the right."
-#~ msgstr ""
-#~ "Hakuna kategoria iliyopo. Tafadhali tengeneza kwa kubofya kitufe cha "
-#~ "'Unda mpya' upande wa kulia."
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "No of CDR per page: "
-#~ msgstr "Namba ya MDM kwa ukurasa: "
-
-#~ msgid "Signal"
-#~ msgstr "Ishara"
-
-#~ msgid "Architecture"
-#~ msgstr "Usanifu majengo"
-
-#~ msgid "Functionality"
-#~ msgstr "Matumizi"
-
-#~ msgid "Read more"
-#~ msgstr "Soma zaidi"
-
-#~ msgid "Inbox"
-#~ msgstr "Kikasha pokezi"
-
-#~ msgid "IVR Menu"
-#~ msgstr "Menyu ya Sauti"
-
-#~ msgid "Menu options"
-#~ msgstr "Machaguo ya menyu"
-
-#~ msgid "Callbacks"
-#~ msgstr "Kurudisha-miito"
-
-#~ msgid "-Select audio file-"
-#~ msgstr "-Chagua faili sikizi-"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "Exit Message"
-#~ msgstr "Ujumbe wa kutoka"
-
-#~ msgid "No IVR with this id exists"
-#~ msgstr "Hakuna Menyu ya Sauti yenye kitambuzi hiki"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) sentencecount: The number of sentences differ: 1 versus 2
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "Voice Menu| This component allows you to build a variety of personal "
-#~ "Voice Menus based on customized audio files, or synthesized text "
-#~ "messages.| A Voice menu consists of:| Menu Instructions: a set of "
-#~ "mandatory voice messages, such as a Welcome message, and instructions on "
-#~ "how to navigate through the menu|  Menu Options: audio files or "
-#~ "components assosiated with telephony keypad selections."
-#~ msgstr ""
-#~ "Menyu ya Sauti| Kijenzi hiki kinakuwezesha kutengenza menyu mbalimbali za "
-#~ "sauti kufuatana na mafaili sikizi maalum, au ujumbe wa matini "
-#~ "yaliyosautishwa.| Menyu ya sauti inajumuisha:| Maagizo ya menyu: seti ya "
-#~ "ujumbe wa lazima, kama ujumbe wa kukaribisha, na maagizo ya jinsi ya "
-#~ "kuabiri kwenye menyu| Machaguo ya menyu: mafaili sikizi au vijenzi "
-#~ "vinanyohusiana na machaguo ya kibao-namba kwenye simu."
-
-#~ msgid "Greeting"
-#~ msgstr "Salamu"
-
-#~ msgid "IVR code"
-#~ msgstr "Msimbo wa Menyu ya Sauti"
-
-#~ msgid "Update default"
-#~ msgstr "Sasisha chaguo-msingi"
-
-#~ msgid "Visit the Freedom Fone website"
-#~ msgstr "Tembelea tuvuti ya Freedom Fone"
-
-#~ msgid "Modify Leave a Message IVR"
-#~ msgstr "Rekebisha Acha-Ujumbe katika Menyu ya Sauti"
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid ""
-#~ "Please upload either an .mp3 or a .wav audio file for each of the eight "
-#~ "messages. If no audio file is present, the fallback text will be used in "
-#~ "the Leave-a-Message IVR. You can listen to your uploaded audio files by "
-#~ "pressing the Play button."
-#~ msgstr ""
-#~ "Tafadhali pakia faili sikizi kwenye umbizo kati ya .mp3 au .wav kwa "
-#~ "ujumbe wote nane. Kama hakuna faili sikizi, matini ya awali yatatumika "
-#~ "kwenye Menyu ya Sauti ya Acha-Ujumbe. Unaweza kusikiliza faili sikizi "
-#~ "ulilopakia kwa kubonyeza kitufe cha Cheza."
-
-#~ msgid "Step 2: Record message"
-#~ msgstr "Hatua 2: Rekodi ujumbe"
-
-#~ msgid "Invalid page."
-#~ msgstr "Ukurasa batili."
-
-# (pofilter) startpunc: checks whether punctuation at the beginning of the strings match
-# (pofilter) startcaps: checks that the message starts with the correct capitalisation
-#~ msgid "-Set rate-"
-#~ msgstr "-Weka kadirio-"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "« Previous "
-#~ msgstr "« Iliyotangulia"
-
-#~ msgid "Next »"
-#~ msgstr "Inayofuata »"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid "-Select category-"
-#~ msgstr "-Chugua kategoria-"
-
-#~ msgid "Author"
-#~ msgstr "Mwandishi"
-
-#~ msgid "No messsage with this id exists"
-#~ msgstr "Hakuna ujumbe kwenye kitambulisho hiki"
-
-#~ msgid "Export Voice Menu data"
-#~ msgstr "Hamisha data za Menyu ya Sauti"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "IVR Code"
-#~ msgstr "Msimbo wa Menyu ya Sauti"
-
-#~ msgid "Create Menu Option"
-#~ msgstr "Unda Chaguo la Menyu"
-
-#~ msgid "Edit Menu Option"
-#~ msgstr "Hariri Chaguo la Menyu"
-
-#~ msgid "Listen to uploaded file"
-#~ msgstr "Sikiliza faili lililopakiwa"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) sentencecount: The number of sentences differ: 3 versus 4
-#~ msgid ""
-#~ "Menu Option|A Menu Option can either be (1) an audio file previously "
-#~ "uploaded through the Create Menu option page, or (2) a Leave-a-Message "
-#~ "service.| You can at any time add, edit, listen to or delete existing "
-#~ "Menu Options.| Menu option files can be .mp3 or .wav audio files. When "
-#~ "they are uploaded into the system they are associated with a Title to "
-#~ "help you manage your audio files.| A Menu option file can be used in one "
-#~ "or more different Voice Menus. These files cannot be deleted if they are "
-#~ "currently associated with a Voice Menu."
-#~ msgstr ""
-#~ "Chaguo la Menyu|Chaguo la menyu linaweza kuwa (1) faili sikizi "
-#~ "lililopakiwa kupitia ukurasa wa Unda Chaguo la Menyu, au (2) huduma ya "
-#~ "Acha-Ujumbe.| Muda wowote unaweza kuongeza, kuhariri, kusikiliza au "
-#~ "kufuta machaguo ya menyu yaliyopo. Mafaili ya machaguo ya menyu yanaweza "
-#~ "kuwa mafaili sikizi ya umbizo .mp3 au .wav. Yakishapakiwa, yanahusishwa "
-#~ "na Kichwa kukusaidia kusimamia mafaili sikizi yako.| Faili la chaguo la "
-#~ "menyu linaweza kutumika kwenye Menyu za Sauti moja au zaidi, tofauti "
-#~ "tofauti. Mafaili haya hayawezi kufutwa kama yamehusishwa na Menu ya Sauti."
-
-#~ msgid "Are you sure you want to delete this Menu Option?"
-#~ msgstr "Unahakika unataka kufuta Chaguo la Menyu hili?"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "Number of entries per page: "
-#~ msgstr "Idadi ya maingizo kwa ukurasa: "
-
-#~ msgid ""
-#~ "No Menu Options are uploaded. Please upload a Menu Option by clicking the "
-#~ "'Upload new' button to the right"
-#~ msgstr ""
-#~ "Hakuna machaguo ya menyu yaliyopakiwa. Tafadhali pakia chaguo la menyu "
-#~ "kwa kubofya kitufe cha 'Unda mpya' kulia kwako."
-
-#~ msgid "Release"
-#~ msgstr "Toleo"
-
-# (pofilter) unchanged: please translate
-#~ msgid "aka"
-#~ msgstr "jina lengine"
-
-#~ msgid "Welcome to Freedom Fone"
-#~ msgstr "Karibu Freedom Fone"
-
-#~ msgid ""
-#~ "<p>Does your community need access to information but has limited or no "
-#~ "access to the internet or email? Do you want to be able to share more "
-#~ "information than 160 characters allows?</p>"
-#~ msgstr ""
-#~ "<p>Jamii yako inahitaji kupata taarifa lakini ni vigumu kufikia kwenye "
-#~ "wavuti au barua pepe? Je unataka kuweza kugawiza taarifa zaidi ya herufi "
-#~ "160?</p>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>Freedom Fone offers the possibility to extend the reach of information "
-#~ "to citizens and groups presently excluded from the information loop "
-#~ "because of lack of access to resources such as computers and the "
-#~ "internet. It takes advantage of the cell phone's role as an \"access "
-#~ "equaliser\" to provide communities with the opportunity to create, listen "
-#~ "to and act on information of immediate relevance to them.</p>"
-#~ msgstr ""
-#~ "<p>Freedom Fone inawezesha taarifa kufika kwa wananchi na makundi ambayo "
-#~ "kwa sasa yako nje ya mkondo wa taarifa kwa sababu ya uhaba wa rasilimali "
-#~ "kama vile kompyuta na wavuti. Inatumia simu ya mkononi kama \"msawazo  wa "
-#~ "ufikio\" kuzipa jumuia uwezo wa kunda, kusikiliza kwenye na kufanyia kazi "
-#~ "taarifa zinazowahusu.</p>"
-
-# (pofilter) acronyms: acronyms should not be translated: YOU
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>Freedom Fone intends to deliver an easy to use telephony platform that "
-#~ "YOU can use to build and manage dynamic information on demand services to "
-#~ "suit your audience’s needs. Useful features in version 1 will include the "
-#~ "ability to: create and modify voice menus; run a sms poll; make a "
-#~ "callback in response to missed calls or sms requests; accept, tag and "
-#~ "categorise voice messages.</p>"
-#~ msgstr ""
-#~ "<p>Freedom Fone inalenga kutoa jukwaa rahisi la simu ambalo WEWE unaweza "
-#~ "kujenga na kusimamia taarifa kwa mahitaji kufaa matakwa ya watu wako. "
-#~ "Vipengele muhumu vya toleo la 1 zitajumuisha: kuunda na kubadilisha menyu "
-#~ "za sauti; kuendesha kura za SMS;  kufanya kurudisha-mwito kujibu simu "
-#~ "zilizokoswa au maombi ya ujumbe mfupi; kukubali, kuweka lebo, na "
-#~ "kuainisha ujumbe za sauti kwenye kategoria.</p>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-#~ msgid ""
-#~ "<p>There are no language, geographical or community size limitations to "
-#~ "the implementation of Freedom Fone. Its flexibility and accessible "
-#~ "interface mean it can be used by a range of communities.</p>"
-#~ msgstr ""
-#~ "<p>Hakuna mipaka ya lugha, mahali, au idadi ya wanachama kwenye uwekwaji "
-#~ "wa Freedom Fone. Ina mwonekano unaobadilika na unaofiikika, maana yake "
-#~ "inaweza kutumiwa na makundi mengi mbalimbali.</p>"
-
-#~ msgid ""
-#~ "<p>For example, <b>Freedom Fone</b> can be used to:</p><ul><li>Enhance "
-#~ "civic engagement in electoral and voter registration campaigns</"
-#~ "li><li>Broaden access to HIV/Aids information</li><li>Provide health "
-#~ "information during an epidemic</li><li>Offer information on demand</"
-#~ "li><li>Record community feedback to a radio station</li><li>File audio "
-#~ "reports from citizen journalists in the field</li></ul>"
-#~ msgstr ""
-#~ "<p>Kwa mfano, <b>Freedom Fone</b> inaweza kutumika kwenye:</"
-#~ "p><ul><li>Kuwahusisha wananchi kwenye kampaini za uchaguzi na "
-#~ "kujiandikisha kwa wapiga kura</li><li>Kuongeza upatikani wa habari za "
-#~ "UKIMWI</li><li>Kutoa taarifa za afya kupindi cha magonjwa ya mlipuko.</"
-#~ "li><li>Toa taarifa zinapohitajika moja kwa moja</li><li>Rekodi majibu ya "
-#~ "jamii kwenye kituo cha radio</li><li>Pokea ripoti za habari kwa sauti "
-#~ "kutoka kwa wananchi waliopo</li></ul>"
-
-#~ msgid "Architecture : Callback"
-#~ msgstr "Usanifu majengo: Kurudisha-mwito"
-
-#~ msgid "Architecture: Callback"
-#~ msgstr "Usanifu majengo: Kurudisha-mwito"
-
-#~ msgid ""
-#~ "Please select one of the alternatives below, to read about each "
-#~ "component's architecture."
-#~ msgstr ""
-#~ "Kusoma kuhusu usanifu majengo wa kila kijenzi, tafadhali chagua mojawapo "
-#~ "hapa chini."
-
-#~ msgid "Voice Menus"
-#~ msgstr "Menyu za Sauti"
-
-#~ msgid "Callback architecture"
-#~ msgstr "Usanifu majengo wa kurudisha-mwito"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "Freedom Fone v1.5 Architecture"
-#~ msgstr "Usanifu Majengo wa Freedom Fone v1.5"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "Freedom Fone architecture"
-#~ msgstr "Usanifu Majengo Freedom Fone"
-
-#~ msgid "Architecture : Voice Menus"
-#~ msgstr "Usanifu Majengo: Menyu za Sauti"
-
-#~ msgid "Architecture: Voice menu"
-#~ msgstr "Usanifu Majengo: Menyu ya sauti"
-
-#~ msgid "Voice Menu architecture"
-#~ msgstr "Usanifu majengo wa Menyu ya Sauti"
-
-#~ msgid "Architecture : Leave-a-Message"
-#~ msgstr "Usanifu Majengo: Acha-ujumbe"
-
-#~ msgid "Architecture: Leave-a-Message"
-#~ msgstr "Usanifu Majengo: Acha-ujumbe"
-
-#~ msgid "Leave-a-Message architecture"
-#~ msgstr "Usanifu majengo wa Acha-ujumbe"
-
-#~ msgid "Architecture : Poll"
-#~ msgstr "Usanifu Majengo: Kura"
-
-#~ msgid "Architecture: Poll"
-#~ msgstr "Usanifu Majengo: Kura"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid "Poll architecture"
-#~ msgstr "Usanifu majengo wa kura"
-
-#~ msgid "Functionality : Callback"
-#~ msgstr "Matumizi: Kurudisha-mwito"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid "Voice menues"
-#~ msgstr "Menyu za sauti"
-
-#~ msgid "Functionality: Callback"
-#~ msgstr "Matumizi: Kurudisha-mwito"
-
-# (pofilter) sentencecount: The number of sentences differ: 3 versus 2
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>The Callback service offers callers a means to access audio content "
-#~ "from Freedom Fone at a low cost, or at no cost at all. As the name "
-#~ "suggests, the Callback service establishes outgoing phone calls from "
-#~ "Freedom Fone to a caller, with the Freedom Fone deployer carrying the "
-#~ "cost of the call. </p>"
-#~ msgstr ""
-#~ "<p>Huduma ya kurudisha-mwito inampa mpiga simu aweze kupata maudhui ya "
-#~ "sauti kwenye Freedom Fone kwa bei nafuu, au bure kabisa. Kama jina "
-#~ "linavyosema, huduma ya kurudisha-mwito inapiga simu zitokazo kwenye "
-#~ "Freedom Fone kwa mpigaji, wakati gharama zote zikichukuliwa na mwenye "
-#~ "Freedom Fone.</p> "
-
-#~ msgid ""
-#~ "<p>To request a Callback from Freedom Fone, the caller can either</"
-#~ "p><ul><li>send an SMS to a designated number with the text “callback”, "
-#~ "or</li><li>tickle a designated number (ring once and hang up)</li></ul>"
-#~ msgstr ""
-#~ "<p>Kuomba kurudishwa-mwito toka kwenye Freedom Fone, mpigaji anaweza</"
-#~ "p><ul><li>kutuma SMS kwenda namba maalumu ikiwa na neno “kurudisha-"
-#~ "mwito”, au</li><li>bipu namba maalumu (kata baada ya mdundo wa kwanza)</"
-#~ "li></ul>"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) acronyms: acronyms should not be translated: SMS
-#~ msgid ""
-#~ "<p>The cost to the caller will either be the cost for an SMS, or nothing "
-#~ "(if you hang up after the first ring).</p>"
-#~ msgstr ""
-#~ "<p>Bei kwa mpigaji itakuwa ama bei ya SMS, au bure kabisa (kama ukikata "
-#~ "baada ya mdundo wa kwanza).</p>"
-
-#~ msgid "Administration settings"
-#~ msgstr "Mipangilio ya utawala"
-
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>The administrator can choose which content to connect with the "
-#~ "Callback service. The options for Freedom Fone v.1 are </p><ul><li>Leave-"
-#~ "a-message menu OR</li><li>Default Voice Menu</li></ul>"
-#~ msgstr ""
-#~ "<p>Msimamizi anaweza kuchagua maudhui gani ya kuunganishwa nayo kwa "
-#~ "huduma Kurudisha-mwito. Machaguo ya Freedom Fone v.1 ni AMA</"
-#~ "p><ul><li>Menyu ya Acha-ujumbe AU</li><li>Menyu ya Sauti ya Chaguo-"
-#~ "msingi</li></ul>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) acronyms: acronyms should not be translated: GSM
-#~ msgid ""
-#~ "<p>To limit the risk of abuse of the Callback service, the administrator "
-#~ "can limit the maximum number of Callbacks for a unique GSM number for a "
-#~ "certain period of time.</p><ul><li>Max Calls: 10, 25, 50, 100, no limit</"
-#~ "li><li>Period : 12h, 24h, 2d, 4d, 1 week</li></ul>"
-#~ msgstr ""
-#~ "<p>Kudhibiti matatizo ya kuharibu huduma ya kurudisha-mwito, msimamizi "
-#~ "anaweza kudhibiti upeo wa idadi ya kurudisha-miito kwa namba ya GMS pekee "
-#~ "kwa kipindi cha muda fulani</p><ul><li>Upeo wa miito: 10, 25, 50, 100, "
-#~ "hakuna mpaka</li><li>kipindi: masaa 12, masaa24, siku 2, siku 4, wiki 1</"
-#~ "li></ul>"
-
-#~ msgid "<p>The administration parameters can be found under Settings.</p>"
-#~ msgstr "<p>Vigezo vya usimamizi vinapatwa kwenye Mipangilio.</p>"
-
-#~ msgid "Functionality : Dashboard"
-#~ msgstr "Matumizi : Paneli dhibiti"
-
-#~ msgid ""
-#~ "<p>The Dashboard gathers useful information about the system’s software "
-#~ "and hardware and offers the opportunity to start and stop major "
-#~ "components."
-#~ msgstr ""
-#~ "<p>Paneli dhibiti inakusanya taarifa muhimu kuhusu programu na maunzi za "
-#~ "mfumo, na inatoa fursa ya kuwasha au kuzimisha vijenzi vikuu."
-
-#~ msgid ""
-#~ "<p>The System Health page displays the current status of the telephony "
-#~ "application – FreeSWITCH - and the incoming and outgoing dispatchers "
-#~ "handling the calls and SMSs. The dispatchers can be stopped and started "
-#~ "by the administrator."
-#~ msgstr ""
-#~ "<p>Ukurasa wa Afya ya Mfumo inaonyesha hali ya sasa ya programu-tumizi ya "
-#~ "simu – FreeSWITCH - na kituma ziingiazo na zitokazo kikishulikia miito na "
-#~ "SMS. Kitolewacho kinaweza kusimamishwa na kuanzishwa na msimamizi."
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid ""
-#~ "<p>Software versions of database, web server, FreeSWITCH and dispatcher "
-#~ "are displayed. The versions are dynamically updated when software updates "
-#~ "take place."
-#~ msgstr ""
-#~ "<p>Matoleo ya programu za hifadhidata, seva ya tovuti, FreeSWITCH na "
-#~ "kitolewacho yanaonyeshwa. Matoleo yatasasishwa kiotomatiki wakati "
-#~ "programu ikisasishwa."
-
-#~ msgid "Hardware"
-#~ msgstr "Maunzi"
-
-#~ msgid ""
-#~ "<p>A list of connected GSM gateways are displayed with relevant "
-#~ "information."
-#~ msgstr "<p>Orodha ya malango ya GSM inaonyeshwa na taarifa zinaihusu."
-
-#~ msgid "Call Data Records (CDR)"
-#~ msgstr "Makumbukumbu ya Data za Miito (MDM)"
-
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "<p>Call data records (CDR) of all incoming calls (from Leave-a-message "
-#~ "and Voice Menus) are displayed with the following parameters: unique call "
-#~ "id, start time, end time, caller number, application. CDR can be exported "
-#~ "to a CSV file. The administrator can choose to export All entries, or a "
-#~ "range of entries using a start and end time."
-#~ msgstr ""
-#~ "<p>Makumbukumbu ya Data za Miito (MDM) kwa miito yote inayoingia (kutoka "
-#~ "Menyu za Acha-ujumbe na Sauti) zinaonyeshwa na vigezo vifuatavyo: "
-#~ "kitambulisho cha pekee cha mwito, muda wa kuanza, muda wa kumaliza, namba "
-#~ "ya mpigaji, matumizi. MDM inaweza kuhamishwa kwenda faili ya aina CSV. "
-#~ "Msimamizi anaweza kuchagua kuhamisha Maingizo yote, au baadhi ya maingizo "
-#~ "akitumia muda wa mwanzo na mwisho."
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "Functionality : "
-#~ msgstr "Matumizi : "
-
-#~ msgid "Freedom Fone v1.5 functionality"
-#~ msgstr "Usanifu Majengo wa Freedom Fone v1.5"
-
-# (pofilter) sentencecount: The number of sentences differ: 1 versus 2
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid ""
-#~ "Please select one of the alternatives below, to read more about Freedom "
-#~ "Fone's functionality."
-#~ msgstr ""
-#~ "Tafadhali chagua mojawapo ya machaguo hapo chini, ili kusoma zaidi kuhusu "
-#~ "matumizi ya Freedom Fone."
-
-#~ msgid "Functionality : Voice Menus"
-#~ msgstr "Matumizi: Menyu za sauti"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-#~ msgid "Functionality: Voice menus"
-#~ msgstr "Matumizi: Menyu za sauti"
-
-#~ msgid "Freedon Fone v.1 Voice Menu design"
-#~ msgstr "Ubunifu wa menyu za sauti Freedom Fone v.1"
-
-#~ msgid ""
-#~ "<p>The administrator is able to build a variety of personal Voice Menus "
-#~ "based on customized audio files, or synthesized text messages.<p>"
-#~ msgstr ""
-#~ "<p>Msimamizi ana uwezo wa kutengeneza Menyu za Sauti binafsi mbalimbali "
-#~ "kufatana na mafaili sikizi maalum, au ujumbe wa matini uliosautishwa.<p>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) sentencecount: The number of sentences differ: 2 versus 1
-#~ msgid ""
-#~ "<p>A Voice menu consists of:</p><ul><li>Menu Instructions: a set of "
-#~ "mandatory voice messages, such as a Welcome message, and instructions on "
-#~ "how to navigate through the menu, </li><li>Menu Options: audio files or "
-#~ "components assosiated with telephony keypad selections. </li></ul>"
-#~ msgstr ""
-#~ "<p>Menyu ya Sauti inajumuisha:</p><ul><li>Maagizo ya Menyu: ujumbe za "
-#~ "sauti kadhaa za lazima, kama vile Ujumbe wa kukaribisha, na maagizo ya "
-#~ "jinsi ya kuabiri kwenye menyu,</li><li>Machaguo ya Menyu: Mafaili sikizi "
-#~ "au vijenzi vinavyohusiana na hiari za kibao-namba cha simu.</li></ul>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#~ msgid ""
-#~ "<p>A Menu Instruction can either be a text message (that is automatically "
-#~ "synthesized) or an uploaded audio file. If an audio file is to be used it "
-#~ "must be uploaded from your local computer by either clicking in the "
-#~ "relevant Audio file text box or clicking the associated ‘Browse’ button."
-#~ "<p>You can revert to using a synthesized text message by “un-associating” "
-#~ "the uploaded file. The audio file is not deleted and can be used in the "
-#~ "Voice Menu at a later stage, by “associating” the file with the Menu "
-#~ "Instruction once again."
-#~ msgstr ""
-#~ "<p>Agizo la Menyu linaweza kuwa ujumbe wa matini (utakaosautishwa "
-#~ "kiotomatiki) au faili sikizi lililopakiwa. Kama faili sikizi litatumika "
-#~ "ni lazima lipakiwe kutoka kwenye kompyuta yako, kwa kubofya kwenye "
-#~ "kisanduku cha matini cha faili sikizi husika, au kubofya kutufe husika "
-#~ "cha ‘Vinjari’.<p>Unaweza kurudia kutumia ujumbe wa matini uliosautishwa "
-#~ "kwa “kuacha kuhusisha” faili lililopakiwa. Faili sikizi halifutwi na "
-#~ "litaweza kutumika kwenye Menyu ya Sauti nyingine baadaye, kwa “kuhusisha” "
-#~ "faili hilo na Agizo la Menyu kwa mara nyingine."
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-#~ msgid ""
-#~ "<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously "
-#~ "uploaded through the Create Menu option page, or</li><li>a Leave-a-"
-#~ "Message service</li></ul>"
-#~ msgstr ""
-#~ "<p><b>Chaguo la Menyu</b> linaweza kuwa ama <ul><li>faili sikizi ambalo "
-#~ "lilishapakiwa kupitia ukurasa wa machaguo ya Unda Menyu, au</"
-#~ "li><li>huduma ya Acha-ujumbe</li></ul>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid ""
-#~ "<p>The administrator can at any time add, edit, listen to or delete "
-#~ "existing Menu Options."
-#~ msgstr ""
-#~ "<p>Msimamiz anaweza wakati wowote kuongeza, kuhariri, kusikiliza au "
-#~ "kufuta Machaguo ya Menyu yaliyopo."
-
-#~ msgid ""
-#~ "<p>Menu option files can be .mp3 or .wav audio files. When they are "
-#~ "uploaded into the system they are associated with a Title to help you "
-#~ "manage your audio files."
-#~ msgstr ""
-#~ "<p>Mafaili ya machaguo ya menyu yaweza kuwa mafaili sikizi ya umbizo .mp3 "
-#~ "au .wav. Wakati yanapopakiwa kwenye mfumo, zitajuisha Kichwa kusaidia "
-#~ "kusimamia mafaili sikizi yako."
-
-#~ msgid ""
-#~ "<p>A Menu option file can be used in one or more different Voice Menus. "
-#~ "These files cannot be deleted if they are currently associated with a "
-#~ "Voice Menu."
-#~ msgstr ""
-#~ "<p>Faili la Chaguo la Menyu linaweza kutumika kati ya Menyu ya Sauti moja "
-#~ "au zaidi. Mafaili haya hayawezi kufutwa kama wakati huo yanatumiwa kwenye "
-#~ "Menyu ya Sauti."
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid ""
-#~ "<p>Freedom Fone v.1.5 offers the possibility to assign eight Menu Options "
-#~ "to a Voice Menu."
-#~ msgstr ""
-#~ "<p>Freedom Fone v.1.5 inakupa uwezo wa kuteua Machaguo ya Menyu manane "
-#~ "kwenye Menyu ya Sauti."
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "<p>The administrator can create multiple Voice Menus, but only one can be "
-#~ "active at a time (marked as Default). The administrator can at any time "
-#~ "edit or delete a Voice Menu. If the default Voice menu is deleted, the "
-#~ "oldest existing Voice Menu will automatically become the new default."
-#~ msgstr ""
-#~ "<p>Msimamizi anaweza kuunda Menyu za Sauti nyingi. Ila moja tu ndio "
-#~ "inaweza kufanya kazi kwa wakati mmoja. Msimamizi anaweza kuhariri au "
-#~ "kufuta Menyu ya Sauti wakati wowote. Kama Menyu ya Sauti ya chaguo-msingi "
-#~ "ikifutwa, Menyu ya Sauti inayobaki iliyotangulia zote kutoka zamani ndiyo "
-#~ "itafanywa chaguo-msingi jipya."
-
-#~ msgid "The administrator can at any time change the default Voice Menu."
-#~ msgstr ""
-#~ "Msimamizi anaweza kubadilisha Menyu ya Sauti ya chaguo-msingi wakati "
-#~ "wowote."
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "<p>Freedom Fone offers the administrator a means to monitor the features "
-#~ "and audio files accessed by callers via a voice menu. For each incoming "
-#~ "call to a Voice Menu, the caller's options are recorded (time, ivr, digit "
-#~ "pressed, menu option, caller number).<p>These call records can be "
-#~ "exported to a CSV file. The administrator can choose to export All "
-#~ "entries, or a range of entries using a start and end time. Where privacy "
-#~ "is a concern, the administrator can choose to delete all monitoring data "
-#~ "from the system (using start and end time)."
-#~ msgstr ""
-#~ "<p>Freedom Fone inampa msimamizi uwezo wa kufuatilia vipengele na mafaili "
-#~ "sikizi kwamba wapigaji wanatumia kupitia kwenye Menyu ya Sauti. Kwa kila "
-#~ "mwito inayoingia kwenye Menyu ya Sauti, machaguo ya mpigaji "
-#~ "yanahifadhiwa. <p>Miito hii yaweza kuhamishiwa kwenye faili la CSV. "
-#~ "Msimamizi anaweza kuchagua kuhamisha maingizo yote, au baadhi yao kwa "
-#~ "kutaja muda wa kuanza na kumaliza. Wakati faragha inahitajika, msimamizi "
-#~ "anaweza kuchagua kufuta taarifa zote za ufuatiliaji kutoka kwenye mfumo "
-#~ "(kwa kutumia muda wa kuanza na kumaliza)."
-
-# (pofilter) startcaps: checks that the message starts with the correct capitalisation
-#~ msgid "Functionality : Leave-a-Message"
-#~ msgstr "Matumizi: Acha ujumbe mfupi"
-
-# (pofilter) startcaps: checks that the message starts with the correct capitalisation
-#~ msgid "Functionality: Leave-a-Message"
-#~ msgstr "Matumizi: Acha-ujumbe"
-
-#~ msgid ""
-#~ "<p>The Leave-a-Message service offers callers the option to call into "
-#~ "Freedom Fone, and leave  their personal message. This may be a report, "
-#~ "feedback, tip-off, response to a question, or perhaps a job application.</"
-#~ "p>"
-#~ msgstr ""
-#~ "<p>Huduma Acha-ujumbe inampa mpigaji hiari ya kupiga simu kwenye Freedom "
-#~ "Fone, na kuacha ujumbe binafsi. Hii inaweza kuwa ripoti, mwitiko kuhusu "
-#~ "huduma, majibu  ya maswali, au hata maombi ya kazi</p>"
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) doublewords: The word 'huduma' is repeated
-#~ msgid ""
-#~ "<p>A caller using the Leave-a-message service is connected to a voice "
-#~ "menu created by the Freedom Fone administrator. The voice menu greets the "
-#~ "caller and provides instructions as to how to use the service.  The Leave-"
-#~ "a-message service allows the caller to </p><ul><li>Record a message</"
-#~ "li><li>Listen to their recorded message</li><li>Delete and record a new "
-#~ "message OR</li><li>Save their message and exit</li></ul>"
-#~ msgstr ""
-#~ "<p>Mpigaji akitumia huduma ya Acha-ujumbe anaunganishwa na menyu ya sauti "
-#~ "iliyoundwa na msimamizi wa Freedom Fone. Menyu ya sauti itamsalimu "
-#~ "mpigaji na kumpa maagizo jinsi ya kutumia huduma. Huduma ya Acha-ujumbe "
-#~ "itamwezesha mpigaji</p><ul><li>Kurekodi ujumbe</li><li>Kusikiliza ujumbe "
-#~ "uliorekodiwa</li><li>Kufuta ujumbe uliorekodiwa na kurekodi tena ujumbe "
-#~ "mpya</li><li>Kuhifadhi ujumbe uliorekodiwa na kuondoka</li></ul>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "<p>By using the buttons # (hash), * (star), 0 (zero) and 1 (one), the "
-#~ "user is able to navigate through the menu according to the illustration "
-#~ "above.</p>"
-#~ msgstr ""
-#~ "<p>Kwa kutumia vitufe # (reli), * (nyota), 0 (sifuri) na 1 (moja), "
-#~ "mpigaji anaweza kuabiri menyu kufatana na picha hapo juu.</p>"
-
-#~ msgid "The Leave-a-message Voice Menu"
-#~ msgstr "Menyu ya Sauti ya Acha-ujumbe"
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#~ msgid ""
-#~ "<p>The Leave-a-message voice menu is created by the administrator. The "
-#~ "menu consists of eight different messages. Each message can be generated "
-#~ "in three different ways:</p><ol><li>Customized audio files</"
-#~ "li><li>Customized text to speech</li><li>Default text to speech</li></ol>"
-#~ msgstr ""
-#~ "<p>Menyu ya sauti ya Acha-ujumbe inaundwa na msimamizi. Menyu inajumuisha "
-#~ "ujumbe minane tofauti. Kila ujumbe unaweza kuundwa kwa njia tatu tofauti:"
-#~ "</p><ol><li>Mafaili sikizi yanayogeuzwa kufaai</li><li>Matini ya "
-#~ "kusautishwa, yanayogeuzwa kufaa</li><li>Matini ya kusautishwa, ya chaguo-"
-#~ "msingi</ol>"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid ""
-#~ "<p>If the administrator associates an audio file with a message, that "
-#~ "file will be played to the caller when she enters the voice menu.</p>"
-#~ msgstr ""
-#~ "<p>Kama msimamizi akishirikisha faili sikizi na ujumbe, faili hilo "
-#~ "litachezwa wakati mpigaji akiingia menyu ya sauti.</p>"
-
-#~ msgid ""
-#~ "<p>If no audio file is provided for a message, but a customized text "
-#~ "message exists, the text message will be synthesized and played to the "
-#~ "caller.</p>"
-#~ msgstr ""
-#~ "<p>Kama hakuna faili sikizi lililoletwa kwa ujumbe lakini kuna ujumbe wa "
-#~ "matini maalum uliopo, ujumbe wa matini utasautishwa na utachezwa kwa "
-#~ "mpigaji.</p>"
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#~ msgid ""
-#~ "<p>If neither an audio file, nor a customized text is provided, the "
-#~ "default text will be synthesized and played to the user.</p>"
-#~ msgstr ""
-#~ "<p>Kama hakuna faili sikizi wala matini maalum yaliyoletwa, matini ya "
-#~ "chaguo-msingi utasautishwa na utachezwa kwa mtumiaji.</p>"
-
-# (pofilter) sentencecount: The number of sentences differ: 3 versus 2
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-# (pofilter) acronyms: acronyms should not be translated: GUI
-#~ msgid ""
-#~ "<p>The audio files must be uploaded in .mp3 or .wav format through the "
-#~ "user interface. Once uploaded, they can be listened to from the "
-#~ "administration GUI via the built-in Flashplayer. Audio files can at any "
-#~ "time be overwritten with a new audio file.</p>"
-#~ msgstr ""
-#~ "<p>Mafaili sikizi lazima yapakiwe kwenye umbizo wa .mp3 au .wav kupitia "
-#~ "kiolesura cha mtumiaji. Yakiishapakiwa yatasikililizwa kwa kutumia "
-#~ "Flashplayer kwenye kiolesura cha msimamizi. Mafaili sikizi yanaweza "
-#~ "kubadilishwa na mafaili sikizi mapya wakati wowote.</p>"
-
-#~ msgid "Received voice messages"
-#~ msgstr "Ujumbe wa sauti uliopokelewa"
-
-#~ msgid ""
-#~ "<p>The Freedom Fone administrator receives all incoming messages to the "
-#~ "“Inbox”. For each message, the administrator can</p><ul><li>listen to it "
-#~ "(with a built-in Flashplayer)</li><li>name (give the message a title)</"
-#~ "li><li>assign a category</li><li>associate the message with one or more "
-#~ "tags</li><li>give the message a rating (1-5)</li></ul>"
-#~ msgstr ""
-#~ "<p>Msimamizi wa Freedom Fone anapokea ujumbe wote ambao unaingia kwenye "
-#~ "kikasha pokezi. Kwa kila ujumbe, msimamizi anaweza</p><ul><li>kuusikiliza "
-#~ "(kwa kutumia Flashplayer katika kiolesura)</li><li>kuupa jina (kuupa "
-#~ "ujumbe kichwa)</li><li>kuuweka kwenye kategoria</li><li>kuhusisha ujumbe "
-#~ "na lebo moja au zaidi</li><li>kuupa ujumbe kadirio (1-5)</li></ul>"
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#~ msgid ""
-#~ "<p>The administrator can choose to delete a message, or to archive it for "
-#~ "future use.</p>"
-#~ msgstr ""
-#~ "<p>Msimamizi anaweza kuchagua kufuta ujumbe, au kuuhifadhi kwenye nyaraka "
-#~ "kwa matumizi ya baadaye.</p>"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#~ msgid "Functionality : Poll "
-#~ msgstr "Matumizi : Kura "
-
-# (pofilter) startcaps: checks that the message starts with the correct capitalisation
-#~ msgid "Functionality: Poll"
-#~ msgstr "Matumizi: Kura"
-
-#~ msgid ""
-#~ "<p>The Poll service allows end users to participate in polls by sending "
-#~ "SMSs to Freedom Fone."
-#~ msgstr ""
-#~ "<p>Huduma ya Kura inawawezesha watumiaji wa hatima kujumuika wakituma SMS "
-#~ "kwenda Freedom Fone."
-
-#~ msgid ""
-#~ "<p>The Freedom Fone administrator has the ability to <a href='/"
-#~ "freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit and "
-#~ "delete</a> polls. A poll is composed using the following parameters:"
-#~ msgstr ""
-#~ "<p>Msimamizi wa Freedom Fone ana uwezo wa <a href='/freedomfone/polls/"
-#~ "add'>kuunda</a>, <a href='/freedomfone/polls/'>kuhariri na kufuta</a> "
-#~ "kura. Kura inatengenezwa kwa kutumia vigezo hivi:"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) acronyms: acronyms should not be translated: SMS, SMS
-#~ msgid ""
-#~ "<ul><li>Question: The question you want your audience to answer to</"
-#~ "li><li>Code: The SMS code to use, to associate an SMS with your poll</"
-#~ "li><li>Answers: Two or more answers to the question.</li><li>Start time: "
-#~ "Date and time when the poll opens for submission</li><li>End time: Date "
-#~ "and time when the poll closes for submission</li></ul>"
-#~ msgstr ""
-#~ "<ul><li>Swali: swali unalotaka washiriki wajibu<li></li>Msimbo: Ujumbe "
-#~ "mfupi unaotumika, kujumuisha SMS na kura</li><li>Majibu: Maitiko mawili "
-#~ "au zaidi kwa swali.</li><li>Muda wa kuanza: Tarehe na muda wakati kura "
-#~ "imefunguliwa kwa ajili ya kutumwa</li><li>Muda wa kumaliza: Tarehe na "
-#~ "muda wakati kura imefunguliwa kwa ajili ya kutumwa</li></ul>"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) acronyms: acronyms should not be translated: SMS
-#~ msgid ""
-#~ "<p>Poll details can be communicated with the public via any means, "
-#~ "including website, email and printed materials. Remember to share the "
-#~ "above details and include the phone number or short code to which "
-#~ "participants should send their SMS replies.</p>"
-#~ msgstr ""
-#~ "<p>Taarifa za kura zinaweza kuenezwa na jumiya kwa njia yoyote, kwa mfano "
-#~ "tovuti, barua pepe na vitu vilivyochapwa. Kumbuka kutaja habari hapo juu, "
-#~ "hasa kuambatanisha namba ya simu au msimbo mfupi ambapo washiriki "
-#~ "watatuma majibu yao ya SMS.</p>"
-
-#~ msgid ""
-#~ "<p>The administrator can at any time edit the above listed fields. Of "
-#~ "course, it is not recommended to change the question, code or answers to "
-#~ "a poll, once it has been opened to the public.</p>"
-#~ msgstr ""
-#~ "<p>Msimamizi anaweza kuhariri mambo yaliyowekwa hapo juu, wakati wowote. "
-#~ "Bila shaka, hatushauri kubadili swali, msimbo, wala majibu ya kura, baada "
-#~ "ya ikifunguliwa kwa jumuiya.</p>"
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#~ msgid ""
-#~ "<p>Before a poll is opened, and after it has been closed, no poll votes "
-#~ "are registered for the poll.</p>"
-#~ msgstr ""
-#~ "<p>Kabla kura haijafunguliwa, na baada ya kufungwa, chaguo la mshriki "
-#~ "halitaandikwa kwenye uchaguzi.<p>"
-
-#~ msgid ""
-#~ "<p>For each poll, once it has started, the administrator can at anytime, "
-#~ "view the interim or final result in terms of number of votes per answer, "
-#~ "and percentage of total votes per answer.</p>"
-#~ msgstr ""
-#~ "<p>Kwa kila kura, wakati wowote baada ya kufunguliwa, msimamizi anaweza "
-#~ "kuangalia majibu ya muda au ya mwisho kwa njia ya idadi ya kura kwa jibu, "
-#~ "na asilimia ya kura zote kwa jibu.</p>"
-
-#~ msgid "Classification of votes"
-#~ msgstr "Uainishaji wa kura"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-#~ msgid ""
-#~ "<p>The system classifies all incoming votes as <i>valid, invalid,</i> or "
-#~ "<i>incorrect</i>:</p>"
-#~ msgstr ""
-#~ "<p>Mfumo unaanisha kura zote zinazoingia kama<i>halali, batili,</i> au "
-#~ "<i>si sahihi</i>:</p>"
-
-#~ msgid "<p><b>Valid vote:</b> correct poll code, and correct poll option</p>"
-#~ msgstr ""
-#~ "<p><b>Kura halali:</b> msimbo sahihi ya kura, na chaguo sahihi la kura</p>"
-
-#~ msgid ""
-#~ "<ul><li>Early: Received before the poll opened.</li><li>In time: Received "
-#~ "while the poll was open.</li><li>Late: Received after the poll was closed."
-#~ "</li></ul>"
-#~ msgstr ""
-#~ "<ul><li>Mapema: Imepokelewa kabla ya upigaji kura kufunguliwa.</"
-#~ "li><li>Kwa wakati: Imepokelewa baada ya upigaji kura kufunguliwa na kabla "
-#~ "ya kufungwa.</li><li>Chelewa: Imepokelewa baada ya upigaji kura kufungwa."
-#~ "</li></ul>"
-
-# (pofilter) doublewords: The word 'kura' is repeated
-#~ msgid ""
-#~ "<p>Early votes will be registered as ”Valid, early”. The number of early "
-#~ "votes per poll option is presented in a separate column under the View "
-#~ "poll page. Early votes will not be added to the Total votes accepted for "
-#~ "the poll."
-#~ msgstr ""
-#~ "<p>Kura zilizopokelewa mapema zitaandikwa kama ”Halali, mapema”. Idadi ya "
-#~ "kura zilizopokelewa mapema kwa kila chaguo la kura litaonekana kwenye "
-#~ "safu-wima tofauti kwenye ukurasa wa Tazama kura. Kura zilizopigwa mapema "
-#~ "hazijumlishwi kwenye jumla ya kura zinazokubaliwa."
-
-# (pofilter) doublewords: The word 'kura' is repeated
-#~ msgid ""
-#~ "<p>Late votes will be registered as “Valid, late”. The number of late "
-#~ "votes per poll option is presented in a separate column under the View "
-#~ "poll page. Late votes will not be added to the Total votes accepted for "
-#~ "the poll."
-#~ msgstr ""
-#~ "<p>Kura zilizochelewa kupokelewa zitaandikwa kama ”Halali, chelewa”. "
-#~ "Idadi ya kura zilizochelewa kupokelewa kwa kila chaguo la kura "
-#~ "litaonekana kwenye safu-wima tofauti kwenye ukurasa wa Tazama kura.  Kura "
-#~ "zilizochelewa kupokelewa hazijumlishwi kwenye jumla ya kura "
-#~ "zinazokubaliwa."
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#~ msgid ""
-#~ "<p>The Early and Late vote classifications are summarised separately to "
-#~ "provide a complete view of votes submitted to the poll concerned."
-#~ msgstr ""
-#~ "<p>Kura ambazo zinaainishwa Mapema au Chelewa zitapangwa kwenye muhtasari "
-#~ "pembeni ili kuonyesha kura zote zilizopigwa kwenye uchaguzi."
-
-# (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-#~ msgid ""
-#~ "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
-#~ msgstr ""
-#~ "<p><b>Kura batili:</b>Msimbo sahihi ya kura, lakini chaguo la kura "
-#~ "halilingani"
-
-#~ msgid ""
-#~ "<p>Invalid votes are registered as votes, but classified as “invalid”. "
-#~ "“Early”, “late” and “on-time” invalid votes are registered."
-#~ msgstr ""
-#~ "<p>Kura batili zitaandikiwa kama kura, lakini zitaainishwa kama “batili”. "
-#~ "Kura batili za “mapema”, “chelewa” and “kwa-wakati” zinaandikiwa."
-
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "<p>Only “on-time” invalid votes are incorporated into the Total number of "
-#~ "votes (in time) summary."
-#~ msgstr ""
-#~ "<p>Kura batili za “kwa-wakati” tu ndio zinawekwa kwenye jumla ya kura "
-#~ "(kwa-wakati) kwenye muhtasari."
-
-# (pofilter) endpunc: checks whether punctuation at the end of the strings match
-# (pofilter) acronyms: acronyms should not be translated: SMS
-#~ msgid ""
-#~ "<p>Invalid vote totals are provided to give deployers an idea of how SMS "
-#~ "errors might impact on poll results."
-#~ msgstr ""
-#~ "<p>Jumla ya kura batili inawawezesha wasambazaji kuona jinsi gani "
-#~ "hitilafu za SMS zinaweza kuathiri matokeo ya uchaguzi."
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) startpunc: checks whether punctuation at the beginning of the strings match
-# (pofilter) startcaps: checks that the message starts with the correct capitalisation
-#~ msgid "<p><b>Incorrect vote: </b>Non-matching poll code"
-#~ msgstr "<p><b>Kura si sahihi: </b>Msimbo wa kura haulingani"
-
-#~ msgid ""
-#~ "<p>Incorrect votes that cannot be matched to any existing poll, will be "
-#~ "classified as an incoming SMS and will be stored under “Other SMS”. The "
-#~ "SMS will be classified as “Unclassified”."
-#~ msgstr ""
-#~ "<p>Kura zisizo sahihi ambazo haziwezi kufananishwa na kura yoyote, "
-#~ "zitaainishwa kama SMS zinazoingia na zitahifadhiwa chini ya \"SMS Nyingine"
-#~ "\". SMS zitaainishwa kama \"Isiyoainishwa\"."
-
-#~ msgid "Practical example"
-#~ msgstr "Mfano"
-
-# (pofilter) singlequoting: checks whether singlequoting is consistent between the two strings
-# (pofilter) acronyms: acronyms should not be translated: YES, YES, SMS
-#~ msgid ""
-#~ "<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' "
-#~ "will all be interpreted as a YES. The same logic applies to the SMS code."
-#~ "</p>"
-#~ msgstr ""
-#~ "<p>Kura haijali kama herufi ni ndogo wala kubwa, kwa hivyo 'ndio', "
-#~ "'Ndio', 'NDIO', 'nDIO' hivyo zote zitatafsiriwa kama 'NDIO'. Hii namna "
-#~ "inatumika pia kwa mfumo wa SMS.</p>"
-
-# (pofilter) sentencecount: The number of sentences differ: 3 versus 1
-# (pofilter) acronyms: acronyms should not be translated: SMS, SMS
-#~ msgid ""
-#~ "<p>More than one poll can be active at the same time. Incoming SMS are "
-#~ "identified by the SMS code used and matched with existing polls. </p>"
-#~ msgstr ""
-#~ "<p>Kura zaidi ya moja inaweza kuendeshwa kwa wakati mmoja. SMS "
-#~ "zinazoingia zitatambuliwa kwa msimbo wa SMS na kufananishwa na kura "
-#~ "zilizopo.</p>"
-
-# (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-# (pofilter) acronyms: acronyms should not be translated: SMS, GSM
-#~ msgid ""
-#~ "<p>The timestamp used to determine whether or not a vote is in time for a "
-#~ "poll, is the time of arrival to the Freedom Fone platform. Hence, if an "
-#~ "SMS gets delayed in the GSM network, it will be classified as late even "
-#~ "if it was sent before the poll deadline. "
-#~ msgstr ""
-#~ "<p>Mhuri wa muda unaotumika kutambulisha kama kura imefika kwa wakati, "
-#~ "ndiyo ni muda wa kuonekana kwenye jukwaa la Freedom Fone. Hivyo, kama SMS "
-#~ "uikicheleweshwa kwenye mtandao wa GSM, itaainishwa kwamba imechelewa hata "
-#~ "kama ilitumwa kabla uchaguzi haujafungwa. "
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) numbers: checks whether numbers of various forms are consistent between the two strings
-# (pofilter) acronyms: acronyms should not be translated: AM, AM
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>Example: The administrator creates a poll with the following "
-#~ "parameters:<ul><li>Question: Would you like to deploy Freedom Fone in "
-#~ "your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/"
-#~ "Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: "
-#~ "08:00 AM, January 31, 2010</li></ul></p>"
-#~ msgstr ""
-#~ "<p>Mfano: Msimamizi anatengeneza kura kwa kutumia vigezo vifuatavyo:"
-#~ "<ul><li>Swali Unapenda kuweka Freedom Fone kwenye kampuni yako?</"
-#~ "li><li>Msimbo:  freedomfone</li><li>Jibu: Ndio/Hapana/Labda</li><li>Muda "
-#~ "wa kuanza: 08:00 asubuhi, 1 Januari, 2010</li><li>Muda wa kumaliza: 08:00 "
-#~ "asubuhi, 31 Januari, 2010</li></ul></p>"
-
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) numbers: checks whether numbers of various forms are consistent between the two strings
-# (pofilter) acronyms: acronyms should not be translated: SMS, AM, AM
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "<p>To participate in the poll, the end user needs to send an SMS (after  "
-#~ "08:00 AM the 1st of January, and before 08:00 AM the 31st of January "
-#~ "2010) with one of the following messages: </p><pre>freedomfone yes\n"
-#~ "freedomfone no\n"
-#~ "freedomfone maybe</pre>"
-#~ msgstr ""
-#~ "<p>Kushiriki kwenye kura, mtumiaji wa hatima anatakiwa kutuma Ujumbe "
-#~ "mfupi (baada ya 08:00 asubuhi 01/01/2010 na kabla ya 08:00 asubuhi "
-#~ "31/01/2010) kwenye mmoja kati ya ujumbe ufuatao</p><pre>freedomfone ndio\n"
-#~ " freedomfone hapana\n"
-#~ "freedomfone labda</pre>"
-
-#~ msgid "Create new poll"
-#~ msgstr "Unda kura mpya"
-
-#~ msgid "Are you sure you want to delete this poll option?"
-#~ msgstr "Unahakika unataka kufuta chaguo hili la kura?"
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) doublespacing: checks for bad double-spaces by comparing to original
-#~ msgid ""
-#~ "Poll|The Poll service allows end users to participate in polls by sending "
-#~ "SMSs to Freedom Fone.<p>The Freedom Fone administrator has the ability to "
-#~ "create, edit and delete polls.<p>The administrator can at any time edit "
-#~ "the above listed fields. Of course, it is not recommended to change the "
-#~ "question, code or answers to a poll, once it has been opened to the "
-#~ "public.<p>Before a poll is opened, and after it has been closed, no poll "
-#~ "votes are registered for the poll. <p>For each poll, once it has started, "
-#~ "the administrator can at anytime, view the interim or final result in "
-#~ "terms of number of votes per answer, and percentage of total votes per "
-#~ "answer."
-#~ msgstr ""
-#~ "Kura| Huduma ya kura inawawezesha watumiaji wa hatima wajumuike kwenye "
-#~ "kura kwa kutuma SMS kwenda Freedom Fone.<p> Msimamizi wa Freedom Fone ana "
-#~ "uwezo wa kuunda, kuhariri au kufuta kura.<p>Msimamizi anaweza kuhariri "
-#~ "uga zilizoorodheshwa hapo juu, wakati wowote. Ijapokuwa, haishauriwe "
-#~ "kubadilisha maswali, mfumo au majibu ya kura baada ya kufunguliwa kwa "
-#~ "hadhara.<p>Kabla ya kufunguliwa na baada kufungwa kwa uchaguzi, hakuna "
-#~ "kura zitaandikishwa. <p>Kwa kila kura, mara baada ya kuanza, msimamizi "
-#~ "anaweza kutazama matokeo ya wakati wowote au ya mwisho, kusoma idadi ya "
-#~ "kura kwa kila jibu, au kusoma asilimia kutoka jumla ya kura kwa kila jibu."
-
-#~ msgid ""
-#~ "No polls exist. Please create one by clicking the 'Create new' button to "
-#~ "the right."
-#~ msgstr ""
-#~ "Hakuna kura iliyopo. Tafadhali unda moja kwa kubofya kitufe cha 'Unda "
-#~ "mpya' upande wa kulia."
-
-# (pofilter) puncspacing: checks for bad spacing after punctuation
-# (pofilter) xmltags: checks that XML/HTML tags have not been translated
-# (pofilter) newlines: line endings in original don't match line endings in translation
-# (pofilter) brackets: translation is missing '(', ')'
-#~ msgid ""
-#~ "Classification of votes|The system classifies all incoming votes as "
-#~ "<i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:|\n"
-#~ "<p><b>Valid vote:</b> correct poll code, and correct poll option|"
-#~ "<ul><li>Early: Received before the poll opened.</li><li>In time: Received "
-#~ "while the poll was open.</li><li>Late: Received after the poll was closed."
-#~ "</li></ul>|\n"
-#~ "Early votes will be registered as \"Valid, early\". The number of early "
-#~ "votes per poll option is presented in a separate column under the View "
-#~ "poll page. Early votes will not be added to the Total votes accepted for "
-#~ "the poll.|\n"
-#~ "<p>Late votes will be registered as \"Valid, late\". The number of late "
-#~ "votes per poll option is presented in a separate column under the View "
-#~ "poll page. Late votes will not be added to the Total votes accepted for "
-#~ "the poll.|\n"
-#~ "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll "
-#~ "option|\n"
-#~ "Invalid votes are registered as votes, but classified as \"invalid\". "
-#~ "\"Early\", \"late\" and \"on-time\" invalid votes are registered.|\n"
-#~ "Only \"on-time\" invalid votes are incorporated into the Total number of "
-#~ "votes (in time) summary.|\n"
-#~ "<p>Invalid vote totals are provided to give deployers an idea of how SMS "
-#~ "errors might impact on poll results.|\n"
-#~ "<p><b>Incorrect vote:</b> Non-matching poll code|\n"
-#~ "Incorrect votes that cannot be matched to any existing poll, will be "
-#~ "classified as an incoming SMS and will be stored under \"Other SMS\". The "
-#~ "SMS will be classified as \"Unclassified\"."
-#~ msgstr ""
-#~ "Uainishaji wa kura|Mfumo unaainisha kura zote zinazoingia kama: "
-#~ "<i>halali</i>, <i>batili</i>, au <i>sio sahihi</i>:|\n"
-#~ "<p><b>Kura halali:</b> msimbo sahihi ya kura, na chaguo la kura sahihi|"
-#~ "<ul><li>Mapema: Zimepokelewa kabla ya uchaguzi kufunguliwa.</li><li>Kwa-"
-#~ "wakati: Zimepokelewa wakati uchaguzi umefunguliwa rasmi.</li><li>Chelewa: "
-#~ "Zimepokelewa baada ya uchaguzi kufungwa.</li></ul>|\n"
-#~ "Kura zilizopigwa mapema zitaandikwa kama \"Halali, mapema\". Idadi ya "
-#~ "kura zilizopigwa mapema itawekwa kwenye safu-wima tofauti kwenye ukurasa "
-#~ "wa Angalia kura, kwa kila chaguo. Kura zilizopigwa mapema hazitajumlishwa "
-#~ "kwenye jumla ya kura zilizokubaliwa kwa ajili ya uchaguzi.|\n"
-#~ "<p>Kura zilizopigwa baada ya uchaguzi zitaandikwa kama \"Halali, chelewa"
-#~ "\". Idadi ya kura zilizopigwa baada ya uchaguzi itawekwa kwenye safu-wima "
-#~ "tofauti kwenye ukurasa wa Angalia kura, kwa kila chaguo. Kura zilizopigwa "
-#~ "baada ya uchaguzi hazitajumlishwa kwenye jumla ya kura zilizokubaliwa kwa "
-#~ "ajili ya uchaguzi.|\n"
-#~ "<p><b>Kura batili:</b> msimbo sahihi ya kura, lakini haifanani ya chaguo "
-#~ "la kura|\n"
-#~ "Kura batili zinaandikwa kama kura, lakini zinaainishwa kama \"batili\". "
-#~ "Kura batili za \"mapema\", \"chelewa\" na \"kwa-wakati\" zinaandikwa.|\n"
-#~ "Kura za \"kwa-wakati\" tu ndio zinajumlishwa kwenye jumla ya idadi ya "
-#~ "kura.|\n"
-#~ "<p>Jumla ya kura batili inawawezesha wasambazaji kuona jinsi gani "
-#~ "hitilafu za SMS zinaweza kuathiri matokeo ya uchaguzi.|\n"
-#~ "Kura zisizo sahihi ambazo haziwezi kufananishwa na kura yoyote, "
-#~ "zitaainishwa kama SMS zinazoingia na zitahifadhiwa chini ya \"SMS Nyingine"
-#~ "\". SMS zitaainishwa kama \"Isiyoainishwa\"."
-
-#~ msgid "Result"
-#~ msgstr "Tokeo"
-
-#~ msgid "Total"
-#~ msgstr "Jumla"
-
-#~ msgid "No poll with this id exists"
-#~ msgstr "Hakuna kura iliyopo yenye kitambulisho hiki"
-
-#~ msgid "Processes"
-#~ msgstr "Michakato"
-
-#~ msgid "System software"
-#~ msgstr "Programu za mfumo"
-
-#~ msgid "Use in"
-#~ msgstr "Tumia kwenye"
-
-#~ msgid "No tag with this id exists"
-#~ msgstr "Hakuna lebo lililopo lenye kitambulisho hiki"
-
-#~ msgid "Manage Tags"
-#~ msgstr "Simamia Lebo"
-
-#~ msgid ""
-#~ "No tags exist. Please create one by clicking the 'Create new' button to "
-#~ "the right."
-#~ msgstr ""
-#~ "Hakuna lebo lililopo. Tafadhali unda moja kwa kubofya kitufe cha 'Unda "
-#~ "mpya' upande wa kulia."

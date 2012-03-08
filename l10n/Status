@@ -1,11 +1,4 @@
 Total words to translate per release
-pot/suyo/default.pot
-type              strings      words (source)    words (translation)
-translated:       0 (  0%)          0 (  0%)               0
-fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   638 (100%)       2648 (100%)             n/a
-Total:          638              2648                      0
-
 pot/sekowei/default.pot
 type              strings      words (source)    words (translation)
 translated:       0 (  0%)          0 (  0%)               0
@@ -13,34 +6,27 @@ fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:   511 (100%)       2428 (100%)             n/a
 Total:          511              2428                      0
 
+pot/suyo/default.pot
+type              strings      words (source)    words (translation)
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   652 (100%)       2705 (100%)             n/a
+Total:          652              2705                      0
+
 pot/manguensis/default.pot
 type              strings      words (source)    words (translation)
 translated:       0 (  0%)          0 (  0%)               0
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   600 (100%)       2905 (100%)             n/a
-Total:          600              2905                      0
+untranslated:   607 (100%)       2943 (100%)             n/a
+Total:          607              2943                      0
 
 Total words to translate per release after migration
-./suyo/esp/LC_MESSAGES/default.po
+./sekowei/fre/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:     248 ( 38%)        724 ( 27%)             834
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:   389 ( 60%)       1923 ( 72%)             n/a
-Total:          638              2648                    834
-
-./suyo/swa/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     249 ( 39%)        870 ( 32%)             838
+translated:     600 (100%)       2905 (100%)            3132
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   389 ( 60%)       1778 ( 67%)             n/a
-Total:          638              2648                    838
-
-./suyo/fre/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     481 ( 75%)       1990 ( 75%)            2159
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:   156 ( 24%)        657 ( 24%)             n/a
-Total:          638              2648                   2159
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          600              2905                   3132
 
 ./sekowei/esp/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
@@ -56,31 +42,45 @@ fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:     0 (  0%)          0 (  0%)             n/a
 Total:          436              3783                   3480
 
-./sekowei/fre/LC_MESSAGES/default.po
+./suyo/fre/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:     511 ( 99%)       2442 ( 99%)            2645
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:     0 (  0%)          0 (  0%)             n/a
-Total:          512              2443                   2645
-
-./manguensis/esp/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     239 ( 39%)        677 ( 23%)             789
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:   360 ( 60%)       2227 ( 76%)             n/a
-Total:          600              2905                    789
-
-./manguensis/swa/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     240 ( 40%)        823 ( 28%)             803
+translated:     506 ( 77%)       1940 ( 71%)            2112
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   360 ( 60%)       2082 ( 71%)             n/a
-Total:          600              2905                    803
+untranslated:   146 ( 22%)        765 ( 28%)             n/a
+Total:          652              2705                   2112
+
+./suyo/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     520 ( 79%)       2025 ( 74%)            2238
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   132 ( 20%)        680 ( 25%)             n/a
+Total:          652              2705                   2238
+
+./suyo/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     504 ( 77%)       1948 ( 72%)            1923
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   148 ( 22%)        757 ( 27%)             n/a
+Total:          652              2705                   1923
 
 ./manguensis/fre/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:     456 ( 76%)       1789 ( 61%)            1948
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:   143 ( 23%)       1115 ( 38%)             n/a
-Total:          600              2905                   1948
+translated:     584 ( 96%)       2843 ( 96%)            3063
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:    23 (  3%)        100 (  3%)             n/a
+Total:          607              2943                   3063
+
+./manguensis/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     608 (100%)       2963 (100%)            3221
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          608              2963                   3221
+
+./manguensis/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     613 (100%)       2975 (100%)            2832
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          613              2975                   2832
 

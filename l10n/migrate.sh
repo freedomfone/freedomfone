@@ -5,9 +5,9 @@
 #
 #################################################################
 
-FROM=sekowei
-TO=manguensis
-#TO=suyo
+FROM=manguensis
+#TO=manguensis
+TO=suyo
 LANG="swa fre esp"
 for i in $LANG; do
 echo "Migrating $i"

@@ -8,6 +8,11 @@ STEP 2. Install subversion
 STEP 3. Download Freedom Fone builder
 # mkdir -p /opt/freedomfone
 # cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+#(if you want to build from a tag)
+##
+##cd /opt/freedomfone; https://dev.freedomfone.org/svn/freedomfone/tags/manguensis_2.S.2
+##
+
 # cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies
@@ -25,7 +30,7 @@ STEP 6. Install Cepstral, accept default values (/opt/swift as installation dire
 
 STEP 7. Install Freeswitch for Freedom Fone
 
-# cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-9_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-9_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-9_i386.deb
+# cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-12_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-12_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-12_i386.deb
 
 STEP 8. Install rootconf, that contains default configurations for PHP5, Apache2, iwatch, cron and startup services
 

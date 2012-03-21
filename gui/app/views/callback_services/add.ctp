@@ -109,7 +109,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        $row[6] = array(__("Max calls per user",true), $form->input('max_calls_user', array('options' => $callback_default['max_calls_user'],'selected' => $callback_default['max_calls_user_default'], 'label'=>false )));
        $row[7] = array(array(__("Maximum number of calls per user for this service.",true),"colspan='2' class='formComment'"));
 
-       $row[8] = array(__("Max calls per user and day",true), $form->input('max_calls_user_day', array('options' => $callback_default['max_calls_user_day'],'selected' => $callback_default['max_calls_user_day_default'], 'label'=>false )));
+       $row[8] = array(__("Max calls per user per day",true), $form->input('max_calls_user_day', array('options' => $callback_default['max_calls_user_day'],'selected' => $callback_default['max_calls_user_day_default'], 'label'=>false )));
        $row[9] = array(array(__("Maximum number of calls per user/day (24h) for this service.",true),"colspan='2' class='formComment'"));
 
        $row[10] = array(__("Max calls",true), $form->input('max_calls_total', array('options' => $callback_default['max_calls_total'],'selected' => $callback_default['max_calls_total_default'], 'label'=>false )));

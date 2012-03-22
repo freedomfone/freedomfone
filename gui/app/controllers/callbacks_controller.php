@@ -92,12 +92,22 @@ class CallbacksController extends AppController{
 
 			  foreach($results as $callback){
 			  	$id		            = array_keys($id_contact, $callback['contact']);
-                        	$this->Callback->id 	    = $id[0];
+                        	$id			    = $id[0];
+				$this->Callback->id 	    = $id;
                        		$this->data['status'] 	    = $callback['status'];
                         	$this->data['last_attempt'] = $callback['last_attempt'];
                         	$this->data['retries'] 	    = $callback['count_attempt'];
                         	$this->Callback->save($this->data);
 
+				//Callback completed, add to statistics
+
+                                if( ($callback['status'] == 5) && ($_status[$callback['contact_id']] != 5) ){
+				  $this->loadModel('User');
+				  $user = $this->User->PhoneNumber->find('first', array('conditions' => array('PhoneNumber.number' => $callback['contact'])));
+
+				  $this->User->updateUser($user,'callback');
+                                }
+	
 
                            }
 

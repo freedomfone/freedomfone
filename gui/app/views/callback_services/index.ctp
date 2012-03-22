@@ -43,17 +43,21 @@ echo $html->addCrumb(__('Callback Service',true), '/callback_services');
 	 if($tickle){
 	   $default = false;
 	  } else {
-	   $default = true;
+	   $default = 0;
 	  } 
-	   $tickle_disable = $form->radio("CallbackService.tickle",array(0 => ''),array('legend' => false, 'default' => $default));
-	  
 
-        echo $form->create('CallbackService',array('type' => 'post','action'=> 'index', 'enctype' => 'multipart/form-data'));
-           foreach ($services as $key => $entry){
+	  $tickle_disable = $form->radio("CallbackService.tickle",array(0 => ''),array('legend' => false, 'default' => $default));
+          echo $form->create('CallbackService',array('type' => 'post','action'=> 'index', 'enctype' => 'multipart/form-data'));
+	  $default = false;
+          
+	  foreach ($services as $key => $entry){
+	   	   
+
+		   if($entry['CallbackService']['tickle']){ $default = $entry['CallbackService']['id'];}
 
                    $delete = $ajax->link($html->image("icons/delete.png"),'/callback_services/delete/'.$entry['CallbackService']['id'], array('update' => 'callback_services'), null, 1);
 	           $edit   = $html->link($html->image("icons/edit.png", array("title" => __("Edit",true))),"/callback_services/edit/{$entry['CallbackService']['id']}",null, null, false);
-                   $tickle = $form->radio('tickle',array($entry['CallbackService']['id'] => ''),array('legend' => false, 'default' => $entry['CallbackService']['tickle']));
+                   $tickle = $form->radio('tickle',array($entry['CallbackService']['id'] => ''),array('legend' => false, 'default' => $default));
                    $row[$key] = array(
                                 $tickle,
                                 $entry['CallbackService']['code'],

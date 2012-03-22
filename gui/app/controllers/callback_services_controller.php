@@ -43,22 +43,24 @@ class CallbackServicesController extends AppController{
         function index(){
 
                  $this->pageTitle   = __('Callback Services',true);
-                 $services = $this->paginate('CallbackService');
+
 
 		 
                  if($this->data){
 
                         $this->CallbackService->updateAll(array('CallbackService.tickle' => 0));
-			if($this->data['CallbackService']['tickle']){		
+			if($this->data['CallbackService']['tickle']){	
+
                     	     $this->CallbackService->id = $this->data['CallbackService']['tickle'];
                              $this->CallbackService->saveField('tickle',1);
 			}
                  }
 
 
-		 $tickle = $this->CallbackService->find('first', array('recursive' => false));
+		 $tickle = $this->CallbackService->find('first', array('recursive' => false, 'conditions' => array('tickle' => 1)));
 
 
+                 $services = $this->paginate('CallbackService');
                  foreach($services as $key => $service){
 
                        $result = $this->getServiceName($service['CallbackService']['extension']);
@@ -452,6 +454,7 @@ class CallbackServicesController extends AppController{
 
 
               $header = $HttpSocket->response['raw']['status-line'];
+
 
               if ($this->headerGetStatus($header) == 4) {           
 

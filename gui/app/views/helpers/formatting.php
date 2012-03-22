@@ -88,6 +88,10 @@
 	     return __('Callback',true);
 	     break;
 
+	     case 'campaign':
+	     return __('Campaign',true);
+	     break;
+
 	     case 'bin':
 	     return __('Other SMS',true);
 	     break;    

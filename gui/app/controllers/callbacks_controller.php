@@ -156,6 +156,7 @@ class CallbacksController extends AppController{
 
 			  	$id		            = array_keys($id_callback, $callback['contact']);
 				$id			    = $id[0];
+
                         	$this->Callback->id 	    = $id;
                        		$this->data['status'] 	    = $callback['status'];
                         	$this->data['last_attempt'] = $callback['last_attempt'];
@@ -163,7 +164,7 @@ class CallbacksController extends AppController{
                         	$this->Callback->save($this->data);
 
                                //Callback completed, add to statistics
-                               if($callback['status'] == 5 && $_status[$id]['status'] != 5 ){
+                               if( ($callback['status'] == 5) && ($_status[$id]['status'] != 5) ){
 			         $calls_total .=+1;
 
                                }

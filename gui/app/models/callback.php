@@ -282,12 +282,13 @@ function __construct($id = false, $table = null, $ds = null) {
     function updateUser($user){
 
       $update      = 'count_callback'; 
-      $application = 'callback_in';
+      $application = 'callback';
 
+      if (!$first_app = $user['User']['first_app']) { $first_app = $application;}
 		 $count = $user['User'][$update]+1;
                  $user_id = $user['User']['id'];
                  $this->User->read(null, $user_id);
-	         $this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
+	         $this->User->set(array($update => $count,'last_app'=>$application, 'first_app'=>$first_app,'last_epoch'=>time()));
                  $this->User->save();
 
     }

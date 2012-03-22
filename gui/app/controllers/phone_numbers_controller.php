@@ -31,13 +31,14 @@ class PhoneNumbersController extends AppController {
 
     function add(){
 
-    Configure::write('debug', 0);
+    Configure::write('debug', 3);
 
        if(!empty($this->data)){
 
              if($this->data['PhoneNumber']['number']){
 
 	       $this->data['PhoneNumber']['number'] = $this->sanitizePhoneNumber($this->data['PhoneNumber']['number']);
+	       
                 $this->PhoneNumber->create();
                 if ($this->PhoneNumber->save($this->data)){
                 

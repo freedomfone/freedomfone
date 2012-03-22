@@ -125,7 +125,7 @@ function __construct($id = false, $table = null, $ds = null) {
                 }
 
                 if($user){
-                        $this->updateUser($user);
+                        
                         $user_id = $user['User']['id'];
                 } else {
                         $user_id = $this->createUser($sender, $name);
@@ -270,28 +270,6 @@ function __construct($id = false, $table = null, $ds = null) {
      }
 
 
-
-/*
- *
- * Update user statistics
- * 
- * @params
- *      $user (array)
- * 
- */
-    function updateUser($user){
-
-      $update      = 'count_callback'; 
-      $application = 'callback';
-
-      if (!$first_app = $user['User']['first_app']) { $first_app = $application;}
-		 $count = $user['User'][$update]+1;
-                 $user_id = $user['User']['id'];
-                 $this->User->read(null, $user_id);
-	         $this->User->set(array($update => $count,'last_app'=>$application, 'first_app'=>$first_app,'last_epoch'=>time()));
-                 $this->User->save();
-
-    }
 
 /*
  *

@@ -613,6 +613,7 @@ CREATE TABLE `users` (
   `count_lam` int(11) unsigned default NULL,
   `count_bin` int(11) unsigned default NULL,
   `count_callback` int(11) unsigned default NULL,
+  `count_campaign` int(11) unsigned default NULL,
   `first_app` varchar(10) default NULL,
   `first_epoch` int(11) unsigned default NULL,
   `last_app` varchar(10) default NULL,

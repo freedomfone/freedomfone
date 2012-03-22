@@ -100,21 +100,18 @@ class CallbacksController extends AppController{
                         	$this->Callback->save($this->data);
 
 				//Callback completed, add to statistics
-
                                 if( ($callback['status'] == 5) && ($_status[$callback['contact_id']] != 5) ){
 				  $this->loadModel('User');
 				  $user = $this->User->PhoneNumber->find('first', array('conditions' => array('PhoneNumber.number' => $callback['contact'])));
-
-				  $this->User->updateUser($user,'callback');
+				  $this->User->updateUser($user,'count_campaign', 'campaign');
                                 }
-	
-
-                           }
 
 		       }
 	  }
 
   }
+
+}
 
 
 /*
@@ -165,6 +162,7 @@ class CallbacksController extends AppController{
 			  foreach($results as $callback){
 
 			  	$id		            = array_keys($id_callback, $callback['contact']);
+				debug($id);
 				$id			    = $id[0];
 
                         	$this->Callback->id 	    = $id;
@@ -176,6 +174,12 @@ class CallbacksController extends AppController{
                                //Callback completed, add to statistics
                                if( ($callback['status'] == 5) && ($_status[$id]['status'] != 5) ){
 			         $calls_total .=+1;
+
+				 $this->loadModel('User');
+				 $user = $this->User->PhoneNumber->find('first', array('conditions' => array('PhoneNumber.number' => $callback['contact'])));
+				 $this->User->updateUser($user,'count_callback', 'callback');
+                                
+
 
                                }
 			  }

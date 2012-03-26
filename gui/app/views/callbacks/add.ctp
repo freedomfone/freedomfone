@@ -105,7 +105,7 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        $row[3] = array(array(__("Interval (seconds) beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
 
        $row[4] = array(__("max duration",true), $form->input('max_duration', array('options' => $callback_default['max_duration'],'label'=>false, 'selected' => $maxduration)));
-       $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
+       $row[5] = array(array(__("Maximum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
 
        echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));
        echo "</table>";

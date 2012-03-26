@@ -53,10 +53,10 @@ echo "<h1>".__("Campaigns and Callback settings",true)."</h1>";
        $row[1] = array(array(__("Default number of retires for a callback.",true),"colspan='2' class='formComment'"));
 
        $row[2] = array(__("Retry interval",true), $form->input('retry_interval', array('options' => $default['retry_interval'],'label'=>false, 'selected' => $this->data['CallbackSetting']['retry_interval'])));
-       $row[3] = array(array(__("Interval (seconds) beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
+       $row[3] = array(array(__("Interval beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
 
        $row[4] = array(__("max duration",true), $form->input('max_duration', array('options' => $default['max_duration'],'label'=>false, 'selected' => $this->data['CallbackSetting']['max_duration'])));
-       $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
+       $row[5] = array(array(__("Maximum duration for a callback call.",true),"colspan='2' class='formComment'"));
 
        echo $html->tableCells($row,array('class' => 'stand-alone'),array('class' => 'stand-alone'));
        echo "</table>";

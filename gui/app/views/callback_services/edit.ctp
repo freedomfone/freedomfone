@@ -117,16 +117,16 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
        $row[3] = array(array(__("Interval (seconds) beween callback attempts to a single user.",true),"colspan='2' class='formComment'"));
 
        $row[4] = array(__("Max duration",true), $form->input('max_duration', array('options' => $callback_default['max_duration'],'label'=>false, 'selected' => $data['CallbackService']['max_duration'])));
-       $row[5] = array(array(__("Maxumum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
+       $row[5] = array(array(__("Maximum duration (seconds) for a callback call.",true),"colspan='2' class='formComment'"));
 
        $row[6] = array(__("Max calls per user",true), $form->input('max_calls_user', array('options' => $callback_default['max_calls_user'],'selected' => $data['CallbackService']['max_calls_user'], 'label'=>false )));
-       $row[7] = array(array(__("Maxumum number of calls per user for this service.",true),"colspan='2' class='formComment'"));
+       $row[7] = array(array(__("Maximum number of calls per user for this service.",true),"colspan='2' class='formComment'"));
 
        $row[8] = array(__("Max calls per user and day",true), $form->input('max_calls_user_day', array('options' => $callback_default['max_calls_user_day'],'selected' => $data['CallbackService']['max_calls_user_day'], 'label'=>false )));
-       $row[9] = array(array(__("Maxumum number of calls per user/day (24h) for this service.",true),"colspan='2' class='formComment'"));
+       $row[9] = array(array(__("Maximum number of calls per user/day (24h) for this service.",true),"colspan='2' class='formComment'"));
 
        $row[10] = array(__("Max calls",true), $form->input('max_calls_total', array('options' => $callback_default['max_calls_total'],'selected' => $data['CallbackService']['max_calls_total'], 'label'=>false )));
-       $row[11] = array(array(__("Maxumum number of calls for this service.",true),"colspan='2' class='formComment'"));
+       $row[11] = array(array(__("Maximum number of calls for this service.",true),"colspan='2' class='formComment'"));
 
 
        echo $html->tableCells($row,array('class' => 'none'),array('class' => 'none'));

@@ -56,6 +56,11 @@ class CallbackService extends AppModel{
                             'message'  => __('Please state an SMS code for the callback service.',true),
                             'required' => true,
                             ),
+                     'alphaNumeric' => array(
+                            'rule' => 'alphaNumeric',
+                            'message'  => __('Only letters and numbers are allowed.',true),
+                            'required' => true,
+                            ),
                     'IsUnique' => array(
                             'rule' => 'isUnique',
                             'message'  => __('The SMS code provided is already in use.',true),

@@ -62,7 +62,7 @@ echo $html->addCrumb(__('Callback Service',true), '/callback_services');
                                 $tickle,
                                 $entry['CallbackService']['code'],
                                 $formatting->appMatch($entry['CallbackService']['application']),                                
-                                $entry['CallbackService']['service_name'],
+                                $text->truncate($entry['CallbackService']['service_name'],30,false,true,false),
                                 array($entry['CallbackService']['max_calls_total'], array('align' => 'center')),
                                 array($entry['CallbackService']['calls_total'], array('align' => 'center')),
                                 $entry['CallbackService']['start_time'],

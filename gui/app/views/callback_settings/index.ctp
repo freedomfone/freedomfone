@@ -23,11 +23,11 @@
  ***************************************************************************/
 
 echo $html->addCrumb(__('Callback Dialer',true), '');
-echo $html->addCrumb(__('Settings',true), '/callback_settings');
+echo $html->addCrumb(__('Campaigns and Callback Settings',true), '/callback_settings');
 $default  = Configure::read('CALLBACK_DEFAULT');
 
 
-echo "<h1>".__("Callback settings",true)."</h1>";
+echo "<h1>".__("Campaigns and Callback settings",true)."</h1>";
 
    	  if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);

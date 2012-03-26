@@ -438,11 +438,11 @@ function XML2SQL($table,$string){
 
 
 	      if(!$insert){
-	      print_r("tickel disavled");
+	      print_r("tickle disabled");
 	         logESL("Tickle failed. Service disabled","INFO",1);
 		 return true; 
 	      } else {
-	      print_r("tickel ok");
+	      print_r("tickle ok");
 	        return insertValues($table,$fields,$values);
 	      }
 
@@ -566,8 +566,12 @@ function analyzeBody($body){
 
         $result =  getCallbackServices();
         $callback = $result['callback'];
+	foreach ($callback as $key => $tmp){
 
-        $data =  explode(' ',$body);
+	  $callback[$key] = strtoupper($tmp);
+	}
+
+        $data =  explode(' ',strtoupper($body));
 	foreach ($data as $token){
 	
 		if ($token){
@@ -575,8 +579,7 @@ function analyzeBody($body){
 		}
 		
 	}
-	
-        if(in_array($body, $callback)){
+        if(in_array(strtoupper($body), $callback)){
                 $app ='callback_in';
         }
 

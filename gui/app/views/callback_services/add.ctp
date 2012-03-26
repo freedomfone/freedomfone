@@ -54,13 +54,13 @@ $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $lam[$key] = $text->truncate($entry,30,false,true,false);
        }
        foreach($ivr as $key => $entry){
-             $ivr[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $ivr[$key] = $text->truncate($entry,30,false,true,false);
        }
        foreach($selector as $key => $entry){
-             $selector[$key] = $text->truncate($entry,$ivr_settings['showLengthMin'],false,true,false);
+             $selector[$key] = $text->truncate($entry,30,false,true,false);
        }
 
         $default = false;

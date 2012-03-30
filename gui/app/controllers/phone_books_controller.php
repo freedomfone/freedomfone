@@ -78,8 +78,14 @@ class PhoneBooksController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->PhoneBook->read(null, $id);
 
-			$users   = $this->PhoneBook->User->find('list');
+			$users_name      = $this->PhoneBook->User->find('list', array('fields' => array('name')));
+			$users_surname   = $this->PhoneBook->User->find('list', array('fields' => array('surname')));
 
+			foreach($users_name as $key => $name){
+
+			   $users[$key] = $name.' '.$users_surname[$key];
+
+			}
 
 			$this->set(compact('users'));
 		}

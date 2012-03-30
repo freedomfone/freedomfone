@@ -139,7 +139,7 @@ class CallbackServicesController extends AppController{
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
 			     'content_type'	=> $dialer['content_type'],
                              'object_id'        => $dialer['object_id'], 
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
                              'status'  		=> '1',
@@ -441,7 +441,7 @@ class CallbackServicesController extends AppController{
                              'callmaxduration'  => $data['max_duration'],
                              'maxretry'         => $data['max_retries'],
                              'intervalretry'    => $data['retry_interval'],
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              );
 
 

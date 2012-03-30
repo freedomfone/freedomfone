@@ -143,7 +143,7 @@ class CampaignsController extends AppController{
                              'calltimeout'      => $dialer['call_timeout'],
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
                              'object_id'        => $dialer['object_id'], 
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
 			     'content_type'	=> $dialer['content_type'],

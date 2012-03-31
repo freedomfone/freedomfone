@@ -144,6 +144,7 @@ CREATE TABLE `campaigns` (
   `status` smallint(6) default '1',
   `nf_campaign_id` int(11) unsigned NOT NULL,
   `nf_phone_book_id` int(11) unsigned NOT NULL,
+  `phone_book_id` int(11) unsigned NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

@@ -29,6 +29,7 @@ class CampaignsController extends AppController{
 
 
 	var $paginate = array(
+	    	      	      'recursive' => false,
 		    	      'limit' => 50,
 			      'order' => array('Campaign.name' => 'ASC'));
 
@@ -125,6 +126,7 @@ class CampaignsController extends AppController{
                        $this->data[$key]['Callrequest']['type'] = $callback_type;
 
 
+
                   }
 
 
@@ -186,7 +188,7 @@ class CampaignsController extends AppController{
                            $nf_phone_book_id = $results['phonebook'][0]['id'];                        
                            $this->data['Campaign']['status'] = 1;
                            $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
-                           $this->data['Campaign']['nf_campaign_id'] = $nf_campaign_id;
+                           $this->data['Campaign']['nf_campaign_id']   = $nf_campaign_id;
 
                            $this->Campaign->saveAll($this->data['Campaign'],array('validate' => false));
                            $campaign_id = $this->Campaign->getLastInsertId();
@@ -271,7 +273,7 @@ class CampaignsController extends AppController{
 
       $dialer = Configure::read('DIALER');
 
-       if($id && $data = $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
+       if($id && $data = $this->Campaign->find('first', array('conditions' => array('Campaign.id'=> $id)))){
 
               $HttpSocket = new HttpSocket();
               $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 

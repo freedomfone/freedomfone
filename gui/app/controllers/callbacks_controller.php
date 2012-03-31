@@ -135,7 +135,11 @@ class CallbacksController extends AppController{
 	  foreach ($callbacks as $callback_service_id){
 
 	     //Find list of phone numbers and callback service id
-	     $id_callback = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
+	 //    $id_callback = $this->Callback->find('list', array('fields' => 'phone_number', 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
+
+	     $id_callback = $this->Callback->find('list', array('fields' => 'nf_campaign_subscriber_id', 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
+
+
 
 	     $callbacks_per_cs = $this->Callback->find('all', array('fields' => array('id', 'phone_number','status'), 'conditions' => array('Callback.callback_service_id' => $callback_service_id)));
 
@@ -161,28 +165,28 @@ class CallbacksController extends AppController{
 
 			  foreach($results as $callback){
 
-			  	$id		            = array_keys($id_callback, $callback['contact']);
-				debug($id);
-				$id			    = $id[0];
+			  	$id		            = array_keys($id_callback, $callback['campaign_subscriber_id']);
 
-                        	$this->Callback->id 	    = $id;
-                       		$this->data['status'] 	    = $callback['status'];
-                        	$this->data['last_attempt'] = $callback['last_attempt'];
-                        	$this->data['retries'] 	    = $callback['count_attempt'];
-                        	$this->Callback->save($this->data);
+				if($id){
 
-                               //Callback completed, add to statistics
-                               if( ($callback['status'] == 5) && ($_status[$id]['status'] != 5) ){
-			         $calls_total .=+1;
+					$id			    = $id[0];
+                        		$this->Callback->id 	    = $id;
+                       			$this->data['status'] 	    = $callback['status'];
+                        		$this->data['last_attempt'] = $callback['last_attempt'];
+                        		$this->data['retries'] 	    = $callback['count_attempt'];
+                        		$this->Callback->save($this->data);
 
-				 $this->loadModel('User');
-				 $user = $this->User->PhoneNumber->find('first', array('conditions' => array('PhoneNumber.number' => $callback['contact'])));
-				 $this->User->updateUser($user,'count_callback', 'callback');
+                               		//Callback completed, add to statistics
+                               		if( ($callback['status'] == 5) && ($_status[$id]['status'] != 5) ){
+			         	  $calls_total .=+1;
+
+				 	  $this->loadModel('User');
+				 	  $user = $this->User->PhoneNumber->find('first', array('conditions' => array('PhoneNumber.number' => $callback['contact'])));
+					  //	 $this->User->updateUser($user,'count_callback', 'callback');
                                 
-
-
-                               }
-			  }
+				        }
+                               }  //if id
+			  } //foreach
 		   }
 		   if($calls_total){
                      $this->Callback->CallbackService->id = $callback_service_id;

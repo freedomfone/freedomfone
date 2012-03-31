@@ -170,7 +170,7 @@ class CampaignsController extends AppController{
                                          );
                       $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_POST'], json_encode($socket_data), $request); 
                       $results  = json_decode($results);
-
+debug($results);
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
 
@@ -238,6 +238,8 @@ class CampaignsController extends AppController{
                               if(array_key_exists('chk_campaign', $results)){ $this->_flash($results['chk_campaign'][0].'<br/>'.__('Please delete a campaign before creating a new.',true), 'error');}
                               elseif(array_key_exists('chk_campaign_name',$results)){ $this->_flash($results['chk_campaign_name'][0].'<br/>'.__('Please select a campaign name that is not in use.',true), 'error');}
 			      elseif(array_key_exists('chk_duration',$results)){ $this->_flash($results['chk_duration'][0], 'error');}
+	      		      elseif(array_key_exists('chk_gateway',$results)){ $this->_flash($results['chk_gateway'][0].'<br/>'.__('Please review your Newfies settings.',true), 'error');}
+	      		      elseif(array_key_exists('chk_dialer_setting',$results)){ $this->_flash($results['chk_dialer_setting'][0].'<br/>'.__('Please review your Newfies settings.',true), 'error');}
 
 
                          }  else {

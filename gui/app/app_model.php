@@ -137,10 +137,17 @@ class AppModel extends Model {
 
               //If User exists
               if ($userData){
-                     $user_id = $userData['User']['id'];
-	             $count = $userData['User'][$update]+1;
+
+
+                     $user_id  = $userData['User']['id'];
+	             $count    = $userData['User'][$update]+1;
                      $user->read(null, $userData['User']['id']);
-	 	     $user->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
+
+		     $data     = array($update => $count,'last_app'=>$application,'last_epoch'=>$created);
+		     if(!$userData['User']['first_app']) { 
+		        $data['first_app'] = $application;
+		     }
+	 	     $user->set($data);
                      $user->save();           
 
 	      } else {

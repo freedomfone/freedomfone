@@ -87,7 +87,8 @@ Configure::write('debug', 0);
      array(__("Voice Menu",true),		$data['User']['count_ivr']),
      array(__("Leave-a-message",true),		$data['User']['count_lam']),
      array(__("SMS",true),		        $data['User']['count_bin']),
-     array(__("Callback",true),		        $data['User']['count_callback']),
+     array(__("Callback SMS",true),		        $data['User']['count_callback_sms']),
+     array(__("Callback Tickle",true),		        $data['User']['count_callback_tickle']),
      array(__("Campaign",true),		        $data['User']['count_campaign']),
      ),array('class' => 'blue'),array('class' => 'blue'));
      echo "</table>";

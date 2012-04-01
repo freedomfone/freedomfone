@@ -84,8 +84,12 @@
 	     return __('Voice menu',true);
 	     break;
 
-	     case 'callback':
-	     return __('Callback',true);
+	     case 'callback_sms':
+	     return __('Callback SMS',true);
+	     break;
+
+	     case 'callback_tickle':
+	     return __('Callback Tickle',true);
 	     break;
 
 	     case 'campaign':

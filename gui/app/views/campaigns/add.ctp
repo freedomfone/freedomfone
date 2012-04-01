@@ -28,6 +28,7 @@ echo $html->addCrumb(__('Create',true), '/campaigns/add');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+
      echo "<h1>".__("Create Campaign",true)."</h1>";
 
         if ($messages = $session->read('Message.multiFlash')) {

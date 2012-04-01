@@ -170,11 +170,17 @@ class CampaignsController extends AppController{
                                          );
                       $results = $HttpSocket->post($dialer['host'].$dialer['path'].$dialer['campaign_POST'], json_encode($socket_data), $request); 
                       $results  = json_decode($results);
-debug($results);
+
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
 
-                        if ( $status == 1) {  //201 Created (POST Campaign)
+		      if(!$status){
+
+		      $this->_flash(__('Newfies is not responding. Please review your Newfies settings.',true), 'error');
+		      
+		      }
+
+                      elseif ( $status == 1) {  //201 Created (POST Campaign)
 
                           //Get Newfies campaign id
                           $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);

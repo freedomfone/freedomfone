@@ -156,7 +156,13 @@ class CallbackServicesController extends AppController{
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
-                      if ( $header_status  == 1) {
+		      if(!$header_status){
+
+		      $this->_flash(__('Newfies is not responding. Please review your Newfies settings.',true), 'error');
+		      
+		      }
+
+                      elseif ( $header_status  == 1) {
 
                           //Get Newfies campaign id
                           $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);

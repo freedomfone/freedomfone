@@ -26,6 +26,8 @@ echo $html->addCrumb(__('Callback',true), '/callbacks');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+
+
 $order = array('batch_id' => __('Batch id',true),'created' => __('Created',true),'user_id' => __('User',true),'status' => __('Status',true), 'type' => __('Type',true),'extension' => __('Service ID',true),'retry' => __('Attempts',true));
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));
      echo "<h1>".__("Callback Status",true)."</h1>";

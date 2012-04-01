@@ -23,7 +23,12 @@
  ***************************************************************************/
 
 echo $html->addCrumb(__('User Management',true), '');
-$acls  = Configure::read('ACL');
+     
+        $acls  = Configure::read('ACL');
+	foreach($acls as $key => $acl){
+	    $acls[$key] = __($acl,true);
+	}        
+
 Configure::write('debug', 0);
 
  if($data){

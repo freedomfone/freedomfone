@@ -35,6 +35,10 @@ echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('nam
 echo $form->end();
 
 $acls  = Configure::read('ACL');
+foreach($acls as $key => $acl){
+	    $acls[$key] = __($acl,true);
+}        
+
 
  if($data = $this->data){
 

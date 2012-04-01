@@ -29,6 +29,17 @@ echo $html->addCrumb(__('Create',true), '/callback_services/add');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+foreach($callback_default['max_calls_user'] as $key => $entry){
+	 $callback_default['max_calls_user'][$key] = __($entry,true);
+}
+
+foreach($callback_default['max_calls_user_day'] as $key => $entry){
+	 $callback_default['max_calls_user_day'][$key] = __($entry,true);
+}
+foreach($callback_default['max_calls_total'] as $key => $entry){
+	 $callback_default['max_calls_total'][$key] = __($entry,true);
+}
+
 
      echo "<h1>".__("Create Callback Service",true)."</h1>";
 

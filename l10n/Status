@@ -1,10 +1,23 @@
-Total words to translate per release
-pot/sekowei/default.pot
+manguensis/esp/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:       0 (  0%)          0 (  0%)               0
+translated:     608 (100%)       2963 (100%)            3221
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   511 (100%)       2428 (100%)             n/a
-Total:          511              2428                      0
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          608              2963                   3221
+
+manguensis/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     613 (100%)       2975 (100%)            2832
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          613              2975                   2832
+
+manguensis/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     584 ( 96%)       2843 ( 96%)            3063
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:    23 (  3%)        100 (  3%)             n/a
+Total:          607              2943                   3063
 
 pot/suyo/default.pot
 type              strings      words (source)    words (translation)
@@ -13,6 +26,13 @@ fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:   652 (100%)       2705 (100%)             n/a
 Total:          652              2705                      0
 
+pot/sekowei/default.pot
+type              strings      words (source)    words (translation)
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   511 (100%)       2428 (100%)             n/a
+Total:          511              2428                      0
+
 pot/manguensis/default.pot
 type              strings      words (source)    words (translation)
 translated:       0 (  0%)          0 (  0%)               0
@@ -20,67 +40,82 @@ fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:   607 (100%)       2943 (100%)             n/a
 Total:          607              2943                      0
 
-Total words to translate per release after migration
-./sekowei/fre/LC_MESSAGES/default.po
+pot/suyo2D2/default.pot
 type              strings      words (source)    words (translation)
-translated:     600 (100%)       2905 (100%)            3132
+translated:       0 (  0%)          0 (  0%)               0
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:     0 (  0%)          0 (  0%)             n/a
-Total:          600              2905                   3132
+untranslated:   641 (100%)       2659 (100%)             n/a
+Total:          641              2659                      0
 
-./sekowei/esp/LC_MESSAGES/default.po
+sekowei/esp/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
 translated:     418 ( 95%)       2978 ( 77%)            3316
 fuzzy:            5 (  1%)        128 (  3%)             n/a
 untranslated:    16 (  3%)        718 ( 18%)             n/a
 Total:          439              3824                   3316
 
-./sekowei/swa/LC_MESSAGES/default.po
+sekowei/swa/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
 translated:     436 (100%)       3783 (100%)            3480
 fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:     0 (  0%)          0 (  0%)             n/a
 Total:          436              3783                   3480
 
-./suyo/fre/LC_MESSAGES/default.po
+sekowei/fre/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:     506 ( 77%)       1940 ( 71%)            2112
-fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   146 ( 22%)        765 ( 28%)             n/a
-Total:          652              2705                   2112
-
-./suyo/esp/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     520 ( 79%)       2025 ( 74%)            2238
-fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   132 ( 20%)        680 ( 25%)             n/a
-Total:          652              2705                   2238
-
-./suyo/swa/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     504 ( 77%)       1948 ( 72%)            1923
-fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   148 ( 22%)        757 ( 27%)             n/a
-Total:          652              2705                   1923
-
-./manguensis/fre/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     584 ( 96%)       2843 ( 96%)            3063
-fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:    23 (  3%)        100 (  3%)             n/a
-Total:          607              2943                   3063
-
-./manguensis/esp/LC_MESSAGES/default.po
-type              strings      words (source)    words (translation)
-translated:     608 (100%)       2963 (100%)            3221
+translated:     600 (100%)       2905 (100%)            3132
 fuzzy:            0 (  0%)          0 (  0%)             n/a
 untranslated:     0 (  0%)          0 (  0%)             n/a
-Total:          608              2963                   3221
+Total:          600              2905                   3132
 
-./manguensis/swa/LC_MESSAGES/default.po
+suyo/esp/LC_MESSAGES/default.po
 type              strings      words (source)    words (translation)
-translated:     613 (100%)       2975 (100%)            2832
-fuzzy:            0 (  0%)          0 (  0%)             n/a
+translated:     631 ( 98%)       2590 ( 97%)            2912
+fuzzy:           10 (  1%)         69 (  2%)             n/a
 untranslated:     0 (  0%)          0 (  0%)             n/a
-Total:          613              2975                   2832
+Total:          641              2659                   2912
+
+suyo/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     634 ( 98%)       2616 ( 98%)            2592
+fuzzy:            7 (  1%)         43 (  1%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          641              2659                   2592
+
+suyo/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     634 ( 98%)       2616 ( 98%)            2864
+fuzzy:            7 (  1%)         43 (  1%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          641              2659                   2864
+
+suyo2D2/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     631 ( 98%)       2590 ( 97%)            2912
+fuzzy:           10 (  1%)         69 (  2%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          641              2659                   2912
+
+suyo2D2/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     634 ( 98%)       2616 ( 98%)            2592
+fuzzy:            7 (  1%)         43 (  1%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          641              2659                   2592
+
+suyo2D2/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     634 ( 98%)       2616 ( 98%)            2864
+fuzzy:            7 (  1%)         43 (  1%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          641              2659                   2864
+
+TOTAL:
+type              strings      words (source)    words (translation)
+translated:    7057 ( 73%)      34091 ( 73%)           35780
+fuzzy:           53 (  0%)        438 (  0%)             n/a
+untranslated:  2450 ( 25%)      11553 ( 25%)             n/a
+Total:         9560             46082                  35780
+
+File count:      16
 

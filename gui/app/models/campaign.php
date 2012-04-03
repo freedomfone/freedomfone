@@ -26,6 +26,7 @@ class Campaign extends AppModel{
 
       var $name = 'Campaign';
 
+      var $belongsTo = array('PhoneBook');
       var $hasMany = array('Callback' => array(
                         	       'order' => 'Callback.id ASC',
                         	       'dependent' => true)

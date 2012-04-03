@@ -123,5 +123,26 @@ function getIdentifier($id){
 
 }
 
+
+/*
+ *
+ * Update user statistics
+ * 
+ * @params
+ *      $user (array)
+ * 
+ */
+    function updateUser($user, $field, $application){
+
+      if (!$first_app = $user['User']['first_app']) { $first_app = $application;}
+		 $count = $user['User'][$field]+1;
+                 $user_id = $user['User']['id'];
+                 $this->read(null, $user_id);
+	         $this->set(array($field => $count,'last_app'=>$application, 'first_app'=>$first_app,'last_epoch'=>time()));
+                 $this->save();
+
+    }
+
+
 }
 ?>

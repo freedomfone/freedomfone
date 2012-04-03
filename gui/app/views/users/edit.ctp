@@ -35,6 +35,10 @@ echo $html->div('frameRightAlone', $form->submit(__('Refresh',true),  array('nam
 echo $form->end();
 
 $acls  = Configure::read('ACL');
+foreach($acls as $key => $acl){
+	    $acls[$key] = __($acl,true);
+}        
+
 
  if($data = $this->data){
 
@@ -119,18 +123,22 @@ $acls  = Configure::read('ACL');
      echo "<div class='frameRight'>";
      echo "<table width='300px' cellspacing='0' class='blue'>";
      echo $html->tableCells(array (
-     array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
-     array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
-     array(__("Last seen",true),		$last_seen),
-     array(__("First application",true),	$formatting->appMatch($data['User']['first_app'])),
-     array(__("Last application",true),	     	$formatting->appMatch($data['User']['last_app'])),
-     array(array($html->div('table_sub_header',__('Activity',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
-     array(__("Poll",true),			$data['User']['count_poll']),
-    array(__("Voice Menu",true),		$data['User']['count_ivr']),
-     array(__("Leave-a-message",true),		$data['User']['count_lam']),
-     array(__("SMS",true),		        $data['User']['count_bin']),
-     array(__("Callback",true),		        $data['User']['count_callback'])
-     ),array('class' => 'blue'),array('class' => 'blue'));
+     	  array(array($html->div('table_sub_header',__('Statistics',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
+     	  array(__("In the system since",true),	date('Y-m-d',$data['User']['created'])),
+     	  array(__("Last seen",true),		$last_seen),
+     	  array(__("First application",true),	$formatting->appMatch($data['User']['first_app'])),
+     	  array(__("Last application",true),	     	$formatting->appMatch($data['User']['last_app'])),
+     	  array(array($html->div('table_sub_header',__('Activity',true)),array('colspan'=>2,'height'=>30,'valign'=>'bottom'))),
+     	  array(__("Poll",true),			$data['User']['count_poll']),
+     	  array(__("Voice Menu",true),		$data['User']['count_ivr']),
+     	  array(__("Leave-a-message",true),		$data['User']['count_lam']),
+     	  array(__("SMS",true),		        $data['User']['count_bin']),
+     	  array(__("Callback SMS",true),		$data['User']['count_callback_sms']),
+     	  array(__("Callback Tickle",true),		$data['User']['count_callback_tickle']),
+     	  array(__("Campaign",true),		        $data['User']['count_campaign'])
+	  ),
+     	  array('class' => 'blue'),
+	  array('class' => 'blue'));
      echo "</table>";
      echo "</div>";
      //** END RIGHT FRAME **//

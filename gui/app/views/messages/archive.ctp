@@ -42,19 +42,20 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
            <input type="button" name="UnCheckAll" value="<? echo __('Uncheck All',true);?>" onClick="uncheckAll(document.Message)">
            <?
 
-           echo "<table width='800px' cellspacing  = '0'>";
+           echo "<table width='95%' cellspacing  = '0'>";
 
            echo $html->tableHeaders(array(
 	        '',
 	        $paginator->sort(__("New",true), 'new'),
+	        $paginator->sort(__("Service",true), 'instance_id'),
  	        $paginator->sort(__("Title",true), 'title'),
- 	        $paginator->sort(__("Sender",true), 'sender'),
+ 	        $paginator->sort(__("Caller",true), 'sender'),
  	        $paginator->sort(__("Rate",true), 'rate'),
  	        $paginator->sort(__("Category",true), 'Category.name'),
- 	        $paginator->sort(__("Income",true), 'created'),
+ 	        $paginator->sort(__("Date",true), 'created'),
  	        $paginator->sort(__("Length",true), 'length'),
-	        __("Edit",true),
-	        __("Download",true),
+		'',
+		'',
 	        __("Listen",true)));
 
           echo $form->hidden('source',array('value'=>'archive'));
@@ -70,6 +71,7 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
                         $status = $html->image("icons/star.png",array("title" => __("New",true)));
 	        }
 
+	$service  = $message['Message']['instance_id'];
 	$title    = $message['Message']['title'];
 	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
@@ -83,6 +85,7 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
         $row[$key] = array(
      		$id,
      		array($status,array('align'=>'center')),
+     		array($service,array('align'=>'center')),
 		$title,
                 $sender,
 		array($rate,array('align'=>'center')),

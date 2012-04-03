@@ -50,6 +50,9 @@ $msgAccessLevel .= "<li>".__('is not networked, select Local machine.',true)."<b
 
 	    $lang_selected = $entry['value_string'];
 	    $languages = Configure::read('LANGUAGES');
+	    foreach($languages as $key => $language){
+	          $languages[$key] = __($language,true);
+            }
 	    $rows[] = array(__('Language',true), $form->input($entry['id'].'.value',array('options'=>$languages,'label'=>false,'selected'=>$lang_selected)));
 	    echo $form->hidden($entry['id'].'.field',array('value'=>'value_string'));
 	     

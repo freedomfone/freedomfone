@@ -77,7 +77,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	function refresh(){
 
 	$mapping = Configure::read('EXT_MAPPING');
-
+	$dialer  = Configure::read('DIALER');
 
            //** Fetch CDR from spooler **//
       	      $array = Configure::read('cdr');
@@ -102,8 +102,18 @@ function __construct($id = false, $table = null, $ds = null) {
 	       	  $this->set('epoch' , $epoch);
 		  $this->set('channel_state' , $channel_state);
 	       	  $this->set('call_id', $call_id);
-		  $this->set('caller_name', $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Name']));
-    	       	  $this->set('caller_number',$this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']));
+
+		  $caller_name   = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Name']);
+    	       	  $caller_number = $this->sanitizePhoneNumber($entry['Caller-Caller-ID-Number']);
+
+		  //Overwrite caller number for outbound Callbacks
+		  if($caller_name == 'Outbound Call'){
+		     $caller_number = __('Callback',true);
+		  }
+
+		  $this->set('caller_name', $caller_name);
+    	       	  $this->set('caller_number',$caller_number);
+
 	       	  $this->set('extension', $ext);
 
 

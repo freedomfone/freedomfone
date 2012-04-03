@@ -46,7 +46,10 @@ echo $form->end();
      echo "<h1>".__('Users',true)."</h1>";
 
         $acls  = Configure::read('ACL');
-        
+	foreach($acls as $key => $acl){
+	    $acls[$key] = __($acl,true);
+	}        
+
      if ($messages = $session->read('Message.multiFlash')) {
                 foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
      }

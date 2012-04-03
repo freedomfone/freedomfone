@@ -27,16 +27,15 @@
       $file = '../tmp/logs/'.$this->data['Log']['type'].'.log';
 
       if (file_exists($file)){
-	$handle = fopen($file,'r');
 
-	if ($handle) {
-    	   while (!feof($handle)) {
-           	 $buffer = fgets($handle, 4096);
-        	 echo $buffer."<br/>";
-           }
-    	   fclose($handle);
+	  $data = file($file);
+	  $data = array_reverse($data);
+
+	  foreach ($data as $line){
+
+	  	  echo $line."<br/>";
+	  }
 	
-	}
       } else {
 
       echo $html->div('warning',__('No log file of this type exists',true));

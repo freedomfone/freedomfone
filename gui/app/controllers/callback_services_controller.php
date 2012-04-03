@@ -43,22 +43,24 @@ class CallbackServicesController extends AppController{
         function index(){
 
                  $this->pageTitle   = __('Callback Services',true);
-                 $services = $this->paginate('CallbackService');
+
 
 		 
                  if($this->data){
 
                         $this->CallbackService->updateAll(array('CallbackService.tickle' => 0));
-			if($this->data['CallbackService']['tickle']){		
+			if($this->data['CallbackService']['tickle']){	
+
                     	     $this->CallbackService->id = $this->data['CallbackService']['tickle'];
                              $this->CallbackService->saveField('tickle',1);
 			}
                  }
 
 
-		 $tickle = $this->CallbackService->find('first', array('recursive' => false));
+		 $tickle = $this->CallbackService->find('first', array('recursive' => false, 'conditions' => array('tickle' => 1)));
 
 
+                 $services = $this->paginate('CallbackService');
                  foreach($services as $key => $service){
 
                        $result = $this->getServiceName($service['CallbackService']['extension']);
@@ -137,7 +139,7 @@ class CallbackServicesController extends AppController{
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
 			     'content_type'	=> $dialer['content_type'],
                              'object_id'        => $dialer['object_id'], 
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
                              'status'  		=> '1',
@@ -154,7 +156,13 @@ class CallbackServicesController extends AppController{
                         $header  = $HttpSocket->response['raw']['status-line'];
                         $header_status = $this->headerGetStatus($header);
 
-                      if ( $header_status  == 1) {
+		      if(!$header_status){
+
+		      $this->_flash(__('Newfies is not responding. Please review your Newfies settings.',true), 'error');
+		      
+		      }
+
+                      elseif ( $header_status  == 1) {
 
                           //Get Newfies campaign id
                           $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);
@@ -439,7 +447,7 @@ class CallbackServicesController extends AppController{
                              'callmaxduration'  => $data['max_duration'],
                              'maxretry'         => $data['max_retries'],
                              'intervalretry'    => $data['retry_interval'],
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              );
 
 
@@ -452,6 +460,7 @@ class CallbackServicesController extends AppController{
 
 
               $header = $HttpSocket->response['raw']['status-line'];
+
 
               if ($this->headerGetStatus($header) == 4) {           
 

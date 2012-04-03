@@ -46,6 +46,7 @@ echo $form->end();
 
                      $row[$key] = array(
                         $campaign['Campaign']['name'],
+                        $campaign['PhoneBook']['name'],
                         $formatting->appMatch($campaign['Campaign']['application']),
                         $campaign['Campaign']['service_name'],
                         $callback_default['campaign_status'][$campaign['Campaign']['status']],
@@ -59,9 +60,10 @@ echo $form->end();
               }
 
            echo "<div id ='campaign'>";  
-        echo "<table width='1000px' class='collapsed' cellspacing=0>";
+        echo "<table width='95%' class='collapsed' cellspacing=0>";
         echo $html->tableHeaders(array(
  	     $paginator->sort(__("Campaign",true), 'name'),
+ 	     $paginator->sort(__("Phone book",true), 'PhoneBook.name'),
  	     $paginator->sort(__("Application",true), 'application'),
  	     $paginator->sort(__("Name",true), 'service_name'),
  	     $paginator->sort(__("Status",true), 'status'),

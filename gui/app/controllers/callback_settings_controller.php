@@ -31,7 +31,7 @@ class CallbackSettingsController extends AppController{
 
 	function index($id = null){
 
-      	$this->pageTitle = 'Callback settings';           
+      	$this->pageTitle = 'Campaigns and Callback settings';           
 
 		if (empty($this->data)) {
 		       $this->data = $this->CallbackSetting->find('first');

@@ -263,7 +263,7 @@
 </li>
 
 <li>
-<?php echo $html->link(__("Wiki/SVN",true),'http://dev.freedomfone.org/wiki',array('target'=>'blank')); ?>
+<?php echo $html->link(__("Wiki/SVN",true),'https://dev.freedomfone.org/wiki',array('target'=>'blank')); ?>
 </li>
 
 

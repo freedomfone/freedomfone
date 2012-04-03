@@ -666,9 +666,8 @@ return $result;
 
        if($number){
 
+        //URL encoded
         if(preg_match('/%/',$number)){ $number = urldecode($number);}
-       
-         if(preg_match('/^[%2B0-9]+$/', $number)){
 
 	  $this->loadModel('Settings');
           $entry = $this->Settings->findByName('prefix');
@@ -681,7 +680,7 @@ return $result;
            //Replace +  sign with 00
            $number = preg_replace (array('/^[+]/'), array('00'),$number);           
 
-          } 
+          }
           //Starts without country prefix
           elseif (!preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number) && !preg_match('/^[00]{2,2}[0-9]{4,25}$/', $number)){
       
@@ -690,14 +689,12 @@ return $result;
 
           }
          }
-        }
+
 
         return $number;
 
 
      }
-
-
 
 
 }

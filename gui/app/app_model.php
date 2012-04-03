@@ -137,10 +137,17 @@ class AppModel extends Model {
 
               //If User exists
               if ($userData){
-                     $user_id = $userData['User']['id'];
-	             $count = $userData['User'][$update]+1;
+
+
+                     $user_id  = $userData['User']['id'];
+	             $count    = $userData['User'][$update]+1;
                      $user->read(null, $userData['User']['id']);
-	 	     $user->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
+
+		     $data     = array($update => $count,'last_app'=>$application,'last_epoch'=>$created);
+		     if(!$userData['User']['first_app']) { 
+		        $data['first_app'] = $application;
+		     }
+	 	     $user->set($data);
                      $user->save();           
 
 	      } else {
@@ -171,6 +178,34 @@ class AppModel extends Model {
               return $user_id;
 
        }
+
+/**
+* Overrides the Core invalidate function from the Model class
+* with the addition to use internationalization (I18n and L10n)
+* @param string $field Name of the table column
+* @param mixed $value The message or value which should be returned
+* 2009-07-27 ms
+*/
+
+        function invalidate($field, $value = null) {
+                 if (!is_array($this->validationErrors)) {
+                    $this->validationErrors = array();
+                 }
+                 if(empty($value)) {
+                    $value = true;
+                 }
+                 if (is_array($value)) {
+                    if (count($value) > 2) { # string %s %s string, trans1, trans2
+                       $translatedValue = sprintf(__($value[0], true), $value[1], $value[2]);
+                     } else { # string %s string, trans1
+                       $translatedValue = sprintf(__($value[0], true),$value[1]);
+                     }
+                     $this->validationErrors[$field] = $translatedValue;
+                 } else {
+                   $this->validationErrors[$field] = __($value, true);
+                }
+           }
+
 
 }
 ?>

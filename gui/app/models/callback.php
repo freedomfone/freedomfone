@@ -114,21 +114,31 @@ function __construct($id = false, $table = null, $ds = null) {
                     $this->log('ERROR refresh: USER DAILY LIMIT EXCEEDED', 'callback');   
 
               } else 
-              //Process callback
+
              {
 
+
+                //Process callback
                 if ($type == 'tickle'){ 
-                   $name = __('Callback tickle',true);
+
+                   $name  = __('Callback tickle',true);
+		   $field = 'count_callback_tickle';
+		   $application = 'callback_tickle';
+
                 } else { 
-                   $name = __('Callback SMS',true); 
-                   $type = 'SMS';
+
+                   $name  = __('Callback SMS',true); 
+                   $type  = 'SMS';
+		   $field = 'count_callback_sms';
+		   $application = 'callback_sms';
+
                 }
 
                 if($user){
-                        $this->updateUser($user);
+                        $this->updateUserStatistics('gsm', $sender, $application, $field);
                         $user_id = $user['User']['id'];
                 } else {
-                        $user_id = $this->createUser($sender, $name);
+                        $user_id = $this->createUser($sender, $name, $field);
                 }
  
 
@@ -273,27 +283,6 @@ function __construct($id = false, $table = null, $ds = null) {
 
 /*
  *
- * Update user statistics
- * 
- * @params
- *      $user (array)
- * 
- */
-    function updateUser($user){
-
-      $update      = 'count_callback'; 
-      $application = 'callback_in';
-
-		 $count = $user['User'][$update]+1;
-                 $user_id = $user['User']['id'];
-                 $this->User->read(null, $user_id);
-	         $this->User->set(array($update => $count,'last_app'=>$application,'last_epoch'=>time()));
-                 $this->User->save();
-
-    }
-
-/*
- *
  * Create new user 
  * 
  * @params
@@ -301,13 +290,13 @@ function __construct($id = false, $table = null, $ds = null) {
  *      $name (string)
  * 
  */
-    function createUser($phone_number, $name){
+    function createUser($phone_number, $name, $field){
 
-      $update      = 'count_callback'; 
+      	     
       $application = 'callback_in';
       $created = time();
  
-         $user =array('created'=> $created,'new'=>1,$update=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl'=>1,'name' => $name);
+         $user =array('created'=> $created,'new'=>1, $field =>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl'=>1,'name' => $name);
          $this->User->create(); 
          if ($this->User->save($user)){
                 $user_id = $this->User->getLastInsertId();

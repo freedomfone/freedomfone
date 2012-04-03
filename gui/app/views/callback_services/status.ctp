@@ -27,6 +27,11 @@ echo $html->addCrumb(__('Status',true), '/callback_services/status');
 $ivr_settings = Configure::read('IVR_SETTINGS');
 $callback_default  = Configure::read('CALLBACK_DEFAULT');
 
+foreach($callback_default['callback_status'] as $key => $entry){
+	 $callback_default['callback_status'][$key] = __($entry,true);
+}
+
+
 $type = array('SMS' =>__('SMS',true), 'TICKLE' =>__('Tickle',true));
 $order = array('Callback.callback_service_id' => __('Callback service',true),'CallbackService.created' => __('Created',true),'Callback.user_id' => __('User',true),'Callback.status' => __('Status',true), 'Callback.type' => __('Type',true),'CallbackService.extension' => __('Service ID',true),'Callback.retries' => __('Attempts',true));
 $dir   = array('ASC' => __('Ascending',true), 'DESC' => __('Descending',true));

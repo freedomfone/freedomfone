@@ -29,6 +29,7 @@ class CampaignsController extends AppController{
 
 
 	var $paginate = array(
+	    	      	      'recursive' => false,
 		    	      'limit' => 50,
 			      'order' => array('Campaign.name' => 'ASC'));
 
@@ -125,6 +126,7 @@ class CampaignsController extends AppController{
                        $this->data[$key]['Callrequest']['type'] = $callback_type;
 
 
+
                   }
 
 
@@ -143,7 +145,7 @@ class CampaignsController extends AppController{
                              'calltimeout'      => $dialer['call_timeout'],
                              'aleg_gateway'     => $dialer['a-leg_gateway'],
                              'object_id'        => $dialer['object_id'], 
-                             'extra_data'       => $extension,
+                             'extra_data'       => "voice_app_data=".$extension,
                              'daily_start_time' => '00:00:00',
                              'daily_stop_time'  => '23:59:59',
 			     'content_type'	=> $dialer['content_type'],
@@ -172,7 +174,13 @@ class CampaignsController extends AppController{
                       $header  = $HttpSocket->response['raw']['status-line'];
                       $status = $this->headerGetStatus($header);
 
-                        if ( $status == 1) {  //201 Created (POST Campaign)
+		      if(!$status){
+
+		      $this->_flash(__('Newfies is not responding. Please review your Newfies settings.',true), 'error');
+		      
+		      }
+
+                      elseif ( $status == 1) {  //201 Created (POST Campaign)
 
                           //Get Newfies campaign id
                           $location = explode($dialer['path'].$dialer['campaign_POST'], $HttpSocket->response['header']['Location']);
@@ -186,7 +194,7 @@ class CampaignsController extends AppController{
                            $nf_phone_book_id = $results['phonebook'][0]['id'];                        
                            $this->data['Campaign']['status'] = 1;
                            $this->data['Campaign']['nf_phone_book_id'] = $nf_phone_book_id;
-                           $this->data['Campaign']['nf_campaign_id'] = $nf_campaign_id;
+                           $this->data['Campaign']['nf_campaign_id']   = $nf_campaign_id;
 
                            $this->Campaign->saveAll($this->data['Campaign'],array('validate' => false));
                            $campaign_id = $this->Campaign->getLastInsertId();
@@ -236,6 +244,8 @@ class CampaignsController extends AppController{
                               if(array_key_exists('chk_campaign', $results)){ $this->_flash($results['chk_campaign'][0].'<br/>'.__('Please delete a campaign before creating a new.',true), 'error');}
                               elseif(array_key_exists('chk_campaign_name',$results)){ $this->_flash($results['chk_campaign_name'][0].'<br/>'.__('Please select a campaign name that is not in use.',true), 'error');}
 			      elseif(array_key_exists('chk_duration',$results)){ $this->_flash($results['chk_duration'][0], 'error');}
+	      		      elseif(array_key_exists('chk_gateway',$results)){ $this->_flash($results['chk_gateway'][0].'<br/>'.__('Please review your Newfies settings.',true), 'error');}
+	      		      elseif(array_key_exists('chk_dialer_setting',$results)){ $this->_flash($results['chk_dialer_setting'][0].'<br/>'.__('Please review your Newfies settings.',true), 'error');}
 
 
                          }  else {
@@ -271,7 +281,7 @@ class CampaignsController extends AppController{
 
       $dialer = Configure::read('DIALER');
 
-       if($id && $data = $this->Campaign->find('first', array('conditions' => array('id'=> $id)))){
+       if($id && $data = $this->Campaign->find('first', array('conditions' => array('Campaign.id'=> $id)))){
 
               $HttpSocket = new HttpSocket();
               $request    = array( 'auth'   => array('method' => 'Basic','user' => $dialer['user'],'pass' => $dialer['pwd']), 

@@ -1,0 +1,8 @@
+/opt/freedomfone/log/*.log {
+  weekly
+  missingok
+  rotate 52
+  compress
+  notifempty
+}
+

@@ -1,0 +1,4090 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: Revision: 6311 /app_controller.php
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# No version information was available in the source files.
+# Alberto <aep@it46.se>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-01 11:02+0100\n"
+"PO-Revision-Date: 2012-02-01 11:49+0100\n"
+"Last-Translator: Alberto Escudero <aep@it46.se>\n"
+"Language-Team: fooers\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.0\n"
+
+msgid "Default password is currently in use for Admin. Please change the password as soon as possible using the Edit function below."
+msgstr "La contraseña por defecto está actualmente en uso para la administración. Por favor, cambie la contraseña tan pronto posible utilizando la función para Editar de abajo."
+
+#: app_controller.php:64;64
+msgid "Wrong password, please try again."
+msgstr "Contraseña incorrecta, por favor intenta de nuevo."
+
+#: app_controller.php:65;65
+msgid "You do not have the authority to access this page."
+msgstr "No tiene la autoridad para acceder esta página."
+
+#: app_controller.php:301;301
+msgid "No file selected. Please try again."
+msgstr "Ningún archivo seleccionado. Por favor, inténtelo de nuevo."
+
+#: app_controller.php:309;309
+msgid "Failure (invalid file type)"
+msgstr "Fallo (tipo de archivo invalido)"
+
+#: app_model.php:147;147
+msgid "Unknown user"
+msgstr "Usuario desconocido"
+
+#: config/config.php:152;152
+msgid "English"
+msgstr "Inglés"
+
+#: config/config.php:153;153
+msgid "Swahili"
+msgstr "Swahili"
+
+#: config/config.php:154;154
+msgid "Spanish"
+msgstr "Castellano"
+
+#: controllers/bin_controller.php:39;39
+msgid "SMS Incoming"
+msgstr "SMS entrante"
+
+#: controllers/categories_controller.php:32;32
+#: views/categories/add.ctp:27;27
+#: views/categories/edit.ctp:26;26
+#: views/categories/index.ctp:26;31;26;31
+#: views/elements/menuAdmin.ctp:81;81
+#: views/elements/menuUser.ctp:76;76
+msgid "Categories"
+msgstr "Categorías"
+
+#: controllers/categories_controller.php:40;40
+msgid "Add category"
+msgstr "Añadir categoría"
+
+#: controllers/categories_controller.php:45;102;45;102
+msgid "The category has been saved"
+msgstr "La categoría se ha guardado"
+
+#: controllers/categories_controller.php:64;64
+msgid "Edit category"
+msgstr "Editar categoría"
+
+#: controllers/categories_controller.php:67;67
+msgid "Invalid Category"
+msgstr "Categoría no válida"
+
+#: controllers/categories_controller.php:105;105
+msgid "The category could not be saved. Please, try again."
+msgstr "La categoría no se pudo guardar. Por favor, inténtelo de nuevo."
+
+#: controllers/categories_controller.php:125;125
+msgid "The category has been deleted."
+msgstr "La categoría ha sido eliminado"
+
+#: controllers/cdr_controller.php:46;46
+#: views/cdr/general.ctp:26;26
+#: views/elements/menuAdmin.ctp:180;180
+#: views/elements/menuUser.ctp:166;166
+msgid "Reporting"
+msgstr "Informe"
+
+#: controllers/cdr_controller.php:165;165
+#: views/bin/index.ctp:36;36
+#: views/cdr/export.ctp:27;40;40;27;40;40
+#: views/cdr/general.ctp:37;131;37;131
+#: views/cdr/index.ctp:41;41
+#: views/monitor_ivr/export.ctp:27;39;39;27;39;39
+#: views/monitor_ivr/index.ctp:42;42
+#: views/phone_books/index.ctp:52;52;52;52
+msgid "Export"
+msgstr "Exportar"
+
+#: controllers/cdr_controller.php:180;317;180;317
+#: views/cdr/index.ctp:47;47
+msgid "Call Data Records"
+msgstr "Registros de datos de llamada"
+
+#: controllers/cdr_controller.php:227;227
+#: controllers/monitor_ivr_controller.php:78;78
+#: views/bin/index.ctp:89;89
+#: views/cdr/index.ctp:111;111
+#: views/monitor_ivr/index.ctp:55;55
+msgid "Delete selected"
+msgstr "Eliminar seleccionado"
+
+#: controllers/cdr_controller.php:317;317
+#: views/elements/menuAdmin.ctp:34;34
+#: views/elements/menuUser.ctp:34;34
+msgid "Overview"
+msgstr "Vista General"
+
+#: controllers/cdr_controller.php:391;391
+#: views/cdr/overview.ctp:111;111
+msgid "System Overview"
+msgstr "Vista del Sistema"
+
+# OfficeRoute SNMP demonio no se esta ejecutando.
+#: controllers/channels_controller.php:50;50
+msgid "OfficeRoute SNMP daemon is not running."
+msgstr "El OfficeRoute SNMP daemon no se está ejecutando."
+
+#: controllers/channels_controller.php:58;58
+#: views/channels/edit.ctp:26;26
+#: views/channels/index.ctp:26;42;26;42
+#: views/elements/menuAdmin.ctp:208;208
+#: views/elements/menuUser.ctp:194;194
+#: views/office_route/edit.ctp:26;26
+msgid "GSM channels"
+msgstr "Canales GSM"
+
+#: controllers/channels_controller.php:78;78
+#: views/channels/edit.ctp:32;32
+msgid "Edit Mobigater"
+msgstr "Editar Mobigater"
+
+#: controllers/channels_controller.php:83;83
+#: controllers/office_route_controller.php:95;95
+msgid "Invalid option."
+msgstr "Opción inválida."
+
+#: controllers/ff_users_controller.php:43;43
+#: views/ff_users/login.ctp:26;28;46;26;28;46
+#: views/layouts/default.ctp:100;100;100;100
+msgid "Login"
+msgstr "Acceso"
+
+#: controllers/ff_users_controller.php:68;68
+#: views/ff_users/edit.ctp:26;26
+#: views/ff_users/index.ctp:26;34;26;34
+msgid "System Users"
+msgstr "Usuarios de Sistema"
+
+#: controllers/ff_users_controller.php:82;82
+#: views/ff_users/add.ctp:30;30
+msgid "Add System User"
+msgstr "Añadir Usuario de Sistema"
+
+#: controllers/ff_users_controller.php:101;101
+msgid "New user has been created."
+msgstr "Nuevo usuario ha sido creado."
+
+#: controllers/ff_users_controller.php:119;119
+#: views/ff_users/edit.ctp:31;31
+msgid "Edit System User"
+msgstr "Editar Usuario de Sistema."
+
+#: controllers/ff_users_controller.php:122;122
+#: controllers/ivr_menus_controller.php:425;724;425;724
+#: views/ivr_menus/edit_selector.ctp:97;97
+msgid "Invalid option"
+msgstr "Opción inválida"
+
+#: controllers/ff_users_controller.php:148;160;148;160
+msgid "User has been updated."
+msgstr "El usuario ha sido actualizado."
+
+#: controllers/ff_users_controller.php:181;181
+msgid "The user been deleted."
+msgstr "El usuario ha sido eliminado."
+
+#: controllers/ff_users_controller.php:185;185
+msgid "You cannot delete the Admin user."
+msgstr "No se puede eliminar el usuario administrativo."
+
+#: controllers/ff_users_controller.php:200;200
+msgid "Freedom Fone has successfully been swept."
+msgstr "Freedom Fone se barrió con éxito."
+
+#: controllers/ff_users_controller.php:202;202
+msgid "Sweeping failed. Please review your Sweeper settings."
+msgstr "Barrido fracasado. Por favor, revise la configuración del Barredor."
+
+#: controllers/groups_controller.php:31;31
+#: views/groups/index.ctp:33;33
+msgid "Freedom Fone Groups"
+msgstr "Grupos Freedom Fone"
+
+#: controllers/ivr_menus_controller.php:44;44
+#: views/cdr/overview.ctp:113;113
+#: views/cdr/statistics.ctp:84;84
+#: views/elements/menuAdmin.ctp:114;114
+#: views/elements/menuUser.ctp:109;109
+#: views/ivr_menus/add.ctp:26;26
+#: views/ivr_menus/edit.ctp:26;26
+#: views/ivr_menus/index.ctp:26;40;26;40
+msgid "Voice menus"
+msgstr "Menús de voz"
+
+#: controllers/ivr_menus_controller.php:69;69
+msgid "Add Voice Menu"
+msgstr "Añadir Menú de Voz"
+
+#: controllers/ivr_menus_controller.php:106;106
+msgid "There are no more Voice Menus available. Please delete an inactive Voice Menu, and try again."
+msgstr "No hay más Menús de Voz disponibles. Por favor, elimine un Menú de Voz inactivo, y inténtelo de nuevo."
+
+#: controllers/ivr_menus_controller.php:193;354;470;193;354;470
+#: controllers/nodes_controller.php:76;205;76;205
+msgid "File upload failure (filesize exceeds maximum)"
+msgstr "La subida del archivo ha fracasado (el tamaño de archivo supera el máximo)"
+
+#: controllers/ivr_menus_controller.php:214;375;493;504;787;801;214;375;493;504;787;801
+#: controllers/lm_menus_controller.php:115;195;115;195
+#: controllers/nodes_controller.php:231;231
+msgid "Success"
+msgstr "Éxito"
+
+#: controllers/ivr_menus_controller.php:254;254
+msgid "Add Language Selector"
+msgstr "Añadir Selector de Idioma"
+
+#: controllers/ivr_menus_controller.php:272;272
+msgid "There are no more Selectors available. Please delete an inactive Selector, and try again."
+msgstr "No hay más Selectores disponibles. Por favor, elimine un Selector inactivo, y inténtelo de nuevo."
+
+#: controllers/ivr_menus_controller.php:415;415
+msgid "Edit Voice menu"
+msgstr "Editar Menú de voz"
+
+#: controllers/ivr_menus_controller.php:626;626
+msgid "The selected entry has been deleted."
+msgstr "La entrada seleccionada ha sido eliminada."
+
+#: controllers/ivr_menus_controller.php:637;637
+msgid "The selected entry could not be deleted since it is a member of another Voice Menu."
+msgstr "La entrada seleccionada no se pudo eliminar porque ya es parte de otro Menú de Voz."
+
+#: controllers/ivr_menus_controller.php:645;645
+#: controllers/lm_menus_controller.php:293;293
+msgid "No entry with this id exist. Please try again."
+msgstr "Noy hay ninguna entrada con este ID. Por favor, inténtelo de nuevo."
+
+#: controllers/ivr_menus_controller.php:696;696
+msgid "Language Selectors"
+msgstr "Selector de Idiomas"
+
+#: controllers/ivr_menus_controller.php:716;716
+msgid "Edit Language Selector"
+msgstr "Editar Selector de Idiomas"
+
+#: controllers/ivr_menus_controller.php:773;773
+#: controllers/lm_menus_controller.php:100;180;100;180
+msgid "The following file could not be uploaded due to file size restrictions"
+msgstr "No se pudo cargar el archivo siguiente debido a las restricciones de tamaño de archivo"
+
+#: controllers/lm_menus_controller.php:34;34
+msgid "Leave-a-Message IVR Menus"
+msgstr "Menús IVR Deja-un-Mensaje"
+
+#: controllers/lm_menus_controller.php:49;73;49;73
+msgid "Create Leave-a-Message"
+msgstr "Crear Deja-un-Mensaje"
+
+#: controllers/lm_menus_controller.php:60;60
+msgid "There is no idle instance for a new Leave-a-message IVR menu. Please delete an existing menu, and try again. Maximum menus: 20."
+msgstr "No hay instancias inactivas para un nuevo menú IVR de Deja-un-Mensaje. Por favor, elimina un menú existiente y inténtelo de nuevo. Menús máxima: 20. "
+
+#: controllers/lm_menus_controller.php:127;208;127;208
+msgid "Your data could not be saved. Please, try again."
+msgstr "Tus datos no se han podido salvar. Por favor, inténtelo de nuevo."
+
+#: controllers/lm_menus_controller.php:135;213;135;213
+msgid "Please enter a title for the menu."
+msgstr "Por favor, introduzca un título para el menú. "
+
+#: controllers/lm_menus_controller.php:145;145
+#: controllers/messages_controller.php:222;222
+msgid "Edit Leave-a-Message"
+msgstr "Editar Deja-un-Mensaje"
+
+#: controllers/lm_menus_controller.php:275;275
+msgid "The selected menu has been deleted."
+msgstr "El menú seleccionado ha sido eliminado."
+
+#: controllers/lm_menus_controller.php:284;284
+msgid "The default conf file could not be restored. Please check file permissions."
+msgstr "El fichero de configuración por defecto no se pudo restaurar. Por favor, compruebe los permisos de archivos."
+
+#: controllers/lm_menus_controller.php:300;300
+msgid "The selected menu could not be deleted since it is a member of another IVR."
+msgstr "El menú seleccionado no se pudo eliminar porque ya es parte de otro IVR."
+
+#: controllers/messages_controller.php:60;60
+msgid "Leave-a-Message Inbox"
+msgstr "Bandeja Deja-un-Mensaje"
+
+#: controllers/messages_controller.php:186;186
+msgid "Leave-a-Message Archive"
+msgstr "Archivo Deja-un-Mensaje"
+
+#: controllers/messages_controller.php:266;266
+#: controllers/users_controller.php:200;200
+msgid "The entry has been updated"
+msgstr "La entrada ha sido actualizado"
+
+#: controllers/messages_controller.php:271;271
+#: views/categories/add.ctp:41;41
+#: views/categories/edit.ctp:48;48
+#: views/channels/edit.ctp:57;57;57;57
+#: views/ff_users/add.ctp:47;47
+#: views/ff_users/edit.ctp:54;54
+#: views/groups/add.ctp:39;39
+#: views/ivr_menus/add.ctp:149;149
+#: views/ivr_menus/disp.ctp:48;48
+#: views/ivr_menus/edit.ctp:260;260
+#: views/ivr_menus/edit_selector.ctp:199;199
+#: views/lm_menus/add.ctp:115;115
+#: views/lm_menus/edit.ctp:141;141
+#: views/messages/edit.ctp:102;102;102;102
+#: views/nodes/add.ctp:52;52
+#: views/nodes/edit.ctp:64;64
+#: views/office_route/edit.ctp:56;56;56;56
+#: views/phone_books/add.ctp:51;51
+#: views/phone_books/edit.ctp:50;50
+#: views/polls/add.ctp:94;94
+#: views/polls/edit.ctp:40;40
+#: views/settings/index.ctp:139;139
+#: views/tags/add.ctp:42;42
+#: views/tags/edit.ctp:49;49
+#: views/users/add.ctp:47;47
+#: views/users/edit.ctp:40;40
+msgid "Save"
+msgstr "Guardar"
+
+#: controllers/messages_controller.php:327;327
+#: controllers/users_controller.php:306;306
+#: views/bin/index.ctp:69;69;69;69
+#: views/categories/index.ctp:47;47;47;47
+#: views/cdr/delete.ctp:27;38;27;38
+#: views/cdr/index.ctp:42;88;42;88
+#: views/ff_users/index.ctp:56;56;56;56
+#: views/groups/index.ctp:46;52;52;46;52;52
+#: views/ivr_menus/index.ctp:73;73;73;73
+#: views/ivr_menus/selectors.ctp:66;66;66;66
+#: views/lm_menus/index.ctp:68;68;68;68
+#: views/messages/archive.ctp:112;112
+#: views/messages/disp.ctp:100;100
+#: views/messages/edit.ctp:103;103;103;103
+#: views/monitor_ivr/delete.ctp:27;40;40;27;40;40
+#: views/monitor_ivr/index.ctp:43;109;109;43;109;109
+#: views/nodes/index.ctp:73;73;73;73
+#: views/phone_books/index.ctp:51;51;51;51
+#: views/phone_numbers/add_failure.ctp:9;9
+#: views/polls/index.ctp:78;78;78;78
+#: views/tags/index.ctp:52;52;52;52
+#: views/users/disp.ctp:35;35;73;81;35;35;73;81
+#: views/users/index.ctp:134;134;162;134;134;162
+msgid "Delete"
+msgstr "Eliminar"
+
+#: controllers/messages_controller.php:333;333
+#: views/messages/disp.ctp:101;101
+msgid "Move to Archive"
+msgstr "Mover al Archivo"
+
+#: controllers/messages_controller.php:337;337
+#: views/messages/archive.ctp:113;113
+msgid "Activate"
+msgstr "Activar"
+
+#: controllers/monitor_ivr_controller.php:36;36
+msgid "Monitor Voice Menus"
+msgstr "Monitor de Menús de Voz"
+
+#: controllers/monitor_ivr_controller.php:94;94
+#: views/monitor_ivr/export.ctp:29;29
+msgid "Export monitoring data"
+msgstr "Exportar datos de monitoreo"
+
+#: controllers/monitor_ivr_controller.php:156;156
+#: views/monitor_ivr/delete.ctp:30;30
+msgid "Delete monitoring data"
+msgstr "Borrar datos de monitoreo"
+
+#: controllers/nodes_controller.php:36;36
+#: views/elements/menuAdmin.ctp:119;119
+#: views/elements/menuUser.ctp:114;114
+#: views/elements/services.ctp:29;29
+#: views/ivr_menus/add.ctp:142;142
+#: views/ivr_menus/edit.ctp:253;253
+#: views/ivr_menus/edit_selector.ctp:191;191
+#: views/ivr_menus/selectors.ctp:45;45
+#: views/nodes/add.ctp:27;27
+#: views/nodes/edit.ctp:26;26
+#: views/nodes/index.ctp:26;35;26;35
+msgid "Content"
+msgstr "Contenido"
+
+#: controllers/nodes_controller.php:55;55
+msgid "Upload content"
+msgstr "Subir contenido"
+
+#: controllers/nodes_controller.php:99;99
+msgid "The menu option has been created."
+msgstr "La opción de menú ha sido creada."
+
+#: controllers/nodes_controller.php:139;139
+msgid "The selected voice menu node has been deleted."
+msgstr "El nodo de menú de voz seleccionado se ha eliminado."
+
+#: controllers/nodes_controller.php:146;146
+msgid "The selected voice menu node could not be deleted as it is present in one or more Voice menus."
+msgstr "No se pudo eliminar el nodo de menú de voz seleccionado porque está presente en uno o varios menús de voz."
+
+#: controllers/nodes_controller.php:156;156
+msgid "Edit content"
+msgstr "Editar contenido"
+
+#: controllers/nodes_controller.php:164;164
+msgid "Invalid audio file"
+msgstr "Archivo de audio inválido"
+
+#: controllers/nodes_controller.php:243;243
+msgid "Your changes have been saved."
+msgstr "Sus cambios han sido guardados."
+
+#: controllers/office_route_controller.php:90;90
+#: views/office_route/edit.ctp:31;31
+msgid "Edit OfficeRoute"
+msgstr "Editar OfficeRoute"
+
+#: controllers/phone_books_controller.php:35;35
+#: views/elements/menuAdmin.ctp:136;136
+#: views/elements/menuUser.ctp:131;131
+#: views/phone_books/add.ctp:26;26
+#: views/phone_books/edit.ctp:26;26
+#: views/phone_books/index.ctp:26;30;26;30
+#: views/users/add.ctp:46;46
+msgid "Phone books"
+msgstr "Guías telefónicas"
+
+#: controllers/phone_books_controller.php:46;46
+msgid "Add Phone book"
+msgstr "Añadir guía telefónica"
+
+#: controllers/phone_books_controller.php:52;52
+msgid "The phone book has been created"
+msgstr "La guía telefónica ha sido creada"
+
+#: controllers/phone_books_controller.php:55;55
+msgid "The phone book could not be saved. Please, try again."
+msgstr "La guía telefónica no se pudo salvar. Por favor, inténtelo de nuevo."
+
+#: controllers/phone_books_controller.php:63;63
+#: views/phone_books/edit.ctp:33;33
+msgid "Edit Phone book"
+msgstr "Editar Guía Telefónica"
+
+#: controllers/phone_books_controller.php:66;66
+msgid "Invalid id"
+msgstr "ID no válido"
+
+#: controllers/phone_books_controller.php:73;73
+msgid "The phone book has been updated."
+msgstr "La guía telefónica se ha actualizado."
+
+#: controllers/phone_books_controller.php:76;76
+msgid "The data could not be saved. Please, try again."
+msgstr "Los datos no se pudieron salvar. Por favor, inténtelo de nuevo. "
+
+#: controllers/phone_books_controller.php:96;96
+msgid "The selected phone book has been deleted."
+msgstr "La guía telefónica seleccionada ha sido eliminada."
+
+#: controllers/polls_controller.php:47;47
+msgid "Manage Polls"
+msgstr "Gestionar Encuestas"
+
+#: controllers/polls_controller.php:59;59
+msgid "View Poll"
+msgstr "Ver Encuesta"
+
+#: controllers/polls_controller.php:62;62
+#: controllers/users_controller.php:158;158
+#: views/bin/index.ctp:33;33
+#: views/cdr/index.ctp:37;37
+#: views/cdr/overview.ctp:30;30
+#: views/cdr/statistics.ctp:33;33
+#: views/channels/index.ctp:39;39
+#: views/messages/disp.ctp:29;29
+#: views/monitor_ivr/index.ctp:37;37
+#: views/polls/index.ctp:29;29
+#: views/polls/view.ctp:28;28
+#: views/processes/index.ctp:34;34
+#: views/users/edit.ctp:34;34
+#: views/users/index.ctp:37;37
+msgid "Refresh"
+msgstr "Recargar"
+
+#: controllers/polls_controller.php:76;76
+#: views/polls/add.ctp:29;29
+msgid "Create Poll"
+msgstr "Crear Encuesta"
+
+#: controllers/polls_controller.php:119;119
+msgid "The poll has been created. Please note that the poll's closing time has already passed."
+msgstr "La encuesta se ha creado. Tenga en cuenta que la encuesta ya pasó su hora de cierre."
+
+#: controllers/polls_controller.php:122;122
+msgid "The poll has successfully been created."
+msgstr "La encuesta se ha creado con éxito."
+
+#: controllers/polls_controller.php:137;137
+msgid "Delete Poll"
+msgstr "Eliminar Encuesta"
+
+#: controllers/polls_controller.php:142;142
+msgid "The following poll has been deleted"
+msgstr "La encuesta siguiente ha sido eliminada"
+
+#: controllers/polls_controller.php:166;166
+msgid "Poll option could not be deleted. A poll needs at least two options."
+msgstr "No se pudo eliminar la opción de la encuesta. Una encuesta necesita al menos dos opciones."
+
+#: controllers/polls_controller.php:177;177
+#: views/polls/edit.ctp:30;30
+msgid "Edit Poll"
+msgstr "Editar Encuesta"
+
+#: controllers/polls_controller.php:180;180
+msgid "Invalid Poll"
+msgstr "Encuesta inválida"
+
+#: controllers/polls_controller.php:203;203
+msgid "The poll has been updated. Please note that the poll's closing time has already passed."
+msgstr "La encuesta ha sido actualizada. Tenga en cuenta que la encuesta ya pasó su hora de cierre."
+
+#: controllers/polls_controller.php:208;208
+msgid "The poll has been updated."
+msgstr "La encuesta ha sido actualizada."
+
+#: controllers/processes_controller.php:37;37
+#: views/elements/menuAdmin.ctp:197;197
+#: views/elements/menuUser.ctp:183;183
+#: views/logs/index.ctp:32;32
+#: views/processes/index.ctp:26;37;26;37
+msgid "Health"
+msgstr "Salud"
+
+#: controllers/processes_controller.php:66;66
+#: views/elements/menuAdmin.ctp:218;218
+#: views/elements/menuUser.ctp:199;199
+#: views/processes/system.ctp:27;69;27;69
+msgid "About"
+msgstr "Acerca de"
+
+#: controllers/processes_controller.php:108;108
+msgid "started"
+msgstr "activado"
+
+#: controllers/processes_controller.php:114;114
+msgid "is already running"
+msgstr "ya se está ejecutando"
+
+#: controllers/processes_controller.php:139;139
+msgid "is not running"
+msgstr "no se está ejecutando"
+
+#: controllers/processes_controller.php:144;144
+msgid "No pid found. Contact system admin."
+msgstr "No se encontró el pid. Póngase en contacto con administrador de sistema."
+
+#: controllers/processes_controller.php:153;153
+msgid "Manual"
+msgstr "Manual"
+
+#: controllers/processes_controller.php:155;171;155;171
+msgid "stopped"
+msgstr "parado"
+
+#: controllers/processes_controller.php:163;163
+msgid "was already stopped"
+msgstr "ya fue detenido"
+
+#: controllers/settings_controller.php:95;95
+#: views/elements/menuAdmin.ctp:203;203
+#: views/elements/menuUser.ctp:189;189
+#: views/settings/index.ctp:26;29;26;29
+msgid "Settings"
+msgstr "Configuración"
+
+#: controllers/tags_controller.php:34;34
+#: views/elements/menuAdmin.ctp:77;77
+#: views/elements/menuUser.ctp:72;72
+#: views/tags/add.ctp:26;26
+#: views/tags/edit.ctp:26;26
+#: views/tags/index.ctp:26;29;26;29
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: controllers/tags_controller.php:45;45
+msgid "Add Tag"
+msgstr "Agregar etiqueta"
+
+#: controllers/tags_controller.php:50;50
+msgid "The tag has been saved"
+msgstr "La etiqueta se ha guardado"
+
+#: controllers/tags_controller.php:61;61
+#: views/tags/edit.ctp:36;36
+msgid "Edit Tag"
+msgstr "Editar etiqueta"
+
+#: controllers/tags_controller.php:64;64
+msgid "Invalid Tag"
+msgstr "Etiqueta no válida"
+
+#: controllers/tags_controller.php:72;72
+msgid "The tag has been edited."
+msgstr "La etiqueta ha sido editada."
+
+#: controllers/tags_controller.php:75;75
+msgid "The tag could not be saved. Please, try again."
+msgstr "La etiqueta no se pudo guardar. Por favor, inténtelo de nuevo."
+
+#: controllers/tags_controller.php:93;93
+msgid "The selected tag has been deleted."
+msgstr "La etiqueta seleccionada se ha eliminado."
+
+#: controllers/users_controller.php:46;46
+#: views/elements/menuAdmin.ctp:141;141
+#: views/elements/menuUser.ctp:136;136
+#: views/users/add.ctp:26;26
+#: views/users/edit.ctp:28;28
+#: views/users/index.ctp:26;46;26;46
+msgid "Callers"
+msgstr "Llamantes"
+
+#: controllers/users_controller.php:144;144
+#: views/users/index.ctp:129;129
+msgid "Caller details"
+msgstr "Detalles de llamante"
+
+#: controllers/users_controller.php:155;155
+#: views/users/edit.ctp:41;41
+msgid "Edit Caller"
+msgstr "Editar llamante"
+
+#: controllers/users_controller.php:221;221
+msgid "Selected user has been deleted."
+msgstr "Usuario seleccionado se ha eliminado."
+
+#: controllers/users_controller.php:244;244
+#: views/users/add.ctp:46;46
+#: views/users/index.ctp:169;169
+msgid "Add to phone book"
+msgstr "Añadir a la guía telefónica"
+
+#: controllers/users_controller.php:268;268
+#: views/users/index.ctp:170;170
+msgid "Remove from phone book"
+msgstr "Eliminar de la guía telefónica"
+
+#: controllers/users_controller.php:318;318
+#: views/users/disp.ctp:82;82
+#: views/users/index.ctp:163;163
+msgid "Merge"
+msgstr "Unir"
+
+#: controllers/users_controller.php:402;402
+#: views/users/add.ctp:30;30
+msgid "Add Caller"
+msgstr "Añadir Llamante"
+
+#: controllers/users_controller.php:417;417
+msgid "New user has been added"
+msgstr "Un nuevo usuario se ha añadido"
+
+#: models/bin.php:47;47
+#: models/poll.php:283;283
+msgid "Unclassified"
+msgstr "Sin clasificar"
+
+#: models/category.php:38;38
+#: models/phone_book.php:38;38
+#: models/tag.php:38;38
+msgid "Between 1 to 30 characters"
+msgstr "Entre 1 a 30 caracteres"
+
+#: models/category.php:42;42
+#: models/phone_book.php:42;42
+msgid "This name is already in use."
+msgstr "Este nombre ya está en uso."
+
+#: models/category.php:48;48
+#: models/tag.php:48;48
+msgid "Please enter a description using 1 to 50 characters"
+msgstr "Por favor, ponga una descripción de 1 a 50 caracteres"
+
+#: models/cdr.php:247;247
+#: views/monitor_ivr/index.ctp:97;97
+msgid "tag"
+msgstr "etiqueta"
+
+#: models/ff_user.php:42;42
+#: models/poll.php:50;50
+#: models/vote.php:48;48
+msgid "Letters and numbers only. No spaces or special characters allowed."
+msgstr "Letras y números solamente. Sin espacios ni caracteres especiales."
+
+#: models/ff_user.php:48;48
+msgid "Between 5 to 20 characters"
+msgstr "Entre 5 a 20 caracteres"
+
+#: models/ff_user.php:54;54
+msgid "This username is already in use."
+msgstr "Este nombre de usuario ya está en uso."
+
+#: models/ff_user.php:62;62
+msgid "The password must be between 5 to 50 characters"
+msgstr "La contraseña debe ser entre 5 a 50 caracteres"
+
+#: models/ff_user.php:66;66
+msgid "The passwords do not match."
+msgstr "Las contraseñas no coinciden."
+
+#: models/ivr_menu.php:42;42
+msgid "A title is required. Minimum 3 characters."
+msgstr "Un título es obligatorio. Mínimo 3 caracteres."
+
+#: models/ivr_menu.php:47;52;57;62;47;52;57;62
+#: models/node.php:58;58
+msgid "No hyperlinks allowed."
+msgstr "No hipervínculos permitidos."
+
+#: models/ivr_menu.php:68;73;78;83;68;73;78;83
+#: models/node.php:63;63
+msgid "The file size exceeds the maximum limit (10MB)."
+msgstr "El tamaño del archivo supera el límite máximo (10 MB)."
+
+#: models/node.php:49;49
+msgid "Minimum 3 characters."
+msgstr "Mínimo 3 caracteres."
+
+#: models/node.php:53;53
+msgid "This title is already in use."
+msgstr "Este título ya está en uso."
+
+#: models/node.php:67;67
+msgid "Invalid file type (valid formats: mp3 and wav)."
+msgstr "Tipo de archivo no válido (formatos válidos: mp3 y wav)."
+
+#: models/node.php:71;71
+msgid "No file selected."
+msgstr "No se ha seleccionado ningún archivo."
+
+#: models/phone_book.php:48;48
+msgid "Please enter a valid description using 1 to 50 characters"
+msgstr "Por favor, ponga una descripción válida usando de 1 a 50 caracteres"
+
+#: models/phone_number.php:39;39
+msgid "This phone number is already in use"
+msgstr "Este número de teléfono ya está en uso"
+
+#: models/phone_number.php:44;44
+msgid "Invalid phone number format (numbers and plus (+) sign are allowed)."
+msgstr "Formato de número de teléfono inválido (se aceptan números y el signo (+))"
+
+#: models/poll.php:45;45
+msgid "A valid question is required (Min 10 characters)."
+msgstr "Una pregunta válida es necesaria (Min 10 caracteres)."
+
+#: models/poll.php:54;54
+msgid "Between 1 to 10 characters"
+msgstr "Entre 1 y 10 caracteres"
+
+#: models/poll.php:58;58
+msgid "This SMS code is already in use."
+msgstr "Este código SMS ya está en uso."
+
+#: models/poll.php:64;74;64;74
+msgid "The date is not valid."
+msgstr "La fecha no es válida."
+
+#: models/poll.php:70;70
+msgid "The end time must be later than the start time."
+msgstr "La hora de finalización debe ser posterior a la hora de inicio."
+
+#: models/poll.php:230;230
+msgid "Valid, early"
+msgstr "Válido, temprano"
+
+#: models/poll.php:237;237
+msgid "Valid, open"
+msgstr "Válido, abierto"
+
+#: models/poll.php:243;243
+msgid "Valid, closed"
+msgstr "Válido, cerrado"
+
+#: models/poll.php:256;256
+msgid "Invalid, early"
+msgstr "No válido, temprano"
+
+#: models/poll.php:262;262
+msgid "Invalid, open"
+msgstr "No válido, abierto"
+
+#: models/poll.php:269;269
+msgid "Invalid, closed"
+msgstr "No válido, cerrado"
+
+#: models/process.php:71;71
+msgid "Unmanaged"
+msgstr "No gestionado"
+
+#: models/tag.php:42;42
+msgid "This description is already in use."
+msgstr "Esta descripción ya está en uso."
+
+#: models/user.php:48;48
+msgid "Between 1 to 35 characters"
+msgstr "Entre 1 a 35 caracteres"
+
+#: models/user.php:53;53
+msgid "Please supply a valid email address."
+msgstr "Por favor, añada una dirección de email válida."
+
+#: models/user.php:58;58
+msgid "This email address is already in use."
+msgstr "Esta dirección de email ya está en uso"
+
+#: models/user.php:65;65
+msgid "Please supply a valid skype name."
+msgstr "Por favor, añada un nombre Skype válido. "
+
+#: models/user.php:72;72
+msgid "Name required (letters, spaces and hyphens)."
+msgstr "Nombre requerido (letras, espacios y guiones)."
+
+#: models/user.php:77;90;77;90
+msgid "Between 1 to 20 characters"
+msgstr "Entre 1 a 20 caracteres"
+
+#: models/user.php:86;86
+msgid "Only letters, spaces and hyphens."
+msgstr "Sólo letras, espacios y guiones."
+
+#: models/vote.php:44;44
+msgid "Between 1 to 10 characters."
+msgstr "Entre 1 y 10 caracteres."
+
+#: models/vote.php:52;52
+msgid "The option is not unique."
+msgstr "La opción no es única."
+
+#: models/vote.php:75;75
+msgid "The option is not unique"
+msgstr "La opción no es única"
+
+#: views/bin/export.ctp:28;28
+msgid "Date and Time"
+msgstr "Fecha y Hora"
+
+#: views/bin/export.ctp:28;28
+#: views/cdr/general.ctp:160;160
+#: views/messages/archive.ctp:56;56
+#: views/messages/disp.ctp:53;53
+msgid "Date"
+msgstr "Fecha"
+
+#: views/bin/export.ctp:28;28
+#: views/bin/index.ctp:56;56
+#: views/cdr/general.ctp:41;160;41;160
+#: views/cdr/index.ctp:61;61
+#: views/cdr/output.ctp:26;26
+#: views/cdr/overview.ctp:136;136
+#: views/messages/index.ctp:34;34
+#: views/monitor_ivr/index.ctp:62;62
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Time"
+msgstr "Hora"
+
+#: views/bin/export.ctp:28;28
+#: views/bin/index.ctp:55;55
+msgid "Message"
+msgstr "Mensaje"
+
+#: views/bin/export.ctp:28;28
+#: views/bin/index.ctp:59;59
+#: views/cdr/overview.ctp:136;136
+msgid "Sender"
+msgstr "Remitente"
+
+#: views/bin/export.ctp:28;28
+#: views/bin/index.ctp:57;57
+#: views/cdr/index.ctp:62;62
+#: views/cdr/output.ctp:26;26
+#: views/ivr_menus/selectors.ctp:54;54
+#: views/monitor_ivr/index.ctp:69;69
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Type"
+msgstr "Tipo"
+
+#: views/bin/export.ctp:28;28
+#: views/bin/index.ctp:58;58
+#: views/cdr/general.ctp:41;41
+msgid "Channel"
+msgstr "Canal"
+
+#: views/bin/export.ctp:41;41
+msgid "OtherSMS"
+msgstr "Otros SMS"
+
+#: views/bin/index.ctp:25;25
+#: views/categories/add.ctp:26;26
+#: views/categories/edit.ctp:25;25
+#: views/categories/index.ctp:25;25
+#: views/elements/menuAdmin.ctp:63;63
+#: views/elements/menuUser.ctp:58;58
+#: views/lm_menus/add.ctp:25;25
+#: views/lm_menus/edit.ctp:25;25
+#: views/lm_menus/index.ctp:25;25
+#: views/logs/index.ctp:32;32
+#: views/messages/archive.ctp:25;25
+#: views/messages/edit.ctp:34;34
+#: views/messages/index.ctp:27;27
+#: views/tags/add.ctp:25;25
+#: views/tags/edit.ctp:25;25
+#: views/tags/index.ctp:25;25
+msgid "Message Centre"
+msgstr "Centro de Mensajes"
+
+#: views/bin/index.ctp:26;43;26;43
+#: views/cdr/overview.ctp:115;115
+#: views/cdr/statistics.ctp:86;86
+#: views/elements/menuAdmin.ctp:89;89
+#: views/elements/menuUser.ctp:84;84
+#: views/logs/index.ctp:32;32
+msgid "Incoming SMS"
+msgstr "SMS entrante"
+
+#: views/bin/index.ctp:44;44
+#: views/messages/archive.ctp:38;38
+#: views/messages/disp.ctp:38;38
+msgid "Message:"
+msgstr "Mensaje:"
+
+#: views/bin/index.ctp:44;44
+#: views/cdr/index.ctp:53;53
+#: views/messages/archive.ctp:38;38
+#: views/messages/disp.ctp:38;38
+#: views/monitor_ivr/index.ctp:51;51
+#: views/nodes/index.ctp:51;51
+#: views/users/index.ctp:86;86
+msgid "-"
+msgstr "-"
+
+#: views/bin/index.ctp:44;44
+#: views/cdr/index.ctp:53;53
+#: views/messages/archive.ctp:38;38
+#: views/messages/disp.ctp:38;38
+#: views/monitor_ivr/index.ctp:51;51
+#: views/nodes/index.ctp:51;51
+#: views/users/index.ctp:86;86
+msgid "of"
+msgstr "de"
+
+#: views/bin/index.ctp:60;60
+msgid "Action"
+msgstr "Acción"
+
+#: views/bin/index.ctp:69;69
+msgid "Are you sure you want to delete this entry?"
+msgstr "¿Está seguro que desea eliminar esta entrada?"
+
+#: views/bin/index.ctp:93;93
+#: views/cdr/general.ctp:171;171
+#: views/cdr/index.ctp:117;117
+#: views/messages/disp.ctp:108;111;108;111
+#: views/monitor_ivr/index.ctp:142;142
+#: views/nodes/index.ctp:92;92
+#: views/users/index.ctp:177;177
+msgid "Previous"
+msgstr "Anterior"
+
+#: views/bin/index.ctp:93;93
+#: views/cdr/general.ctp:171;171
+#: views/cdr/index.ctp:117;117
+#: views/messages/disp.ctp:108;113;108;113
+#: views/monitor_ivr/index.ctp:142;142
+#: views/nodes/index.ctp:92;92
+#: views/users/index.ctp:177;177
+msgid "Next"
+msgstr "Próximo"
+
+#: views/bin/index.ctp:97;97
+#: views/cdr/general.ctp:175;175
+#: views/cdr/index.ctp:121;121
+#: views/monitor_ivr/index.ctp:146;146
+#: views/nodes/index.ctp:96;96
+#: views/users/index.ctp:180;180
+msgid "Entries per page "
+msgstr "Entradas por página"
+
+#: views/categories/add.ctp:28;28
+#: views/ff_users/add.ctp:27;27
+#: views/groups/add.ctp:27;27
+#: views/phone_books/add.ctp:27;27
+#: views/polls/add.ctp:79;79
+#: views/tags/add.ctp:27;27
+#: views/users/add.ctp:27;27
+#: views/users/edit.ctp:112;112;112;112
+msgid "Add"
+msgstr "Añadir"
+
+#: views/categories/add.ctp:31;31
+msgid "Add Category"
+msgstr "Añadir Categoría"
+
+#: views/categories/add.ctp:39;39
+#: views/categories/edit.ctp:45;45
+#: views/categories/index.ctp:57;57
+#: views/messages/archive.ctp:55;55
+#: views/messages/disp.ctp:52;52
+#: views/messages/edit.ctp:96;96
+#: views/messages/index.ctp:34;49;34;49
+msgid "Category"
+msgstr "Categoría"
+
+#: views/categories/add.ctp:40;40
+#: views/categories/edit.ctp:46;46
+#: views/categories/index.ctp:57;57
+#: views/phone_books/add.ctp:50;50
+#: views/phone_books/edit.ctp:48;48
+#: views/phone_books/index.ctp:44;44
+#: views/tags/add.ctp:41;41
+#: views/tags/edit.ctp:47;47
+#: views/tags/index.ctp:42;42
+msgid "Description"
+msgstr "Descripción"
+
+#: views/categories/edit.ctp:35;35
+#: views/categories/index.ctp:46;46;46;46
+#: views/cdr/overview.ctp:168;168;168;168
+#: views/channels/index.ctp:74;74;122;122;74;74;122;122
+#: views/ff_users/edit.ctp:30;30
+#: views/ff_users/index.ctp:55;55;55;55
+#: views/groups/index.ctp:46;51;51;46;51;51
+#: views/ivr_menus/edit.ctp:53;53
+#: views/ivr_menus/edit_selector.ctp:44;44
+#: views/ivr_menus/index.ctp:72;72;72;72
+#: views/ivr_menus/selectors.ctp:65;65;65;65
+#: views/lm_menus/edit.ctp:31;31
+#: views/lm_menus/index.ctp:67;67;67;67
+#: views/messages/archive.ctp:82;82;82;82
+#: views/messages/disp.ctp:74;74;74;74
+#: views/nodes/edit.ctp:32;32
+#: views/nodes/index.ctp:72;72;72;72
+#: views/phone_books/edit.ctp:27;27
+#: views/phone_books/index.ctp:50;50;50;50
+#: views/polls/edit.ctp:29;29
+#: views/polls/index.ctp:76;76;76;76
+#: views/polls/view.ctp:47;47;47;47
+#: views/tags/edit.ctp:35;35
+#: views/tags/index.ctp:51;51;51;51
+#: views/users/disp.ctp:33;72;33;72
+#: views/users/edit.ctp:29;29
+#: views/users/index.ctp:133;133;133;133
+msgid "Edit"
+msgstr "Editar"
+
+#: views/categories/edit.ctp:36;36
+msgid "Edit Category"
+msgstr "Editar Categoría"
+
+#: views/categories/edit.ctp:40;40
+#: views/phone_books/edit.ctp:49;49
+#: views/tags/edit.ctp:48;48
+msgid "Use in none"
+msgstr "No usar en ninguno"
+
+#: views/categories/edit.ctp:47;47
+#: views/tags/edit.ctp:48;48
+msgid "Use in message"
+msgstr "Usar en mensaje"
+
+#: views/categories/edit.ctp:54;54
+#: views/channels/edit.ctp:62;62
+#: views/errors/missing_action.ctp:26;26
+#: views/ff_users/edit.ctp:62;62
+#: views/lm_menus/edit.ctp:145;145
+#: views/messages/edit.ctp:132;132
+#: views/office_route/edit.ctp:63;63
+#: views/polls/edit.ctp:127;127
+#: views/polls/view.ctp:124;124
+#: views/tags/edit.ctp:56;56
+msgid "This page does not exist."
+msgstr "Esta página no existe."
+
+#: views/categories/index.ctp:28;28
+#: views/ivr_menus/index.ctp:30;30
+#: views/ivr_menus/selectors.ctp:29;29
+#: views/lm_menus/index.ctp:32;32
+#: views/phone_books/index.ctp:28;28
+#: views/polls/index.ctp:33;33
+#: views/tags/index.ctp:28;28
+msgid "Create new"
+msgstr "Crear nuevo"
+
+#: views/categories/index.ctp:47;47
+msgid "Are you sure you wish to delete this category?"
+msgstr "¿Está seguro que desea eliminar esta categoría?"
+
+#: views/categories/index.ctp:57;57
+#: views/cdr/overview.ctp:136;184;136;184
+#: views/channels/index.ctp:93;140;93;140
+#: views/ff_users/index.ctp:48;48
+#: views/ivr_menus/index.ctp:61;61
+#: views/ivr_menus/selectors.ctp:56;56
+#: views/lm_menus/index.ctp:56;56
+#: views/messages/archive.ctp:58;58
+#: views/messages/disp.ctp:55;55
+#: views/nodes/index.ctp:60;60
+#: views/phone_books/index.ctp:44;44
+#: views/polls/index.ctp:93;93
+#: views/tags/index.ctp:42;42
+#: views/users/index.ctp:99;99
+msgid "Actions"
+msgstr "Acciones"
+
+#: views/categories/index.ctp:67;67
+msgid "No categories exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No existen categorías. Por favor cree una clicando <i>Crear nueva</i> a la derecha."
+
+#: views/cdr/delete.ctp:25;25
+#: views/cdr/export.ctp:25;25
+#: views/cdr/general.ctp:25;25
+#: views/cdr/index.ctp:26;26
+#: views/cdr/statistics.ctp:25;25
+#: views/elements/menuAdmin.ctp:162;162
+#: views/elements/menuUser.ctp:148;148
+#: views/monitor_ivr/delete.ctp:25;25
+#: views/monitor_ivr/export.ctp:25;25
+#: views/monitor_ivr/index.ctp:25;25
+msgid "System data"
+msgstr "Datos de sistema"
+
+#: views/cdr/delete.ctp:26;26
+#: views/cdr/export.ctp:26;26
+#: views/cdr/index.ctp:27;27
+#: views/elements/menuAdmin.ctp:167;167
+#: views/elements/menuUser.ctp:153;153
+msgid "Call data records"
+msgstr "Registro de datos de llamada"
+
+#: views/cdr/delete.ctp:29;29
+msgid "Delete Call Data Records"
+msgstr "Eliminar Registro de Datos de Llamadas"
+
+#: views/cdr/delete.ctp:34;34
+#: views/cdr/export.ctp:35;35
+#: views/cdr/general.ctp:120;120
+#: views/cdr/statistics.ctp:96;96
+#: views/monitor_ivr/delete.ctp:35;35
+#: views/monitor_ivr/erase.ctp:30;30
+#: views/monitor_ivr/export.ctp:34;34
+#: views/polls/add.ctp:90;90
+#: views/polls/edit.ctp:68;68
+#: views/polls/view.ctp:116;116
+msgid "Start time"
+msgstr "Tiempo de inicio"
+
+#: views/cdr/delete.ctp:35;35
+#: views/cdr/export.ctp:36;36
+#: views/cdr/general.ctp:121;121
+#: views/cdr/statistics.ctp:97;97
+#: views/monitor_ivr/delete.ctp:36;36
+#: views/monitor_ivr/erase.ctp:31;31
+#: views/monitor_ivr/export.ctp:35;35
+#: views/polls/add.ctp:91;91
+#: views/polls/edit.ctp:69;69
+#: views/polls/view.ctp:117;117
+msgid "End time"
+msgstr "Tiempo de finalización"
+
+#: views/cdr/export.ctp:30;30
+msgid "Export CDR"
+msgstr "Exportar CDR"
+
+#: views/cdr/general.ctp:41;41
+#: views/cdr/output.ctp:26;26
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Date (Y-m-d)"
+msgstr "Fecha (A-m-d)"
+
+#: views/cdr/general.ctp:41;41
+#: views/cdr/output.ctp:26;26
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Year"
+msgstr "Año"
+
+#: views/cdr/general.ctp:41;41
+#: views/cdr/output.ctp:26;26
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Month"
+msgstr "Mes"
+
+#: views/cdr/general.ctp:41;41
+#: views/cdr/output.ctp:26;26
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Day"
+msgstr "Día"
+
+#: views/cdr/general.ctp:41;160;41;160
+#: views/cdr/index.ctp:65;65
+#: views/channels/edit.ctp:46;46
+#: views/channels/index.ctp:85;133;85;133
+#: views/ivr_menus/add_selector.ctp:62;62
+#: views/ivr_menus/edit_selector.ctp:65;65
+#: views/ivr_menus/index.ctp:59;59
+#: views/ivr_menus/selectors.ctp:53;53
+#: views/lm_menus/add.ctp:81;81
+#: views/lm_menus/edit.ctp:81;81
+#: views/lm_menus/index.ctp:54;54
+#: views/messages/archive.ctp:52;52
+#: views/messages/disp.ctp:49;49
+#: views/messages/edit.ctp:92;92
+#: views/monitor_ivr/index.ctp:68;68
+#: views/monitor_ivr/output.ctp:28;28
+#: views/nodes/add.ctp:44;44
+#: views/nodes/edit.ctp:54;54
+#: views/nodes/index.ctp:56;56
+#: views/office_route/edit.ctp:48;48
+msgid "Title"
+msgstr "Título"
+
+#: views/cdr/general.ctp:41;160;41;160
+#: views/cdr/index.ctp:64;64
+#: views/cdr/output.ctp:26;26
+#: views/messages/archive.ctp:53;53
+#: views/messages/disp.ctp:50;50
+#: views/messages/edit.ctp:121;121
+#: views/users/index.ctp:86;86
+msgid "Caller"
+msgstr "Llamante"
+
+#: views/cdr/general.ctp:41;160;41;160
+#: views/cdr/overview.ctp:136;136
+#: views/messages/archive.ctp:57;57
+#: views/messages/disp.ctp:54;54
+#: views/messages/edit.ctp:120;120
+#: views/messages/index.ctp:34;34
+msgid "Length"
+msgstr "Duración"
+
+#: views/cdr/general.ctp:68;68
+#: views/cdr/output.ctp:50;50
+#: views/logs/index.ctp:32;32
+msgid "CDR"
+msgstr "CDR"
+
+#: views/cdr/general.ctp:81;81
+msgid "Reporting of incoming calls"
+msgstr "Notificación de llamadas entrantes"
+
+#: views/cdr/general.ctp:109;109
+msgid "All Leave-a-message"
+msgstr "Todas Deja-un-mensaje"
+
+#: views/cdr/general.ctp:110;110
+msgid "All Voice Menus"
+msgstr "Todos Menús de Voz"
+
+#: views/cdr/general.ctp:114;114
+#: views/cdr/index.ctp:66;66
+#: views/cdr/output.ctp:26;26
+#: views/cdr/overview.ctp:118;118
+#: views/cdr/statistics.ctp:82;82
+msgid "Application"
+msgstr "Aplicación"
+
+#: views/cdr/general.ctp:128;128
+#: views/cdr/statistics.ctp:98;98;98;98
+#: views/polls/view.ctp:44;44
+msgid "View"
+msgstr "Ver"
+
+#: views/cdr/general.ctp:144;144
+msgid "Number of records found:"
+msgstr "Número de registros encontrados:"
+
+#: views/cdr/general.ctp:162;162
+#: views/messages/edit.ctp:122;122
+msgid "Quick hangup"
+msgstr "Colgada rápida"
+
+#: views/cdr/general.ctp:182;182
+#: views/messages/archive.ctp:128;128
+#: views/messages/disp.ctp:122;122
+#: views/monitor_ivr/index.ctp:151;151
+msgid "No records found."
+msgstr "Ningun registro encontrado."
+
+#: views/cdr/index.ctp:32;32
+#: views/monitor_ivr/index.ctp:34;34
+msgid "Are you sure that you want to delete the selected entries?"
+msgstr "¿Está seguro que desea eliminar las entradas seleccionadas?"
+
+#: views/cdr/index.ctp:40;40
+#: views/monitor_ivr/index.ctp:41;41
+msgid "Export all"
+msgstr "Exportar todas"
+
+#: views/cdr/index.ctp:53;53
+msgid "CDR:"
+msgstr "CDR:"
+
+#: views/cdr/index.ctp:60;60
+#: views/monitor_ivr/index.ctp:61;61
+msgid "Date (YMD)"
+msgstr "Fecha (AMD)"
+
+#: views/cdr/index.ctp:63;63
+#: views/monitor_ivr/index.ctp:63;63
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Call ID"
+msgstr "ID de llamada"
+
+#: views/cdr/index.ctp:88;88
+msgid "Are you sure you want to delete this CDR?"
+msgstr "¿Estás seguro que quieres eliminar este CDR?"
+
+#: views/cdr/index.ctp:127;127
+msgid "No records found"
+msgstr "Ningun registro encontrado"
+
+#: views/cdr/output.ctp:26;26
+msgid "Call Id"
+msgstr "ID de llamada"
+
+#: views/cdr/output.ctp:26;26
+msgid "Protocol"
+msgstr "Protocolo"
+
+#: views/cdr/overview.ctp:84;84;84;84
+msgid "Download audio file"
+msgstr "Descargar archivo audio"
+
+#: views/cdr/overview.ctp:86;86
+#: views/messages/index.ctp:34;34
+msgid "New message"
+msgstr "Nuevo mensaje"
+
+#: views/cdr/overview.ctp:92;92;92;92
+#: views/messages/edit.ctp:36;36
+msgid "Edit message"
+msgstr "Editar mensaje"
+
+#: views/cdr/overview.ctp:112;112
+#: views/cdr/statistics.ctp:83;83
+#: views/elements/services.ctp:33;33
+#: views/helpers/formatting.php:80;108;80;108
+#: views/ivr_menus/selectors.ctp:45;45
+#: views/lm_menus/index.ctp:26;26
+#: views/pages/lm_menus/tip.ctp:4;4
+#: views/users/edit.ctp:134;134
+#: views/users/view.ctp:84;84
+msgid "Leave-a-message"
+msgstr "Deja-un-mensaje"
+
+#: views/cdr/overview.ctp:114;114
+#: views/cdr/statistics.ctp:85;85
+#: views/elements/menuAdmin.ctp:40;40
+#: views/elements/menuUser.ctp:40;40
+#: views/elements/services.ctp:44;44
+#: views/helpers/formatting.php:76;104;76;104
+#: views/logs/index.ctp:32;32
+#: views/pages/polls/index.ctp:4;4
+#: views/pages/polls/tip.ctp:4;4
+#: views/users/edit.ctp:132;132
+#: views/users/view.ctp:82;82
+msgid "Poll"
+msgstr "Encuesta"
+
+#: views/cdr/overview.ctp:118;118
+#: views/cdr/statistics.ctp:82;82
+msgid "No of entries"
+msgstr "Nº de entradas"
+
+#: views/cdr/overview.ctp:118;118
+#: views/cdr/statistics.ctp:82;82
+#: views/polls/view.ctp:60;60
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#: views/cdr/overview.ctp:129;129
+msgid "New Messages"
+msgstr "Nuevos mensajes"
+
+#: views/cdr/overview.ctp:130;130
+msgid "Total number of messages"
+msgstr "Número total de mensajes"
+
+#: views/cdr/overview.ctp:133;133
+msgid "The table below shows the five most recent new messages"
+msgstr "La tabla de abajo muestra los cinco mensajes más recientes"
+
+#: views/cdr/overview.ctp:136;136
+#: views/messages/archive.ctp:59;59
+#: views/messages/disp.ctp:56;56
+#: views/messages/edit.ctp:124;124
+#: views/nodes/edit.ctp:58;58
+#: views/nodes/index.ctp:61;61
+msgid "Listen"
+msgstr "Escuchar"
+
+#: views/cdr/overview.ctp:147;147
+#: views/polls/add.ctp:24;24
+#: views/polls/edit.ctp:25;25
+#: views/polls/index.ctp:24;42;24;42
+#: views/polls/view.ctp:25;25
+msgid "Polls"
+msgstr "Encuestas"
+
+#: views/cdr/overview.ctp:164;164
+#: views/polls/index.ctp:71;71
+msgid "View results"
+msgstr "Ver resultados"
+
+#: views/cdr/overview.ctp:184;184
+#: views/messages/edit.ctp:93;93
+#: views/polls/index.ctp:93;93
+#: views/polls/view.ctp:115;115
+#: views/processes/index.ctp:100;100
+msgid "Status"
+msgstr "Estado"
+
+#: views/cdr/overview.ctp:184;184
+#: views/polls/add.ctp:40;40
+#: views/polls/edit.ctp:50;50
+#: views/polls/index.ctp:93;93
+#: views/polls/view.ctp:45;45
+msgid "Question"
+msgstr "Pregunta"
+
+#: views/cdr/overview.ctp:184;184
+#: views/polls/index.ctp:93;93
+msgid "Code"
+msgstr "Código"
+
+#: views/cdr/overview.ctp:184;184
+msgid "Valid votes"
+msgstr "Votos válidos"
+
+#: views/cdr/overview.ctp:184;184
+#: views/elements/poll_status.ctp:35;51;35;51
+#: views/polls/index.ctp:93;93
+msgid "Open"
+msgstr "Abierto"
+
+#: views/cdr/overview.ctp:184;184
+#: views/polls/index.ctp:93;93
+msgid "Close"
+msgstr "Cerrar"
+
+#: views/cdr/statistics.ctp:26;26
+#: views/elements/menuAdmin.ctp:172;172
+#: views/elements/menuUser.ctp:158;158
+#: views/users/edit.ctp:126;126
+#: views/users/view.ctp:76;76
+msgid "Statistics"
+msgstr "Estadística"
+
+#: views/cdr/statistics.ctp:30;30
+msgid "CDR Statistics"
+msgstr "Estadísticas del CDR"
+
+#: views/channels/edit.ctp:25;25
+#: views/channels/index.ctp:25;25
+#: views/elements/menuAdmin.ctp:192;192
+#: views/elements/menuUser.ctp:178;178
+#: views/logs/index.ctp:25;25
+#: views/office_route/edit.ctp:25;25
+#: views/processes/index.ctp:25;25
+#: views/processes/system.ctp:26;26
+#: views/settings/index.ctp:25;25
+msgid "Dashboard"
+msgstr "Panel de control"
+
+#: views/channels/edit.ctp:33;33
+#: views/office_route/edit.ctp:33;33
+msgid "Edit channel"
+msgstr "Editar canal"
+
+#: views/channels/edit.ctp:47;47
+#: views/channels/index.ctp:86;134;86;134
+#: views/office_route/edit.ctp:49;49
+#: views/phone_books/export.ctp:42;42
+#: views/users/add.ctp:43;43
+#: views/users/edit.ctp:98;98
+msgid "Phone number"
+msgstr "Número de teléfono"
+
+#: views/channels/edit.ctp:48;48
+#: views/channels/index.ctp:89;137;89;137
+msgid "IMSI"
+msgstr "IMSI"
+
+#: views/channels/edit.ctp:49;49
+#: views/channels/index.ctp:136;136
+msgid "IMEI"
+msgstr "IMEI"
+
+#: views/channels/index.ctp:44;44
+msgid "Office Route"
+msgstr "Office Route"
+
+#: views/channels/index.ctp:48;48
+msgid "SNMP daemon is not running."
+msgstr "El SNMP demonio no se está ejecutando."
+
+#: views/channels/index.ctp:73;73
+#: views/elements/message_status.ctp:80;80
+msgid "Yes"
+msgstr "Si"
+
+#: views/channels/index.ctp:84;84
+msgid "Slot"
+msgstr "Ranura"
+
+#: views/channels/index.ctp:87;87
+msgid "Sim inserted"
+msgstr "SIM insertado"
+
+#: views/channels/index.ctp:88;138;88;138
+msgid "Signal level"
+msgstr "Nivel de señal"
+
+#: views/channels/index.ctp:90;90
+msgid "Network registration"
+msgstr "Registro red"
+
+#: views/channels/index.ctp:91;91
+#: views/office_route/edit.ctp:50;50
+msgid "Operator"
+msgstr "Operador"
+
+#: views/channels/index.ctp:92;139;92;139
+msgid "Last updated"
+msgstr "Última actualización "
+
+#: views/channels/index.ctp:100;100
+msgid "There are no OfficeRoute units connected to your system."
+msgstr "No hay ningún OfficeRoute conectado a su sistema."
+
+#: views/channels/index.ctp:105;105
+msgid "Mobigater"
+msgstr "Mobigater"
+
+#: views/channels/index.ctp:132;132
+msgid "Interface id"
+msgstr "Id de interfaz"
+
+#: views/channels/index.ctp:135;135
+msgid "Interface name"
+msgstr "Nombre de la interfaz"
+
+#: views/channels/index.ctp:147;147
+msgid "There are no Mobigater units connected to your system."
+msgstr "No hay ningun Mobigater conectado a su sistema."
+
+#: views/channels/index.ctp:151;151
+#: views/processes/index.ctp:118;118
+msgid "Generated"
+msgstr "Generado"
+
+#: views/elements/channel_signal_level.ctp:41;41
+msgid "Poor"
+msgstr "Pobre"
+
+#: views/elements/channel_signal_level.ctp:45;45
+msgid "Good"
+msgstr "Bueno"
+
+#: views/elements/channel_signal_level.ctp:49;49
+msgid "Excellent"
+msgstr "Excelente"
+
+#: views/elements/menuAdmin.ctp:44;44
+#: views/elements/menuUser.ctp:44;44
+msgid "Manage polls"
+msgstr "Gestionar encuestas"
+
+#: views/elements/menuAdmin.ctp:49;49
+msgid "Create poll"
+msgstr "Crear encuesta"
+
+#: views/elements/menuAdmin.ctp:67;67
+#: views/elements/menuUser.ctp:62;62
+#: views/messages/index.ctp:28;28
+msgid "Inboxes"
+msgstr "Bandejas de entrada"
+
+#: views/elements/menuAdmin.ctp:72;72
+#: views/elements/menuUser.ctp:67;67
+msgid "Archives"
+msgstr "Archivos"
+
+#: views/elements/menuAdmin.ctp:85;85
+#: views/elements/menuUser.ctp:80;80
+msgid "Manage LAM"
+msgstr "Gestiona LAM"
+
+#: views/elements/menuAdmin.ctp:104;104
+#: views/elements/menuUser.ctp:99;99
+#: views/ivr_menus/add.ctp:25;25
+#: views/ivr_menus/add_selector.ctp:25;25
+#: views/ivr_menus/edit.ctp:25;25
+#: views/ivr_menus/edit_selector.ctp:26;26
+#: views/ivr_menus/index.ctp:25;25
+#: views/ivr_menus/selectors.ctp:25;25
+#: views/logs/index.ctp:32;32
+#: views/nodes/add.ctp:26;26
+#: views/nodes/edit.ctp:25;25
+#: views/nodes/index.ctp:25;25
+msgid "IVR Centre"
+msgstr "Centro IVR"
+
+#: views/elements/menuAdmin.ctp:108;108
+#: views/elements/menuUser.ctp:103;103
+#: views/ivr_menus/add_selector.ctp:26;26
+#: views/ivr_menus/edit_selector.ctp:27;27
+#: views/ivr_menus/selectors.ctp:26;34;26;34
+msgid "Language selectors"
+msgstr "Selectores de idioma"
+
+#: views/elements/menuAdmin.ctp:132;132
+#: views/elements/menuUser.ctp:127;127
+#: views/phone_books/add.ctp:25;25
+#: views/phone_books/edit.ctp:25;25
+#: views/phone_books/index.ctp:25;25
+#: views/users/add.ctp:25;25
+#: views/users/edit.ctp:27;27
+#: views/users/index.ctp:25;25
+#: views/users/view.ctp:25;25
+msgid "User Management"
+msgstr "Gestión de Usuario"
+
+#: views/elements/menuAdmin.ctp:145;145
+msgid "System users"
+msgstr "Usuarios de sistema"
+
+#: views/elements/menuAdmin.ctp:149;149
+#: views/ff_users/system_sweeper.ctp:26;29;26;29
+msgid "Frontend Sweeper"
+msgstr "Barredor Principal"
+
+#: views/elements/menuAdmin.ctp:176;176
+#: views/elements/menuUser.ctp:162;162
+#: views/logs/index.ctp:32;32
+#: views/monitor_ivr/delete.ctp:26;26
+#: views/monitor_ivr/export.ctp:26;26
+#: views/monitor_ivr/index.ctp:26;26
+msgid "Monitoring"
+msgstr "Supervisión"
+
+#: views/elements/menuAdmin.ctp:213;213
+#: views/logs/index.ctp:26;29;26;29
+msgid "Logs"
+msgstr "Registros"
+
+#: views/elements/menuAdmin.ctp:231;231
+#: views/elements/menuUser.ctp:212;212
+msgid "Help"
+msgstr "Ayuda"
+
+#: views/elements/menuAdmin.ctp:236;236
+#: views/elements/menuUser.ctp:217;217
+msgid "Downloads"
+msgstr "Descargas"
+
+#: views/elements/menuAdmin.ctp:242;242
+#: views/elements/menuUser.ctp:223;223
+msgid "Website"
+msgstr "Sitio Web"
+
+#: views/elements/menuAdmin.ctp:246;246
+#: views/elements/menuUser.ctp:227;227
+msgid "Wiki/SVN"
+msgstr "Wiki/SVN"
+
+#: views/elements/menuAdmin.ctp:251;251
+#: views/elements/menuUser.ctp:232;232
+msgid "Feedback"
+msgstr "Realimentación"
+
+#: views/elements/message_status.ctp:29;29
+#: views/messages/archive.ctp:26;26
+#: views/messages/edit.ctp:28;48;28;48
+msgid "Archive"
+msgstr "Archivo"
+
+#: views/elements/message_status.ctp:35;35
+#: views/messages/edit.ctp:48;48
+msgid "Active"
+msgstr "Activo"
+
+#: views/elements/message_status.ctp:46;46
+#: views/processes/index.ctp:56;56
+msgid "N/A"
+msgstr "N/A"
+
+#: views/elements/message_status.ctp:63;63
+#: views/phone_books/export.ctp:61;61
+#: views/users/edit.ctp:60;60
+#: views/users/view.ctp:32;32
+msgid "Never"
+msgstr "Nunca"
+
+#: views/elements/message_status.ctp:86;86
+msgid "No"
+msgstr "No"
+
+#: views/elements/player.ctp:62;62
+msgid "No Flash plugin installed"
+msgstr "No hay plugin Flash instalado "
+
+#: views/elements/player.ctp:66;66
+msgid "No audio file available"
+msgstr "No hay ningún archivo de audio disponible"
+
+#: views/elements/poll_status.ctp:31;48;31;48
+msgid "Pending"
+msgstr "Pendiente"
+
+#: views/elements/poll_status.ctp:39;54;39;54
+msgid "Closed"
+msgstr "Cerrado"
+
+#: views/elements/process_status.ctp:31;31;44;31;31;44
+msgid "OFF"
+msgstr "OFF"
+
+#: views/elements/process_status.ctp:35;35;47;35;35;47
+msgid "ON"
+msgstr "ON"
+
+#: views/elements/services.ctp:37;37
+#: views/ivr_menus/add.ctp:142;142
+#: views/ivr_menus/edit.ctp:253;253
+#: views/ivr_menus/edit_selector.ctp:191;191
+#: views/ivr_menus/selectors.ctp:45;45
+#: views/pages/ivr_menus/tip.ctp:4;4
+#: views/users/edit.ctp:133;133
+#: views/users/view.ctp:83;83
+msgid "Voice Menu"
+msgstr "Menú de Voz"
+
+#: views/elements/services.ctp:41;41
+#: views/users/edit.ctp:135;135
+#: views/users/view.ctp:85;85
+msgid "SMS"
+msgstr "SMS"
+
+#: views/errors/missing_controller.ctp:27;27
+msgid "This page does not exist. Missing controller."
+msgstr "Esta pagina no existe. Falta controlador. "
+
+#: views/errors/missing_view.ctp:26;26
+msgid "This view does not exist."
+msgstr "Esta vista no existe."
+
+#: views/ff_users/add.ctp:26;26
+#: views/ff_users/login.ctp:25;25
+#: views/groups/add.ctp:26;26
+#: views/groups/index.ctp:25;25
+msgid "Authentication"
+msgstr "Autenticación "
+
+#: views/ff_users/add.ctp:43;43
+#: views/ff_users/edit.ctp:50;50
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: views/ff_users/add.ctp:44;44
+#: views/ff_users/login.ctp:45;45
+msgid "Password"
+msgstr "Contraseña"
+
+#: views/ff_users/add.ctp:45;45
+#: views/ff_users/edit.ctp:53;53
+msgid "Repeat password"
+msgstr "Repita contraseña"
+
+#: views/ff_users/add.ctp:46;46
+#: views/ff_users/edit.ctp:51;51
+#: views/ff_users/index.ctp:48;48
+#: views/groups/index.ctp:46;46
+msgid "Group"
+msgstr "Grupo"
+
+#: views/ff_users/edit.ctp:25;25
+#: views/ff_users/index.ctp:25;25
+#: views/ff_users/system_sweeper.ctp:25;25
+msgid "User management"
+msgstr "Gestión de usuarios"
+
+#: views/ff_users/edit.ctp:52;52
+msgid "New password"
+msgstr "Nueva contraseña"
+
+#: views/ff_users/index.ctp:30;30
+msgid "Add user"
+msgstr "Añadir usuario"
+
+#: views/ff_users/index.ctp:48;48
+#: views/groups/add.ctp:38;38
+#: views/ivr_menus/add.ctp:60;60
+#: views/ivr_menus/edit.ctp:78;78
+#: views/phone_books/add.ctp:49;49
+#: views/phone_books/edit.ctp:47;47
+#: views/phone_books/export.ctp:37;37
+#: views/users/add.ctp:39;39
+#: views/users/disp.ctp:66;66
+#: views/users/edit.ctp:70;70
+#: views/users/index.ctp:93;93
+#: views/users/view.ctp:51;51
+msgid "Name"
+msgstr "Nombre"
+
+#: views/ff_users/index.ctp:56;56
+#: views/users/index.ctp:134;134
+msgid "Are you sure you wish to delete this user?"
+msgstr "¿Está seguro que desea eliminar este usuario?"
+
+#: views/ff_users/index.ctp:72;72
+msgid "No users exist. Please add one by clicking the <i>Add User</i> button to the right."
+msgstr "No existen usuarios. Por favor, añada uno clicando <i>Añadir Usuario</i> a la derecha."
+
+#: views/ff_users/login.ctp:44;44
+msgid "User name"
+msgstr "Nombre de usuario"
+
+#: views/ff_users/system_sweeper.ctp:40;40
+msgid "The Frontend Sweeper wipes out all confidential information (such as name, email and phone numbers) from Freedom Fone."
+msgstr "El Barredor Principal borra toda la información confidencial (como nombre, correo electrónico y números de teléfono) de Freedom Fone."
+
+#: views/ff_users/system_sweeper.ctp:41;41
+msgid "To wipe out Freedom Fone logs, please use the Backend Sweeper."
+msgstr "Para borrar los registros de Freedom Fone, por favor usa el Barredor Auxiliar. "
+
+#: views/ff_users/system_sweeper.ctp:42;42
+msgid "Start Sweeper"
+msgstr "Activa el Barredor"
+
+#: views/groups/add.ctp:30;30
+msgid "Add Group"
+msgstr "Añadir Grupo"
+
+#: views/groups/index.ctp:29;29
+msgid "Add group"
+msgstr "Añadir grupo"
+
+#: views/groups/index.ctp:52;52
+msgid "Are you sure you wish to delete this group?"
+msgstr "¿Está seguro que desea eliminar este grupo?"
+
+#: views/groups/index.ctp:64;64
+msgid "No groups exist. Please add one by clicking the <i>Add Group</i> button to the right."
+msgstr "No existen grupos. Por favor, añada uno clicando <i>Añadir Grupo</i> a la derecha."
+
+#: views/helpers/access.php:65;65
+#: views/messages/archive.ctp:42;42
+msgid "Check All"
+msgstr "Seleccionar Todos"
+
+#: views/helpers/access.php:66;66
+#: views/messages/archive.ctp:43;43
+msgid "Uncheck All"
+msgstr "Deseleccionar Todos"
+
+#: views/helpers/formatting.php:47;47
+msgid "h"
+msgstr "h"
+
+#: views/helpers/formatting.php:53;53
+#: views/lm_menus/add.ctp:57;57
+#: views/lm_menus/edit.ctp:54;54
+msgid "min"
+msgstr "min"
+
+#: views/helpers/formatting.php:58;58
+msgid "sec"
+msgstr "seg"
+
+#: views/helpers/formatting.php:84;112;84;112
+msgid "Voice menu"
+msgstr "Menús de voz"
+
+#: views/helpers/formatting.php:88;88
+#: views/users/view.ctp:86;86
+msgid "Callback"
+msgstr "Devolver llamada"
+
+#: views/helpers/formatting.php:92;92
+msgid "Other SMS"
+msgstr "Otros SMS"
+
+#: views/ivr_menus/add.ctp:27;27
+#: views/ivr_menus/add_selector.ctp:27;27
+#: views/lm_menus/add.ctp:27;27
+#: views/polls/add.ctp:25;25
+msgid "Create"
+msgstr "Crear"
+
+#: views/ivr_menus/add.ctp:30;30
+msgid "Create voice menu"
+msgstr "Crear menú de voz"
+
+#: views/ivr_menus/add.ctp:39;39
+#: views/ivr_menus/add_selector.ctp:44;44
+#: views/ivr_menus/edit.ctp:35;35
+msgid "Name of IVR"
+msgstr "Nombre de IVR"
+
+#: views/ivr_menus/add.ctp:40;40
+#: views/ivr_menus/add_selector.ctp:45;45
+#: views/ivr_menus/edit.ctp:36;36
+msgid "Long greeting message:include a brief description of the services offered and the menu alternatives."
+msgstr "Mensaje de saludo largo: incluir una breve descripción de los servicios ofrecidos y las alternativas de menú de voz."
+
+#: views/ivr_menus/add.ctp:41;41
+#: views/ivr_menus/add_selector.ctp:46;46
+#: views/ivr_menus/edit.ctp:37;37
+msgid "Brief instuctions: Repeat the menu alternatives. For example: For news, press 1. For health, press 2."
+msgstr "Instrucciones breves: repetir las alternativas del menú de voz. Por ejemplo: para noticias, presione 1. Para salud, pulse 2."
+
+#: views/ivr_menus/add.ctp:43;43
+#: views/ivr_menus/edit.ctp:42;42
+msgid "Select option for alternative 1."
+msgstr "Seleccione la opción para la alternativa 1."
+
+#: views/ivr_menus/add.ctp:44;44
+#: views/ivr_menus/edit.ctp:43;43
+msgid "Select option for alternative 2."
+msgstr "Seleccione la opción para la alternativa 2."
+
+#: views/ivr_menus/add.ctp:47;48;49;50;51;47;48;49;50;51
+#: views/ivr_menus/add_selector.ctp:49;50;51;52;53;49;50;51;52;53
+#: views/ivr_menus/edit.ctp:47;48;47;48
+#: views/lm_menus/add.ctp:58;59;60;61;62;63;64;65;58;59;60;61;62;63;64;65
+#: views/lm_menus/advanced_add.ctp:28;29;30;31;32;33;28;29;30;31;32;33
+#: views/lm_menus/advanced_edit.ctp:28;29;30;31;32;33;28;29;30;31;32;33
+#: views/lm_menus/edit.ctp:55;56;55;56
+msgid "Default"
+msgstr "Defecto"
+
+#: views/ivr_menus/add.ctp:65;65
+#: views/ivr_menus/edit.ctp:91;91
+msgid "Welcome"
+msgstr "Bienvenida"
+
+#: views/ivr_menus/add.ctp:67;73;79;85;67;73;79;85
+#: views/ivr_menus/add_selector.ctp:69;76;69;76
+#: views/ivr_menus/edit.ctp:93;117;138;160;93;117;138;160
+#: views/ivr_menus/edit_selector.ctp:81;99;81;99
+#: views/lm_menus/add.ctp:93;103;93;103
+#: views/lm_menus/advanced_add.ctp:49;59;69;79;89;99;49;59;69;79;89;99
+#: views/lm_menus/advanced_edit.ctp:49;71;95;117;140;163;49;71;95;117;140;163
+#: views/lm_menus/edit.ctp:92;116;92;116
+#: views/nodes/add.ctp:45;45
+#: views/nodes/edit.ctp:55;55
+msgid "Audio file"
+msgstr "Archivo de audio"
+
+#: views/ivr_menus/add.ctp:71;71
+#: views/ivr_menus/add_selector.ctp:67;67
+#: views/ivr_menus/edit.ctp:115;115
+#: views/ivr_menus/edit_selector.ctp:79;79
+msgid "Instructions"
+msgstr "Instrucciones"
+
+#: views/ivr_menus/add.ctp:77;77
+#: views/ivr_menus/edit.ctp:136;136
+msgid "Goodbye"
+msgstr "Despedida"
+
+#: views/ivr_menus/add.ctp:83;83
+#: views/ivr_menus/add_selector.ctp:74;74
+#: views/ivr_menus/edit.ctp:158;158
+#: views/polls/view.ctp:101;101
+msgid "Invalid"
+msgstr "Inválido"
+
+#: views/ivr_menus/add.ctp:92;92
+#: views/ivr_menus/add_selector.ctp:83;83
+#: views/ivr_menus/edit.ctp:183;183
+msgid "Menu Options"
+msgstr "Opciones del menú"
+
+#: views/ivr_menus/add.ctp:128;128
+#: views/ivr_menus/disp.ctp:40;40
+#: views/ivr_menus/edit.ctp:238;238
+#: views/ivr_menus/edit_selector.ctp:176;176
+msgid "#"
+msgstr "#"
+
+#: views/ivr_menus/add.ctp:130;132;134;130;132;134
+#: views/ivr_menus/disp.ctp:41;41
+#: views/ivr_menus/edit.ctp:240;242;244;240;242;244
+#: views/ivr_menus/edit_selector.ctp:178;180;182;178;180;182
+msgid "Select entry"
+msgstr "Seleccione entrada"
+
+#: views/ivr_menus/add.ctp:142;142
+#: views/ivr_menus/edit.ctp:253;253
+#: views/ivr_menus/edit_selector.ctp:191;191
+msgid "Leave-a-Message"
+msgstr "Deja-un-mensaje"
+
+#: views/ivr_menus/add_selector.ctp:30;30
+msgid "Create Language Selector"
+msgstr "Crear Selección de Idiomas"
+
+#: views/ivr_menus/add_selector.ctp:88;88
+msgid "Select service"
+msgstr "Seleccione servicio"
+
+#: views/ivr_menus/edit.ctp:39;39
+msgid "Message played before Freedom Fone finishes (hangs) the call. "
+msgstr "Mensaje reproducido antes que Freedom Fone termina (cuelgue) la llamada. "
+
+#: views/ivr_menus/edit.ctp:40;40
+msgid "Message played after incorrect input (digit pressed) from user. "
+msgstr "Mensaje reproducido después de la selección incorrecta de un dígito por el usuario. "
+
+#: views/ivr_menus/edit.ctp:44;45;46;44;45;46
+msgid "Default: "
+msgstr "Por defecto:"
+
+#: views/ivr_menus/edit.ctp:56;56
+msgid "Edit voice menu"
+msgstr "Editar menú de voz"
+
+#: views/ivr_menus/edit.ctp:83;83
+#: views/ivr_menus/edit_selector.ctp:71;71
+msgid "Menu Instructions"
+msgstr "Instrucciones de menú"
+
+#: views/ivr_menus/edit.ctp:94;94
+#: views/lm_menus/edit.ctp:93;93
+msgid "Welcome Message"
+msgstr "Mensaje de bienvenida"
+
+#: views/ivr_menus/edit.ctp:97;121;142;164;97;121;142;164
+msgid "Do not use uploaded file"
+msgstr "No utilice el archivo cargado"
+
+#: views/ivr_menus/edit.ctp:99;99;122;122;143;143;165;165;99;99;122;122;143;143;165;165
+#: views/ivr_menus/edit_selector.ctp:85;103;85;103
+#: views/lm_menus/advanced_edit.ctp:57;57;79;79;102;102;125;125;148;148;170;170;57;57;79;79;102;102;125;125;148;148;170;170
+#: views/lm_menus/edit.ctp:99;99;124;124;99;99;124;124
+#: views/messages/archive.ctp:83;83;83;83
+#: views/messages/disp.ctp:75;75;75;75
+#: views/messages/edit.ctp:123;123;123;123;123;123
+#: views/nodes/edit.ctp:47;47;47;47
+#: views/nodes/index.ctp:74;74;74;74
+msgid "Download"
+msgstr "Descargar"
+
+#: views/ivr_menus/edit.ctp:118;118
+#: views/ivr_menus/edit_selector.ctp:82;82
+msgid "Instructions Message"
+msgstr "Mensaje de instrucciones"
+
+#: views/ivr_menus/edit.ctp:139;139
+#: views/lm_menus/advanced_edit.ctp:164;164
+msgid "Goodbye Message"
+msgstr "Mensaje de despedida"
+
+#: views/ivr_menus/edit.ctp:161;161
+#: views/ivr_menus/edit_selector.ctp:100;100
+#: views/lm_menus/advanced_edit.ctp:50;50
+msgid "Invalid Message"
+msgstr "Mensaje no válido"
+
+#: views/ivr_menus/edit.ctp:264;264
+msgid "This IVR does not exist."
+msgstr "Este IVR no existe."
+
+#: views/ivr_menus/edit_selector.ctp:33;33
+msgid "Name of language selector"
+msgstr "Nombre de selector de idioma"
+
+#: views/ivr_menus/edit_selector.ctp:34;34
+msgid "Brief instruction how to reach each language menu."
+msgstr "Instrucciones breves de cómo llegar a cada menú de idioma. "
+
+#: views/ivr_menus/edit_selector.ctp:35;35
+msgid "Warning that the user has pressed an invalid option."
+msgstr "Advertencia para cuando el usuario ha pulsado una opción no valida. "
+
+#: views/ivr_menus/edit_selector.ctp:39;39
+msgid "Edit language selector"
+msgstr "Editar selector de idioma"
+
+#: views/ivr_menus/edit_selector.ctp:119;119
+msgid "Services"
+msgstr "Servicios"
+
+#: views/ivr_menus/edit_selector.ctp:205;205
+msgid "This language selector does not exist."
+msgstr "Este selector de idioma no existe."
+
+#: views/ivr_menus/index.ctp:36;36
+#: views/lm_menus/add.ctp:48;48
+#: views/polls/index.ctp:37;37
+#: views/polls/view.ctp:35;35
+msgid "Tool tip"
+msgstr "Sugerencia"
+
+#: views/ivr_menus/index.ctp:52;52
+#: views/lm_menus/add.ctp:55;55
+#: views/lm_menus/edit.ctp:51;51
+#: views/lm_menus/index.ctp:36;36
+msgid "Audio files should be recorded in mono, 8KHz, and be maximum 10MB."
+msgstr "Archivos de audio deben registrarse en mono, 8 KHz y de un máximo 10 MB."
+
+#: views/ivr_menus/index.ctp:58;58
+#: views/ivr_menus/selectors.ctp:52;52
+#: views/lm_menus/index.ctp:53;53
+#: views/messages/archive.ctp:51;51
+#: views/messages/disp.ctp:48;48
+#: views/messages/index.ctp:34;34
+msgid "Service"
+msgstr "Servicio"
+
+#: views/ivr_menus/index.ctp:60;60
+#: views/ivr_menus/selectors.ctp:55;55
+msgid "Last modified"
+msgstr "Última modificación"
+
+#: views/ivr_menus/index.ctp:73;73
+msgid "Are you sure you wish to delete this voice menu?"
+msgstr "¿Está seguro que desea eliminar este menú de voz?"
+
+#: views/ivr_menus/index.ctp:89;89
+msgid "There are no voice menus created."
+msgstr "No hay menús de voz creados."
+
+#: views/ivr_menus/selectors.ctp:66;66
+msgid "Are you sure you wish to delete this language selector?"
+msgstr "¿Está seguro que desea eliminar este selector de idioma?"
+
+#: views/ivr_menus/selectors.ctp:81;81
+msgid "No language selectors exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No existen selectores de idioma. Por favor, cree una clicando <i>Crear nueva</i> a la derecha."
+
+#: views/layouts/default.ctp:77;77
+msgid "Logged in as"
+msgstr "Conectado como"
+
+#: views/layouts/default.ctp:96;96;96;96
+msgid "Logout"
+msgstr "Cerrar sesión "
+
+#: views/layouts/default.ctp:105;105
+msgid "Home"
+msgstr "Entrada"
+
+#: views/lm_menus/add.ctp:26;26
+#: views/lm_menus/edit.ctp:26;26
+msgid "Administration"
+msgstr "Administración "
+
+#: views/lm_menus/add.ctp:34;34
+msgid "Create Leave a Message IVR"
+msgstr "Crear Deja-un-mensaje IVR "
+
+#: views/lm_menus/add.ctp:53;53
+msgid "Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu."
+msgstr "Haz el favor de cargar archivos de audio que sean solo .mp3 o .wav por cada mensaje. Si ningun archivo de audio está presente, el texto de reserva se utilizará en el Menú IVR de Deja-un-Mensaje."
+
+#: views/lm_menus/add.ctp:54;54
+msgid "You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon."
+msgstr "Puede escuchar a sus archivos de audio subidos pulsando el Play, o descarga una copia de los archivos usando el icono Download.  "
+
+#: views/lm_menus/add.ctp:67;67
+#: views/lm_menus/edit.ctp:58;58
+msgid "Name of this Leave-a-message IVR menu."
+msgstr "Nombre de este menú IVR de Deja-un-mensaje."
+
+#: views/lm_menus/add.ctp:68;68
+msgid "Maximum duration of voice message left by user."
+msgstr "Duración maxima de mensaje de voz dejado por usuario. "
+
+#: views/lm_menus/add.ctp:69;69
+#: views/lm_menus/edit.ctp:60;60
+msgid "Check the box to force Text-to-speech (ignore uploaded files)"
+msgstr "Marque la casilla para obligar Texto-a-Voz (ignora archivos subidos)"
+
+#: views/lm_menus/add.ctp:70;70
+#: views/lm_menus/edit.ctp:61;61
+msgid "Unlimited"
+msgstr "Ilimitado"
+
+#: views/lm_menus/add.ctp:80;80
+#: views/lm_menus/edit.ctp:80;80
+msgid "General settings"
+msgstr "Configuración general"
+
+#: views/lm_menus/add.ctp:82;82
+#: views/lm_menus/edit.ctp:82;82
+msgid "Message duration"
+msgstr "Duración de mensaje"
+
+#: views/lm_menus/add.ctp:84;84
+#: views/lm_menus/edit.ctp:84;84
+msgid "Do not use uploaded files"
+msgstr "No utilice archivos subidos"
+
+#: views/lm_menus/add.ctp:92;92
+#: views/lm_menus/edit.ctp:91;91
+msgid "Step 1: Welcome message"
+msgstr "Paso 1: Mensaje de bienvenida"
+
+#: views/lm_menus/add.ctp:94;104;94;104
+#: views/lm_menus/advanced_add.ctp:50;60;70;80;90;100;50;60;70;80;90;100
+#: views/lm_menus/advanced_edit.ctp:51;73;97;119;142;165;51;73;97;119;142;165
+#: views/lm_menus/edit.ctp:94;118;94;118
+msgid "Fallback text"
+msgstr "Texto de respaldo"
+
+#: views/lm_menus/add.ctp:102;102
+#: views/lm_menus/edit.ctp:115;115
+msgid "Step 2: Record message instructions"
+msgstr "Paso 2: Grabar instrucciones de mensaje"
+
+#: views/lm_menus/add.ctp:111;111
+#: views/lm_menus/edit.ctp:137;137
+msgid "Advanced options"
+msgstr "Opciónes avanzadas"
+
+#: views/lm_menus/advanced_add.ctp:44;44
+#: views/lm_menus/advanced_edit.ctp:44;44
+msgid "If you choose to enable the advanced Leave-a-Message service, you should ask the caller to finish the call by pressing # instead of hanging up (in Step 2)."
+msgstr "Si elige activar el servicio de Deja-un-Mensaje avanzado, deberia preguntar al llamante de terminar su llamada apretando # en vez de colgar (Paso 2)."
+
+#: views/lm_menus/advanced_add.ctp:48;48
+#: views/lm_menus/advanced_edit.ctp:48;48
+msgid "Step 3: Invalid message"
+msgstr "Paso 3: Mensaje no válido"
+
+#: views/lm_menus/advanced_add.ctp:58;58
+#: views/lm_menus/advanced_edit.ctp:70;70
+msgid "Step 4: Long message"
+msgstr "Paso 4: Mensaje largo"
+
+#: views/lm_menus/advanced_add.ctp:68;68
+#: views/lm_menus/advanced_edit.ctp:94;94
+msgid "Step 5: Select message"
+msgstr "Paso 5: Seleccionar mensaje"
+
+#: views/lm_menus/advanced_add.ctp:78;78
+#: views/lm_menus/advanced_edit.ctp:116;116
+msgid "Step 6: Delete message"
+msgstr "Paso 6: Borrar mensaje"
+
+#: views/lm_menus/advanced_add.ctp:88;88
+#: views/lm_menus/advanced_edit.ctp:139;139
+msgid "Step 7: Save message"
+msgstr "Paso 7: Guardar mensaje"
+
+#: views/lm_menus/advanced_add.ctp:98;98
+#: views/lm_menus/advanced_edit.ctp:162;162
+msgid "Step 8: Goodbye message"
+msgstr "Paso 8: Mensaje de despedida"
+
+#: views/lm_menus/advanced_edit.ctp:72;72
+msgid "Long Message"
+msgstr "Mensaje largo"
+
+#: views/lm_menus/advanced_edit.ctp:96;96
+msgid "Select Message"
+msgstr "Mensaje de selección"
+
+#: views/lm_menus/advanced_edit.ctp:118;118
+msgid "Delete Message"
+msgstr "Borrar mensaje"
+
+#: views/lm_menus/advanced_edit.ctp:141;141
+msgid "Save Message"
+msgstr "Guardar mensaje"
+
+#: views/lm_menus/edit.ctp:36;36
+msgid "Leave-a-message| The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:| (1) customized audio files| (2) customized text to speech, or| (3) default text to speech.||If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu.|If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller.|If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file."
+msgstr "Deja-un-Mensaje| El menú de voz para Deja-un-Mensaje consiste de ocho mensajes diferentes. Cada mensaje se puede generar en tres formas diferentes:| (1) archivos de audio personalizados| (2) texto a voz personalizado, o| (3) texto a voz por defecto.||Si el administrador asocia un archivo de audio con un mensaje, ese archivo se tocará para quien llama cuando entra en el menú de voz.|Si no proporciona ningún archivo de audio, pero existe un texto personalizado, el mensaje en texto será sintetizado y tocado para quien llama.|Si no proporciona ningún archivo de audio, ni un texto personalizado, el texto de defecto será sintetizado y tocado para quien llama.|Los archivos de audio deben ser cargados en formatos .mp3 o .wav a través del interfaz de usuario. Una vez cargados, se pueden escuchar desde el GUI administrativo usando el Flashplayer integrado. Archivos de audio pueden ser sobreescritos en cualquier momento con un nuevo archivo de audio.  "
+
+#: views/lm_menus/edit.ctp:39;39
+msgid "Edit Leave a Message IVR"
+msgstr "Editar Deja-un-Mensaje IVR"
+
+#: views/lm_menus/edit.ctp:50;50
+msgid "Please upload either an .mp3 or a .wav audio file for each message. If no audio file is present, the fallback text will be used in the Leave-a-Message IVR Menu. You can listen to your uploaded audio files by pressing the Play button or download a copy of the files by using the Download icon."
+msgstr "Haz el favor de cargar archivos de audio que sean solo .mp3 o .wav por cada mensaje. Si ningun archivo de audio está presente, el texto de reserva se utilizará en el Menú IVR de Deja-un-Mensaje. Puede escuchar a sus archivos de audio subidos pulsando el Play, o si quiere, descarga una copia de los archivos usando el icono Download.  "
+
+#: views/lm_menus/edit.ctp:59;59
+msgid "Maximum duration (seconds) of voice message left by user."
+msgstr "Duración máxima (en segundos) de mensaje de voz dejado por el usuario."
+
+#: views/lm_menus/edit.ctp:117;117
+msgid "Inform Message"
+msgstr "Mensaje de información"
+
+#: views/lm_menus/index.ctp:35;35
+msgid "Manage Leave-a-message"
+msgstr "Gestionar Deja-un-mensaje"
+
+#: views/lm_menus/index.ctp:55;55
+#: views/messages/edit.ctp:118;118
+#: views/nodes/index.ctp:58;58
+msgid "Created"
+msgstr "Creado"
+
+#: views/lm_menus/index.ctp:68;68
+msgid "Are you sure you wish to delete this Leave-a-message IVR menu?"
+msgstr "¿Está seguro que desea eliminar este menú IVR de Deja-un-mensaje?"
+
+#: views/lm_menus/index.ctp:88;88
+msgid "No Leave-a-Message menus exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No existen menús de Deja-un-Mensaje. Por favor, cree una clicando <i>Crear nueva</i> a la derecha."
+
+#: views/logs/disp.ctp:46;46
+msgid "No log file of this type exists"
+msgstr "No existe archivo de registro de este tipo"
+
+#: views/logs/index.ctp:30;30
+msgid "Select log file to view."
+msgstr "Seleccione el archivo de registro que quieres ver."
+
+#: views/logs/index.ctp:32;32
+msgid "Cron and refresh"
+msgstr "Cron y refresco"
+
+#: views/logs/index.ctp:32;32
+msgid "Debug"
+msgstr "Depurar"
+
+#: views/logs/index.ctp:32;32
+msgid "Error"
+msgstr "Error"
+
+#: views/logs/index.ctp:34;34
+msgid "Select log file"
+msgstr "Seleccione archivo de registro"
+
+#: views/messages/archive.ctp:33;33
+msgid "Archived messages"
+msgstr "Mensajes archivados"
+
+#: views/messages/archive.ctp:50;71;50;71
+#: views/messages/disp.ctp:47;64;47;64
+#: views/users/disp.ctp:14;65;14;65
+#: views/users/index.ctp:92;114;92;114
+msgid "New"
+msgstr "Nuevo"
+
+#: views/messages/archive.ctp:54;54
+#: views/messages/disp.ctp:51;51
+#: views/messages/edit.ctp:95;95
+#: views/messages/index.ctp:34;50;34;50
+msgid "Rate"
+msgstr "Valoración"
+
+#: views/messages/archive.ctp:119;119
+msgid "No of messages per page: "
+msgstr "Nº de mensajes por página:"
+
+#: views/messages/archive.ctp:123;123
+msgid "All"
+msgstr "Todos"
+
+#: views/messages/disp.ctp:99;99
+#: views/users/index.ctp:161;161
+msgid "Perform action on selected"
+msgstr "Realizar acción sobre seleccionado"
+
+#: views/messages/edit.ctp:28;28
+msgid "Inbox"
+msgstr "Bandeja de entrada"
+
+#: views/messages/edit.ctp:46;46
+msgid "No rate"
+msgstr "Sin índice"
+
+#: views/messages/edit.ctp:55;55
+msgid "Previous message"
+msgstr "Mensaje anterior"
+
+#: views/messages/edit.ctp:60;60
+msgid "Next message"
+msgstr "Próximo mensaje"
+
+#: views/messages/edit.ctp:69;69
+msgid "Edit Message"
+msgstr "Editar mensaje"
+
+#: views/messages/edit.ctp:96;96
+msgid "No category"
+msgstr "Sin categoría "
+
+#: views/messages/edit.ctp:97;97
+msgid "Comment"
+msgstr "Comentario"
+
+#: views/messages/edit.ctp:98;98
+#: views/messages/index.ctp:48;48
+#: views/tags/add.ctp:40;40
+#: views/tags/edit.ctp:46;46
+#: views/tags/index.ctp:42;42
+msgid "Tag"
+msgstr "Etiqueta"
+
+#: views/messages/edit.ctp:98;98
+msgid "No tag"
+msgstr "Sin etiqueta"
+
+#: views/messages/edit.ctp:103;103
+msgid "Are you sure you wish to delete this message?"
+msgstr "¿Está seguro que desea eliminar este mensaje?"
+
+#: views/messages/edit.ctp:119;119
+msgid "Modified"
+msgstr "Modificado"
+
+#: views/messages/index.ctp:30;30
+msgid "Audio Messages"
+msgstr "Mensajes de audio"
+
+#: views/messages/index.ctp:31;31
+msgid "Please select one or more criteria below."
+msgstr "Por favor, seleccione uno o más de los criterios siguientes."
+
+#: views/messages/index.ctp:35;35
+msgid "Ascending"
+msgstr "Ascendiendo"
+
+#: views/messages/index.ctp:35;35
+msgid "Descending"
+msgstr "Descendiendo"
+
+#: views/messages/index.ctp:51;51
+msgid "LAM Service"
+msgstr "Servicio LAM"
+
+#: views/messages/index.ctp:53;53
+msgid "Order by"
+msgstr "Ordenar por"
+
+#: views/messages/index.ctp:54;54
+msgid "Sorting direction"
+msgstr "Dirección de clasificación "
+
+#: views/messages/index.ctp:55;55
+msgid "Entries per page"
+msgstr "Entradas por páginas"
+
+#: views/messages/index.ctp:57;57
+msgid "Selection criteria"
+msgstr "Criterios de selección "
+
+#: views/messages/index.ctp:65;65
+msgid "Order and direction"
+msgstr "Ordenar y dirección "
+
+#: views/monitor_ivr/erase.ctp:25;25
+msgid "Erase monitoring data"
+msgstr "Borrar los datos de monitoreo"
+
+#: views/monitor_ivr/erase.ctp:34;34
+msgid "Erase"
+msgstr "Borrar"
+
+#: views/monitor_ivr/index.ctp:46;46
+msgid "Monitoring of Voice Menus"
+msgstr "Monitoreo de menús de voz"
+
+#: views/monitor_ivr/index.ctp:51;51
+msgid "Entries:"
+msgstr "Entradas:"
+
+#: views/monitor_ivr/index.ctp:64;64
+msgid "Caller ID"
+msgstr "ID de llamante"
+
+#: views/monitor_ivr/index.ctp:65;65
+msgid "From"
+msgstr "De"
+
+#: views/monitor_ivr/index.ctp:66;66
+msgid "Pressed"
+msgstr "Apretado"
+
+#: views/monitor_ivr/index.ctp:67;67
+msgid "To"
+msgstr "A"
+
+#: views/monitor_ivr/index.ctp:90;90
+#: views/monitor_ivr/output.ctp:36;36
+msgid "start"
+msgstr "inicio"
+
+#: views/monitor_ivr/index.ctp:93;93
+#: views/monitor_ivr/output.ctp:37;37
+msgid "end"
+msgstr "fin"
+
+#: views/monitor_ivr/index.ctp:109;109
+msgid "Are you sure you wish to delete this entry?"
+msgstr "¿Está seguro que desea eliminar esta entrada?"
+
+#: views/monitor_ivr/output.ctp:28;28
+msgid "IVR ID"
+msgstr "ID DE IVR"
+
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Node ID"
+msgstr "ID del nodo"
+
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Digit"
+msgstr "Dígito"
+
+#: views/monitor_ivr/output.ctp:28;28
+msgid "Caller number"
+msgstr "Nº Identificación del llamante"
+
+#: views/monitor_ivr/output.ctp:60;60
+msgid "MonitorIvr"
+msgstr "MonitorIvr"
+
+#: views/nodes/add.ctp:28;28
+msgid "Upload"
+msgstr "Cargar"
+
+#: views/nodes/add.ctp:32;32
+msgid "Upload Content"
+msgstr "Cargar Contenido"
+
+#: views/nodes/add.ctp:46;46
+msgid "Valid formats: wav and mp3"
+msgstr "Formatos válidos: wav y mp3"
+
+#: views/nodes/edit.ctp:34;34
+msgid "Edit Content"
+msgstr "Editar Contenido"
+
+#: views/nodes/edit.ctp:56;56
+msgid "If you select a file, the previous one will be deleted. Valid formats: wav and mp3"
+msgstr "Si selecciona un archivo, se eliminará la anterior. Formatos válidos: wav y mp3"
+
+#: views/nodes/edit.ctp:57;57
+#: views/nodes/index.ctp:59;59
+msgid "Duration"
+msgstr "Duración"
+
+#: views/nodes/edit.ctp:69;69
+msgid "No Menu Option with that id exists"
+msgstr "No existe la opción de menú con ese id"
+
+#: views/nodes/index.ctp:32;32
+msgid "Upload new"
+msgstr "Subir nuevo"
+
+#: views/nodes/index.ctp:51;51
+msgid "Entry:"
+msgstr "Entrada:"
+
+#: views/nodes/index.ctp:73;73
+msgid "Are you sure you wish to delete this content?"
+msgstr "¿Está seguro que desea eliminar este contenido?"
+
+#: views/nodes/index.ctp:100;100
+msgid "No content items exist. Please upload content by clicking the <i>Upload new</i> button to the right."
+msgstr "No existen artículos de contenido. Por favor, carga contenido clicando <i>Cargar nueva</i> a la derecha."
+
+#: views/office_route/edit.ctp:34;34
+msgid "slot"
+msgstr "ranura"
+
+#: views/pages/welcome.ctp:3;3
+msgid "Welcome to Freedom Fone"
+msgstr "Bienvenido a Freedom Fone"
+
+# Pad lock = one word, padlock
+#: views/pages/welcome.ctp:5;5
+msgid "Please click on the padlock in the upper right corner to log in."
+msgstr "Por favor, haga clic sobre el candado en la equina superior derecha para entrar. "
+
+#: views/pages/ivr_menus/tip.ctp:5;5
+msgid "This component allows you to build a variety of personal Voice Menus based on customized audio files, or synthesized text messages."
+msgstr "Este componente le permite crear una variedad de menús de voz personales basadas en archivos de audio personalizados, o text mensajes sintetizados. "
+
+#: views/pages/ivr_menus/tip.ctp:6;6
+msgid "A Voice menu consists of:"
+msgstr "Un Mensaje de voz consiste de:"
+
+#: views/pages/ivr_menus/tip.ctp:7;7
+msgid "Menu Instructions: a set of mandatory voice messages, such as a Welcome message, and instructions on how to navigate through the menu."
+msgstr "Instrucciones de menú: un conjunto de mensajes de voz obligatorias, como un mensaje de Bienvenida, y instrucciones sobre como navegar el menú.  "
+
+#: views/pages/ivr_menus/tip.ctp:8;8
+msgid "Menu Options: audio files or components associated with telephony keypad selections."
+msgstr "Opciones de menú: archivos de audio o componentes relacionados con selecciones de teclado telefónicos."
+
+#: views/pages/lm_menus/tip.ctp:5;5
+msgid "The Leave-a-message voice menu consists of eight different messages. Each message can be generated in three different ways:"
+msgstr "El menú de voz para Dejar-un-mensaje (LAM) consiste en ocho mensajes diferentes. Cada mensaje se puede generar de tres formas diferentes:"
+
+#: views/pages/lm_menus/tip.ctp:7;7
+msgid "Customized audio files"
+msgstr "Archivos de audio personalizados"
+
+#: views/pages/lm_menus/tip.ctp:8;8
+msgid "Customized text to speech"
+msgstr "Texto a voz personalizado"
+
+#: views/pages/lm_menus/tip.ctp:9;9
+msgid "Default text to speech"
+msgstr "Defecto texto a voz"
+
+#: views/pages/lm_menus/tip.ctp:12;12
+msgid "If the administrator associates an audio file with a message, that file will be played to the caller when she enters the voice menu."
+msgstr "Si el administrador asocia un archivo de audio con un mensaje, el archivo se reproducirá para la persona que llama cuando entra en el menú de voz. "
+
+#: views/pages/lm_menus/tip.ctp:13;13
+msgid "If no audio file is provided for a message, but a customized text message exists, the text message will be synthesized and played to the caller."
+msgstr "Si no se proporciona un archivo de audio por un mensaje, pero existe un mensaje texto personalizado, el mensaje texto será sintetizado y reproducido al llamante. "
+
+#: views/pages/lm_menus/tip.ctp:14;14
+msgid "If neither an audio file, nor a customized text is provided, the default text will be synthesized and played to the user.|The audio files must be uploaded in .mp3 or .wav format through the user interface. Once uploaded, they can be listened to from the administration GUI via the built-in Flashplayer. Audio files can at any time be overwritten with a new audio file."
+msgstr "Si no se proporciona ningun archivo de audio, ni un texto personalizado, el texto por defecto será sintetizado para el usuario.|Los archivos de audio deben ser cargados en formatos .mp3 o .wav a través del interfaz de usuario. Una vez cargados, se pueden escuchar desde el GUI administrativo usando el Flashplayer integrado. Archivos de audio pueden ser sobreescritos en cualquier momento con un nuevo archivo de audio.  "
+
+#: views/pages/polls/index.ctp:5;5
+#: views/pages/polls/tip.ctp:5;5
+msgid "The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone."
+msgstr "El servicio de Encuesta permite a los usuarios participar en encuestas mediante el envio de SMS a Freedom Fone. "
+
+#: views/pages/polls/index.ctp:6;6
+#: views/pages/polls/tip.ctp:6;6
+msgid "The Freedom Fone administrator has the ability to create, edit and delete polls."
+msgstr "El administrador de Freedom Fone tiene la capacidad para crear, modificar y eliminar encuestas."
+
+#: views/pages/polls/index.ctp:7;7
+#: views/pages/polls/tip.ctp:7;7
+msgid "The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public."
+msgstr "El administrador puede, en cualquier momento, modificar los campos mencionados arriba. Por supuesto, no se recomienda cambiar la pregunta, o código de respuesta para una encuesta, una vez abierto al público."
+
+#: views/pages/polls/index.ctp:8;8
+#: views/pages/polls/tip.ctp:8;8
+msgid "Before a poll is opened, and after it has been closed, no poll votes are registered for the poll."
+msgstr "Antes de que se abre una encuesta, y después de haberlo cerrado, no se registran votos para la encuesta. "
+
+#: views/pages/polls/index.ctp:9;9
+#: views/pages/polls/tip.ctp:9;9
+msgid "For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer."
+msgstr "Para cada encuesta, una vez comenzado, el administrador puede en cualquier momento, ver el resultado provisional o definitivo en términos de número de votos por respuesta, y el porcentaje del total de votos por respuesta."
+
+#: views/pages/polls/view.ctp:4;4
+msgid "Classification of votes"
+msgstr "Clasificación de votos"
+
+#: views/pages/polls/view.ctp:5;5
+msgid "The system classifies all incoming votes as <i>valid</i>, <i>invalid</i>, or <i>incorrect</i>:"
+msgstr "El sistema clasifica a todos los votos entrantes como <i>válido</i>, <i>inválido</i>, o <i>incorrecto</i>:"
+
+#: views/pages/polls/view.ctp:6;6
+msgid "Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>Early votes will be registered as \"Valid, early\". The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll."
+msgstr "Voto válido:</b> codigo de encuesta correcta, y opción de encuesta correcta|<ul><li>Temprano: Recibido antes de la apertura de encuesta.</li><li>A tiempo: Recibido mientras la encuesta estaba abierta.</li><li>Tarde: Recibido después que la encuesta se cerró.</li></ul>Votos tempranos serán registrados como \"Válido, temprano\". El número de votos tempranos en cada opción de encuesta se presenta en una columna separada bajo la página Ver encuesta. Votos tempranos no serán añadidos al Total de votos aceptados por la encuesta."
+
+#: views/pages/polls/view.ctp:8;8
+msgid "Late votes will be registered as \"Valid, late\". The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll."
+msgstr "Votos que llegan tarde serán registradas como \"Válido, tarde\". El número de votos retrasados en cada opción de encuesta se presenta en una columna separada bajo la página Ver encuesta. Votos retrasados no serán añadidos al Total de votos aceptados por la encuesta."
+
+#: views/pages/polls/view.ctp:9;9
+msgid "<b>Invalid vote:</b> correct poll code, but a non-matching poll option"
+msgstr "<b>Voto inválido:</b> codigo de encuesta correcta, pero opción de encuesta sin coincidente"
+
+#: views/pages/polls/view.ctp:10;10
+msgid "Invalid votes are registered as votes, but classified as \"invalid\". \"Early\", \"late\" and \"on-time\" invalid votes are registered."
+msgstr "Votos no válidos son registrados como votos, pero clasificados como \"inválido\". \"Temprano\", \"Tarde\" and \"a-tiempo\" votos no válidos son registrados."
+
+#: views/pages/polls/view.ctp:11;11
+msgid "Only \"on-time\" invalid votes are incorporated into the Total number of votes (in time) summary."
+msgstr "Solo \"a-tiempo\" votos no válidos son incorporados en el resumen de número Total de votos (a tiempo)."
+
+#: views/pages/polls/view.ctp:12;12
+msgid "Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results."
+msgstr "Totales de voto no válidos son previstos para dar una idea de cómo errores de SMS podrian impactar a los resultados de la encuesta."
+
+#: views/pages/polls/view.ctp:13;13
+msgid "<b>Incorrect vote:</b> Non-matching poll code"
+msgstr "<b>Voto incorrecto:</b> Código de encuesta sin coincidente"
+
+#: views/pages/polls/view.ctp:14;14
+msgid "Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Incoming SMS\". The SMS will be classified as \"Unclassified\"."
+msgstr "Votos incorrectos que no corresponden con ninguna encuesta existiente, serán clasificados como entrante SMS y almacenadas bajo \"Entrantes SMS\". El SMS será clasificado como \"No clasificado\"."
+
+#: views/phone_books/add.ctp:29;29
+msgid "Create Phone book"
+msgstr "Crear guía telefónica"
+
+#: views/phone_books/edit.ctp:49;49
+msgid "Add user to phone book"
+msgstr "Añadir usuario a guía telefónica"
+
+#: views/phone_books/edit.ctp:57;57
+msgid "No phone book with this id exists"
+msgstr "No existe guía telefónica con este id"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/add.ctp:40;40
+#: views/users/disp.ctp:67;67
+#: views/users/edit.ctp:71;71
+#: views/users/index.ctp:94;94
+#: views/users/view.ctp:52;52
+msgid "Surname"
+msgstr "Apellido"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/add.ctp:41;41
+#: views/users/disp.ctp:68;68
+#: views/users/edit.ctp:72;72
+#: views/users/index.ctp:95;95
+#: views/users/view.ctp:53;53
+msgid "Email"
+msgstr "Email"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/add.ctp:42;42
+#: views/users/disp.ctp:69;69
+#: views/users/edit.ctp:73;73
+#: views/users/index.ctp:96;96
+#: views/users/view.ctp:54;54
+msgid "Skype"
+msgstr "Skype"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/add.ctp:44;44
+#: views/users/edit.ctp:74;74
+#: views/users/view.ctp:55;55
+msgid "Organization"
+msgstr "Organisacion"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/edit.ctp:127;127
+#: views/users/view.ctp:77;77
+msgid "In the system since"
+msgstr "En el sistema desde"
+
+#: views/phone_books/export.ctp:37;37
+msgid "Poll count"
+msgstr "Cuenta de encuesta"
+
+#: views/phone_books/export.ctp:37;37
+msgid "Voice menu count"
+msgstr "Cuenta de menús de voz"
+
+#: views/phone_books/export.ctp:37;37
+msgid "Leave-a-message count"
+msgstr "Cuenta de deja-un-mensaje"
+
+#: views/phone_books/export.ctp:37;37
+msgid "SMS count"
+msgstr "Cuenta SMS"
+
+#: views/phone_books/export.ctp:37;37
+msgid "Callback count"
+msgstr "Cuenta de llamadas devueltas"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/edit.ctp:129;129
+#: views/users/view.ctp:79;79
+msgid "First application"
+msgstr "Primera aplicación"
+
+#: views/phone_books/export.ctp:37;37
+#: views/users/edit.ctp:130;130
+#: views/users/view.ctp:80;80
+msgid "Last application"
+msgstr "Última aplicación"
+
+#: views/phone_books/export.ctp:37;37
+msgid "Last active"
+msgstr "Úlitimo activo"
+
+#: views/phone_books/export.ctp:47;47
+msgid "PhoneBook"
+msgstr "Guíatelefónica"
+
+#: views/phone_books/index.ctp:44;44
+#: views/users/edit.ctp:76;76
+#: views/users/view.ctp:58;58
+msgid "Phone book"
+msgstr "Guía telefónica"
+
+#: views/phone_books/index.ctp:51;51
+msgid "Are you sure you wish to delete this phone book?"
+msgstr "¿Está seguro que desea eliminar esta guía telefónica?"
+
+#: views/phone_books/index.ctp:66;66
+msgid "No phone books exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No existe ninguna guía telefónica. Por favor cree una clicando <i>Crear nueva</i> a la derecha."
+
+#: views/phone_numbers/add_failure.ctp:3;3
+msgid "Duplicated or invalid phone number format (numbers and plus (+) sign are allowed)."
+msgstr "Formato de teléfono duplicado o invalido (solo  números y el signo más (+) están permitidos)."
+
+#: views/phone_numbers/add_failure.ctp:4;4
+#: views/phone_numbers/add_success.ctp:3;3
+#: views/users/disp.ctp:38;38
+#: views/users/edit.ctp:89;89
+#: views/users/view.ctp:57;57
+msgid "Phone numbers"
+msgstr "Números de teléfono"
+
+#: views/phone_numbers/add_failure.ctp:10;10
+#: views/phone_numbers/add_success.ctp:15;15
+msgid "Number"
+msgstr "Número"
+
+#: views/phone_numbers/add_success.ctp:12;12
+#: views/users/edit.ctp:96;96
+msgid "Are you sure you want to delete this number?"
+msgstr "¿Está seguro que desea eliminar este numero?"
+
+#: views/polls/add.ctp:41;41
+#: views/polls/edit.ctp:51;51
+msgid "Define a concrete question using simple language"
+msgstr "Definir una pregunta concreta utilizando un lenguaje sencillo"
+
+#: views/polls/add.ctp:42;42
+#: views/polls/edit.ctp:52;52
+msgid "SMS Code"
+msgstr "Código SMS"
+
+#: views/polls/add.ctp:43;51;43;51
+#: views/polls/edit.ctp:53;81;53;81
+msgid "Alpha-numeric characters only (maximum 10)"
+msgstr "Caracteres alfanuméricos sólo (máximo 10)"
+
+#: views/polls/add.ctp:50;50
+#: views/polls/edit.ctp:80;80
+msgid "Poll options"
+msgstr "Opciones de la encuesta"
+
+#: views/polls/add.ctp:59;68;69;59;68;69
+#: views/polls/edit.ctp:98;114;98;114
+#: views/votes/add_failure.ctp:37;37
+#: views/votes/add_success.ctp:34;34
+msgid "Option"
+msgstr "Opción"
+
+#: views/polls/add.ctp:85;85
+#: views/polls/edit.ctp:63;63
+msgid "Start and end time"
+msgstr "Tiempo de inicio y final"
+
+#: views/polls/add.ctp:86;86
+#: views/polls/edit.ctp:64;64
+msgid "When would you like to open and close the poll?"
+msgstr "¿Cuándo le gustaría abrir y cerrar la encuesta?"
+
+#: views/polls/edit.ctp:82;82
+msgid "Please note that all votes associated with a poll option will be deleted together with the poll option."
+msgstr "Tenga en cuenta que todos los votos relacionados con una opción de encuesta serán eliminados con la opción de encuesta"
+
+#: views/polls/edit.ctp:94;94
+#: views/votes/add_failure.ctp:33;33
+#: views/votes/add_success.ctp:31;31
+msgid "Are you sure you want to delete this option?"
+msgstr "¿Está seguro que desea eliminar esta opción?"
+
+#: views/polls/edit.ctp:114;114
+msgid "Add option"
+msgstr "Añadir opción"
+
+#: views/polls/index.ctp:78;78
+msgid "Are you sure you wish to delete this poll?"
+msgstr "¿Está seguro que desea eliminar esta encuesta?"
+
+#: views/polls/index.ctp:93;93
+msgid "Total Votes"
+msgstr "Total de votos"
+
+#: views/polls/index.ctp:97;97
+#: views/processes/system.ctp:118;118
+msgid "System time"
+msgstr "Hora del sistema"
+
+#: views/polls/index.ctp:101;101
+msgid "No polls exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No hay encuestas existentes. Por favor cree una clicando <i>Crear nueva</i> a la derecha."
+
+#: views/polls/view.ctp:50;50
+msgid "SMS code"
+msgstr "Código SMS"
+
+#: views/polls/view.ctp:53;53
+msgid "Results"
+msgstr "Resultados"
+
+#: views/polls/view.ctp:60;60
+msgid "Options"
+msgstr "Opciones"
+
+#: views/polls/view.ctp:60;60
+msgid "Votes"
+msgstr "Votos"
+
+#: views/polls/view.ctp:60;60
+msgid "Early votes"
+msgstr "Votos por adelantado"
+
+#: views/polls/view.ctp:60;60
+msgid "Late votes"
+msgstr "Votos tarde"
+
+#: views/polls/view.ctp:112;112
+msgid "Poll information"
+msgstr "Información de la encuesta"
+
+#: views/processes/index.ctp:63;95;63;95
+msgid "Running since"
+msgstr "Funcionando desde"
+
+#: views/processes/index.ctp:66;66
+#: views/users/edit.ctp:128;128
+#: views/users/view.ctp:78;78
+msgid "Last seen"
+msgstr "Visto por última vez"
+
+#: views/processes/index.ctp:72;72;100;72;72;100
+msgid "Start"
+msgstr "Empezar"
+
+#: views/processes/index.ctp:73;73;100;73;73;100
+msgid "Stop"
+msgstr "Parar"
+
+#: views/processes/index.ctp:91;91
+msgid "Not running"
+msgstr "No está en ejecución"
+
+#: views/processes/index.ctp:97;97
+#: views/processes/system.ctp:106;106
+msgid "FreeSWITCH"
+msgstr "FreeSWITCH"
+
+#: views/processes/index.ctp:100;100
+msgid "Component"
+msgstr "Componente"
+
+#: views/processes/index.ctp:100;100
+msgid "Interupt mode"
+msgstr "Modo de interrumpir"
+
+#: views/processes/system.ctp:73;76;73;76
+msgid "Software updates"
+msgstr "Actualizaciones de software"
+
+#: views/processes/system.ctp:87;87
+msgid "There are no software updates available"
+msgstr "No hay actualizaciones de software disponibles"
+
+#: views/processes/system.ctp:95;96;95;96
+msgid "Freedom Fone"
+msgstr "Freedom Fone"
+
+#: views/processes/system.ctp:96;96
+msgid "Version"
+msgstr "Versión"
+
+#: views/processes/system.ctp:97;97
+msgid "SVN revision"
+msgstr "revisión de SVN"
+
+#: views/processes/system.ctp:104;104
+msgid "Software"
+msgstr "Software"
+
+#: views/processes/system.ctp:105;105
+msgid "Operating system"
+msgstr "Sistema de operación"
+
+#: views/processes/system.ctp:107;107
+msgid "Web server"
+msgstr "Servidor Web"
+
+#: views/processes/system.ctp:108;108
+msgid "MySQL"
+msgstr "MySQL"
+
+#: views/processes/system.ctp:109;109
+msgid "Dispatcher"
+msgstr "Distribuidor"
+
+#: views/processes/system.ctp:115;115
+msgid "Environment"
+msgstr "Entorno"
+
+#: views/processes/system.ctp:116;116
+#: views/settings/index.ctp:127;127
+msgid "IP address"
+msgstr "Dirección IP"
+
+#: views/processes/system.ctp:117;117
+#: views/settings/index.ctp:55;55
+msgid "Language"
+msgstr "Idioma"
+
+#: views/settings/index.ctp:32;32
+msgid "Please select appropriate IP address of your Freedom Fone installation."
+msgstr "Por favor seleccione la dirección IP adecuada de su instalación de Freedom Fone. "
+
+#: views/settings/index.ctp:33;33
+msgid "If the server: "
+msgstr "Si el servidor:"
+
+#: views/settings/index.ctp:34;34
+msgid "is connected to the Internet, and has a public IP address, select Internet."
+msgstr "está conectado al Internet, y tiene una dirección IP pública, seleccione Internet."
+
+#: views/settings/index.ctp:35;35
+msgid "is connected to a local area network (LAN), select Local Area Network."
+msgstr "está conectada a una red de área local (LAN), seleccione Red de Área Local."
+
+#: views/settings/index.ctp:36;36
+msgid "is not networked, select Local machine."
+msgstr "no está en red, seleccione equipo Local."
+
+#: views/settings/index.ctp:70;70
+msgid "Time zone"
+msgstr "Hora"
+
+#: views/settings/index.ctp:78;78
+msgid "Country"
+msgstr "Pais"
+
+#: views/settings/index.ctp:85;85
+msgid "Internet"
+msgstr "Internet"
+
+#: views/settings/index.ctp:86;86
+msgid "Local Area Network"
+msgstr "Red de Área Local"
+
+#: views/settings/index.ctp:87;87
+msgid "Local machine"
+msgstr "Equipo local"
+
+#: views/settings/index.ctp:94;132;94;132
+msgid "Your current IP address is"
+msgstr "Su dirección IP actual es"
+
+#: views/settings/index.ctp:120;120
+msgid "Environment settings"
+msgstr "Configuración de entorno"
+
+#: views/tags/add.ctp:29;29
+msgid "Create tag"
+msgstr "Crear etiqueta"
+
+#: views/tags/index.ctp:52;52
+msgid "Are you sure you want to delete this tag?"
+msgstr "¿Está seguro de que desea eliminar esta etiqueta?"
+
+#: views/tags/index.ctp:65;65
+msgid "No tags exist. Please create one by clicking the <i>Create new</i> button to the right."
+msgstr "No existen etiquetas. Cree una clicando el <i>Crear nueva</i> a la derecha. "
+
+#: views/users/add.ctp:45;45
+msgid "ACL"
+msgstr "ACL"
+
+#: views/users/disp.ctp:46;46
+msgid "Alternative phone numbers"
+msgstr "Números de teléfono alternativos"
+
+#: views/users/disp.ctp:70;70
+#: views/users/index.ctp:97;97
+msgid "Acl"
+msgstr "Acl"
+
+#: views/users/disp.ctp:71;71
+#: views/users/index.ctp:98;98
+msgid "Phone"
+msgstr "Teléfono"
+
+#: views/users/edit.ctp:69;69
+#: views/users/view.ctp:50;50
+msgid "Caller data"
+msgstr "Datos de llamante"
+
+#: views/users/edit.ctp:75;75
+#: views/users/view.ctp:56;56
+msgid "Access control list (ACL)"
+msgstr "Control lista de accesso (ACL)"
+
+#: views/users/edit.ctp:76;76
+#: views/users/index.ctp:63;168;63;168
+msgid "Select phone book"
+msgstr "Seleccionar guía telefonica"
+
+#: views/users/edit.ctp:112;112
+msgid "Add phone number"
+msgstr "Agregar número de teléfono"
+
+#: views/users/edit.ctp:131;131
+#: views/users/view.ctp:81;81
+msgid "Activity"
+msgstr "Actividad"
+
+#: views/users/edit.ctp:147;147
+msgid "No user with this id exists"
+msgstr "No existe ningún usuario con este id"
+
+#: views/users/index.ctp:40;40
+msgid "Add caller"
+msgstr "Añadir llamante"
+
+#: views/users/index.ctp:57;57
+msgid "All callers"
+msgstr "Añadir llamantes"
+
+#: views/users/index.ctp:63;63
+msgid "Submit"
+msgstr "Enviar"
+
+#: views/users/index.ctp:82;82
+msgid "from phone book"
+msgstr "desde la guía teléfonica"
+
+#: views/users/index.ctp:184;184
+msgid "There are no users in the selected phone book."
+msgstr "No hay usuarios en la guía seleccionada"
+
+#: views/users/view.ctp:99;99
+msgid "No caller with this id exists"
+msgstr "No existe llamante con este id"
+
+#: views/votes/add_failure.ctp:26;26
+msgid "Invalid format"
+msgstr "Formato inválido"
+
+#~ msgid "Income"
+#~ msgstr "Ingreso"
+#~ msgid "Edit Officeroute"
+#~ msgstr "Editar Officeroute"
+#~ msgid "User data"
+#~ msgstr "Datos de usuario"
+#~ msgid "All phone books"
+#~ msgstr "Todas guías telefónicas"
+#~ msgid "User"
+#~ msgstr "Usuario"
+#~ msgid "The folling file could not be uploaded due to invalid file type:"
+#~ msgstr ""
+#~ "El siguiente archivo no se ha podido subir porque es un tipo de archivo "
+#~ "no válido:"
+#~ msgid "Invalid page"
+#~ msgstr "Página no válida"
+#~ msgid "The selected category has been deleted."
+#~ msgstr "La categoría seleccionada se ha eliminado."
+#~ msgid "System Health :: GSM channels"
+#~ msgstr "Estado del sistema :: Canales GSM"
+#~ msgid "The voice menu has been created!"
+#~ msgstr "¡El menú de voz se ha creado!"
+#~ msgid "This is a protected Voice menu, which can not be edited."
+#~ msgstr "Este es un menú de voz protegido, que no se puede editar."
+#~ msgid "The voice menu has been deleted."
+#~ msgstr "¡El menú de voz se ha borrado!"
+#~ msgid "Invalid Entry"
+#~ msgstr "Entrada Inválida"
+#~ msgid "This is a protected demo IVR which can not be edited"
+#~ msgstr "Esto es un IVR en demo protegida que no se puede editar"
+#~ msgid "Save & Next"
+#~ msgstr "Salvar & Siguiente"
+#~ msgid "Save & Index"
+#~ msgstr "Salvar & Índice"
+#~ msgid "The voice menu node has been created."
+#~ msgstr "¡El menú de voz se ha creado!"
+#~ msgid "No file selected"
+#~ msgstr "No hay ningún archivo seleccionado"
+#~ msgid "The settings has been saved"
+#~ msgstr "La configuración se ha guardado"
+#~ msgid "The poll has been added to the database"
+#~ msgstr "La encuesta se ha agregado a la base de datos"
+#~ msgid "The follwing poll has been deleted"
+#~ msgstr "Esta encuesta se ha eliminado"
+#~ msgid "The poll has been edited."
+#~ msgstr "La encuesta ha sido editada."
+#~ msgid "This is a protected demo poll so no edits to it are permitted."
+#~ msgstr "Esto es una encuesta en demo protegida que no se puede editar."
+#~ msgid "System Health"
+#~ msgstr "Salud de sistema"
+#~ msgid "System Software"
+#~ msgstr "Software del sistema"
+#~ msgid "The Tag could not be saved. Please, try again."
+#~ msgstr "La etiqueta no se pudo guardar. Por favor, inténtelo de nuevo."
+#~ msgid "Alphabets and numbers only"
+#~ msgstr "Solo números y letras"
+#~ msgid "A valid question is required."
+#~ msgstr "Una pregunta válida es necesaria."
+#~ msgid "Body"
+#~ msgstr "Mensaje"
+#~ msgid "Arrival"
+#~ msgstr "Llegada"
+#~ msgid "No of entries per page: "
+#~ msgstr "Nº de entradas por página:"
+#~ msgid "Show callback records"
+#~ msgstr "Mostrar registros de devolución de llamada"
+#~ msgid "Callback requests"
+#~ msgstr "Solicitudes de devolución de llamada"
+#~ msgid "Records"
+#~ msgstr "Registros"
+#~ msgid "to"
+#~ msgstr "a"
+#~ msgid "Mode"
+#~ msgstr "Modo"
+#~ msgid "No limit"
+#~ msgstr "No hay límite"
+#~ msgid "Callback settings"
+#~ msgstr "Ajustes de devolución de llamada"
+#~ msgid "Default response"
+#~ msgstr "Respuesta predeterminada"
+#~ msgid "Default callback response"
+#~ msgstr "Respuesta de devolución de llamada predeterminada"
+#~ msgid "Limit the number of calls per user per day."
+#~ msgstr "Limite el número de llamadas por usuario por día."
+#~ msgid "Period"
+#~ msgstr "Período"
+#~ msgid "-- Use in none --"
+#~ msgstr "-- Usar en ninguno --"
+#~ msgid "Manage Categories"
+#~ msgstr "Administrar categorías"
+#~ msgid "Are you sure you want to delete this category?"
+#~ msgstr "¿Está seguro de que desea eliminar esta categoría?"
+#~ msgid ""
+#~ "No categories exist. Please create one by clicking the 'Create new' "
+#~ "button to the right."
+#~ msgstr ""
+#~ "No existen categorías. Por favor cree una haciendo clic en el botón "
+#~ "'Crear nueva' a la derecha."
+#~ msgid "No of CDR per page: "
+#~ msgstr "Nº de entradas por página: "
+#~ msgid "Signal"
+#~ msgstr "Señal"
+#~ msgid "Rejected"
+#~ msgstr "Rechazado"
+#~ msgid "Accepted"
+#~ msgstr "Aceptado"
+#~ msgid "Acknowledgements"
+#~ msgstr "Agradecimientos"
+#~ msgid "Architecture"
+#~ msgstr "Arquitectura"
+#~ msgid "Functionality"
+#~ msgstr "Funcionalidad"
+#~ msgid "Read more"
+#~ msgstr "Leer más"
+#~ msgid "IVR Menu"
+#~ msgstr "Menú IVR"
+#~ msgid "Menu options"
+#~ msgstr "Opciones de menú"
+#~ msgid "Callbacks"
+#~ msgstr "Devolución de llamada"
+#~ msgid "Menu entries"
+#~ msgstr "Entradas de menú"
+#~ msgid "Press"
+#~ msgstr "Selecciona"
+#~ msgid " "
+#~ msgstr " "
+#~ msgid "Exit Message"
+#~ msgstr "Mensaje de salida"
+#~ msgid "No IVR with this id exists"
+#~ msgstr "No existe el IVR con este id"
+#~ msgid "Greeting"
+#~ msgstr "Saludo"
+#~ msgid "IVR code"
+#~ msgstr "Código IVR"
+#~ msgid "Are you sure you want to delete this voice menu?"
+#~ msgstr "¿Estás seguro que quieres eliminar este menú de voz?"
+#~ msgid "Update default"
+#~ msgstr "Actualización por defecto"
+#~ msgid "Visit the Freedom Fone website"
+#~ msgstr "Visite el sitio web de Freedom Fone"
+#~ msgid "Voice menu: Call +46 734 309 008 or Skype \"freedomfone.org2\""
+#~ msgstr "Menú de voz: Llama +46 734 309 008 o por Skype \"freedomfone.org2\""
+#~ msgid "Poll: SMS or Skype to any number"
+#~ msgstr "Encuesta: SMS o Skype para cualquier número"
+#~ msgid "Modify Leave a Message IVR"
+#~ msgstr "Modifica el IVR Deja-un-mensaje"
+#~ msgid ""
+#~ "Please upload either an .mp3 or a .wav audio file for each of the eight "
+#~ "messages. If no audio file is present, the fallback text will be used in "
+#~ "the Leave-a-Message IVR. You can listen to your uploaded audio files by "
+#~ "pressing the Play button."
+#~ msgstr ""
+#~ "Cargue un archivo de audio .mp3 o un .wav por cada uno de los ocho "
+#~ "mensajes. Si no hay ningún archivo de audio, se utilizará el texto de "
+#~ "respalado (voz sintética). Puede escuchar los archivos de audio subidos "
+#~ "presionando el botón Reproducir."
+#~ msgid "Step 2: Record message"
+#~ msgstr "Paso 2: Grabar Mensaje"
+#~ msgid "Invalid page."
+#~ msgstr "Página no válida."
+#~ msgid "Are you sure you want to delete this message?"
+#~ msgstr "¿Está seguro que desea eliminar este mensaje?"
+#~ msgid "-Set rate-"
+#~ msgstr "-Establecer valoración-"
+#~ msgid "« Previous "
+#~ msgstr "« Anterior"
+#~ msgid "Next »"
+#~ msgstr "Siguiente »"
+#~ msgid "-Select category-"
+#~ msgstr "-Seleccione la categoría-"
+#~ msgid "Author"
+#~ msgstr "Autor"
+#~ msgid "No messsage with this id exists"
+#~ msgstr "No existe ningún mensaje con este id"
+#~ msgid "Export Voice Menu data"
+#~ msgstr "Exportar datos de menú de voz"
+#~ msgid "IVR Code"
+#~ msgstr "Código IVR"
+#~ msgid "Create Menu Option"
+#~ msgstr "Crear la opción de menú"
+#~ msgid "Edit Menu Option"
+#~ msgstr "Crear la opción de menú"
+#~ msgid "Listen to uploaded file"
+#~ msgstr "Escuchar el archivo subido"
+#~ msgid "Are you sure you want to delete this Menu Option?"
+#~ msgstr "¿Estás seguro que quieres eliminar esta opcion del menú?"
+#~ msgid "Number of entries per page: "
+#~ msgstr "Nº de entradas por página:"
+#~ msgid ""
+#~ "No Menu Options are uploaded. Please upload a Menu Option by clicking the "
+#~ "'Upload new' button to the right."
+#~ msgstr ""
+#~ "No hay Opciones de menú cargadas. Por favor, sube un fichero al menú de "
+#~ "opciones haciendo clic en el botón 'Cargar nuevo' a la derecha."
+#~ msgid "Release"
+#~ msgstr "Versión"
+#~ msgid "aka"
+#~ msgstr "aka"
+#~ msgid ""
+#~ "<p>Does your community need access to information but has limited or no "
+#~ "access to the internet or email? Do you want to be able to share more "
+#~ "information than 160 characters allows?</p>"
+#~ msgstr ""
+#~ "<p>¿Tu comunidad necesita acceso a la información pero tiene accesso "
+#~ "limitado a la Internet o al correo electrónico? ¿Desea poder compartir "
+#~ "más información que lo que permiten 160 caracteres?</p>"
+#~ msgid ""
+#~ "<p>Freedom Fone offers the possibility to extend the reach of information "
+#~ "to citizens and groups presently excluded from the information loop "
+#~ "because of lack of access to resources such as computers and the "
+#~ "internet. It takes advantage of the cell phone's role as an \"access "
+#~ "equaliser\" to provide communities with the opportunity to create, listen "
+#~ "to and act on information of immediate relevance to them.</p>"
+#~ msgstr ""
+#~ "<p>Freedom Fone ofrece la posibilidad de ampliar el alcance de la "
+#~ "información a los grupos actualmente excluidos debido a la falta de "
+#~ "acceso a recursos tales como computadoras y la Internet. Freedom Fone "
+#~ "aprovecha la función del teléfono celular como un ecualizador de \"acceso"
+#~ "\" y ofrece la oportunidad a la comunidad de crear, escuchar y actuar. </"
+#~ "p>"
+#~ msgid ""
+#~ "<p>Freedom Fone intends to deliver an easy to use telephony platform that "
+#~ "YOU can use to build and manage dynamic information on demand services to "
+#~ "suit your audience’s needs. Useful features in version 1 will include the "
+#~ "ability to: create and modify voice menus; run a sms poll; make a "
+#~ "callback in response to missed calls or sms requests; accept, tag and "
+#~ "categorise voice messages.</p>"
+#~ msgstr ""
+#~ "<p>Freedom Fone tiene la intención de ofrecer una plataforma de telefonía "
+#~ "fácil de usar que puedes usar para crear y administrar información "
+#~ "dinámica bajo demanda. En la versión 1 incluimos la capacidad para: crear "
+#~ "y modificar menús de voz; ejecutar una encuesta sms; hacer devoluciones "
+#~ "de llamadas bajo demanda de SMS o llamadas perdidas; aceptar, etiquetar y "
+#~ "clasificación de los mensajes de voz.</p>"
+#~ msgid ""
+#~ "<p>There are no language, geographical or community size limitations to "
+#~ "the implementation of Freedom Fone. Its flexibility and accessible "
+#~ "interface mean it can be used by a range of communities.</p>"
+#~ msgstr ""
+#~ "<p>No hay limitaciones de idioma, geografía o tamaño de comunidad para la "
+#~ "implementación de Freedom Fone. Su flexibilidad y la interfaz accesible "
+#~ "permite su utilización en una gran gama de comunidades de usuarios.</p>"
+#~ msgid ""
+#~ "<p>For example, <b>Freedom Fone</b> can be used to:</p><ul><li>Enhance "
+#~ "civic engagement in electoral and voter registration campaigns</"
+#~ "li><li>Broaden access to HIV/Aids information</li><li>Provide health "
+#~ "information during an epidemic</li><li>Offer information on demand</"
+#~ "li><li>Record community feedback to a radio station</li><li>File audio "
+#~ "reports from citizen journalists in the field</li></ul>"
+#~ msgstr ""
+#~ "<p>Por ejemplo, <b>Freedom Fone</b> puede utilizarse para:</"
+#~ "p><ul><li>Aumentar la participación ciudadana en elecciones y campañas de "
+#~ "inscripción de votantes</li><li>Ampliar el acceso a la información de VIH/"
+#~ "SIDA</li><li>Proporcionar información de salud durante una epidemia</"
+#~ "li><li>Ofrecer información bajo demanda</li><li>Recoger los comentarios "
+#~ "de radio oyentes</li><li>Compilar informes sonoros de periodistas</li></"
+#~ "ul>"
+#~ msgid "Architecture : Callback"
+#~ msgstr "Arquitectura: Devolución de llamada"
+#~ msgid "Architecture: Callback"
+#~ msgstr "Arquitectura: Devolución de llamada"
+#~ msgid ""
+#~ "Please select one of the alternatives below, to read about each "
+#~ "component's architecture."
+#~ msgstr ""
+#~ "Por favor, seleccione una de las alternativas que aparecen a "
+#~ "continuación, para leer acerca de la arquitectura de cada componente."
+#~ msgid "Voice Menus"
+#~ msgstr "Menús de voz"
+#~ msgid "Callback architecture"
+#~ msgstr "Arquitectura de devolución de llamada"
+#~ msgid "Freedom Fone architecture"
+#~ msgstr "Arquitectura de Freedom Fone"
+#~ msgid "Architecture : Voice Menus"
+#~ msgstr "Arquitectura: Menús de voz"
+#~ msgid "Architecture: Voice menu"
+#~ msgstr "Arquitectura: Menú de voz"
+#~ msgid "Voice Menu architecture"
+#~ msgstr "Arquitectura de menú de voz"
+#~ msgid "Architecture : Leave-a-Message"
+#~ msgstr "Arquitectura: Deja-un mensaje-"
+#~ msgid "Architecture: Leave-a-Message"
+#~ msgstr "Arquitectura: Deja-un mensaje-"
+#~ msgid "Leave-a-Message architecture"
+#~ msgstr "Arquitectura Deja-un-mensaje"
+#~ msgid "Architecture : Poll"
+#~ msgstr "Arquitectura: Encuesta"
+#~ msgid "Architecture: Poll"
+#~ msgstr "Arquitectura: Encuesta"
+#~ msgid "Poll architecture"
+#~ msgstr "Arquitectura de la encuesta"
+#~ msgid "Functionality : Callback"
+#~ msgstr "Funcionalidad: Devolución de llamada"
+#~ msgid "Functionality: Callback"
+#~ msgstr "Funcionalidad: Devolución de llamada"
+#~ msgid ""
+#~ "<p>The Callback service offers callers a means to access audio content "
+#~ "from Freedom Fone at a low cost, or at no cost at all. As the name "
+#~ "suggests, the Callback service establishes outgoing phone calls from "
+#~ "Freedom Fone to a caller, with the Freedom Fone deployer carrying the "
+#~ "cost of the call. </p>"
+#~ msgstr ""
+#~ "<p> El servicio de devolución de llamada ofrece un medio de bajo costo "
+#~ "para acceder al contenido de audio de Freedom Fone. Como su nombre "
+#~ "indica, el servicio de devolución de llamada genera las llamadas "
+#~ "salientes asumiendo el costo de la llamada. </p>"
+#~ msgid ""
+#~ "<p>To request a Callback from Freedom Fone, the caller can either</"
+#~ "p><ul><li>send an SMS to a designated number with the text “callback”, "
+#~ "or</li><li>tickle a designated number (ring once and hang up)</li></ul>"
+#~ msgstr ""
+#~ "<p>Para solicitar una devolución de llamada en Freedom Fone, la personal "
+#~ "que llama puede o bien</p><ul><li>enviar un SMS</li><li>hacer una llamada "
+#~ "perdida a número especial</li></ul>"
+#~ msgid ""
+#~ "<p>The cost to the caller will either be the cost for an SMS, or nothing "
+#~ "(if you hang up after the first ring).</p>"
+#~ msgstr ""
+#~ "<p>El costo de la llamada será el coste de un SMS, o gratuito (si usted "
+#~ "decide colgar tras el primer tono de llamada).</p>"
+#~ msgid "Administration settings"
+#~ msgstr "Configuración de administración"
+#~ msgid ""
+#~ "<p>The administrator can choose which content to connect with the "
+#~ "Callback service. The options for Freedom Fone v.1 are </p><ul><li>Leave-"
+#~ "a-message menu OR</li><li>Default Voice Menu</li></ul>"
+#~ msgstr ""
+#~ "<p>El administrador puede elegir qué contenido se ofrecerá en la "
+#~ "devolución de llamada. Los servicios disponibles en la primera versión "
+#~ "es: </p><ul><li>Dejar-un-mensaje</li><li>Menú interactivo de voz</li></ul>"
+#~ msgid ""
+#~ "<p>To limit the risk of abuse of the Callback service, the administrator "
+#~ "can limit the maximum number of Callbacks for a unique GSM number for a "
+#~ "certain period of time.</p><ul><li>Max Calls: 10, 25, 50, 100, no limit</"
+#~ "li><li>Period : 12h, 24h, 2d, 4d, 1 week</li></ul>"
+#~ msgstr ""
+#~ "<p>Para limitar el riesgo de abuso del servicio de devolución de llamada, "
+#~ "el administrador puede limitar el número máximo de devoluciones de "
+#~ "llamada por número telefónico. </p><ul><li>Máx llamadas: 10, 25, 50, 100, "
+#~ "sin límite</li><li>Período: 12h, 24h, 2d, 4d, 1 semana</li></ul>"
+#~ msgid "<p>The administration parameters can be found under Settings.</p>"
+#~ msgstr ""
+#~ "<p>Los parámetros de administración se pueden encontrar en configuración."
+#~ "</p>"
+#~ msgid "Functionality : Dashboard"
+#~ msgstr "Funcionalidad: Panel Control"
+#~ msgid ""
+#~ "<p>The Dashboard gathers useful information about the system’s software "
+#~ "and hardware and offers the opportunity to start and stop major "
+#~ "components."
+#~ msgstr ""
+#~ "<p>El panel del control recopila información útil acerca de software y el "
+#~ "hardware del sistema y ofrece la oportunidad de iniciar y detener los "
+#~ "componentes principales.</p>"
+#~ msgid ""
+#~ "<p>The System Health page displays the current status of the telephony "
+#~ "application – FreeSWITCH - and the incoming and outgoing dispatchers "
+#~ "handling the calls and SMSs. The dispatchers can be stopped and started "
+#~ "by the administrator."
+#~ msgstr ""
+#~ "<p>La página de estado del sistema muestra el estado actual de la "
+#~ "aplicación de telefonía – FreeSWITCH - y los distribuidores de eventos "
+#~ "responsables de controlar las llamadas y los SMS. Los distribuidores "
+#~ "pueden ser detenidos y arrancados por el administrador.</p>"
+#~ msgid ""
+#~ "<p>Software versions of database, web server, FreeSWITCH and dispatcher "
+#~ "are displayed. The versions are dynamically updated when software updates "
+#~ "take place."
+#~ msgstr ""
+#~ "<p>Se muestran las versiones de software de base de datos, servidor web, "
+#~ "FreeSWITCH y distribuidor de eventos. Las versiones se actualizan "
+#~ "dinámicamente cuando las actualizaciones de software tienen lugar.</p>"
+#~ msgid "Hardware"
+#~ msgstr "Hardware"
+#~ msgid ""
+#~ "<p>A list of connected GSM gateways are displayed with relevant "
+#~ "information."
+#~ msgstr ""
+#~ "<p>Se mostrará una lista de los modems GSM conectados con la información "
+#~ "pertinente.</p>"
+#~ msgid "Call Data Records (CDR)"
+#~ msgstr "Datos Registro de llamadas (CDR)"
+#~ msgid ""
+#~ "<p>Call data records (CDR) of all incoming calls (from Leave-a-message "
+#~ "and Voice Menus) are displayed with the following parameters: unique call "
+#~ "id, start time, end time, caller number, application. CDR can be exported "
+#~ "to a CSV file. The administrator can choose to export All entries, or a "
+#~ "range of entries using a start and end time."
+#~ msgstr ""
+#~ "<p>Los datos de registro de llamadas (CDR) de todas las llamadas "
+#~ "entrantes (Deja-un-mensaje y de los Menús Interactivos de Voz) se "
+#~ "muestran con los siguientes parámetros: identificador de llamada, hora de "
+#~ "inicio, hora de finalización, el número del llamante, aplicaciones. Los "
+#~ "CDR se pueden exportar en un archivo CSV. El administrador puede elegir "
+#~ "exportar Todos los registros, o una serie de entradas con una hora de "
+#~ "inicio y fin."
+#~ msgid "Functionality : "
+#~ msgstr "Funcionalidad :"
+#~ msgid "Freedom Fone v1.5 functionality"
+#~ msgstr "Funcionalidad de Freedom Fone"
+#~ msgid ""
+#~ "Please select one of the alternatives below, to read more about Freedom "
+#~ "Fone's functionality."
+#~ msgstr ""
+#~ "Por favor, seleccione una de las alternativas que aparecen a "
+#~ "continuación, para leer acerca de la arquitectura de cada componente."
+#~ msgid "Functionality : Voice Menus"
+#~ msgstr "Funcionalidad : Menús de voz"
+#~ msgid "Functionality: Voice menus"
+#~ msgstr "Funcionalidad : Menús de voz"
+#~ msgid "Freedon Fone v.1 Voice Menu design"
+#~ msgstr "Freedom Fone v.1 Diseño del Menú de voz"
+#~ msgid ""
+#~ "<p>The administrator is able to build a variety of personal Voice Menus "
+#~ "based on customized audio files, or synthesized text messages.<p>"
+#~ msgstr ""
+#~ "<p>El administrador es capaz de construir una gran variedad de Menús "
+#~ "interactivos de voz basados en archivos de audio personalizados, o "
+#~ "mensajes de voz sintetizada.<p>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>A Voice menu consists of:</p><ul><li>Menu Instructions: a set of "
+#~ "mandatory voice messages, such as a Welcome message, and instructions on "
+#~ "how to navigate through the menu, </li><li>Menu Options: audio files or "
+#~ "components assosiated with telephony keypad selections. </li></ul>"
+#~ msgstr ""
+#~ "<p>Un Menú de Voz consta de:</p><ul><li>Instrucciones del Menú: el "
+#~ "conjunto de mensajes de voz obligatorios, como un mensaje de bienvenida e "
+#~ "instrucciones sobre cómo navegar por el menú,</li><li>Opciones de menú: "
+#~ "arcivos de audio o  componentes asociados a través del teclado telefónico."
+#~ "</li></ul>"
+#~ msgid ""
+#~ "<p>A Menu Instruction can either be a text message (that is automatically "
+#~ "synthesized) or an uploaded audio file. If an audio file is to be used it "
+#~ "must be uploaded from your local computer by either clicking in the "
+#~ "relevant Audio file text box or clicking the associated ‘Browse’ button."
+#~ "<p>You can revert to using a synthesized text message by “un-associating” "
+#~ "the uploaded file. The audio file is not deleted and can be used in the "
+#~ "Voice Menu at a later stage, by “associating” the file with the Menu "
+#~ "Instruction once again."
+#~ msgstr ""
+#~ "<p>Una opción en el menú de voz pueden ser un mensaje de texto (que es "
+#~ "sintetizado automáticamente) o un archivo de audio cargado. Si se utiliza "
+#~ "un archivo de audio se debe cargar desde el equipo local ya sea al hacer "
+#~ "clic en el cuadro de texto de archivo de audio pertinente o haciendo clic "
+#~ "en el botón asociado 'Examinar'.<p>Siempre se puede volver a usar un "
+#~ "mensaje de voz sintetizado \"desasociando\" el archivo cargado. Los "
+#~ "archivos de audio no se eliminan y se pueden utilizar en el Menú de Voz "
+#~ "en una etapa posterior, mediante la \"asociación\" del archivo con la "
+#~ "opción del menú de voz una vez más.</p></p>"
+#~ msgid ""
+#~ "<p>The administrator can at any time add, edit, listen to or delete "
+#~ "existing Menu Options."
+#~ msgstr ""
+#~ "<p>El administrador puede en cualquier momento agregar, editar, escuchar "
+#~ "o eliminar opciones existentes"
+#~ msgid ""
+#~ "<p>Menu option files can be .mp3 or .wav audio files. When they are "
+#~ "uploaded into the system they are associated with a Title to help you "
+#~ "manage your audio files."
+#~ msgstr ""
+#~ "<p>Los archivos de la Opción de Menú de Voz pueden ser archivos .mp3 o ."
+#~ "wav de audio. Cuando se cargan en el sistema están asociadas con un "
+#~ "título que le ayudarán a gestionar tus archivos de audio.</p>"
+#~ msgid ""
+#~ "<p>A Menu option file can be used in one or more different Voice Menus. "
+#~ "These files cannot be deleted if they are currently associated with a "
+#~ "Voice Menu."
+#~ msgstr ""
+#~ "<p>Un archivo de la Opción de Menú puede utilizarse en uno o más "
+#~ "diferentes Menús de Voz. Estos archivos no puede eliminar si están "
+#~ "actualmente asociados con un menú de voz.</p>"
+#~ msgid ""
+#~ "<p>Freedom Fone v.1.5 offers the possibility to assign eight Menu Options "
+#~ "to a Voice Menu."
+#~ msgstr ""
+#~ "<p>Freedom Fone v.1.5 ofrece la posibilidad de asignar ocho opciones a un "
+#~ "Menú de Voz.</p>"
+#~ msgid ""
+#~ "<p>The administrator can create multiple Voice Menus, but only one can be "
+#~ "active at a time (marked as Default). The administrator can at any time "
+#~ "edit or delete a Voice Menu. If the default Voice menu is deleted, the "
+#~ "oldest existing Voice Menu will automatically become the new default."
+#~ msgstr ""
+#~ "<p>El administrador puede crear múltiples Menús de Voz, pero sólo uno "
+#~ "puede estar activo en un momento (marcado como predeterminado). El "
+#~ "administrador puede en cualquier momento editar o eliminar un menú de "
+#~ "voz. Si se elimina el Menú de Voz de forma predeterminada, el Menú de Voz "
+#~ "existente más antiguo se convertirá automáticamente en el nuevo valor "
+#~ "predeterminado.</p>"
+#~ msgid "The administrator can at any time change the default Voice Menu."
+#~ msgstr ""
+#~ "El administrador puede cambiar en cualquier momento el valor "
+#~ "predeterminado del Menú de Voz."
+#~ msgid ""
+#~ "<p>Freedom Fone offers the administrator a means to monitor the features "
+#~ "and audio files accessed by callers via a voice menu. For each incoming "
+#~ "call to a Voice Menu, the caller's options are recorded (time, ivr, digit "
+#~ "pressed, menu option, caller number).<p>These call records can be "
+#~ "exported to a CSV file. The administrator can choose to export All "
+#~ "entries, or a range of entries using a start and end time. Where privacy "
+#~ "is a concern, the administrator can choose to delete all monitoring data "
+#~ "from the system (using start and end time)."
+#~ msgstr ""
+#~ "<p>Freedom Fone ofrece el administrador un medio para supervisar los "
+#~ "archivos de audio accedidos a través de un Menú de Voz. Por cada llamada "
+#~ "entrante a un Menú de Voz, se registra (tiempo, ivr, dígito presionado, "
+#~ "la opción de menú, el número entrante).<p>Estos registros se pueden "
+#~ "exportar a un archivo CSV. El administrador puede elegir exportar todas "
+#~ "las entradas, o un rango de entradas con un tiempo de inicio y final. "
+#~ "Donde la privacidad es una preocupación, el administrador puede elegir "
+#~ "eliminar todos los datos de monitorización del sistema (utilizando el "
+#~ "tiempo de inicio y final).</p></p>"
+#~ msgid "Functionality : Leave-a-Message"
+#~ msgstr "Funcionalidad : Deja-un mensaje-"
+#~ msgid "Functionality: Leave-a-Message"
+#~ msgstr "Funcionalidad: Deja-un mensaje"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>The Leave-a-Message service offers callers the option to call into "
+#~ "Freedom Fone, and leave  their personal message. This may be a report, "
+#~ "feedback, tip-off, response to a question, or perhaps a job application.</"
+#~ "p>"
+#~ msgstr ""
+#~ "<p>El servicio Dejar-un-mensaje ofrece a los llamantes  la opción de "
+#~ "llamar a Freedom Fone y dejar un mensaje personal. Esto puede ser un "
+#~ "informe,  retroalimentación, la respuesta a una pregunta, o quizás una "
+#~ "solicitud de empleo.</p>"
+#~ msgid ""
+#~ "<p>A caller using the Leave-a-message service is connected to a voice "
+#~ "menu created by the Freedom Fone administrator. The voice menu greets the "
+#~ "caller and provides instructions as to how to use the service.  The Leave-"
+#~ "a-message service allows the caller to </p><ul><li>Record a message</"
+#~ "li><li>Listen to their recorded message</li><li>Delete and record a new "
+#~ "message OR</li><li>Save their message and exit</li></ul>"
+#~ msgstr ""
+#~ "<p>El autor de la llamada al servicio Dejar-un-Mensaje entra en un menú "
+#~ "de voz creado por Freedom Fone. Este Menú de Voz saluda al llamante y "
+#~ "proporciona instrucciones sobre cómo utilizar el servicio.  El servicio "
+#~ "de Dejar-un-Mensaje permite al llamante</p><ul><li>Grabar un mensaje</"
+#~ "li><li>Escuchar su mensaje grabado</li><li>Eliminar y grabar un mensaje "
+#~ "nuevo o</li><li>Guardar su mensaje y salir</li></ul>"
+#~ msgid ""
+#~ "<p>By using the buttons # (hash), * (star), 0 (zero) and 1 (one), the "
+#~ "user is able to navigate through the menu according to the illustration "
+#~ "above.</p>"
+#~ msgstr ""
+#~ "<p>Mediante los botones # (hash), * (asterisco), 0 (cero) y 1 (uno), el "
+#~ "usuario es capaz de navegar por el menú de acuerdo con la ilustración "
+#~ "anterior.</p>"
+#~ msgid "The Leave-a-message Voice Menu"
+#~ msgstr "El menú de la voz de Dejar-un-Mensaje"
+#~ msgid ""
+#~ "<p>The Leave-a-message voice menu is created by the administrator. The "
+#~ "menu consists of eight different messages. Each message can be generated "
+#~ "in three different ways:</p><ol><li>Customized audio files</"
+#~ "li><li>Customized text to speech</li><li>Default text to speech</li></ol>"
+#~ msgstr ""
+#~ "<p>El menú de voz de Dejar-un-Mensaje es creado por el administrador. El "
+#~ "menú consta de ocho mensajes diferentes. Cada mensaje puede generarse de "
+#~ "tres maneras diferentes:</p><ol><li>Archivos de audio personalizados</"
+#~ "li><li>Síntesis de voz a partir de textos personalizado</li><li>Por "
+#~ "defecto, Síntesis de voz</li></ol>"
+#~ msgid ""
+#~ "<p>If the administrator associates an audio file with a message, that "
+#~ "file will be played to the caller when she enters the voice menu.</p>"
+#~ msgstr ""
+#~ "<p>Si el administrador asocia un archivo de audio con un mensaje, dicho "
+#~ "archivo se reproducirá cuando el llamante entra en el menú de voz.</p>"
+#~ msgid ""
+#~ "<p>If no audio file is provided for a message, but a customized text "
+#~ "message exists, the text message will be synthesized and played to the "
+#~ "caller.</p>"
+#~ msgstr ""
+#~ "<p>Si no hay ningún archivo de audio cargado, pero existe un mensaje de "
+#~ "texto personalizado, el mensaje de texto será sintetizado durante la "
+#~ "llamada.</p>"
+#~ msgid ""
+#~ "<p>If neither an audio file, nor a customized text is provided, the "
+#~ "default text will be synthesized and played to the user.</p>"
+#~ msgstr ""
+#~ "<p>Si no se proporciona un archivo de audio, ni un texto personalizado, "
+#~ "el texto predeterminado será sintetizado durante la llamada.</p>"
+#~ msgid ""
+#~ "<p>The audio files must be uploaded in .mp3 or .wav format through the "
+#~ "user interface. Once uploaded, they can be listened to from the "
+#~ "administration GUI via the built-in Flashplayer. Audio files can at any "
+#~ "time be overwritten with a new audio file.</p>"
+#~ msgstr ""
+#~ "<p>Los archivos de audio se deben cargar en formato .mp3 o .wav a través "
+#~ "de la interfaz de usuario. Una vez cargados, los archivos pueden ser "
+#~ "escuchados a través del cliente de audio integrado en la  GUI. Los "
+#~ "archivos de audio se pueden sobrescribir en cualquier momento con un "
+#~ "nuevo archivo de audio.</p>"
+#~ msgid "Received voice messages"
+#~ msgstr "Mensajes de voz recibidos"
+#~ msgid ""
+#~ "<p>The Freedom Fone administrator receives all incoming messages to the "
+#~ "“Inbox”. For each message, the administrator can</p><ul><li>listen to it "
+#~ "(with a built-in Flashplayer)</li><li>name (give the message a title)</"
+#~ "li><li>assign a category</li><li>associate the message with one or more "
+#~ "tags</li><li>give the message a rating (1-5)</li></ul>"
+#~ msgstr ""
+#~ "<p>El administrador de Freedom Fone recibe todos los mensajes entrantes "
+#~ "en la \"bandeja de entrada\". Por cada mensaje, el administrador puede</"
+#~ "p><ul><li>Escuchar (con un FlashPlayer incorporado)</li><li>Nombrar (dar "
+#~ "al mensaje de un título)</li><li>Asignar una categoría</li><li>Asociar el "
+#~ "mensaje con una o más etiquetas</li><li>Dar el mensaje una calificación "
+#~ "(1-5)</li></ul>"
+#~ msgid ""
+#~ "<p>The administrator can choose to delete a message, or to archive it for "
+#~ "future use.</p>"
+#~ msgstr ""
+#~ "<p> El administrador puede optar por eliminar un mensaje, o para "
+#~ "guardarlo para uso futuro. </p>"
+#~ msgid "Functionality : Poll "
+#~ msgstr "Funcionalidad : Encuesta"
+#~ msgid "Functionality: Poll"
+#~ msgstr "Funcionalidad: Encuesta"
+#~ msgid ""
+#~ "<p>The Poll service allows end users to participate in polls by sending "
+#~ "SMSs to Freedom Fone."
+#~ msgstr ""
+#~ "<p>El servicio de encuesta permite a los usuarios finales  participar en "
+#~ "encuestas mediante el envío de SMS a Freedom Fone.</p>"
+#~ msgid ""
+#~ "<p>The Freedom Fone administrator has the ability to <a href='/"
+#~ "freedomfone/polls/add'>create</a>, <a href='/freedomfone/polls/'>edit and "
+#~ "delete</a> polls. A poll is composed using the following parameters:"
+#~ msgstr ""
+#~ "<p>El administrador de Freedom Fone tiene la capacidad de <a href=\"/"
+#~ "freedomfone/polls/add\">Crear</a>, <a href=\"/freedomfone/polls/\">Editar "
+#~ "y Eliminar</a> encuestas. Una encuesta está compuesta mediante los "
+#~ "siguientes parámetros:</p>"
+#~ msgid ""
+#~ "<ul><li>Question: The question you want your audience to answer to</"
+#~ "li><li>Code: The SMS code to use, to associate an SMS with your poll</"
+#~ "li><li>Answers: Two or more answers to the question.</li><li>Start time: "
+#~ "Date and time when the poll opens for submission</li><li>End time: Date "
+#~ "and time when the poll closes for submission</li></ul>"
+#~ msgstr ""
+#~ "<ul><li>Pregunta: La pregunta que deseas hacer a su audiencia </"
+#~ "li><li>Código: El código SMS que deseas utilizar para asociar un SMS con "
+#~ "tu encuesta</li><li>Respuestas: Dos o más respuestas a la pregunta.</"
+#~ "li><li>Hora de inicio: fecha y la hora cuando se abre la encuesta</"
+#~ "li><li>Tiempo de finalización: fecha y la hora cuando se cierra la "
+#~ "encuesta</li></ul>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>Poll details can be communicated with the public via any means, "
+#~ "including website, email and printed materials. Remember to share the "
+#~ "above details and include the phone number or short code to which "
+#~ "participants should send their SMS replies.</p>"
+#~ msgstr ""
+#~ "<p>Los detalles de la encuesta se pueden comunicar al público a través de "
+#~ "cualquier medio, incluyendo el sitio Web, correo electrónico y materiales "
+#~ "impresos. Recuerde que compartir los detalles anteriores e incluir el "
+#~ "número de teléfono y el código corto para que los participantes puedan "
+#~ "enviar sus respuestas SMS.</p>"
+#~ msgid ""
+#~ "<p>The administrator can at any time edit the above listed fields. Of "
+#~ "course, it is not recommended to change the question, code or answers to "
+#~ "a poll, once it has been opened to the public.</p>"
+#~ msgstr ""
+#~ "<p>El administrador puede en cualquier momento, modificar los campos "
+#~ "mencionados anteriormente. Por supuesto, no se recomienda cambiar la "
+#~ "pregunta, el código o las respuestas a una encuesta, una vez que se abra "
+#~ "al público.</p>"
+#~ msgid ""
+#~ "<p>Before a poll is opened, and after it has been closed, no poll votes "
+#~ "are registered for the poll.</p>"
+#~ msgstr ""
+#~ "<p>Los votos no se registran si se reciben antes o despues del tiempo de "
+#~ "apertura y cierra de la encuesta.</p>"
+#~ msgid ""
+#~ "<p>For each poll, once it has started, the administrator can at anytime, "
+#~ "view the interim or final result in terms of number of votes per answer, "
+#~ "and percentage of total votes per answer.</p>"
+#~ msgstr ""
+#~ "<p>Por cada encuesta, una vez que ha comenzado, el administrador puede en "
+#~ "cualquier momento, ver el resultado provisional o definitivo en términos "
+#~ "de número y porcentaje de votos totales por respuesta.</p>"
+#~ msgid ""
+#~ "<p>The system classifies all incoming votes as <i>valid, invalid,</i> or "
+#~ "<i>incorrect</i>:</p>"
+#~ msgstr ""
+#~ "<p>El sistema clasifica todos los votos entrantes como <i>válidos,</i> "
+#~ "<i>no válidos</i> o <i>incorrectos</i>:</p>"
+#~ msgid "<p><b>Valid vote:</b> correct poll code, and correct poll option</p>"
+#~ msgstr ""
+#~ "<p><b>Votación válida:</b> código de encuesta correcta y opción de "
+#~ "encuesta correcta</p>"
+#~ msgid ""
+#~ "<ul><li>Early: Received before the poll opened.</li><li>In time: Received "
+#~ "while the poll was open.</li><li>Late: Received after the poll was closed."
+#~ "</li></ul>"
+#~ msgstr ""
+#~ "<ul><li>Temprano: Recibido antes de la apertura de la votación. </"
+#~ "li><li>En el tiempo: Recibido en el plazo de encuesta. </li><li>Tarde: "
+#~ "Recibido después del cierre de la encuesta. </li></ul>"
+#~ msgid ""
+#~ "<p>Early votes will be registered as ”Valid, early”. The number of early "
+#~ "votes per poll option is presented in a separate column under the View "
+#~ "poll page. Early votes will not be added to the Total votes accepted for "
+#~ "the poll."
+#~ msgstr ""
+#~ "<p>Los votos que llegan temprano se registrarán como \"Válido, temprano"
+#~ "\". El número de votos que llegan temprano se presenta en una columna "
+#~ "aparte en la página de Vista de la encuesta. Los votos que llegan "
+#~ "temprano no se añadirán a los lista de votos totales aceptados en la "
+#~ "encuesta."
+#~ msgid ""
+#~ "<p>Late votes will be registered as “Valid, late”. The number of late "
+#~ "votes per poll option is presented in a separate column under the View "
+#~ "poll page. Late votes will not be added to the Total votes accepted for "
+#~ "the poll."
+#~ msgstr ""
+#~ "<p>Los votos que llegan tarde se registrarán como \"Válidos, tarde\". El "
+#~ "número de votos que llegan tarde se presenta en una columna aparte en la "
+#~ "página de Vista de la encuesta. Los votos que llegan tarde no se añadirán "
+#~ "a los lista de votos totales aceptados en la encuesta."
+#~ msgid ""
+#~ "<p>The Early and Late vote classifications are summarised separately to "
+#~ "provide a complete view of votes submitted to the poll concerned."
+#~ msgstr ""
+#~ "<p>Las clasificaciones de los votos tempranos y tardíos se resumen por "
+#~ "separado para proporcionar una visión completa de los votos recibidos en "
+#~ "una encuesta concreta."
+#~ msgid ""
+#~ "<p><b>Invalid vote:</b> correct poll code, but a non-matching poll option"
+#~ msgstr ""
+#~ "<p><b>Voto no válido:</b> código de encuesta correcto, pero la opción en "
+#~ "la respuesta no es posible</p>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>Invalid votes are registered as votes, but classified as “invalid”. "
+#~ "“Early”, “late” and “on-time” invalid votes are registered."
+#~ msgstr ""
+#~ "<p>Votos no válidos se registran como votos, pero clasificados como \"no "
+#~ "válidos\". \"temprano\", \"tarde\" y \"a tiempo\"."
+#~ msgid ""
+#~ "<p>Only “on-time” invalid votes are incorporated into the Total number of "
+#~ "votes (in time) summary."
+#~ msgstr ""
+#~ "<p>Sólo los votos inválidos que llegan \"a tiempo\" se incorporan en el "
+#~ "resumen total de votos."
+#~ msgid ""
+#~ "<p>Invalid vote totals are provided to give deployers an idea of how SMS "
+#~ "errors might impact on poll results."
+#~ msgstr ""
+#~ "<p>La lista de votos totales se proporciona para ofrecer a los "
+#~ "responsables del despliegue una idea de cómo los errores de SMS pueden "
+#~ "influir en resultados de la encuesta."
+#~ msgid "<p><b>Incorrect vote: </b>Non-matching poll code"
+#~ msgstr "<p><b>Voto incorrecto: </b>Código de encuesta no existe"
+#~ msgid ""
+#~ "<p>Incorrect votes that cannot be matched to any existing poll, will be "
+#~ "classified as an incoming SMS and will be stored under “Other SMS”. The "
+#~ "SMS will be classified as “Unclassified”."
+#~ msgstr ""
+#~ "<p>Votos incorrectos que no puede ser registrados en ninguna encuesta "
+#~ "existente, se clasificarán como un SMS entrantes y se almacenarán en la "
+#~ "sección \"Otros SMS\". Los SMS serán clasificados como \"Sin Clasificar\"."
+#~ msgid "Practical example"
+#~ msgstr "Ejemplo práctico"
+#~ msgid ""
+#~ "<p>The poll is not sensitive to casing, so 'yes' ,'Yes', 'YES', 'yEs' "
+#~ "will all be interpreted as a YES. The same logic applies to the SMS code."
+#~ "</p>"
+#~ msgstr ""
+#~ "<p>La encuesta no es sensible al uso de mayúsculas y minúsculas, por "
+#~ "ejemplo 'si', 'Si'y 'SI' van a ser interpretados como un 'si'. La misma "
+#~ "lógica se aplica al código SMS.</p>"
+#~ msgid ""
+#~ "<p>More than one poll can be active at the same time. Incoming SMS are "
+#~ "identified by the SMS code used and matched with existing polls. </p>"
+#~ msgstr ""
+#~ "<p>Más de una encuesta puede estar activa al mismo tiempo. Los SMS "
+#~ "entrantes se identifican mediante el código SMS usado que concuerde con "
+#~ "las encuestas existentes.</p>"
+#~ msgid ""
+#~ "<p>The timestamp used to determine whether or not a vote is in time for a "
+#~ "poll, is the time of arrival to the Freedom Fone platform. Hence, if an "
+#~ "SMS gets delayed in the GSM network, it will be classified as late even "
+#~ "if it was sent before the poll deadline. "
+#~ msgstr ""
+#~ "<p>El tiempo utilizado para determinar si o no una votación llega a "
+#~ "tiempo para una encuesta, es el momento de llegada a la plataforma "
+#~ "Freedom Fone. Por lo tanto, si se retrasa un SMS en la red GSM, el "
+#~ "mensaje será clasificado como tarde incluso si ha sido enviado antes de "
+#~ "la fecha de cierre de la encuesta."
+#~ msgid ""
+#~ "<p>Example: The administrator creates a poll with the following "
+#~ "parameters:<ul><li>Question: Would you like to deploy Freedom Fone in "
+#~ "your organization?</li><li>Code: freedomfone</li><li>Answers: Yes/No/"
+#~ "Maybe</li><li>Start time: 08:00 AM, January 1, 2010</li><li>End time: "
+#~ "08:00 AM, January 31, 2010</li></ul></p>"
+#~ msgstr ""
+#~ "<p>Ejemplo: El administrador crea una encuesta con los siguientes "
+#~ "parámetros:<ul><li>Pregunta: ¿Desea implementar Freedom Fone en su "
+#~ "organización?</li><li>Código: freedomfone</li><li>Respuestas: SI/NO/"
+#~ "PUEDE</li><li>Hora de inicio: 08: 00 AM, 1 de enero de 2010</"
+#~ "li><li>Tiempo de cierre: 08: 00 AM, 31 de enero de 2010</li></ul></p>"
+#~ msgid ""
+#~ "<p>To participate in the poll, the end user needs to send an SMS (after  "
+#~ "08:00 AM the 1st of January, and before 08:00 AM the 31st of January "
+#~ "2010) with one of the following messages: </p><pre>freedomfone yes\n"
+#~ "freedomfone no\n"
+#~ "freedomfone maybe</pre>"
+#~ msgstr ""
+#~ "<p>Para participar en la encuesta, el usuario final tiene que enviar un "
+#~ "SMS (después de 8 AM del 1 de enero, y antes de las 8 AM del 31 de enero "
+#~ "2010) con uno de los siguientes mensajes: </p><pre> freedomfone SI\n"
+#~ "freedomfone NO\n"
+#~ "freedomfone PUEDE</pre>"
+#~ msgid "Create new poll"
+#~ msgstr "Crear nueva encuesta"
+#~ msgid "Are you sure you want to delete this poll option?"
+#~ msgstr "¿Está seguro que desea eliminar esta opción de la encuesta?"
+#~ msgid "Are you sure you want to delete this poll?"
+#~ msgstr "¿Está seguro que desea eliminar esta encuesta?"
+#~ msgid "Result"
+#~ msgstr "Resultado"
+#~ msgid "Total"
+#~ msgstr "Total"
+#~ msgid "No poll with this id exists"
+#~ msgstr "No existe ninguna encuesta con este id"
+#~ msgid "Processes"
+#~ msgstr "Procesos"
+#~ msgid "System software"
+#~ msgstr "Software del sistema"
+#~ msgid "Use in"
+#~ msgstr "Utilizar en"
+#~ msgid "No tag with this id exists"
+#~ msgstr "No existe una etiqueta con este id"
+#~ msgid "Manage Tags"
+#~ msgstr "Gestionar etiquetas"
+#~ msgid "Your data has been saved"
+#~ msgstr "Tus datos se han salvado."
+#~ msgid "Between 1 to 50 characters"
+#~ msgstr "Entre 1 a 50 caracteres"
+#~ msgid "Letters and numbers only. No spaces allowed."
+#~ msgstr "Letras y números solamente. No se permiten espacios."
+#~ msgid ""
+#~ "No categories exist. Please create a category by clicking on the green "
+#~ "button to the right."
+#~ msgstr ""
+#~ "No existen categorías. Por favor, cree una categoría haciendo clic en el "
+#~ "botón verde de la derecha."
+#~ msgid "-Select menu option-"
+#~ msgstr "-Seleccione opción del menú-"
+#~ msgid "Valid format: wav"
+#~ msgstr "Formato válido: wav"
+#~ msgid ""
+#~ "If you select a file, the previous one will be deleted. Valid format: wav"
+#~ msgstr ""
+#~ "Si selecciona un archivo, se eliminará la anterior. Formato válido: wav"
+
+#, fuzzy
+#~ msgid ""
+#~ "No Menu Option are uploaded. Please upload a Menu Option by clicking on "
+#~ "the green button to the right."
+#~ msgstr ""
+#~ "No se ha creado ninguna opción en el Menú de Voz. Cree una Opción de Menú "
+#~ "haciendo clic en el botón verde a la derecha."
+#~ msgid "Freedom Fone v.1 Architecture"
+#~ msgstr "Arquitectura de Freedom Fone"
+#~ msgid "Voice menuse"
+#~ msgstr "Menús de voz"
+#~ msgid "Freedom Fone v.1 functionality"
+#~ msgstr "Funcionalidad de Freedom Fone versión 1"
+#~ msgid ""
+#~ "<p>A <b>Menu Option</b> can either be <ul><li>an audio file previously "
+#~ "uploaded through the Menu option files screen, or</li><li>a Leave-a-"
+#~ "Message service</li></ul>"
+#~ msgstr ""
+#~ "<p>Una <b>Opción de menú</b> puede ser<ul><li>un archivo de audio "
+#~ "previamente cargado, o</li><li>un servicio de Dejar-un-mensaje</li></ul></"
+#~ "p>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>To call the Leave-a-message service, dial +39 340 47 80 434 or make a "
+#~ "Skype call to 'skypiax2'.</p>"
+#~ msgstr ""
+#~ "<p>Para llamar al servicio de dejar un mensaje, marcar el +39 340 47 80 "
+#~ "434 o llame por  Skype al usuario 'skypiax2'.</p>"
+#~ msgid ""
+#~ "No polls exists. Please create one by click on the green button to the "
+#~ "right."
+#~ msgstr ""
+#~ "No existen encuestas. Por favor, cree una encuesta haciendo clic en el "
+#~ "botón verde de la derecha."
+#~ msgid ""
+#~ "No tags exist. Please create a tag by clicking on the green button to the "
+#~ "right."
+#~ msgstr ""
+#~ "No existe ninguna etiqueta. Por favor, cree una etiqueta haciendo clic en "
+#~ "el botón verde de la derecha."
+

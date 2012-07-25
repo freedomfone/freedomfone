@@ -1,0 +1,2 @@
+#Replaces on for off
+sed s/\\\"on/off\\\"/g  iwatch.xml

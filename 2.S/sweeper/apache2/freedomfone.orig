@@ -1,0 +1,29 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@freedomfone.org
+	
+	DocumentRoot /var/www/
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	<Directory /var/www/>
+		Options Indexes FollowSymLinks MultiViews
+	</Directory>
+
+	#AllowOverride: all (mode_rewrite.so)
+
+	<Directory /opt/freedomfone/gui>
+		Options -Indexes FollowSymLinks MultiViews
+		AllowOverride all 
+	</Directory>
+
+	ErrorDocument 403 "Sorry, Fred can't allow you access today!" 
+	LogLevel warn
+	ErrorLog /opt/freedomfone/log/gui-error.log
+	CustomLog /opt/freedomfone/log/gui-access.log combined
+        Alias /freedomfone/xml_curl "/opt/freedomfone/xml_curl/"
+        Alias /freedomfone "/opt/freedomfone/gui/"
+
+	php_admin_value open_basedir /opt/freedomfone/log:/opt/freedomfone/gui/:/opt/freedomfone/xml_curl/:/opt/freeswitch/scripts/freedomfone/
+</VirtualHost>

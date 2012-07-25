@@ -1,0 +1,86 @@
+Total words to translate per release
+pot/suyo/default.pot
+type              strings      words (source)    words (translation)
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   638 (100%)       2648 (100%)             n/a
+Total:          638              2648                      0
+
+pot/sekowei/default.pot
+type              strings      words (source)    words (translation)
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   511 (100%)       2428 (100%)             n/a
+Total:          511              2428                      0
+
+pot/manguensis/default.pot
+type              strings      words (source)    words (translation)
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   600 (100%)       2905 (100%)             n/a
+Total:          600              2905                      0
+
+Total words to translate per release after migration
+./suyo/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     248 ( 38%)        724 ( 27%)             834
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:   389 ( 60%)       1923 ( 72%)             n/a
+Total:          638              2648                    834
+
+./suyo/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     249 ( 39%)        870 ( 32%)             838
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   389 ( 60%)       1778 ( 67%)             n/a
+Total:          638              2648                    838
+
+./suyo/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     481 ( 75%)       1990 ( 75%)            2159
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:   156 ( 24%)        657 ( 24%)             n/a
+Total:          638              2648                   2159
+
+./sekowei/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     418 ( 95%)       2978 ( 77%)            3316
+fuzzy:            5 (  1%)        128 (  3%)             n/a
+untranslated:    16 (  3%)        718 ( 18%)             n/a
+Total:          439              3824                   3316
+
+./sekowei/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     436 (100%)       3783 (100%)            3480
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          436              3783                   3480
+
+./sekowei/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     511 ( 99%)       2442 ( 99%)            2645
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:     0 (  0%)          0 (  0%)             n/a
+Total:          512              2443                   2645
+
+./manguensis/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     239 ( 39%)        677 ( 23%)             789
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:   360 ( 60%)       2227 ( 76%)             n/a
+Total:          600              2905                    789
+
+./manguensis/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     240 ( 40%)        823 ( 28%)             803
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   360 ( 60%)       2082 ( 71%)             n/a
+Total:          600              2905                    803
+
+./manguensis/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     456 ( 76%)       1789 ( 61%)            1948
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:   143 ( 23%)       1115 ( 38%)             n/a
+Total:          600              2905                   1948
+

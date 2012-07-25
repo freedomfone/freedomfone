@@ -1,0 +1,56 @@
+
+pot: Contains the folder with the templates (english) of each of the releases.
+     When a string changes in the Cake MVC a new POT needs to be created
+
+manguensis, sekowei, suyo:
+     These folders contain the localized versions of every release that results
+     from migrating existing translations to new templates.
+    
+Status: 
+     Contains the status of the translations 
+
+Installing translations:
+     Localizations need to be installed in the gui/app/locale folder with the structure
+    
+     three letter iso / LC_MESSAGES / default.po
+
+     Localizations need to be enabled in the config/gui_config.php 
+
+.
+|-- manguensis
+|   |-- esp
+|   |   `-- LC_MESSAGES
+|   |       `-- default.po
+|   |-- fre
+|   |   `-- LC_MESSAGES
+|   |       `-- default.po
+|   `-- swa
+|       `-- LC_MESSAGES
+|           `-- default.po
+|-- pot
+|   |-- manguensis
+|   |   `-- default.pot
+|   |-- sekowei
+|   |   `-- default.pot
+|   `-- suyo
+|       `-- default.pot
+|-- sekowei
+|   |-- esp
+|   |   `-- LC_MESSAGES
+|   |       `-- default.po
+|   |-- fre
+|   |   `-- LC_MESSAGES
+|   |       `-- default.po
+|   `-- swa
+|       `-- LC_MESSAGES
+|           `-- default.po
+`-- suyo
+    |-- esp
+    |   `-- LC_MESSAGES
+    |       `-- default.po
+    |-- fre
+    |   `-- LC_MESSAGES
+    |       `-- default.po
+    `-- swa
+        `-- LC_MESSAGES
+            `-- default.po

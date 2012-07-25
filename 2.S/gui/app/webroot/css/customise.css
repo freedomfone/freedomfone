@@ -1,0 +1,358 @@
+
+body {
+background: #eee url(../img/bg.jpg) fixed no-repeat;
+color: #000;
+font: 12px Verdana, Helvetica, sans-serif;
+margin-top: 13px;
+
+}
+
+#content_wrap {
+  background: #fff;
+} 
+
+* { margin:0; padding:0; }
+
+h1,h2,h3,h4,h5,h6,p,blockquote,form,label,ul,ol,dl,fieldset,address { margin: 0.5em 0; } 
+
+h1 {
+padding:5px 0px 0px 0px;
+margin: 10px 0px 0px 0px;
+color: #f79743; 
+font-size: 24px;
+font-weight: bold;
+}
+
+h2 {
+color: #a2b84b;
+font-size: 1.3em; 
+font-weight: bold;
+
+width: 70%;
+}
+
+h3 {
+color: #f79743;  
+font-size: 1.2em; 
+font-weight: bold;
+}
+
+h4 {
+color: #333; 
+font-size: 14px; 
+font-weight: bold;
+}
+
+h5 {
+color: #333; 
+font-size: 1em; 
+font-weight: bold;
+}
+
+li,dd { margin-left:1em;} 
+
+fieldset { padding:.10em; } 
+
+img {border: 0;}
+
+a img {border: 0;}
+
+
+table {
+      background:#d6efec;
+      margin:10px;
+      border:#ccc 1px solid;
+      -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+      border-radius:10px;
+      }
+
+table.none {
+
+           border:none;
+
+      }
+
+
+table.blue {
+           
+           background:#d6efec;
+           border:none;
+
+      }
+
+
+table.stand-alone{
+      padding-top:10px;
+      padding-bottom:10px;
+}
+      
+table th {padding:4px 10px}
+
+table tr.stand-alone td{
+
+       background:#d6efec;
+       border: #000 0px solid;
+       -moz-border-radius-topleft:10px;
+       border-top-left-radius:10px;  
+       -moz-border-radius-topright:10px;
+       border-top-right-radius:10px;
+       
+       }
+
+table tr.none td{
+
+        background: #fff;
+        border: #000 0px solid;
+        
+
+       }
+
+
+table tr.blue td{
+
+        background:#d6efec;
+        border: #000 0px solid;
+
+       }
+
+
+table td {
+      background:#fff;
+      padding:2px 10px 4px 10px}
+      
+
+
+table tr:last-child td:first-child {
+      -moz-border-radius-bottomleft:10px;
+      -webkit-border-bottom-left-radius:10px;
+      border-bottom-left-radius:10px
+      }
+      
+table tr:last-child td:last-child {
+      -moz-border-radius-bottomright:10px;
+      -webkit-border-bottom-right-radius:10px;
+      border-bottom-right-radius:10px
+      }
+
+table.collapsed {
+      
+      border-spacing: 0;
+      
+      }
+
+
+.table_sub_header {
+    font-size: 1.5em;   
+    font-weight: bold;
+    color: #f89843; 
+}
+
+
+
+th a:link, a:visited, a:hover, a:visited:hover, a:active {
+     	color: #000;
+
+}
+
+td {
+
+     border:1px solid #ccc;
+     font-size: 12px;
+     font-weight: normal;
+     background-color: #fff;
+     padding: 5px;
+     color: #000;
+}
+
+td a:link, a:visited, a:active {
+    color: #000; 
+}
+
+
+td a:hover, a:visited:hover {
+    color: #f89843;
+}
+
+
+tr.main td {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+td.main  {
+     background-color: #fff;
+     font-weight: bold;
+     text-align: center;
+}
+
+tr.middle td {
+     background-color: #fff;
+     text-align: center;
+}
+
+
+/*General link Styling*/
+
+a:link, a:visited, a:hover, a:active ,a:visited:hover{
+	font-size: 12px; 
+	color: #f89843; 
+	text-decoration: none;
+}
+
+a:hover {
+	font-size: 12px; 
+	color: #000; 
+	text-decoration: none;
+}
+
+
+
+pre {
+background: #ddd;
+color: #000;
+padding: 10px;
+border: 1px solid #EEF2D0;
+border-left: 5px solid #EEF2D0;
+font-size: 11px;
+}
+
+li {
+margin: 5px;
+}
+
+ul {
+margin-left: 40px;
+
+}
+
+ol {
+margin-left: 40px;
+
+}
+
+/*Graphical Elements
+These styles provide management 
+of content's appearences.
+*/
+
+hr { 
+/*many components use this as a seperator line */
+background: transparent; 
+height:1px; 
+border: 1px solid #ccc;
+}
+
+
+.small {
+/* a symantic style to allow you to add text with this class, that
+is used for small text, like date/written by etc */
+font-family: Verdana, Helvetica, sans-serif;
+font-size: 9px;
+color: #999;
+letter-spacing: 0.1em;
+margin: 0;
+padding: 0;
+text-decoration: none;
+font-weight: normal;
+}
+
+.save_button {
+            margin: 0em;
+            display:block;
+            background:#fff;
+            border:1px solid #EE2E26;
+            text-align:center;
+            text-decoration:none;
+            color:#FFEFDF;
+            padding:5px;
+            font:bold 12px/100%  "Lucida Grande", Arial, Helvetica, sans-serif;
+            border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;
+            -webkit-box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            -moz-box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            box-shadow:
+                3px 3px 6px rgba(0, 0, 0, .2),
+                0px 0px 3px rgba(0, 0, 0, .1),
+                inset 0px 25px 25px #f7951e;
+            } 
+
+.button {           
+        display: inline-block;
+        text-decoration: none;
+        font: 11px/100% Helvetica Neue, sans-serif; 
+        padding: .2em .2em .2em .2em;
+        -webkit-border-radius: .10em;
+        -moz-border-radius: .10em;
+        border-radius: .10em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+              text-decoration: none;
+}
+
+.button:active {
+      position: relative;
+      top: 1px;
+}
+
+
+
+.inputbox {
+/* the look of input boxes in forms */
+font-size: 12px;
+color: #666;
+background: #dfe7a9;
+border: 1px solid #f9fbce;
+padding: 1px 3px;
+margin: 0;
+}
+
+
+
+/*this helps make the poll
+look better as it removes the
+section and table entry lines*/
+.poll .sectiontableentry1, .poll .sectiontableentry2 {
+background: none;
+}
+
+.pollstableborder {
+/* set the border properties of the polls voting table */
+border: none;
+width: 178px;
+border: none;
+}
+
+.poll td {
+/* set the table data properties of the polls voting table */
+font-size: 0.95em;
+color: #AEBF33;
+font-weight: normal;
+padding: 4px;
+}
+
+.login {
+
+float: right;
+margin-right: 5px;
+color: #fff; 
+font-weight: bold;
+
+}
+.logout {
+
+float: right;
+margin-top: 5px;
+margin-right: 20px;
+
+
+}

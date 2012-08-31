@@ -59,10 +59,17 @@ class MessagesController extends AppController{
 
          $this->set('title_for_layout', __('Leave-a-Message Inbox',true));
 
+                // Addition by Tich: display all messages on Inbox landing page 
+	        $this->Message->recursive = 0; 
+   	        $messages = $this->paginate('Message', array('Message.status' => '1'));
+	        //End of addition by Tich
+
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
                 $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
+                //Addition by Tich: setting messages in the index view
  		$this->set(compact('tags','categories','instances'));
+                //End of addition by Tich	
 
 
       }
@@ -160,7 +167,20 @@ class MessagesController extends AppController{
 
 
          $conditions['Message.status'] = 1;
-         if(!$no_match){      
+         if(!$no_match){ 
+
+            //Addition by Tich: pagination function for "All" messages            
+             if($conditions['Message.instance_id'] == '99'){ 
+         
+                $this->paginate = array( 'order' => $order,'limit' => $limit,'page' => $page );
+                $data = $this->paginate('Message');
+	        $this->set('messages', $data);
+                foreach ($data as $key => $message){
+                   $id[] = $message['Message']['id'];
+		}
+
+	     }else{ 
+             //End of addition by Tich     
              $this->paginate = array('conditions' => $conditions, 'order' => $order,'limit' => $limit, 'page' => $page);
    	     $data = $this->paginate('Message');
 	     $this->set('messages',$data);  

@@ -72,6 +72,11 @@
  *
  */
 class DATABASE_CONFIG {
+        public $csv = array(
+		'datasource' => 'datasources.CsvSource',
+		'path' => '/opt/freedomfone/gui/app/tmp/',
+		'readonly' => true
+	);
 
 	var $default = array(
 		'driver' => 'mysql',

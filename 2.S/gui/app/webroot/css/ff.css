@@ -1,0 +1,303 @@
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:small;
+	height:100%;
+	margin:0px;
+	padding:0px;
+}
+#header{
+	text-align:left;
+	padding:5px 0 0 100px;
+}
+#footer{
+	text-align:right;
+	padding:20px 0 30px 0;
+}
+
+#body, #header, #footer{
+	width:850px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#body{
+	display:table;
+	margin-left:auto;
+	margin-right:auto;
+	border: 1px solid #ccc;
+	background-color:#FFF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+	-khtml-border-radius: 10px;
+	-moz-box-shadow: 2px 2px 5px #ccc;
+  -webkit-box-shadow: 2px 2px 5px #ccc;
+  box-shadow: 2px 2px 5px #ccc;
+}
+.logo{
+	padding-bottom:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+.title{
+	font-size:60px;
+	color:#E9984A;
+	font-weight:bold;
+	display:inline-block;
+	text-align:right;
+	width:430px;
+	vertical-align:middle;
+
+}
+.content{
+	margin:20px;
+
+}
+.step{
+	font-size:20px;
+	font-weight:bold;
+	color:#A8A8A8;
+	padding:20px 0 20px 0;
+}
+.highlight{
+	color:#E9984A;
+}
+div.report div.head{
+	padding:5px 20px 5px 20px;
+	border-bottom:1px solid #ccc;
+	border-top-right-radius:10px;
+	border-top-left-radius:10px;
+	-moz-border-radius-topright:10px;
+	-moz-border-radius-topleft:10px;
+	-webkit-border-top-right-radius:10px;
+	-webkit-border-top-left-radius:10px;
+	background: #fffff1; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fffff1'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fffff1)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #fff,  #fffff1); /* for firefox 3.6+ */ 
+	font-weight:bold;
+	color:#999;
+}
+form{
+	width:80%;
+	margin:auto;
+}
+div.label{
+	display:table-cell;
+	width:200px;
+	text-align:right;
+	padding-right:10px;
+}
+div.input{
+	display:table-cell;
+	width:400px;
+	padding:5px 0 5px 0;
+}
+.buttong{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; /* future proofing */
+	border:1px solid #ccc;
+	margin:5px 0;
+	text-align:center;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f1f1f1'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f1f1f1)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #fff,  #f1f1f1); /* for firefox 3.6+ */ 
+	font-weight:bold;
+}
+.buttong:hover{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#FFFDF6'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#FFFDF6)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #fff,  #FFFDF6); /* for firefox 3.6+ */ 
+}
+.buttong.selected{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFD99F', endColorstr='#FF9900'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFD99F), to(#FF9900)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #FFD99F,  #FF9900); /* for firefox 3.6+ */ 
+}
+.buttong a{
+	text-decoration:none;
+	display:block;
+	padding:10px;
+	color:#666;
+}
+.buttong.selected a{
+	color:#fff;
+}
+input[type="text"]{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; /* future proofing */
+	font-weight:bold;
+	color:#999;
+	border:1px solid #ccc;
+	height:25px;
+	padding:3px 5px 3px 5px;
+}
+select{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; /* future proofing */
+	text-align:center;
+	font-weight:bold;
+	color:#999;
+	border:1px solid #ccc;
+	padding:6px;
+	height:28px;
+}
+buttong{
+	background-color:#FFFFF1;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f1f1f1'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f1f1f1)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #fff,  #f1f1f1); /* for firefox 3.6+ */ 
+	border:1px solid #ccc;
+	color:#999;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; /* future proofing */
+	height:28px;
+	font-weight:bold;
+}
+div.reportBody{
+}
+div.atAGlance{
+	display:table-cell;
+	width:200px;
+	vertical-align:top;
+	padding-right:10px;
+}
+div.graph{
+	display:table-cell;
+	vertical-align:top;
+	padding:10px;
+	border-left:1px solid #ccc;
+}
+div.statRow{
+	padding:5px 0 5px 0;
+}
+div.stat{
+	display:table-cell;
+	width:60px;
+	font-size:0.9em;
+	color:#F90;
+	text-align:left;
+	vertical-align:middle;
+
+}
+div.statLabel{
+	display:table-cell;
+	vertical-align:middle;
+	padding:0 0 0 5px;
+	color:#A8A8A8;
+	font-weight:bold;
+	
+}
+.error{
+	font-weight:bold;
+	color:#900;
+}
+label{
+	font-weight:bold;
+	color:#E9984A;
+}
+.formRow{
+	color:#A8A8A8;
+	font-weight:bold;
+}
+h2{
+	color:#E9984A;
+	font-weight:bold;
+	font-size:20px;
+	margin-top:0px;
+	margin-bottom:5px;
+}
+.options{
+	padding:10px;
+	text-align:right;
+	font-size:small;
+}
+a{
+	color:#C60;
+	font-weight:bold;
+	text-decoration:none;
+}
+.printGraph{
+	cursor:pointer;
+}
+.getImg{
+	cursor:pointer;
+}
+.refreshIcon{
+	vertical-align:middle;
+	padding-right:10px;
+}
+.buttong.startAgain{
+	text-align:left;
+}
+#downloadLink img{
+	padding-right:5px;
+	vertical-align:bottom;
+}
+@media print
+{
+	#downloadLink{
+		display:none;
+	}
+}
+#downloadLink{
+	padding-top:10px;
+}
+.jqplot-series-0 {
+    color: #4bb2c5;
+}
+.jqplot-series-1 {
+    color: #c5b47f;
+}
+.jqplot-series-2 {
+    color: #EAA228;
+}
+.jqplot-series-3 {
+    color: #579575;
+}
+.jqplot-series-4 {
+    color: #839557;
+}
+.jqplot-series-5 {
+    color: #958c12;
+}
+.jqplot-series-6 {
+    color: #953579;
+}
+.jqplot-series-7 {
+    color: #4b5de4;
+}
+.jqplot-series-8 {
+    color: #d8b83f;
+}
+.jqplot-series-9 {
+    color: #ff5800;
+}
+
+.jqplot-point-label{
+	font-weight:bold;
+}
+.jqplot-title{
+	font-size:1.5em;
+}
+.grainy .disabled{
+	font-size:0.8em;
+	font-weight:normal;
+	color:#F66;
+}
+#version{
+	margin:10px 0;
+	padding:3px 0;
+	border-top:1px solid #ccc;
+	color:#666;
+}
+.versionNumber{
+	font-weight:bold;
+}
+#version a{
+	color:#666;
+	font-weight:normal;
+}

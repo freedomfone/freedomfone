@@ -180,6 +180,9 @@
 <?php echo $html->link(__("Reporting",true),'/cdr/general'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("Graphs",true),'/graphs/index'); ?>
+</li>
 
 <li class='last'>
 <?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>

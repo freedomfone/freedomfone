@@ -113,8 +113,9 @@ function phoneFormat($check) {
   //May start with a plus sign. Then 4-20 digits
   $value = array_values($check);
   $value = $value[0];
-
-  return preg_match('/^[+]{0,1}[0-9]{4,20}$/', $value);
+  
+  return preg_match('/^[+]{0,1}[0-9a-zA-Z.-_\\,]{4,25}$/', $value);
+  
   
   }
 

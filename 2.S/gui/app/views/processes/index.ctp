@@ -27,7 +27,7 @@ echo $html->addCrumb(__('Health',true), '/processes/');
 
 
 
-$generated  = $session->read('Process.refresh');
+$generated = $session->read('Process.refresh');
 
 
 echo $form->create('Process',array('type' => 'post','action'=> 'index'));
@@ -115,7 +115,7 @@ echo "<h1>".__('Health',true)."</h1>";
      echo "</table>"; 
 
 
-     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',$generated));
+     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time()));
 
      }
 

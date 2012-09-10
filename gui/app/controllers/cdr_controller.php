@@ -40,11 +40,12 @@ class CdrController extends AppController{
          $this->autoRender = false;
       }
 
+
       function general($action = null){
 
+         $this->refreshAll();
          $this->set('title_for_layout', __('Reporting',true));
 
-         //Set page limit
          if(isset($this->params['named']['limit'])) { 
 	     $this->Session->write('cdr_limit',$this->params['named']['limit']);
          } elseif($this->Session->check('cdr_limit')) { 
@@ -52,7 +53,7 @@ class CdrController extends AppController{
          }	
 
          //User arrived from other page, reset session variables
-         if(strpos(getenv("HTTP_REFERER"),'/cdr/general')=== 0){
+         if(!strpos(getenv("HTTP_REFERER"),$_SERVER['REQUEST_URI'])){
 
             $this->Session->write('cdr_start', $this->Cdr->getEpoch('first')-900);
             $this->Session->write('cdr_end',time()+900);
@@ -60,22 +61,22 @@ class CdrController extends AppController{
          }
 
         $epoch = $this->Cdr->dateToEpoch($this->data['Cdr']);
+
         if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
         if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 
+
         $app   = $this->data['Cdr']['application'];
-        if ($app) {$this->Session->write('cdr_app',$app);} else { $app = $this->Session->read('cdr_app');}
+ 
+        if ($app) {$this->Session->write('cdr_app',$app);}
 
         $title=false;
-        $field = false;
 
-        if($app == 'ivr') { $field = 'title_ivr';}
-        elseif($app == 'lam') { $field = 'title_lam';}
-
-        if(!$title = $this->data['Cdr'][$field]) { $title = $this->Session->read('title');}
-
-        $this->Session->write('title',$title);
-
+        if($app =='ivr'){ 
+      	      $title   = $this->data['Cdr']['title_ivr'];
+        } elseif ($app =='lam') {
+	      $title   = $this->data['Cdr']['title_lam'];
+        }
 
         $this->Cdr->unbindModel(array('belongsTo' => array('User')));
         $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
@@ -85,7 +86,8 @@ class CdrController extends AppController{
         if(!$title){
 
 	  $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
-	  	      
+
+	  $this->set('export_cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')),'title' => $title, 'order'=>array('Cdr.epoch desc'))));
 	$this->set('count', $count);
 
 	//Limit is set
@@ -117,7 +119,11 @@ class CdrController extends AppController{
 	$this->set('select_option','all');
 
 
-        } else {
+        }
+	//Title exists
+
+	
+	 else {
 
         $fields = array('title', 'epoch', 'caller_number', 'length', 'quick_hangup','proto');
 
@@ -125,6 +131,12 @@ class CdrController extends AppController{
          //Fetch CDR by Title
          $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
 
+	 $this->set('export_cdr', $this->Cdr->find('all', array('conditions'=> array(
+	 			  			  		       'epoch < '    => $this->Session->read('cdr_end'),
+									       'epoch > '    => $this->Session->read('cdr_start'),
+									       'application' => $this->Session->read('cdr_app'),
+									       'title' => $title),
+							          'order'=>array('Cdr.epoch desc'))));
 
          $this->paginate = array(
                          'conditions' => array(
@@ -157,13 +169,12 @@ class CdrController extends AppController{
 
         $data = $this->paginate('Cdr');
 	$this->set('cdr',$data);  
-
         $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
-
 
 	//Export data
         if(isset($this->params['form']['action'])) {	
 	     if ($this->params['form']['action'] ==__('Export',true)){     
+
   	       Configure::write('debug', 0);
     	       $this->layout = null;
     	       $this->autoLayout = false;
@@ -173,6 +184,7 @@ class CdrController extends AppController{
             
 
       }
+
 
 
       function index(){

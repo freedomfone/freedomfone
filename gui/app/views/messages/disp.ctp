@@ -104,15 +104,21 @@ $ext = Configure::read('EXTENSIONS');
 
      echo $form->end();
 
-     if($paginator->counter(array('format' => '%pages%'))>1){
-           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
 
+     $total = $this->Paginator->counter(array('format' => '%pages%'));
+     if($total >1){
 
-        $prev = $ajax->link('«'.__('Previous',true),"/messages/disp/2", array('update' => 'service_div'), null, 1); 
+        $current = $this->Paginator->current();
+        $prev = $next = false;
 
-        $next = $ajax->link(__('Next',true).'»','/messages/disp/2', array('update' => 'service_div'), null, 1); 
+        if($current > 1) {
+                    $prev = $ajax->link('«'.__('Previous',true),"/messages/disp/".($current-1), array('update' => 'service_div'), null, 1);
+        }
+        if($total > $current){
+                  $next = $ajax->link(__('Next',true).'»','/messages/disp/'.($current+1), array('update' => 'service_div'), null, 1);
+        }
+        echo  $html->div('paginator', $prev." ".$next);
 
-        echo  $html->div('paginator', $prev.$next);
 
     }
 

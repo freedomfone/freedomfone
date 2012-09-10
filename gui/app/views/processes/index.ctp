@@ -27,9 +27,7 @@ echo $html->addCrumb(__('Health',true), '/processes/');
 
 
 
-$generated  = $session->read('Process.refresh');
-
-
+$generated  = $this->Session->read('Process.refresh');
 echo $form->create('Process',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();

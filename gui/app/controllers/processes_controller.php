@@ -35,6 +35,8 @@ class ProcessesController extends AppController{
 
         $this->set('title_for_layout', __('Health',true));
 
+	$this->requestAction('/processes/refresh');
+
 	$version[0]   = $this->Process->version(3);
 	$version[1]   = $this->Process->fsCommand("version");
 	$uptime       = $this->Process->fsCommand("status");

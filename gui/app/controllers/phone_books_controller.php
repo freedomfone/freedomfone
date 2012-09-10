@@ -108,7 +108,7 @@ class PhoneBooksController extends AppController {
 
     function export($id){
 
-    	     Configure::write('debug', 0);
+    	     Configure::write('debug', 0;
 
              $data = $this->PhoneBook->findById($id); 
              $this->set('phonebook_name', $data['PhoneBook']['name']);

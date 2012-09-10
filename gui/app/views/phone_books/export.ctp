@@ -20,7 +20,7 @@
  *   Louise Berthilson <louise@it46.se>
  *
  *
- ***************************************************************************
+ ***************************************************************************/
 
         //Calculate max number of phone numbers for each entry
 
@@ -34,7 +34,7 @@
         }
 
         //Create data headers
-       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('SMS count',true), __('Callback count',true),__('First application',true),__('Last application',true),__('Last active',true));
+       $line = array(__('Name',true),__('Surname',true),__('Email',true),__('Skype',true),__('Organization',true),__('In the system since',true),__('Poll count',true),__('Voice menu count',true),__('Leave-a-message count',true),__('SMS count',true), __('Callback SMS count',true), __('Callback Tickle count',true),__('First application',true),__('Last application',true),__('Last active',true));
 
        $i = 1;
        while($i<= max($numbers)){
@@ -56,7 +56,6 @@
 
 		foreach($data as $entry){
 
-
                     if (!$entry['User']['last_epoch']) {
                        $last_epoch = __('Never',true);
                     } else {
@@ -74,7 +73,8 @@
 		      $entry['User']['count_ivr'],
 		      $entry['User']['count_lam'],
 		      $entry['User']['count_bin'],
-		      $entry['User']['count_callback'],
+		      $entry['User']['count_callback_sms'],
+		      $entry['User']['count_callback_tickle'],
                       $this->element('services',array('service' => $entry['User']['first_app'])),
                       $this->element('services',array('service' => $entry['User']['last_app'])),
                       $last_epoch,
@@ -85,6 +85,7 @@
                          $line[] = $number['number'];                   
 
                       }
+
 
 		   $csv->addRow($line);
 

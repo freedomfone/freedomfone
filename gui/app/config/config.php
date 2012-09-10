@@ -157,6 +157,7 @@ $config['LANGUAGES'] = array(
                             'swa' => 'Swahili',
                             'esp' => 'Spanish',
                             'fre' => 'French',
+                            'por' => 'Portuguese'
                             );
 
 $config['RSS']	= array(

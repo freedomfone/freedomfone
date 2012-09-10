@@ -44,7 +44,7 @@
 
 
               $callback_service_link  = $html->link($callback_service['CallbackService']['code'], array('controller' => 'callback_services', 'action' => 'view', $callback_service['CallbackService']['id'] ), array('title' => 'Callback service details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 400}); return false;"),null,false,false);	
-              $user_link  = $html->link($callback_service['User']['name'].' '.$callback_service['User']['surname'], array('controller' => 'users', 'action' => 'view',$callback_service['Callback']['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
+              $user_link  = $html->link($callback_service['Callback']['phone_number'], array('controller' => 'users', 'action' => 'view',$callback_service['Callback']['user_id'] ), array('title' => 'User details', 'onclick' => "Modalbox.show(this.href, {title: this.title, width: 850}); return false;"),null,false,false);	
 
 
 

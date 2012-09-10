@@ -82,7 +82,8 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_long','title'=>__('Instructions Message',true),'id'=>'long'));
 
                  if($switcher['file_long']){
-	                $step1[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
+        		$step1[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/long')));  	
+
 	         }
 
                  echo "<table cellspacing=0 class='none'>";
@@ -100,7 +101,8 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'));
 
                  if($switcher['file_invalid']){
-	                $step2[3] = $html->link($html->image("icons/music.png", array("title" => __("Download",true))),"/ivr_menus/download/{$this->data['IvrMenu']['instance_id']}/short",null, null, false);
+        		$step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/short')));  	
+
 	         }
 
                  echo "<table cellspacing=0 class='none'>";

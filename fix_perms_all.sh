@@ -5,6 +5,7 @@ addgroup freeswitch freeswitch
 
 echo "log: log folder is writable by dispatcher_in, freeswitch and apache2"
 chmod 777 /opt/freedomfone/log
+chmod 777 /opt/freedomfone/
 chown -Rf www-data:www-data /opt/freedomfone/log
 chown -Rf freeswitch:www-data /opt/freedomfone/log/freeswitch.log
 

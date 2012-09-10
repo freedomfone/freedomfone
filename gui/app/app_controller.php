@@ -43,6 +43,7 @@ App::import("Vendor", "mp3file", false, null, 'mp3file.php');
 App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php'); 
 App::import('Core', 'HttpSocket');
 App::import('Core','L10n');
+App::import('Sanitize');
 
 class AppController extends Controller {
 
@@ -160,7 +161,9 @@ function uploadFiles($folder, $data, $itemId = null, $filetype, $useKey, $overWr
 		}
 		
 		else {
-		     $filename = time().'_'.strtolower(str_replace(' ', '_', $file['name']));
+
+		     $filename = time().'_'.Sanitize::paranoid($file['name'], array('.'));
+
 		}
 
 		$result['files'][$key]=$filename;

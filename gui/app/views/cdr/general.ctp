@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * general.ctp	- Data mining of LAM and IVR calls
- * version 	- 2.0.1150
+ * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
  *
@@ -26,6 +26,7 @@ echo $html->addCrumb(__('System data',true), '');
 echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
+
  $session->flash();
  $settings = Configure::read('IVR_SETTINGS');
 
@@ -42,9 +43,9 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
 		$csv->addRow($line);
 
-	if($cdr){
+	if($export_cdr){
 
-		foreach($cdr as $key => $entry){
+		foreach($export_cdr as $key => $entry){
 
                 if(!$entry['Cdr']['length']){$entry['Cdr']['length'] = 0;}
  
@@ -64,19 +65,18 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 	}
 
-		$prefix=date('Y-m-d');
-	
-		$filename = $prefix."_".__('CDR',true)."_".$application."_".$select_option;
+	$prefix=date('Y-m-d');
+	$filename = $prefix."_".__('CDR',true)."_".$application."_".$select_option;
 
-		echo $csv->render($filename);  
-		$csv->render(false);
+	echo $csv->render($filename);  
+	$csv->render(false);
 	
-	} //export
+       } //export
 
    } //action 
   
-	//Do not display form if action=Export
-	if(!$export){
+   //Do not display form if action=Export
+   if(!$export){
 
 	//** START: Search form **/
 	echo "<h1>".__("Reporting of incoming calls",true)."</h1>";
@@ -93,28 +93,29 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
  
                            $app = 'lam';
     	       }
-	    }
+	}
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,30,'...',true,false);
+             $lam[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
        foreach($ivr as $key => $entry){
-             $ivr[$key] = $text->truncate($entry,30,'...',true,false);
+             $ivr[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
 
 
 	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$app));
 	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$app));
 
-	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam,'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
-	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr,'label'=>'','empty'=>'- '.__('All Voice Menus',true).' -'));
+	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam, 'selected' => $session->read('title'),'label'=>'','empty'=>'- '.__('All Leave-a-message',true).' -'));
+	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr, 'selected' => $session->read('title'), 'label'=>'','empty'=>'- '.__('All Voice Menus',true).' -'));
 
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    echo $html->tableCells(array (
      	    	 array(__('Application',true),$radio1,$menu_lam,$radio2,$menu_ivr)
       		 ),array('class' => 'none'), array('class' => 'none'));
             echo "</table>";
+
 
 
 	    echo "<table cellspacing = 0 class = 'none'>";
@@ -128,9 +129,11 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    $buttons=array();
 	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));
+
      	    if($cdr){ 
 	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
              }
+
 	     echo $html->tableCells($buttons,array('class' => 'none'),array('class' => 'none'));
 	     echo "</table>";
 	     echo $form->end();
@@ -143,13 +146,14 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
           	    
 	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
 
-		foreach($cdr as $key => $entry){
+			foreach($cdr as $key => $entry){
 	    		     $data = $entry['Cdr'];
 	  		     $line = array($data['title'],date('M d Y',$data['epoch']),date('H:i:s A',$data['epoch']),$data['caller_number'],$formatting->epochToWords($data['length']));
                                if($app == 'lam') { $line[] = $this->element('message_status',array('quickHangup' => $data['quick_hangup']));}
                              $rows[] = $line;
 	     		     }
 
+	
 	     $headers = array(__('Title',true),__('Date',true),__('Time',true),__('Caller',true),__('Length',true));
 
              if($app == 'lam') { $headers[] = __('Quick hangup',true); }
@@ -175,9 +179,12 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 	     echo $html->div('feedback',__('No records found.',true));
 	     }
  
-	     //** END: List CDR **/
+
 
 	     }
+
+
+
 
 ?>
 

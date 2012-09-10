@@ -356,6 +356,8 @@ gui/app/locale/default.pot -text
 gui/app/locale/eng/LC_MESSAGES/empty -text
 gui/app/locale/esp/LC_MESSAGES/default.po -text
 gui/app/locale/fre/LC_MESSAGES/default.po -text
+gui/app/locale/por/LC_MESSAGES/default.po -text
+gui/app/locale/por/LC_MESSAGES/messages.mo -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
 gui/app/models/api.php -text
 gui/app/models/behaviors/empty -text
@@ -1304,6 +1306,8 @@ l10n/README -text
 l10n/Status -text
 l10n/manguensis/esp/LC_MESSAGES/default.po -text
 l10n/manguensis/fre/LC_MESSAGES/default.po -text
+l10n/manguensis/por/LC_MESSAGES/default.po -text
+l10n/manguensis/por/LC_MESSAGES/messages.mo -text
 l10n/manguensis/swa/LC_MESSAGES/default.po -text
 l10n/migrate.sh -text
 l10n/pot/manguensis/default.pot -text

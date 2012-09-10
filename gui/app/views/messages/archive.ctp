@@ -112,11 +112,13 @@ echo $html->addCrumb(__('Archive',true), '/messages/');
      echo "</table>";
      echo $form->end();
 
+     $total = $paginator->counter(array('format' => '%count%'));;
+
      echo "<span>".__("No of messages per page: ",true);
      echo $html->link('5','archive/limit:5',null, null, false)." | ";
      echo $html->link('10','archive/limit:10',null, null, false)." | ";
      echo $html->link('25','archive/limit:25',null, null, false)." | " ;
-     echo $html->link(__('All',true),'archive',null, null, false);
+     echo $html->link(__('All',true),'archive/limit:'.$total,null, null, false);
      echo "</span>";
 
      } else {

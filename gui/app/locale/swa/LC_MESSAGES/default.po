@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Freedom Fone manguensis\n"
 "POT-Creation-Date: 2012-02-03 17:22+0300\n"
-"PO-Revision-Date: 2012-03-07 20:48+0200\n"
+"PO-Revision-Date: 2012-04-05 20:46+0200\n"
 "Last-Translator: Martin <martin@kamusi.org>\n"
 "Language-Team: Kamusi Project International\n"
 "Language: sw\n"
@@ -529,11 +529,11 @@ msgstr "Kitabu cha simu kilichochaguliwa kimefutwa."
 
 #: /controllers/polls_controller.php:47
 msgid "Manage Polls"
-msgstr "Simamia Kura"
+msgstr "Simamia Vidadisi"
 
 #: /controllers/polls_controller.php:59
 msgid "View Poll"
-msgstr "Tazama Kura"
+msgstr "Tazama Kidadisi"
 
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -559,45 +559,48 @@ msgstr "Onyesha Upya"
 #: /controllers/polls_controller.php:76
 #: /views/polls/add.ctp:29
 msgid "Create Poll"
-msgstr "Unda Kura"
+msgstr "Unda Kidadisi"
 
 #: /controllers/polls_controller.php:119
 msgid "The poll has been created. Please note that the poll's closing time has already passed."
-msgstr "Kura imeundwa. Uwe mwangalifu kwamba mwisho wa kura ulishatokea."
+msgstr ""
+"Kidadisi kimeundwa. Uwe mwangalifu kwamba mwisho wa kidadisi ulishatokea."
 
 #: /controllers/polls_controller.php:122
 msgid "The poll has successfully been created."
-msgstr "Kura imefanikiwa kuundwa."
+msgstr "Kidadisi kimefanikiwa kuundwa."
 
 #: /controllers/polls_controller.php:137
 msgid "Delete Poll"
-msgstr "Futa Kura"
+msgstr "Futa Kidadisi"
 
 #: /controllers/polls_controller.php:142
 msgid "The following poll has been deleted"
-msgstr "Kura inayofuata imefutwa"
+msgstr "Kidadisi kinachofuata kimefutwa"
 
 #: /controllers/polls_controller.php:166
 msgid "Poll option could not be deleted. A poll needs at least two options."
 msgstr ""
-"Chaguo la kura halikuweza kufutwa. Kura inahitaji angalau machaguo mawili."
+"Chaguo la kidadisi halikuweza kufutwa. Kidadisi kinahitaji angalau machaguo "
+"mawili."
 
 #: /controllers/polls_controller.php:177
 #: /views/polls/edit.ctp:30
 msgid "Edit Poll"
-msgstr "Hariri kura"
+msgstr "Hariri Kidadisi"
 
 #: /controllers/polls_controller.php:180
 msgid "Invalid Poll"
-msgstr "Kura batili"
+msgstr "Kidadisi batili"
 
 #: /controllers/polls_controller.php:203
 msgid "The poll has been updated. Please note that the poll's closing time has already passed."
-msgstr "Kura imesasishwa. Uwe mwangalifu kwamba mwisho wa kura ulishatokea."
+msgstr ""
+"Kidadisi kimesasishwa. Uwe mwangalifu kwamba mwisho wa kidadisi ulishatokea."
 
 #: /controllers/polls_controller.php:208
 msgid "The poll has been updated."
-msgstr "Kura imesasishwa."
+msgstr "Kidadisi kimesasishwa."
 
 #: /controllers/processes_controller.php:37
 #: /views/elements/menuAdmin.ctp:197
@@ -1465,7 +1468,7 @@ msgstr "Acha-ujumbe"
 #: /views/users/edit.ctp:132
 #: /views/users/view.ctp:82
 msgid "Poll"
-msgstr "Kura"
+msgstr "Kidadisi"
 
 #: /views/cdr/overview.ctp:118
 #: /views/cdr/statistics.ctp:82
@@ -1506,7 +1509,7 @@ msgstr "Sikiliza"
 #: /views/polls/index.ctp:24;42
 #: /views/polls/view.ctp:25
 msgid "Polls"
-msgstr "Kura"
+msgstr "Vidadisi"
 
 #: /views/cdr/overview.ctp:164
 #: /views/polls/index.ctp:71
@@ -1675,11 +1678,11 @@ msgstr "Bora"
 #: /views/elements/menuAdmin.ctp:44
 #: /views/elements/menuUser.ctp:44
 msgid "Manage polls"
-msgstr "Simamia kura"
+msgstr "Simamia vidadisi"
 
 #: /views/elements/menuAdmin.ctp:49
 msgid "Create poll"
-msgstr "Unda kura"
+msgstr "Unda kidadisi"
 
 #: /views/elements/menuAdmin.ctp:67
 #: /views/elements/menuUser.ctp:62
@@ -2804,37 +2807,38 @@ msgstr ""
 #: /views/pages/polls/tip.ctp:5
 msgid "The Poll service allows end users to participate in polls by sending SMSs to Freedom Fone."
 msgstr ""
-"Huduma ya Kura inawezesha watumiaji wa hatima kushiriki kwenye kura wakituma "
-"ujumbe mfupi kwenda Freedom Fone."
+"Huduma ya Kidadisi inawezesha watumiaji wa hatima kushiriki kwenye vidadisi "
+"wakituma ujumbe mfupi kwenda Freedom Fone."
 
 #: /views/pages/polls/index.ctp:6
 #: /views/pages/polls/tip.ctp:6
 msgid "The Freedom Fone administrator has the ability to create, edit and delete polls."
 msgstr ""
-"Msimamizi wa Freedom Fone ana uwezekano wa kuunda, kuhariri, na kufuta kura."
+"Msimamizi wa Freedom Fone ana uwezekano wa kuunda, kuhariri, na kufuta "
+"vidadisi."
 
 #: /views/pages/polls/index.ctp:7
 #: /views/pages/polls/tip.ctp:7
 msgid "The administrator can at any time edit the above listed fields. Of course, it is not recommended to change the question, code or answers to a poll, once it has been opened to the public."
 msgstr ""
 "Msimamizi anaweza kuhariri nyuga zinazoorodheshwa hapo juu, wakati wowote. "
-"Lakini, haipendekezwi kubadilisha swali, msimbo, au majibu ya kura, baada ya "
-"kuifungua kwa hadhara."
+"Lakini, haipendekezwi kubadilisha swali, msimbo, au majibu ya kidadisi, "
+"baada ya kukifungua kwa hadhara."
 
 #: /views/pages/polls/index.ctp:8
 #: /views/pages/polls/tip.ctp:8
 msgid "Before a poll is opened, and after it has been closed, no poll votes are registered for the poll."
 msgstr ""
-"Kabla Kura haijafunguliwa, na baada ya kufungwa, kura zinazopigwa "
+"Kabla kidadisi hakijafunguliwa, na baada ya kufungwa, kura zinazopigwa "
 "hazisajiliwi."
 
 #: /views/pages/polls/index.ctp:9
 #: /views/pages/polls/tip.ctp:9
 msgid "For each poll, once it has started, the administrator can at anytime, view the interim or final result in terms of number of votes per answer, and percentage of total votes per answer."
 msgstr ""
-"Kwa kila kura, baada ya kuanza, msimamizi wakati wowote anaweza kuangalia "
-"matokeo ya muda au ya mwisho, ama idadi ya kura zilizopigwa kwa kila jibu, "
-"au asilimia ya jumla ya kura zilizopigwa kila jibu."
+"Kwa kila kidadisi, baada ya kuanza, msimamizi wakati wowote anaweza "
+"kuangalia matokeo ya muda au ya mwisho, ama idadi ya kura zilizopigwa kwa "
+"kila jibu, au asilimia ya jumla ya kura zilizopigwa kwa kila jibu."
 
 #: /views/pages/polls/view.ctp:4
 msgid "Classification of votes"
@@ -2849,27 +2853,27 @@ msgstr ""
 #: /views/pages/polls/view.ctp:6
 msgid "Valid vote:</b> correct poll code, and correct poll option|<ul><li>Early: Received before the poll opened.</li><li>In time: Received while the poll was open.</li><li>Late: Received after the poll was closed.</li></ul>Early votes will be registered as \"Valid, early\". The number of early votes per poll option is presented in a separate column under the View poll page. Early votes will not be added to the Total votes accepted for the poll."
 msgstr ""
-"Kura halali:</b> msimbo wa kura sahihi, na chaguo la kura "
-"sahihi|<ul><li>Mapema: Ilipokelewa kabla kura "
-"haijafunguliwa.</li><li>Kuwahiwa: Ilipokelewa wakati kura "
-"ilifunguliwa.</li><li>Kuchelewa: Ilipokelewa baada ya kura "
+"Kura halali:</b> msimbo wa kidadisi sahihi, na chaguo la kidadisi "
+"sahihi|<ul><li>Mapema: Ilipokelewa kabla kidadisi "
+"hakijafunguliwa.</li><li>Kuwahiwa: Ilipokelewa wakati kidadisi "
+"kilifunguliwa.</li><li>Kuchelewa: Ilipokelewa baada ya kidadisi "
 "kufungwa.</li></ul>Kura mapema zitasajiliwa kama \"Halali, mapema\". Idadi ya "
-"kura mapema kwa kila chaguo la kura inaonyeshwa katika safuwima tofauti "
-"chini ya ukurasa wa Tazama kura. Kura mapema hazitajumlishwa na Jumla ya "
-"kura zilizopigwa zinazokubaliwa kwenye kura."
+"kura mapema kwa kila chaguo la kidadisi inaonyeshwa katika safuwima tofauti "
+"chini ya ukurasa wa Tazama kidadisi. Kura mapema hazitajumlishwa na Jumla ya "
+"kura zilizopigwa zinazokubaliwa kwenye kidadisi."
 
 #: /views/pages/polls/view.ctp:8
 msgid "Late votes will be registered as \"Valid, late\". The number of late votes per poll option is presented in a separate column under the View poll page. Late votes will not be added to the Total votes accepted for the poll."
 msgstr ""
 "Kura zinazochelewa zitasajiliwa kama \"Halali, kuchelewa\". Idadi ya kura "
-"zilizochelewa kwa kila chaguo la kura inaonyeshwa katika safuwima tofauti "
-"chini ya ukurasa wa Tazama kura. Kura zinazochelewa hazitajumlishwa na Jumla "
-"ya kura zilizopigwa zinazokubaliwa kwenye kura."
+"zilizochelewa kwa kila chaguo la kidadisi inaonyeshwa katika safuwima "
+"tofauti chini ya ukurasa wa Tazama kidadisi. Kura zinazochelewa "
+"hazitajumlishwa na Jumla ya kura zilizopigwa zinazokubaliwa kwenye kidadisi."
 
 #: /views/pages/polls/view.ctp:9
 msgid "<b>Invalid vote:</b> correct poll code, but a non-matching poll option"
 msgstr ""
-"<b>Kura batili:</b> msimbo wa kura ni sahili, lakini chaguo la kura "
+"<b>Kura batili:</b> msimbo wa kidadisi ni sahili, lakini chaguo la kidadisi "
 "halifanani"
 
 #: /views/pages/polls/view.ctp:10
@@ -2888,18 +2892,18 @@ msgstr ""
 msgid "Invalid vote totals are provided to give deployers an idea of how SMS errors might impact on poll results."
 msgstr ""
 "Jumla ya kura batili zinaonyeshwa ili kufundisha wasimamizi namna matokeo ya "
-"kura yaweza kuathiriwa na makosa ya ujumbe fupi."
+"vidadisi yaweza kuathiriwa na makosa ya ujumbe fupi."
 
 #: /views/pages/polls/view.ctp:13
 msgid "<b>Incorrect vote:</b> Non-matching poll code"
-msgstr "<b>Kura siyo sahihi:</b> Msimbo wa kura haufanani"
+msgstr "<b>Kura siyo sahihi:</b> Msimbo wa kidadisi haufanani"
 
 #: /views/pages/polls/view.ctp:14
 msgid "Incorrect votes that cannot be matched to any existing poll, will be classified as an incoming SMS and will be stored under \"Incoming SMS\". The SMS will be classified as \"Unclassified\"."
 msgstr ""
-"Kura zisizo sahihi ambazo hazilingani na kura yoyote, zitaainishwa kama "
-"ujumbe fupi zilizofika, na zitahifadhiwa chini ya \"Ujumbe fupi zilizofika\". "
-"Ujumbe mfupi utaainishwa kama \"Zisizoainishwa\"."
+"Kura zisizo sahihi ambazo hazilingani na kidadisi chochote, zitaainishwa "
+"kama ujumbe fupi zilizofika, na zitahifadhiwa chini ya \"Ujumbe fupi "
+"zilizofika\". Ujumbe mfupi utaainishwa kama \"Zisizoainishwa\"."
 
 #: /views/phone_books/add.ctp:29
 msgid "Create Phone book"
@@ -2955,7 +2959,7 @@ msgstr "Katika mfumo kutoka"
 
 #: /views/phone_books/export.ctp:37
 msgid "Poll count"
-msgstr "Idadi ya kura"
+msgstr "Idadi ya kidadisi"
 
 #: /views/phone_books/export.ctp:37
 msgid "Voice menu count"
@@ -3053,7 +3057,7 @@ msgstr "Herufi na tarakimu tu (upeo 10)"
 #: /views/polls/add.ctp:50
 #: /views/polls/edit.ctp:80
 msgid "Poll options"
-msgstr "Machaguo ya kura"
+msgstr "Machaguo ya kidadisi"
 
 #: /views/polls/add.ctp:59;68;69
 #: /views/polls/edit.ctp:98;114
@@ -3070,13 +3074,13 @@ msgstr "Muda wa mwanzo na mwisho"
 #: /views/polls/add.ctp:86
 #: /views/polls/edit.ctp:64
 msgid "When would you like to open and close the poll?"
-msgstr "Unataka kufungua na kufunga kura wakati gani?"
+msgstr "Unataka kufungua na kufunga kidadisi wakati gani?"
 
 #: /views/polls/edit.ctp:82
 msgid "Please note that all votes associated with a poll option will be deleted together with the poll option."
 msgstr ""
-"Uwe mwangalifu kwamba kura zote zilizopigwa zinazohusishwa na chaguo la kura "
-"zitafutwa pamoja na chaguo la kura hilo."
+"Uwe mwangalifu kwamba kura zote zilizopigwa zinazohusishwa na chaguo la "
+"kidadisi zitafutwa pamoja na chaguo la kidadisi hilo."
 
 #: /views/polls/edit.ctp:94
 #: /views/votes/add_failure.ctp:33
@@ -3090,7 +3094,7 @@ msgstr "Ongeza chaguo"
 
 #: /views/polls/index.ctp:78
 msgid "Are you sure you wish to delete this poll?"
-msgstr "Una uhakika unataka kufuta kura hii?"
+msgstr "Una uhakika unataka kufuta kidadisi hiki?"
 
 #: /views/polls/index.ctp:93
 msgid "Total Votes"
@@ -3105,8 +3109,8 @@ msgstr "Muda wa mfumo"
 #: /views/polls/index.ctp:101
 msgid "No polls exist. Please create one by clicking the <i>Create new</i> button to the right."
 msgstr ""
-"Hakuna kura yoyote. Tafadhali unda moja ukibofya kitufe <i>Unda mpya</i> "
-"upande wa kulia."
+"Hakuna kidadisi chochote. Tafadhali unda moja ukibofya kitufe <i>Unda "
+"mpya</i> upande wa kulia."
 
 # (pofilter) acronyms: acronyms should not be translated: SMS
 #: /views/polls/view.ctp:50
@@ -3135,7 +3139,7 @@ msgstr "Kura zilizochelewa kupigwa"
 
 #: /views/polls/view.ctp:112
 msgid "Poll information"
-msgstr "Taarifa ya kura"
+msgstr "Taarifa ya kidadisi"
 
 #: /views/processes/index.ctp:63;95
 msgid "Running since"

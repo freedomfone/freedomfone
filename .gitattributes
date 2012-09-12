@@ -1,8 +1,11 @@
 * text=auto !eol
+/.deb_1204 -text
 /.dependencies -text
+/.dependencies_1204 -text
 /AUTHORS -text
 /COPYING -text
 /INSTALL -text
+/INSTALL_1204 -text
 /PASSWORD -text
 /README -text
 /RELEASE.txt -text
@@ -286,7 +289,9 @@ documentation/users/Freedom_Fone_v1.6_Other_Devices.pdf -text
 documentation/users/Freedom_Fone_v1.6_Troubleshooting.pdf -text
 documentation/users/Freedom_Fone_v2.0_Quick_Start_Guide.pdf -text
 /download.sh -text
+/download_1204.sh -text
 /download_bin.sh -text
+/download_bin_1204.sh -text
 esl/README -text
 esl/legacy/INSTALL -text
 esl/legacy/fs_sock.php -text

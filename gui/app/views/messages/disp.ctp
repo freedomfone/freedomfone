@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $ajax->div("service_div");
+echo $ajax->div("servie_div");
 
 
 echo $form->create('Message',array('type' => 'post','action'=> 'index'));
@@ -117,7 +117,7 @@ $ext = Configure::read('EXTENSIONS');
         if($total > $current){
                   $next = $ajax->link(__('Next',true).'»','/messages/disp/'.($current+1), array('update' => 'service_div'), null, 1);
         }
-        echo  $html->div('paginator', $prev." ".$next);
+        echo  $html->div('paginator', $prev." | ".$next);
 
 
     }

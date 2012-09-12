@@ -66,7 +66,11 @@ class CdrController extends AppController{
         if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 
         $app   = $this->data['Cdr']['application'];
-        if ($app) {$this->Session->write('cdr_app',$app);} else { $app = $this->Session->read('cdr_app');}
+        if ($app) {
+	   $this->Session->write('cdr_app',$app);
+	} else { 
+	   $app = $this->Session->read('cdr_app');
+	}
 
         $title=false;
         $field = false;
@@ -74,10 +78,16 @@ class CdrController extends AppController{
         if($app == 'ivr') { $field = 'title_ivr';}
         elseif($app == 'lam') { $field = 'title_lam';}
 
-        if(!$title = $this->data['Cdr'][$field]) { $title = $this->Session->read('title');}
+
+	if($this->data['Cdr'][$field] =='0'){
+          $title = false;
+          $this->Session->write('title', 0);
+        } elseif (!$title = $this->data['Cdr'][$field]) {
+          $title = $this->Session->read('title');
+
+        }
 
         $this->Session->write('title',$title);
-
 
         $this->Cdr->unbindModel(array('belongsTo' => array('User')));
         $this->Cdr->unbindModel(array('hasMany' => array('MonitorIvr')));
@@ -150,12 +160,15 @@ class CdrController extends AppController{
 
         $this->loadModel('IvrMenu');
 	$ivr = array();
+	$ivr[0] =  '- '.__('All Voice Menus',true).' -';
         $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));                                                                                                                          
         $ivr_data = $this->IvrMenu->find('list');
         foreach($ivr_data as $key => $title){ $ivr[$title] = $title;}       
 
         $this->loadModel('LmMenu');
 	$lam = array();
+	$lam[0] =  '- '.__('All Leave-a-Message',true).' -';
+
         $lam_data = $this->LmMenu->find('list');
         foreach($lam_data as $key => $title){ $lam[$title] = $title;}       
 

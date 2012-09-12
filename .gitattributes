@@ -295,6 +295,9 @@ documentation/users/Freedom_Fone_v2.0_Quick_Start_Guide.pdf -text
 esl/README -text
 esl/legacy/INSTALL -text
 esl/legacy/fs_sock.php -text
+esl/lib/ESL.php -text
+esl/lib/ESL.so -text
+esl/lib/install.ESL.sh -text
 esl/native/ESL.php -text
 esl/native/INSTALL -text
 esl/native/api_client.php -text

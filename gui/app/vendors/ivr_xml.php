@@ -306,7 +306,7 @@ public $ext;
 
          }*/
 
-	   function write_ivr_entry($ivr_type, $type,$digit,$id, $instance_id,$title,$file_invalid){
+	   function write_ivr_entry($ivr_type, $type,$digit,$id, $instance_id,$title){
 
 	            	switch ($type){
 
@@ -319,7 +319,7 @@ public $ext;
                            $service = 'Node';
 
 			   //We wait 1 second after playing the file to return to head IVR
-			   $param  = 'play_and_get_digits 1 1 1 1000 # '.$this->node_path.$arr['file'].'.wav '.$file_invalid;
+			   $param  = 'play_and_get_digits 1 1 1 1000 # '.$this->node_path.$arr['file'].'.wav';
 			   break;
 
 

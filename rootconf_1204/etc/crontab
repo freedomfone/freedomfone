@@ -1,0 +1,42 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+#########################################################################################################
+# Freedom Fone 2011, refresh/cron methods for spoolers
+# App: OfficeRoute pop3 daemon
+*/1 * * * * root /usr/bin/php /opt/freedomfone/office_route/pop3_daemon.php  >/dev/null 2>&1
+# App: SMS/Skype polls 
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/polls/refresh/cron  >/dev/null 2>&1
+# App: Leave a message
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/messages/refresh/cron  >/dev/null 2>&1
+# App: Call/Event data records
+#*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/cdr/refresh/cron  >/dev/null 2>&1
+# App: Datamining of IVR options
+#*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/monitor_ivr/refresh/cron  >/dev/null 2>&1
+# App: System Health
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/processes/refresh/cron  >/dev/null 2>&1
+# App: GSMOPEN 
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/channels/refresh/cron  >/dev/null 2>&1
+# App: OfficeRoute 
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/office_route/refresh/cron  >/dev/null 2>&1
+# App: Other SMS - The Bin 
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
+# App: Dialer - Newfies
+*/1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/campaigns/dialer_refresh/cron  >/dev/null 2>&1
+# App: Sweeper 
+#*/1 * * * * root /usr/bin/php /opt/freedomfone/sweeper/gui_sweeper/gui_sweeper.php  >/dev/null 2>&1
+#########################################################################################################
+
+

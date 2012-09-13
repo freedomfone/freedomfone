@@ -1350,6 +1350,7 @@ rootconf/etc/modprobe.d/blacklist-freedomfone.conf -text
 rootconf/etc/php5/apache2/php.ini -text
 rootconf/etc/rc.local -text
 rootconf/var/www/index.html -text
+/rootconf_1204.tar.gz -text
 rootconf_1204/bin/setmixers -text
 rootconf_1204/etc/apache2/sites-available/freedomfone -text
 rootconf_1204/etc/asound.conf -text

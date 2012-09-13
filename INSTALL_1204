@@ -1,72 +1,76 @@
-*** BUILDING FREEDOM FONE 3.0 in a i386 ARCH ***
+*** BUILDING FREEDOM FONE 2.S (2.S.4) in a i386 ARCH ***
 
 STEP 1. Install Ubuntu 12.04-1 i386 Desktop edition
 
 STEP 2. Install subversion
-# apt-get install subversion
+	# apt-get install subversion
 
 STEP 3. Download Freedom Fone builder
-# mkdir -p /opt/freedomfone
-# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
-# cd /opt/freedomfone; chmod 755 *.sh
+	# mkdir -p /opt/freedomfone
+	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+	# cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies
-The software dependencies will allow you to run and build freeswitch with Freedom Fone dependencies. 
+The software dependencies will allow you to run/build freeswitch with Freedom Fone dependencies. 
 
-# cd /opt/freedomfone; ./download_1204.sh
+	# cd /opt/freedomfone; ./download_1204.sh
 
 STEP 5. Download pre-compiled packages for Freeswitch and Cepstral
 
-# cd /opt/freedomfone; ./download_bin_1204.sh
+	# cd /opt/freedomfone; ./download_bin_1204.sh
 
 STEP 6. Install Cepstral, accept default values (/opt/swift as installation directory)
 
-# cd /opt/freedomfone/packages; tar zxvf Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz; cd  /opt/freedomfone/packages/Cepstral_Allison-8kHz_i386-linux_5.1.0; ./install.sh
+	# cd /opt/freedomfone/packages; tar zxvf Cepstral_Allison-8kHz_i386-linux_5.1.0.tar.gz; cd  /opt/freedomfone/packages/Cepstral_Allison-8kHz_i386-linux_5.1.0; ./install.sh
 
-STEP 7. Install Freeswitch for Freedom Fone
+STEP 7. Install Freeswitch 1.2 for Freedom Fone
 
-# cd /opt/freedomfone/packages; chmod 755 *.sh; ./install_fs_1204.sh 
+	# cd /opt/freedomfone/packages; chmod 755 *.sh; ./install_fs_1204.sh 
 
-STEP 8. Install rootconf, that contains default configurations for PHP5, Apache2, iwatch, cron and startup services
+STEP 8. Install rootconf_1204, that contains default configurations for PHP5, Apache2, iwatch, cron, startup services and the configuration and scripts for Freeswitch/Freedom Fone under /opt/freeswitch
 
-# cd /opt/freedomfone; ./rootconf_install_1204.sh
+	# cd /opt/freedomfone; ./rootconf_install_1204.sh
 
-STEP 9. Install DB Schemas and demo data
-# cd /opt/freedomfone; ./db_install.sh 
-#(optional)
-# cd /opt/freedomfone; ./demo_install.sh  
-#(/optional)
-# cd /opt/freedomfone; ./fix_perms_all.sh
+STEP 9. Install the PHP ESL extension library that allows the dispatcher to
+communicate with the Event Socket Layer of Freeswitch
 
-STEP 10. Reboot or run /etc/rc.local
+	# cd /opt/freedomfone/esl/lib; ./install.ESL.sh
 
-#/etc/rc.local
+STEP 10. Install DB Schemas
+	
+	# cd /opt/freedomfone; ./db_install.sh 
 
-Point your browser to http://localhost/freedomfone
+STEP 11. Install Demo data (optional)
+
+	# cd /opt/freedomfone; ./demo_install.sh  
+
+STEP 12. Fix all the permissions
+	
+	# cd /opt/freedomfone; ./fix_perms_all.sh
+
+STEP 13. Reboot and point your browser to http://localhost/freedomfone
 Username: Admin
 Password: thefone
 
 
 *** Updating a running installation ***
 
-A running installation can be updated by upgrading/reinstalling the freeswitch packages that bundle the components
-that we use. 
-
-Download the latest versions and run:
-
-#cd /opt/freedomfone; dpkg -i freeswitch_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-lang-en_1.0.head-git.master.20110530.ffone-10_i386.deb freeswitch-spidermonkey_1.0.head-git.master.20110530.ffone-10_i386.deb
+* Changes in the configuration of the backend (freeswitch) can be done
+in /etc/freeswitch -> /opt/freeswitch/conf
+* Changes in the scripts (freeswitch) can be done in /opt/freeswitch/scripts
+* The GUI /opt/freedomfone/gui is under SVN can be updated using subversion commands
+* After updates always re-fix permissions
 
 #cd /opt/freedomfone; chmod 755 fix_perms_all.sh
 #cd /opt/freedomfone; ./fix_perms_all.sh
 
-Other components of the system can be updated using Subversion. 
-Subversion changes can alter the permissions, so you need to run
-the fix_perms scripts after any update.
+FINAL NOTES
+===========
+The Ubuntu 12.04 packages have been build using the v1.2 stable branch
+of Freeswitch. The mod_gsmopen, mod_spidermonkey and mod_cepstral odules 
+Extra .deb packages libjs1 and libctb have been created to satisfy the 
+dependencies of spidermonkey and gsmopen.
 
-
-NOTES
-
-http://wiki.freeswitch.org/wiki/Quick_Start#Or_create_Ubuntu.2FDebian_packages_and_install_them
+#http://wiki.freeswitch.org/wiki/Quick_Start#Or_create_Ubuntu.2FDebian_packages_and_install_them
 #git branch -r
-
-git checkout v1.2.stable
+#git checkout v1.2.stable

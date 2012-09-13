@@ -1,0 +1,33 @@
+--- dialplan.xml	2012-09-12 10:28:48.972544364 +0200
++++ dialplan.xml.orig	2012-09-12 09:38:56.088681025 +0200
+@@ -36,7 +36,7 @@
+             <action application="set" data="lmIP=$${local_ip_v4}"/>
+ <!--             <action application="set" data="on_quick_hangup=delete"/> --> 
+ <!--             <action application="set" data="on_quick_hangup=accept"/> --> 
+-            <action application="javascript" data="/opt/freeswitch/scripts/freedomfone/leave_message/main.js ${instance_id} ${lmIP}"/>
++            <action application="javascript" data="freedomfone/leave_message/main.js ${instance_id} ${lmIP}"/>
+           </condition>
+         </extension>
+ 
+@@ -58,10 +58,10 @@
+             	<action application="ring_ready"/>
+ 		<action application="set" data="incoming_media=sip"/>
+                 <action application="set" data="instance_id=100"/>
+-         	<action application="javascript" data="/opt/freeswitch/scripts/freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
++         	<action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+ 		<anti-action application="set" data="incoming_media=077777777"/>
+ 		<anti-action application="set" data="instance_id=100"/>
+-         	<anti-action application="javascript" data="/opt/freeswitch/scripts/freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
++         	<anti-action application="javascript" data="freedomfone/tickle/main.js ${instance_id} ${incoming_media}"/>
+           	</condition>
+         </extension>
+ 
+@@ -76,7 +76,7 @@
+           <condition field="destination_number" expression="^9001$">
+             <action application="answer"/>
+             <action application="speak" data="cepstral|allison|Testing Testing and more testing of all the DTMF!"/>
+-            <action application="javascript" data="/opt/freeswitch/scripts/freedomfone/dtmf/main.js"/>
++            <action application="javascript" data="freedomfone/dtmf/main.js"/>
+           </condition>
+         </extension>
+         

@@ -29,6 +29,7 @@ libtool
 libvorbis-dev
 libx11-dev
 libxml2-dev
+libjpeg62
 mp3info
 mysql-server
 openssh-server

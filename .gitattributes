@@ -1723,6 +1723,7 @@ rootconf_1204/opt/freeswitch/scripts/freedomfone/sms/main.js -text
 rootconf_1204/opt/freeswitch/scripts/freedomfone/tickle/main.js -text
 rootconf_1204/var/www/index.html -text
 /rootconf_install.sh -text
+/rootconf_install_1204.sh -text
 sweeper/INSTALL.sweeper.metadata -text
 sweeper/INSTALL.truecrypt -text
 sweeper/README -text

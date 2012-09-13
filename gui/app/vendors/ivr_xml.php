@@ -54,8 +54,8 @@ public $ext;
      $this->ivr_path     = $ivr_settings['path'];
      $this->ivr_dir_node = $ivr_settings['dir_node'];
      $this->ivr_dir_menu = $ivr_settings['dir_menu'];
-     $this->node_path	 = '$${base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
-     $this->ivr_monitor = '$${base_dir}/'.$ivr_monitor['script'];
+     $this->node_path	 = '$${ff_base_dir}/scripts/'.$this->ivr_path.$this->ivr_dir_node;
+     $this->ivr_monitor = '$${ff_base_dir}/'.$ivr_monitor['script'];
 
      $this->file_individual	   = WWW_ROOT.$ivr_settings['path'].'/'.$instance_id.'/'.$ivr_settings['dir_conf']."/ivr.xml";
      $this->file_common	           = BASE_DIR.$ivr_settings['curl']."ivr.xml"; 

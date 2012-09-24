@@ -1464,6 +1464,7 @@ rootconf_1204/opt/freeswitch/conf/autoload_configs/event_socket.conf.xml -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/fax.conf.xml -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/fifo.conf.xml -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/gsmopen.conf.xml -text
+rootconf_1204/opt/freeswitch/conf/autoload_configs/gsmopen.conf.xml.mobi -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/hash.conf.xml -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/ivr.conf.xml -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs/java.conf.xml -text

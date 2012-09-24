@@ -2,6 +2,8 @@
 #
 addgroup freeswitch
 addgroup freeswitch freeswitch
+echo "dialout: Allow freeswitch user to write to the /dev/USB devices"
+addgroup freeswitch dialout 
 
 echo "log: log folder is writable by dispatcher_in, freeswitch and apache2"
 chmod 777 /opt/freedomfone/log

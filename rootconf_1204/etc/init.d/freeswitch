@@ -1,202 +1,128 @@
-#e /bin/sh
+#!/bin/sh
+### -*- mode:shell-script; indent-tabs-mode:nil; sh-basic-offset:2 -*-
 ### BEGIN INIT INFO
-# Provides:          skeleton
-# Required-Start:    $local_fs $remote_fs
-# Required-Stop:     $local_fs $remote_fs
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Description:       Freeswitch debian init script.
-# Author: Matthew Williams
-# Modified: Alberto Escudero-Pascual aep@it46.se for Freedom Fone 2011
+# Provides: freeswitch
+# Required-Start: $network $remote_fs $local_fs
+# Required-Stop: $network $remote_fs $local_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: FreeSWITCH Softswitch
+# Description: FreeSWITCH Softswitch
+### END INIT INFO
 
-# Do NOT "set -e"
+# Author: Travis Cross <tc@traviscross.com>
 
-PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
-DESC="Freeswitch"
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC=freeswitch
 NAME=freeswitch
-DAEMON=/usr/bin/$NAME
-DAEMON_ARGS="-nc"
-PIDFILE=/var/run/freeswitch/$NAME.pid
-SCRIPTNAME=/etc/init.d/$NAME
+DAEMON=/usr/bin/freeswitch
+#DAEMON_ARGS="-u freeswitch -g freeswitch -rp -nc -nonat"
+#FF: We need to disable -g flag to allow FS to write in /dev/ttyUSBX dialout group
+DAEMON_ARGS="-u freeswitch -rp -nc -nonat"
 USER=freeswitch
-FS_USER=freeswitch
+PIDFILE=/var/run/$NAME/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+WORKDIR=/var/lib/$NAME
 
-#FIXME!
-#With -g we get problems with audio/dialout groups
-#FS_GROUP=freeswitch
-
-# Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
-
-# Read configuration variable file if it is present
+[ -x $DAEMON ] || exit 0
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
-
-# Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
-
-# We force VERBOSE after vars.sh 
-VERBOSE=yes
-# Define LSB log_* functions.
-# Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
 . /lib/lsb/init-functions
 
-#
-# Function that starts the daemon/service
-#
-
-do_setlimits() {
-        ulimit -c unlimited
-        ulimit -d unlimited
-        ulimit -f unlimited
-#        ulimit -i unlimited
-        ulimit -n 999999
-#        ulimit -q unlimited
-#        ulimit -u unlimited
-        ulimit -v unlimited
-#        ulimit -x unlimited
-        ulimit -s 240
-        ulimit -l unlimited
-        return 0
+check_dir() {
+    # Create the PrivSep empty dir if necessary
+    if [ ! -d /var/run/freeswitch ]; then
+        mkdir /var/run/freeswitch
+        chown freeswitch:freeswitch  /var/run/freeswitch
+        chmod 0755 /var/run/freeswitch
+    fi
 }
 
-#
-# Function that starts the daemon/service
-#
-do_start_no()
-{
-        $DAEMON -u $USER $DAEMON_ARGS > /dev/null 2>&1  
+do_start() {
+  check_dir
+  start-stop-daemon --start --quiet \
+    --pidfile $PIDFILE --exec $DAEMON --name $NAME --user $USER \
+    --test > /dev/null \
+    || return 1
+  ulimit -s 240
+  start-stop-daemon --start --quiet \
+    --pidfile $PIDFILE --exec $DAEMON --name $NAME --user $USER \
+    --chdir $WORKDIR -- $DAEMON_ARGS $DAEMON_OPTS \
+    || return 2
+  return 0
 }
 
-
-
-do_start()
-{
-	# Set user to run as
-        if [ $FS_USER ] ; then
-	  DAEMON_ARGS="`echo $DAEMON_ARGS` -u $FS_USER"
-        fi
-	# Set group to run as
-        if [ $FS_GROUP ] ; then
-          DAEMON_ARGS="`echo $DAEMON_ARGS` -g $FS_GROUP"
-        fi
-
-        # Return
-        #   0 if daemon has been started
-        #   1 if daemon was already running
-        #   2 if daemon could not be started
-	#freeswitch -u freeswitch -nonat -nc
-	start-stop-daemon --start --pidfile $PIDFILE --exec $DAEMON --test > /dev/null 2>&1 -- \
-                || return 1
-        start-stop-daemon --start --pidfile $PIDFILE --exec $DAEMON > /dev/null 2>&1 -- \
-                $DAEMON_ARGS \
-                || return 2
-        # Add code here, if necessary, that waits for the process to be ready
-        # to handle requests from services started subsequently which depend
-        # on this one.  As a last resort, sleep for some time.
+stop_fs() {
+  start-stop-daemon --stop --quiet \
+    --pidfile $PIDFILE --name $NAME --user $USER \
+    --retry=TERM/30/KILL/5
 }
 
-#
-# Function that stops the daemon/service
-#
-do_stop()
-{
-        # Return
-        #   0 if daemon has been stopped
-        #   1 if daemon was already stopped
-        #   2 if daemon could not be stopped
-        #   other if a failure occurred
-        start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
-        RETVAL="$?"
-        [ "$RETVAL" = 2 ] && return 2
-        # Wait for children to finish too if this is a daemon that forks
-        # and if the daemon is only ever run from this initscript.
-        # If the above conditions are not satisfied then add some other code
-        # that waits for the process to drop all resources that could be
-        # needed by services started subsequently.  A last resort is to
-        # sleep for some time.
-        start-stop-daemon --stop --quiet --oknodo --retry=0/30/KILL/5 --exec $DAEMON
-        [ "$?" = 2 ] && return 2
-        # Many daemons don't delete their pidfiles when they exit.
-        rm -f $PIDFILE
-        return "$RETVAL"
+stop_fs_children() {
+  start-stop-daemon --stop --quiet \
+    --exec $DAEMON \
+    --oknodo --retry=0/30/KILL/5
 }
 
-#
-# Function that sends a SIGHUP to the daemon/service
-#
+do_stop() {
+  stop_fs
+  RETVAL="$?"
+  [ "$RETVAL" -eq 2 ] && return 2
+  stop_fs_children
+  [ "$?" -eq 2 ] && return 2
+  rm -f $PIDFILE
+  return "$RETVAL"
+}
+
 do_reload() {
-        #
-        # If the daemon can reload its configuration without
-        # restarting (for example, when it is sent a SIGHUP),
-        # then implement that here.
-        #
-        start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
-        return 0
+  start-stop-daemon --stop --quiet \
+    --pidfile $PIDFILE --name $NAME --user $USER \
+    --signal HUP
 }
 
 case "$1" in
   start)
-        [ "$VERBOSE" != no ] && log_daemon_msg "Freedom Fone: Starting $DESC" "$NAME"
+    [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC " "$NAME"
+    do_start
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+    ;;
+  stop)
+    [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
+    do_stop
+    case "$?" in
+      0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+      2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+    esac
+    ;;
+  status)
+    status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
+    ;;
+  reload|force-reload)
+    log_daemon_msg "Reloading $DESC" "$NAME"
+    do_reload
+    log_end_msg $?
+    ;;
+  restart)
+    log_daemon_msg "Restarting $DESC" "$NAME"
+    do_stop
+    case "$?" in
+      0|1)
         do_start
         case "$?" in
-                0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
-                2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+          0) log_end_msg 0 ;;
+          1|*) log_end_msg 1 ;;
         esac
         ;;
-  stop)
-        [ "$VERBOSE" != no ] && log_daemon_msg "Freedom Fone: Stopping $DESC" "$NAME"
-        do_stop
-        case "$?" in
-                0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
-                2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
-        esac
-        ;;
-  #reload|force-reload)
-        #
-        # If do_reload() is not implemented then leave this commented out
-        # and leave 'force-reload' as an alias for 'restart'.
-        #
-        #log_daemon_msg "Reloading $DESC" "$NAME"
-        #do_reload
-        #log_end_msg $?
-        #;;
-
-  status)
-        [ -f "$PIDFILE" ] && PROCESS="$(cat $PIDFILE)" || PROCESS=''
-        if [ -n "$PROCESS" ] ; then
-        log_success_msg "freeswitch with pid $PROCESS is running."
-        	exit 0
-      	else
-        log_warning_msg "Could not find freeswitch running."
-        	 exit 1
-      	fi
-      	;;
-  restart|force-reload)
-        #
-        # If the "reload" option is implemented then remove the
-        # 'force-reload' alias
-        #
-        log_daemon_msg "Restarting $DESC" "$NAME"
-        do_stop
-        case "$?" in
-          0|1)
-                do_start
-                case "$?" in
-                        0) log_end_msg 0 ;;
-                        1) log_end_msg 1 ;; # Old process is still running
-                        *) log_end_msg 1 ;; # Failed to start
-                esac
-                ;;
-          *)
-                # Failed to stop
-                log_end_msg 1
-                ;;
-        esac
-        ;;
+      *) log_end_msg 1 ;;
+    esac
+    ;;
   *)
-        #echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
-        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload}" >&2
-        exit 3
-        ;;
+    echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+    exit 3
+    ;;
 esac
 
+exit 0

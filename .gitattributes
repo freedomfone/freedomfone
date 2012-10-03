@@ -11,6 +11,9 @@
 /PASSWORD -text
 /README -text
 /RELEASE.txt -text
+appliance/modules.conf.xml -text
+appliance/rc.local -text
+appliance/vars.xml -text
 audio_bot/README -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text

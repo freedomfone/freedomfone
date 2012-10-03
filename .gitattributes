@@ -13,6 +13,7 @@
 /RELEASE.txt -text
 appliance/modules.conf.xml -text
 appliance/rc.local -text
+appliance/status.sh -text
 appliance/vars.xml -text
 audio_bot/README -text
 audio_bot/filters/meta2mp3.sh -text

@@ -37,10 +37,10 @@ class NodesController extends AppController{
 	$this->Node->recursive = 0; 
 
         if(isset($this->params['named']['limit'])) { 
-	     $this->Session->write('messages_limit',$this->params['named']['limit']);
+	     $this->Session->write('nodes_limit',$this->params['named']['limit']);
 	}
-	elseif($this->Session->check('messages_limit')) { 
-	$this->paginate['limit'] = $this->Session->read('messages_limit');
+	elseif($this->Session->check('nodes_limit')) { 
+			$this->paginate['limit'] = $this->Session->read('nodes_limit');
 	}	
 
 

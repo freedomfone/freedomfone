@@ -15,6 +15,7 @@
 
 echo "Green Fone appliance"
 echo "Fixing IP addresses"
+/etc/init.d/network-manager stop
 /sbin/ifconfig eth0 10.0.1.250 netmask 255.255.255.0 up
 /sbin/route add default gw 10.0.1.1
 /sbin/ifconfig eth1 192.168.1.250 netmask 255.255.255.0 up

@@ -110,7 +110,7 @@ public $ext;
 
 
      $ivr_default = Configure::read('IVR_DEFAULT');
-     $this->menu_path	   = '$${base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
+     $this->menu_path	   = '$${ff_base_dir}/scripts/'.$this->ivr_path.$data['instance_id'].'/'.$this->ivr_dir_menu;
 
 	  
 	   $comment	    = "type: ".$data['ivr_type'];

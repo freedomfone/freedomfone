@@ -42,7 +42,7 @@ define('FS_SOCK_DEBUG', true);
 	   while ($i){
 
 
-    	   $cmd = "jsrun freedomfone/sms/main.js '".$argv[1]."' '".$argv[2]."' 'localhost' '".(time()*1000000)."'";
+    	   $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/main.js '".$argv[1]."' '".$argv[2]."' 'localhost' '".(time()*1000000)."'";
 echo $cmd;
     	   $i++;
 

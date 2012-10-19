@@ -110,7 +110,7 @@ $sock = new ESLconnection($host, $port, $pass);
 
 	   foreach ($messages as $key => $message){
 
-       	   	   $cmd = "jsrun freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
+       	   	   $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
 		   logPOP("200 Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',($message[$key]['date']/1000000)).", Body: ".$message[$key]['body'],'INFO','ESL',3);

@@ -42,7 +42,7 @@ define('FS_SOCK_DEBUG', true);
 	   while ($i){
 
 
-    	   $cmd = "jsrun freedomfone/sms/tickle.js '".$argv[1]."' 'tickle'";
+    	   $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/tickle.js '".$argv[1]."' 'tickle'";
 echo $cmd;
     	   $i++;
 

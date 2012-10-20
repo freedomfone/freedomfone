@@ -1,0 +1,117 @@
+Freedom Fone 2.S - Lycaon Sekowei (Security Edition)
+
+$2.S.4$
+
+Copyright © 2009-2012 IT46 AB it46@it46.se 
+
+$Date: 2012/09/11 11:11:11$
+
+Sekowei security edition for Ubuntu 12.04 has arrived! The seventh release of Freedom Fone.
+
+Freedom Fone is an open source vCMS. A vCMS is a Voice Content Management that
+allows you to deliver and receive audio content via the GSM network or a SIP
+voice over IP gateway. The software connects phone networks to our platform,
+two flexible voice applications allow the retrieval of audience feedback (Leave
+a Message) and to deliver customized audio content (IVRs).
+
+Freedom Fone is the result of five years of field experience with telephony 
+information services for civil society. During the development of telephony 
+services for small organizations, we quickly discovered that there was enough 
+technology to build almost anything but voice remained difficult to use. 
+
+With Freedom Fone we have tried to provide basic but yet powerful voice services
+that allows bi-direcctional communication by the phone and that it is why we 
+want to describe Freedom Fone as a voice Content Management System (vCMS). 
+
+With Freedom Fone, (mobile) phone users can leave audio messages and navigate 
+audio content using their phone. System administrators can later on classify
+the audio feedback received and  build new content.  
+
+Rather than presenting users with a million options to set up a telephony system,
+we have opted to design basic but powerful telephony applications that can be used 
+with a great degree of flexibility. 
+
+We have put special emphasis in the user interface and lowering the cost of 
+interfacing with the GSM network. 
+
+Freedom Fone is built thanks to the power of several open source projects: 
+FreeSWITCH, Spidermonkey, PHP5, Cake PHP MVC and Jquery. 
+For those that want to automate the creation of audio we have included support for 
+Cepstral, a text-to-speech voice engine capable of synthesizing voice messages. 
+
+Freedom Fone has been mostly tested using Ubuntu 10.04 LTS and Ubuntu 12.04 LTS. 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What is new in 2.S.4?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+New LTS cycle 
+
+2.S.4 runs at the top of Ubuntu 12.04 LTS and the latest stable release of
+Freeswitch (branch 1.2). We have updated all the Freeswitch backend packages
+to include the latest features of Freeswitch: new mod_gsmopen that supports
+USB based GSM dongles, ZRTP and mod_skyopen.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Enhanced Security
+
+2.S includes Roll Based Access Control (RBAC) and separates the Administrator
+roles from a normal User of the system that has access to the audio content
+If you want to know more about what each of the roles can do, check out our
+RBAC documentation that describes what the Admin and Normal User can and can
+not do.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Updated Graphical Interface
+
+The Graphical User Interface has been updated to the latest version of
+Cake PHP MVC
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+New filesystem and secure storage
+
+We have re-arranged all the filesystem structure of Freedom Fone to allow
+the protection of sensitive/personal identifiable information.
+
+2.S allows the possibility to encrypt all the audio received, including the log
+files in a new secure storage.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Sweeping sensitive data
+
+2.S allows the dynamic sweeping of sensitive data as phone numbers of the callers
+A backend sweeper allows the possibility of removing meta tags from MP3 and WAV
+files.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+New build system
+
+Installation of Freedom Fone can be performed in 10 simple steps and most of the 
+complexity of building the backend has been removed by providing pre-compiled
+packages for our customized FreeSWITCH installation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Remote hosting on the Cloud
+
+Freedom Fone can be installed on the Cloud. Freedom Fone enhanced architecture
+supports the possibility of having the backend virtualized on a Cloud solution
+and still be present with local GSM numbers.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Freedom Fone Appliance. A turn-key solution
+
+Freedom Fone can be ordered in an appliance as a turn-key solution.
+
+
+

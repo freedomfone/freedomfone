@@ -227,6 +227,16 @@ deb_builder/FS1.0/scripts/freedomfone/sms/README -text
 deb_builder/FS1.0/scripts/freedomfone/sms/main.js -text
 deb_builder/FS1.0/scripts/freedomfone/tickle/main.js -text
 deb_builder/FS1.0/src/mod/endpoints/mod_gsmopen/mod_gsmopen.cpp -text
+deb_builder/FS1.2/FF.build.sh -text
+deb_builder/FS1.2/debian/bootstrap.sh -text
+deb_builder/FS1.2/debian/changelog -text
+deb_builder/FS1.2/debian/control -text
+deb_builder/FS1.2/debian/files -text
+deb_builder/FS1.2/debian/modules_.conf -text
+deb_builder/FS1.2/debian/rules -text
+deb_builder/FS1.2/debian/shlibs.local -text
+deb_builder/FS1.2/patches/1.fix -text
+deb_builder/FS1.2/patches/2.fix -text
 demo/ivr_ivr/file_exit.mp3 -text
 demo/ivr_ivr/file_exit.wav -text
 demo/ivr_ivr/file_invalid.mp3 -text

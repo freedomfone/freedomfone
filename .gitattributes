@@ -1349,7 +1349,9 @@ l10n/suyo/swa/LC_MESSAGES/default.po -text
 log/README -text
 mod_gsmopen/README -text
 mod_gsmopen/huawei/gsmopen.conf.xml -text
+mod_gsmopen/huawei/mod_gsmopen.so -text
 mod_gsmopen/mobigater/gsmopen.conf.xml -text
+mod_gsmopen/mobigater/mod_gsmopen.so -text
 office_route/README -text
 office_route/backup_officeroute_2.3.11.tgz -text
 office_route/config.php -text

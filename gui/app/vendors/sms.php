@@ -57,7 +57,8 @@ class sms
 
 	} elseif($type == 'email'){
 
-	         $this->res  = $this->socketAuth($auth);  	       
+	         $this->res     = $this->orAuth($auth);  	       
+	         $this->domain  = $auth['domain'];
 
 	} else {
 
@@ -81,7 +82,6 @@ class sms
 
     $res = mysqli_connect($auth['host'], $auth['user'], $auth['password'], $auth['database']);
    
-//      $res = mysqli_connect($auth['host'], $auth['user'], $auth['password'], $auth['database']);
       if (!$res) {
         $this->error[] = $mysqli->connect_error;
      	return false;
@@ -92,33 +92,33 @@ class sms
 
 
     /**
-     * sms::socketAuth()
-     * @usage connect to socket
-     * @param array $auth ( array('host','port'))
-     * @return $res socket connection resource
+     * sms::orAuth()
+     * @usage check if OfficeRoute is running
+     * @param array $auth ( array('domain'))
+     * @return $res bool
      */
-    private function socketAuth($auth)
+    private function orAuth($auth)
     {
-
-    $res = fsockopen($auth['host'], $auth['port'], $errno, $errstr, $this->timeout);
-
-    if (!$res) {
-
-       $this->error[] = $errstr;
-       return false;
-
-    } else {
-
-       return $res;
-    }
-
+    
+    $url = $auth['domain'];
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_exec($ch);
+    $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+	if (200 == $retcode) {
+       	   return true;
+    	} else {
+       	   return false; 
+        }
     }
 					
     
     
     /**
      * sms::sendSMS()
-     * @usage tell gammu-smsd to send one sms to many recipient
+     * @usage tell gammu-smsd to send one sms to many recipient OR tell OfficeRoute to send sms to single receipient
      * @param string $msg
      * @param array $dest
      * @param string $sender
@@ -126,6 +126,9 @@ class sms
      */
     function sendSMS($msg,$dest,$sender='')
     {
+
+        if($this->type == 'mysql'){
+
         $this->msg	= substr($msg,0,160);
 
         if(!is_array($dest))
@@ -134,13 +137,35 @@ class sms
         }
         else
         {
-            foreach($dest as $dst)
+
+         foreach($dest as $dst)
             {
                 $id[] = $this->send($msg,$dst,$sender);
             }
         }
-
 	return $id;
+
+	} else {
+
+ 	  $subject = 'Outgoing SMS from Freedom Fone';
+	  $headers = 'From: sms@'.$this->domain . "\r\n" .
+	  	     'reply-To: sms@'.$this->domain . "\r\n" .
+    		     'X-Mailer: PHP/' . phpversion();
+
+          //single recipient
+          if(!is_array($dest)){
+	     $to      = $dest."@".$this->domain;  
+	     return mail($to, $subject, $msg, $headers);
+	  } else {
+	      foreach($dest as $entry){
+	      	    $to      = $entry."@".$this->domain;  
+	     	    $id[]    = mail($to, $subject, $msg, $headers);
+	      }
+
+	      return $id;
+	  } 
+
+	}
     }
     
     
@@ -163,8 +188,6 @@ class sms
         $this->msg	= $msg;
         $this->dest	= $dest;
         $id = $this->inject($sender);
-
-        //echo "<pre>Destination : $this->dest\nSender : $sender\nMessage :\n";print_r($this->msg_part);
 
 	return $id;
     }

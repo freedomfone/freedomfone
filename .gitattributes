@@ -337,6 +337,11 @@ fixes/20120124/app_controller.php -text
 fixes/20120124/setting.php -text
 fixes/20120124_whatismyip.sh -text
 /freeswitch -text
+gammu-smsd/conf/huawei_gammu-smsdrc -text
+gammu-smsd/conf/mobigater_gammu-smsdrc -text
+gammu-smsd/doc/freedomfone_gammu_smsd_v1.odt -text
+gammu-smsd/doc/freedomfone_gammu_smsd_v1.pdf -text
+gammu-smsd/sql/mysql.sql.gz -text
 gui/.htaccess -text
 gui/app/.htaccess -text
 gui/app/app_controller.php -text

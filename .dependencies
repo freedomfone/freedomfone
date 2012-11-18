@@ -6,6 +6,8 @@ bsd-mailx
 build-essential
 debhelper
 flashplugin-installer
+gammu
+gammu-smsd
 gettext
 git-core
 iwatch

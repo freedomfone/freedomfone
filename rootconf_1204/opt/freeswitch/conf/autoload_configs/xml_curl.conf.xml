@@ -1,0 +1,9 @@
+<configuration name="xml_curl.conf" description="cURL XML Gateway">
+  <bindings>
+    <binding name="dialplan fetcher">
+      <param name="gateway-url" value="http://localhost/freedomfone/xml_curl/" bindings="configuration dialplan"/>
+    </binding>
+  </bindings>
+</configuration>
+
+

@@ -1,0 +1,16 @@
+# Configuration file for Gammu SMS Daemon Mobigater
+[gammu]
+port = /dev/ttyUSB0
+connection = at
+
+[smsd]
+RunOnReceive =
+service = sql
+driver = native_mysql
+LogFile = syslog
+user = smsd 
+password = PASSHERE 
+pc = localhost
+database = smsd
+MaxRetries = 5
+

@@ -1,0 +1,4 @@
+ffrc3	huawei gsmopen channel
+ffrc4	mobigater gsmpopen channel
+
+Install using dpkg -i <package>.deb

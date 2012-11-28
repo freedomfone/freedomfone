@@ -1,0 +1,117 @@
+From eb5a2a230975e988c2abbbe79ffb06d8b9a47847 Mon Sep 17 00:00:00 2001
+From: Rodney Amato <rodnet@gmail.com>
+Date: Mon, 20 Aug 2012 15:02:28 +1000
+Subject: [PATCH] Fix to allow spidermonkey to build as a debian package
+
+---
+ debian/bootstrap.sh   |   65 +++++++++++++++++++++++++++++++++++++++++++++++--
+ debian/libjs1.install |    1 +
+ 2 files changed, 64 insertions(+), 2 deletions(-)
+ create mode 100644 debian/libjs1.install
+
+diff --git a/debian/bootstrap.sh b/debian/bootstrap.sh
+index a724948..347ac6a 100755
+--- a/debian/bootstrap.sh
++++ b/debian/bootstrap.sh
+@@ -493,12 +493,65 @@ Description: ${description} for FreeSWITCH (debug)
+ EOF
+ }
+
++print_spidermonkey_control() {
++  local m_section="${section:-comm}"
++  cat <<EOF
++Package: freeswitch-${module_name//_/-}
++Section: ${m_section}
++Architecture: any
++$(debian_wrap "Depends: \${shlibs:Depends}, \${misc:Depends}, freeswitch, ${depends}")
++$(debian_wrap "Recommends: ${recommends}")
++$(debian_wrap "Suggests: freeswitch-${module_name//_/-}-dbg, ${suggests}")
++Description: ${description} for FreeSWITCH
++ $(debian_wrap "${fs_description}")
++ .
++ $(debian_wrap "This package contains ${module_name} for FreeSWITCH.")
++ .
++ $(debian_wrap "${long_description}")
++
++Package: freeswitch-${module_name//_/-}-dbg
++Section: debug
++Priority: extra
++Architecture: any
++Depends: \${misc:Depends},
++ freeswitch-${module_name//_/-} (= \${binary:Version})
++Description: ${description} for FreeSWITCH (debug)
++ $(debian_wrap "${fs_description}")
++ .
++ $(debian_wrap "This package contains debugging symbols for ${module_name} for FreeSWITCH.")
++ .
++ $(debian_wrap "${long_description}")
++
++
++Package: libjs1
++Architecture: any
++Depends: \${shlibs:Depends}, \${misc:Depends}
++Recommends:
++Description: Cross-Platform Scalable Multi-Protocol Soft Switch
++ $(debian_wrap "${fs_description}")
++ .
++ This package contains the FreeSWITCH js library required by mod_spidermonkey.
++
++EOF
++}
++
+ print_mod_install () {
+   cat <<EOF
+ /usr/lib/freeswitch/mod/${1}.so
+ EOF
+ }
+
++print_spidermonkey_install () {
++  cat <<EOF
++/usr/lib/freeswitch/mod/mod_spidermonkey.so
++/usr/lib/freeswitch/mod/mod_spidermonkey_core_db.so
++/usr/lib/freeswitch/mod/mod_spidermonkey_curl.so
++/usr/lib/freeswitch/mod/mod_spidermonkey_socket.so
++/usr/lib/freeswitch/mod/mod_spidermonkey_teletone.so
++EOF
++}
++
++
+ print_long_filename_override () {
+   local p="$1"
+   cat <<EOF
+@@ -566,7 +619,11 @@ print_edit_warning () {
+ }
+
+ gencontrol_per_mod () {
+-  print_mod_control "$module_name" "$description" "$long_description" >> control
++  if [ $module_name = "mod_spidermonkey" ]; then
++      print_spidermonkey_control "$module_name" "$description" "$long_description" >> control
++  else
++      print_mod_control "$module_name" "$description" "$long_description" >> control
++  fi
+ }
+
+ gencontrol_per_cat () {
+@@ -575,7 +632,11 @@ gencontrol_per_cat () {
+
+ geninstall_per_mod () {
+   local f=freeswitch-${module_name//_/-}.install
+-  (print_edit_warning; print_mod_install "$module_name") > $f
++  if [ $module_name = "mod_spidermonkey" ]; then
++      (print_edit_warning; print_spidermonkey_install ) > $f
++  else
++      (print_edit_warning; print_mod_install "$module_name") > $f
++  fi
+   test -f $f.tmpl && cat $f.tmpl >> $f
+ }
+
+diff --git a/debian/libjs1.install b/debian/libjs1.install
+new file mode 100644
+index 0000000..e96e63c
+--- /dev/null
++++ b/debian/libjs1.install
+@@ -0,0 +1 @@
++/usr/lib/libjs.so.*
+--
+1.7.9.5
+

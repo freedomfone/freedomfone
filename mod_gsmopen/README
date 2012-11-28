@@ -1,0 +1,19 @@
+GSMOPEN channel for Mobigater or Huawei devices
+
+In order to use the gsmopen channel:
+
+1. The module has to be placed in the folder
+/usr/lib/freeswitch/mod/
+
+2. Configuration file needs to change under
+/opt/freeswitch/conf/autoload_configs/
+
+It is possible to swap the channels by unloading the old channel
+
+fs_cli>unload mod_gsmopen
+
+and then load the alternative channel once the .so library and configuration 
+are in place
+
+fs_cli>load mod_gsmopen
+

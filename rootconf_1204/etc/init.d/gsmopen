@@ -1,0 +1,96 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          gsmopen utils 
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: GSMOPEN status  
+# Author: Alberto Escudero-Pascual aep@it46.se
+### END INIT INFO
+##############################################################################
+
+BASEDIR=/opt/freedomfone
+ESL=$BASEDIR/esl/native
+APICLIENT=$ESL/api_client.php
+STATUS="gsmopen_dump list"
+RELOAD="gsm reload"
+PHP=/usr/bin/php
+GSMOPEN_BOOT_LOG=/opt/freedomfone/logs/gsmopen_boot.log
+AMIXER=/usr/bin/amixer
+APLAY=/usr/bin/aplay
+
+#We have broken down the Speaker/Mic values to support different networks quality
+#Per card specific values in case of different operators and network quality
+CARD_LIST="1 2 3"
+CARD1_SPEAKER=50
+CARD2_SPEAKER=50
+CARD3_SPEAKER=50
+
+##############################
+#Problems with DTMF detection#
+##############################
+#This values affect the audio gain of the incoming audio signal. By adding gain to the Mic we can 
+#try to detect DTMFs in noisy lines. This % values should be incremented carefully to avoid distorsion
+#Try to increase the value periodically e.g.: 2,4,6,8 etc
+#
+#The command alsamixer -c 1 -Vcapt will provide you with a GUI to test the values on an ongoing call
+#
+#Card 0 needs to be setup in systems with no built-in sound card
+
+CARD1_MIC=0
+CARD2_MIC=0
+CARD3_MIC=0
+
+. /lib/lsb/init-functions
+
+
+case ${1:-} in
+    start)
+	log_daemon_msg "Freedom Fone: Starting gsmopen, fixing audio levels" 
+	for i in $CARD_LIST; do
+		$AXIMER -c ${i}  -q set "Auto Gain Control" off >/dev/null 2>&1
+		#TTS Volume
+
+		#DEBUG: Reporting values	
+		##echo " * Initializing Card ${i} to values (speaker/mic)  $[CARD${i}_SPEAKER] / $[CARD${i}_MIC]"
+		$AMIXER -c ${i}  -q set Speaker $[CARD${i}_SPEAKER]% unmute >/dev/null 2>&1
+		#Incoming audio gain. Has an impact in distorsion and DTMF detection
+		$AMIXER -c ${i}  -q set Mic cap mute $[CARD${i}_MIC]%  >/dev/null 2>&1 
+	done
+	#sleep 60
+     	#set +e
+	#/usr/local/freeswitch/bin/fs_cli -x "gsmopen_dump list" |grep "imei\|imsi\|interface_id\|interface_name\|got_signal"  
+        #RC=$?
+        #set -e
+        log_end_msg 0 
+    ;;
+
+
+    stop )
+	log_daemon_msg "Freedom Fone: Stopping gsmopen" 
+        log_end_msg 0 
+    ;;
+    status)
+		$PHP $APICLIENT "$STATUS"  
+    ;;
+    reload)
+                $PHP $APICLIENT "$RELOAD" |grep reload
+    ;;	 
+    devices)
+		echo "Audio Devices List"
+		$APLAY -l
+	
+		echo "Serial Devices List"
+		ls -al /dev/ttyACM*  2>/dev/null
+    ;;
+
+    *)
+      echo "Usage: ${0:-} {start|status|reload|devices}" >&2
+      exit 1
+    ;;
+esac
+
+exit 0
+
+# vim: ai expandtab

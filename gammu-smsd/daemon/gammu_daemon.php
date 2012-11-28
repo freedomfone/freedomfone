@@ -102,7 +102,7 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
     global $sock;
 
             //Format command
-            $cmd = "jsrun freedomfone/sms/main.js '".$message."' '".$sender."' '".$receiver."' '".$epoch."'";
+            $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/main.js '".$message."' '".$sender."' '".$receiver."' '".$epoch."'";
             $result = $socka->api($cmd);
 
    }

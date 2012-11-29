@@ -51,7 +51,7 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
         while($data = mysql_fetch_array($res)){
        
              $msg      = $data['TextDecoded'];
-             $sender   = $data['SMSCNumber']; 
+             $sender   = $data['SenderNumber']; 
              $receiver = "N/A";
              $epoch    = strtotime($data['ReceivingDateTime']);
              

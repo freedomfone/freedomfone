@@ -53,6 +53,8 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
              $msg      = $data['TextDecoded'];
              $sender   = $data['SenderNumber']; 
              $receiver = "N/A";
+	     date_default_timezone_set(TimeZone);
+
              $epoch    = strtotime($data['ReceivingDateTime']);
              $epochMicro    = number_format($epoch*1000000, 0, '.', '');
 

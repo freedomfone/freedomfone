@@ -4,12 +4,13 @@ define("LogFile", "/opt/freedomfone/log/gammu_daemon.log");
 define("LogLevel", 3);  //1 = low, 2 = medium, 3 = high
 define("BaseDir", "/opt/freedomfone/");
 define("ESLPath", BaseDir."/esl/native/ESL.php");
+define("TimeZone", "Africa/Harare");
 
 
 $_DB =  array(
      	   'host' => 'localhost',
-	   'user' => 'root',
-	   'pass' => 'qwerty',
+	   'user' => 'smsd',
+	   'pass' => 'thefone',
 	   'db'   => 'smsd',
 	   );
 

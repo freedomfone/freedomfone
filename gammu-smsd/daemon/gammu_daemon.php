@@ -56,7 +56,7 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
              $epoch    = strtotime($data['ReceivingDateTime']);
              
              //For each message, trigger an ESL event
-             trigggerEvent($sender, $receiver, $msg, $epoch);
+             triggerEvent($sender, $receiver, $msg, $epoch);
    
              //Log incoming SMS
              logGammuIncoming("Inbox: ".$sender." ".$receiver." ".$msg." ".date('Y-m-j H:i:s',$epoch), 'INFO');
@@ -103,7 +103,7 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
 
             //Format command
             $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/main.js '".$message."' '".$sender."' '".$receiver."' '".$epoch."'";
-            $result = $socka->api($cmd);
+            $result = $sock->api($cmd);
 
    }
 

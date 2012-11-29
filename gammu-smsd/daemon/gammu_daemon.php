@@ -54,14 +54,15 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
              $sender   = $data['SenderNumber']; 
              $receiver = "N/A";
              $epoch    = strtotime($data['ReceivingDateTime']);
-             
+             $epochMicro    = number_format($epoch*1000000, 0, '.', '');
+
              //For each message, trigger an ESL event
-             triggerEvent($sender, $receiver, $msg, $epoch);
+             triggerEvent($sender, $receiver, $msg, $epochMicro);
    
              //Log incoming SMS
              logGammuIncoming("Inbox: ".$sender." ".$receiver." ".$msg." ".date('Y-m-j H:i:s',$epoch), 'INFO');
-
-             //Delete message from Inbox
+            
+	     //Delete message from Inbox
              mysql_query("delete from inbox where id = ".$data['ID']);
         }
 

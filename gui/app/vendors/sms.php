@@ -203,7 +203,7 @@ class sms
     {
 
 	if($this->type == 'mysql'){
-          $query="insert into outbox (`UDH`,`DestinationNumber`,`TextDecoded`,`SenderID`, `RelativeValidity`) values (false, '{$this->dest}','{$this->msg}','{$sender}','{$this->RelativeValidity}')";
+          $query="insert into outbox (`UDH`,`DestinationNumber`,`TextDecoded`,`SenderID`, `RelativeValidity`) values (false, '{$this->dest}','{$this->msg}','','{$this->RelativeValidity}')";
                 mysqli_query($this->res, $query);
                 $id=mysqli_fetch_assoc(mysqli_query($this->res, "select last_insert_id() as id"));
                 $id=$id['id'];

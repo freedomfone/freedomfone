@@ -37,6 +37,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/campaigns/dialer_refresh/cron  >/dev/null 2>&1
 # App: Sweeper 
 #*/1 * * * * root /usr/bin/php /opt/freedomfone/sweeper/gui_sweeper/gui_sweeper.php  >/dev/null 2>&1
+# App: Incoming SMS via Gammu-smsd
+#*/1 * * * * root /usr/bin/php /opt/freedomfone/gammu-smsd/daemon/gammu_daemon.php  >/dev/null 2>&1
 #########################################################################################################
 
 

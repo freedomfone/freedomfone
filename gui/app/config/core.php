@@ -321,5 +321,5 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','2.S.3dev');
+define ('VERSION','2.S.4.1');
 define ('VERSION_NAME','Manguensis');

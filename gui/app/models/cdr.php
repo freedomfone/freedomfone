@@ -349,11 +349,13 @@ class Cdr extends AppModel{
 		   $insert = true;
 		   switch ($proto){
 
-		    case 'gsm':
+
+//Changes necessary to allow Huawei related CDR to be inserted into CDR tables.
+		   /* case 'gsm':
 		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing'){
 		         $insert = false;
 		    } 
-		    break;
+		    break;*/
 
 		    case 'sip':
 		    if ($channel_state == 'CS_ROUTING' && $answer_state =='answered' && $application =='ivr'){

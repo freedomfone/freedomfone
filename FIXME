@@ -1,2 +1,4 @@
+* The GUI has access to ESL to check the process and status breaking the security architecture.
+This information needs to be provided via the dispatcher
 * FS log to FF folder
 * FS init script should come from a .deb package. Modify  for .pid folder

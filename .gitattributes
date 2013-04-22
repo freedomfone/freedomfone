@@ -299,6 +299,10 @@ dispatcher_in/tests/sendTickle.php -text
 documentation/api/FreedomFone_2.S.2_public_API.pdf -text
 documentation/developers/freedomfone_manguensis_2.S_documentation_authentication.pdf -text
 documentation/developers/freedomfone_manguensis_2.S_documentation_developers_guide.pdf -text
+documentation/developers/permissions/FF_Permissions_Architecture.odt -text
+documentation/developers/permissions/FF_Permissions_Architecture.pdf -text
+documentation/developers/permissions/FF_components_perms_flow.dia -text
+documentation/developers/permissions/FF_components_perms_flow.png -text
 documentation/developers/smsd/freedomfone_cakephp_officeroute_sms_config.pdf -text
 documentation/developers/smsd/freedomfone_cakephp_vendor_class_sms_1.0.pdf -text
 documentation/developers/smsd/freedomfone_gammu_smsd_v1.pdf -text

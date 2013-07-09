@@ -323,6 +323,8 @@ esl/legacy/fs_sock.php -text
 esl/lib/ESL.php -text
 esl/lib/ESL.so -text
 esl/lib/install.ESL.sh -text
+esl/lib64/ESL.php -text
+esl/lib64/install.ESL.sh -text
 esl/native/ESL.php -text
 esl/native/INSTALL -text
 esl/native/api_client.php -text

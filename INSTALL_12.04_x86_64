@@ -1,0 +1,137 @@
+*** BUILDING FREEDOM FONE 2.S (2.S.4) in a i386 ARCH ***
+
+STEP 1. Install Ubuntu 12.04-2 amd64 Desktop edition
+
+STEP 2. Install subversion
+	Subversion is used to retrieve the code from the repository and update the graphical interface
+	
+	# apt-get install subversion
+
+STEP 3. Download Freedom Fone builder
+
+	# mkdir -p /opt/freedomfone
+	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+	# cd /opt/freedomfone; chmod 755 *.sh
+
+STEP 4. Install packages and dependencies
+	The software dependencies will allow you to run/build freeswitch with Freedom Fone dependencies. 
+	
+	# cd /opt/freedomfone; ./download_1204_x86_64.sh
+	
+
+STEP 5. Download pre-compiled packages for Freeswitch and Cepstral
+	Packages will be downloded to the /opt/freedomfone/packages folder
+	# cd /opt/freedomfone; ./download_bin_1204_x86_64.sh
+
+STEP 6. Install Cepstral
+	Cepstral is needed to support text-to-speech	
+	Accept default values (/opt/swift as installation directory)
+
+	# cd /opt/freedomfone/packages; tar zxvf Cepstral_Allison-8kHz_x86-64-linux_6.0.1.tar.gz; cd  /opt/freedomfone/packages/Cepstral_Allison-8kHz_x86-64-linux_6.0.1; ./install.sh
+
+STEP 7. Install Freeswitch 1.2 for Freedom Fone
+
+	# cd /opt/freedomfone/packages; chmod 755 *.sh; ./install_fs_1204.sh 
+
+STEP 8. Install rootconf_1204
+	The rootconf tar.gz folder contains default configurations for PHP5, Apache2, iwatch, cron, startup services and 
+	the configuration and scripts for Freeswitch/Freedom Fone under /opt/freeswitch
+
+	# cd /opt/freedomfone; ./rootconf_install_1204.sh
+
+STEP 9. Install the PHP ESL extension library
+	The ESL PHP library is used by PHP to connect to Freeswitch Event Socket Layer of Freeswitch
+	The library also allows the dispatcher to communicate with the Event Socket Layer of Freeswitch
+
+	# cd /opt/freedomfone/esl/lib64; ./install.ESL.sh
+
+STEP 10. Install DB Schemas
+	The script will create all the DB needed by Freeswitch, if your mysql (root) password is not empty
+	edit the script to include your mysql admin password	
+	
+	# cd /opt/freedomfone; ./db_install.sh 
+
+STEP 11. Install Demo data (optional)
+	The script will populate demo data in the system.
+	If your mysql (root) password is not empty edit the script to include your admin password.
+
+	# cd /opt/freedomfone; ./demo_install.sh  
+
+STEP 12. Fix all the permissions
+	Permissions need to be configured after a new update of the system.
+	
+	# cd /opt/freedomfone; ./fix_perms_all.sh
+
+STEP 13. Reboot and point your browser to http://localhost/freedomfone
+Username: Admin
+Password: thefone
+
+
+*** Updating a running installation ***
+
+The 12.04 build system used Freeswitch 1.2 deb packages that place the 
+binaries in the default Debian system folders. Freedomfone specific 
+configuration is available under /opt/freeswitch. 
+
+The folder contains:
+
+1) Scripts for the different services /opt/freeswitch/scripts/freedomfone
+.
+├── ivr
+│   ├── 100
+│   ├── 101
+...
+│   ├── 119
+│   └── nodes
+├── leave_message
+│   ├── 100
+│   ├── 101
+...
+│   ├── 118
+│   ├── 119
+│   ├── instance
+│   └── main.js
+├── monitor_ivr
+│   └── main.js
+├── sms
+|   ├── main.js
+|   └── README
+└── tickle
+    └── main.js
+
+
+2) General conf of Freeswitch /opt/freeswitch/conf
+
+*** Configuration of the system ***
+
+- All configuration of freedomfone Graphical interface are available in 
+the /opt/freedomfone/config folder
+
+- Advanced users can make changes in the configuration of the backend (freeswitch) 
+in /etc/freeswitch -> /opt/freeswitch/conf
+
+- Changes in the scripts (freeswitch) can be done in /opt/freeswitch/scripts
+
+- The GUI /opt/freedomfone/gui is under SVN can be updated using subversion commands
+
+- After updates always re-fix permissions
+
+#cd /opt/freedomfone; chmod 755 fix_perms_all.sh
+#cd /opt/freedomfone; ./fix_perms_all.sh
+
+*** Building Freeswitch ***
+
+The Ubuntu 12.04 packages have been build using the v1.2 stable branch
+of Freeswitch
+
+#http://wiki.freeswitch.org/wiki/Quick_Start#Or_create_Ubuntu.2FDebian_packages_and_install_them
+#git branch -r
+#git checkout v1.2.stable
+
+The mod_gsmopen, mod_spidermonkey and mod_cepstral modules 
+Extra .deb packages libjs1 and libctb have been created to satisfy the 
+dependencies of spidermonkey and gsmopen.
+
+Patches for the .deb building system are available under /opt/freedomfome/deb_builder
+
+

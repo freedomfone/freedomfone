@@ -8,6 +8,7 @@
 /INSTALL -text
 /INSTALL_10.04.4 -text
 /INSTALL_12.04 -text
+/INSTALL_12.04_x86_64 -text
 /PASSWORD -text
 /README -text
 /RELEASE.txt -text

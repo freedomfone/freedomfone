@@ -315,8 +315,10 @@ documentation/users/Freedom_Fone_v1.6_Troubleshooting.pdf -text
 documentation/users/Freedom_Fone_v2.0_Quick_Start_Guide.pdf -text
 /download.sh -text
 /download_1204.sh -text
+/download_1204_x86_64.sh -text
 /download_bin.sh -text
 /download_bin_1204.sh -text
+/download_bin_1204_x86_64.sh -text
 esl/README -text
 esl/legacy/INSTALL -text
 esl/legacy/fs_sock.php -text

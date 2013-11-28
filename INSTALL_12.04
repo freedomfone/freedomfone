@@ -1,6 +1,6 @@
-*** BUILDING FREEDOM FONE 2.S (2.S.4) in a i386 ARCH ***
+*** BUILDING FREEDOM FONE 2.S (2.S.x) in a i386 ARCH ***
 
-STEP 1. Install Ubuntu 12.04-1 i386 Desktop edition
+STEP 1. Install Ubuntu 12.04-3 i386 Desktop edition
 	At the moment the binary packages of Freeswitch are only compatible with 32 bits systems
 
 STEP 2. Install subversion

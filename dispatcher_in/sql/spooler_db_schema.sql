@@ -32,6 +32,7 @@ CREATE TABLE `bin` (
   `from` varchar(100) default NULL,
   `login` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
+  `hw_unit` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -194,6 +195,7 @@ CREATE TABLE `poll_in` (
   `login` varchar(50) default NULL,
   `proto` varchar(10) default NULL,
   `status` tinyint(1) default '0',
+  `hw_unit` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;

@@ -52,6 +52,7 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
        
              $msg      = $data['TextDecoded'];
              $sender   = $data['SenderNumber']; 
+	     $hw_unit  = $data['RecipientID'];
              $receiver = "N/A";
 	     date_default_timezone_set(TimeZone);
 
@@ -59,10 +60,10 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
              $epochMicro    = number_format($epoch*1000000, 0, '.', '');
 
              //For each message, trigger an ESL event
-             triggerEvent($sender, $receiver, $msg, $epochMicro);
+             triggerEvent($sender, $receiver, $msg, $hw_unit, $epochMicro);
    
              //Log incoming SMS
-             logGammuIncoming("Inbox: ".$sender." ".$receiver." ".$msg." ".date('Y-m-j H:i:s',$epoch), 'INFO');
+             logGammuIncoming("Inbox: ".$sender." ".$receiver." ".$msg." ".$hw_unit." ".date('Y-m-j H:i:s',$epoch), 'INFO');
             
 	     //Delete message from Inbox
              mysql_query("delete from inbox where id = ".$data['ID']);
@@ -100,12 +101,12 @@ $sock = new ESLconnection($_SocketParam['host'], $_SocketParam['port'], $_Socket
 
 
 
-   function triggerEvent($sender, $receiver, $message, $epoch){
+   function triggerEvent($sender, $receiver, $message, $hw_unit, $epoch){
 
     global $sock;
 
             //Format command
-            $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/main.js '".$message."' '".$sender."' '".$receiver."' '".$epoch."'";
+            $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/gammu_main.js '".$message."' '".$sender."' '".$receiver."' '".$hw_unit."' '".$epoch."'";
             $result = $sock->api($cmd);
 
    }

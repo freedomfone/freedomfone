@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * messages_controller.php	- Controller for Leave-a-message messages. Manages CRUD operations on messages.
- * version 		 	- 3.0.1500
+ * version 		 	- 2.5.1350
  * 
  * Version: MPL 1.1
  *
@@ -25,10 +25,8 @@
 class MessagesController extends AppController{
 
       var $name = 'Messages';
-      var $helpers = array('Flash','Formatting', 'Ajax', 'Javascript');      
+      var $helpers = array('Flash','Formatting','Session');      
       var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Message.created' => 'desc')); 
-
-      var $components = array('RequestHandler','Session');
 
 
 
@@ -47,6 +45,7 @@ class MessagesController extends AppController{
 
       function index(){
 
+         $this->pageTitle = __('Leave-a-Message Inbox',true);
 
          $this->Session->write('messages_tag',false);
          $this->Session->write('messages_category',false);
@@ -57,20 +56,22 @@ class MessagesController extends AppController{
          $this->Session->write('messages_limit',false);
          $this->Session->write('messages_page',false);
 
-         $this->set('title_for_layout', __('Leave-a-Message Inbox',true));
+
+	        $this->Message->recursive = 0; 
+   	        $messages = $this->paginate('Message', array('Message.status' => '1'));
 
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
                 $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
- 		$this->set(compact('tags','categories','instances'));
+
+ 		$this->set(compact('tags','categories','instances','messages'));
 
 
       }
 
 
       function disp($page = null){
-
-
+      
       $this->Message->recursive = 1; 
       $tag = $category = $rate = $instance_id = $dir = $limit = $id = false;
       $param = $conditions = $order = array();
@@ -86,9 +87,9 @@ class MessagesController extends AppController{
                 $message_id[] = $message['id'];
            }
            if(isset($message_id)){
-              $conditions['Message.id'] = $message_id;
+           $conditions['Message.id'] = $message_id;
            } else {
-             $no_match = true;
+           $no_match = true;
            }
 
 
@@ -98,28 +99,30 @@ class MessagesController extends AppController{
       if($data['category']){
          $conditions['Category.id'] = $data['category'];
          $this->Session->write('messages_category',$data['category']);
-      } elseif ( $category = $this->Session->read('messages_category')){
-        $conditions['Message.category_id']  = $category;
+      } else {
+         unset($conditions['Category.id']);
+
       }
 
       if($data['rate']){
+
          $conditions['Message.rate'] = $data['rate'];
          $this->Session->write('messages_rate',$data['rate']);
 
-      } elseif ($rate = $this->Session->read('messages_rate')){
+         } else {
 
-        $conditions['Message.rate'] = $rate;
+         unset($conditions['Message.rate']);
 
-      }
+         }
 
       if($data['service']){
 
          $conditions['Message.instance_id'] = $data['service'];
          $this->Session->write('messages_service',$data['service']);
 
-      } elseif ($service  = $this->Session->read('messages_service')) {
+      } else {
 
-        $conditions['Message.instance_id'] = $service;
+         unset($conditions['Message.instance_id']);
 
       }
 
@@ -129,17 +132,17 @@ class MessagesController extends AppController{
          $this->Session->write('messages_dir',$dir);
       } elseif (!$dir = $this->Session->read('messages_dir')){
 
-        $dir ='desc';
+        $dir = false;
+
+      }
  
-	}
-     
-      if($data['order']){
+     if($data['order']){
           if($data['order'] == 'Message.new'){ $dir = 'DESC';}
          $order = $data['order'].' '.$dir;
          $this->Session->write('messages_order',$order);
       } elseif (!$order = $this->Session->read('messages_order')){
 
-        $order = 'Message.created '.$dir;
+        $order = false;
       }
 
 
@@ -155,9 +158,10 @@ class MessagesController extends AppController{
         $page = 1;
       } 
 
-        
-         $this->Session->write('Message.source', 'index');
 
+
+         $this->refreshAll();
+         $this->Session->write('Message.source', 'index');
 
          $conditions['Message.status'] = 1;
          if(!$no_match){      
@@ -181,7 +185,9 @@ class MessagesController extends AppController{
 
       function archive(){
 
-         $this->set('title_for_layout', __('Leave-a-Message Archive',true));
+         $this->refreshAll();
+ 
+         $this->pageTitle = __('Leave-a-Message Archive',true);
          $this->Session->write('Message.source', 'archive');
      
          if(isset($this->params['named']['sort'])) { 
@@ -217,7 +223,7 @@ class MessagesController extends AppController{
 
     function edit($id = null)    {  
 
-            $this->set('title_for_layout', __('Edit Leave-a-Message',true));
+            $this->pageTitle = __('Edit Leave-a-Message',true);
 
 	     if(!$id){
 		     $this->redirect(array('action' =>'/'));
@@ -232,26 +238,24 @@ class MessagesController extends AppController{
 
 
       		if($this->Session->check('messages_sort')){
-
 			$data = $this->Session->read('messages_sort');
 			$keys = array_keys($data);
 			$field = $keys[0];
 			$dir = $data[$field];
 		} else {
-
-                        $data = $this->Message->find('list');
-                        $keys = array_keys($data);
 			$field = 'id';
 			$dir = 'asc';
 		}
 
-                
+
       		$this->Session->write('Message.messages_sort', $dir);
       	  	$neighbors = $this->Message->find('neighbors', array('field' => $field, 'dir' => 'desc','value' => $this->data['Message'][$field], 'conditions' => array('status' => $this->data['Message']['status'] )));	
 
 		$tags 	    = $this->Message->Tag->find('list');
  		$categories = $this->Message->Category->find('list');
- 		$this->set(compact('tags','categories','neighbors','keys'));
+ 		$this->set(compact('tags','categories','neighbors'));
+
+		     
 
 		}
 
@@ -259,11 +263,9 @@ class MessagesController extends AppController{
 
 	if($this->Message->saveAll($this->data)){
 
-                $title = $this->Message->getTitle($id);
 		$this->Message->save($this->data['Tag']);
 		$this->_flash(__('The entry has been updated',true),'success');
-	        $this->log('[INFO] MESSAGE EDITED, Id: '.$id.', Title: '.$title, 'message');    	     
-
+    	     
 		$submit   = $this->params['data']['Submit'];
 
 		if ($submit == __('Save',true) ){		   
@@ -283,10 +285,10 @@ class MessagesController extends AppController{
 
      	     $title = $this->Message->getTitle($id);
 
-    	     if($this->Message->delete($id))
+    	     if($this->Message->del($id))
 	     {
 	     $this->Session->setFlash('Message with title "'.$title.'" has been deleted.');
-             $this->log('[INFO] MESSAGE DELETED, Id: '.$id.', Title: '.$title, 'message');    	     
+	     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
 	    
 	     }
 
@@ -321,21 +323,17 @@ class MessagesController extends AppController{
     	     	foreach ($entries as $key => $id){
 	     	     if ($id) {
 			   $this->Message->id = $id;
-                           $title = $this->Message->getTitle($id);
 			   if ($action == __('Delete',true)){
-		     	       if ($this->Message->delete($id)){
-
-                                     $this->log('[INFO] MESSAGE DELETED, Id: '.$id.', Title: '.$title, 'message');    	     
-
+		     	       if ($this->Message->del($id)){
+				     $title = $this->Message->getTitle($id);
+				     $this->log('Msg: MESSAGE  DELETED; Id:title: '.$id.":".$title, 'leave_message');
 			        }
 			    } elseif ($action == __('Move to Archive',true)){
 				$this->Message->saveField('status',0);
-                                $this->log('[INFO] MESSAGE ARCHIVED, Id: '.$id.', Title: '.$title, 'message');    	     
-
+ 	      			$this->log('ARCHIVE Message '.$id, 'leave_message');		       
 			    }  elseif ($action == __('Activate',true)){
 				$this->Message->saveField('status',1);
-                                $this->log('[INFO] MESSAGE ACTIVATED, Id: '.$id.', Title: '.$title, 'message');    	     
-
+ 	      			$this->log('Msg: MESSAGE ACTIVATED '.$id, 'leave_message');		       
 			    }
 		        }
 	             } //foreach

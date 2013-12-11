@@ -1770,6 +1770,7 @@ rootconf_1204/opt/freeswitch/scripts/freedomfone/monitor_ivr/main.js -text
 rootconf_1204/opt/freeswitch/scripts/freedomfone/sms/README -text
 rootconf_1204/opt/freeswitch/scripts/freedomfone/sms/gammu_main.js -text
 rootconf_1204/opt/freeswitch/scripts/freedomfone/sms/main.js -text
+rootconf_1204/opt/freeswitch/scripts/freedomfone/sms/officeroute_main.js -text
 rootconf_1204/opt/freeswitch/scripts/freedomfone/tickle/main.js -text
 rootconf_1204/var/www/index.html -text
 /rootconf_install.sh -text

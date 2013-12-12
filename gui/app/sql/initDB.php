@@ -55,6 +55,7 @@
     $this->Acl->deny($group, 'controllers/Bin');
     $this->Acl->allow($group, 'controllers/Bin/index');
     $this->Acl->allow($group, 'controllers/Bin/refresh');
+    $this->Acl->allow($group, 'controllers/Bin/disp');
 
     //Language Selectors and Voice menus
     $this->Acl->deny($group, 'controllers/IvrMenus');

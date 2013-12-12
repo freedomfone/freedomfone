@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- List Incoming SMS
+ * disp.ctp	- List all incoming SMS by hardware ID
  * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -22,52 +22,8 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb(__('Message Centre',true), '');
-echo $html->addCrumb(__('Incoming SMS',true), '/bin');
+echo $ajax->div("service_div");
 
-
-$session->flash();
-echo $javascript->includeScript('toggle');
-
-/*
-echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
-echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
-echo $form->end();
-
-echo $this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
-echo $this->Access->showCheckbox($authGroup, 'document.Bin','frameRightTrans');
-*/
-
-
-
-echo "<h1>".__('Incoming SMS',true)."</h1>";
-
-
-
-
-
-      //Create list of hardware IDs
-      foreach($proto as $entry){
-	       $protos[$entry['Bin']['proto']] = $entry['Bin']['proto'];
-      }
-
-      //AJAX form
-      echo $form->create("Bin");
-      $input1 = $form->input('proto', array('id' => 'ServiceType1','type' => 'select', 'options' => $protos, 'label' => false, 'empty' => '-- '.__("Hardware ID",true).' --'));
-
-
-      echo "<table cellspacing=0 class='none'>";
-      echo $html->tableCells(array($input1), array('class' => 'none'), array('class' => 'none'));
-      echo "</table>";
-
-
-      echo $ajax->div("service_div");
-      $opt = array("update" => "service_div", "url" => "delete", "frequency" => "0.2");
-      echo $ajax->observeForm("BinIndexForm", $opt);
-      echo $form->end();			  
-      //END AJAX FORM
-
-     if ($bin){
 
      echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 
@@ -82,6 +38,7 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
  	$paginator->sort(__("Hardware ID",true), 'proto'),
  	$paginator->sort(__("Sender",true), 'sender'),
 	__('Action',true)));
+
 
       foreach ($bin as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
@@ -103,7 +60,7 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );
 
-	}
+	  }
 
 
      echo $html->tableCells($row);
@@ -120,12 +77,9 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
 
      echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
 
-
-
-
-     } 
-
      echo $form->end();
-     echo $ajax->divEnd('service_div');
 
+
+
+echo $ajax->divEnd('service_div');
 ?>

@@ -459,6 +459,7 @@ gui/app/vendors/simplepie/README.txt -text
 gui/app/vendors/simplepie/simplepie.php -text
 gui/app/vendors/sms.php -text
 gui/app/vendors/spooler_ff.php -text
+gui/app/views/bin/delete.ctp -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text
 gui/app/views/categories/add.ctp -text

@@ -43,6 +43,8 @@ class BinController extends AppController{
           $this->set('title_for_layout', __('SMS Incoming',true));
           $this->Session->write('Bin.source', 'index');
 
+	  $proto = $this->Bin->find('all', array('fields' => 'DISTINCT proto','order' => 'proto ASC'));
+
           if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('bin_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
 	  } elseif($this->Session->check('bin_sort')) { 
@@ -55,12 +57,26 @@ class BinController extends AppController{
 	       $this->paginate['limit'] = $this->Session->read('bin_limit');
 	  }	
 
-     	     $this->Bin->recursive = 0; 
-   	     $data = $this->paginate();
-	     $this->set('data',$data);  
-
+     	  $this->Bin->recursive = 1; 
+   	  $bin = $this->paginate();
+ 	  $this->set(compact('proto','bin'));
       }
 
+
+    function delete(){
+
+
+    $proto = $this->data['Bin']['proto'];
+    if($proto){
+	$data   = $this->paginate('Bin', array('Bin.proto' => $proto));
+	} else { 
+	$data   = $this->paginate('Bin');
+	}
+
+    $this->set('bin',$data);  
+
+
+    }
 
     function process (){
 
@@ -88,7 +104,7 @@ class BinController extends AppController{
 
 
 
-    function delete ($id){
+    function deleteXX ($id){
 
     	     $body = $this->Bin->getBody($id);
     

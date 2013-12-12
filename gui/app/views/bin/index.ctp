@@ -62,7 +62,7 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
 
 
       echo $ajax->div("service_div");
-      $opt = array("update" => "service_div", "url" => "delete", "frequency" => "0.2");
+      $opt = array("update" => "service_div", "url" => "disp", "frequency" => "0.2");
       echo $ajax->observeForm("BinIndexForm", $opt);
       echo $form->end();			  
       //END AJAX FORM

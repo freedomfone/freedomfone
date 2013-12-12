@@ -57,14 +57,14 @@ class MessagesController extends AppController{
          $this->Session->write('messages_page',false);
 
 
-	        $this->Message->recursive = 0; 
-   	        $messages = $this->paginate('Message', array('Message.status' => '1'));
+	 $this->Message->recursive = 0; 
+   	 $messages = $this->paginate('Message', array('Message.status' => '1'));
 
-		$tags 	    = $this->Message->Tag->find('list');
- 		$categories = $this->Message->Category->find('list');
-                $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
+	 $tags 	    = $this->Message->Tag->find('list');
+ 	 $categories = $this->Message->Category->find('list');
+         $instances = $this->Message->find('list', array('fields' => array('Message.instance_id')));
 
- 		$this->set(compact('tags','categories','instances','messages'));
+ 	 $this->set(compact('tags','categories','instances','messages'));
 
 
       }

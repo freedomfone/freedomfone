@@ -55,9 +55,11 @@ var $components = array('RequestHandler','Session','Acl', 'Auth');
 
 function beforeFilter() {
 
-  
+
+ 
          //Change Auth default User model
          $this->Auth->userModel = 'FfUser';
+
 
 
          //Customize Auth error messages
@@ -97,6 +99,9 @@ function beforeFilter() {
               $authUser  = $data['FfUser']['username'];
               $this->set(compact('authGroup', 'authUser'));
 
+
+
+
 	 if(!$timezone = $this->Session->read('Config.timezone')){
 		$timezone = $this->getTimezone();
 	 }
@@ -107,6 +112,7 @@ function beforeFilter() {
                 Configure::write('Config.language', $locale);
 	 }
   
+
     }
 
 

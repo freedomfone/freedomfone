@@ -28,7 +28,7 @@ class FfUser extends AppModel {
 	
         var $belongsTo = array('Group');
         var $actsAs = array('Acl' => array('type' => 'requester'));
- 
+
 
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
@@ -85,6 +85,10 @@ function __construct($id = false, $table = null, $ds = null) {
            return array('model' => 'Group', 'foreign_key' => $ff_user['FfUser']['group_id']);
   
   }
+
+
+
+ 
 
 
   function parentNode() {

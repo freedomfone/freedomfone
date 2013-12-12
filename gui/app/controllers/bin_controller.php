@@ -63,7 +63,7 @@ class BinController extends AppController{
       }
 
 
-    function delete(){
+    function disp(){
 
 
     $proto = $this->data['Bin']['proto'];
@@ -104,7 +104,7 @@ class BinController extends AppController{
 
 
 
-    function deleteXX ($id){
+    function delete ($id){
 
     	     $body = $this->Bin->getBody($id);
     

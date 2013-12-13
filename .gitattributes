@@ -355,6 +355,7 @@ gammu-smsd/conf/huawei_gammu-smsdrc -text
 gammu-smsd/conf/mobigater_gammu-smsdrc -text
 gammu-smsd/daemon/config.php -text
 gammu-smsd/daemon/gammu_daemon.php -text
+gammu-smsd/daemon/gammu_detection.php -text
 gammu-smsd/doc/freedomfone_gammu_smsd_v1.odt -text
 gammu-smsd/doc/freedomfone_gammu_smsd_v1.pdf -text
 gammu-smsd/sql/mysql.sql.gz -text

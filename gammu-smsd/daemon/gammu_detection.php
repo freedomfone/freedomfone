@@ -55,7 +55,7 @@ foreach($files as $key => $port){
 
 		 exec("gammu -c /tmp/gammu.rc -s ".($i-1)." --identify", $result);
 
-		
+		print_r($result);
 		 //Gammu unit with id ($i+1) detected 
 		 if(sizeof($result)> 1){
 		     $imsi = trim(ltrim(strstr($result[5],":"),':'));
@@ -71,6 +71,7 @@ foreach($files as $key => $port){
 		     	$data[$i]['IMEI']  		=  trim(ltrim(strstr($result[4],":"),':'));
 		     	$data[$i]['Manufacturer']  	=  trim(ltrim(strstr($result[1],":"),':'));
 		     	$data[$i]['Device']  		=  trim(ltrim(strstr($result[0],":"),':'));
+		     	$data[$i]['Model']  		=  trim(ltrim(strstr($result[2],":"),':'));
 
 
 		     } else {
@@ -88,10 +89,10 @@ foreach($files as $key => $port){
 
 
 }
-	  print_r($data);
+	  //print_r($data);
 	  foreach($data as $key => $entry){
 
-	    fwrite($handle2, $entry['IMSI'].",".$entry['IMEI'].",".$entry['Manufacturer'].",".$entry['Device']."\n");
+	    fwrite($handle2, $entry['IMSI'].",".$entry['IMEI'].",".$entry['Manufacturer'].",".$entry['Device'].",".$entry['Model']."\n");
 
 	  }
 fclose($handle1);

@@ -17,6 +17,10 @@
 		Options -Indexes FollowSymLinks MultiViews
 		AllowOverride all 
 	</Directory>
+        <Directory /opt/freedomfone/contrib/reporting>
+                Options -Indexes FollowSymLinks MultiViews
+                AllowOverride all
+        </Directory>
 
 	ErrorDocument 403 "Sorry, Fred can't allow you access today!" 
 	LogLevel warn
@@ -24,7 +28,8 @@
 	ErrorLog /opt/freedomfone/log/gui-error.log
 	CustomLog /opt/freedomfone/log/gui-access.log combined
         Alias /freedomfone/xml_curl "/opt/freedomfone/xml_curl/"
+        Alias /freedomfone/reporting "/opt/freedomfone/contrib/reporting/"
         Alias /freedomfone "/opt/freedomfone/gui/"
 
-	php_admin_value open_basedir /tmp:/opt/freedomfone/log:/opt/freedomfone/gui/:/opt/freedomfone/xml_curl/:/opt/freeswitch/scripts/freedomfone/
+	php_admin_value open_basedir /tmp:/opt/freedomfone/log:/opt/freedomfone/gui/:/opt/freedomfone/xml_curl/:/opt/freeswitch/scripts/freedomfone/:/opt/freedomfone/contrib/reporting
 </VirtualHost>

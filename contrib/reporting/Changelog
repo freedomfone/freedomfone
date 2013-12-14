@@ -1,0 +1,38 @@
+/*
+Olaf Dunn <olaf@kubatana.net> 
+
+ * V0.1.4
+ * CSV Upload Fix
+ * FEATURES
+ * ====================
+ * - Fixed headers
+
+ * V0.1.3
+ * CSV Upload Fixes
+ * FEATURES
+ * =====================
+ * - Fixed file format issue
+ *
+
+ *
+ * V0.1.2
+ * CSV Upload Fixes
+ * FEATURES
+ * =====================
+ * - File upload checked for delimiter type to ensure it is of "comma" format
+ *
+ *
+ *
+ * V0.1.1
+ * Initial Release
+ * FEATURES
+ * =====================
+ * - Upload CSV Report from Freedom Fone to generate report
+ * - Allows user to specify granularity (e.g. Daily/Weekly/Monthly)
+ * - Report by menus (Cumulative or by unit)
+ * - Report by total calls (Cumulative or by unit)
+ * - Report by total call length
+
+*/
+
+

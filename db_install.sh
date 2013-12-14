@@ -10,3 +10,8 @@ PWD=""
 
 #For RBAC
 /usr/bin/mysql -u root --password=$PWD freedomfone < $SVNROOT/gui/app/sql/freedomfone_db_auth_schema.sql
+
+#For GAMMU
+/usr/bin/mysql -u root --password=$PWD < $SVNROOT/gammu-smsd/sql/gammu_db_createdb_user.sql
+/usr/bin/mysql -u root --password=$PWD gammu < $SVNROOT/gui/gammu-smsd/sql/gammu_db_schema.sql
+

@@ -407,7 +407,6 @@ gammu-smsd/doc/freedomfone_gammu_smsd_v1.odt -text
 gammu-smsd/doc/freedomfone_gammu_smsd_v1.pdf -text
 gammu-smsd/sql/gammu_db_createdb_user.sql -text
 gammu-smsd/sql/gammu_db_schema.sql -text
-gammu-smsd/sql/mysql.sql.gz -text
 gui/.htaccess -text
 gui/app/.htaccess -text
 gui/app/app_controller.php -text

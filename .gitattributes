@@ -1380,6 +1380,7 @@ mod_gsmopen/mobigater/gsmopen.conf.xml -text
 mod_gsmopen/mobigater/mod_gsmopen.so -text
 office_route/README -text
 office_route/backup_officeroute_2.3.11.tgz -text
+office_route/backup_officeroute_2.3.11_multiSMS.tgz -text
 office_route/config.php -text
 office_route/pop3.php -text
 office_route/pop3_daemon.php -text

@@ -1,7 +1,7 @@
 <?php
 /****************************************************************************
  * gammu_detection.php	- 
- *			- gammu_detection.php should run as a cronjob every x minutes.
+ *			- gammu_detection.php should run once to setup the hardware.
  *
  * version 		- 1.1
  * 

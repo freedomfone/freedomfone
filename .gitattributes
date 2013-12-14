@@ -405,6 +405,7 @@ gammu-smsd/daemon/gammu_daemon.php -text
 gammu-smsd/daemon/gammu_detection.php -text
 gammu-smsd/doc/freedomfone_gammu_smsd_v1.odt -text
 gammu-smsd/doc/freedomfone_gammu_smsd_v1.pdf -text
+gammu-smsd/sql/gammu-smsdrc.tpl -text
 gammu-smsd/sql/gammu_db_createdb_user.sql -text
 gammu-smsd/sql/gammu_db_schema.sql -text
 gui/.htaccess -text

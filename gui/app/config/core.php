@@ -322,4 +322,4 @@ $config['VERSION'] = array(
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
 define ('VERSION','2.S.6dev');
-define ('VERSION_NAME','Manguensis');
+define ('VERSION_NAME','Sharicus');

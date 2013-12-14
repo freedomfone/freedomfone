@@ -154,6 +154,10 @@
 
      echo "<table width='95%' cellspacing = 0>";
      echo $html->tableHeaders(array(
+			__('Enabled',true),
+			__('Gateway',true),
+			__('Inbound',true),
+			__('Outbound',true),
                         __('IMSI',true),
                         __('IMEI',true),
                         __('Manufacturer',true),
@@ -164,11 +168,18 @@
      foreach($gammu_discovery as $key => $entry){
 
         $entry = explode(',',$entry);
+     	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
+     	$row[$key]['gateway']		= $entry[6];
+     	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
+     	$row[$key]['outbound']		= $entry[8] ? 'Yes' : 'No';;
      	$row[$key]['IMSI']		= $entry[0];
      	$row[$key]['IMEI'] 		= $entry[1];
-     	$row[$key]['Manufacturer'] 	= $entry[2];
-     	$row[$key]['Model'] 		= $entry[4];
-     	$row[$key]['HardwareId'] 	= $entry[3];
+     	$row[$key]['manufacturer'] 	= $entry[2];
+     	$row[$key]['model'] 		= $entry[4];
+     	$row[$key]['hardwareId'] 	= $entry[3];
+
+
+
 	$row[$key]['Service'] 		= $form->input('service_id', array('type' => 'select', 'options' => array_merge($lam,$ivr), 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
 
 

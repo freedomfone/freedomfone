@@ -176,6 +176,11 @@ $config['OR_SNMP']= array(
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                              ));
 
-
+$config['GAMMU'] = array(
+			'discovery' => '/tmp/gammu-discovery',
+			'user'	    => 'gammu',
+			'pwd'	    => 'thefone',
+			'database'  => 'gammu',
+			);
 
 ?>

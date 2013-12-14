@@ -31,6 +31,8 @@ class ChannelsController extends AppController{
 
 
       $snmp   = Configure::read('OR_SNMP');
+      $gammu  = Configure::read('GAMMU');
+
       $data = false;
 
       //Refresh OfficeRoute
@@ -58,6 +60,29 @@ class ChannelsController extends AppController{
       $this->set('title_for_layout', __('GSM channels',true));
       $this->requestAction('/channels/refresh');
       $this->set('gsmopen',$this->Channel->find('all'));
+
+
+      //Gammu
+      $gammu_discovery = file($gammu['discovery']);
+
+      $this->loadModel('LmMenu');
+      $lam = $this->LmMenu->find('list', array('fields' => array('instance_id','title')));
+      foreach($lam as $key => $entry){
+         $lam['2'.$key] = $lam[$key];
+	 unset($lam[$key]);
+      }
+
+      $this->loadModel('IvrMenu');
+      $ivr = $this->IvrMenu->find('list', array('fields' => array('instance_id','title')));
+      foreach($ivr as $key => $entry){
+         $ivr['4'.$key] = $ivr[$key];
+	 unset($ivr[$key]);
+      }
+
+
+      $this->set('gammu_discovery',$gammu_discovery);      
+
+      $this->set(compact('gammu_discovery','lam','ivr'));
 
       }
 

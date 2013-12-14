@@ -148,6 +148,41 @@
 
    }
 
+   echo "<h3>".__('Gammu devices',true)."</h3>";
+
+   if($gammu_discovery){
+
+     echo "<table width='95%' cellspacing = 0>";
+     echo $html->tableHeaders(array(
+                        __('IMSI',true),
+                        __('IMEI',true),
+                        __('Manufacturer',true),
+                        __('Model',true),
+                        __('Hardware id',true),
+                        __('Service',true)));
+
+     foreach($gammu_discovery as $key => $entry){
+
+        $entry = explode(',',$entry);
+     	$row[$key]['IMSI']		= $entry[0];
+     	$row[$key]['IMEI'] 		= $entry[1];
+     	$row[$key]['Manufacturer'] 	= $entry[2];
+     	$row[$key]['Model'] 		= $entry[4];
+     	$row[$key]['HardwareId'] 	= $entry[3];
+	$row[$key]['Service'] 		= $form->input('service_id', array('type' => 'select', 'options' => array_merge($lam,$ivr), 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+
+
+	}
+     echo $html->tableCells($row);
+     echo "</table>";
+
+
+
+   } else {
+
+   echo $html->div('feedback',__("There are no Gammu-based units connected to your system.",true));
+
+   }
      echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time())); 
 
  

@@ -14,25 +14,32 @@ $writer->writeAttribute('description','GSMopen Configuration');
 $writer->startElement('global_settings');  
 
 $writer->startElement('param');  
-$writer->writeAttribute('debug','8');
+$writer->writeAttribute('name' , 'debug');
+$writer->writeAttribute('value','8');
 $writer->endElement();  
 
 $writer->startElement('param');  
-$writer->writeAttribute('dialplan','XML');
+$writer->writeAttribute('name', 'dialplan');
+$writer->writeAttribute('value','XML');
 $writer->endElement();  
 
 $writer->startElement('param');  
-$writer->writeAttribute('context','default');
+$writer->writeAttribute('name', 'context');
+$writer->writeAttribute('value','default');
 $writer->endElement();  
 
 $writer->startElement('param');  
-$writer->writeAttribute('hold-music','$${moh_uri}');
+$writer->writeAttribute('name', 'hold-music');
+$writer->writeAttribute('value', '$${moh_uri}');
 $writer->endElement();  
 
 $writer->startElement('param');  
-$writer->writeAttribute('destination','5000');
+$writer->writeAttribute('name', 'destination');
+$writer->writeAttribute('value','5000');
 $writer->endElement();  
 
+
+$writer->endElement();  //global_settings
 $writer->startElement('per_interface_settings');  
 
 print_r($data);
@@ -51,28 +58,30 @@ foreach($data as $key => $entry){
 
     $writer->startElement('interface');  
     $writer->writeAttribute('id',$i); //FS{x}-IMSI
-    $writer->writeAttribute('interface',"FS".$i."-".$entry[0]); //FS{x}-IMSI
+    $writer->writeAttribute('name',"FS".$i."-".$entry[0]); //FS{x}-IMSI
 
     $writer->startElement('param');  
-    $writer->writeAttribute('controldevice_name',$entry[3]); //Port number
+    $writer->writeAttribute('name', 'controldevice_name'); //Port number
+    $writer->writeAttribute('value',$entry[3]); //Port number
     $writer->endElement();  
 
     $writer->startElement('param');  
-    $writer->writeAttribute('controldevice_audio_name',$audio_port); // Port number -1
+    $writer->writeAttribute('name', 'controldevice_audio_name');
+    $writer->writeAttribute('value', $audio_port); // Port number -1
     $writer->endElement();  
 
     $writer->startElement('param');  
-    $writer->writeAttribute('destination','500'.($i-1)); // Extention
+    $writer->writeAttribute('name', 'destination'); // Extention
+   $writer->writeAttribute('value','500'.($i-1)); // Extention
     $writer->endElement();  
 
-    $writer->endElement();  //interface
 
  }
 
 }
 
 $writer->endElement(); //per_interface_settings
-$writer->endElement();  //global_settings
+
 $writer->endElement();  //configuration
 $writer->endDocument();  
 $writer->flush();  

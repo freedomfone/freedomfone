@@ -34,7 +34,7 @@ include_once('config.php');
 //Open log file for writing
 $handle0 = fopen(LogFile,'a');
 $handle1 = fopen(GammuConfig,'w');
-$handle2 = fopen(GammuDiscovery,'w');
+$handle2 = fopen(HardwareDiscovery,'w');
 
 $dir = "/dev";
 $files = scandir($dir);

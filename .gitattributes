@@ -1401,6 +1401,8 @@ gui/cake/tests/test_app/webroot/theme/test_theme/img/test.jpg -text
 gui/index.php -text
 hardware_wizard/config.php -text
 hardware_wizard/discovery.php -text
+hardware_wizard/gammu_config.php -text
+hardware_wizard/gsmopen_config.php -text
 hardware_wizard/setup.php -text
 l10n/README -text
 l10n/Status -text

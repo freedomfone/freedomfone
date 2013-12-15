@@ -336,6 +336,7 @@ dispatcher_in/templates/blacklist.xsl -text
 dispatcher_in/templates/channel_state.xsl -text
 dispatcher_in/templates/custom_message.xsl -text
 dispatcher_in/templates/default.xsl -text
+dispatcher_in/templates/gammu.xsl -text
 dispatcher_in/templates/gsmopen.xsl -text
 dispatcher_in/templates/lmsm.xsl -text
 dispatcher_in/templates/message.xsl -text

@@ -55,7 +55,7 @@ CREATE TABLE `bin` (
   `sender` varchar(200) NOT NULL,
   `created` int(10) unsigned default NULL,
   `mode` varchar(50) default NULL,
-  `proto` varchar(10) default NULL,
+  `proto` varchar(25) default NULL,
   `channel` varchar(50) default NULL,
   `hw_unit` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`)

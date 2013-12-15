@@ -147,7 +147,7 @@ $mypid = getmypid();
 		
 	         //3. Subscribe to events
        	   	   $sock->sendRecv("event xml message CHANNEL_STATE");
-       	   	   $sock->sendRecv("event xml custom message officeroute tickle leave_a_message monitor_ivr gsmopen::dump_event");
+       	   	   $sock->sendRecv("event xml custom message officeroute gammu tickle leave_a_message monitor_ivr gsmopen::dump_event");
 		   logESL("Successfully subscribed to events","INFO",1); 
 
 		   //4. Wait for events
@@ -287,6 +287,12 @@ function applyXSL($event){
 	                    case 'officeroute':
 	                    $xsl= DirXSL.'officeroute.xsl';
 	                    break;
+
+                            case 'gammu':
+                            $xsl= DirXSL.'gammu.xsl';
+                            break;
+
+
                      }
                  }
 
@@ -379,6 +385,13 @@ function applyRules($string){
                          
 	                 $application[]= analyzeBody($body);
 			 logESL("Application match: poll/bin/callback (custom)","INFO",2); 
+			 logESL($application[0],"INFO",2); 
+	 	         break;
+
+	                 case 'gammu':
+                         
+	                 $application[]= analyzeBody($body);
+			 logESL("Application match: Gammu: poll/bin (custom)","INFO",2); 
 			 logESL($application[0],"INFO",2); 
 	 	         break;
 

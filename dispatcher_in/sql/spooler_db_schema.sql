@@ -50,7 +50,7 @@ CREATE TABLE `callback_in` (
   `FreeSWITCH-IPv4` varchar(200) default NULL,
   `Event-Date-Timestamp` bigint(20) unsigned default NULL,
   `login` varchar(50) default NULL,
-  `proto` varchar(10) default NULL,
+  `proto` varchar(25) default NULL,
   `from` varchar(100) default NULL,
   `FF-StartTimeEpoch` bigint(20) unsigned default NULL,
   `FF-FinishTimeEpoch` bigint(20) default NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `cdr` (
   `Caller-Destination-Number` varchar(50) default NULL,
   `Caller-Unique-ID` varchar(50) default NULL,
   `status` tinyint(1) default '0',
-  `proto` varchar(10) default NULL,
+  `proto` varchar(25) default NULL,
   `Answer-State` varchar(50) default NULL,
   `Channel-Name` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
@@ -193,7 +193,7 @@ CREATE TABLE `poll_in` (
   `Body` varchar(200) default NULL,
   `from` varchar(100) default NULL,
   `login` varchar(50) default NULL,
-  `proto` varchar(10) default NULL,
+  `proto` varchar(25) default NULL,
   `status` tinyint(1) default '0',
   `hw_unit` varchar(50) default NULL,
   PRIMARY KEY  (`id`)

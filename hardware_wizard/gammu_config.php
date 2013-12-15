@@ -5,9 +5,8 @@ $data = file(HardwareDiscovery);
 foreach($data as $key => $entry){
 
  $entry = explode(",",$entry);
-
- if($entry[6] == 'gammu'){
- $handle = fopen(HardwareDiscovery."-".$entry[0],'w');
+print_r($entry); if($entry[6] == 'gammu'){
+ $handle = fopen(GammuCondigDir."gammu-smsdrc-".$entry[0],'w');
 
 
  fwrite($handle, "[gammu]\n");

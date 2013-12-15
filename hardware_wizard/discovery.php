@@ -42,8 +42,9 @@ $i = 0;
 $data = array();
 $imsis = array();
 foreach($files as $key => $port){
-	 if(preg_match("/USB/", $port)){
+	 if(preg_match("/USB|ACM/", $port)){
 
+		 echo "Scanning ".$port."\n";
 
 	 	 if($i==0){
 		    fwrite($handle1, "[gammu]\n");
@@ -54,8 +55,7 @@ foreach($files as $key => $port){
 		 fwrite($handle1, "port = /dev/".$port."\n");
 		 fwrite($handle1, "connection = at\n\n\n");
 		 $i++;
-
-		 exec("gammu -c /tmp/gammu.rc -s ".($i-1)." --identify", $result);
+		 exec("gammu -c ".GammuConfig." -s ".($i-1)." --identify", $result);
 
 		print_r($result);
 		 //Gammu unit with id ($i+1) detected 

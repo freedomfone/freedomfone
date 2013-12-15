@@ -31,7 +31,7 @@ CREATE TABLE `bin` (
   `status` tinyint(1) default '0',
   `from` varchar(100) default NULL,
   `login` varchar(50) default NULL,
-  `proto` varchar(10) default NULL,
+  `proto` varchar(25) default NULL,
   `hw_unit` varchar(50) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

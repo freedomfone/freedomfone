@@ -10,6 +10,7 @@
         <FreeSWITCH-IPv4><xsl:value-of select="event/headers/FreeSWITCH-IPv4"/></FreeSWITCH-IPv4>
         <Event-Date-Timestamp><xsl:value-of select="event/headers/epoch"/></Event-Date-Timestamp>
         <Proto><xsl:value-of select="event/headers/proto"/></Proto>
+	<Login><xsl:value-of select="event/headers/login"/></Login>
         <From><xsl:value-of select="event/headers/FF-SMS-Sender-Number"/></From>
        <body><xsl:value-of select="event/body"/></body>
      </headers>

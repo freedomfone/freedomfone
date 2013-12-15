@@ -5,9 +5,9 @@ var date = argv[3];
 
 console_log(" [ " + sms + " ] " + sender +"\n");
     e = new Event("custom", "officeroute");
+    e.addHeader("proto","officeroute");
     e.addHeader("FF-SMS-Sender-Number",sender);
     e.addHeader("login",receiver);
-    e.addHeader("proto","officeroute");
     e.addHeader("epoch",date);
     e.addBody(sms);
     e.fire();

@@ -35,5 +35,8 @@ find /opt/freeswitch/scripts -type f -name "*wav"  | grep -v '\.svn' | xargs  ch
 echo "XML curl: xml_curl server is readable by www-data"
 chown -Rf www-data:www-data /opt/freedomfone/xml_curl
 
+echo "CONTRIB: reporting"
+chown -Rf www-data:www-data /opt/freedomfone/contrib/reporting/
+
 echo "Fixing PID permissions"
 chown -Rf freeswitch:freeswitch /var/run/freeswitch

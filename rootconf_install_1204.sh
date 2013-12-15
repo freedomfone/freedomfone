@@ -46,6 +46,7 @@ chmod 0755 /etc/init.d/freeswitch
 chmod 0755 /etc/init.d/dispatcher_in
 chmod 0755 /etc/init.d/iwatch
 chmod 0755 /etc/init.d/gsmopen
+chmod 0755 /etc/init.d/gammu-smsd
 chmod 0755 /etc/rc.local
 echo "******************************************************************"
 echo "Restarting services"

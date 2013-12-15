@@ -1,0 +1,71 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Short-Description: Gammu SMS daemon for Freedom Fone
+# Description:       It starts/stop gammu for a given IMSI 
+# 		     /etc/init.d/gammu-smsd start <IMSI>
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+NAME=gammu-smsdrc-$2
+DAEMON=/usr/bin/gammu-smsd
+DESC="Gammu SMS Daemon"
+CONFDIR=/opt/freedomfone/gammu-smsd/conf
+CONF=$CONFDIR/gammu-smsdrc-$2
+
+
+if [ -z "$2" ];
+then
+echo "/etc/init.d/gammu-smsd start <IMSI>"
+echo 
+echo "You need to specify the IMSI channel to start/stop"
+echo "IMSIs configured:"
+cd $CONFDIR; ls gammu-smsdrc-* | sed s/gammu-smsdrc-//
+exit
+fi
+
+# user which will run this daemon
+USER=gammu
+
+# Gracefully exit if the package has been removed.
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+    if grep -q '^port = /dev/null' $CONF ; then 
+        log_warning_msg " $NAME not yet configured, please edit $CONF"
+        exit 0
+    fi
+	log_daemon_msg "Starting $DESC" "$NAME"
+	start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid \
+		--exec $DAEMON -- -c $CONF --daemon --user $USER \
+        --pid /var/run/$NAME.pid
+    log_end_msg $?
+	;;
+  stop)
+    log_daemon_msg "Stopping $DESC" $NAME
+	start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid \
+		--exec $DAEMON
+    log_end_msg $?
+	;;
+  restart|force-reload)
+    sh $0 stop
+    sleep 1
+    sh $0 start
+	;;
+  reload)
+  	log_daemon_msg "Reloading $DESC" $NAME
+	start-stop-daemon --stop --signal HUP --quiet --pidfile \
+		/var/run/$NAME.pid --name $NAME
+	log_end_msg $?
+  ;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop <IMSI>}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
+

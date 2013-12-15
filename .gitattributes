@@ -1460,6 +1460,7 @@ rootconf_1204/etc/default/iwatch -text
 rootconf_1204/etc/freeswitch -text
 rootconf_1204/etc/init.d/dispatcher_in -text
 rootconf_1204/etc/init.d/freeswitch -text
+rootconf_1204/etc/init.d/gammu-smsd -text
 rootconf_1204/etc/init.d/gsmopen -text
 rootconf_1204/etc/init.d/iwatch -text
 rootconf_1204/etc/ld.so.conf.d/cepstral.conf -text

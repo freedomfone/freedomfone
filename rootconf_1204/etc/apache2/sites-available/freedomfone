@@ -31,5 +31,5 @@
         Alias /freedomfone/reporting "/opt/freedomfone/contrib/reporting/"
         Alias /freedomfone "/opt/freedomfone/gui/"
 
-	php_admin_value open_basedir /tmp:/opt/freedomfone/log:/opt/freedomfone/gui/:/opt/freedomfone/xml_curl/:/opt/freeswitch/scripts/freedomfone/:/opt/freedomfone/contrib/reporting
+	php_admin_value open_basedir /tmp:/opt/freedomfone/log:/opt/freedomfone/gui/:/opt/freedomfone/xml_curl/:/opt/freeswitch/scripts/freedomfone/:/opt/freedomfone/contrib/reporting:/opt/freedomfone/hardware_wizard/tmp
 </VirtualHost>

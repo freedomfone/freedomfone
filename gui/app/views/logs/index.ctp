@@ -29,7 +29,7 @@ echo $html->addCrumb(__('Logs',true), '/logs');
 	echo "<h1>".__("Logs",true)."</h1>";
 	echo $html->div('instructions',__('Select log file to view.',true));
 	echo $form->create("Log");
-	$opt = array('poll'=>__('Poll',true),'bin' => __('Incoming SMS',true),'message'=>__('Message Centre',true),'ivr' => __('IVR Centre',true),'cdr' => __('CDR',true), 'monitor_ivr' => __('Monitoring',true), 'health' => __('Health',true), 'refresh' => __('Cron and refresh',true), 'debug'=> __('Debug',true),'error' => __('Error',true));
+	$opt = array('poll'=>__('Poll',true),'bin' => __('Incoming SMS',true),'message'=>__('Message Centre',true),'ivr' => __('IVR Centre',true),'cdr' => __('CDR',true), 'monitor_ivr' => __('Monitoring',true), 'health' => __('Health',true), 'refresh' => __('Cron and refresh',true), 'debug'=> __('Debug',true),'error' => __('Error',true),'pop3_daemon' => __('Office Route SMS',true),'gammu_daemon' =>__('Gammu SMS',true));
 
 	echo $form->input("type",array("id"=>"LogType","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select log file",true).' --'));
 	$opt = array(

@@ -136,7 +136,7 @@ $config['FREESWITCH']=		array(
 	      'host'=>'localhost',
 	      'port'=>'8021',
 	      'pass'=>'ClueCon',
-	      'dialplan' =>'/tmp/dialplan.xml'
+	      'dialplan' => BASE_DIR.'xml_curl/dialplan.xml',
 	      );
 
 $config['ESL']	= array(
@@ -179,11 +179,11 @@ $config['OR_SNMP']= array(
                              ));
 
 $config['GAMMU'] = array(
-			'discovery' => BASE_DIR.'/hardware_wizard/tmp/hardware-discovery',
-			'user'	    => 'gammu',
-			'password'  => 'thefone',
-			'host'	    => 'localhost',
-			'database'  => 'gammu',
+			'discovery'		=> BASE_DIR.'/hardware_wizard/tmp/hardware-discovery-cake',
+			'user'	    		=> 'gammu',
+			'password'  		=> 'thefone',
+			'host'	    		=> 'localhost',
+			'database'  		=> 'gammu',
 			);
 
 ?>

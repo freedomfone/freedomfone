@@ -124,7 +124,7 @@ class Channel extends AppModel{
 
 
 
-      function create_dialplan(){
+      function create_dialplan($data){
 
 
       	       $settings  = Configure::read('FREESWITCH');
@@ -134,6 +134,7 @@ class Channel extends AppModel{
 	       $writer->startDocument('1.0','UTF-8');  
 	       $writer->setIndent(10);   
 
+	       $writer->writeComment("CREATED ".date('c')); 
 	       $writer->startElement('document');  
 	       $writer->writeAttribute('type','freeswitch/xml');
 	       
@@ -163,7 +164,8 @@ class Channel extends AppModel{
  	       $writer->endElement(); // context
 
 
-	       //Add here
+	       $writer->writeComment("LEAVE A MESSAGE"); 
+	       
 	       $writer->startElement('context');  
 	       $writer->writeAttribute('name','default');
 
@@ -208,6 +210,8 @@ class Channel extends AppModel{
 	       $writer->endElement(); //extension
 
 
+	       $writer->writeComment("VOICE MENUS"); 
+
 	       $writer->startElement('extension');
        	       $writer->writeAttribute('name','ivr_pool');
 
@@ -235,34 +239,72 @@ class Channel extends AppModel{
 	       $writer->endElement(); //extension
 
 
-	       //INBOUND GSMOPEN
+	       $writer->writeComment("INBOUND GSMOPEN"); 
 
-	       /*
-	       foreach($fs_device as $fs){
+	       foreach($data['Channel'] as $key => $channel){
+
+	        if(array_key_exists('instance_id', $channel) && array_key_exists('interface_id', $channel) && $channel['instance_id']){
 
 	       	       $writer->startElement('extension');
-       	       	       $writer->writeAttribute('name','inbound_Mobigater1');
+       	       	       $writer->writeAttribute('name',$channel['interface_id']);
 
 	       	       $writer->startElement('condition');
        	       	       $writer->writeAttribute('field','destination_number');
-       	       	       $writer->writeAttribute('expression','^5000$');
+       	       	       $writer->writeAttribute('expression','^500'.$key.'$');
 
 	       	       $writer->startElement('action');
        	       	       $writer->writeAttribute('application','transfer');
-       	       	       $writer->writeAttribute('data','4100 XML default');
+       	       	       $writer->writeAttribute('data', $channel['instance_id']." XML default");
+	       	       $writer->endElement(); //action
 
 	       	       $writer->endElement(); //condition
 		       $writer->endElement(); //extension
 
+		       }
+
 	       }
-*/
+
  	       $writer->endElement(); // context
  	       $writer->endElement(); // include
  	       $writer->endElement(); // section
  	       $writer->endElement(); // document
 
-
+	       $writer->flush();
       }
 
+
+      function updateHardwareDiscovery($data){
+
+      	  $config = Configure::read('GAMMU');
+
+
+	       foreach($data['Channel'] as $key => $channel){
+
+	          if(array_key_exists('instance_id', $channel) && $channel['instance_id']){
+	             $imsi[$channel['interface_id']] = $channel['instance_id'];
+		  }
+	       }
+
+	       $file = file($config['discovery']);
+	       $handle = fopen($config['discovery'],'w');
+
+	       foreach($file as $key => $line){
+	       
+	         $_line = explode(',',trim($line));
+
+		 if(array_key_exists(trim($_line[9]),$imsi)){
+		     $instance_id = $imsi[trim($_line[9])];		 
+
+
+		 } else {
+
+		    $instance_id = 'false';
+		 }
+         
+		     fwrite($handle, trim($line).", ".$instance_id."\n");
+	       }
+	       fclose($handle);
+
+      }
 }
 ?>

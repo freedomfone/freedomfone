@@ -38,6 +38,7 @@
    if($gammu_discovery){
 
       echo $form->create("Channel");
+
      echo "<table width='95%' cellspacing = 0>";
      echo $html->tableHeaders(array(
 			__('Enabled',true),
@@ -54,8 +55,10 @@
 
      foreach($gammu_discovery as $key => $entry){
 
+
         $entry = explode(',',$entry);
-     	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
+      echo $form->hidden('Channel.'.$key.'.interface_id',array('value'=>trim($entry[9]))); 
+    	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
      	$row[$key]['gateway']		= $entry[6];
      	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
      	$row[$key]['outbound']		= $entry[8] ? 'Yes' : 'No';;
@@ -64,13 +67,14 @@
      	$row[$key]['manufacturer'] 	= $entry[2];
      	$row[$key]['model'] 		= $entry[4];
      	$row[$key]['hardwareId'] 	= $entry[3];
-     	$row[$key]['interfaceId'] 	= $entry[9];
+     	$row[$key]['interfaceId'] 	= trim($entry[9]);
 
 
+	if(array_key_exists(10, $entry)){ $selected = trim($entry[10]);} else {$selected = false;}
 
 	if($entry[6] == 'freeswitch'){
 
-	$row[$key]['Service'] 		= $form->input('instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+	$row[$key]['Service'] 		= $form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
 
 	} else {
 

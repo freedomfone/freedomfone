@@ -135,7 +135,8 @@ $config['IVR_MONITOR']=	array(
 $config['FREESWITCH']=		array(
 	      'host'=>'localhost',
 	      'port'=>'8021',
-	      'pass'=>'ClueCon'
+	      'pass'=>'ClueCon',
+	      'dialplan' =>'/tmp/dialplan.xml'
 	      );
 
 $config['ESL']	= array(
@@ -177,10 +178,11 @@ $config['OR_SNMP']= array(
                              ));
 
 $config['GAMMU'] = array(
-			'discovery' => '/tmp/gammu-discovery',
+			'discovery' => BASE_DIR.'/hardware_wizard/tmp/hardware-discovery',
 			'user'	    => 'gammu',
 			'pwd'	    => 'thefone',
 			'database'  => 'gammu',
 			);
 
 ?>
+

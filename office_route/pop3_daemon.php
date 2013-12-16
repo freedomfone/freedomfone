@@ -83,7 +83,7 @@ $sock = new ESLconnection($host, $port, $pass);
                           logPOP('200 '.$user.' Messages available ('.$msg_no.')','INFO','POP3',3);
 				for($i=0;$i<$msg_no;$i++){
 					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
-						$messages[$i] = parseData($headers,$body,$i);                                             
+						$messages[$i] = parseData($headers,$body,$i,$user);                                             
 			   		} else {
 						logPOP($user.' '.$error,'ERROR','POP3',1);
 					}
@@ -160,7 +160,7 @@ $sock = new ESLconnection($host, $port, $pass);
  * 
  */
 
-     function parseData($headers,$body,$i){
+     function parseData($headers,$body,$i, $user){
 
 
      	for($line=0;$line<count($headers);$line++){
@@ -180,9 +180,6 @@ $sock = new ESLconnection($host, $port, $pass);
 	   		$date = strtotime($var)*1000000;
 			$messages[$i]['date'] = number_format($date, 0, '.', ''); 
 
-
-
-
 		}
 
 						
@@ -196,9 +193,7 @@ $sock = new ESLconnection($host, $port, $pass);
 	} 
 
 
-
-	//FIXME! $array[3] = "To: Admin@2n.cz"
-	$messages[$i]['receiver'] = "1000";
+	$messages[$i]['receiver'] = $user;
 	$messages[$i]['body'] = $message;
 	
 	return $messages;

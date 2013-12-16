@@ -82,7 +82,6 @@ contrib/reporting/step3.php -text
 contrib/reporting/upload/2012-03-13_CDR_ivr_selected.csv -text
 contrib/reporting/uploadForm.php -text
 cron/README -text
-cron/crontab -text
 /db_install.sh -text
 deb_builder/FS1.0/conf/autoload_configs/README -text
 deb_builder/FS1.0/conf/autoload_configs/acl.conf.xml -text

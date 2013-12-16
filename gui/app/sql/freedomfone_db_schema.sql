@@ -41,6 +41,21 @@ INSERT INTO `acls` VALUES (1,'None','No criteria'),(2,'White','Allow always'),(3
 /*!40000 ALTER TABLE `acls` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `batches`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `batches` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `sender` varchar(50) NOT NULL,
+  `body` varchar(200) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `created` int(11) unsigned  NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+
 --
 -- Table structure for table `bin`
 --
@@ -489,6 +504,17 @@ LOCK TABLES `settings` WRITE;
 INSERT INTO `settings` VALUES (1,'language',0,'eng',0,'env'),(2,'length',0,NULL,20,'lam'),(3,'silence',0,NULL,60,'lam'),(4,'domain',0,'http://demo.freedomfone.org',0,'env'),(5,'ip_address',0,'127.0.0.1',0,'env'),(6,'timezone',0,'Africa/Harare',250,'env'),(7,'overwrite_event',0,'',1,'env'),(8,'prefix',0,NULL,263,'env');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `sms_receivers`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `sms_receivers` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `batch_id` int(11) NOT NULL,
+  `receiver` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
 
 
 ----

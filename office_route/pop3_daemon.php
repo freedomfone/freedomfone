@@ -43,7 +43,8 @@ $port = $_SocketParam['port'];
 $pass = $_SocketParam['pass'];
 
 $handle = fopen(LogFile,'a');
-$_OfficerouteParam = $_OfficerouteParamSingle;   //Change to $_OfficerouteParamMulti if multiple users are used
+//$_OfficerouteParam = $_OfficerouteParamSingle;   //Single Channel
+$_OfficerouteParam = $_OfficerouteParamMulti;   //Multiple Channels 
 
 $sock = new ESLconnection($host, $port, $pass);
 
@@ -77,18 +78,18 @@ $sock = new ESLconnection($host, $port, $pass);
 	if(($error=$pop3->Open())=="")  {
 
 		if(($error=$pop3->Login($user,$password,$apop))=="") {
-                     logPOP('200 Connection success','INFO','POP3',3);
+                     logPOP('200 '.$user.' Connection success','INFO','POP3',3);
 			if(($error=$pop3->Statistics($msg_no,$size))==""){ 
-                          logPOP('200 Messages available ('.$msg_no.')','INFO','POP3',3);
+                          logPOP('200 '.$user.' Messages available ('.$msg_no.')','INFO','POP3',3);
 				for($i=0;$i<$msg_no;$i++){
 					if(($error=$pop3->RetrieveMessage($i+1,$headers,$body,-1))==""){
 						$messages[$i] = parseData($headers,$body,$i);                                             
 			   		} else {
-						logPOP($error,'ERROR','POP3',1);
+						logPOP($user.' '.$error,'ERROR','POP3',1);
 					}
                      		  }
 		 	}  else {	
-				logPOP($error,'ERROR','POP3',1);
+				logPOP($user.' '.$error,'ERROR','POP3',1);
 			} 
 
 		} else { 
@@ -99,10 +100,9 @@ $sock = new ESLconnection($host, $port, $pass);
 		} 
  
 	} else {	
-		logPOP($error,'ERROR','POP3',1);
+		logPOP($user.' '.$error,'ERROR','POP3',1);
 	} 
 
-     } //foreach
 
      if ($messages){
 
@@ -113,17 +113,17 @@ $sock = new ESLconnection($host, $port, $pass);
        	   	   $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/officeroute_main.js '".$message[$key]['body']."' '".$message[$key]['sender']."' '".$message[$key]['receiver']."' '".$message[$key]['date']."'";
        		   $result = $sock->api($cmd);
 
-		   logPOP("200 Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',($message[$key]['date']/1000000)).", Body: ".$message[$key]['body'],'INFO','ESL',3);
+		   logPOP("200 ".$user." Command; Sender: ".$message[$key]['sender'].", Date: ".date('M j H:i:s',($message[$key]['date']/1000000)).", Body: ".$message[$key]['body'],'INFO','ESL',3);
 
 		   if (preg_match('/OK/i', $result->getBody())){
 
-		      logPOP('200 Command success','INFO','ESL',3);
+		      logPOP('200 '.$user.' Command success','INFO','ESL',3);
 
 
 		      if (! $result = $pop3->DeleteMessage($key+1)){
-                         logPOP('200 Delete success','INFO','POP3',3);		      	 
+                         logPOP('200 '.$user.' Delete success','INFO','POP3',3);		      	 
 		      } else {
-	 	         logPOP('500 Delete failed: '.$result,'ERROR','POP3',1);
+	 	         logPOP('500 '.$user.' Delete failed: '.$result,'ERROR','POP3',1);
 
 		      }
 
@@ -133,12 +133,14 @@ $sock = new ESLconnection($host, $port, $pass);
 		    logPOP('500 Command failed' ,'ERROR','ESL',1);
 
 		   }
-           }
-       }  //messages
+           } //foreach message
 
+
+       }  //no messages
 	      $pop3->Close();
-	      logPOP('200 Connection closed','INFO', 'POP3',3); 
+	      logPOP('200 '.$user.' Connection closed','INFO', 'POP3',3); 
   
+     } //foreach channel
               $sock->disconnect();
               logPOP('200 Connection closed','INFO', 'ESL',3); 
 

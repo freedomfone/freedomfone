@@ -177,7 +177,7 @@ class sms
      * @param string $sender
      * @return false if error
      */
-    function send($msg,$dest,$sender='')
+    function send($msg,$dest,$sender)
     {
 
     if(!$dest)

@@ -123,5 +123,146 @@ class Channel extends AppModel{
       }
 
 
+
+      function create_dialplan(){
+
+
+      	       $settings  = Configure::read('FREESWITCH');
+
+      	       $writer = new XMLWriter();  
+	       $writer->openURI($settings['dialplan']);  
+	       $writer->startDocument('1.0','UTF-8');  
+	       $writer->setIndent(10);   
+
+	       $writer->startElement('document');  
+	       $writer->writeAttribute('type','freeswitch/xml');
+	       
+	       $writer->startElement('section');  
+	       $writer->writeAttribute('name','dialplan');
+	       $writer->writeAttribute('description','curl_diaplan');
+
+	       $writer->startElement('include');  
+
+	       $writer->startElement('context');  
+	       $writer->writeAttribute('name','public');
+
+	       $writer->startElement('extention');  
+	       $writer->writeAttribute('name','entry');
+
+	       $writer->startElement('condition');  
+	       $writer->writeAttribute('field','destination_number');
+	       $writer->writeAttribute('expression','^(.*)$');
+
+	       $writer->startElement('action');  
+	       $writer->writeAttribute('application','speak');
+	       $writer->writeAttribute('data','cepstral|allison|All external calls fall here!');
+
+	       $writer->endElement(); // action
+ 	       $writer->endElement(); // condition
+ 	       $writer->endElement(); // extention
+ 	       $writer->endElement(); // context
+
+
+	       //Add here
+	       $writer->startElement('context');  
+	       $writer->writeAttribute('name','default');
+
+	       $writer->startElement('extension');
+       	       $writer->writeAttribute('name','leave_message_pool');
+
+	       $writer->startElement('condition');
+       	       $writer->writeAttribute('field','destination_number');
+       	       $writer->writeAttribute('expression','^2(\d{3})$');
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','ring_ready');
+	       $writer->endElement();
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','answer');
+	       $writer->endElement();
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','sleep');
+       	       $writer->writeAttribute('data','2000');
+	       $writer->endElement();
+
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','set');
+       	       $writer->writeAttribute('data','instance_id=$1');
+	       $writer->endElement();
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','set');
+       	       $writer->writeAttribute('data','lmIP=$${local_ip_v4}');
+	       $writer->endElement();
+
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','javascript');
+       	       $writer->writeAttribute('data','/opt/freeswitch/scripts/freedomfone/leave_message/main.js ${instance_id} ${lmIP}');
+	       $writer->endElement();
+
+	       $writer->endElement(); //condition
+	       $writer->endElement(); //extension
+
+
+	       $writer->startElement('extension');
+       	       $writer->writeAttribute('name','ivr_pool');
+
+	       $writer->startElement('condition');
+       	       $writer->writeAttribute('field','destination_number');
+       	       $writer->writeAttribute('expression','^4(\d{3})$');
+
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','answer');
+	       $writer->endElement();
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','set');
+       	       $writer->writeAttribute('data','instance_id=$1');
+	       $writer->endElement();
+
+	       $writer->startElement('action');
+       	       $writer->writeAttribute('application','ivr');
+       	       $writer->writeAttribute('data','freedomfone_ivr_${instance_id}');
+	       $writer->endElement();
+
+
+	       $writer->endElement(); //condition
+	       $writer->endElement(); //extension
+
+
+	       //INBOUND GSMOPEN
+
+	       /*
+	       foreach($fs_device as $fs){
+
+	       	       $writer->startElement('extension');
+       	       	       $writer->writeAttribute('name','inbound_Mobigater1');
+
+	       	       $writer->startElement('condition');
+       	       	       $writer->writeAttribute('field','destination_number');
+       	       	       $writer->writeAttribute('expression','^5000$');
+
+	       	       $writer->startElement('action');
+       	       	       $writer->writeAttribute('application','transfer');
+       	       	       $writer->writeAttribute('data','4100 XML default');
+
+	       	       $writer->endElement(); //condition
+		       $writer->endElement(); //extension
+
+	       }
+*/
+ 	       $writer->endElement(); // context
+ 	       $writer->endElement(); // include
+ 	       $writer->endElement(); // section
+ 	       $writer->endElement(); // document
+
+
+      }
+
 }
 ?>

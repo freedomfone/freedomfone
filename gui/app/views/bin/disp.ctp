@@ -32,30 +32,30 @@ echo $ajax->div("service_div");
 
       echo $html->tableHeaders(array(
 	'',
+ 	$paginator->sort(__("Gateway",true), 'proto'),
+ 	$paginator->sort(__("Channel",true), 'proto'),
  	$paginator->sort(__("Message",true), 'body'),
  	$paginator->sort(__("Time",true), 'created'),
- 	$paginator->sort(__("Type",true), 'mode'),
- 	$paginator->sort(__("Hardware ID",true), 'proto'),
  	$paginator->sort(__("Sender",true), 'sender'),
 	__('Action',true)));
 
 
       foreach ($bin as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
-	$body     = array($entry['Bin']['body'], array('width' => '500px'));
-	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
-	$mode     = $entry['Bin']['mode'];
 	$proto  = $entry['Bin']['proto'];
+	$login  = $entry['Bin']['login'];
+	$body     = array($entry['Bin']['body'], array('width' => '400px'));
+	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$sender   = $entry['Bin']['sender'];
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this entry?',true)."');"));
 
 
      	$row[$key] = array(
                      $this->Access->showBlock($authGroup, $id), 
+                     $proto, 
+                     $login, 
                      $body, 
                      $created, 
-                     $mode, 
-                     $proto, 
                      $this->Access->showBlock($authGroup, $sender,'XXX'), 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );

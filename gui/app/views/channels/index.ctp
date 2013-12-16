@@ -23,7 +23,7 @@
  ***************************************************************************/
 
   echo $html->addCrumb(__('Dashboard',true), '');
-  echo $html->addCrumb(__('GSM channels',true), '/channels');
+  echo $html->addCrumb(__('Audio channels',true), '/channels');
 
         // Multiple Flash messages
         if ($messages = $this->Session->read('Message')) {
@@ -39,7 +39,7 @@
   echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
   echo $form->end();
 
-  echo "<h1>".__('GSM channels',true)."</h1>";
+  echo "<h1>".__('Audio channels',true)."</h1>";
 
      echo "<h3>".__('Office Route',true)."</h3>";
 
@@ -102,7 +102,7 @@
    }
 
 
-    echo "<h3>".__('Mobigater',true)."</h3>";
+    echo "<h3>".__('Active channels',true)."</h3>";
 
      if ($gsmopen){
 
@@ -148,52 +148,7 @@
 
    }
 
-   echo "<h3>".__('Gammu devices',true)."</h3>";
 
-   if($gammu_discovery){
-
-     echo "<table width='95%' cellspacing = 0>";
-     echo $html->tableHeaders(array(
-			__('Enabled',true),
-			__('Gateway',true),
-			__('Inbound',true),
-			__('Outbound',true),
-                        __('IMSI',true),
-                        __('IMEI',true),
-                        __('Manufacturer',true),
-                        __('Model',true),
-                        __('Hardware id',true),
-                        __('Service',true)));
-
-     foreach($gammu_discovery as $key => $entry){
-
-        $entry = explode(',',$entry);
-     	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
-     	$row[$key]['gateway']		= $entry[6];
-     	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
-     	$row[$key]['outbound']		= $entry[8] ? 'Yes' : 'No';;
-     	$row[$key]['IMSI']		= $entry[0];
-     	$row[$key]['IMEI'] 		= $entry[1];
-     	$row[$key]['manufacturer'] 	= $entry[2];
-     	$row[$key]['model'] 		= $entry[4];
-     	$row[$key]['hardwareId'] 	= $entry[3];
-
-
-
-	$row[$key]['Service'] 		= $form->input('service_id', array('type' => 'select', 'options' => array_merge($lam,$ivr), 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
-
-
-	}
-     echo $html->tableCells($row);
-     echo "</table>";
-
-
-
-   } else {
-
-   echo $html->div('feedback',__("There are no Gammu-based units connected to your system.",true));
-
-   }
      echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time())); 
 
  

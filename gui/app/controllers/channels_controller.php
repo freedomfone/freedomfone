@@ -57,12 +57,31 @@ class ChannelsController extends AppController{
       $this->set('data',$data);
 
       $this->Channel->fsCommand("gsmopen_dump list");
-      $this->set('title_for_layout', __('GSM channels',true));
+      $this->set('title_for_layout', __('Audio channels',true));
       $this->requestAction('/channels/refresh');
       $this->set('gsmopen',$this->Channel->find('all'));
 
 
+
+      }
+
+      function audio_services(){
+
+
+      if($instance_id = $this->data['Channel']['instance_id']){
+
+            $interface_id = false;
+//            $interface_id = $this->data['Channel']['interface_id'];
+            $this->Channel->create_dialplan($interface_id, $instance_id);
+
+       }
+
+      $gammu  = Configure::read('GAMMU');
+      $lam = $ivr = false;
+
       //Gammu
+      if(file_exists($gammu['discovery'])){
+
       $gammu_discovery = file($gammu['discovery']);
 
       $this->loadModel('LmMenu');
@@ -80,13 +99,17 @@ class ChannelsController extends AppController{
       }
 
 
-      $this->set('gammu_discovery',$gammu_discovery);      
 
-      $this->set(compact('gammu_discovery','lam','ivr'));
+      } else {
+
+      $gammu_discovery = false;
 
       }
 
+      $this->set('gammu_discovery',$gammu_discovery);      
+      $this->set(compact('gammu_discovery','lam','ivr'));
 
+      }
 
 
       function refresh($method = null){

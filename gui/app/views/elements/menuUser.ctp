@@ -194,6 +194,11 @@
 <?php echo $html->link(__("GSM channels",true),'/channels'); ?>
 </li>
 
+<li>
+<?php echo $html->link(__("Reporting",true),'/reporting'); ?>
+</li>
+
+
 
 <li>
 <?php echo $html->link(__("About",true),'/dashboard/about'); ?>

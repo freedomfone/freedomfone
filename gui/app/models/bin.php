@@ -59,7 +59,7 @@ class Bin extends AppModel{
 	      $created  = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
-           
+       	      $login   = $entry['login'];
 	 
               //Update user statistics
               $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
@@ -67,13 +67,13 @@ class Bin extends AppModel{
               //Save bin data
               $this->create();   
 
-     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode, 'proto' => $proto, 'channel' => $this->protoToChannel($proto), 'user_id' => $user_id);   
+     	      $data= array ('body' => $entry['Body'], 'sender' => $sender, 'created' => $created, 'mode' => $mode, 'proto' => $proto, 'login' => $login, 'channel' => $this->protoToChannel($proto), 'user_id' => $user_id);   
 	      $result = $this->save($data);
-	      $this->log("[INFO] NEW SMS, Body: ".$entry['Body'].", From: ".$sender.", Epoch: ".$created, "bin"); 
+	      $this->log("[INFO] NEW SMS, Body: ".$entry['Body'].", From: ".$sender.", Epoch: ".$created.", Login. ".$login, "bin"); 
 
 
               //Create CDR
-	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension, application, proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension, application, proto, login,  user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login', '$user_id')");
 
               $this->log("[INFO] NEW CDR, Application: ".$application.", Epoch: ".$created, "cdr");
 

@@ -205,7 +205,15 @@
 
 
 <li>
-<?php echo $html->link(__("GSM channels",true),'/channels'); ?>
+<?php echo $html->link(__("Active GSM channels",true),'/channels'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Audio services",true),'/channels/audio_services'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Reporting",true),'/reporting'); ?>
 </li>
 
 

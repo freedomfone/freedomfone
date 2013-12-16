@@ -28,32 +28,33 @@ echo $html->addCrumb(__('Incoming SMS',true), '/bin');
 
 $session->flash();
 echo $javascript->includeScript('toggle');
+$protos = false;
 
 /*
 echo $form->create('Bin',array('type' => 'post','action'=> 'index'));
 echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
 echo $form->end();
+*/
+
+
 
 echo $this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
 echo $this->Access->showCheckbox($authGroup, 'document.Bin','frameRightTrans');
-*/
+
 
 
 
 echo "<h1>".__('Incoming SMS',true)."</h1>";
 
 
-
-
-
       //Create list of hardware IDs
-      foreach($proto as $entry){
-	       $protos[$entry['Bin']['proto']] = $entry['Bin']['proto'];
+      foreach($login as $entry){
+	       $channels[$entry['Bin']['login']] = $entry['Bin']['login'];
       }
 
       //AJAX form
       echo $form->create("Bin");
-      $input1 = $form->input('proto', array('id' => 'ServiceType1','type' => 'select', 'options' => $protos, 'label' => false, 'empty' => '-- '.__("Hardware ID",true).' --'));
+      $input1 = $form->input('login', array('id' => 'ServiceType1','type' => 'select', 'options' => $channels, 'label' => false, 'empty' => '-- '.__("Channel",true).' --'));
 
 
       echo "<table cellspacing=0 class='none'>";
@@ -76,29 +77,30 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
 
       echo $html->tableHeaders(array(
 	'',
+ 	$paginator->sort(__("Gateway",true), 'proto'),
+ 	$paginator->sort(__("Channel",true), 'proto'),
  	$paginator->sort(__("Message",true), 'body'),
  	$paginator->sort(__("Time",true), 'created'),
- 	$paginator->sort(__("Type",true), 'mode'),
- 	$paginator->sort(__("Hardware ID",true), 'proto'),
+
  	$paginator->sort(__("Sender",true), 'sender'),
 	__('Action',true)));
 
       foreach ($bin as $key => $entry){
 	$id = "<input name='data[Bin][$key]['Bin']' type='checkbox' value='".$entry['Bin']['id']."' id='check' class='check'>";
-	$body     = array($entry['Bin']['body'], array('width' => '500px'));
+	$proto    = $entry['Bin']['proto'];
+	$login    = $entry['Bin']['login'];
+	$body     = array($entry['Bin']['body'], array('width' => '400px'));
 	$created  = $time->format('Y/m/d H:i',$entry['Bin']['created']);
-	$mode     = $entry['Bin']['mode'];
-	$proto  = $entry['Bin']['proto'];
 	$sender   = $entry['Bin']['sender'];
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this entry?',true)."');"));
 
 
      	$row[$key] = array(
                      $this->Access->showBlock($authGroup, $id), 
+                     $proto, 
+   		     $login, 
                      $body, 
                      $created, 
-                     $mode, 
-                     $proto, 
                      $this->Access->showBlock($authGroup, $sender,'XXX'), 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );

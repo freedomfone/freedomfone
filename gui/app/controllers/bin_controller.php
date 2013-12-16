@@ -43,7 +43,7 @@ class BinController extends AppController{
           $this->set('title_for_layout', __('SMS Incoming',true));
           $this->Session->write('Bin.source', 'index');
 
-	  $proto = $this->Bin->find('all', array('fields' => 'DISTINCT proto','order' => 'proto ASC'));
+	  $login = $this->Bin->find('all', array('fields' => 'DISTINCT login','order' => 'login ASC'));
 
           if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('bin_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -59,21 +59,20 @@ class BinController extends AppController{
 
      	  $this->Bin->recursive = 1; 
    	  $bin = $this->paginate();
- 	  $this->set(compact('proto','bin'));
+ 	  $this->set(compact('login','bin'));
       }
 
 
     function disp(){
 
+    	     $login = $this->data['Bin']['login'];
+    	     if($login){
+		$data   = $this->paginate('Bin', array('Bin.login' => $login));
+	     } else { 
+	       $data   = $this->paginate('Bin');
+	     }
 
-    $proto = $this->data['Bin']['proto'];
-    if($proto){
-	$data   = $this->paginate('Bin', array('Bin.proto' => $proto));
-	} else { 
-	$data   = $this->paginate('Bin');
-	}
-
-    $this->set('bin',$data);  
+    	     $this->set('bin',$data);  
 
 
     }

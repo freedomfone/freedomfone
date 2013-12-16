@@ -206,6 +206,7 @@ function checkDate($data,$field){
 		$votes_chtext 	=  trim($_message[1]);
 		$sender		=  $this->sanitizePhoneNumber($entry['from']);
 		$proto		=  $entry['proto'];
+		$login		=  $entry['login'];
 	        $created 	=  intval(floor($entry['Event-Date-Timestamp']/1000000));
 		$matched      	=  false;
 
@@ -289,9 +290,7 @@ function checkDate($data,$field){
 			 //ADD TO BIN
 	   		 $mode=__("Unclassified",true);
 			 $application = 'bin';
-			// $result = $this->query("insert into bin (body,sender,created,mode,proto,channel)values ('$body','$sender','$created','$mode','$proto', $this->protoToChannel($proto))");
-
-			 $result = $this->query("insert into bin (body,sender,created,mode,proto,channel)values ('$body','$sender','$created','$mode','$proto', '".$this->protoToChannel($proto)."')");
+			 $result = $this->query("insert into bin (body,sender,created,mode,proto, login, channel)values ('$body','$sender','$created','$mode','$proto', '$login', '".$this->protoToChannel($proto)."')");
 	        }
 
 
@@ -306,7 +305,7 @@ function checkDate($data,$field){
                         $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
 
   	                //Add data to CDR
-	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto, user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$user_id')");
+	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto,login,user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login','$user_id')");
 
 
 

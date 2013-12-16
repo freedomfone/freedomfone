@@ -523,6 +523,7 @@ gui/app/views/cdr/index.ctp -text
 gui/app/views/cdr/output.ctp -text
 gui/app/views/cdr/overview.ctp -text
 gui/app/views/cdr/statistics.ctp -text
+gui/app/views/channels/audio_services.ctp -text
 gui/app/views/channels/edit.ctp -text
 gui/app/views/channels/index.ctp -text
 gui/app/views/elements/channel_signal_level.ctp -text

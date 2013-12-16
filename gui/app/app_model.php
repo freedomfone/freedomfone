@@ -224,5 +224,36 @@ class AppModel extends Model {
                    $this->validationErrors[$field] = __($value, true);
                 }
            }
+
+
+
+
+
+	function getChannel($proto,$login){
+
+
+	  if($proto == 'officeroute'){
+
+	    $or = substr($str, 2, 1); //returns the 3rd character
+	    $sim = substr($str, 6, 1); //returns the 7th character
+
+	    $pos = ($or-1)*4+$sim;
+
+	    $this->loadModel('OfficeRoute');
+	    $channel = $this->OfficeRoute->findById($pos);
+	    $imsi = $channel['OfficeRoute']['IMSI'];
+
+	    debug($channel);
+
+	    return $login."-".$imsi;
+	  } else {
+
+	  return $login;
+
+	  }
+	}
+
+
+
 }
 ?>

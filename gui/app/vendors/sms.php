@@ -124,7 +124,7 @@ class sms
      * @param string $sender
      * @return void
      */
-    function sendSMS($msg,$dest,$sender='')
+    function sendSMS($msg,$dest,$sender)
     {
 
         if($this->type == 'mysql'){
@@ -171,7 +171,7 @@ class sms
     
     /**
      * sms::send()
-     * @usage tell gammu-smsd to send sms to sepcified phone number
+     * @usage tell gammu-smsd to send sms to specified phone number
      * @param string $msg
      * @param string $dest
      * @param string $sender
@@ -203,7 +203,7 @@ class sms
     {
 
 	if($this->type == 'mysql'){
-          $query="insert into outbox (`DestinationNumber`,`TextDecoded`,`SenderID`, `RelativeValidity`) values ('{$this->dest}','{$this->msg}','','{$this->RelativeValidity}')";
+          $query="insert into outbox (`DestinationNumber`,`TextDecoded`,`SenderID`, `RelativeValidity`) values ('{$this->dest}','{$this->msg}','{$sender}','{$this->RelativeValidity}')";
                 mysqli_query($this->res, $query);
                 $id=mysqli_fetch_assoc(mysqli_query($this->res, "select last_insert_id() as id"));
                 $id=$id['id'];

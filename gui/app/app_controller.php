@@ -44,7 +44,7 @@ App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php');
 App::import('Core', 'HttpSocket');
 App::import('Core','L10n');
 App::import('Sanitize');
-
+App::import('Vendor', 'sms'); 
 
 class AppController extends Controller {
 
@@ -68,7 +68,7 @@ function beforeFilter() {
 
 
          //Allow global access to pages and refresh methods
-         $this->Auth->allowedActions = array('display','refresh','audio_services');
+         $this->Auth->allowedActions = array('display','refresh','audio_services','outgoing','sms','add_batch');
 
          //Global root ACO 
          $this->Auth->actionPath = 'controllers/';

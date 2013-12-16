@@ -1410,8 +1410,6 @@ gui/index.php -text
 hardware_wizard/Changelog -text
 hardware_wizard/config.php -text
 hardware_wizard/discovery.php -text
-hardware_wizard/gammu_config.php -text
-hardware_wizard/gsmopen_config.php -text
 hardware_wizard/scan_reset.sh -text
 hardware_wizard/setup.php -text
 l10n/README -text

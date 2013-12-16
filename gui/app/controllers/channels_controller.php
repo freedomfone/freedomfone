@@ -68,12 +68,13 @@ class ChannelsController extends AppController{
       function audio_services(){
 
 
-      if($instance_id = $this->data['Channel']['instance_id']){
+       if($this->data){
 
-            $interface_id = false;
-//            $interface_id = $this->data['Channel']['interface_id'];
-            $this->Channel->create_dialplan($interface_id, $instance_id);
+	    //Update hardware discovery files
+	    $this->Channel->updateHardwareDiscovery($this->data);
 
+	    //Create dialplan
+            $this->Channel->create_dialplan($this->data);
        }
 
       $gammu  = Configure::read('GAMMU');

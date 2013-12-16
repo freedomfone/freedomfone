@@ -1,0 +1,22 @@
+backup_officeroute_2.3.11_multiSMS_outSMS.tgz
+
+ 	GSM-SIP calls towards Freedom Fone
+	Incoming SMSs go to 4 different accounts or1sim1, or1sim2, or1sim3, or1sim4
+	Outgoing SMSs via SMTP use Module 1
+	SNMP support
+
+backup_officeroute_2.3.11_multiSMS.tgz
+	
+	GSM-SIP calls towards Freedom Fone
+	Incoming SMSs go to 4 different accounts or1sim1, or1sim2, or1sim3, or1sim4
+	SNMP support
+
+backup_officeroute_2.3.11.tgz
+ 	
+	GSM-SIP calls towards Freedom Fone
+	All incoming SMSs go to one single account "Admin"
+	SNMP support
+
+Default IP: 192.168.1.46
+Passwords: Admin / 2n
+	  or1sim1-4 / 2n

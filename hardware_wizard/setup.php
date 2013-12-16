@@ -105,6 +105,8 @@ foreach ($file as $key => $line){
 
 	fclose($handle);
 
+	copy(HardwareDiscovery,HardwareDiscovery."-cake");
+
 //STEP 2: GAMMU CONFIG
 
 

@@ -173,6 +173,7 @@ $config['OR_MIB']= array(
 
 $config['OR_SNMP']= array(
                         array('ip_addr'   => '192.168.1.46',
+			      'domain'	  => 'ch1pmunk.nu',
                               'community' => 'public' , 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
                              ));
@@ -180,7 +181,8 @@ $config['OR_SNMP']= array(
 $config['GAMMU'] = array(
 			'discovery' => BASE_DIR.'/hardware_wizard/tmp/hardware-discovery',
 			'user'	    => 'gammu',
-			'pwd'	    => 'thefone',
+			'password'  => 'thefone',
+			'host'	    => 'localhost',
 			'database'  => 'gammu',
 			);
 

@@ -129,5 +129,26 @@ class BinController extends AppController{
     }
 
 
+    function outgoing($id){
+
+
+
+    $auth = array(
+    	      'database' => 'gammu', 
+    	      'user'     => 'gammu', 
+	      'host'     => 'localhost', 
+	      'password' => 'thefone'
+		);
+
+     $message  = "New message ".$id; 
+     $sender   = "GM1-240016010774781"; 
+     $receiver = "0702867989";
+     $sms = new sms('mysql', $auth);
+     $id = $sms->sendSMS($message,$receiver,$sender); 
+
+     print_r($id);
+
+    }
+
 }
 ?>

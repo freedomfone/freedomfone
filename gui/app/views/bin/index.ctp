@@ -28,7 +28,7 @@ echo $html->addCrumb(__('Incoming SMS',true), '/bin');
 
 $session->flash();
 echo $javascript->includeScript('toggle');
-$protos = false;
+$channels =  false;
 
 /*
 echo $form->create('Bin',array('type' => 'post','action'=> 'index'));

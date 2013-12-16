@@ -425,6 +425,7 @@ gui/app/config/schema/i18n.php -text
 gui/app/config/schema/sessions.php -text
 gui/app/config/sweeper.php -text
 gui/app/controllers/api_controller.php -text
+gui/app/controllers/batches_controller.php -text
 gui/app/controllers/bin_controller.php -text
 gui/app/controllers/categories_controller.php -text
 gui/app/controllers/cdr_controller.php -text
@@ -457,6 +458,7 @@ gui/app/locale/por/LC_MESSAGES/default.po -text
 gui/app/locale/por/LC_MESSAGES/messages.mo -text
 gui/app/locale/swa/LC_MESSAGES/default.po -text
 gui/app/models/api.php -text
+gui/app/models/batch.php -text
 gui/app/models/behaviors/empty -text
 gui/app/models/bin.php -text
 gui/app/models/category.php -text
@@ -478,6 +480,7 @@ gui/app/models/phone_number.php -text
 gui/app/models/poll.php -text
 gui/app/models/process.php -text
 gui/app/models/setting.php -text
+gui/app/models/sms_receiver.php -text
 gui/app/models/tag.php -text
 gui/app/models/user.php -text
 gui/app/models/vote.php -text
@@ -510,6 +513,8 @@ gui/app/vendors/simplepie/README.txt -text
 gui/app/vendors/simplepie/simplepie.php -text
 gui/app/vendors/sms.php -text
 gui/app/vendors/spooler_ff.php -text
+gui/app/views/batches/add.ctp -text
+gui/app/views/batches/add_batch.ctp -text
 gui/app/views/bin/disp.ctp -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text

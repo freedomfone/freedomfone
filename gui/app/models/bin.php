@@ -60,6 +60,9 @@ class Bin extends AppModel{
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);
 	      $proto   = $entry['proto'];
        	      $login   = $entry['login'];
+
+	      //FIXME!!!
+	      //$channel = getChannel($proto,$login);
 	 
               //Update user statistics
               $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
@@ -80,6 +83,9 @@ class Bin extends AppModel{
 	      }
 
 	}
+
+
+
 
 
 }

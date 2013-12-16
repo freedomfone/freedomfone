@@ -1,3 +1,6 @@
+// bodySMS sender receiver
+// foo +4612345678 GM1-240016010774781
+
 <?php
 require_once('../../esl/native/ESL.php');
 $cmd = "jsrun /opt/freeswitch/scripts/freedomfone/sms/gammu_main.js '".$argv[1]."' '".$argv[2]."' '".$argv[3]."' '".(time()*1000000)."'";

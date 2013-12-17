@@ -28,10 +28,10 @@ class GroupsController extends AppController{
 
 var $actsAs = array('Acl' => array('type' => 'requester'));
 
-/*function beforeFilter() {
+function beforeFilter() {
     parent::beforeFilter();
     $this->Auth->allow(array('*'));
-}*/
+}
 
 
 	function build_acl() {

@@ -25,30 +25,37 @@
 class FfUsersController extends AppController{
 
       var $name = 'FfUsers';
-      var $belongsTo = array('Group');
-      var $actsAs = array('Acl' => array('type' => 'requester'));
 
 
-       function beforeFilter(){
 
-           parent::beforeFilter();
-           $this->Auth->allow('logout');
+var $belongsTo = array('Group');
+var $actsAs = array('Acl' => array('type' => 'requester'));
 
 
-        }
+function beforeFilter() {
+    parent::beforeFilter();
+    $this->Auth->allow(array('*'));
+}
 
       function login(){
 
+
         $this->set('title_for_layout', __('Login',true));
+
 
          if ($this->Session->read('Auth.FfUser')) {
             $this->_flash(__('You are logged in!',true));
             $this->redirect('/', null, false);
          }
+
+
       }
 
 
+      
+
       function logout(){
+
 
                $this->_flash(__('You are logged out.',true),'success');
                $this->redirect($this->Auth->logout());

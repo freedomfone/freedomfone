@@ -185,6 +185,12 @@ gammu-smsd/sql/gammu_db_createdb_user.sql -text
 gammu-smsd/sql/gammu_db_schema.sql -text
 gui/.htaccess -text
 gui/app/.htaccess -text
+gui/app/acl/README -text
+gui/app/acl/app_controller.php -text
+gui/app/acl/aros.sql -text
+gui/app/acl/ff_users_controller.php -text
+gui/app/acl/groups_controller.php -text
+gui/app/acl/initDB.php -text
 gui/app/app_controller.php -text
 gui/app/app_model.php -text
 gui/app/config/acl.ini.php -text

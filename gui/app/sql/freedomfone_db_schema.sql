@@ -74,7 +74,6 @@ CREATE TABLE `bin` (
   `mode` varchar(50) default NULL,
   `proto` varchar(25) default NULL,
   `channel` varchar(50) default NULL,
-  `hw_unit` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -439,7 +438,6 @@ CREATE TABLE `polls` (
   `invalid_open` int(10) unsigned default '0',
   `invalid_closed` int(10) unsigned default '0',
   `invalid_early` int(10) unsigned default '0',
-  `hw_unit` varchar(50) DEFAULT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
@@ -582,55 +580,6 @@ CREATE TABLE `votes` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `poll_chtext` (`poll_id`,`chtext`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
-
-
-DROP TABLE IF EXISTS `callback_jobs`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `callback_jobs` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `job_id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `status` varchar(20) NOT NULL,
-  `start_time` datetime default NULL,
-  `end_time` datetime default NULL,
-  `service` smallint unsigned NOT NULL,
-  `retries` tinyint unsigned,
-  `retry_interval` smallint unsigned,
-  `max_duration` smallint unsigned,
-  `created` int(11) NOT NULL,
-  `modified` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
-
-
-DROP TABLE IF EXISTS `callback_retries`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `callback_retries` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `callback_job_job_id` int(10) unsigned NOT NULL,
-  `epoch` int(10) unsigned NOT NULL,
-  `causeLegA` varchar(100) NOT NULL,
-  `causeLegB` varchar(100) NOT NULL,
-  `bridge_status` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-SET character_set_client = @saved_cs_client;
-
-
-DROP TABLE IF EXISTS `callback_status`;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-CREATE TABLE `callback_status` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
 

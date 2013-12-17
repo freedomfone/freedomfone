@@ -26,7 +26,7 @@ echo $html->addCrumb(__('Create',true), '/batches/add');
 
 
 echo "<h1>".__("Create batch of outgoing SMS",true)."</h1>";
-echo $form->create('Batch',array('type' => 'post','action'=> 'add_batch', 'enctype' => 'multipart/form-data'));
+echo $form->create('Batch',array('type' => 'post','action'=> 'add', 'enctype' => 'multipart/form-data'));
 
       foreach($channels as $entry){
 	       $_channels[$entry] = $entry;

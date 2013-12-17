@@ -85,10 +85,32 @@
 <?php echo $html->link(__("Manage LAM",true),'/lm_menus/index'); ?>
 </li>
 
-<li>
-<?php echo $html->link(__("Incoming SMS",true),'/bin/'); ?>
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
 </li>
 
+
+
+
+<li><?php echo __("SMS Center",true);?>
+<ul>
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("SMS Inboxes",true),'/bin/'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("SMS Outboxes",true),'/batches/index'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Send SMS",true),'/batches/add'); ?>
+</li>
 
 
 <li class='last'>

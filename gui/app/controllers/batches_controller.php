@@ -93,7 +93,7 @@ class BatchesController extends AppController{
 		 $this->Batch->processBatch($batch_id); 
                 }
 	       }
-      } //add_batch
+      } //add
 
 
 

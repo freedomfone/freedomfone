@@ -1,3 +1,4 @@
+use freedomfone;
 alter table bin modify proto varchar(25);
 alter table cdr modify proto varchar(25);
 

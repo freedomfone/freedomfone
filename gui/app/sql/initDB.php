@@ -58,6 +58,14 @@
     $this->Acl->allow($group, 'controllers/Bin/delete');
     $this->Acl->allow($group, 'controllers/Bin/disp');
 
+    //Outgoing SMS
+    $this->Acl->deny($group, 'controllers/Batches');
+    $this->Acl->allow($group, 'controllers/Batches/index');
+    $this->Acl->allow($group, 'controllers/Batches/add');
+    $this->Acl->allow($group, 'controllers/Batches/disp');
+    $this->Acl->allow($group, 'controllers/Batches/delete');
+
+
     //Language Selectors and Voice menus
     $this->Acl->deny($group, 'controllers/IvrMenus');
     $this->Acl->allow($group, 'controllers/IvrMenus/index');
@@ -106,11 +114,14 @@
     $this->Acl->deny($group, 'controllers/Channels');
     $this->Acl->allow($group, 'controllers/Channels/index');
     $this->Acl->allow($group, 'controllers/Channels/refresh');
+    $this->Acl->allow($group, 'controllers/Channels/audio_services');
+
     $this->Acl->deny($group, 'controllers/OfficeRoute');
     $this->Acl->allow($group, 'controllers/OfficeRoute/refresh');
 
     //Logs
     $this->Acl->deny($group, 'controllers/Logs');
+
 
     //Authentication
     $this->Acl->deny($group, 'controllers/FfUsers');

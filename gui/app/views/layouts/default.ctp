@@ -83,9 +83,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
               } else {
                              echo $this->element('menuUser');
               } 
-           } else {
-                 echo $this->element('menuUser');
-           }
+           } 
 
 
               ?>		<!-- horizonal menu -->

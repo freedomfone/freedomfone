@@ -515,6 +515,8 @@ gui/app/vendors/sms.php -text
 gui/app/vendors/spooler_ff.php -text
 gui/app/views/batches/add.ctp -text
 gui/app/views/batches/add_batch.ctp -text
+gui/app/views/batches/disp.ctp -text
+gui/app/views/batches/index.ctp -text
 gui/app/views/bin/disp.ctp -text
 gui/app/views/bin/export.ctp -text
 gui/app/views/bin/index.ctp -text

@@ -1,6 +1,6 @@
 use freedomfone;
 alter table bin modify proto varchar(25);
-alter table bin modify login varchar(50);
+alter table bin add login varchar(50);
 alter table cdr modify proto varchar(25);
 
 DROP TABLE IF EXISTS `callback_jobs`;

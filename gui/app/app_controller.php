@@ -68,7 +68,7 @@ function beforeFilter() {
 
 
          //Allow global access to pages and refresh methods
-         $this->Auth->allowedActions = array('display','refresh','audio_services','outgoing','sms','add_batch');
+         $this->Auth->allowedActions = array('display','refresh','audio_services','outgoing','sms','add','index','delete','disp');
 
          //Global root ACO 
          $this->Auth->actionPath = 'controllers/';

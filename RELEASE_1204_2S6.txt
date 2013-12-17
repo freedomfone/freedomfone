@@ -1,0 +1,61 @@
+2013-12-15 Freedom Fone 2S6 aka Lycaon Shicarius 
+================================================
+
+This release includes significant changes with our previous release 2S4.
+A list of the new features and improvements follows:
+
+* 32/64 bits support
+====================
+
+Freedom Fone 2S6 will be able to work in both 32 and 64bits operative
+systems.
+
+* Full integration with Gammu SMS Daemon
+========================================
+
+We have extended the support for SMS and include the possibility of
+using the open source Gammu SMS engine to send and receive SMSs. Freedom
+Fone 2S6 includes support for multiple GSM dongle devices in Gammu.
+
+
+* Full integration with multiple Office Routes
+==============================================
+We have extended the support for SMS with Office Route so we can receive
+SMSs using multiple Office Routes. Each of the communication channels
+(SIM card) is now mapped into a unique SMS inbox.
+
+
+* Robust hardware detection
+===========================
+We have included a new component "hardware wizard". The hardware wizard
+will detect any serial USB devices and prompt the user for its desire
+usage. USB devices can be allocated as dedicated SMS gateways via Gammu
+or SMS/Voice gateways via Freeswitch. Thanks to this new module, all
+configuration files for Gammu (SMSD) and Freeswitch are auto generated.
+Users no longer need to open a text editor to get the core setup up and
+running
+
+* Graphical interface for audio services
+========================================
+When users create a new leave a message service or IVR, they will no
+longer need to edit the Freeswitch dialplan. A new view in the Freedom
+Fone GUI allow users to map audio service into GSM channels.
+
+
+* Graphical Reporting tool
+==========================
+Olaf Dunn contributed a graphical reporting tool to Freedom Fone that we
+have merge with out code base.
+
+
+* Sending SMSs via the Freedom Fone GUI
+=======================================
+We have included a new view in the Freedom Fone GUI so users can send
+bulk SMS via Office Route or Gammu SMS dedicated devices.
+
+
+* Support for latest Ubuntu LTS
+===============================
+Freedom Fone 2S6 is designed to work in the next Ubuntu LTS server edition.
+
+

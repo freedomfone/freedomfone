@@ -56,6 +56,13 @@ var $components = array('RequestHandler','Session','Acl', 'Auth');
 function beforeFilter() {
 
 
+/*
+       $this->Auth->authorize = 'actions';
+        $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'logout');
+        $this->Auth->loginRedirect = array('controller' => 'posts', 'action' => 'add');
+
+*/
  
          //Change Auth default User model
          $this->Auth->userModel = 'FfUser';
@@ -68,7 +75,7 @@ function beforeFilter() {
 
 
          //Allow global access to pages and refresh methods
-         $this->Auth->allowedActions = array('display','refresh','audio_services','outgoing','sms','add','index','delete','disp');
+         $this->Auth->allowedActions = array('display','refresh','sms');
 
          //Global root ACO 
          $this->Auth->actionPath = 'controllers/';
@@ -98,7 +105,6 @@ function beforeFilter() {
               $authGroup = $data['FfUser']['group_id'];
               $authUser  = $data['FfUser']['username'];
               $this->set(compact('authGroup', 'authUser'));
-
 
 
 

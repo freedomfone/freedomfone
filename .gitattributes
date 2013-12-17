@@ -259,7 +259,6 @@ gui/app/models/tag.php -text
 gui/app/models/user.php -text
 gui/app/models/vote.php -text
 gui/app/plugins/empty -text
-gui/app/sql/build_acl.php -text
 gui/app/sql/freedomfone_db_auth_schema.sql -text
 gui/app/sql/freedomfone_db_createdb_user.sql -text
 gui/app/sql/freedomfone_db_schema.sql -text

@@ -122,6 +122,32 @@
 </ul>
 </li>
 
+<li><?php echo __("SMS Center",true);?>
+<ul>
+<li>
+<?php echo $html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>
+<?php echo $html->link(__("Inboxes",true),'/bin/'); ?>
+<?php echo $html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Outboxes",true),'/batches/index'); ?>
+</li>
+
+<li>
+<?php echo $html->link(__("Send",true),'/batches/add'); ?>
+</li>
+
+
+<li class='last'>
+<?php echo $html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
+<?php echo $html->image('menu/dot.png',array('class'=>'middle'));?>
+<?php echo $html->image('menu/corner_right.png',array('class'=>'corner_right'));?>
+</li>
+</ul>
+</li>
+
+
 
 <li><?php echo __("IVR Centre",true);?>
 <ul>

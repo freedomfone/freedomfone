@@ -9,9 +9,9 @@ define("TimeZone", "Africa/Harare");
 
 $_DB =  array(
      	   'host' => 'localhost',
-	   'user' => 'smsd',
+	   'user' => 'gammu',
 	   'pass' => 'thefone',
-	   'db'   => 'smsd',
+	   'db'   => 'gammu',
 	   );
 
 

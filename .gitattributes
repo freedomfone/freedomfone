@@ -269,6 +269,7 @@ gui/app/sql/freedomfone_db_auth_schema.sql -text
 gui/app/sql/freedomfone_db_createdb_user.sql -text
 gui/app/sql/freedomfone_db_schema.sql -text
 gui/app/sql/freedomfone_demo_data.sql -text
+gui/app/sql/sharicus_2.S.6dev.diff -text
 gui/app/tests/cases/behaviors/empty -text
 gui/app/tests/cases/components/empty -text
 gui/app/tests/cases/controllers/empty -text

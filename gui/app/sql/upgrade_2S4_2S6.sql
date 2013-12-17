@@ -1,3 +1,8 @@
+use spooler_in;
+alter table bin modify proto varchar(25);
+alter table poll_in modify proto varchar(25);
+alter table cdr modify proto varchar(25);
+
 use freedomfone;
 alter table bin modify proto varchar(25);
 alter table bin add login varchar(50);

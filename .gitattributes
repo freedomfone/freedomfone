@@ -1480,6 +1480,8 @@ rootconf_1204/etc/ld.so.conf.d/cepstral.conf -text
 rootconf_1204/etc/logrotate.d/freedomfone -text
 rootconf_1204/etc/modprobe.d/blacklist-freedomfone.conf -text
 rootconf_1204/etc/php5/apache2/php.ini -text
+rootconf_1204/etc/postfix/main.cf.freedomfone -text
+rootconf_1204/etc/postfix/transport.freedomfone -text
 rootconf_1204/etc/rc.local -text
 rootconf_1204/opt/freeswitch/conf/README_IMPORTANT.txt -text
 rootconf_1204/opt/freeswitch/conf/autoload_configs.orig/abstraction.conf.xml -text

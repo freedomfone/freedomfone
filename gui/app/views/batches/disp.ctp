@@ -40,7 +40,7 @@ echo $ajax->div("service_div");
 
       foreach ($batch as $key => $entry){
 	$name     = $entry['Batch']['name'];
-	$message  = array($entry['Batch']['message'], array('width' => '400px'));
+	$message  = array($entry['Batch']['body'], array('width' => '400px'));
 	$sender  = $entry['Batch']['sender'];
 	$created  = $time->format('Y/m/d H:i',$entry['Batch']['created']);
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batch", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
@@ -71,7 +71,7 @@ echo $ajax->div("service_div");
 
 
 
-     } 
+  
 
      echo $form->end();
      echo $ajax->divEnd('service_div');

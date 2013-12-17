@@ -264,7 +264,6 @@ gui/app/sql/freedomfone_db_auth_schema.sql -text
 gui/app/sql/freedomfone_db_createdb_user.sql -text
 gui/app/sql/freedomfone_db_schema.sql -text
 gui/app/sql/freedomfone_demo_data.sql -text
-gui/app/sql/initDB.php -text
 gui/app/tests/cases/behaviors/empty -text
 gui/app/tests/cases/components/empty -text
 gui/app/tests/cases/controllers/empty -text

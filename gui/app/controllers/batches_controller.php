@@ -29,28 +29,36 @@ class BatchesController extends AppController{
       var $helpers = array('Time','Html', 'Session','Form','Ajax','Flash');
       var $components = array('RequestHandler');
 
+    function index(){
 
+          $this->set('title_for_layout', __('SMS Outboxes',true));
+      	  $this->set('channels',$this->Batch->getChannels());
 
-      function add_batch(){
-
-      	    $this->loadModel('Channel');
-            //$this->set('channels',$this->Channel->find('list', array('fields' => array('IMSI'))));
-
-      $auth  = Configure::read('GAMMU');
-      $gammu = new sms('mysql', $auth);
-      $phones    = $gammu->getPhones(); 
-
-      foreach($phones as $phone){
-        $channels[] = $phone[0];
+     	  $this->Batch->recursive = 1; 
+   	  $batch = $this->paginate();
+ 	  $this->set(compact('batch'));
       }
 
-      $officeroutes  = Configure::read('OR_SNMP');
-      foreach($officeroutes as $officeroute){
-        
-	$channels[] = "OR ".$officeroute['ip_addr']." ".$officeroute['domain'];
-      }
 
-      $this->set('channels',$channels);
+    function disp(){
+
+    	     $sender = $this->data['Batch']['sender'];
+    	     if($sender){
+		$data   = $this->paginate('Batch', array('Batch.sender' => $sender));
+	     } else { 
+	       $data   = $this->paginate('Batch');
+	     }
+
+    	     $this->set('batch',$data);  
+
+
+    }
+
+
+      function add(){
+
+
+      	    $this->set('channels',$this->Batch->getChannels());
 
       	       
 	       //Process form data
@@ -58,6 +66,8 @@ class BatchesController extends AppController{
 
 	        //Validate data 
 	        if ($this->Batch->saveAll($this->data, array('validate' => 'only'))) {
+
+		$this->data['Batch']['gateway_type'] =  substr($this->data['Batch']['sender'],0,2); 
 
 
 		$receivers = file($this->data['Batch']['file']['tmp_name']);
@@ -78,11 +88,26 @@ class BatchesController extends AppController{
 	 		$this->Batch->SmsReceiver->create($this->data['SmsReceiver']);
 	 		$this->Batch->SmsReceiver->saveAll($this->data['SmsReceiver'],array('validate' => false));
 				
-	         } 
+	         }
+
+		 $this->Batch->processBatch($batch_id); 
                 }
 	       }
       } //add_batch
 
+
+
+    function delete ($id){
+
+    
+    	     if($this->Batch->delete($id))
+	     {
+		$this->Session->setFlash('SMS batch has been deleted.');
+                $this->log('[INFO], SMS DELETED; Id: '.$id, 'batch');
+	     	$this->redirect(array('action' => 'index'));
+	     }
+
+    }
 
 }
 ?>

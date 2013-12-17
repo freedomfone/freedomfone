@@ -49,6 +49,8 @@ CREATE TABLE `batches` (
   `sender` varchar(50) NOT NULL,
   `body` varchar(200) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `gateway_type` varchar(5) NOT NULL,
+  `gateway_id` varchar(50) NOT NULL,
   `created` int(11) unsigned  NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)

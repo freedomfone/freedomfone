@@ -183,6 +183,10 @@ gammu-smsd/doc/freedomfone_gammu_smsd_v1.pdf -text
 gammu-smsd/sql/gammu-smsdrc.tpl -text
 gammu-smsd/sql/gammu_db_createdb_user.sql -text
 gammu-smsd/sql/gammu_db_schema.sql -text
+gammu-smsd/tmp/classes/config.php -text
+gammu-smsd/tmp/classes/curltest.php -text
+gammu-smsd/tmp/classes/gammu_daemon.php -text
+gammu-smsd/tmp/classes/panacea_api.php -text
 gui/.htaccess -text
 gui/app/.htaccess -text
 gui/app/acl/README -text

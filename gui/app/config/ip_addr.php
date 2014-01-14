@@ -1,1 +1,0 @@
-<?php $config['Setting']['ip_addr']= 't1.it46.se'; ?>

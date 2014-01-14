@@ -22,22 +22,16 @@
  *
  ***************************************************************************/
 
-  echo $html->addCrumb(__('Dashboard',true), '');
-  echo $html->addCrumb(__('Audio channels',true), '/channels');
+  echo $this->Html->addCrumb(__('Dashboard',true), '');
+  echo $this->Html->addCrumb(__('Audio channels',true), '/channels');
 
-        // Multiple Flash messages
-        if ($messages = $this->Session->read('Message')) {
-                foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);
-                }
-        }
+  echo $this->Session->flash();
 
 
-
-  $generated  = $session->read('Channel.refresh');
-  echo $form->create('Channel',array('type' => 'post','action'=> 'index'));
-  echo $html->div('frameRightAlone',$form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
-  echo $form->end();
+  $generated  = $this->Session->read('Channel.refresh');
+  echo $this->Form->create('Channel',array('type' => 'post','action'=> 'index'));
+  echo $this->Html->div('frameRightAlone',$this->Form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+  echo $this->Form->end();
 
   echo "<h1>".__('Audio channels',true)."</h1>";
 
@@ -45,9 +39,9 @@
 
      if ($data == 'snmp_off'){ 
 
-       echo $html->div('feedback',__("SNMP daemon is not running.",true));
+       echo $this->Html->div('feedback',__("SNMP daemon is not running.",true));
 
-     } elseif ($data){
+     } elseif ($data[0]){
 
 
       foreach ($data as $no => $unit){
@@ -58,17 +52,17 @@
 	            	$edit  = false;
 
       			$slot                   = $entry['OfficeRoute']['id'];
-      			$title                  = $html->link( $entry['OfficeRoute']['title'],array('controller' =>'office_route', 'action' => 'edit', $entry['OfficeRoute']['id']));
+      			$title                  = $this->Html->link( $entry['OfficeRoute']['title'],array('controller' =>'office_route', 'action' => 'edit', $entry['OfficeRoute']['id']));
       			$line_id                = $entry['OfficeRoute']['line_id'];
-      			$msisdn                 = $html->link( $entry['OfficeRoute']['msisdn'],array('controller' =>'office_route', 'action' => 'edit', $entry['OfficeRoute']['id']));
+      			$msisdn                 = $this->Html->link( $entry['OfficeRoute']['msisdn'],array('controller' =>'office_route', 'action' => 'edit', $entry['OfficeRoute']['id']));
       			$sim_inserted           = $entry['OfficeRoute']['sim_inserted'];
 			$imei                   = $entry['OfficeRoute']['imei'];
 			$imsi                   = $entry['OfficeRoute']['imsi'];
 			$signal_level           = $this->element('channel_signal_level', array('signal' => $entry['OfficeRoute']['signal_level']));
 			$network_registration   = $entry['OfficeRoute']['network_registration'];
 			$operator_name          = $entry['OfficeRoute']['operator_name'];
-			//$created              = $time->niceShort($entry['OfficeRoute']['created']);
-			$modified               = $time->niceShort($entry['OfficeRoute']['modified']);
+			//$created              = $this->Yime->niceShort($entry['OfficeRoute']['created']);
+			$modified               = $this->Time->niceShort($entry['OfficeRoute']['modified']);
 
 			if($sim_inserted==__('Yes',true)){ 
                            $edit =  $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "office_route", "action" => "edit", $entry['OfficeRoute']['id']))));
@@ -80,7 +74,7 @@
 
 
      	       echo "<table width='95%' cellspacing=0>";
-     	       echo $html->tableHeaders(array(
+     	       echo $this->Html->tableHeaders(array(
                         __('Slot',true),
                         __('Title',true),
                         __('Phone number',true),
@@ -91,13 +85,13 @@
                         __('Operator',true),
                         __('Last updated',true),
                         __('Actions',true)));
-     		echo $html->tableCells($row);
+     		echo $this->Html->tableCells($row);
      		echo "</table>"; 
      }
 
    } else {
 
-   echo $html->div('feedback',__("There are no OfficeRoute units connected to your system.",true));
+   echo $this->Html->div('feedback',__("There are no OfficeRoute units connected to your system.",true));
 
    }
 
@@ -113,7 +107,7 @@
 
      	$title           = $entry['Channel']['title'];
      	$msisdn          = $entry['Channel']['msisdn'];
-      	$epoch           = $time->niceShort($entry['Channel']['epoch']);
+      	$epoch           = $this->Time->niceShort($entry['Channel']['epoch']);
       	$interface_id    = $entry['Channel']['interface_id'];
       	$interface_name  = $entry['Channel']['interface_name'];
 	$imei            = $entry['Channel']['imei'];
@@ -128,7 +122,7 @@
 
 
      echo "<table width='95%' cellspacing = 0>";
-     echo $html->tableHeaders(array(
+     echo $this->Html->tableHeaders(array(
                         __('Interface id',true),
                         __('Title',true),
                         __('Phone number',true),
@@ -138,18 +132,18 @@
                         __('Signal level',true),
                         __('Last updated',true),
                         __('Actions',true)));
-     echo $html->tableCells($row);
+     echo $this->Html->tableCells($row);
      echo "</table>"; 
 
 
    } else {
 
-   echo $html->div('feedback',__("There are no Mobigater units connected to your system.",true));
+   echo $this->Html->div('feedback',__("There are no Mobigater units connected to your system.",true));
 
    }
 
 
-     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time())); 
+     echo $this->Html->div('system_time',__('Generated',true).': '.$this->Time->format('H:i:s A (e \G\M\T O)',time())); 
 
  
 

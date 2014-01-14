@@ -22,15 +22,10 @@
  *
  ***************************************************************************/
 
-  echo $html->addCrumb(__('Dashboard',true), '');
-  echo $html->addCrumb(__('Audio services',true), '/channels/audio_services');
+  echo $this->Html->addCrumb(__('Dashboard',true), '');
+  echo $this->Html->addCrumb(__('Audio services',true), '/channels/audio_services');
 
-        // Multiple Flash messages
-        if ($messages = $this->Session->read('Message')) {
-                foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);
-                }
-        }
+  echo $this->Session->flash();
 
 
    echo "<h3>".__('GSMOpen channels',true)."</h3>";
@@ -40,7 +35,7 @@
       echo $form->create("Channel");
 
      echo "<table width='95%' cellspacing = 0>";
-     echo $html->tableHeaders(array(
+     echo $this->Html->tableHeaders(array(
 			__('Enabled',true),
 			__('Gateway',true),
 			__('Inbound',true),
@@ -57,7 +52,7 @@
 
 
         $entry = explode(',',$entry);
-      echo $form->hidden('Channel.'.$key.'.interface_id',array('value'=>trim($entry[9]))); 
+      echo $this->Form->hidden('Channel.'.$key.'.interface_id',array('value'=>trim($entry[9]))); 
     	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
      	$row[$key]['gateway']		= $entry[6];
      	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
@@ -74,7 +69,7 @@
 
 	if($entry[6] == 'freeswitch'){
 
-	$row[$key]['Service'] 		= $form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+	$row[$key]['Service'] 		= $this->Form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
 
 	} else {
 
@@ -83,19 +78,19 @@
 	}
 
 	}
-     echo $html->tableCells($row);
+     echo $this->Html->tableCells($row);
      echo "</table>";
-      echo $form->submit(__('Create configuration files',true),  array('class' => 'button'));
-      echo $form->end();
+      echo $this->Form->submit(__('Create configuration files',true),  array('class' => 'button'));
+      echo $this->Form->end();
 
 
 
    } else {
 
-   echo $html->div('feedback',__("There are no GSMOpen based units connected to your system.",true));
+   echo $this->Html->div('feedback',__("There are no GSMOpen based units connected to your system.",true));
 
    }
-     echo $html->div('system_time',__('Generated',true).': '.$time->format('H:i:s A (e \G\M\T O)',time())); 
+     echo $this->Html->div('system_time',__('Generated',true).': '.$this->Time->format('H:i:s A (e \G\M\T O)',time())); 
 
  
 

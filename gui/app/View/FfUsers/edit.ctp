@@ -22,36 +22,31 @@
  *
  ***************************************************************************/
 
-      echo $html->addCrumb(__('User management',true), '');
-      echo $html->addCrumb(__('System Users',true), '/ff_users');
+      echo $this->Html->addCrumb(__('User management',true), '');
+      echo $this->Html->addCrumb(__('System Users',true), '/ff_users');
 
       if($this->data){
 
-        echo $html->addCrumb(__('Edit',true), '/ff_users/edit/'.$this->data['FfUser']['id']);
+        echo $this->Html->addCrumb(__('Edit',true), '/ff_users/edit/'.$this->data['FfUser']['id']);
         echo "<h1>".__("Edit System User",true)."</h1>";
 
-        // Multiple Flash messages
-        if ($messages = $this->Session->read('Message')) {
-                foreach($messages as $key => $value) {
-                 echo $this->Session->flash($key);
-                }
-        }
+        echo $this->Session->flash();
 
 
         $options    = array('label' =>  false, 'value' => '','type' => 'password');
 
 
-        echo $form->create('FfUser', array('type' => 'post','action'=> 'edit'));   				       			 
+        echo $this->Form->create('FfUser', array('type' => 'post','action'=> 'edit'));   				       			 
         echo $this->Form->hidden('id');
         echo $this->Form->hidden('username');
 
         echo "<table cellspacing = 0 class = 'stand-alone'>";
-        echo $html->tableCells(array (
+        echo $this->Html->tableCells(array (
      	    array(__("Username",true),        $this->data['FfUser']['username']),
      	    array(__("Group",true),           $this->Form->input('group_id',array('type'=>'select','options'=>$groups,'label'=> false,'selected' => $this->data['FfUser']['group_id']))),
      	    array(__("New password",true),    $this->Form->input('pwd',$options)),
      	    array(__("Repeat password",true), $this->Form->input('pwd_repeat',$options)),
-            array('',   $form->end(__('Save',true)))
+            array('',   $this->Form->end(__('Save',true)))
                                 ),
             array('class' => 'stand-alone'),array('class' => 'stand-alone'));
         echo "</table>";
@@ -59,7 +54,7 @@
 
       } else {
 
-         echo $html->div("invalid_entry", __("This page does not exist.",true));
+         echo $this->Html->div("invalid_entry", __("This page does not exist.",true));
 
       }
 

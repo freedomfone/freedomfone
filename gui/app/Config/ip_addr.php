@@ -1,1 +1,1 @@
-<?php $config['Setting']['ip_addr']= '127.0.0.1'; ?>
+<?php $config['Setting']['ip_addr']= 'debra.it46.se'; ?>

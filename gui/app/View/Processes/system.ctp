@@ -32,6 +32,7 @@ echo $this->Html->addCrumb(__('About',true), '/processes/system');
  $cmd1 = exec('/usr/bin/lsb_release -d');
  $cmd2 = exec('/usr/bin/lsb_release -a');
  $release = $lsb = false;
+ $cake = Configure::version();
 
  if($cmd1){ 
  	    $release = explode(':',$cmd1); 
@@ -102,6 +103,7 @@ echo $this->Html->addCrumb(__('About',true), '/processes/system');
 
      echo "<h2>".__("Software",true)."</h2>";
      $row1[] = array( array(__("Operating system",true), array('width' => '200px')), $string); 
+     $row1[] = array(__("Cake",true), $cake); 
      $row1[] = array(__("FreeSWITCH",true), $version[1]); 
      $row1[] = array(__("Web server",true), apache_get_version());
      $row1[] = array(__("MySQL",true), mysql_get_server_info());

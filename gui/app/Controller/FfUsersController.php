@@ -113,7 +113,7 @@ class FfUsersController extends AppController{
                $this->set(compact('options'));
 
 
-		if (!empty($this->request->data)) {
+		if (array_key_exists('FfUser', $this->request->data)) {
 
                     //Set password to non-hashed for validation
                     $this->request->data['FfUser']['password'] = $this->request->data['FfUser']['pwd']; 

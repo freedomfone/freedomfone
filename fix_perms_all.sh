@@ -12,8 +12,9 @@ chown -Rf www-data:www-data /opt/freedomfone/log
 chown -Rf freeswitch:www-data /opt/freedomfone/log/freeswitch.log
 
 echo "gui: gui files writable by www-data"
-find /opt/freedomfone/gui/ -type f | grep -v '\.svn' | xargs chmod 664 
+find  /opt/freedomfone/gui/  -name .svn -prune -o -type f -print0 | xargs -0 chmod 664 
 find /opt/freedomfone/gui/ -type d | grep -v '\.svn' | xargs chmod 775 
+#find /opt/freedomfone/gui/ -name .svn -prune -o -type d | xargs -0 chmod 775 
 chown -Rf www-data:freeswitch /opt/freedomfone/gui/
 
 echo "FS scripts: scripts are owned by freeswitch"

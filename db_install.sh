@@ -13,5 +13,5 @@ PWD=""
 
 #For GAMMU
 /usr/bin/mysql -u root --password=$PWD < $SVNROOT/gammu-smsd/sql/gammu_db_createdb_user.sql
-/usr/bin/mysql -u root --password=$PWD gammu < $SVNROOT/gui/gammu-smsd/sql/gammu_db_schema.sql
+/usr/bin/mysql -u root --password=$PWD gammu < $SVNROOT/gammu-smsd/sql/gammu_db_schema.sql
 

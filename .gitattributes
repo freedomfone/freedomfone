@@ -190,6 +190,7 @@ gammu-smsd/tmp/classes/panacea_api.php -text
 gui/.htaccess -text
 gui/.travis.yml -text
 gui/CONTRIBUTING.md -text
+gui/README.md -text
 gui/app/.htaccess -text
 gui/app/Config/Schema/db_acl.php -text
 gui/app/Config/Schema/db_acl.sql -text
@@ -1179,6 +1180,7 @@ gui/app/Controller/TagsController.php -text
 gui/app/Controller/UsersController.php -text
 gui/app/Controller/VotesController.php -text
 gui/app/Lib/empty -text
+gui/app/Locale/default.pot -text
 gui/app/Model/AppModel.php -text
 gui/app/Model/Batch.php -text
 gui/app/Model/Behavior/empty -text
@@ -1476,6 +1478,9 @@ gui/app/webroot/js/scriptaculous.js -text
 gui/app/webroot/js/swfobject.js -text
 gui/app/webroot/js/toggle.js -text
 gui/app/webroot/test.php -text
+gui/build.properties -text
+gui/build.xml -text
+gui/index.php -text
 gui/lib/Cake/Cache/Cache.php -text
 gui/lib/Cake/Cache/CacheEngine.php -text
 gui/lib/Cake/Cache/Engine/ApcEngine.php -text
@@ -2424,6 +2429,8 @@ gui/lib/Cake/View/ViewBlock.php -text
 gui/lib/Cake/View/XmlView.php -text
 gui/lib/Cake/basics.php -text
 gui/lib/Cake/bootstrap.php -text
+gui/plugins/empty -text
+gui/vendors/empty -text
 hardware_wizard/Changelog -text
 hardware_wizard/config.php -text
 hardware_wizard/discovery.php -text

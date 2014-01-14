@@ -49,7 +49,8 @@ public $ext;
      $ivr_settings = Configure::read('IVR_SETTINGS');
      $ivr_monitor  = Configure::read('IVR_MONITOR');
      $ext 	   = Configure::read('EXTENSIONS');
-     
+     $db	   = get_class_vars('DATABASE_CONFIG');
+
 
      $this->ivr_path     = $ivr_settings['path'];
      $this->ivr_dir_node = $ivr_settings['dir_node'];
@@ -72,6 +73,8 @@ public $ext;
      $this->tts_voice	    	    = 'allison';
      $this->ext		    	    = $ext;
 
+     $this->link = mysql_connect($db['default']['host'], $db['default']['login'], $db['default']['password']);
+     mysql_select_db($db['default']['database'], $this->link);
 
   }
 
@@ -278,7 +281,7 @@ public $ext;
 		      	//Node::interrupt
 			case 'node':
 
-		       	$obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	$obj = mysql_query("select * from nodes where id = '$id'", $this->link);	 
 		       	$arr = mysql_fetch_array($obj);
 			$action = "menu-exec-app";
 
@@ -290,7 +293,7 @@ public $ext;
 		      	//Node::non-interrupt
 			Case 'node-non-interrupt':
 
-		       	$obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	$obj = mysql_query("select * from nodes where id = '$id'", $this->link);	 
 		       	$arr = mysql_fetch_array($obj);
 			$action = "menu-play-sound";
 			$param  = $this->node_path.$arr['file'].'.wav';
@@ -308,12 +311,13 @@ public $ext;
 
 	   function write_ivr_entry($ivr_type, $type,$digit,$id, $instance_id,$title){
 
+
 	            	switch ($type){
 
 		      	   //Node::interrupt
 			   case 'node':
 
-		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	   $obj = mysql_query("select * from nodes where id = '$id'", $this->link);	 
 		       	   $arr = mysql_fetch_array($obj);
 			   $action = "menu-exec-app";
                            $service = 'Node';
@@ -326,7 +330,7 @@ public $ext;
 		      	   //Node::non-interrupt
 			   Case 'node-non-interrupt':
 
-		       	   $obj = mysql_query("select * from nodes where id = '$id'");	 
+		       	   $obj = mysql_query("select * from nodes where id = '$id'", $this->link);	 
 		       	   $arr = mysql_fetch_array($obj);
 			   $action = "menu-play-sound";
 			   $param  = $this->node_path.$arr['file'].'.wav';
@@ -431,6 +435,7 @@ public $ext;
                          $menu = new DOMDocument;
                          $menu->load($file);
                          $node = $menu->getElementsByTagName("menu")->item(0);
+
 
                          $node = $newdoc->importNode($node, true);
                          $tag = $newdoc->getElementsByTagName("menus")->item(0);

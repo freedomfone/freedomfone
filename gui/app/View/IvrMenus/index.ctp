@@ -41,12 +41,8 @@ $this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('C
    echo $this->Html->div('frameInfo', $info);
    echo "<h1>".__('Voice menus',true)."</h1>";
 
-       // Multiple Flash messages
-       if ($messages = $this->Session->read('Message')) {
-            foreach($messages as $key => $value) {
-                       echo $this->Session->flash($key);
-            }
-       }
+   echo $this->Session->flash();
+
 
 
 

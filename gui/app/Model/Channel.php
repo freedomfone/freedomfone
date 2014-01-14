@@ -147,7 +147,7 @@ class Channel extends AppModel{
 	       $writer->startElement('context');  
 	       $writer->writeAttribute('name','public');
 
-	       $writer->startElement('extention');  
+	       $writer->startElement('extension');  
 	       $writer->writeAttribute('name','entry');
 
 	       $writer->startElement('condition');  
@@ -160,7 +160,7 @@ class Channel extends AppModel{
 
 	       $writer->endElement(); // action
  	       $writer->endElement(); // condition
- 	       $writer->endElement(); // extention
+ 	       $writer->endElement(); // extension
  	       $writer->endElement(); // context
 
 

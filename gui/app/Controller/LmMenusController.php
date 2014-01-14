@@ -52,7 +52,7 @@ var $helpers = array('Flash','Session','Js');
 
 
                  //Show form
-                 if  (empty($this->request->data)) {
+                 if  ($this->request->data['submit']) {
 
                      $entry = $this->LmMenu->nextInstance();
 
@@ -70,16 +70,19 @@ var $helpers = array('Flash','Session','Js');
 
     function add($id) {
 
+    debug($this->request->data);
         $this->set('title_for_layout',  __('Create Leave-a-Message',true));
          $lm_settings = Configure::read('LM_SETTINGS');
-         $instance_id=$this->request->data['LmMenu']['instance_id'];
+
+
+
          $fileData = array();
 
          //Incorrect id -> redirect to index
          if(!$id){
                $this->redirect(array('action' =>'/'));
  
-        }  elseif  ($id && empty($this->request->data)) { 
+        }  elseif  ($id && !array_key_exists('LmMenu', $this->request->data)) { 
            //Id OK, no form data -> display data
                    
            $this->set(compact($lm_settings));
@@ -143,10 +146,7 @@ var $helpers = array('Flash','Session','Js');
 
 
                 $this->set('title_for_layout', __('Edit Leave-a-Message',true));
-
                  $lm_settings = Configure::read('LM_SETTINGS');
-
-                 $instance_id=$this->request->data['LmMenu']['instance_id'];
                  $fileData = array();
 
                  //Incorrect id -> redirect to index
@@ -156,7 +156,7 @@ var $helpers = array('Flash','Session','Js');
                  } 
 
                  //Id OK, no form data -> display data
-                 elseif  ($id && empty($this->request->data)) {
+                 elseif  ($id && !array_key_exists('LmMenu', $this->request->data)) {
 
                         $this->set(compact($lm_settings));       
                         $this->LmMenu->unbindModel(array('hasMany' => array('Mapping')));   

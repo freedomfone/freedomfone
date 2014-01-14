@@ -92,7 +92,7 @@ class IvrMenusController extends AppController{
 
 
       //Render empty form
-      if (empty($this->request->data)){
+      if (!array_key_exists('IvrMenuFile', $this->request->data)){
 
         //Get instance id
         $instance_id =$this->IvrMenu->nextInstance();
@@ -515,6 +515,9 @@ class IvrMenusController extends AppController{
                //Edit existing mappings
                 foreach($this->request->data['Mapping'] as $key => $entry){
 
+		 if(array_key_exists('type', $entry)){
+
+
                    switch($entry['type']){
 
                     case 'node':
@@ -557,6 +560,7 @@ class IvrMenusController extends AppController{
                    } //switch
 
 
+
                   //Add new mappings
                   if(!$entry['type'] && ($entry['node_id'] || $entry['lam_id'] || $entry['ivr_id'])){
 
@@ -571,7 +575,7 @@ class IvrMenusController extends AppController{
                    
                    }
                   
-
+		   } //array_key_exists
                 }
 
 

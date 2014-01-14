@@ -1435,6 +1435,7 @@ gui/app/webroot/css/style.css -text
 gui/app/webroot/css/vimeo.css -text
 gui/app/webroot/favicon.ico -text
 gui/app/webroot/files/empty -text
+gui/app/webroot/freedomfone -text
 gui/app/webroot/img/bg.jpg -text
 gui/app/webroot/img/icons/accept.png -text
 gui/app/webroot/img/icons/add.png -text

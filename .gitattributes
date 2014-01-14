@@ -1381,6 +1381,12 @@ gui/app/View/Nodes/add.ctp -text
 gui/app/View/Nodes/edit.ctp -text
 gui/app/View/Nodes/index.ctp -text
 gui/app/View/OfficeRoute/edit.ctp -text
+gui/app/View/Pages/ivr_menus/tip.ctp -text
+gui/app/View/Pages/lm_menus/tip.ctp -text
+gui/app/View/Pages/polls/index.ctp -text
+gui/app/View/Pages/polls/tip.ctp -text
+gui/app/View/Pages/polls/view.ctp -text
+gui/app/View/Pages/welcome.ctp -text
 gui/app/View/PhoneBooks/add.ctp -text
 gui/app/View/PhoneBooks/edit.ctp -text
 gui/app/View/PhoneBooks/export.ctp -text

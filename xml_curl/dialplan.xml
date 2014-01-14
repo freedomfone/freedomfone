@@ -4,11 +4,11 @@
  <section name="dialplan" description="curl_diaplan">
   <include>
    <context name="public">
-    <extention name="entry">
+    <extension name="entry">
      <condition field="destination_number" expression="^(.*)$">
       <action application="speak" data="cepstral|allison|All external calls fall here!"/>
      </condition>
-    </extention>
+    </extension>
    </context>
    <!--LEAVE A MESSAGE-->
    <context name="default">

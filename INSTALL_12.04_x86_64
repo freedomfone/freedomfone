@@ -1,6 +1,6 @@
-*** BUILDING FREEDOM FONE 2.S (2.S.4) in a i386 ARCH ***
+*** BUILDING FREEDOM FONE 2.S (2.S.7) in a i386 ARCH ***
 
-STEP 1. Install Ubuntu 12.04-2 amd64 Desktop edition
+STEP 1. Install Ubuntu 12.04-3 amd64 Desktop edition
 
 STEP 2. Install subversion
 	Subversion is used to retrieve the code from the repository and update the graphical interface
@@ -10,7 +10,7 @@ STEP 2. Install subversion
 STEP 3. Download Freedom Fone builder
 
 	# mkdir -p /opt/freedomfone
-	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/trunk .
 	# cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies

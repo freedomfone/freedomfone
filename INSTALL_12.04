@@ -1,4 +1,4 @@
-*** BUILDING FREEDOM FONE 2.S (2.S.x) in a i386 ARCH ***
+*** BUILDING FREEDOM FONE 2.S (2.S.7) in a i386 ARCH ***
 
 STEP 1. Install Ubuntu 12.04-3 i386 Desktop edition
 	At the moment the binary packages of Freeswitch are only compatible with 32 bits systems
@@ -11,7 +11,7 @@ STEP 2. Install subversion
 STEP 3. Download Freedom Fone builder
 
 	# mkdir -p /opt/freedomfone
-	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/branches/3.0/ .
+	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/trunk .
 	# cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies

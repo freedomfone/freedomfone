@@ -22,11 +22,11 @@
  *
  ***************************************************************************/
 
-echo $html->addCrumb(__('System data',true), '');
-echo $html->addCrumb(__('Reporting',true), '/cdr/general');
+echo $this->Html->addCrumb(__('System data',true), '');
+echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
- $session->flash();
+ $this->Session->flash();
  $settings = Configure::read('IVR_SETTINGS');
 
  //If action = Export, create CSV file 
@@ -80,16 +80,15 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 	//** START: Search form **/
 	echo "<h1>".__("Reporting of incoming calls",true)."</h1>";
-	echo $form->create('Cdr',array('type' => 'post','action'=> 'general'));
+	echo $this->Form->create('Cdr',array('type' => 'post','action'=> 'general'));
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');
 
 
 	//Set application default value (LAM)
 
-
-	if( ! $app = $this->data['Cdr']['application']){
-	      if(!$app = $session->read('cdr_app')){
+	if( !array_key_exists('Cdr', $this->request->data)){
+	      if(!$app = $this->Session->read('cdr_app')){
  
                            $app = 'lam';
     	       }
@@ -97,21 +96,21 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
        foreach($lam as $key => $entry){
-             $lam[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
+             $lam[$key] = $this->Text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
        foreach($ivr as $key => $entry){
-             $ivr[$key] = $text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
+             $ivr[$key] = $this->Text->truncate($entry,30,array('ending' => '...', 'exact' => true, 'html' => false));
        }
 
 
-	    $radio1 = $form->radio('application',$options1,array('legend'=>false,'value'=>$app));
-	    $radio2 = $form->radio('application',$options2,array('legend'=>false,'value'=>$app));
+	    $radio1 = $this->Form->radio('application',$options1,array('legend'=>false,'value'=>$app));
+	    $radio2 = $this->Form->radio('application',$options2,array('legend'=>false,'value'=>$app));
 
-	    $menu_lam = $form->input('title_lam',array('type'=>'select','options' =>$lam, 'selected' => $this->Session->read('title'),'label'=>''));
-	    $menu_ivr = $form->input('title_ivr',array('type'=>'select','options' =>$ivr, 'selected' => $this->Session->read('title'), 'label'=>''));
+	    $menu_lam = $this->Form->input('title_lam',array('type'=>'select','options' =>$lam, 'selected' => $this->Session->read('title'),'label'=>''));
+	    $menu_ivr = $this->Form->input('title_ivr',array('type'=>'select','options' =>$ivr, 'selected' => $this->Session->read('title'), 'label'=>''));
 
 	    echo "<table cellspacing = 0 class = 'none'>";
-	    echo $html->tableCells(array (
+	    echo $this->Html->tableCells(array (
      	    	 array(__('Application',true),$radio1,$menu_lam,$radio2,$menu_ivr)
       		 ),array('class' => 'none'), array('class' => 'none'));
             echo "</table>";
@@ -119,24 +118,24 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
 	    echo "<table cellspacing = 0 class = 'none'>";
-	    echo $html->tableCells(array (
-     	    	 array(__("Start time",true),	$form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$session->read('cdr_start')))),
-     		 array(__("End time",true),	$form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$session->read('cdr_end')))),
+	    echo $this->Html->tableCells(array (
+     	    	 array(__("Start time",true),	$this->Form->input('start_time',array('label'=>false,'type' => 'datetime', 'interval' => 15, 'selected'=>$this->Session->read('cdr_start')))),
+     		 array(__("End time",true),	$this->Form->input('end_time',array('label'=>false,'type' => 'datetime','interval' => 15,'selected' =>$this->Session->read('cdr_end')))),
       		 ),array('class' => 'none'),array('class' => 'none'));
 	    echo "</table>";
 
 
 	    echo "<table cellspacing = 0 class = 'none'>";
 	    $buttons=array();
-	    $buttons[]= $form->submit(__('View',true),array('name'=>'action'));
+	    $buttons[]= $this->Form->submit(__('View',true),array('name'=>'action'));
 
      	    if($cdr && $authGroup == 1){ 
-	    	      $buttons[] = $form->submit(__('Export',true),array('name'=>'action'));
+	    	      $buttons[] = $this->Form->submit(__('Export',true),array('name'=>'action'));
              }
 
-	     echo $html->tableCells($buttons,array('class' => 'none'),array('class' => 'none'));
+	     echo $this->Html->tableCells($buttons,array('class' => 'none'),array('class' => 'none'));
 	     echo "</table>";
-	     echo $form->end();
+	     echo $this->Form->end();
 	     //** END: Search form **/
 
 
@@ -144,7 +143,7 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
     	    if($cdr){
 
           	    
-	    echo $html->div('feedback',__('Number of records found:',true)." ".$count);
+	    echo $this->Html->div('feedback',__('Number of records found:',true)." ".$count);
 
 		foreach($cdr as $key => $entry){
 
@@ -171,18 +170,18 @@ echo $html->addCrumb(__('Reporting',true), '/cdr/general');
 
 
              if($paginator->counter(array('format' => '%pages%'))>1){
-                     echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+                     echo $this->Html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
               }
 
 
-              echo $html->div('paginator', __("Entries per page ",true).$html->link('25','general/limit:25',null, null, false)." | ".$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false));
+              echo $this->Html->div('paginator', __("Entries per page ",true).$html->link('25','general/limit:25',null, null, false)." | ".$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false));
 
 
 
 
 
 	     }	  else {
-	     echo $html->div('feedback',__('No records found.',true));
+	     echo $this->Html->div('feedback',__('No records found.',true));
 	     }
  
 	     //** END: List CDR **/

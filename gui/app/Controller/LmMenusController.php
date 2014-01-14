@@ -25,8 +25,6 @@
 class LmMenusController extends AppController{
 
 var $name = 'LmMenus';
-var $helpers = array('Flash','Session','Js');      
-
 
 
    function index(){

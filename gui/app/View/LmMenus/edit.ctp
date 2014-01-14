@@ -129,10 +129,15 @@ $input2_3 = $input2_4 = false;
      echo "</fieldset>";
 
      // Show and collapse advanced menu.
-     //FIXME
-     echo $this->Js->link(__("Advanced options",true),"/lm_menus/advanced_edit/{$this->data['LmMenu']['id']}",array("update"   => "lm_advanced", null,1));
+     echo $this->Js->link(__("Advanced options",true),
+     	  		array("controller" => "lm_menus", "action" => "advanced_edit/".$this->data['LmMenu']['id']),
+			array("update"   => "#lm_advanced", "escape" => false, "class" => "lm_advanced"));
+
+
      echo "<div id ='lm_advanced'></div>";
                              
+
+
 
      echo $this->Form->end(__('Save',true)); 
 

@@ -77,19 +77,27 @@ echo $this->Form->input('ivr_type',array('type'=>'hidden','value'=>'switcher'));
 echo "<legend>".__('Menu Options',true)."</legend>";
 
 
-echo $this->Form->create("IvrMenu");
-          $opt = array('ivr'=>__('Voice Menus',true),'lam'=>__('Leave-a-message',true),'node' => __('Content',true));
-          echo $this->Form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
 
+        $opt = array('ivr'=>__('Voice Menus',true),'lam'=>__('Leave-a-message',true),'node' => __('Content',true));
+	echo $this->Form->input("type",array("id"=>"IvrMenu","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select service",true).' --'));
+	$this->Js->get('#IvrMenu');
+	$this->Js->event('change', $this->Js->request(array('controller'=>'ivr_menus','action' => 'disp'),array('async' => true,'update' => '#service_div','method' => 'post','dataExpression'=>true,'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true)))));
+	echo $this->Form->end();
+
+
+/*
+	  echo $this->Form->create("IvrMenu");
+          echo $this->Form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
                          $opt = array(
                                 "update" => "service_div",
                                 "url" => "disp",
                                 "frequency" => "0.1"
                                      );
 
+*/
 		         //FIXME
                          //echo $ajax->observeField("ServiceType",$opt);
-                         echo $this->Form->end();
+                         //echo $this->Form->end();
                                                                                                  
                          echo "<div id='service_div' style=''></div>";
                          echo "</fieldset>";

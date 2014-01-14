@@ -23,11 +23,9 @@
  ***************************************************************************/
 
       $ivr  = Configure::read('IVR_SETTINGS');
-      //FIXME
-      //echo $ajax->div("service_div");
 
       foreach($data as $key => $entry){
-             $data[$key] = $text->truncate($entry,$ivr['showLengthMax'],array('ending' => '...','exact' => true,'html' => false));
+             $data[$key] = $this->Text->truncate($entry,$ivr['showLengthMax'],array('ending' => '...','exact' => true,'html' => false));
 
       }
 
@@ -48,7 +46,6 @@
        echo "</table>";
        echo $this->Form->end(__('Save',true));
 
-       //FIXME
-       //echo $ajax->divEnd("service_div");
+
 
 ?>

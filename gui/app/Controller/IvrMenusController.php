@@ -258,7 +258,7 @@ class IvrMenusController extends AppController{
         $ivr_default  = Configure::read('IVR_DEFAULT');
 
      
-        if (empty($this->request->data)){
+        if (!array_key_exists('IvrMenu',$this->request->data)){
 
            //Get instance id
            $instance_id =$this->IvrMenu->nextInstance();
@@ -743,7 +743,7 @@ class IvrMenusController extends AppController{
 
 
    	    //Invalid id
-	  if (!$id && empty($this->request->data)){
+	  if (!$id && !array_key_exists('IvrMenu', $this->request->data)){
 
 	     $this->Session->setFlash(__('Invalid option', true),'warning'); 
   	     $this->log("[WARNING] EDIT SELECTOR, Incorrect id: ".$id, "ivr");	
@@ -898,7 +898,7 @@ class IvrMenusController extends AppController{
    function disp(){
 
 
-   $service = $this->request->data['IvrMenu']['switcher_type'];
+   $service = $this->request->data['IvrMenu']['type'];
 
 
    if($service =='ivr'){ 

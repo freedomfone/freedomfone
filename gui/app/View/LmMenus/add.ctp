@@ -102,7 +102,12 @@ echo $this->Form->hidden('instance_id',array('value'=>$this->data['LmMenu']['ins
      echo "</fieldset>";
 
      // Show and collapse advanced menu.
-     echo $this->Js->link(__("Advanced options",true),"/lm_menus/advanced_add/",array("update"   => "lm_advanced", null,1));
+
+     echo $this->Js->link(__("Advanced options",true),
+     	  		array("controller" => "lm_menus", "action" => "advanced_add"),
+			array("update"   => "#lm_advanced", "escape" => false, "class" => "lm_advanced"));
+
+
      echo "<div id ='lm_advanced'></div>";
 
 

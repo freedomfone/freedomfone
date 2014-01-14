@@ -35,8 +35,6 @@ echo $this->Form->create("Log");
 	echo $this->Form->input("type",array("id"=>"LogType","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select log file",true).' --'));
 	$this->Js->get('#LogType');
 	$this->Js->event('change', $this->Js->request(array('controller'=>'logs','action' => 'disp'),array('async' => true,'update' => '#log_div','method' => 'post','dataExpression'=>true,'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true)))));
-
-
 	echo $this->Form->end();
 
 	echo $this->Html->div('log_div',false,array('id' => 'log_div'));

@@ -1489,6 +1489,9 @@ gui/app/webroot/js/prototype.js -text
 gui/app/webroot/js/scriptaculous.js -text
 gui/app/webroot/js/swfobject.js -text
 gui/app/webroot/js/toggle.js -text
+gui/app/webroot/system/epoch/dispatcher_in -text
+gui/app/webroot/system/pid/dispatcher_in.pid -text
+gui/app/webroot/system/version/dispatcher_in -text
 gui/app/webroot/test.php -text
 gui/build.properties -text
 gui/build.xml -text

@@ -16,6 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `acls`
+--
+
+DROP TABLE IF EXISTS `acls`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `acls` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `acls`
+--
+
+LOCK TABLES `acls` WRITE;
+/*!40000 ALTER TABLE `acls` DISABLE KEYS */;
+INSERT INTO `acls` VALUES (1,'None','No criteria'),(2,'White','Allow always'),(3,'Black','Deny always');
+/*!40000 ALTER TABLE `acls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `batches`
 --
 

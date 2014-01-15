@@ -87,11 +87,12 @@ echo $this->Form->end();
      foreach ($phonenumbers as $key => $number){
 
              $delete = $this->Js->link($this->Html->image("icons/delete.png"),
-                                   array('controller' => 'phone_numbers', 'action' => 'delete', $number['PhoneNumber']['id'].'/'.$data['User']['id']),
-                                   array('update' => 'numbers', 'escape' => false), 
-                                   __('Are you sure you want to delete this number?', true), 
-                                   true);
+                                   array('controller' => "phone_numbers", "action" => "delete", $number['PhoneNumber']['id'], $data['User']['id']),
+                                   array('update' => '#numbers', 'escape' => false, 'class' => 'numbers'));
+
              $row[] = array(__('Phone number',true), $number['PhoneNumber']['number'], $delete);
+
+
 
      }
      echo $this->Html->tableCells($row, array('class' => 'blue'),array('class' => 'blue'));
@@ -103,16 +104,16 @@ echo $this->Form->end();
 
 
      //** AJAX: Add phone number **//
+       echo "<table cellspacing='0' class='blue'>";
+       $add[] = array(
+       	      __('Phone number',true), 
+       	      $this->Form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false, 'width' => '30px')), 
+	      $this->Js->submit(__('Add phone number',true), array('url' => '/phone_numbers/add', 'update' => '#numbers')),
+     	      $this->Form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id'])),
+	      );
+       echo $this->Html->tableCells($add,array('class' => 'blue'),array('class' => 'blue'));
+       echo "</table>";
 
-     //FIXME
-     echo  $this->Js->form(array('type' => 'post', 'options' => array('model'=>'User', 'update'=>'numbers', 'url' => array('controller' => 'phone_numbers','action' => 'add'))));
-     echo "<table width='400px' cellspacing='0' class='blue'>";
-     $add[] = array(__('Add phone number',true), $this->Form->input('PhoneNumber.number',array('type' => 'text','label' => false, 'value' => false, 'autocomplete' => 'off')), $this->Form->end(array('name' => __('Add',true), 'label' =>__('Add',true),'class' =>'button')));
-     echo $this->Html->tableCells($add,array('class' => 'blue'),array('class' => 'blue'));
-     echo "</table>";
-     echo $this->Form->input('PhoneNumber.user_id', array('type' =>'hidden', 'value' => $data['User']['id']));
-     echo $this->Form->end();
-     //** END AJAX **//
 
      echo "</div>";
      //END LEFT FRAME **//

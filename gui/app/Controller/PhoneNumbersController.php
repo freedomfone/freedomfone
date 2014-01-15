@@ -26,12 +26,11 @@ class PhoneNumbersController extends AppController {
 
     var $name = 'PhoneNumbers';
 
-    var $helpers = array('Csv','Ajax','Flash');
+    var $helpers = array('Csv','Flash');
     var $components = array('RequestHandler');
 
     function add(){
 
-    Configure::write('debug', 0);
 
        if(!empty($this->request->data)){
 
@@ -62,8 +61,6 @@ class PhoneNumbersController extends AppController {
     }
 
     function delete($id, $user_id){
-
-    Configure::write('debug', 0);
 
 
        if($id && $user_id){

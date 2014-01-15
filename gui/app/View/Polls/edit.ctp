@@ -95,17 +95,11 @@ echo $this->Html->addCrumb(__('Polls',true), '/polls');
      echo "</table>";
      echo $this->Form->input('Vote.poll_id', array('type' =>'hidden', 'value' => $this->data['Poll']['id']));
 
-//     echo $this->Form->end();
-//     echo "</div>";  //VOTES
-
-
      //** END AJAX **//
 
 
 
      //** AJAX: Add poll option **//
-  //     echo "<div id ='add_vote'>";  
-  //     echo $this->Form->create('Votes');
        echo "<table width='500px' cellspacing='0' class='blue'>";
        $add[] = array(
        	      __('Option',true).' '.($key+2), 

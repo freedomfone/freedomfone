@@ -26,7 +26,7 @@ class UsersController extends AppController{
 
       var $name = 'Users';
 
-      var $helpers = array('Flash','Formatting','Session','Text','Html','Js');      
+      var $helpers = array('Flash','Formatting','Text','Html');      
 
       var  $paginate = array('page' => 1, 'order' => array( 'User.name' => 'asc'));
       var $components = array('RequestHandler');
@@ -42,17 +42,18 @@ class UsersController extends AppController{
 
       function index(){
 
-        $this->refreshAll();
+	  Configure::write('debug', 0);
+
+       $this->refreshAll();
        $this->set('title_for_layout', __('Callers',true));
+       $this->User->recursive = 1;         
 
-        $this->User->recursive = 1;         
-
-        if(strpos($this->referer(),'users') === false){
+       if(strpos($this->referer(),'users') === false){
 
             $this->Session->write('users_phone_book_id',false);
 
 
-        } else {
+       } else {
 
            if(isset($this->params['named']['sort'])) { 
       		$this->Session->write('users_sort',array($this->params['named']['sort']=>$this->params['named']['direction']));
@@ -68,31 +69,32 @@ class UsersController extends AppController{
 
         }
 
- 
-           //Phone book selected || Show all phone books
-           if(array_key_exists('User', $this->request->data)){
 
-	    if(array_key_exists('phone_book_id', $this->request->data['User'])){
-	     
-	     $phone_book_id = $this->request->data['User']['phone_book_id'];
+        //Phone book selected || Show all phone books
+        if($this->request->data['User']['phone_book_id']){
 
-             $this->Session->write('users_phone_book_id', $phone_book_id);
-             $data = $this->User->PhoneBook->findById($phone_book_id);
-             if ($data['User']){
-                foreach ($data['User'] as $key => $user){
+	   if(array_key_exists('phone_book_id', $this->request->data['User'])){
+	
+		$phone_book_id = $this->request->data['User']['phone_book_id'];
+
+                $this->Session->write('users_phone_book_id', $phone_book_id);
+                $data = $this->User->PhoneBook->findById($phone_book_id);
+
+                if ($data['User']){
+                   foreach ($data['User'] as $key => $user){
                      $user_id[] = $user['id'];
-                }
+                   }
 
                 $users = $this->paginate('User', array('User.id' => $user_id));
                 $this->set(compact('users'));
 
-             } else {
-                $users = false;
-             }
-	     } //phone book
+                } else {
+                   $users = false;
+                }
+	     } //phone_book_id
 
              //Show all phone books
-             } elseif ( isset($phone_book_id) && $phone_book_id == 0 ){
+            } elseif ( isset($phone_book_id) && $phone_book_id == 0 ){
              $this->Session->write('users_phone_book_id', $phone_book_id);
 
 
@@ -100,7 +102,7 @@ class UsersController extends AppController{
              $this->set(compact('users'));    
 
              //Pagination changed
-             } elseif ( !$phone_book_id  && $this->Session->read('users_phone_book_id')){
+             } elseif ( !isset($phone_book_id)  && $this->Session->read('users_phone_book_id')){
 
              $phone_book_id = $this->Session->read('users_phone_book_id');
      
@@ -232,13 +234,13 @@ class UsersController extends AppController{
     }
 
     function process (){
-   
+ 
 
 	    //One or more users selected
-	    if(array_key_exists('user',$this->params['form'])){
+	    if(array_key_exists('user',$this->request->data)){
 
-		$entries = $this->params['form']['user'];
-    	    	$action = $this->params['data']['Submit'];
+		$entries = $this->request->data['user'];
+    	    	$action = $this->request->data['Submit'];
 
 
 
@@ -247,7 +249,7 @@ class UsersController extends AppController{
 
                         case __('Add to phone book',true): 
 
-                        $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
+                        $phone_book_id_selected = $this->request->data['User']['add_phone_book_id'];
     	     	        foreach ($entries as $key => $id){
 
 
@@ -271,7 +273,7 @@ class UsersController extends AppController{
 
                         case __('Remove from phone book',true): 
                         
-                        $phone_book_id_selected = $this->params['data']['User']['add_phone_book_id'];
+                        $phone_book_id_selected = $this->request->data['User']['add_phone_book_id'];
                         foreach ($entries as $key => $id){
                         
                                 unset($phonebooks);
@@ -320,6 +322,7 @@ class UsersController extends AppController{
 
 
                        case __('Merge',true): 
+
 
 		       $this->User->id = array_pop($entries);
                        $this->User->unbindModel(array('hasMany' => array('Cdr','Message')));   
@@ -409,7 +412,7 @@ class UsersController extends AppController{
  	$this->set(compact('acls'));
 
         //Fetch form data and save
-	if (!empty($this->request->data)) {
+	if (array_key_exists('User', $this->request->data)) {
 
 
 		$this->User->set( $this->request->data );

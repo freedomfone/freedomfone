@@ -56,7 +56,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
 
      echo $this->Form->create('User',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
 
-     echo "<table cellspacing = '0' class='none'>";
+     echo "<table  cellspacing = '0' class='none'>";
      echo $this->Html->tableCells(array($this->Form->input('phone_book_id',array('id'=>'ServiceType','type'=>'select','options'=>$options,'selected' => $this->Session->read('users_phone_book_id'), 'label'=> false,'empty'=>'-- '.__('Select phone book',true).' --')), $this->Form->submit(__('Submit',true),array('name' =>'submit','class' =>'button'))), array('class' => 'none'));
      echo "</table>";
      echo $this->Form->end();
@@ -83,7 +83,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.User', 'frameRightTrans')
         echo $this->Html->div("paginator'",$this->Paginator->counter(array('format' => __("Caller",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ".$suffix)));
         echo $this->Form->create('User',array('type' => 'post','action'=> 'process','name'  => 'User'));
 
-        echo "<table class='collapsed' cellspacing=0>";
+        echo "<table width='90%' class='collapsed' cellspacing=0>";
         echo $this->Html->tableHeaders(array(
 	'',
 	$this->Paginator->sort('User.new',__("New",true)),

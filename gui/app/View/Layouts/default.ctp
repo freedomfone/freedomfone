@@ -50,22 +50,20 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$this->Html->css('style');?>	     		<!-- Freedom Fone -->
     <?=$this->Html->css('flash_messages');?>	     	<!-- Flash messages -->
     <?=$this->Html->css('vimeo');?>	     		<!-- Main menu -->
-    <?=$this->Html->css('modalbox');?>	        <!-- Modalbox cluetip -->
+    <?=$this->Html->css('modalbox');?>	        	<!-- Modalbox cluetip -->
     <?=$this->Html->meta('icon');?>
 
     <?=$this->Html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
 
     <?php echo $this->Html->script('confirmSubmit'); ?>  <!-- Confirmation of form submit -->
-    <?//php echo $this->Html->script('prototype');?>
-    <?//php echo $this->Html->script('scriptaculous.js?load=builder,effects');?>
+    <?php echo $this->Html->script('prototype');?>
+    <?php echo $this->Html->script('scriptaculous.js?load=builder,effects');?>
     <?php echo $this->Html->script('modalbox');?>
     <?php echo $this->Html->script('cakemodalbox');?>
-    <?php echo $this->Html->script('jquery'); ?>
 
 
-<!--    <?=$this->Html->script('jquery.tableCorners');?>   -->  <!-- Cluetip -->
- 
+
 
     <?=$this->Html->script('audio-player');?>			  <!-- Audioplayer -->
     <?=$this->Html->scriptBlock($player,array('safe'=>false));?>    <!-- Audioplayer -->

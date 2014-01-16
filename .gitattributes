@@ -1358,6 +1358,7 @@ gui/app/View/Layouts/default.ctp -text
 gui/app/View/Layouts/error.ctp -text
 gui/app/View/Layouts/flash.ctp -text
 gui/app/View/Layouts/flash_error.ctp -text
+gui/app/View/Layouts/jquery.ctp -text
 gui/app/View/Layouts/js/default.ctp -text
 gui/app/View/Layouts/rss/default.ctp -text
 gui/app/View/Layouts/xml/default.ctp -text

@@ -29,7 +29,7 @@ class PollsController extends AppController{
 
       var $helpers = array('Time','Html', 'Session','Form','Formatting','Number','Js');
 
-      
+
 
       function refresh($method = null){
 

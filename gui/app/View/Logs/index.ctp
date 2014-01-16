@@ -21,8 +21,7 @@
  *
  *
  ***************************************************************************/
-
-
+ 
 echo $this->Html->addCrumb(__('Dashboard',true), '');
 echo $this->Html->addCrumb(__('Logs',true), '/logs');
 

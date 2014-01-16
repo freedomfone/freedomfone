@@ -27,15 +27,10 @@ class LogsController extends AppController{
         var $name = 'Logs';
 	var $uses = array();
 	var $helpers = array("Html","Form","Js" => array('Jquery'));
-
-
-	function test(){ 
-
-
-	}
-
+ 	var $layout = 'jquery';    	  
 
 	function index() {
+
 
 
 	}

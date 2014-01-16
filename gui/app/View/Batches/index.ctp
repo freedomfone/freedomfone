@@ -23,44 +23,42 @@
 ***************************************************************************/
 
 echo $this->Html->addCrumb(__('SMS Centre',true), '');
-echo $this->Html->addCrumb(__('Outboxes',true), '/batches');
+echo $this->Html->addCrumb(__('SMS Batches',true), '/batches');
 
 
 $this->Session->flash();
-echo $this->Html->script('toggle');
+
 $senders = array();
 
-echo "<h1>".__('Outgoing SMS',true)."</h1>";
+echo "<h1>".__('SMS Batches',true)."</h1>";
 
       //Create list of hardware IDs
       foreach($channels as $entry){
 	       $senders[$entry] = $entry;
       }
 
+      $senders = $sms_gateways+$senders;
+
 
       //AJAX form
       echo $this->Form->create("Batch");
-      $input1 = $this->Form->input('sender', array('id' => 'ServiceType1','type' => 'select', 'options' => $senders, 'label' => false, 'empty' => '-- '.__("Channel",true).' --'));
-
-
+      $input1 = $this->Form->input('sender', array('id' => 'BatchIndex','type' => 'select', 'options' => $senders, 'label' => false, 'empty' => '-- '.__("Channel",true).' --'));
       echo "<table cellspacing=0 class='none'>";
       echo $this->Html->tableCells(array($input1), array('class' => 'none'), array('class' => 'none'));
       echo "</table>";
 
-      //FIXME
-//      echo $ajax->div("service_div");
-      $opt = array("update" => "service_div", "url" => "disp", "frequency" => "0.2");
-
-      //FIXME
-  //    echo $ajax->observeForm("BatchIndexForm", $opt);
-      echo $this->Form->end();			  
+      $this->Js->get('#BatchIndex');
+      $this->Js->event('change', $this->Js->request(array('controller'=>'batches','action' => 'disp'),array('async' => true,'update' => '#batch_div','method' => 'post','dataExpression'=>true,'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true)))));
+      echo $this->Form->end();
+      echo "<div id='batch_div'>";
       //END AJAX FORM
+
+	
+
 
      if ($batch){
 
      echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
-
-
 
       echo $this->Form->create('Batch',array('type' => 'post','action'=> 'process','name' =>'Batch'));
       echo "<table width='95%' cellspacing=0>";
@@ -75,7 +73,9 @@ echo "<h1>".__('Outgoing SMS',true)."</h1>";
       foreach ($batch as $key => $entry){
 	$name     = $entry['Batch']['name'];
 	$message  = array($entry['Batch']['body'], array('width' => '400px'));
-	$sender   = $entry['Batch']['sender'];
+	if(!$channel = $entry['Batch']['sender']){
+	 $channel  = $entry['SmsGateway']['name'];
+	}
 	$created  = $this->Time->format('Y/m/d H:i',$entry['Batch']['created']);
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batches", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
 
@@ -83,7 +83,7 @@ echo "<h1>".__('Outgoing SMS',true)."</h1>";
      	$row[$key] = array(
                      $name, 
    		     $message, 
-                     $sender, 
+                     $channel, 
                      $created, 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );
@@ -108,7 +108,6 @@ echo "<h1>".__('Outgoing SMS',true)."</h1>";
      } 
 
      echo $this->Form->end();
-     //FIXME AJAX
-//     echo $ajax->divEnd('service_div');
+     echo "</div>";
 
 ?>

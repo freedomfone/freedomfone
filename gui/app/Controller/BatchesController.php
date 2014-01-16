@@ -28,27 +28,39 @@ class BatchesController extends AppController{
 
       var $helpers = array('Time','Html', 'Session','Form','Flash');
       var $components = array('RequestHandler');
+      var $layout ='jquery';
+
 
     function index(){
 
-    	  $this->Batch->test();
+
           $this->set('title_for_layout', __('SMS Outboxes',true));
       	  $this->set('channels',$this->Batch->getChannels());
 
      	  $this->Batch->recursive = 1; 
    	  $batch = $this->paginate();
- 	  $this->set(compact('batch'));
+
+
+	  $this->loadModel('SmsGateway');
+      	  $sms_gateways = $this->SmsGateway->find('list', array('fields' => array('name')));
+
+ 	  $this->set(compact('batch','sms_gateways'));
+
       }
 
 
     function disp(){
 
+
     	     $sender = $this->request->data['Batch']['sender'];
-    	     if($sender){
-		$data   = $this->paginate('Batch', array('Batch.sender' => $sender));
-	     } else { 
+    	     if(is_numeric($sender)){
+		$data   = $this->paginate('Batch', array('Batch.sms_gateway_id' => $sender));
+	     } elseif(!$sender)  {
 	       $data   = $this->paginate('Batch');
+	     } else {
+	       $data   = $this->paginate('Batch', array('Batch.sender' => $sender));
 	     }
+
 
     	     $this->set('batch',$data);  
 
@@ -81,8 +93,6 @@ class BatchesController extends AppController{
 
 	        //Validate data 
 
-		debug($this->request->data['Batch']);
-
 	        if ($this->Batch->saveAll($this->request->data['Batch'], array('validate' => 'only'))) {
 
 		if($this->request->data['Batch']['gateway_type']== 'IP_GW'){
@@ -101,6 +111,9 @@ class BatchesController extends AppController{
 
 		if($receivers){
 
+		        $receivers = $this->validateReceivers($receivers, $this->request->data['Batch']['gateway_code'], $this->getPrefix());
+			
+
 			//Save batch data
 	  		$this->Batch->save($this->request->data['Batch']);
 	 		$batch_id = $this->Batch->getLastInsertId();
@@ -116,7 +129,10 @@ class BatchesController extends AppController{
 				
 	         }
 
-		 $this->Batch->processBatch($batch_id); 
+		 //$this->Batch->processBatch($batch_id); 
+
+		 $this->redirect(array('action' => 'index'));
+
                 }
 	       }
       } //add

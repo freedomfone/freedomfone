@@ -27,7 +27,7 @@ class MessagesController extends AppController{
       var $name = 'Messages';
       var $helpers = array('Flash','Formatting','Session');      
       var $paginate = array('page' => 1, 'limit' => 10, 'order' => array( 'Message.created' => 'desc')); 
-
+      var $layout = 'jquery';
 
 
       function refresh($method = null){

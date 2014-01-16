@@ -72,8 +72,6 @@
       echo $this->Html->tableCells($row2, array('class' => 'none'), array('class' => 'none'));
       echo "</table>";
 
-      //FIXME  AJAX DIV
-
 
       $this->Js->get('#MessageSelection');
       echo $this->Js->event('change',
@@ -96,8 +94,9 @@
       $ext = Configure::read('EXTENSIONS');
 
 
-      echo $this->Html->div(false, false, array('id' => "service_div"));
-
+      //echo $this->Html->div(false, false, array('id' => "service_div"));
+      echo "<div id='service_div'>";
+      
       if ($messages){
 
 

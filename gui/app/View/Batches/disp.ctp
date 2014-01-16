@@ -22,34 +22,35 @@
  *
  ***************************************************************************/
 
-echo $ajax->div("service_div");
 
 
-     echo $html->div("",$paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+     if($batch){
 
-
-      echo $form->create('Batch',array('type' => 'post','action'=> 'process','name' =>'Batch'));
+      echo $this->Form->create('Batch',array('type' => 'post','action'=> 'process','name' =>'Batch'));
       echo "<table width='95%' cellspacing=0>";
 
-      echo $html->tableHeaders(array(
- 	$paginator->sort(__("Name",true), 'proto'),
- 	$paginator->sort(__("Message",true), 'proto'),
- 	$paginator->sort(__("Channel",true), 'body'),
- 	$paginator->sort(__("Time",true), 'created'),
+      echo $this->Html->tableHeaders(array(
+ 	$this->Paginator->sort('name', __("NameDISP",true)),
+ 	$this->Paginator->sort('body', __("Message",true)),
+ 	$this->Paginator->sort('sender', __("Channel",true)),
+ 	$this->Paginator->sort('created', __("Time",true)),
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
 	$name     = $entry['Batch']['name'];
 	$message  = array($entry['Batch']['body'], array('width' => '400px'));
-	$sender  = $entry['Batch']['sender'];
-	$created  = $time->format('Y/m/d H:i',$entry['Batch']['created']);
-        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batch", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
+	if(!$channel = $entry['Batch']['sender']){
+	 $channel  = $entry['SmsGateway']['name'];
+	}
+
+	$created  = $this->Time->format('Y/m/d H:i',$entry['Batch']['created']);
+        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batches", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
 
 
      	$row[$key] = array(
                      $name, 
    		     $message, 
-                     $sender, 
+                     $channel, 
                      $created, 
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );
@@ -57,24 +58,17 @@ echo $ajax->div("service_div");
 	}
 
 
-     echo $html->tableCells($row);
+     echo $this->Html->tableCells($row);
      echo "</table>"; 
 
 
-     if($paginator->counter(array('format' => '%pages%'))>1){
-           echo $html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
-     }
-
-
-     echo $html->div('paginator', __("Entries per page ",true).$html->link('10','index/limit:10',null, null, false)." | ".$html->link('25','index/limit:25',null, null, false)." | ".$html->link('50','index/limit:50',null, null, false));
+     echo $this->Form->end();
+    
+    }
 
 
 
 
-  
-
-     echo $form->end();
-     echo $ajax->divEnd('service_div');
 
 
 ?>

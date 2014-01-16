@@ -97,11 +97,11 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Outboxes",true),'/batches/index'); ?>
+<?php echo $this->Html->link(__("SMS batches",true),'/batches/index'); ?>
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Send",true),'/batches/add'); ?>
+<?php echo $this->Html->link(__("Send batch",true),'/batches/add'); ?>
 </li>
 
 

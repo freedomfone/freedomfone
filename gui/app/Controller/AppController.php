@@ -130,6 +130,11 @@ public function beforeFilter() {
 
                 Configure::write('Config.language', $locale);
 	 } 
+
+
+
+
+
 } 
 
 /**
@@ -437,6 +442,15 @@ return $result;
          }
     	 $entry = $this->Setting->findByName('timezone');
 	 return $entry['Setting']['value_string'];
+     }
+
+
+     function getPrefix(){
+
+     	    $this->loadModel('Setting');   
+     	    $entry = $this->Setting->findByName('prefix', array('fields' =>'value_int'));
+	    return $entry['Setting']['value_int'];
+
      }
 
      function getLanguage(){
@@ -760,6 +774,59 @@ return $result;
             return false;
 
           }
+
+    }
+
+
+
+
+    function validateReceivers($receivers, $gateway_code, $country_prefix){
+
+
+    	     switch($gateway_code){
+
+
+	       case 'CT':
+
+	       foreach($receivers as $key => $entry){
+
+	        if(preg_match('/^\+/', $entry)){
+		
+		  $entry = substr($entry,1);
+
+		} elseif (preg_match('/^00/', $entry)){
+
+		  $entry = substr($entry,2);
+
+		} elseif (preg_match('/^0/', $entry)){
+
+		  $entry = $country_prefix.substr($entry,1);
+
+		} else {
+
+		 $entry = $country_prefix.$entry;
+
+		}
+
+		$receivers[$key] = trim($entry);
+
+	       } //foreach
+
+	       return $receivers;
+	       break;
+
+
+	       case 'OR':
+
+	       foreach($receivers as $key => $entry){
+		$receivers[$key] = trim($entry);
+	       }
+	       return $receivers;
+	       break;
+
+	     }
+
+
 
     }
 

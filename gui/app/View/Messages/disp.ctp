@@ -22,10 +22,6 @@
  *
  ***************************************************************************/
 
-echo $this->Form->create('Message',array('type' => 'post','action'=> 'index'));
-echo $this->Html->div('frameRightAlone', $this->Form->submit(__('Refresh',true),  array('name' =>'disp', 'class' => 'button')));
-echo $this->Form->end();
-echo $this->Access->showCheckbox($authGroup, 'document.Message','frameRightTrans');
 
 $ext = Configure::read('EXTENSIONS');
 

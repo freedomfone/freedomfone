@@ -34,7 +34,9 @@
     echo $this->Html->addCrumb(__('Message Centre',true), '/messages');
     echo $this->Html->addCrumb($location, '/messages/'.$source);
     echo $this->Html->addCrumb(__('Edit message',true), '/messages/edit/'.$data['Message']['id']);
-    
+
+    debug($keys);
+    debug($data);    
     $current = array_keys($keys,$data['Message']['id']); 
     $prev = $next = false;
 

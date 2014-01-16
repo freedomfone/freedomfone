@@ -40,10 +40,6 @@ echo $this->Html->tableCells(array (
      array(__("SMS body",true),	$this->Form->input('body',array('label'=>false,'cols' => 40,'rows' => 8))),
      array(array(__("Alpha-numeric characters only (maximum 160)",true),"colspan='2' class='formComment'")),
 
-     //array(__("Channel",true),	$this->Form->input('sender',array('label'=>false, 'options' => $_channels))),
-     //array(array(__("SIM card to use for sending SMS.",true),"colspan='2' class='formComment'")),
-
-
      array(__("Receivers",true),	$this->Form->input('file',array('label'=>false, 'type' => 'file'))),
      array(array(__("File containing receivers phone numbers. One number per line.",true),"colspan='2' class='formComment'")),
 

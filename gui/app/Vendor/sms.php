@@ -51,6 +51,7 @@ class sms
         $this->error		= array();
 	$this->RelativeValidity = 255;
         $this->baseurl		= false;
+        $this->session_id	= false;
 
 	if($type == 'mysql'){
 
@@ -137,10 +138,11 @@ class sms
      	$status = explode(":",$result[0]);
 
     	if ($status[0] == "OK") {
-	   $this->res = true;
+	   $this->session_id = trim($status[1]);
+	   return true;
 	   } else {
 
-	   $this->res = false;
+	   return false;
 	   $this->error[] = $result[0];
 	   }
 
@@ -197,17 +199,20 @@ class sms
 
 	} elseif($this->type == 'ip_CT'){
 
-	          $url = $this->baseurl.'/http_batch/startbatch?session_id='.$this->res.'&template='.urlencode($msg).'&from='.$sender.'&deliv_ack=1';
+	          $url = $this->baseurl.'/http_batch/startbatch?session_id='.$this->session_id	.'&template='.urlencode($msg).'&from='.$sender.'&deliv_ack=1';
+		  debug($url);
 	      	  $result = file($url);
      		  $status = explode(":",$result[0]);
 		  if($status[0] =='ID'){
 		  	$batch_id = trim($status[1]);
 			$receivers = rtrim(implode(',',$dest),',');
-			$url = $this->baseurl.'/http_batch/quicksend?session_id='.$this->res.'&batch_id='.$batch_id.'&to='.$receivers;
+			$url = $this->baseurl.'/http_batch/quicksend?session_id='.$this->session_id.'&batch_id='.$batch_id.'&to='.$receivers;
 	      	  	$result = file($url);
+			debug($result);
      		  	$status = explode(":",$result[0]);
 		  	if($status[0] =='ERR'){
 			  $this->error = $status[1];
+			  debug($status);
 			  return $this->error;
 			} else {
 
@@ -222,8 +227,9 @@ class sms
 
 
 		  } else {
+			  debug($status);
 		        $this->error = $status[1];
-			return $this->error;
+			return false;
 		  }
 	}
     }

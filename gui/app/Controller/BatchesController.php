@@ -26,6 +26,7 @@ class BatchesController extends AppController{
 
       var $name = 'Batches';
 
+      var $paginate = array('page' => 1, 'limit' => 25, 'order' => array( 'Batch.created' => 'desc')); 
       var $helpers = array('Time','Html', 'Session','Form','Flash');
       var $components = array('RequestHandler');
       var $layout ='jquery';
@@ -131,6 +132,7 @@ class BatchesController extends AppController{
 
 		 $status = $this->Batch->processBatch($batch_id); 
 		 
+		 debug($status);
 		 //Save batch status
 		 if(!$status){
 			$status=false	;
@@ -144,6 +146,7 @@ class BatchesController extends AppController{
 		 $this->Batch->id = intval($batch_id);
 	       	 $this->Batch->saveField('status', $status);	
 
+		 exit;
 		 $this->redirect(array('action' => 'index'));		 
 
                 }

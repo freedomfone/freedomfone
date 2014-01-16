@@ -88,30 +88,35 @@ function processBatch($id){
      	 $sms   = new sms('email', array('domain' => $domain));
 
 	 } elseif ($type == 'CT'){
-	 debug($data);
 
-	 debug("clickatel");
-	 $auth = array('url' => $data['SmsGateway']['url'] , 'username' => $data['SmsGateway']['username'], 'password' => $data['SmsGateway']['password'], 'api_key' => $data['SmsGateway']['api_key']);
+
+
+	 $auth = array('baseurl' => $data['SmsGateway']['url'] , 'username' => $data['SmsGateway']['username'], 'password' => $data['SmsGateway']['password'], 'api_key' => $data['SmsGateway']['api_key']);
 	 $sms   = new sms('ip_CT', $auth);
+
 
 
 	 } elseif ($type == 'PC'){
 
-	 debug("panacea");
+
 	 } 
+
+
+	 if(!$sms->res){ 
+
+	   return false;
+	   
+	 }  else { 
 
 	  foreach($data['SmsReceiver'] as $key => $receiver){
 
 	      $receivers[] = $receiver['receiver'];
 
 	   }
+  	    $id = $sms->sendSMS($data['Batch']['body'], $receivers,  $data['Batch']['sender']); 
+	    return array($id, $receivers);
 
-
-     	    $id = $sms->sendSMS($data['Batch']['body'], $receivers,  $data['Batch']['sender']); 
-
-
-	return array($id, $receivers);
-
+	 }
 }
 
 
@@ -135,57 +140,7 @@ function getChannels(){
 
 }
 
-
-
-	function test(){ 
-
-    $username = 'freedom_fone';
-    $password = 'fr3dzsms';
-    $api_key = '3420964';
-    $baseurl = 'http://api.clickatell.com'; 
-    $text = urlencode("This is an example message");
-    $to = "46706506749";
- 
-    // auth call
-    $url = "$baseurl/http/auth?api_id=$api_key&user=$username&password=$password";
-
-	debug($url);
-    // do auth call
-    $ret = file($url);
- 
-	debug($ret);
-    // explode our response. return string is on first line of the data returned
-    $status = explode(":",$ret[0]);
-
-    debug($status);
-    if ($status[0] == "OK") {
- 
-        $session_id = trim($status[1]); // remove any whitespace
-        $url = "$baseurl/http/sendmsg?session_id=$session_id&to=$to&text=$text";
-
-http://api.clickatell.com/http/sendmsg?session_id=xxxx&to=xxxx&text=xxxx
-
-	debug($url); 
-        // do sendmsg call
-        $ret = file($url);
-        $send = explode(":",$ret[0]);
- 
-	debug($ret);
-        if ($send[0] == "ID") {
-            echo "successnmessage ID: ". $send[1];
-        } else {
-            echo "send message failed";
-        }
-    } else {
-        echo "Authentication failure: ". $ret[0];
-    }
-
-
-
-  	}
-
 }
-
 
 
 ?>

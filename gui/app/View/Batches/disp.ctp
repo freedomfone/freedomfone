@@ -30,17 +30,19 @@
       echo "<table width='95%' cellspacing=0>";
 
       echo $this->Html->tableHeaders(array(
- 	$this->Paginator->sort('name', __("NameDISP",true)),
+ 	$this->Paginator->sort('status', __("Status",true)),
+ 	$this->Paginator->sort('name', __("Name",true)),
  	$this->Paginator->sort('body', __("Message",true)),
  	$this->Paginator->sort('sender', __("Channel",true)),
  	$this->Paginator->sort('created', __("Time",true)),
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
-	$name     = $entry['Batch']['name'];
-	$message  = array($entry['Batch']['body'], array('width' => '400px'));
-	if(!$channel = $entry['Batch']['sender']){
-	 $channel  = $entry['SmsGateway']['name'];
+	$status       = $entry['Batch']['status'];
+	$name         = $entry['Batch']['name'];
+	$message      = array($entry['Batch']['body'], array('width' => '400px'));
+	if(!$channel  = $entry['Batch']['sender']){
+	 $channel     = $entry['SmsGateway']['name'];
 	}
 
 	$created  = $this->Time->format('Y/m/d H:i',$entry['Batch']['created']);
@@ -48,6 +50,7 @@
 
 
      	$row[$key] = array(
+		     $status,
                      $name, 
    		     $message, 
                      $channel, 

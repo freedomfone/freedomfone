@@ -129,12 +129,28 @@ class BatchesController extends AppController{
 				
 	         }
 
-		 //$this->Batch->processBatch($batch_id); 
+		 $status = $this->Batch->processBatch($batch_id); 
+		 
+		 //Save batch status
+		 if(!$status){
+			$status=false	;
+		 } elseif(is_array($status[0])){
+		        $status=true;
+		 } else { 
+		        $status=false;
+			$this->Session->setFlash($status[0]);
+		 }
 
-		 $this->redirect(array('action' => 'index'));
+		 $this->Batch->id = intval($batch_id);
+	       	 $this->Batch->saveField('status', $status);	
+
+		 $this->redirect(array('action' => 'index'));		 
 
                 }
 	       }
+
+
+
       } //add
 
 

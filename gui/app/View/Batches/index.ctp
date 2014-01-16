@@ -64,6 +64,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
       echo "<table width='95%' cellspacing=0>";
 
       echo $this->Html->tableHeaders(array(
+ 	$this->Paginator->sort('status', __("Status",true)),
  	$this->Paginator->sort('name', __("Name",true)),
  	$this->Paginator->sort('body', __("Message",true)),
  	$this->Paginator->sort('sender', __("Channel",true)),
@@ -71,6 +72,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
+	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
 	$name     = $entry['Batch']['name'];
 	$message  = array($entry['Batch']['body'], array('width' => '400px'));
 	if(!$channel = $entry['Batch']['sender']){
@@ -81,6 +83,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
 
      	$row[$key] = array(
+		     $status,
                      $name, 
    		     $message, 
                      $channel, 

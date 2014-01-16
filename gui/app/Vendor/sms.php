@@ -50,6 +50,7 @@ class sms
 	$this->type		= $type;
         $this->error		= array();
 	$this->RelativeValidity = 255;
+        $this->baseurl		= false;
 
 	if($type == 'mysql'){
 
@@ -124,14 +125,27 @@ class sms
     /**
      * sms::ctAuth()
      * @usage Authenticate against Clickatell account
-     * @param array $auth ( array('url','username','password','api_key'))
-     * @return $res bool
+     * @param array $auth ( array('baseurl','api_key','username','password'))
+     * @return $res $session_id
      */
 
-    
+     function ctAuth($auth){ 
 
+        $this->baseurl = $auth['baseurl'];
+	$url	= $auth['baseurl'].'/http/auth?api_id='.$auth['api_key'].'&user='.$auth['username'].'&password='.$auth['password'];
+    	$result = file($url);
+     	$status = explode(":",$result[0]);
 
-    
+    	if ($status[0] == "OK") {
+	   $this->res = true;
+	   } else {
+
+	   $this->res = false;
+	   $this->error[] = $result[0];
+	   }
+
+       }    
+
     /**
      * sms::sendSMS()
      * @usage tell gammu-smsd to send one sms to many recipient OR tell OfficeRoute to send sms to single receipient
@@ -143,7 +157,7 @@ class sms
     function sendSMS($msg,$dest,$sender)
     {
 
-        if($this->type == 'mysql' || $this->type == 'ip_CT' ){
+        if($this->type == 'mysql' ){
 
         $this->msg	= substr($msg,0,160);
 
@@ -181,6 +195,36 @@ class sms
 	      return $id;
 	  } 
 
+	} elseif($this->type == 'ip_CT'){
+
+	          $url = $this->baseurl.'/http_batch/startbatch?session_id='.$this->res.'&template='.urlencode($msg).'&from='.$sender.'&deliv_ack=1';
+	      	  $result = file($url);
+     		  $status = explode(":",$result[0]);
+		  if($status[0] =='ID'){
+		  	$batch_id = trim($status[1]);
+			$receivers = rtrim(implode(',',$dest),',');
+			$url = $this->baseurl.'/http_batch/quicksend?session_id='.$this->res.'&batch_id='.$batch_id.'&to='.$receivers;
+	      	  	$result = file($url);
+     		  	$status = explode(":",$result[0]);
+		  	if($status[0] =='ERR'){
+			  $this->error = $status[1];
+			  return $this->error;
+			} else {
+
+			   foreach($result as $line){ 
+			     $line = explode(" ", $line);
+			     $data[] = $line[1];
+			     
+			   }
+
+			   return $data;
+			}
+
+
+		  } else {
+		        $this->error = $status[1];
+			return $this->error;
+		  }
 	}
     }
     
@@ -311,6 +355,5 @@ class sms
     }
 
  }
-    
 
 ?>

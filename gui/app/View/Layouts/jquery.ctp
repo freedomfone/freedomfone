@@ -115,6 +115,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
 
 		<div id="main_content">
+                <?php echo $this->Session->flash();?>
                 <?php echo $this->Session->flash('auth');?>
 
     		<?php 

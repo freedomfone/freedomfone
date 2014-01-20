@@ -66,6 +66,7 @@ var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Acc
     );
 
 
+
 public function beforeFilter() {
 
          $this->Auth->allow('display','login','method','add');
@@ -91,8 +92,10 @@ public function beforeFilter() {
 
          //Checking of default Admin password is in use
 
-
+	 $this->set('current_user', $this->Auth->user());
 	 $user = $this->Auth->user();
+	 debug($user);
+
 
 	 if($user){ 
          $this->loadModel('FfUser');
@@ -136,6 +139,13 @@ public function beforeFilter() {
 
 
 } 
+
+public function isAuthorized($user) {
+    // Here is where we should verify the role and give access based on role
+     
+    return true;
+}
+
 
 /**
  * Source: http://www.jamesfairhurst.co.uk

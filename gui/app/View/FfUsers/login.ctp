@@ -32,6 +32,7 @@
 
 
 
+	$this->Auth->user();
       $options	  = array('label' => false);
       echo $this->Form->create('FfUser',array('type' => 'post','action'=> 'login'));
       echo "<table cellspacing=0 'class'='stand-alone'>";
@@ -42,6 +43,5 @@
            array('',	$this->Form->end(__('Login',true)))),
            array('class'=>'stand-alone'),array('class'=>'stand-alone'));
      echo "</table>";
-
 
 ?>

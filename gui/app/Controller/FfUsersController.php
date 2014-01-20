@@ -37,11 +37,24 @@ class FfUsersController extends AppController{
 
       }
 
+ public function isAuthorized($user){
+
+   if(in_array($this->action, array('edit','delete'))){
+ 	if($user['id'] != $this->request->params['pass'][0]){
+	   return false;
+	}
+    }
+    return true;
+
+
+ }
 
  public function login() {
 
     if ($this->request->is('post')) {
       if ($this->Auth->login($this->request->data['FfUser'])) {
+
+      
             return $this->redirect($this->Auth->redirectUrl());
 	    
 

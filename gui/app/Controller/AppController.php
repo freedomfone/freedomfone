@@ -788,6 +788,8 @@ return $result;
 
 	       case 'CT':
 
+	       $receivers = array_slice($receivers, 0, 100); 
+
 	       foreach($receivers as $key => $entry){
 
 	        if(preg_match('/^\+/', $entry)){

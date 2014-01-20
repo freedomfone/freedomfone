@@ -108,6 +108,7 @@ class BatchesController extends AppController{
 
 
 		$receivers = file($this->request->data['Batch']['file']['tmp_name']);
+
 		unset($this->request->data['Batch']['file']);
 
 		if($receivers){
@@ -133,6 +134,7 @@ class BatchesController extends AppController{
 		 $status = $this->Batch->processBatch($batch_id); 
 		 
 		 debug($status);
+		 exit;
 		 //Save batch status
 		 if(!$status){
 			$status=false	;

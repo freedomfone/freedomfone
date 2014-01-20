@@ -208,6 +208,7 @@ class sms
 			$receivers = rtrim(implode(',',$dest),',');
 			$url = $this->baseurl.'/http_batch/quicksend?session_id='.$this->session_id.'&batch_id='.$batch_id.'&to='.$receivers;
 	      	  	$result = file($url);
+			debug($url);
 			debug($result);
      		  	$status = explode(":",$result[0]);
 		  	if($status[0] =='ERR'){

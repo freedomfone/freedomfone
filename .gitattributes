@@ -1161,7 +1161,6 @@ gui/app/Controller/Component/simplepie-simplepie-e9472a1/tests/oldtests/who_know
 gui/app/Controller/Component/simplepie-simplepie-e9472a1/tests/oldtests/who_knows_a_title_from_a_hole_in_the_ground/text/ncr.php -text
 gui/app/Controller/Component/simplepie-simplepie-e9472a1/tests/oldtests/who_knows_a_title_from_a_hole_in_the_ground/xhtml/entity.php -text
 gui/app/Controller/Component/simplepie-simplepie-e9472a1/tests/oldtests/who_knows_a_title_from_a_hole_in_the_ground/xhtml/ncr.php -text
-gui/app/Controller/FfUsersController.php -text
 gui/app/Controller/GroupsController.php -text
 gui/app/Controller/IvrMenusController.php -text
 gui/app/Controller/LmMenusController.php -text

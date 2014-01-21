@@ -200,7 +200,7 @@ class sms
 	} elseif($this->type == 'ip_CT'){
 
 	          $url = $this->baseurl.'/http_batch/startbatch?session_id='.$this->session_id	.'&template='.urlencode($msg).'&from='.$sender.'&deliv_ack=1';
-		  debug($url);
+
 	      	  $result = file($url);
      		  $status = explode(":",$result[0]);
 		  if($status[0] =='ID'){
@@ -208,12 +208,11 @@ class sms
 			$receivers = rtrim(implode(',',$dest),',');
 			$url = $this->baseurl.'/http_batch/quicksend?session_id='.$this->session_id.'&batch_id='.$batch_id.'&to='.$receivers;
 	      	  	$result = file($url);
-			debug($url);
-			debug($result);
+
      		  	$status = explode(":",$result[0]);
 		  	if($status[0] =='ERR'){
 			  $this->error = $status[1];
-			  debug($status);
+
 			  return $this->error;
 			} else {
 
@@ -228,7 +227,7 @@ class sms
 
 
 		  } else {
-			  debug($status);
+
 		        $this->error = $status[1];
 			return false;
 		  }

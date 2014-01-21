@@ -1212,6 +1212,14 @@ gui/app/Model/SmsReceiver.php -text
 gui/app/Model/Tag.php -text
 gui/app/Model/User.php -text
 gui/app/Model/Vote.php -text
+gui/app/Plugin/AclExtras/.travis.yml -text
+gui/app/Plugin/AclExtras/Console/Command/AclExtrasShell.php -text
+gui/app/Plugin/AclExtras/Lib/AclExtras.php -text
+gui/app/Plugin/AclExtras/README.md -text
+gui/app/Plugin/AclExtras/Test/Case/AllTestsTest.php -text
+gui/app/Plugin/AclExtras/Test/Case/Lib/AclExtrasTest.php -text
+gui/app/Plugin/AclExtras/Test/test_controllers.php -text
+gui/app/Plugin/AclExtras/composer.json -text
 gui/app/Plugin/DebugKit/.jshintrc -text
 gui/app/Plugin/DebugKit/.travis.yml -text
 gui/app/Plugin/DebugKit/Console/Command/BenchmarkShell.php -text

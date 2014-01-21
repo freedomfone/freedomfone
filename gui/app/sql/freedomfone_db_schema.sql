@@ -129,7 +129,7 @@ CREATE TABLE `cdr` (
   `application` varchar(50) DEFAULT NULL,
   `proto` varchar(25) DEFAULT NULL,
   `length` int(11) unsigned DEFAULT '0',
-  `user_id` int(11) unsigned DEFAULT NULL,
+  `caller_id` int(11) unsigned DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
   `quick_hangup` varchar(10) DEFAULT NULL,
   `login` varchar(50) DEFAULT NULL,
@@ -332,7 +332,7 @@ CREATE TABLE `messages` (
   `status` tinyint(4) DEFAULT '1',
   `length` int(11) DEFAULT NULL,
   `instance_id` int(6) NOT NULL,
-  `user_id` int(11) unsigned DEFAULT NULL,
+  `caller_id` int(11) unsigned DEFAULT NULL,
   `comment` varchar(300) DEFAULT NULL,
   `quick_hangup` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -461,27 +461,27 @@ LOCK TABLES `phone_books` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `phone_books_users`
+-- Table structure for table `callers_phone_books`
 --
 
-DROP TABLE IF EXISTS `phone_books_users`;
+DROP TABLE IF EXISTS `callers_phone_books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `phone_books_users` (
+CREATE TABLE `callers_phone_books` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) unsigned DEFAULT NULL,
+  `caller_id` int(11) unsigned DEFAULT NULL,
   `phone_book_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `phone_books_users`
+-- Dumping data for table `callers_phone_books`
 --
 
-LOCK TABLES `phone_books_users` WRITE;
-/*!40000 ALTER TABLE `phone_books_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phone_books_users` ENABLE KEYS */;
+LOCK TABLES `callers_phone_books` WRITE;
+/*!40000 ALTER TABLE `callers_phone_books` DISABLE KEYS */;
+/*!40000 ALTER TABLE `callers_phone_books` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -493,7 +493,7 @@ DROP TABLE IF EXISTS `phone_numbers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phone_numbers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `caller_id` int(11) NOT NULL,
   `number` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -665,13 +665,13 @@ LOCK TABLES `tags` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `users`
+-- Table structure for table `callers`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `callers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE `callers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `surname` varchar(50) DEFAULT NULL,

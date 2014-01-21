@@ -36,79 +36,72 @@ App::import("Vendor", "mp3file", false, null, 'mp3file.php');
 App::import("Vendor", 'SimpleDOM',false,null,'SimpleDOM.php'); 
 App::import('Vendor', 'sms'); 
 
-App::uses('AuthComponent', 'Controller/Component');
-
-
 
 
 class AppController extends Controller {
 
 var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Access'); 
 
+
  public $components = array(
  	'RequestHandler',
-	'DebugKit.Toolbar',
+        'DebugKit.Toolbar',
         'Acl',
         'Auth' => array(
             'authorize' => array(
-  		'Actions' => array('actionPath' => 'controllers','userModel' => 'FfUser')
-            ),
-	    'authenticate' => array(
-                    'Form' => array(
-                        'userModel' => 'FfUser',
-                        'fields' => array(
-                            'username' => 'username',
-                            'password'=>'password')
-                    )
-                )
+                'Actions' => array('actionPath' => 'controllers')
+            )
         ),
         'Session'
     );
 
 
+    public function beforeFilter() {
 
-public function beforeFilter() {
+         $this->Auth->allow('login');
 
-         $this->Auth->allow('display','login','method','add');
-
-
-
+        //Configure AuthComponent
         $this->Auth->loginAction = array(
-          'controller' => 'ff_users',
+          'controller' => 'users',
           'action' => 'login'
         );
+        $this->Auth->logoutRedirect = array(
+          'controller' => 'users',
+          'action' => 'login'
+        );
+        $this->Auth->loginRedirect = array(
+          'controller' => 'polls',
+          'action' => 'index'
+        );
+
+
+
 
 
          //Customize Auth error messages
          $this->Auth->loginError = __("Wrong password, please try again.",true);
          $this->Auth->authError  = __("You do not have the authority to access this page.",true);
 
-  
-
-         //Configure Auth component
-         //$this->Auth->authorize = 'actions';
-         $this->Auth->logoutRedirect = array('controller' => 'cdr', 'action' => 'overview');
-         $this->Auth->loginRedirect  = array('controller' => 'cdr', 'action' => 'overview');
-
+	 
          //Checking of default Admin password is in use
+
 
 	 $this->set('current_user', $this->Auth->user());
 	 $user = $this->Auth->user();
-	 debug($user);
 
 
 	 if($user){ 
-         $this->loadModel('FfUser');
-         $res = $this->FfUser->findByUsername($user['username']);
+         $this->loadModel('User');
+         $res = $this->User->findByUsername($user['username']);
  
 	if(!$res){ 
 
-         $this->Auth->loginRedirect  = array('controller' => 'ff_users', 'action' => 'login');
+         $this->Auth->loginRedirect  = array('controller' => 'users', 'action' => 'login');
 	 $this->Session->setFlash('You are not authorized');
 
 	}
-        elseif( $res['FfUser']['password'] == '6f04cfa963380dee68a9bfe8bdff14784af284a7'){
-                       $this->Auth->loginRedirect  = array('controller' => 'ff_users', 'action' => 'index');
+        elseif( $res['User']['password'] == '6f04cfa963380dee68a9bfe8bdff14784af284a7'){
+                       $this->Auth->loginRedirect  = array('controller' => 'users', 'action' => 'index');
 
           } else {
 
@@ -118,10 +111,11 @@ public function beforeFilter() {
 
 
 	
-        $authGroup = $res['FfUser']['group_id'];
-        $authUser  = $res['FfUser']['username'];
+        $authGroup = $res['User']['group_id'];
+        $authUser  = $res['User']['username'];
         $this->set(compact('authGroup', 'authUser'));
 	} 
+
 
 	 if(!$timezone = $this->Session->read('Config.timezone')){
 		$timezone = $this->getTimezone();
@@ -137,14 +131,8 @@ public function beforeFilter() {
 
 
 
-
-} 
-
-public function isAuthorized($user) {
-    // Here is where we should verify the role and give access based on role
-     
-    return true;
 }
+
 
 
 /**

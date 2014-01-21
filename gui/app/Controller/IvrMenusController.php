@@ -30,7 +30,7 @@ class IvrMenusController extends AppController{
 
 	var $name = 'IvrMenus';
 	var $helpers = array('Flash','Session','Formatting','Js','Text');      
-
+	var $layout  = 'jquery';
 
 /*
  * Lists all IVR (Voice Menus)
@@ -294,6 +294,7 @@ class IvrMenusController extends AppController{
 
           //Save text based form data
 
+          $this->request->data['IvrMenu']['switcher_type'] = $this->request->data['Mapping'][1]['type'];
 
                 foreach($this->request->data['Mapping'] as $key => $entry){
 

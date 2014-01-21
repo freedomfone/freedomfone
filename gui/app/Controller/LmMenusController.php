@@ -24,8 +24,9 @@
 
 class LmMenusController extends AppController{
 
-var $name = 'LmMenus';
+      var $name = 'LmMenus';
 
+      var $layout = 'jquery';    	  
 
    function index(){
 
@@ -68,7 +69,7 @@ var $name = 'LmMenus';
 
     function add($id) {
 
-    debug($this->request->data);
+
         $this->set('title_for_layout',  __('Create Leave-a-Message',true));
          $lm_settings = Configure::read('LM_SETTINGS');
 

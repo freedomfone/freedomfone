@@ -133,8 +133,7 @@ class BatchesController extends AppController{
 
 		 $status = $this->Batch->processBatch($batch_id); 
 		 
-		 debug($status);
-		 exit;
+
 		 //Save batch status
 		 if(!$status){
 			$status=false	;
@@ -148,7 +147,6 @@ class BatchesController extends AppController{
 		 $this->Batch->id = intval($batch_id);
 	       	 $this->Batch->saveField('status', $status);	
 
-		 exit;
 		 $this->redirect(array('action' => 'index'));		 
 
                 }

@@ -43,7 +43,6 @@ class PollsController extends AppController{
 
       function index(){
 
-
         $this->set('title_for_layout', __('Manage Polls',true));
         $this->Poll->unbindModel(array('hasMany' => array('User')));
         $this->set('polls',$this->Poll->find('all',array('order'=>'Poll.created DESC')));

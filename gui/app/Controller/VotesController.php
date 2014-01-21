@@ -28,6 +28,7 @@ class VotesController extends AppController{
 
       var $helpers = array('Time','Html', 'Session','Form','Js','Flash');
       var $components = array('RequestHandler');
+ 	var $layout = 'jquery';    	  
 
     function add(){
 

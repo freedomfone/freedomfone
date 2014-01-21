@@ -53,23 +53,23 @@ class PhoneNumbersController extends AppController {
 
              }
 
-                $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $this->request->data['PhoneNumber']['user_id']), 'recursive' => -1));
-                $user = $this->request->data['PhoneNumber']['user_id'];
-                $this->set(compact('phonenumbers','user'));
+                $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('caller_id' => $this->request->data['PhoneNumber']['caller_id']), 'recursive' => -1));
+                $caller = $this->request->data['PhoneNumber']['caller_id'];
+                $this->set(compact('phonenumbers','caller'));
                 $this->render($view,'ajax');
            }
     }
 
-    function delete($id, $user_id){
+    function delete($id, $caller_id){
 
 
-       if($id && $user_id){
+       if($id && $caller_id){
                 
                 if ($this->PhoneNumber->delete($id)){
                
-                   $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('user_id' => $user_id), 'recursive' => -1));
-                   $user = $user_id;
-                   $this->set(compact('phonenumbers','user'));
+                   $phonenumbers = $this->PhoneNumber->find('all', array('conditions' => array('caller_id' => $caller_id), 'recursive' => -1));
+                   $caller = $caller_id;
+                   $this->set(compact('phonenumbers','caller'));
                    $this->render('add_success','ajax');
                 } else {
                   $this->render('add_failure','ajax');

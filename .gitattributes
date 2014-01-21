@@ -219,6 +219,7 @@ gui/app/Controller/AppController.php -text
 gui/app/Controller/AppController.php1.3 -text
 gui/app/Controller/BatchesController.php -text
 gui/app/Controller/BinController.php -text
+gui/app/Controller/CallersController.php -text
 gui/app/Controller/CategoriesController.php -text
 gui/app/Controller/CdrController.php -text
 gui/app/Controller/ChannelsController.php -text

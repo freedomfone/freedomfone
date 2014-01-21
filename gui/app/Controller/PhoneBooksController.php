@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * phone_books_controller.php	- Controller for phone books (used for classification of Users)
+ * PhoneBooksController.php	- Controller for phone books (used for classification of Callers)
  * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -27,15 +27,13 @@ class PhoneBooksController extends AppController {
     var $name = 'PhoneBooks';
 
       var $scaffold;
-      var $helpers = array('Csv');
-
+      var $helpers = array('Csv','Session');
 
 	function index() {
 
                 $this->set('title_for_layout', __('Phone books',true));
 		$this->PhoneBook->recursive = 0;
 		$this->set('data', $this->paginate());
-
 
 
 	}
@@ -49,10 +47,10 @@ class PhoneBooksController extends AppController {
 		if (!empty($this->request->data)) {
 			$this->PhoneBook->create();
 			if ($this->PhoneBook->save($this->request->data)) {
-				$this->Session->setFlash(__('The phone book has been created', true),'success');
+				$this->Session->setFlash(__('The phone book has been created', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The phone book could not be saved. Please, try again.', true),'error');
+				$this->Session->setFlash(__('The phone book could not be saved. Please, try again.', true));
 			}
 		}
 	}
@@ -79,10 +77,10 @@ class PhoneBooksController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->PhoneBook->read(null, $id);
 
-			$users   = $this->PhoneBook->User->find('list');
+			$callers   = $this->PhoneBook->Caller->find('list');
 
 
-			$this->set(compact('users'));
+			$this->set(compact('callers'));
 		}
 
 	}
@@ -109,22 +107,22 @@ class PhoneBooksController extends AppController {
              $this->set('phonebook_name', $data['PhoneBook']['name']);
              $id_keys = array();
 
-             foreach ($data['User'] as $key => $user){
+             foreach ($data['Caller'] as $key => $caller){
              
-                $id_keys[] = $user['id'];
+                $id_keys[] = $caller['id'];
 
              }
 
-             $this->loadModel('User');
-             $this->User->unbindModel(
+             $this->loadModel('Caller');
+             $this->Caller->unbindModel(
                 array('hasMany' => array('Message','Cdr'))
                 );
 
-             $this->User->unbindModel(
+             $this->Caller->unbindModel(
                 array('hasAndBelongsToMany' => array('PhoneBook'))
                 );
 
-  	     $data = $this->User->findAllById($id_keys); 
+  	     $data = $this->Caller->findAllById($id_keys); 
     	     $this->set('data', $data); 
 
     	     $this->layout = null;

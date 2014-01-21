@@ -216,7 +216,6 @@ gui/app/Console/cake.bat -text
 gui/app/Console/cake.php -text
 gui/app/Controller/ApiController.php -text
 gui/app/Controller/AppController.php -text
-gui/app/Controller/AppController.php1.3 -text
 gui/app/Controller/BatchesController.php -text
 gui/app/Controller/BinController.php -text
 gui/app/Controller/CallersController.php -text

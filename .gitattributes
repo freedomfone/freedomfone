@@ -1414,6 +1414,11 @@ gui/app/View/SmsGateways/index.ctp -text
 gui/app/View/Tags/add.ctp -text
 gui/app/View/Tags/edit.ctp -text
 gui/app/View/Tags/index.ctp -text
+gui/app/View/Users/add.ctp -text
+gui/app/View/Users/edit.ctp -text
+gui/app/View/Users/index.ctp -text
+gui/app/View/Users/login.ctp -text
+gui/app/View/Users/system_sweeper.ctp -text
 gui/app/View/Votes/add_failure.ctp -text
 gui/app/View/Votes/add_success.ctp -text
 gui/app/index.php -text

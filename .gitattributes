@@ -1334,11 +1334,6 @@ gui/app/View/Emails/html/default.ctp -text
 gui/app/View/Emails/text/default.ctp -text
 gui/app/View/Errors/error400.ctp -text
 gui/app/View/Errors/error500.ctp -text
-gui/app/View/FfUsers/add.ctp -text
-gui/app/View/FfUsers/edit.ctp -text
-gui/app/View/FfUsers/index.ctp -text
-gui/app/View/FfUsers/login.ctp -text
-gui/app/View/FfUsers/system_sweeper.ctp -text
 gui/app/View/Groups/add.ctp -text
 gui/app/View/Groups/index.ctp -text
 gui/app/View/Helper/AccessHelper.php -text

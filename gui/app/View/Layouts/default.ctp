@@ -97,11 +97,11 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
         <?php 
           if(isset($authGroup)){
              if ($authGroup) { 
-               echo $this->Html->image("icons/logout.png", array("class" => "logout", "alt" => __("Logout",true), "title" => __("Logout",true), "url" => array("controller" => "ff_users", "action" => "logout")));
+               echo $this->Html->image("icons/logout.png", array("class" => "logout", "alt" => __("Logout",true), "title" => __("Logout",true), "url" => array("controller" => "users", "action" => "logout")));
               }
            } else {
 
-   echo $this->Html->image("icons/login.png", array("class" => "logout", "alt" => __("Login",true), "title" => __("Login",true), "url" => array("controller" => "ff_users", "action" => "login")));
+   echo $this->Html->image("icons/login.png", array("class" => "logout", "alt" => __("Login",true), "title" => __("Login",true), "url" => array("controller" => "users", "action" => "login")));
            } ?>
 
            </div>

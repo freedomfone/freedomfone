@@ -60,25 +60,25 @@ echo $this->Form->input('ivr_type',array('type'=>'hidden','value'=>'ivr'));
 </fieldset>
 
 <fieldset>
-<h3>1. <?php __('Welcome');?> </h3>
+<h3>1. <?php echo __('Welcome');?> </h3>
 <?php echo $this->Form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3>2. <?php __('Instructions');?> </h3>
+<h3>2. <?php echo __('Instructions');?> </h3>
 <?php echo $this->Form->input('message_short',array('type'=>'textarea','cols' => '80', 'rows' => '3','label'=>$commentShort,'after' => $FallbackShort,'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_short', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3>3. <?php __('Goodbye');?> </h3>
+<h3>3. <?php echo __('Goodbye');?> </h3>
 <?php echo $this->Form->input('message_exit',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackExit, 'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_exit', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 <fieldset>
-<h3>4. <?php __('Invalid');?> </h3>
+<h3>4. <?php echo __('Invalid');?> </h3>
 <?php echo $this->Form->input('message_invalid',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>

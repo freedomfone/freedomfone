@@ -57,26 +57,26 @@
 		foreach($data as $entry){
 
 
-                    if (!$entry['User']['last_epoch']) {
+                    if (!$entry['Caller']['last_epoch']) {
                        $last_epoch = __('Never',true);
                     } else {
-                      $last_epoch = date('Y-m-d H:i:s',$entry['User']['last_epoch']);
+                      $last_epoch = date('Y-m-d H:i:s',$entry['Caller']['last_epoch']);
                     }
 	
 		    $line = array(
-		      $entry['User']['name'],
-		      $entry['User']['surname'],
-		      $entry['User']['email'],
-		      $entry['User']['skype'],
-		      $entry['User']['organization'],
-		      date('Y-m-d H:i:s',$entry['User']['created']),
-		      $entry['User']['count_poll'],
-		      $entry['User']['count_ivr'],
-		      $entry['User']['count_lam'],
-		      $entry['User']['count_bin'],
-		      $entry['User']['count_callback'],
-                      $this->element('services',array('service' => $entry['User']['first_app'])),
-                      $this->element('services',array('service' => $entry['User']['last_app'])),
+		      $entry['Caller']['name'],
+		      $entry['Caller']['surname'],
+		      $entry['Caller']['email'],
+		      $entry['Caller']['skype'],
+		      $entry['Caller']['organization'],
+		      date('Y-m-d H:i:s',$entry['Caller']['created']),
+		      $entry['Caller']['count_poll'],
+		      $entry['Caller']['count_ivr'],
+		      $entry['Caller']['count_lam'],
+		      $entry['Caller']['count_bin'],
+		      $entry['Caller']['count_callback'],
+                      $this->element('services',array('service' => $entry['Caller']['first_app'])),
+                      $this->element('services',array('service' => $entry['Caller']['last_app'])),
                       $last_epoch,
 		      );
 

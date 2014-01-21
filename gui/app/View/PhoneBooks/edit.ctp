@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-echo $this->Html->addCrumb(__('User Management',true), '');
+echo $this->Html->addCrumb(__('Caller Management',true), '');
 echo $this->Html->addCrumb(__('Phone books',true), '/phone_books');
 echo $this->Html->addCrumb(__('Edit',true), '/phone_books/edit/'.$this->data['PhoneBook']['id']);
 
@@ -46,7 +46,7 @@ echo $this->Html->addCrumb(__('Edit',true), '/phone_books/edit/'.$this->data['Ph
      echo $this->Html->tableCells(array (
      	  array(array(__("Name",true),array('width' =>'150px')),	        $this->Form->input('name',$options_name)),
      	  array(__("Description",true),                                         $this->Form->input('description',$options_longname)),
-     	  array(array(__("Add caller to phone book",true),array('valign' => 'top')),		                        $this->Form->input('User',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $users,'label'=>false,'empty'=>"-- ".__('Use in none',true)." --"))),
+     	  array(array(__("Add caller to phone book",true),array('valign' => 'top')),		                        $this->Form->input('Caller',array('type'=>'select','multiple'=>'true','size' => 20, 'options' => $callers,'label'=>false,'empty'=>"-- ".__('Use in none',true)." --"))),
      	  array('',	$this->Form->end(__('Save',true)))), array('class' => 'stand-alone'),array('class' => 'stand-alone'));
 
     echo "</table>";

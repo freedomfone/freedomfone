@@ -22,18 +22,14 @@
  *
  ***************************************************************************/
 
-echo $this->Html->addCrumb(__('User Management',true), '');
+echo $this->Html->addCrumb(__('Caller Management',true), '');
 echo $this->Html->addCrumb(__('Phone books',true), '/phone_books');
 echo $this->Html->addCrumb(__('Add',true), '/phone_books/add');
 
 echo "<h1>".__("Create Phone book",true)."</h1>";
 
-   // Multiple Flash messages
-   if ($messages = $this->Session->read('Message')) {
-       foreach($messages as $key => $value) {
-              echo $this->Session->flash($key);
-       }
-    }
+
+echo $this->Session->flash();
 
 
 

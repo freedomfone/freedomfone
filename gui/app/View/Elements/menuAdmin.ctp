@@ -165,15 +165,15 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Callers",true),'/users'); ?>
+<?php echo $this->Html->link(__("Callers",true),'/callers'); ?>
 </li>
 
 <li>
-<?php echo $this->Html->link(__("System users",true),'/ff_users'); ?>
+<?php echo $this->Html->link(__("System users",true),'/users'); ?>
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Frontend Sweeper",true),'/ff_users/system_sweeper'); ?>
+<?php echo $this->Html->link(__("Frontend Sweeper",true),'/users/system_sweeper'); ?>
 </li>
 
 

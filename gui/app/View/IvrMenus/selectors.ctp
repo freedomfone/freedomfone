@@ -46,16 +46,17 @@ $types = array('lam' => __('Leave-a-message',true),'ivr' => __('Voice Menu',true
  		$this->Paginator->sort('type', __("Type",true)),
  		$this->Paginator->sort('modified', __("Last modified",true)),
 		__("Actions",true)));
-          
-		
+ 
 
 	foreach ($switchers as $key => $switcher){
+
+
 		$instance_id  = $ext['ivr'].$switcher['IvrMenu']['instance_id'];
 		$title        = $switcher['IvrMenu']['title'];
 		$type         = $types[$switcher['IvrMenu']['switcher_type']];
 		$modified     = $this->Time->niceShort($switcher['IvrMenu']['modified']);
                 $edit         = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "selectors", "action" => "edit", $switcher['IvrMenu']['id']))));  
-                $delete       = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "selectors", "action" => "delete", $switcher['IvrMenu']['id'].'/switcher'), "onClick" => "return confirm('".__('Are you sure you wish to delete this language selector?',true)."');")));
+                $delete       = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "selectors", "action" => "delete", $switcher['IvrMenu']['id'], 'switcher'), "onClick" => "return confirm('".__('Are you sure you wish to delete this language selector?',true)."');")));
 
      		$row[$key] = array(
                            $instance_id,

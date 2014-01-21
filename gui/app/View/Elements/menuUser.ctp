@@ -152,7 +152,7 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Callers",true),'/users'); ?>
+<?php echo $this->Html->link(__("Callers",true),'/callers'); ?>
 </li>
 
 <li class='last'>

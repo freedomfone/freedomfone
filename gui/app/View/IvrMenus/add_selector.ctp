@@ -53,19 +53,19 @@ echo $this->Form->input('ivr_type',array('type'=>'hidden','value'=>'switcher'));
 ?>
 
 <fieldset>
-<legend><?php __('Title');?> </legend>
+<legend><?php echo  __('Title',true);?> </legend>
 <?php echo $this->Form->input('title',array('type'=>'text','size' => '93', 'between'=>'<br />','label'=>$commentTitle)); ?>
 </fieldset>
 
 <fieldset>
-<h3>1. <?php __('Instructions');?> </h3>
+<h3>1. <?php echo __('Instructions',true);?> </h3>
 <?php echo $this->Form->input('message_long',array('type'=>'textarea','cols' => '80', 'rows' => '3', 'label'=>$commentLong, 'after' => $FallbackLong, 'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_long', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
 
 
 <fieldset>
-<h3>2. <?php __('Invalid');?> </h3>
+<h3>2. <?php echo  __('Invalid',true);?> </h3>
 <?php echo $this->Form->input('message_invalid',array('type'=>'text','size' => '93','label'=>false,'after' => $FallbackInvalid, 'between'=>'<br />' )); ?>
 <?php echo $this->Form->input('IvrMenu.file_invalid', array('between'=>'<br />','type'=>'file','size'=>'50','label'=>__('Audio file',true)));?>
 </fieldset>
@@ -84,23 +84,9 @@ echo "<legend>".__('Menu Options',true)."</legend>";
 	$this->Js->event('change', $this->Js->request(array('controller'=>'ivr_menus','action' => 'disp'),array('async' => true,'update' => '#service_div','method' => 'post','dataExpression'=>true,'data'=> $this->Js->serializeForm(array('isForm' => true,'inline' => true)))));
 	echo $this->Form->end();
 
-
-/*
-	  echo $this->Form->create("IvrMenu");
-          echo $this->Form->input('switcher_type',array('id'=>'ServiceType','type'=>'select','options'=>$opt,'label'=> false,'empty'=>'-- '.__('Select service',true).' --'));
-                         $opt = array(
-                                "update" => "service_div",
-                                "url" => "disp",
-                                "frequency" => "0.1"
-                                     );
-
-*/
-		         //FIXME
-                         //echo $ajax->observeField("ServiceType",$opt);
-                         //echo $this->Form->end();
-                                                                                                 
-                         echo "<div id='service_div' style=''></div>";
-                         echo "</fieldset>";
+                                                                                       
+       echo "<div id='service_div' style=''></div>";
+       echo "</fieldset>";
 
 
 

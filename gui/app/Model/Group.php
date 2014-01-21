@@ -22,17 +22,38 @@
  *
  ***************************************************************************/
 
+App::uses('AppModel', 'Model');
+
+
 class Group extends AppModel {
 
-	var $name    = 'Group';
-	var $hasMany = array('FfUser'); 
-        var $actsAs  = array('Acl' => array('type' => 'requester'));
+        var $name    = 'Group';
 
-        function parentNode() {
-                 return null;
-        }
+	public $hasMany = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
+
+    public $actsAs = array('Acl' => array('type' => 'requester'));
+
+    public function parentNode() {
+        return null;
+    }
 
 
 }
+
+
 ?>

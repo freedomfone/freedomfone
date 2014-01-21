@@ -1,6 +1,6 @@
 <?
 /****************************************************************************
- * phone_number.php	- Model for phone number. A user can have one or more phone numbers
+ * PhoneNumber.php	- Model for phone number. A user can have one or more phone numbers
  * version 		- 1.0.359
  * 
  * Version: MPL 1.1
@@ -26,7 +26,7 @@ class PhoneNumber extends AppModel {
 
     var $name = 'PhoneNumber';
 
-    var $belongsTo = array('User');
+    var $belongsTo = array('Caller');
 
 
  function __construct($id = false, $table = null, $ds = null) {

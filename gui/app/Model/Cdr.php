@@ -28,7 +28,7 @@ class Cdr extends AppModel{
       var $name = 'Cdr';
 
 
-	var $belongsTo = array('User'); 
+	var $belongsTo = array('Caller'); 
 
 	var $hasMany = array('MonitorIvr' => array(
                         	       'order' => 'MonitorIvr.id ASC',
@@ -141,7 +141,7 @@ class Cdr extends AppModel{
 		     if($insert){
 
 
-			//Check if user is registered
+			//Check if caller is registered
 
 
 			//Process only CS_ROUTING (start) messages
@@ -156,16 +156,16 @@ class Cdr extends AppModel{
                                	  	 $update='count_lam';
                                 }
 
-                        	//Update user statistics
-                        	$user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
+                        	//Update caller statistics
+                        	$caller_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
 
 	                } else {
 
-			        $user_id = false;
+			        $caller_id = false;
 			} 
 
 
-			$this->set('user_id',$user_id);
+			$this->set('caller_id',$caller_id);
 			$this->create($this->data);
 	  	     	$this->save($this->data['Cdr']);
 

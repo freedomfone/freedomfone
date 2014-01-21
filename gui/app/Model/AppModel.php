@@ -105,57 +105,57 @@ class AppModel extends Model {
      }
 
 
-     function updateUserStatistics($proto,$sender,$application, $update){
+     function updateCallerStatistics($proto,$sender,$application, $update){
 
-              App::import('model','User');
-              $user = new User();
+              App::import('model','Caller');
+              $caller = new Caller();
               $created = time();
 
-              //Determine state (skype or default) and fetch user data
+              //Determine state (skype or default) and fetch caller data
 	      if( strcasecmp($proto,'skype')== 0) { 
                   $state = 'skype';
-                  $userData = $user->find('first',array('conditions' => array('skype' => $sender)));
+                  $callerrData = $caller->find('first',array('conditions' => array('skype' => $sender)));
 
               } elseif( strcasecmp($proto,'gsm') ==0  || strcasecmp($proto,'sip') == 0){  
                   $state = 'default';
-                  $userData = $user->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
+                  $callerData = $caller->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
               }
 
 
-              //If User exists
-              if ($userData){
-                     $user_id = $userData['User']['id'];
-	             $count = $userData['User'][$update]+1;
-                     $user->read(null, $userData['User']['id']);
-	 	     $user->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
-                     $user->save();           
+              //If Caller exists
+              if ($callerData){
+                     $caller_id = $callerData['Caller']['id'];
+	             $count = $callerrData['Caller'][$update]+1;
+                     $caller->read(null, $callerData['Caller']['id']);
+	 	     $caller->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
+                     $caller->save();           
 
 	      } else {
-              //If New User
+              //If New Caller
 
                    if($state == 'default'){
-                           $new_user =array('created'=> $created,'new'=>1,
+                           $new_caller =array('created'=> $created,'new'=>1,
                                             $update  =>1,'first_app'=>$application,
                                             'first_epoch' => $created, 'last_app'=>$application,
                                             'last_epoch'=>$created, 'acl_id' => 1,
                                             'name' => __('Unknown user',true));
 
-                           if ($user->save($new_user)){
-                                    $user_id = $user->getLastInsertId();
-                                    $phonenumber = array('user_id' => $user_id, 'number' => $sender);
-                                    $user->PhoneNumber->saveAll($phonenumber);
+                           if ($caller->save($new_caller)){
+                                    $caller_id = $caller->getLastInsertId();
+                                    $phonenumber = array('caller_id' => $caller_id, 'number' => $sender);
+                                    $caller->PhoneNumber->saveAll($phonenumber);
                            }                                  
 
                     } elseif ( $state == 'skype') {
 
-                                 $new_user =array('User.skype' => $sender,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
-                                 $user->save($new_user);
-                                 $user_id = $user->getLastInsertId();
+                                 $new_caller =array('Caller.skype' => $sender,'created'=> $created,'new'=>1,'count_ivr'=>1,'first_app'=>$application,'first_epoch' => $created, 'last_app'=>$application,'last_epoch'=>$created,'acl_id'=>1);
+                                 $caller->save($new_caller);
+                                 $caller_id = $caller->getLastInsertId();
   
                     }
 	      }
 
-              return $user_id;
+              return $caller_id;
 
        }
 

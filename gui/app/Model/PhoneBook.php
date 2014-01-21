@@ -1,6 +1,6 @@
 <?
 /****************************************************************************
- * phone_book.php	- Model for Phone book. One user can belong to one or more phone books. One phone book contains one or more contacts.
+ * PhoneBook.php	- Model for Phone book. One user can belong to one or more phone books. One phone book contains one or more contacts.
  * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -26,7 +26,7 @@ class PhoneBook extends AppModel {
 
     var $name = 'PhoneBook';
 
-    var $hasAndBelongsToMany = array('User');
+    var $hasAndBelongsToMany = array('Caller');
 
     function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);

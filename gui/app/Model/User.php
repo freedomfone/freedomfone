@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * user.php		- Model for managing users through the address book
+ * user.php		- Model for managing authentication of Freedom Fone users 
  * version 		- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -22,109 +22,119 @@
  *
  ***************************************************************************/
 
+
+App::uses('AppModel', 'Model');
+App::uses('AuthComponent', 'Controller/Component');
+
+
 class User extends AppModel {
 
 	var $name = 'User';
-	
-	var $belongsTo = array('Acl'); 
-
-        var $hasMany = array('PhoneNumber' => array(
-                        	       'order' => 'PhoneNumber.id ASC',
-                        	       'dependent' => true),
-                           'Message','Cdr');
-
-			   
 
 
-	var $hasAndBelongsToMany = array('PhoneBook');
+	public $belongsTo = array(
+		'Group' => array(
+			'className' => 'Group',
+			'foreignKey' => 'group_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+
+
+    public function beforeSave($options = array()) {
+
+        $this->data['User']['password'] = AuthComponent::password(
+          $this->data['User']['password']
+        );
+        return true;
+    }
+
+
+    	public $actsAs = array('Acl' => array('type' => 'requester'));
+
+
+    public function bindNode($user) {
+
+    	   return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
+   }
+
+
+
+   public function parentNode() {
+        if (!$this->id && empty($this->data)) {
+            return null;
+        }
+        if (isset($this->data['User']['group_id'])) {
+            $groupId = $this->data['User']['group_id'];
+        } else {
+            $groupId = $this->field('group_id');
+        }
+        if (!$groupId) {
+            return null;
+        } else {
+            return array('Group' => array('id' => $groupId));
+        }
+    }
+
+
 
 function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
 
       $this->validate = array(
-	'email' => array(
- 			'between' => array(
- 				       'rule' => array('between', 1, 35),
- 				       'message' => __('Between 1 to 35 characters',true),
-				       'allowEmpty' => true
+	'username' => array(
+			'alphaNumeric' => array(
+                                       'required' => true,
+                                       'empty' => false,
+ 				       'rule' => 'alphaNumeric',
+ 				       'message' => __('Letters and numbers only. No spaces or special characters allowed.',true)
  				       ),
-	                'email' =>array(
-				     'rule' => array('email',true),
-				     'message' => __('Please supply a valid email address.',true),
-				     'allowEmpty' => true
-				     ),
-      			'isUnique' =>array(
-				     'rule' => 'isUnique',
-				     'message' => __('This email address is already in use.',true),
-				     'allowEmpty' => true
-				     ),
-
+ 			'between' => array(
+                                       'required' => true,
+                                       'empty' => false,
+ 				       'rule' => array('between', 5, 20),
+ 				       'message' => __('Between 5 to 20 characters',true)
+ 				       ),
+	                'isUnique' =>array(
+                                       'required' => true,
+                                       'empty' => false,
+				       'rule' => 'isUnique',
+				       'message' => __('This username is already in use.',true)
+				     )
  		),
-	'skype' => array(
- 				       'rule' => 'skypeFormat',
- 				       'message' => __('Please supply a valid skype name.',true),
-		   		       'allowEmpty' => true
+	'password' => array(
+ 			'between' => array(
+                                       'required' => false,
+                                       'empty' => false,
+ 				       'rule' => array('between', 5, 50),
+ 				       'message' => __('The password must be between 5 to 50 characters',true)
  				       ),
-        'name' => array(
-                        'format' => array(
-                                        'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
-                                        'required' =>  true,
-                                        'message'  => __('Name required (letters, spaces and hyphens).',true),
-				        'allowEmpty' => false
-                                        ),
- 			'between' => array(
- 				       'rule' => array('between', 1, 20),
- 				       'message' => __('Between 1 to 20 characters',true),
-				       'allowEmpty' => true
- 				       )),
-
-
-        'surname' => array(
-                       'format' => array(
-                                        'rule'     => '/^[a-zA-Z0-9 -.\']+$/i',
-                                        'allowEmpty' =>  true,
-                                        'message'  => __('Only letters, spaces and hyphens.',true)
-                                        ),
- 			'between' => array(
- 				       'rule' => array('between', 1, 20),
- 				       'message' => __('Between 1 to 20 characters',true),
-				       'allowEmpty' => true
- 				       ))
-
+			'compareFieldValues' => array(
+        			       'rule' => array('compareValues', 'pwd_repeat' ),
+        			       'message' => __('The passwords do not match.',true)
+                		       ),
+ 		),
 	);
-	}
-
-
-
-
-function skypeFormat($check) {
-
-  //Start with letter. 6-32 characters long. Allow {0-9,A-Z_.-}
-
-  $value = array_values($check);
-  $value = $value[0];
-  return preg_match('/^[a-zA-Z]{1,1}[0-9a-zA-Z.-_\\,]{5,31}$/', $value);
-  
-  }
-
-
-function phoneFormat($check) {
- 
-  //May start with a plus sign. Then 4-20 digits
-  $value = array_values($check);
-  $value = $value[0];
-
-  return preg_match('/^[+]{0,1}[0-9]{4,20}$/', $value);
-  
-  }
-
-
-function getIdentifier($id){
-
-         return  $this->findById($id);
-  
-
 }
+
+
+
+
+
+    function compareValues( $data, $field){
+
+        if($data['password'] == $this->data['User'][$field]){
+                 return true;
+        } else {
+                 return false;
+        }
+
+    }
+
+
 
 }
 ?>

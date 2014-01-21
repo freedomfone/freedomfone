@@ -93,7 +93,7 @@ function processBatch($id){
 	 $auth = array('baseurl' => $data['SmsGateway']['url'] , 'username' => $data['SmsGateway']['username'], 'password' => $data['SmsGateway']['password'], 'api_key' => $data['SmsGateway']['api_key']);
 	 $sms   = new sms('ip_CT', $auth);
 
-	 debug($sms);
+
 
 	 } elseif ($type == 'PC'){
 

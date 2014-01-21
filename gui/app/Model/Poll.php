@@ -182,7 +182,7 @@ function checkDate($data,$field){
      function refresh(){
 
 	// Update status of polls (use beforeSave to update status)
-        $this->unbindModel(array('hasMany' => array('User')));
+        $this->unbindModel(array('hasMany' => array('Caller')));
 	$data = $this->find('all');
 	foreach ($data as $key => $entry){
 		$this->save($entry);
@@ -301,11 +301,11 @@ function checkDate($data,$field){
                             $update = 'count_bin'; 
                         } 
 
-                        //Update user statistics
-                        $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
+                        //Update caller statistics
+                        $caller_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
 
   	                //Add data to CDR
-	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto,login,user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login','$user_id')");
+	                $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension,application,proto,login,caller_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login','$caller_id')");
 
 
 

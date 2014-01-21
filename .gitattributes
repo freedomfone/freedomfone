@@ -1191,6 +1191,7 @@ gui/app/Model/AppModel.php -text
 gui/app/Model/Batch.php -text
 gui/app/Model/Behavior/empty -text
 gui/app/Model/Bin.php -text
+gui/app/Model/Caller.php -text
 gui/app/Model/Category.php -text
 gui/app/Model/Cdr.php -text
 gui/app/Model/Channel.php -text

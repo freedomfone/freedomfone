@@ -26,7 +26,7 @@ class Message extends AppModel {
 
 	var $name = 'Message';
 	
-	var $belongsTo = array('Category','User'); 
+	var $belongsTo = array('Category','Caller'); 
 
 	var $hasAndBelongsToMany = array('Tag');
 

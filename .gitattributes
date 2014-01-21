@@ -1196,7 +1196,6 @@ gui/app/Model/Category.php -text
 gui/app/Model/Cdr.php -text
 gui/app/Model/Channel.php -text
 gui/app/Model/Datasource/empty -text
-gui/app/Model/FfUser.php -text
 gui/app/Model/Group.php -text
 gui/app/Model/IvrMenu.php -text
 gui/app/Model/LmMenu.php -text

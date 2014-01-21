@@ -1425,13 +1425,10 @@ gui/app/View/Users/system_sweeper.ctp -text
 gui/app/View/Votes/add_failure.ctp -text
 gui/app/View/Votes/add_success.ctp -text
 gui/app/index.php -text
-gui/app/sql/2.S.7.sql -text
 gui/app/sql/freedomfone_db_auth_schema.sql -text
 gui/app/sql/freedomfone_db_createdb_user.sql -text
 gui/app/sql/freedomfone_db_schema.sql -text
 gui/app/sql/freedomfone_demo_data.sql -text
-gui/app/sql/gw_types.sql -text
-gui/app/sql/users.sql -text
 gui/app/tmp/sessions/empty -text
 gui/app/tmp/tests/empty -text
 gui/app/webroot/.htaccess -text

@@ -1300,6 +1300,11 @@ gui/app/View/Batches/method.ctp -text
 gui/app/View/Bin/disp.ctp -text
 gui/app/View/Bin/export.ctp -text
 gui/app/View/Bin/index.ctp -text
+gui/app/View/Callers/add.ctp -text
+gui/app/View/Callers/disp.ctp -text
+gui/app/View/Callers/edit.ctp -text
+gui/app/View/Callers/index.ctp -text
+gui/app/View/Callers/view.ctp -text
 gui/app/View/Categories/add.ctp -text
 gui/app/View/Categories/edit.ctp -text
 gui/app/View/Categories/index.ctp -text

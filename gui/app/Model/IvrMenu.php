@@ -43,30 +43,34 @@ function __construct($id = false, $table = null, $ds = null) {
                                         )),
       'message_long' => array(
                         'validText' => array(
+				       'allowEmpty' => true,
                                        'rule' => array('validText','message_long'),
                                        'message' => __('No hyperlinks allowed.',true)
                                        )),
       'message_short' => array(
                         'validText' => array(
+				       'allowEmpty' => true,
                                        'rule' => array('validText','message_short'),
                                        'message' => __('No hyperlinks allowed.',true)
                                        )),
       'message_invalid' => array(
                         'validText' => array(
+				       'allowEmpty' => true,
                                        'rule' => array('validText','message_invalid'),
                                        'message' => __('No hyperlinks allowed.',true)
                                        )),
       'message_exit' => array(
                         'validText' => array(
+				       'allowEmpty' => true,
                                        'rule' => array('validText','message_exit'),
                                        'message' => __('No hyperlinks allowed.',true)
                                        )),
 
       'file_long' => array(
                         'validFileSize' =>array(
-								'rule' => array('validFileSize','file_long'),
+					'rule' => array('validFileSize','file_long'),
                                         'message' => __('The file size exceeds the maximum limit (10MB).',true),
-						     	     	  )),
+					)),
       'file_short' => array(
                         'validFileSize' =>array(
                                         'rule' => array('validFileSize','file_short'),
@@ -75,12 +79,12 @@ function __construct($id = false, $table = null, $ds = null) {
       'file_exit' => array(
                         'validFileSize' =>array(
                                         'rule' => array('validFileSize','file_exit'),
-								'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
                                         )),
       'file_invalid' => array(
                         'validFileSize' =>array(
                                         'rule' => array('validFileSize','file_invalid'),
-								'message' => __('The file size exceeds the maximum limit (10MB).',true),
+					'message' => __('The file size exceeds the maximum limit (10MB).',true),
                                         )),
 
                                         );

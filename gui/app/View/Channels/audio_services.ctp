@@ -32,7 +32,7 @@
 
    if($gammu_discovery){
 
-      echo $form->create("Channel");
+      echo $this->Form->create("Channel");
 
      echo "<table width='95%' cellspacing = 0>";
      echo $this->Html->tableHeaders(array(

@@ -129,6 +129,7 @@ class Channel extends AppModel{
 
       	       $settings  = Configure::read('FREESWITCH');
 
+	       
       	       $writer = new XMLWriter();  
 	       $writer->openURI($settings['dialplan']);  
 	       $writer->startDocument('1.0','UTF-8');  
@@ -144,6 +145,9 @@ class Channel extends AppModel{
 
 	       $writer->startElement('include');  
 
+	       $writer->writeComment("NO_SIP_AUTH: ".NO_SIP_AUTH);
+	       if(!NO_SIP_AUTH){
+	       //Context: public
 	       $writer->startElement('context');  
 	       $writer->writeAttribute('name','public');
 
@@ -162,12 +166,17 @@ class Channel extends AppModel{
  	       $writer->endElement(); // condition
  	       $writer->endElement(); // extension
  	       $writer->endElement(); // context
+	       }
 
-
-	       $writer->writeComment("LEAVE A MESSAGE"); 
-	       
+	       //Context: default
+	       $writer->writeComment("LEAVE A MESSAGE");
 	       $writer->startElement('context');  
-	       $writer->writeAttribute('name','default');
+	       
+	       if(NO_SIP_AUTH){
+		$writer->writeAttribute('name','public');
+		} else {
+		$writer->writeAttribute('name','default');
+	       }
 
 	       $writer->startElement('extension');
        	       $writer->writeAttribute('name','leave_message_pool');
@@ -276,7 +285,7 @@ class Channel extends AppModel{
       function updateHardwareDiscovery($data){
 
       	  $config = Configure::read('GAMMU');
-
+	  $imsi = false;
 
 	       foreach($data['Channel'] as $key => $channel){
 
@@ -289,10 +298,10 @@ class Channel extends AppModel{
 	       $handle = fopen($config['discovery'],'w');
 
 	       foreach($file as $key => $line){
-	       
+
 	         $_line = explode(',',trim($line));
 
-		 if(array_key_exists(trim($_line[9]),$imsi)){
+		 if($imsi && array_key_exists(trim($_line[9]),$imsi)){
 		     $instance_id = $imsi[trim($_line[9])];		 
 
 

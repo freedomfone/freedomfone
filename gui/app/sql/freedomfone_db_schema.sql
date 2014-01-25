@@ -59,6 +59,7 @@ CREATE TABLE `batches` (
   `status` tinyint(4) DEFAULT '0',
   `gateway_code` varchar(2) DEFAULT NULL,
   `sms_gateway_id` int(11) unsigned DEFAULT NULL,
+  `sender_number` varchar(25),
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

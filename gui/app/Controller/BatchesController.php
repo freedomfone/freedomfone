@@ -36,16 +36,15 @@ class BatchesController extends AppController{
 
 
           $this->set('title_for_layout', __('SMS Batches',true));
-      	  $this->set('channels',$this->Batch->getChannels());
 
      	  $this->Batch->recursive = 1; 
    	  $batch = $this->paginate();
 
 
-	  $this->loadModel('SmsGateway');
-      	  $sms_gateways = $this->SmsGateway->find('list', array('fields' => array('name')));
+      	  $sms_gateways = $this->Batch->find('list', array('fields' => array('name')));
+      	  $gsm_gateways = $this->Batch->find('list', array('conditions' => array('sms_gateway_id' => 0), 'fields' => array('sender')));
 
- 	  $this->set(compact('batch','sms_gateways'));
+ 	  $this->set(compact('batch','sms_gateways','gsm_gateways'));
 
       }
 

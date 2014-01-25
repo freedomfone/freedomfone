@@ -33,11 +33,11 @@ $senders = array();
 echo "<h1>".__('SMS Batches',true)."</h1>";
 
       //Create list of hardware IDs
-      foreach($channels as $entry){
+      foreach($gsm_gateways as $entry){
 	       $senders[$entry] = $entry;
       }
 
-      $senders = $sms_gateways+$senders;
+     $senders = $sms_gateways+$senders;
 
 
       //AJAX form

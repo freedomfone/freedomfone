@@ -41,7 +41,7 @@ class BatchesController extends AppController{
    	  $batch = $this->paginate();
 
 
-      	  $sms_gateways = $this->Batch->find('list', array('fields' => array('name')));
+      	  $sms_gateways = $this->Batch->SmsGateway->find('list', array('fields' => array('SmsGateway.name')));
       	  $gsm_gateways = $this->Batch->find('list', array('conditions' => array('sms_gateway_id' => 0), 'fields' => array('sender')));
 
  	  $this->set(compact('batch','sms_gateways','gsm_gateways'));
@@ -92,6 +92,10 @@ class BatchesController extends AppController{
 	       if($this->request->data){
 
 	        //Validate data 
+		$fileData = $this->request->data['Batch']['file'];
+		unset($this->request->data['Batch']['file']);
+		$this->request->data['Batch']['filename'] = $fileData['tmp_name'];
+
 
 	        if ($this->Batch->saveAll($this->request->data['Batch'], array('validate' => 'only'))) {
 
@@ -106,9 +110,9 @@ class BatchesController extends AppController{
 		}
 
 
-		$receivers = file($this->request->data['Batch']['file']['tmp_name']);
+		$receivers = file($fileData['tmp_name']);
 
-		unset($this->request->data['Batch']['file']);
+		//unset($this->request->data['Batch']['file']);
 
 		if($receivers){
 

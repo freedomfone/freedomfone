@@ -53,6 +53,7 @@ CREATE TABLE `batches` (
   `sender` varchar(50) NOT NULL,
   `body` varchar(200) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `filename` varchar(50) DEFAULT NULL,
   `created` int(11) unsigned NOT NULL,
   `gateway_type` varchar(5) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',

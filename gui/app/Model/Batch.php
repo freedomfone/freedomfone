@@ -44,6 +44,11 @@ function __construct($id = false, $table = null, $ds = null) {
 	    'required' => true,
             'message'=> __('A valid SMS body is required (Max 160 characters).',true)
 	    ),
+        'filename' => array(
+            'rule'=>array('minLength', 1),
+	    'required' => true,
+            'message'=> __('Please select a file to upload.',true)
+	    ),
         'name' => array(
 		    'minLength'=> array(
 				'rule'=>array('minLength', 5),

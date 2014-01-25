@@ -35,7 +35,7 @@ class BatchesController extends AppController{
     function index(){
 
 
-          $this->set('title_for_layout', __('SMS Outboxes',true));
+          $this->set('title_for_layout', __('SMS Batches',true));
       	  $this->set('channels',$this->Batch->getChannels());
 
      	  $this->Batch->recursive = 1; 

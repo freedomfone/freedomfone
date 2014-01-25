@@ -50,8 +50,8 @@ class OfficeRoute extends AppModel{
        if($this->isAlive($unit['ip_addr'])){
 
 
-          //if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1')){
-	  if(1){
+          if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1',1000000,1)){
+	  
 	  
                 for($i=0; $i<4; $i++){
 
@@ -87,7 +87,7 @@ class OfficeRoute extends AppModel{
       $snmp   = Configure::read('OR_SNMP');
       $prefix = $unit['object_id'];
 
-      $data = snmpget( $unit['ip_addr'] , $unit['community'], $prefix.'.'.$id.'.'.$i);
+      $data = snmpget( $unit['ip_addr'] , $unit['community'], $prefix.'.'.$id.'.'.$i,1000000,1);
 
 
         if(preg_match('/:/',$data)){
@@ -112,7 +112,7 @@ class OfficeRoute extends AppModel{
 
     $snmp   = Configure::read('OR_SNMP');
 
-          if(snmpget( $snmp[$id]['ip_addr'] , $snmp[$id]['community'], $snmp[$id]['object_id'].'.2.1',1000000,2)){
+          if(snmpget( $snmp[$id]['ip_addr'] , $snmp[$id]['community'], $snmp[$id]['object_id'].'.2.1',1000000,1)){
           
                 return true;
           

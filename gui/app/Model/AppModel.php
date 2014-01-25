@@ -250,7 +250,7 @@ class AppModel extends Model {
 
 
    $cfgPort    = 80;
-   $cfgTimeOut = 2;
+   $cfgTimeOut = 1;
 
    $usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut);
    if(!$usenet){

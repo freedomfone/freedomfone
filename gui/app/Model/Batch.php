@@ -117,7 +117,7 @@ function processBatch($id){
 	      $receivers[] = $receiver['receiver'];
 
 	   }
-  	    $id = $sms->sendSMS($data['Batch']['body'], $receivers,  $data['Batch']['sender']); 
+  	    $id = $sms->sendSMS($data['Batch']['body'], $receivers,  $data['Batch']['sender_number']); 
 	    return array($id, $receivers);
 
 	 }

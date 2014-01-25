@@ -49,8 +49,10 @@ class OfficeRoute extends AppModel{
 
        if($this->is_alive($unit['ip_addr'])){
 
-          if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1',1000000,2)){
-   
+
+          //if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1')){
+	  if(1){
+	  
                 for($i=0; $i<4; $i++){
 
                           $mib[$i]['id']                    =  $i + 1; 
@@ -87,6 +89,7 @@ class OfficeRoute extends AppModel{
 
       $data = snmpget( $unit['ip_addr'] , $unit['community'], $prefix.'.'.$id.'.'.$i);
 
+
         if(preg_match('/:/',$data)){
 
                    $string = explode(':',$data);
@@ -105,33 +108,34 @@ class OfficeRoute extends AppModel{
 
  function is_alive($cfgServer){
 
-   $cfgPort    = 23;
+
+   $cfgPort    = 80;
    $cfgTimeOut = 2;
 
    $usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut);
-
    if(!$usenet){
-
 	return false;
-	
   	} else {   
-    
+   
 	return true;
 
  	}
-   }
+
+ }
 
 
-  function snmp_on(){
+  function snmp_on($id){
 
     $snmp   = Configure::read('OR_SNMP');
-          if(snmpget( $snmp[0]['ip_addr'] , $snmp[0]['community'], $snmp[0]['object_id'].'.2.1',1000000,2)){
+
+          if(snmpget( $snmp[$id]['ip_addr'] , $snmp[$id]['community'], $snmp[$id]['object_id'].'.2.1',1000000,2)){
           
                 return true;
           
           } else {
 
                return false;
+
 
          }
 

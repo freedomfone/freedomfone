@@ -57,13 +57,14 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo "<table width='800px' cellspacing = 0>";
      echo $this->Html->tableHeaders(array(
 	'',
- 	$this->Paginator->sort(__("Date (YMD)",true), 'epoch'),
- 	$this->Paginator->sort(__("Time",true), 'epoch'),
- 	$this->Paginator->sort(__("Type",true), 'channel_state'),
- 	$this->Paginator->sort(__("Call ID",true), 'call_id'),
- 	$this->Paginator->sort(__("Caller",true), 'caller_number'),
- 	$this->Paginator->sort(__("Title",true), 'title'),
- 	$this->Paginator->sort(__("Application",true), 'application')));
+ 	$this->Paginator->sort('epoch', __("Date (YMD)",true)),
+ 	$this->Paginator->sort('epoch', __("Time",true)),
+ 	$this->Paginator->sort('channel_state', __("Type",true)),
+ 	$this->Paginator->sort('call_id', __("Call ID",true)),
+ 	$this->Paginator->sort('caller_number', __("Caller",true)),
+ 	$this->Paginator->sort('title', __("Title",true)),
+ 	$this->Paginator->sort('application', __("Application",true)),
+	));
 
 
 

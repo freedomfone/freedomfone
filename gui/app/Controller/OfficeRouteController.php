@@ -34,6 +34,7 @@ class OfficeRouteController extends AppController{
 
       $data = $this->OfficeRoute->refresh();
 
+
         //Create local db of old data
         $db = $this->OfficeRoute->find('all', array('imsi !=' => ''));
         foreach($db as $key => $entry){
@@ -71,9 +72,10 @@ class OfficeRouteController extends AppController{
                         //If not: insert new entry
                         else {
 
+
                               // $channel['slot'] = $key;
                                $this->OfficeRoute->save($channel);
-
+			       
                         }
 
 
@@ -106,7 +108,7 @@ class OfficeRouteController extends AppController{
           
           //Fetch form data 
 	  else {
-
+	  
           $this->OfficeRoute->set( $this->request->data );	       
           $this->OfficeRoute->save();
   	  $this->redirect(array('controller' => 'channels', 'action' => 'index'));

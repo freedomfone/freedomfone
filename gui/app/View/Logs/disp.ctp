@@ -24,8 +24,11 @@
 
 
       echo $this->Html->div('log_div');
-      $file = LOG_DIR.$this->request->data['Log']['type'].'.log';
-
+      if(in_array($this->request->data['Log']['type'], array('pop3_daemon', 'gammu_daemon'))){
+      $file = LOG_DIR_CORE.$this->request->data['Log']['type'].'.log';
+      } else {
+      $file = LOG_DIR_GUI.$this->request->data['Log']['type'].'.log';
+      }
       //Log type selected
       if($this->request->data['Log']['type']){
 

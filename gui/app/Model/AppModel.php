@@ -114,7 +114,7 @@ class AppModel extends Model {
               //Determine state (skype or default) and fetch caller data
 	      if( strcasecmp($proto,'skype')== 0) { 
                   $state = 'skype';
-                  $callerrData = $caller->find('first',array('conditions' => array('skype' => $sender)));
+                  $callerData = $caller->find('first',array('conditions' => array('skype' => $sender)));
 
               } elseif( strcasecmp($proto,'gsm') ==0  || strcasecmp($proto,'sip') == 0){  
                   $state = 'default';
@@ -125,7 +125,7 @@ class AppModel extends Model {
               //If Caller exists
               if ($callerData){
                      $caller_id = $callerData['Caller']['id'];
-	             $count = $callerrData['Caller'][$update]+1;
+	             $count = $callerData['Caller'][$update]+1;
                      $caller->read(null, $callerData['Caller']['id']);
 	 	     $caller->set(array($update => $count,'last_app'=>$application,'last_epoch'=>$created));
                      $caller->save();           

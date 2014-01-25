@@ -42,10 +42,10 @@ class ChannelsController extends AppController{
       //For each office route in use
        foreach($snmp as $key => $unit){
 
-     	if($this->OfficeRoute->is_alive($unit['ip_addr']) && $this->OfficeRoute->snmp_on()){
+     	if($this->OfficeRoute->is_alive($unit['ip_addr']) && $this->OfficeRoute->snmp_on($key)){
 
            $data[] = $this->OfficeRoute->findAllByIpAddr($unit['ip_addr']);
-	
+
 	} elseif ($this->OfficeRoute->is_alive($unit['ip_addr']) && !$this->OfficeRoute->snmp_on()){
 
            $data = 'snmp_off';
@@ -53,6 +53,7 @@ class ChannelsController extends AppController{
 
         }
        }
+
 
       $this->set('data',$data);
 

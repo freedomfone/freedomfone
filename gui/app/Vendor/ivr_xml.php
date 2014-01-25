@@ -274,8 +274,11 @@ public $ext;
 
                         case 'lam':
 
+
+			if(NO_SIP_AUTH){ $context = 'public';} else {$context = 'default';}
+			
 		        $action  = "menu-exec-app";
-		        $param   = "transfer 2".$instance_id." XML default";
+		        $param   = "transfer 2".$instance_id." XML ".$context;
                         break;
 
 		      	//Node::interrupt
@@ -342,9 +345,10 @@ public $ext;
 		      	   //Leave-a-message
 			   case 'lam':
 
+			   if(NO_SIP_AUTH){ $context = 'public';} else {$context = 'default';}
 			   $ext = $this->ext['lam'].$instance_id;
 			   $action = "menu-exec-app";
-			   $param  = "transfer ".$ext." XML default";
+			   $param  = "transfer ".$ext." XML ".$context;
                            $service = 'LmMenu';
 			   break;
 

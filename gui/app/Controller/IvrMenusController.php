@@ -183,6 +183,7 @@ class IvrMenusController extends AppController{
 	   $id = $this->IvrMenu->getLastInsertId();
            $this->log("[INFO] ADD IVR, Id: ".$id, "ivr");	
 
+
 		foreach($this->request->data['IvrMenuFile'] as $key => $file){
 
 
@@ -808,7 +809,7 @@ class IvrMenusController extends AppController{
                         if(array_key_exists('urls', $fileOK)) {
 
                                 foreach ($fileOK['urls'] as $key => $url ){
-
+				           $this->IvrMenu->id = $id;
 					   $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
 					   $this->log("[INFO] EDIT SELECTOR, File uploaded: ".$url, "ivr");
 					   $name= $fileData[$key]['name'];
@@ -874,6 +875,9 @@ class IvrMenusController extends AppController{
                           }
                       }
 
+         if(array_key_exists('SwitcherFile', $this->request->data)){
+         	unset($this->request->data['SwitcherFile']);
+		}
 
          $this->IvrMenu->saveAll($this->request->data);
 	 $this->IvrMenu->unbindModel(array('hasMany' => array('Node')));   

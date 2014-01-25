@@ -22,38 +22,36 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb(__('Dashboard',true), '');
-echo $html->addCrumb(__('GSM channels',true), '/channels');
+echo $this->Html->addCrumb(__('Dashboard',true), '');
+echo $this->Html->addCrumb(__('GSM channels',true), '/channels');
 
 
 	if($this->data){
 
-                echo $html->addCrumb(__('Edit OfficeRoute',true), '/office_route/edit/'.$this->data['OfficeRoute']['id']);
+                echo $this->Html->addCrumb(__('Edit OfficeRoute',true), '/office_route/edit/'.$this->data['OfficeRoute']['id']);
 
                 $msg1 = __("Edit channel",true);
                 $msg2 = __("slot",true);
 		echo "<h1>".$msg1." (".$msg2.":".$this->data['OfficeRoute']['id'].")</h1>";
 		
-                // Multiple Flash messages
-                if ($messages = $this->Session->read('Message')) {
-                   foreach($messages as $key => $value) {
-                                     echo $this->Session->flash($key);
-                   }
-                }
+               echo $this->Session->flash();
 
-                echo $html->div('frameLeft');
+                echo $this->Html->div('frameLeft');
 
-		echo $form->create('OfficeRoute', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+		echo $this->Form->create('OfficeRoute', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
 
-		$row = array (array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))), 
-		              array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50'))),
-     		              array(__("Operator",true),	$this->data['OfficeRoute']['operator_name']));
+		$row = array (array(__("Title",true),		$this->Form->input('title',array('label'=>false,'size'=>'50'))), 
+		              array(__("Phone number",true),	$this->Form->input('msisdn',array('label'=>false,'size'=>'50'))),
+     		              array(__("Operator",true),	$this->data['OfficeRoute']['operator_name']),
+			      array(false, 			$this->Form->hidden('id',array('value'=>$this->data['OfficeRoute']['id']))),
+			      );
 
+			   
                 echo "<table width='400px' cellspacing='0' class='blue'>"; 
-                echo $html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
+                echo $this->Html->tableCells($row,array('class' => 'blue'),array('class' => 'blue'));
                 echo "</table>";
 
-		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'save_button'));
+		echo $this->Form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'save_button'));
 
                 echo "</div>";
 

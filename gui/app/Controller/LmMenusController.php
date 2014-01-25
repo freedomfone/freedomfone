@@ -268,8 +268,9 @@ class LmMenusController extends AppController{
              //LAM is not active -> delete
              if (!$this->isActive($id, 'lam')){
 
+
                 //Delete action OK -> success flash
-                if ($result = $this->LmMenu->delete($this->request->data)){
+                if ($result = $this->LmMenu->delete($id)){
 
                    $this->Session->setFlash(__('The selected menu has been deleted.',true),'success');
 

@@ -50,11 +50,13 @@ class SmsGatewaysController extends AppController{
 	       //Process form data
 	       if(array_key_exists('SmsGateway', $this->request->data)){
 
+	       	  if ($this->SmsGateway->saveAll($this->request->data, array('validate' => 'only'))) {
 	  		$this->SmsGateway->save($this->request->data['SmsGateway']);
                 	$this->log('[INFO], SMS GATEWAY ADDED; Name: '.$this->request->data['SmsGateway']['name'], 'sms_gateway');
 	     		$this->redirect(array('action' => 'index'));				
-	         }
+	           }
 
+	       }
 
       } 
 

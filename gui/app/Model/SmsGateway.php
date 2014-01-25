@@ -68,6 +68,11 @@ function __construct($id = false, $table = null, $ds = null) {
 	    'required' 	=> true,
             'message'	=> __('Please enter a URL to the SMS gateway.',true)
 	    ),
+        'api_key' => array(
+            'rule'      => 'numeric',
+	    'required' 	=> true,
+            'message'	=> __('Please enter a API key. Valid  characters are	1-9.',true)
+	    ),
 
 	);
 }

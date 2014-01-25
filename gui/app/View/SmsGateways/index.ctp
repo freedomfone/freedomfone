@@ -52,7 +52,7 @@ echo "<h1>".__('SMS gateways',true)."</h1>";
 
       foreach ($gateways as $key => $entry){
 	$name     = $entry['SmsGateway']['name'];
-	$comment  = array($entry['SmsGateway']['comment'], array('width' => '400px'));
+	$comment  = array($entry['SmsGateway']['comment'], array('width' => '300px'));
 	$type	  = $gateway_types[$entry['SmsGateway']['gateway_code']];
 	$url	  = $entry['SmsGateway']['url'];
 	$username = $entry['SmsGateway']['username'];

@@ -38,7 +38,7 @@
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
-	$status       = $entry['Batch']['status'];
+	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
 	$name         = $entry['Batch']['name'];
 	$message      = array($entry['Batch']['body'], array('width' => '400px'));
 	if(!$channel  = $entry['Batch']['sender']){

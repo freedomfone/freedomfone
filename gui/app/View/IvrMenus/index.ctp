@@ -41,7 +41,10 @@ $this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('C
    echo $this->Html->div('frameInfo', $info);
    echo "<h1>".__('Voice menus',true)."</h1>";
 
-   echo $this->Session->flash();
+   echo $this->Session->flash(0);
+   echo $this->Session->flash(1);
+   echo $this->Session->flash(2);
+   echo $this->Session->flash(3);
 
 
 

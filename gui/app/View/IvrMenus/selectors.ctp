@@ -32,7 +32,9 @@ $ext = Configure::read('EXTENSIONS');
 
 echo "<h1>".__('Language selectors',true)."</h1>";
 
-echo $this->Session->flash();
+   echo $this->Session->flash(0);
+   echo $this->Session->flash(1);
+
 
 $types = array('lam' => __('Leave-a-message',true),'ivr' => __('Voice Menu',true), 'node' => __('Content',true));
 

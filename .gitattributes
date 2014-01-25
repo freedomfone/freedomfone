@@ -1338,6 +1338,7 @@ gui/app/View/Elements/poll_status.ctp -text
 gui/app/View/Elements/process_status.ctp -text
 gui/app/View/Elements/services.ctp -text
 gui/app/View/Elements/success.ctp -text
+gui/app/View/Elements/warning.ctp -text
 gui/app/View/Emails/html/default.ctp -text
 gui/app/View/Emails/text/default.ctp -text
 gui/app/View/Errors/error400.ctp -text

@@ -34,10 +34,10 @@ echo $this->Html->div('frameLeft');
 
 echo "<table cellpadding=0 class='blue'>";
 echo $this->Html->tableCells(array (
-     array(__("Name",true),	$this->Form->input('name',array('label'=>false,'size' => '10'))),
+     array(__("Name",true),	$this->Form->input('name',array('label'=>false,'size' => '40'))),
      array(array(__("Name of SMS batch.",true),"colspan='2' class='formComment'")),
 
-     array(__("SMS body",true),	$this->Form->input('body',array('label'=>false,'cols' => 40,'rows' => 8))),
+     array(__("SMS body",true),	$this->Form->input('body',array('label'=>false,'cols' => 55,'rows' => 8))),
      array(array(__("Alpha-numeric characters only (maximum 160)",true),"colspan='2' class='formComment'")),
 
      array(__("Receivers",true),	$this->Form->input('file',array('label'=>false, 'type' => 'file'))),

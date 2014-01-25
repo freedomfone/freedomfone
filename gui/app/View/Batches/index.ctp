@@ -73,7 +73,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
       foreach ($batch as $key => $entry){
 	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
-	$name     = $entry['Batch']['name'];
+	$name     = array($entry['Batch']['name'], array('width' => '200px'));
 	$message  = array($entry['Batch']['body'], array('width' => '400px'));
 	if(!$channel = $entry['Batch']['sender']){
 	 $channel  = $entry['SmsGateway']['name'];

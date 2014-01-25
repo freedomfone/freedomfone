@@ -47,7 +47,7 @@ class OfficeRoute extends AppModel{
      foreach($snmp as $key => $unit){
 
 
-       if($this->is_alive($unit['ip_addr'])){
+       if($this->isAlive($unit['ip_addr'])){
 
 
           //if(snmpget( $unit['ip_addr'] , $unit['community'], $unit['object_id'].'.2.1')){
@@ -106,22 +106,6 @@ class OfficeRoute extends AppModel{
 
 
 
- function is_alive($cfgServer){
-
-
-   $cfgPort    = 80;
-   $cfgTimeOut = 2;
-
-   $usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut);
-   if(!$usenet){
-	return false;
-  	} else {   
-   
-	return true;
-
- 	}
-
- }
 
 
   function snmp_on($id){

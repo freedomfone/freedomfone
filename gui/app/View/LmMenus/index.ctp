@@ -35,7 +35,16 @@ $this->Access->showButton($authGroup, 'LmMenu', 'create', 'frameRightAlone', __(
 echo "<h1>".__('Manage Leave-a-message',true)."</h1>";
 echo "<div class ='instruction'>".__("Audio files should be recorded in mono, 8KHz, and be maximum 10MB.",true)."</div>";
 
- echo $this->Session->flash();               
+ echo $this->Session->flash(0);
+ echo $this->Session->flash(1);
+ echo $this->Session->flash(2);
+ echo $this->Session->flash(3);
+ echo $this->Session->flash(4);
+ echo $this->Session->flash(5);
+ echo $this->Session->flash(6);
+ echo $this->Session->flash(7);
+
+
 
 
      	if ($lm_menus){

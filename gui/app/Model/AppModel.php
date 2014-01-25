@@ -245,4 +245,22 @@ class AppModel extends Model {
 	}
 
 
+
+ function isAlive($cfgServer){
+
+
+   $cfgPort    = 80;
+   $cfgTimeOut = 2;
+
+   $usenet = fsockopen($cfgServer, $cfgPort, $errno, $errstr, $cfgTimeOut);
+   if(!$usenet){
+	return false;
+  	} else {   
+   
+	return true;
+
+ 	}
+
+ }
+
 }

@@ -191,7 +191,7 @@ class IvrMenusController extends AppController{
 				$file['fileName'] = $key;
 				$fileData[]       = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-       	       		   $this->Session->setFlash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           	
+ 			       $this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);
 		       	   
 			   }			  		   
 		   }
@@ -212,7 +212,7 @@ class IvrMenusController extends AppController{
                                            $this->IvrMenu->saveField($field,$name);
 
 		   			   $this->log("[INFO] ADD IVR, New audio file: ".$url, "ivr");
-					   $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
+                   			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 				   }
 					
 				}
@@ -221,7 +221,7 @@ class IvrMenusController extends AppController{
 
 				   foreach ($fileOK['errors'] as $key => $error ){
 				   	   $this->log("[ERROR] ADD IVR, File upload: ".$error, 'ivr');	
-					   $this->Session->setFlash($error, 'error');
+					   $this->Session->setFlash(__('The file %s could not be uploaded (error: %s)', array($fileOK['original'][$key], $error)), 'error', array(), $key);
 
 				    }
 			}
@@ -353,8 +353,7 @@ class IvrMenusController extends AppController{
 				$file['fileName'] = $key;
 				$fileData[]       = $file;
 			} elseif ($file['error']==1 && !$file['size']) {
-       	       		   $this->Session->setFlash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           	
-		       	   
+	       		   $this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);      	   
 			   }			  		   
 		   }
 
@@ -374,7 +373,7 @@ class IvrMenusController extends AppController{
                                            $this->IvrMenu->saveField($field,$name);
 
 		   			   $this->log("[INFO] EDIT SELECTOR, New audio file: ".$url, "ivr");
-					   $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
+		  			    $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 				   }
 					
 				}
@@ -383,7 +382,8 @@ class IvrMenusController extends AppController{
 
 				   foreach ($fileOK['errors'] as $key => $error ){
 				   	   $this->log("[ERROR] UPLOAD ERROR, Error: ".$error, 'ivr');	
-					   $this->Session->setFlash($error, 'error');
+					   $this->Session->setFlash(__('The file %s could not be uploaded (error: %s)', array($fileOK['original'][$key], $error)), 'error', array(), $key);
+
 
 				    }
 			}
@@ -469,7 +469,8 @@ class IvrMenusController extends AppController{
 		foreach($this->request->data['IvrMenuFile'] as $key => $file){
 
 			if ($file['error']==1 && !$file['size']) {
-                       	        $this->Session->setFlash(__('File upload failure (filesize exceeds maximum)',true).' : '.$file['name'], 'error');                           
+
+       	       			$this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);
 			   
 		        } elseif ($file['size']) {
 				$file['fileName'] = $key;
@@ -487,12 +488,13 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 
+				           $this->IvrMenu->id = $id;
                                            $filename = $this->getFilename($fileOK['files'][$key]);
 					   $name= $fileData[$key]['name'];
                                            $field = $fileData[$key]['fileName'];
    
                                            $this->IvrMenu->saveField($field,$name);
-					   $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
+		    			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 					   $this->log("[INFO] EDIT IVR, New file uploaded: ".$url, "ivr");
 				   }
 					
@@ -502,9 +504,7 @@ class IvrMenusController extends AppController{
 			if(array_key_exists('errors',$fileOK)){
 
 				foreach ($fileOK['errors'] as $key => $error){
-
-					$this->Session->setFlash(__('Success',true).' : '.$error, 'error');												
-
+					$this->Session->setFlash(__('The file %s could not be uploaded (error: %s)', array($fileOK['original'][$key], $error)), 'error', array(), $key);				
 				}
 			}
 
@@ -582,6 +582,9 @@ class IvrMenusController extends AppController{
 
 
 
+         if(array_key_exists('IvrMenuFile', $this->request->data)){
+         	unset($this->request->data['IvrMenuFile']);
+		}
 
 
 
@@ -795,8 +798,8 @@ class IvrMenusController extends AppController{
 				$file['fileName'] = $key;
 				$fileData[]       = $file;
 			}  elseif ($file['error']==1 && !$file['size']) {
-			        $this->log("[ERROR] EDIT SELECTOR, Upload file, Type: filesize (".$file['size'].")", "ivr");								
-                                $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'],'error');			
+			        $this->log("[ERROR] EDIT SELECTOR, Upload file, Type: filesize (".$file['size'].")", "ivr");
+				$this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);
 		        }		  
 		   }
 		 
@@ -810,7 +813,9 @@ class IvrMenusController extends AppController{
 
                                 foreach ($fileOK['urls'] as $key => $url ){
 				           $this->IvrMenu->id = $id;
-					   $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');							
+
+                   			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+
 					   $this->log("[INFO] EDIT SELECTOR, File uploaded: ".$url, "ivr");
 					   $name= $fileData[$key]['name'];
                                            $field = $fileData[$key]['fileName'];
@@ -824,7 +829,7 @@ class IvrMenusController extends AppController{
 			if(array_key_exists('errors',$fileOK)){
 
 				foreach ($fileOK['errors'] as $key => $error){
-					$this->Session->setFlash(__('Success',true).' : '.$error, 'error');				
+					$this->Session->setFlash(__('The file %s could not be uploaded (error: %s)', array($fileOK['original'][$key], $error)), 'error', array(), $key);				
 					$this->log("[ERROR] EDIT SELECTOR, File upload: ".$error, "ivr");								
 				}
 			}

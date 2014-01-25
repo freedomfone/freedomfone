@@ -125,14 +125,19 @@ function getChannels(){
       $gammu = new sms('mysql', $auth);
       $phones    = $gammu->getPhones(); 
 
+
       foreach($phones as $phone){
         $channels[] = $phone[0];
       }
 
       $officeroutes  = Configure::read('OR_SNMP');
       foreach($officeroutes as $officeroute){
-        
-	$channels[] = "OR ".$officeroute['ip_addr']." ".$officeroute['domain'];
+
+        if($this->isAlive($officeroute['ip_addr'])){
+
+	   $channels[] = "OR ".$officeroute['ip_addr']." ".$officeroute['domain'];
+
+	}
       }
 
       return $channels;

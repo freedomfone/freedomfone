@@ -67,6 +67,9 @@ class LmMenusController extends AppController{
          }
 
 
+
+
+
     function add($id) {
 
 
@@ -99,7 +102,9 @@ class LmMenusController extends AppController{
                       $file['fileName']=$key;
                       $fileData[] = $file;
                    } elseif ($file['error']==1 && !$file['size']) {
-                      $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
+
+		      $this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);
+
                    }
               }
 
@@ -114,7 +119,9 @@ class LmMenusController extends AppController{
 
                       foreach ($fileOK['urls'] as $key =>  $url ){
                               $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-                              $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
+                              $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+
+
                       }
                  }
 
@@ -122,7 +129,7 @@ class LmMenusController extends AppController{
 
                       foreach ($fileOK['errors'] as $key => $error ){
                               $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');
-                              $this->Session->setFlash($error, 'error');
+                              $this->Session->setFlash($error, 'error', array(), $key);
                        }
                  }
               } else {
@@ -176,7 +183,7 @@ class LmMenusController extends AppController{
                                  $file['fileName']=$key;
                                  $fileData[] = $file;
                              } elseif ($file['error']==1 && !$file['size']) {
-                                 $this->Session->setFlash(__('The following file could not be uploaded due to file size restrictions',true).': '.$file['name'], 'error');
+                                 $this->Session->setFlash(__('The file %s could not be uploaded due to file size restrictions',$file['name']), 'error', array(), $key);
                              }
                           }
 
@@ -191,7 +198,7 @@ class LmMenusController extends AppController{
 
                                         foreach ($fileOK['urls'] as $key =>  $url ){
                                             $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-                                            $this->Session->setFlash(__('Success',true).' : '.$fileOK['original'][$key], 'success');
+                              		    $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
                                         }
                                   }
 
@@ -199,7 +206,7 @@ class LmMenusController extends AppController{
 
                                         foreach ($fileOK['errors'] as $key => $error ){
                                             $this->log("Msg: UPLOAD  ERROR, Error: ".$error, 'leave_message');
-                                            $this->Session->setFlash($error, 'error');
+                                            $this->Session->setFlash($error, 'error',array(), $key);
                                         }
                                  }
                                                             

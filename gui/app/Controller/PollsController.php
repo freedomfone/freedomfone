@@ -127,7 +127,7 @@ class PollsController extends AppController{
      	     $title = $this->Poll->getTitle($id);
     	     if($this->Poll->delete($id,true))
 	     {
-    	     $this->Session->setFlash(__('The following poll has been deleted',true).': '.$title, 'success');
+    	     $this->Session->setFlash(__('The following poll has been deleted',true).': '.$title, 'success', array());
              $this->log('[INFO] POLL DELETED, Id: '.$id.', Title: '.$title, 'poll');    	     
 	     $this->redirect(array('action' => '/index'));
 

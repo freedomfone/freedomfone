@@ -87,6 +87,7 @@ class BatchesController extends AppController{
 
       function add(){
 
+          $this->set('title_for_layout', __('Create SMS batch',true));
 
             //Process form data
 	       if($this->request->data){

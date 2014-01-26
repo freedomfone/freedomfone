@@ -29,8 +29,7 @@ class PollsController extends AppController{
 
       var $helpers = array('Time','Html', 'Session','Form','Formatting','Number','Js');
 
-      var $layout ='foo';
-
+      var $layout = 'jquery';
       function refresh($method = null){
 
                $this->autoRender = false;

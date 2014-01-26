@@ -37,7 +37,6 @@ class UsersController extends AppController{
   }
 
 
-
   public function login() {
 
     if ($this->Session->read('Auth.User')) {

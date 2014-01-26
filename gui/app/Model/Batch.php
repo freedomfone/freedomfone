@@ -69,6 +69,61 @@ function __construct($id = false, $table = null, $ds = null) {
 }
 
 
+function authBatch($id){
+
+	 $data = $this->findByid($id);
+	 $type = $data['Batch']['gateway_code'];
+
+
+	 //GAMMU
+	 if($type == 'GM'){
+
+      	 $auth  = Configure::read('GAMMU');
+     	 $sms   = new sms('mysql', $auth);
+     
+	 }
+
+	 //OFFICEROUTE
+	 elseif ($type == 'OR'){
+
+      	 $auth  = Configure::read('OR_SNMP');
+	 $_sender = explode(' ',$data['Batch']['sender']);
+	 $domain = $_sender[2];
+     	 $sms   = new sms('email', array('domain' => $domain));
+
+	 } elseif ($type == 'CT'){
+
+
+	 $auth = array('baseurl' => $data['SmsGateway']['url'] , 'username' => $data['SmsGateway']['username'], 'password' => $data['SmsGateway']['password'], 'api_key' => $data['SmsGateway']['api_key']);
+	 $sms   = new sms('ip_CT', $auth);
+
+
+
+	 } elseif ($type == 'PC'){
+
+
+	 } 
+
+
+	 return $sms;
+
+} 
+
+
+function getStatus($sms = null, $code= null, $apimsgid = null){
+
+	 $status=false;
+
+	 if($code == 'CT' && $sms && $apimsgid){
+
+	   $result = $sms->getStatus(false, $code, $apimsgid);
+	   $status = trim($result[2]);
+	 }
+
+	 return $status;
+
+}
+
 function processBatch($id){
 
 

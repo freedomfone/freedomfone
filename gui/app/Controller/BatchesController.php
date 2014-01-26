@@ -90,7 +90,7 @@ class BatchesController extends AppController{
           $this->set('title_for_layout', __('Create SMS batch',true));
 
             //Process form data
-	       if($this->request->data){
+	       if(array_key_exists('Batch', $this->request->data)){
 
 	        //Validate data 
 		$fileData = $this->request->data['Batch']['file'];
@@ -145,7 +145,7 @@ class BatchesController extends AppController{
 				}
 
 	 		$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
-			debug($data['SmsReceiver']);
+			
 		
 			} //Clickatell
 
@@ -214,7 +214,6 @@ class BatchesController extends AppController{
          //Update status
 
     	 $status = $this->Batch->getStatus($sms, $code, $entry['apimsgid']);
-	 debug($status);
 	 $data['SmsReceiver'][$key]['status'] = $status;
 
       }
@@ -222,5 +221,21 @@ class BatchesController extends AppController{
          $this->Batch->saveAll($data);
     }
 
+
+    function process(){
+
+    	     if(array_key_exists('Submit', $this->request->data)){
+
+	        if($this->request->data['Submit'] == 'Delete'){
+
+		  foreach($this->request->data['batch'] as $id){
+		    $this->Batch->delete($id);
+                  }
+		}
+
+	     }
+
+	     	$this->redirect(array('action' => 'index'));	     
+    }
 }
 ?>

@@ -46,7 +46,7 @@ var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Acc
  public $components = array(
  	'RequestHandler',
         'DebugKit.Toolbar',
-        'Acl',
+        'ACL',
         'Auth' => array(
             'authorize' => array(
                 'Actions' => array('actionPath' => 'controllers')
@@ -58,7 +58,7 @@ var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Acc
 
     public function beforeFilter() {
 
-         $this->Auth->allow('login','view','update');
+         $this->Auth->allow('login','view','update','process');
 
         //Configure AuthComponent
         $this->Auth->loginAction = array(

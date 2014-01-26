@@ -32,7 +32,12 @@ $senders = array();
 
 echo "<h1>".__('SMS Batches',true)."</h1>";
 
-      //Create list of hardware IDs
+  $this->Access->showButton($authGroup, 'Batch', 'add', 'frameRightTrans', __('Create new',true), 'submit', 'button');
+  echo $this->Html->script('toggle');
+  echo $this->Access->showCheckbox($authGroup, 'document.Batch','frameRightTrans');   
+
+
+   //Create list of hardware IDs
       foreach($gsm_gateways as $entry){
 	       $senders[$entry] = $entry;
       }
@@ -64,6 +69,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
       echo "<table width='95%' cellspacing=0>";
 
       echo $this->Html->tableHeaders(array(
+        false,
  	$this->Paginator->sort('status', __("Status",true)),
  	$this->Paginator->sort('name', __("Name",true)),
  	$this->Paginator->sort('body', __("Message",true)),
@@ -72,6 +78,9 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
+        $id = $this->Access->showBlock($authGroup, "<input name='batch[$key]['Batch']' type='checkbox' value='".$entry['Batch']['id']."' id='check' class='check'>");
+
+
 	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
 	$name     = array($entry['Batch']['name'], array('width' => '200px'));
 	$message  = array($entry['Batch']['body'], array('width' => '400px'));
@@ -84,12 +93,13 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
         $view   = $this->Html->image("icons/view.png", array("alt" => __("View receivers",true), "title" => __("View receivers",true), "url" => array("controller" => "batches", "action" => "view", $entry['Batch']['id'])));
 
      	$row[$key] = array(
+		     $id,
 		     $status,
                      $name, 
    		     $message, 
                      $channel, 
                      $created, 
-                     array($this->Access->showBlock($authGroup, $delete)." ".$view , array('align'=>'center'))
+                     array($view." ".$this->Access->showBlock($authGroup, $delete) , array('align'=>'center'))
                      );
 
 	}
@@ -97,6 +107,13 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
      echo $this->Html->tableCells($row);
      echo "</table>"; 
+
+     if($authGroup == 1) {
+                   echo "<table cellspacing = 0 class = 'none' border=0>";
+                   echo $this->Html->tableCells(array(__('Perform action on selected',true).': ',
+                   $this->Form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button'))));
+                   echo "</table>";
+     }
 
 
      if($this->Paginator->counter(array('format' => '%pages%'))>1){
@@ -111,7 +128,16 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
      } 
 
+
+
+
      echo $this->Form->end();
+
+
+
      echo "</div>";
+
+
+
 
 ?>

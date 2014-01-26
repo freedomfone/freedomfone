@@ -2471,7 +2471,6 @@ l10n/Status -text
 l10n/manguensis/esp/LC_MESSAGES/default.po -text
 l10n/manguensis/fre/LC_MESSAGES/default.po -text
 l10n/manguensis/por/LC_MESSAGES/default.po -text
-l10n/manguensis/por/LC_MESSAGES/messages.mo -text
 l10n/manguensis/swa/LC_MESSAGES/default.po -text
 l10n/migrate.sh -text
 l10n/pot/manguensis/default.pot -text

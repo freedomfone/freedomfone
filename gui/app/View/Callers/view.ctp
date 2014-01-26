@@ -52,7 +52,7 @@ echo $this->Html->addCrumb(__('Caller Management',true), '');
      $row[] = array(__("Email",true),			 $data['Caller']['email']);
      $row[] = array(__("Skype",true),			 $data['Caller']['skype']);
      $row[] = array(__("Organization",true),		 $data['Caller']['organization']);
-     $row[] = array(__("Access control list (ACL)",true), $data['ACL']['name']);
+     $row[] = array(__("Access control list (ACL)",true), $data['Acl']['name']);
      $row[] = array(array(__("Phone numbers",true),array('valign'=>'top')), $this->Access->showBlock($authGroup, implode('<br/>',$phonenumber),'XXX'));
      $row[] = array(array(__("Phone book",true),array('valign'=>'top')), implode('<br/>',$phonebook));
      

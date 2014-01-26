@@ -46,7 +46,7 @@ var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Acc
  public $components = array(
  	'RequestHandler',
         'DebugKit.Toolbar',
-        'ACL',
+        'Acl',
         'Auth' => array(
             'authorize' => array(
                 'Actions' => array('actionPath' => 'controllers')

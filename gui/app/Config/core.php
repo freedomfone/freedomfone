@@ -31,7 +31,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 3);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -260,8 +260,8 @@
  * The class name and database used in CakePHP's
  * access control lists.
  */
-	Configure::write('ACL.classname', 'DbACL');
-	Configure::write('ACL.database', 'default');
+	Configure::write('Acl.Aclassname', 'DbACL');
+	Configure::write('Acl.database', 'default');
 
 /**
  * Uncomment this line and correct your server timezone to fix

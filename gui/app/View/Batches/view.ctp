@@ -37,7 +37,7 @@ echo "<h1>".__('SMS receivers',true)."</h1>";
      echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 
       echo $this->Form->create('SmsReceiver',array('type' => 'post','action'=> 'process','name' =>'Batch'));
-      echo "<table width='30%' cellspacing=0>";
+      echo "<table width='50%' cellspacing=0>";
 
       echo $this->Html->tableHeaders(array(
  	$this->Paginator->sort('status', __("Status",true)),
@@ -51,7 +51,7 @@ echo "<h1>".__('SMS receivers',true)."</h1>";
       foreach ($batch['SmsReceiver']  as $key2 => $entry){
 
 
-	$status	     =  $this->element('process_status',array('status'=>$entry['status'],'mode'=>'image'));
+	$status	     =  $this->element('batch_status',array('status_code'=>$entry['status'],'gateway_code'=>$batch['Batch']['gateway_code']));
 	$receiver     = array($entry['receiver'], array('width' => '200px'));
 
 
@@ -78,7 +78,11 @@ echo "<h1>".__('SMS receivers',true)."</h1>";
 
 
 
-     } 
+     }  else {
+
+          echo $this->Html->div("invalid_entry", __("This page does not exist.",true));
+
+     }
 
      echo $this->Form->end();
      echo "</div>";

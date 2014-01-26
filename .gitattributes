@@ -1327,6 +1327,7 @@ gui/app/View/Cdr/statistics.ctp -text
 gui/app/View/Channels/audio_services.ctp -text
 gui/app/View/Channels/edit.ctp -text
 gui/app/View/Channels/index.ctp -text
+gui/app/View/Elements/batch_status.ctp -text
 gui/app/View/Elements/channel_signal_level.ctp -text
 gui/app/View/Elements/empty -text
 gui/app/View/Elements/error.ctp -text

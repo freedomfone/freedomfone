@@ -199,5 +199,21 @@ $config['SMS_GATEWAY_TYPES']  = array(
 			     );
 
 
+
+$config['CT_STATUS_MESSAGES'] = array(
+			      '001' => array('Message unknown', 'The message ID is incorrect or reporting is delayed.'),
+			      '002'=> array('Message queued', 'The message could not be delivered and has been queued for attempted redelivery.'), 
+			      '003'=> array('Delivered to gateway', 'Delivered to the upstream gateway or network (delivered to the recipient)'),
+			      '004'=> array('Received by recipient', 'Confirmation of receipt on the handset of the recipient'),
+			      '005'=> array('Error with message', 'There was an error with the message, probably caused by the content of the message itself'),
+			      '006'=> array('User cancelled message delivery', 'The message was terminated by a user (stop message command) or by our staff'),
+			      '007'=> array('Error delivering message', 'An error occurred delivering the message to the handset'),
+			      '008'=> array('OK', 'Message received by gateway'),
+			      '009'=> array('Routing error', 'An error occurred while attempting to route the message.'),
+			      '010'=> array('Message expired', 'Message has expired before we were able to deliver it to the upstream gateway. No charge applies.'),
+			      '011'=> array('Message queued for later delivery' , 'Message has been queued at the gateway for delivery at a later time (delayed delivery).'),
+			      '012'=> array('Out of credit', 'The message cannot be delivered due to a lack of funds in your account. Please re-purchase credits.'), 
+			      '014'=> array('Maximum MT limit exceeded The allowable amount for MT messaging has been exceeded.')
+			      );
 ?>
 

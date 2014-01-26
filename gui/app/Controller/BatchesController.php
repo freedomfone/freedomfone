@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * batches_controller.php	- Manage batches of outgoing SMS 
+ * BatchesController.php	- Manage batches of outgoing SMS 
  * version 		 	- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -113,8 +113,6 @@ class BatchesController extends AppController{
 
 		$receivers = file($fileData['tmp_name']);
 
-		//unset($this->request->data['Batch']['file']);
-
 		if($receivers){
 
 		        $receivers = $this->validateReceivers($receivers, $this->request->data['Batch']['gateway_code'], $this->getPrefix());
@@ -124,19 +122,34 @@ class BatchesController extends AppController{
 	  		$this->Batch->save($this->request->data['Batch']);
 	 		$batch_id = $this->Batch->getLastInsertId();
 
-			foreach($receivers as $key => $receiver){
-		  	  $this->request->data['SmsReceiver'][$key]['batch_id'] = $batch_id;
-		  	  $this->request->data['SmsReceiver'][$key]['receiver'] = trim($receiver);
-			}
 
-	 		//Save sms receiver data
-	 		$this->Batch->SmsReceiver->create($this->request->data['SmsReceiver']);
-	 		$this->Batch->SmsReceiver->saveAll($this->request->data['SmsReceiver'],array('validate' => false));
-				
-	         }
+			  foreach($receivers as $key => $receiver){
+		  	    $this->request->data['SmsReceiver'][$key]['batch_id'] = $batch_id;
+		  	    $this->request->data['SmsReceiver'][$key]['receiver'] = trim($receiver);
+			  }
 
-		 $status = $this->Batch->processBatch($batch_id); 
-		 
+	 		  //Save sms receiver data
+	 		  $this->Batch->SmsReceiver->create($this->request->data['SmsReceiver']);
+	 		  $this->Batch->SmsReceiver->saveAll($this->request->data['SmsReceiver'],array('validate' => false));
+			  $sms_receiver_id[] = $this->Batch->SmsReceiver->getLastInsertId();
+			 
+		          $status = $this->Batch->processBatch($batch_id); 
+		
+
+			  //For Clickatell: update apimsgid for receivers
+			  if($this->request->data['Batch']['gateway_code'] == 'CT'){
+
+			  	foreach($receivers as $key => $receiver){
+		  	  	  		   $data['SmsReceiver'][$key]['id'] = $sms_receiver_id[$key];
+						   $data['SmsReceiver'][$key]['apimsgid'] = $status[0][$key];
+				}
+
+	 		$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
+			debug($data['SmsReceiver']);
+		
+			} //Clickatell
+
+		} //receivers
 
 		 //Save batch status
 		 if(!$status){
@@ -167,7 +180,7 @@ class BatchesController extends AppController{
     
     	     if($this->Batch->delete($id))
 	     {
-		$this->Session->setFlash('SMS batch has been deleted.');
+		$this->Session->setFlash('SMS batch has been deleted.','success');
                 $this->log('[INFO], SMS DELETED; Id: '.$id, 'batch');
 	     	$this->redirect(array('action' => 'index'));
 	     }
@@ -178,11 +191,35 @@ class BatchesController extends AppController{
 
     function view($id){
 
-     	  $this->Batch->recursive = 1; 
+        if($id){
+     	     $this->requestAction('/batches/update/'.$id);
 
-          $batches = $this->paginate('Batch', array('Batch.id' => $id));
-	  $this->set(compact('batches'));
+     	     $this->Batch->recursive = 1; 
+             $batches = $this->paginate('Batch', array('Batch.id' => $id));
+	     $this->set(compact('batches'));
 
+	     }
+    }
+
+
+    function update($id){
+
+      $data = $this->Batch->findById($id);
+      $code = $data['Batch']['gateway_code'];
+
+	 $sms = $this->Batch->authBatch($id);
+
+      foreach($data['SmsReceiver']  as $key => $entry){
+
+         //Update status
+
+    	 $status = $this->Batch->getStatus($sms, $code, $entry['apimsgid']);
+	 debug($status);
+	 $data['SmsReceiver'][$key]['status'] = $status;
+
+      }
+
+         $this->Batch->saveAll($data);
     }
 
 }

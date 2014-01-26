@@ -100,9 +100,6 @@
 <?php echo $this->Html->link(__("SMS batches",true),'/batches/index'); ?>
 </li>
 
-<li>
-<?php echo $this->Html->link(__("Create SMS batch",true),'/batches/add'); ?>
-</li>
 
 
 <li class='last'>

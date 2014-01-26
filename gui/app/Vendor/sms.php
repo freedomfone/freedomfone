@@ -201,6 +201,8 @@ class sms
 
 	          $url = $this->baseurl.'/http_batch/startbatch?session_id='.$this->session_id	.'&template='.urlencode($msg).'&from='.$sender.'&deliv_ack=1';
 
+
+
 	      	  $result = file($url);
      		  $status = explode(":",$result[0]);
 		  if($status[0] =='ID'){
@@ -289,10 +291,18 @@ class sms
      * @param array $id
      * @return array $status
      */
-    function getStatus($id)
+    function getStatus($id, $code = null, $apimsgid)
     {
 
-      if(is_array($id)){
+     if($code && $code == 'CT'){
+
+	     $url = $this->baseurl.'/http/querymsg?session_id='.$this->session_id.'&apimsgid='.$apimsgid;
+    	     $result = file($url);
+     	     $status = explode(":",$result[0]);
+	     return $status;
+
+     }
+     elseif(is_array($id)){
 
         $res = mysqli_query($this->res, "select ID,Status from sentitems where ID in (".implode(',',$id).")");
         while ($data = mysqli_fetch_array($res)){
@@ -308,6 +318,7 @@ class sms
          return $status;
       }
     }
+
 
 
     /**

@@ -633,7 +633,7 @@ CREATE TABLE `sms_receivers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `batch_id` int(11) NOT NULL,
   `receiver` varchar(50) NOT NULL,
-  `status` tinyint(4) DEFAULT '0',
+  `status` varchar(10) DEFAULT '0',
   `sms_gateway_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

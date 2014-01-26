@@ -1,0 +1,58 @@
+Migrating swa
+** Migrating files... **
+Copied sharicus/swa/LC_MESSAGES/./default.po
+** Updating files against templates **
+sharicus/swa/LC_MESSAGES/./default.posharicus/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     598 ( 79%)       2896 ( 79%)            2775
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   157 ( 20%)        761 ( 20%)             n/a
+Total:          755              3657                   2775
+
+unreviewed:      598 ( 79%)       2896 ( 79%)            2775
+empty:      157 ( 20%)        761 ( 20%)               0
+
+Migrating fre
+** Migrating files... **
+Copied sharicus/fre/LC_MESSAGES/./default.po
+** Updating files against templates **
+sharicus/fre/LC_MESSAGES/./default.posharicus/fre/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     566 ( 74%)       2748 ( 75%)            2970
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   189 ( 25%)        909 ( 24%)             n/a
+Total:          755              3657                   2970
+
+unreviewed:      566 ( 74%)       2748 ( 75%)            2970
+empty:      189 ( 25%)        909 ( 24%)               0
+
+Migrating esp
+** Migrating files... **
+Copied sharicus/esp/LC_MESSAGES/./default.po
+** Updating files against templates **
+sharicus/esp/LC_MESSAGES/./default.posharicus/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     237 ( 31%)        668 ( 18%)             778
+fuzzy:            1 (  0%)          1 (  0%)             n/a
+untranslated:   517 ( 68%)       2988 ( 81%)             n/a
+Total:          755              3657                    778
+
+unreviewed:      237 ( 31%)        668 ( 18%)             778
+needs-work:        1 (  0%)          1 (  0%)               0
+empty:      517 ( 68%)       2988 ( 81%)               0
+
+Migrating por
+** Migrating files... **
+Copied sharicus/por/LC_MESSAGES/./default.po
+** Updating files against templates **
+sharicus/por/LC_MESSAGES/./default.posharicus/por/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     586 ( 77%)       2830 ( 77%)            3112
+fuzzy:            2 (  0%)          4 (  0%)             n/a
+untranslated:   167 ( 22%)        823 ( 22%)             n/a
+Total:          755              3657                   3112
+
+unreviewed:      586 ( 77%)       2830 ( 77%)            3112
+needs-work:        2 (  0%)          4 (  0%)               0
+empty:      167 ( 22%)        823 ( 22%)               0
+

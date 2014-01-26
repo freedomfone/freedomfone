@@ -5,10 +5,10 @@
 #
 #################################################################
 
-FROM=sekowei
-TO=manguensis
+FROM=manguensis
+TO=sharicus
 #TO=suyo
-LANG="swa fre esp"
+LANG="swa fre esp por"
 for i in $LANG; do
 echo "Migrating $i"
 pomigrate2 $FROM"/"$i"/LC_MESSAGES" $TO"/"$i"/LC_MESSAGES" "pot/"$TO

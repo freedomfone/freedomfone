@@ -1427,6 +1427,8 @@ gui/app/View/Users/login.ctp -text
 gui/app/View/Users/system_sweeper.ctp -text
 gui/app/View/Votes/add_failure.ctp -text
 gui/app/View/Votes/add_success.ctp -text
+gui/app/auth/README.txt -text
+gui/app/auth/aros.sql -text
 gui/app/auth/initDB.php -text
 gui/app/index.php -text
 gui/app/sql/freedomfone_db_auth_schema.sql -text

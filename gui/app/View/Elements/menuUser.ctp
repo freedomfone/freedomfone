@@ -101,7 +101,7 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Send batch",true),'/batches/add'); ?>
+<?php echo $this->Html->link(__("Create SMS batch",true),'/batches/add'); ?>
 </li>
 
 

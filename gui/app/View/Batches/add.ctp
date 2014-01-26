@@ -32,15 +32,15 @@ echo $this->Form->create('Batch',array('type' => 'post','action'=> 'add', 'encty
 
 echo $this->Html->div('frameLeft');
 
-echo "<table cellpadding=0 class='blue'>";
+echo "<table width='600px'  cellpadding=0 class='blue'>";
 echo $this->Html->tableCells(array (
-     array(__("Name",true),	$this->Form->input('name',array('label'=>false,'size' => '40'))),
+     array(__("Name",true),	$this->Form->input('name',array('label'=>false,'size' => '39'))),
      array(array(__("Name of SMS batch.",true),"colspan='2' class='formComment'")),
 
-     array(__("SMS body",true),	$this->Form->input('body',array('label'=>false,'cols' => 55,'rows' => 8))),
+     array(__("SMS body",true),	$this->Form->input('body',array('label'=>false,'cols' => 55,'rows ' => 3,'maxLength' => 160))),
      array(array(__("Alpha-numeric characters only (maximum 160)",true),"colspan='2' class='formComment'")),
 
-     array(__("Sender number",true),	$this->Form->input('sender_number',array('label'=>false,'size' => '40'))),
+     array(__("Sender number",true),	$this->Form->input('sender_number',array('label'=>false,'size' => '39'))),
      array(array(__("Number to appear as sender of the SMS. Include country prefix but without plus sign (+) and double zeros (00).",true),"colspan='2' class='formComment'")),
 
 

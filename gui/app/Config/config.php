@@ -157,7 +157,7 @@ $config['LANGUAGES'] = array(
                             'eng' => 'English',
                             'swa' => 'Swahili',
                             'esp' => 'Spanish',
-                            'fre' => 'French',
+                            'fra' => 'French',
                             'por' => 'Portuguese'
                             );
 

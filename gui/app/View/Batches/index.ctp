@@ -81,6 +81,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 	$created  = $this->Time->format('Y/m/d H:i',$entry['Batch']['created']);
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batches", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
 
+        $view   = $this->Html->image("icons/view.png", array("alt" => __("View receivers",true), "title" => __("View receivers",true), "url" => array("controller" => "batches", "action" => "view", $entry['Batch']['id'])));
 
      	$row[$key] = array(
 		     $status,
@@ -88,7 +89,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
    		     $message, 
                      $channel, 
                      $created, 
-                     array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
+                     array($this->Access->showBlock($authGroup, $delete)." ".$view , array('align'=>'center'))
                      );
 
 	}

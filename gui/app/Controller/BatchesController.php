@@ -173,5 +173,16 @@ class BatchesController extends AppController{
 
     }
 
+
+
+    function view($id){
+
+     	  $this->Batch->recursive = 1; 
+
+          $batches = $this->paginate('Batch', array('Batch.id' => $id));
+	  $this->set(compact('batches'));
+
+    }
+
 }
 ?>

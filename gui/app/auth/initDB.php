@@ -52,6 +52,8 @@
     $this->Acl->deny($group, 'controllers/Batches');
     $this->Acl->allow($group, 'controllers/Batches/index');
     $this->Acl->allow($group, 'controllers/Batches/disp');
+    $this->Acl->allow($group, 'controllers/Batches/view');
+    $this->Acl->allow($group, 'controllers/Batches/update');
 
 
     //SMS gateways

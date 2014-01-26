@@ -26,13 +26,14 @@ class SmsGatewaysController extends AppController{
 
       var $name = 'SmsGateways';
       var $components = array('RequestHandler');
+      var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'SmsGateway.name' => 'desc')); 
 
     function index(){
 
           $this->set('title_for_layout', __('SMS Gateways',true));
 
-     	  $this->SmsGateway->recursive = 1; 
-   	  $gateways = $this->paginate();
+     	  $this->SmsGateway->recursive = 0; 
+   	  $gateways = $this->paginate('SmsGateway');
  	  $this->set(compact('gateways'));
      
 
@@ -62,6 +63,31 @@ class SmsGatewaysController extends AppController{
 
     function edit ($id){
 
+        $this->set('title_for_layout', __('Edit SMS gateway',true),true);
+ 
+	   if (!$id && empty($this->request->data)){ 
+			$this->Session->setFlash(__('Invalid SMS gateway', true)); 
+			$this->redirect(array('action'=>'index')); 
+	    } elseif (empty($this->request->data['SmsGateway'])){ 
+
+		$this->request->data = $this->SmsGateway->read(null,$id);
+
+	   } else{
+   
+                //Fetch form data
+	        $this->SmsGateway->set( $this->request->data );
+
+	        //Validate data
+	        if ($this->SmsGateway->saveAll($this->request->data, array('validate' => 'only'))) {
+
+	            //Save  data
+
+	            $this->SmsGateway->save($this->request->data);
+                    $this->Session->setFlash(__("The SMS gateway has been updated.",true),'success');
+                    $this->redirect(array('action' => 'index'));
+
+		 }
+              }
     }
 
 

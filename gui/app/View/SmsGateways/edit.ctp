@@ -1,6 +1,6 @@
 <?php
 /****************************************************************************
- * index.ctp	- List SMS batches
+ * edit.ctp	- Edit SMS gateway
  * version 	- 3.0.1500
  * 
  * Version: MPL 1.1
@@ -21,94 +21,57 @@
  *
  *
 ***************************************************************************/
-
 echo $this->Html->addCrumb(__('SMS Centre',true), '');
-echo $this->Html->addCrumb(__('Outboxes',true), '/batches');
-
-
-$this->Session->flash();
-echo $this->Html->script('toggle');
-$senders = array();
-
-echo "<h1>".__('Outgoing SMS',true)."</h1>";
-
-      //Create list of hardware IDs
-      foreach($channels as $entry){
-	       $senders[$entry] = $entry;
-      }
-
-
-      //AJAX form
-      echo $this->Form->create("Batch");
-      $input1 = $this->Form->input('sender', array('id' => 'ServiceType1','type' => 'select', 'options' => $senders, 'label' => false, 'empty' => '-- '.__("Channel",true).' --'));
-
-
-      echo "<table cellspacing=0 class='none'>";
-      echo $this->Html->tableCells(array($input1), array('class' => 'none'), array('class' => 'none'));
-      echo "</table>";
-
-      //FIXME
-//      echo $ajax->div("service_div");
-      $opt = array("update" => "service_div", "url" => "disp", "frequency" => "0.2");
-
-      //FIXME
-  //    echo $ajax->observeForm("BatchIndexForm", $opt);
-      echo $this->Form->end();			  
-      //END AJAX FORM
-
-     if ($batch){
-
-     echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+echo $this->Html->addCrumb(__('SMS gateways',true), '/sms_gateways');
 
 
 
-      echo $this->Form->create('Batch',array('type' => 'post','action'=> 'process','name' =>'Batch'));
-      echo "<table width='95%' cellspacing=0>";
+echo "<h1>".__("Edit SMS gateway",true)."</h1>";
+echo $this->Form->create('SmsGateway',array('type' => 'post','action'=> 'edit', 'enctype' => 'multipart/form-data'));
 
-      echo $this->Html->tableHeaders(array(
- 	$this->Paginator->sort('name', __("Name",true)),
- 	$this->Paginator->sort('body', __("Message",true)),
- 	$this->Paginator->sort('sender', __("Channel",true)),
- 	$this->Paginator->sort('created', __("Time",true)),
-	__('Action',true)));
+$gateway_types  = Configure::read('SMS_GATEWAY_TYPES');
 
-      foreach ($batch as $key => $entry){
-	$name     = $entry['Batch']['name'];
-	$message  = array($entry['Batch']['body'], array('width' => '400px'));
-	$sender   = $entry['Batch']['sender'];
-	$created  = $this->Time->format('Y/m/d H:i',$entry['Batch']['created']);
-        $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "batches", "action" => "delete", $entry['Batch']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this SMS batch?',true)."');"));
+echo $this->Html->div('frameLeft');
 
+if($this->data){
 
-     	$row[$key] = array(
-                     $name, 
-   		     $message, 
-                     $sender, 
-                     $created, 
-                     array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
-                     );
+echo "<table cellpadding=0 class='blue'>";
 
-	}
+     echo $this->Html->tableCells(array (
+     array(false,		$this->Form->hidden('id',array('value'=> $this->data['SmsGateway']['id']))),
+     array(__("Name",true),	$this->Form->input('name',array('label'=>false,'size' => '30'))),
+     array(array(__("Name of SMS gateway.",true),"colspan='2' class='formComment'")),
 
+     array(__("Comment",true),	$this->Form->input('comment',array('label'=>false,'cols' => 40,'rows' => 8))),
+     array(array(__("Comment",true),"colspan='2' class='formComment'")),
 
-     echo $this->Html->tableCells($row);
-     echo "</table>"; 
-
-
-     if($this->Paginator->counter(array('format' => '%pages%'))>1){
-           echo $this->Html->div('paginator', $this->Paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$this->Paginator->numbers().' '.$this->Paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
-     }
-
-
-     echo $this->Html->div('paginator', __("Entries per page ",true).$this->Html->link('10','index/limit:10',null, null, false)." | ".$this->Html->link('25','index/limit:25',null, null, false)." | ".$this->Html->link('50','index/limit:50',null, null, false));
+     array(__("Type",true),	$this->Form->input('gateway_code',array('label'=>false,'options' => $gateway_types))),
+     array(array(__("URL of SMS gateway.",true),"colspan='2' class='formComment'")),
 
 
 
+     array(__("URL",true),	$this->Form->input('url',array('label'=>false,'size' => '30'))),
+     array(array(__("URL of SMS gateway.",true),"colspan='2' class='formComment'")),
 
-     } 
+     array(__("Username",true),	$this->Form->input('username',array('label'=>false,'size' => '30'))),
+     array(array(__("Username of gateway account.",true),"colspan='2' class='formComment'")),
 
-     echo $this->Form->end();
-     //FIXME AJAX
-//     echo $ajax->divEnd('service_div');
+     array(__("Password",true),	$this->Form->input('password',array('label'=>false,'size' => '30'))),
+     array(array(__("Password of gateway account.",true),"colspan='2' class='formComment'")),
 
+     array(__("API key",true),	$this->Form->input('api_key',array('label'=>false,'size' => '30'))),
+     array(array(__("API secret key.",true),"colspan='2' class='formComment'")),
+
+
+
+     ), array('class'=>'blue'),array('class'=>'blue'));
+
+
+echo "</table>";
+
+}
+
+echo $this->Form->end(__('Save',true));
+echo "</div>";
 ?>
+

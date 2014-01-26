@@ -26,7 +26,7 @@ echo $this->Html->addCrumb(__('SMS Centre',true), '');
 echo $this->Html->addCrumb(__('SMS Batches',true), '/batches');
 
 
-$this->Session->flash();
+echo $this->Session->flash();
 
 $senders = array();
 

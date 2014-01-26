@@ -27,14 +27,7 @@ class SmsGateway extends AppModel{
 
       var $name = 'SmsGateway';
 
-/*      var $belongsTo = array('GatewayType' => array(
-                        	       'order' => 'GatewayType.name ASC',
-                        	       'dependent' => true)
-				       ); 
-
-*/
-
-      var $hasOne	= array('Batch');
+      var $hasMany	= array('Batch');
 
 
 

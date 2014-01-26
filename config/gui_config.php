@@ -1,1 +1,1 @@
-../gui/app/config/config.php
+../gui/app/Config/config.php

@@ -1,1 +1,1 @@
-../gui/app/config/sweeper.php
+../gui/app/Config/sweeper.php

@@ -1,0 +1,1 @@
+../hardware_wizard/config.php

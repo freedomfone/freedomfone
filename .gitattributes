@@ -2470,7 +2470,7 @@ l10n/README -text
 l10n/Status -text
 l10n/Status.sharicus -text
 l10n/manguensis/esp/LC_MESSAGES/default.po -text
-l10n/manguensis/fre/LC_MESSAGES/default.po -text
+l10n/manguensis/fra/LC_MESSAGES/default.po -text
 l10n/manguensis/por/LC_MESSAGES/default.po -text
 l10n/manguensis/swa/LC_MESSAGES/default.po -text
 l10n/migrate.sh -text
@@ -2479,15 +2479,15 @@ l10n/pot/sekowei/default.pot -text
 l10n/pot/sharicus/default.pot -text
 l10n/pot/suyo/default.pot -text
 l10n/sekowei/esp/LC_MESSAGES/default.po -text
-l10n/sekowei/fre/LC_MESSAGES/default.po -text
+l10n/sekowei/fra/LC_MESSAGES/default.po -text
 l10n/sekowei/swa/LC_MESSAGES/default.po -text
 l10n/sharicus/esp/LC_MESSAGES/default.po -text
-l10n/sharicus/fre/LC_MESSAGES/default.po -text
+l10n/sharicus/fra/LC_MESSAGES/default.po -text
 l10n/sharicus/por/LC_MESSAGES/default.po -text
 l10n/sharicus/swa/LC_MESSAGES/default.po -text
 l10n/status.sh -text
 l10n/suyo/esp/LC_MESSAGES/default.po -text
-l10n/suyo/fre/LC_MESSAGES/default.po -text
+l10n/suyo/fra/LC_MESSAGES/default.po -text
 l10n/suyo/swa/LC_MESSAGES/default.po -text
 log/README -text
 mod_gsmopen/README -text

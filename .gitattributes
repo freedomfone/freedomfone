@@ -1183,7 +1183,7 @@ gui/app/Lib/empty -text
 gui/app/Locale/default.pot -text
 gui/app/Locale/eng/LC_MESSAGES/empty -text
 gui/app/Locale/esp/LC_MESSAGES/default.po -text
-gui/app/Locale/fre/LC_MESSAGES/default.po -text
+gui/app/Locale/fra/LC_MESSAGES/default.po -text
 gui/app/Locale/por/LC_MESSAGES/default.po -text
 gui/app/Locale/swa/LC_MESSAGES/default.po -text
 gui/app/Model/AppModel.php -text

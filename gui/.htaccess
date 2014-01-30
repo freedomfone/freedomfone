@@ -1,7 +1,3 @@
-AuthUserFile /usr/local/src/.htpasswd
-AuthType Basic
-AuthName "Fred the Dog"
-Require valid-user
 <IfModule mod_rewrite.c>
    RewriteBase /freedomfone
    RewriteEngine on

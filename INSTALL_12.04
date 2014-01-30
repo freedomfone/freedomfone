@@ -49,6 +49,8 @@ STEP 9. Install the PHP ESL extension library
 STEP 10. Install DB Schemas
 	The script will create all the DB needed by Freeswitch, if your mysql (root) password is not empty
 	edit the script to include your mysql admin password	
+ (You might need to restart mysql after installing all the dependencies)
+        # /etc/init.d/mysql restart
 	
 	# cd /opt/freedomfone; ./db_install.sh 
 

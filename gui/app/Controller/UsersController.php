@@ -152,7 +152,9 @@ class UsersController extends AppController{
                          //If data is saved/validated, update password field with hashed version	               
                          $this->User->id = $id;
 
-                         $this->User->saveField('password', $this->Auth->password($this->request->data['User']['pwd']));
+			 $this->User->saveField('password', $this->request->data['User']['pwd']);
+        
+
 
 			 $this->Session->setFlash(__('User has been updated.', true),'success');
 			 $this->redirect(array('action'=>'index'));

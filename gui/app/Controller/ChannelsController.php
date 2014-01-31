@@ -29,6 +29,7 @@ class ChannelsController extends AppController{
 
       function index(){
 
+      $this->set('title_for_layout', __('Active GSM channels',true));
 
       $snmp   = Configure::read('OR_SNMP');
       $gammu  = Configure::read('GAMMU');
@@ -58,7 +59,6 @@ class ChannelsController extends AppController{
       $this->set('data',$data);
 
       $this->Channel->fsCommand("gsmopen_dump list");
-      $this->set('title_for_layout', __('Audio channels',true));
       $this->requestAction('/channels/refresh');
       $this->set('gsmopen',$this->Channel->find('all'));
 

@@ -23,7 +23,7 @@
  ***************************************************************************/
 
   echo $this->Html->addCrumb(__('Dashboard',true), '');
-  echo $this->Html->addCrumb(__('Audio channels',true), '/channels');
+  echo $this->Html->addCrumb(__('Active GSM Channels',true), '/channels');
 
   echo $this->Session->flash();
 
@@ -33,7 +33,7 @@
   echo $this->Html->div('frameRightAlone',$this->Form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
   echo $this->Form->end();
 
-  echo "<h1>".__('Audio channels',true)."</h1>";
+  echo "<h1>".__('Active GSM channels',true)."</h1>";
 
      echo "<h3>".__('Office Route',true)."</h3>";
 

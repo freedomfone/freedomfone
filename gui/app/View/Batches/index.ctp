@@ -73,6 +73,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
  	$this->Paginator->sort('status', __("Status",true)),
  	$this->Paginator->sort('name', __("Name",true)),
  	$this->Paginator->sort('body', __("Message",true)),
+ 	$this->Paginator->sort('sender_number', __("Sender",true)),
  	$this->Paginator->sort('sender', __("Channel",true)),
  	$this->Paginator->sort('created', __("Time",true)),
 	__('Action',true)));
@@ -83,7 +84,8 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
 	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
 	$name     = array($entry['Batch']['name'], array('width' => '200px'));
-	$message  = array($entry['Batch']['body'], array('width' => '400px'));
+	$message  = array($entry['Batch']['body'], array('width' => '250px'));
+	$sender_number  = array($entry['Batch']['sender_number'], array('width' => '100px'));
 	if(!$channel = $entry['Batch']['sender']){
 	 $channel  = $entry['SmsGateway']['name'];
 	}
@@ -97,6 +99,7 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 		     $status,
                      $name, 
    		     $message, 
+		     $sender_number, 
                      $channel, 
                      $created, 
                      array($view." ".$this->Access->showBlock($authGroup, $delete) , array('align'=>'center'))

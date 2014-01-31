@@ -68,6 +68,7 @@ class ChannelsController extends AppController{
 
       function audio_services(){
 
+      $this->set('title_for_layout', __('Audio channels',true));
 
        if($this->request->data){
 

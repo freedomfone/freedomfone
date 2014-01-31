@@ -23,7 +23,7 @@
  ***************************************************************************/
 
   echo $this->Html->addCrumb(__('Dashboard',true), '');
-  echo $this->Html->addCrumb(__('Audio services',true), '/channels/audio_services');
+  echo $this->Html->addCrumb(__('Audio channels',true), '/channels/audio_services');
 
   echo $this->Session->flash();
 

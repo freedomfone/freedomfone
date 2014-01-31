@@ -35,7 +35,7 @@
 
   echo "<h1>".__('Active GSM channels',true)."</h1>";
 
-     echo "<h3>".__('Office Route',true)."</h3>";
+     echo "<h3>".__('OfficeRoute',true)."</h3>";
 
      if ($data == 'snmp_off'){ 
 
@@ -138,7 +138,7 @@
 
    } else {
 
-   echo $this->Html->div('feedback',__("There are no Mobigater units connected to your system.",true));
+   echo $this->Html->div('feedback',__("There are no GSM USB units connected to your system.",true));
 
    }
 

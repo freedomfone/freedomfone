@@ -28,7 +28,7 @@
   echo $this->Session->flash();
 
 
-   echo "<h3>".__('GSMOpen channels',true)."</h3>";
+   echo "<h3>".__('Audio channels (GSMOpen)',true)."</h3>";
 
    if($gammu_discovery){
 

@@ -28,7 +28,13 @@
   echo $this->Session->flash();
 
 
-   echo "<h3>".__('Audio channels (GSMOpen)',true)."</h3>";
+echo $this->Form->create('Channel',array('type' => 'post','action'=> 'audio_services'));
+echo $this->Html->div('frameRightAlone',$this->Form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+echo $this->Form->end();
+
+
+
+   echo "</br><h3>".__('Audio channels (GSMOpen)',true)."</h3>";
 
    if($gammu_discovery){
 

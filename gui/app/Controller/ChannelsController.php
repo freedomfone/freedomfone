@@ -70,7 +70,7 @@ class ChannelsController extends AppController{
 
       $this->set('title_for_layout', __('Audio channels',true));
 
-       if($this->request->data){
+       if(array_key_exists('Channel' , $this->request->data)){
 
 	    //Update hardware discovery files
 	    $this->Channel->updateHardwareDiscovery($this->request->data);

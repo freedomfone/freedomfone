@@ -129,6 +129,10 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
 
 
+     } else { 
+ 
+        echo $this->Html->div('feedback', __('No batches exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
+
      } 
 
 

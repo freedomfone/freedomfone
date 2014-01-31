@@ -114,9 +114,11 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
      if($authGroup == 1) {
                    echo "<table cellspacing = 0 class = 'none' border=0>";
                    echo $this->Html->tableCells(array(__('Perform action on selected',true).': ',
-                   $this->Form->submit(__('Delete',true),  array('name' =>'data[Submit]', 'class' => 'button'))));
+                   $this->Form->submit( __('Delete',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
                    echo "</table>";
      }
+
+
 
 
      if($this->Paginator->counter(array('format' => '%pages%'))>1){

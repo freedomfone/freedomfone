@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-     echo $this->Html->addCrumb(__('Authentication',true), 'users');
+     echo $this->Html->addCrumb(__('Authentication',true), '/users');
      echo $this->Html->addCrumb(__('Login',true), '/users/login');
 
      echo "<h1>".__("Login",true)."</h1>";

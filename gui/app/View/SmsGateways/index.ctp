@@ -87,10 +87,15 @@ echo "<h1>".__('SMS gateways',true)."</h1>";
      echo $this->Html->div('paginator', __("Entries per page ",true).$this->Html->link('10','index/limit:10',null, null, false)." | ".$this->Html->link('25','index/limit:25',null, null, false)." | ".$this->Html->link('50','index/limit:50',null, null, false));
 
 
-
-
-     } 
-
+       
      echo $this->Form->end();
+
+     } else {
+
+        echo $this->Html->div('feedback', __('No SMS gateways exist. Please create one by clicking the <i>Create new</i> button to the right.',true));
+
+     }
+
+
 
 ?>

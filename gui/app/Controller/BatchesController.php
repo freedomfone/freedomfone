@@ -191,6 +191,8 @@ class BatchesController extends AppController{
 
     function view($id){
 
+          $this->set('title_for_layout', __('SMS Receivers',true));
+
         if($id){
      	     $this->requestAction('/batches/update/'.$id);
 

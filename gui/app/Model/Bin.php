@@ -65,7 +65,7 @@ class Bin extends AppModel{
 	      //$channel = getChannel($proto,$login);
 	 
               //Update user statistics
-              $user_id = $this->updateUserStatistics($proto,$sender,$application, $update);
+              $user_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
 
               //Save bin data
               $this->create();   
@@ -76,7 +76,7 @@ class Bin extends AppModel{
 
 
               //Create CDR
-	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension, application, proto, login,  user_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login', '$user_id')");
+	     $resultCdr = $this->query("insert into cdr (epoch, channel_state, call_id, caller_name, caller_number, extension, application, proto, login,  caller_id) values ('$created','MESSAGE','','','$sender','','$application','$proto', '$login', '$user_id')");
 
               $this->log("[INFO] NEW CDR, Application: ".$application.", Epoch: ".$created, "cdr");
 

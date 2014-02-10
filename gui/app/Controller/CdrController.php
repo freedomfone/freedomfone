@@ -43,7 +43,7 @@ class CdrController extends AppController{
 
       function general($action = null){
 
-         $this->set('title_for_layout', __('Reporting',true));
+         $this->set('title_for_layout', __('Call detail report',true));
 
          //Set page limit
          if(isset($this->params['named']['limit'])) { 
@@ -59,6 +59,7 @@ class CdrController extends AppController{
             $this->Session->write('cdr_end',time()+900);
 
          }
+
 
         $epoch = $this->Cdr->dateToEpoch($this->request->data['Cdr']);
         if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
@@ -173,6 +174,8 @@ class CdrController extends AppController{
 
         $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
 
+
+	
 
 	//Export data
         if(isset($this->params['form']['action'])) {	

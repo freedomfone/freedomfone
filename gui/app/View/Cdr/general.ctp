@@ -79,7 +79,7 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 	if(!$export){
 
 	//** START: Search form **/
-	echo "<h1>".__("Reporting of incoming calls",true)."</h1>";
+	echo "<h1>".__("Call detail report",true)."</h1>";
 	echo $this->Form->create('Cdr',array('type' => 'post','action'=> 'general'));
 	$options1=array('lam' =>'');
 	$options2=array('ivr' =>'');
@@ -153,7 +153,7 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 				            date('M d Y',$data['epoch']),
 					    date('H:i:s A',$data['epoch']),
 				            $this->Access->showBlock($authGroup, $data['caller_number']),
-				            $formatting->epochToWords($data['length'])
+				            $this->Formatting->epochToWords($data['length'])
 			                   );
                                if($app == 'lam') { $line[] = $this->element('message_status',array('quickHangup' => $data['quick_hangup']));}
                              $rows[] = $line;
@@ -164,17 +164,17 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
              if($app == 'lam') { $headers[] = __('Quick hangup',true); }
 
 	     echo "<table cellspacing = 0>";
-	     echo $html->tableHeaders($headers);
-	     echo $html->tableCells($rows);
+	     echo $this->Html->tableHeaders($headers);
+	     echo $this->Html->tableCells($rows);
 	     echo "</table>";
 
 
-             if($paginator->counter(array('format' => '%pages%'))>1){
-                     echo $this->Html->div('paginator', $paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$paginator->numbers().' '.$paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+             if($this->Paginator->counter(array('format' => '%pages%'))>1){
+                     echo $this->Html->div('paginator', $this->Paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$this->Paginator->numbers().' '.$this->Paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
               }
 
 
-              echo $this->Html->div('paginator', __("Entries per page ",true).$html->link('25','general/limit:25',null, null, false)." | ".$html->link('50','general/limit:50',null, null, false)." | ".$html->link('100','general/limit:100',null, null, false));
+              echo $this->Html->div('paginator', __("Entries per page ",true).$this->Html->link('25','general/limit:25',null, null, false)." | ".$this->Html->link('50','general/limit:50',null, null, false)." | ".$this->Html->link('100','general/limit:100',null, null, false));
 
 
 

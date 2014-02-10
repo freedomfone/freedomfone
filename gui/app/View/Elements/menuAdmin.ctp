@@ -195,6 +195,8 @@
 <?php echo $this->Html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
+
+
 <li>
 <?php echo $this->Html->link(__("Statistics",true),'/cdr/statistics'); ?>
 </li>
@@ -204,8 +206,15 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Reporting",true),'/cdr/general'); ?>
+<?php echo $this->Html->link(__("Call detail report",true),'/cdr/general'); ?>
 </li>
+
+
+<li>
+<?php echo $this->Html->link(__("Call graphs",true),'/reporting'); ?>
+</li>
+
+
 
 
 <li class='last'>
@@ -239,9 +248,6 @@
 <?php echo $this->Html->link(__("Audio channels",true),'/channels/audio_services'); ?>
 </li>
 
-<li>
-<?php echo $this->Html->link(__("Reporting",true),'/reporting'); ?>
-</li>
 
 
 <li>

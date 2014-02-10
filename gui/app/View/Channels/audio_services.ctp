@@ -34,7 +34,7 @@ echo $this->Form->end();
 
 
 
-   echo "</br><h3>".__('Audio channels (GSMOpen)',true)."</h3>";
+   echo "</br><h1>".__('Audio channels (GSMOpen)',true)."</h1>";
 
    if($gammu_discovery){
 

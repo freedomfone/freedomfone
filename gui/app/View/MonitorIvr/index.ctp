@@ -58,15 +58,15 @@ echo "<h1>".__('Monitoring of Voice Menus',true)."</h1>";
      echo "<table width='95%' cellspacing=0>";
      echo $this->Html->tableHeaders(array(
 	'',
- 	$this->Paginator->sort(__("Date (YMD)",true), 'epoch'),
- 	$this->Paginator->sort(__("Time",true), 'epoch'),
- 	$this->Paginator->sort(__("Call ID",true), 'call_id'),
- 	$this->Paginator->sort(__("Caller ID",true), 'caller_number'),
- 	$this->Paginator->sort(__("From",true), 'ivr_code'),
- 	$this->Paginator->sort(__("Pressed",true), 'digit'),
- 	$this->Paginator->sort(__("To",true), 'service'),
- 	$this->Paginator->sort(__("Title",true), 'title'),
- 	$this->Paginator->sort(__("Type",true), 'type'),
+ 	$this->Paginator->sort('epoch', __("Date (YMD)",true)),
+ 	$this->Paginator->sort('epoch', __("Time",true)),
+ 	$this->Paginator->sort('call_id', __("Call ID",true)),
+ 	$this->Paginator->sort('caller_number', __("Caller ID",true)),
+ 	$this->Paginator->sort('ivr_code', __("From",true)),
+ 	$this->Paginator->sort('digit', __("Pressed",true)),
+ 	$this->Paginator->sort('service', __("To",true)),
+ 	$this->Paginator->sort('title', __("Title",true)),
+ 	$this->Paginator->sort('type', __("Type",true)),
 	''));
 
 	$call_id_old=false;

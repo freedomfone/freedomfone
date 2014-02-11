@@ -31,7 +31,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 3);
+	Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -385,9 +385,10 @@ Cache::config('_cake_model_', array(
 define ('BASE_DIR', '/opt/freedomfone/');
 define ('PID_URI',BASE_DIR.'gui/app/webroot/system/pid/');
 define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
-define ('LOG_DIR_GUI', '/opt/freedomfone/tmp/logs/');
-define ('LOG_DIR_CORE', '/opt/freedomfone/log/');
 define ('NO_SIP_AUTH',true);
+define ('LOG_DIR_GUI', '/opt/freedomfone/gui/app/tmp/logs/');
+define ('LOG_DIR_CORE', '/opt/freedomfone/log/');
+
 
 $config['VERSION'] = array(
 		   'dispatcher_in'  => '/freedomfone/system/version/dispatcher_in',

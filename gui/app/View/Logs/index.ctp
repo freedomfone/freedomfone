@@ -29,7 +29,9 @@ echo "<h1>".__("Logs",true)."</h1>";
 echo $this->Html->div('instructions',__('Select log file to view.',true));
 echo $this->Form->create("Log");
 
-	$opt = array('poll'=>__('Poll',true),'bin' => __('Incoming SMS',true),'message'=>__('Message Centre',true),'ivr' => __('IVR Centre',true),'cdr' => __('CDR',true), 'monitor_ivr' => __('Monitoring',true), 'health' => __('Health',true), 'refresh' => __('Cron and refresh',true), 'debug'=> __('Debug',true),'error' => __('Error',true),'pop3_daemon' => __('Office Route SMS',true),'gammu_daemon' =>__('Gammu SMS',true));
+     $system_log = Configure::read('SYSTEM_LOG');
+     $opt = $system_log['gui'] + $system_log['system'];
+
 
 	echo $this->Form->input("type",array("id"=>"LogType","type"=>"select","options"=>$opt,"label"=> false,"empty" => '-- '.__("Select log file",true).' --'));
 	$this->Js->get('#LogType');

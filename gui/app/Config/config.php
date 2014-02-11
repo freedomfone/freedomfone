@@ -172,12 +172,7 @@ $config['OR_MIB']= array(
                 );
 
 $config['OR_SNMP']= array(
-                        array('ip_addr'   => '196.44.184.139',
-			      'domain'	  => 'ch1pmunk.nu',
-                              'community' => 'public' , 
-                              'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
-                        ),
-                        array('ip_addr'   => '196.44.184.140',
+                        array('ip_addr'   => '192.168.1.46',
 			      'domain'	  => 'ch1pmunk.nu',
                               'community' => 'public' , 
                               'object_id' => '1.3.6.1.4.1.6530.4.2.2.1'
@@ -215,5 +210,28 @@ $config['CT_STATUS_MESSAGES'] = array(
 			      '012'=> array('Out of credit', 'The message cannot be delivered due to a lack of funds in your account. Please re-purchase credits.'), 
 			      '014'=> array('Maximum MT limit exceeded The allowable amount for MT messaging has been exceeded.')
 			      );
+
+$config['SYSTEM_LOG'] = array(
+			'gui' => array(
+					'poll'=>'Poll',
+					'bin' => 'Incoming SMS',
+					'message'=> 'Message Centre',
+					'ivr' => 'IVR Centre',
+					'cdr' => 'CDR', 
+					'monitor_ivr' => 'Monitoring',
+					'health' => 'Health', 
+					'refresh' => 'Cron and refresh',
+					'debug'=> 'Debug',
+					'error' => 'Error',
+					),
+			'system' => array(
+					'pop3_daemon' => 'Office Route SMS',
+					'gammu_daemon' => 'Gammu SMS',
+					'dispatcher_in'  => 'Dispatcher',
+					'gui-access' => 'GUI access',
+					'gui-error' => 'GUI error',
+					));
+
+
 ?>
 

@@ -22,33 +22,43 @@
  *
  ***************************************************************************/
 
+  if($this->request->data['Log']['type']){
 
-      echo $this->Html->div('log_div');
-      if(in_array($this->request->data['Log']['type'], array('pop3_daemon', 'gammu_daemon'))){
+     $system_log = Configure::read('SYSTEM_LOG');
+
+
+      if(array_key_exists($this->request->data['Log']['type'], $system_log['system'])){
+
       $file = LOG_DIR_CORE.$this->request->data['Log']['type'].'.log';
+
       } else {
+
       $file = LOG_DIR_GUI.$this->request->data['Log']['type'].'.log';
+
       }
-      //Log type selected
-      if($this->request->data['Log']['type']){
 
-	if (file_exists($file)){
+      if (file_exists($file)){
+  	 $data = file($file);
+	 $data = array_reverse($data);
 
-	   $handle = fopen($file,'r');
+	 if($data){ 
+	   foreach($data as $key => $line){
 
-	   if ($handle) {
-    	     while (!feof($handle)) {
-           	 $buffer = fgets($handle, 4096);
-        	 echo $buffer."<br/>";
-             }
-    	   fclose($handle);
-	   }
-          } else {
+	     if($key < 100){
+	       echo $line."<br/>";
+	     }
+
+	   } //foreach
+	  } else {
+
+	   echo $this->Html->div('success',__('No log entries.',true));
+	  }
+
+       } else {
 
       	    echo $this->Html->div('warning',__('No log file of this type exists',true));
-         }
        }
-      echo "</div>";
 
+  }
 
 ?>

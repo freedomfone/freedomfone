@@ -44,7 +44,7 @@
 	 if($data){ 
 	   foreach($data as $key => $line){
 
-	     if($key < 100){
+	     if($key < LOG_LIMIT){
 	       echo $line."<br/>";
 	     }
 

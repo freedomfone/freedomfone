@@ -388,6 +388,7 @@ define ('EPOCH_URI',BASE_DIR.'gui/app/webroot/system/epoch/');
 define ('NO_SIP_AUTH',true);
 define ('LOG_DIR_GUI', '/opt/freedomfone/gui/app/tmp/logs/');
 define ('LOG_DIR_CORE', '/opt/freedomfone/log/');
+define ('LOG_LIMIT', 100);
 
 
 $config['VERSION'] = array(

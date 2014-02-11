@@ -33,7 +33,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # App: Other SMS - The Bin 
 */1 * * * * root /usr/bin/wget -O - -q -t 1 http://localhost/freedomfone/bin/refresh/cron  >/dev/null 2>&1
 # App: Sweeper 
-*/1 * * * * root /usr/bin/php /opt/freedomfone/sweeper/gui_sweeper/gui_sweeper.php  >/dev/null 2>&1
+#*/1 * * * * root /usr/bin/php /opt/freedomfone/sweeper/gui_sweeper/gui_sweeper.php  >/dev/null 2>&1
 #
 # SMS engines 
 #

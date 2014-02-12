@@ -89,6 +89,7 @@ class BatchesController extends AppController{
 
           $this->set('title_for_layout', __('Create SMS batch',true));
 
+
             //Process form data
 	       if(array_key_exists('Batch', $this->request->data)){
 
@@ -98,7 +99,10 @@ class BatchesController extends AppController{
 		$this->request->data['Batch']['filename'] = $fileData['tmp_name'];
 
 
+
 	        if ($this->Batch->saveAll($this->request->data['Batch'], array('validate' => 'only'))) {
+
+debug($this->request->data);
 
 		if($this->request->data['Batch']['gateway_type']== 'IP_GW'){
 			$this->loadModel('SmsGateway');

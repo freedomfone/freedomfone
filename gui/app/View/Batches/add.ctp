@@ -41,7 +41,7 @@ echo $this->Html->tableCells(array (
      array(array(__("Alpha-numeric characters only (maximum 160)",true),"colspan='2' class='formComment'")),
 
      array(__("Sender number",true),	$this->Form->input('sender_number',array('label'=>false,'size' => '39'))),
-     array(array(__("Number to appear as sender of the SMS. Include country prefix but without plus sign (+) and double zeros (00).",true),"colspan='2' class='formComment'")),
+     array(array(__("For Clickatell only: Number to appear as sender of the SMS. Include country prefix but without plus sign (+) and double zeros (00).",true),"colspan='2' class='formComment'")),
 
 
      array(__("Receivers",true),	$this->Form->input('file',array('label'=>false, 'type' => 'file'))),

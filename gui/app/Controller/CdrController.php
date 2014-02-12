@@ -93,10 +93,12 @@ class CdrController extends AppController{
         //Fetch All CDR
         if(!$title){
 
-	  $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')),'order'=>array('Cdr.epoch desc'))); 
-	  	 
-	 $this->set('export_cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')), 'order'=>array('Cdr.epoch desc'))));
+	  $count = $this->Cdr->find('count',array('conditions'=>array('epoch < '=> $this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=> $this->Session->read('cdr_app')))); 
+	
+	 $this->set('export_cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app')), 'order'=> array('Cdr.epoch' => 'desc'))));
      
+
+
 	$this->set('count', $count);
 
 	//Limit is set
@@ -119,7 +121,7 @@ class CdrController extends AppController{
                                                 'epoch > '    => $this->Session->read('cdr_start'),
                                                 'application' => $this->Session->read('cdr_app')
                                                 ),
-                          'order'      => array('Cdr.epoch desc'),
+                          'order'      => array('Cdr.epoch' => 'desc'),
                           'limit'      => $pageCount,
                           'fields'     => $fields,
                           'recursive'  => 0,
@@ -134,9 +136,9 @@ class CdrController extends AppController{
 
         
          //Fetch CDR by Title
-         $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch desc'))));
+         $this->set('count', $this->Cdr->find('count',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title'=>$title),'order'=>array('Cdr.epoch' =>  'desc'))));
 
-	 $this->set('export_cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title' => $title), 'order'=>array('Cdr.epoch desc'))));
+	 $this->set('export_cdr', $this->Cdr->find('all',array('conditions'=>array('epoch < '=>$this->Session->read('cdr_end'),'epoch > '=> $this->Session->read('cdr_start'),'application'=>$this->Session->read('cdr_app'),'title' => $title), 'order' => array('Cdr.epoch' => 'desc'))));
 
          $this->paginate = array(
                          'conditions' => array(
@@ -145,7 +147,7 @@ class CdrController extends AppController{
                                                 'application'=> $this->Session->read('cdr_app'),
                                                 'title'=>$title
                                                 ),
-                         'order'      => array('Cdr.epoch desc'),
+                         'order'      => array('Cdr.epoch' => 'desc'),
                          'fields'     => $fields,
                          'recursive'  => 0
                          );
@@ -170,10 +172,10 @@ class CdrController extends AppController{
 	$application = $this->request->data['Cdr']['application'];
 
         $data = $this->paginate('Cdr');
+
 	$this->set('cdr',$data);  
 
         $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
-
 
 	
 

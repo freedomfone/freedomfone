@@ -109,14 +109,13 @@ class sms
     private function orAuth($auth)
     {
     
-    $url = $auth['domain'];
+    $url = $auth['ip_addr'];
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_NOBODY, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_exec($ch);
+    $result = curl_exec($ch);
     $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-	if (200 == $retcode) {
+	if ('200' == $retcode) {
        	   return true;
     	} else {
        	   return false; 

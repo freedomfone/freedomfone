@@ -144,8 +144,10 @@ function processBatch($id){
 
       	 $auth  = Configure::read('OR_SNMP');
 	 $_sender = explode(' ',$data['Batch']['sender']);
+	 $ip_addr = $_sender[1];
 	 $domain = $_sender[2];
-     	 $sms   = new sms('email', array('domain' => $domain));
+
+     	 $sms   = new sms('email', array('ip_addr' => $ip_addr, 'domain' => $domain));
 
 	 } elseif ($type == 'CT'){
 

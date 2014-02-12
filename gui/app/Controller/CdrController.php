@@ -330,7 +330,7 @@ class CdrController extends AppController{
 
       function statistics(){
 
-        $this->set('title_for_layout', __('Call Data Records',true)).": ".__('Overview',true);
+        $this->set('title_for_layout', __('CDR statistics',true)).": ".__('Overview',true);
 
 
         if($this->request->data){

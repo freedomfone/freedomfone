@@ -40,11 +40,14 @@ if(isSet($status_code,$gateway_code)){
 		  $msg = $status[0];
 		}
 
+	} elseif ($gateway_code == 'OR'){
+
+		  $msg = $status_code;
 
 	}
 
 		echo $msg;
-}
+} 
 
 
 

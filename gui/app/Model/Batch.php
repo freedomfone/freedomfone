@@ -88,8 +88,9 @@ function authBatch($id){
 
       	 $auth  = Configure::read('OR_SNMP');
 	 $_sender = explode(' ',$data['Batch']['sender']);
+	 $ip_addr= $_sender[1];
 	 $domain = $_sender[2];
-     	 $sms   = new sms('email', array('domain' => $domain));
+     	 $sms   = new sms('email', array('domain' => $domain,'ip_addr' => $ip_addr));
 
 	 } elseif ($type == 'CT'){
 
@@ -118,6 +119,11 @@ function getStatus($sms = null, $code= null, $apimsgid = null){
 
 	   $result = $sms->getStatus(false, $code, $apimsgid);
 	   $status = trim($result[2]);
+
+	 } elseif( $code =='OR'){
+
+	   $status = 'N/A';
+
 	 }
 
 	 return $status;

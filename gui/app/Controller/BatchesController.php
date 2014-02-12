@@ -209,18 +209,18 @@ class BatchesController extends AppController{
       $data = $this->Batch->findById($id);
       $code = $data['Batch']['gateway_code'];
 
-	 $sms = $this->Batch->authBatch($id);
+      $sms = $this->Batch->authBatch($id);
 
       foreach($data['SmsReceiver']  as $key => $entry){
 
          //Update status
-
     	 $status = $this->Batch->getStatus($sms, $code, $entry['apimsgid']);
-	 $data['SmsReceiver'][$key]['status'] = $status;
+	 $this->Batch->SmsReceiver->id = $entry['id'];
+	 $this->Batch->SmsReceiver->saveField('status', $status);
+
 
       }
 
-         $this->Batch->saveAll($data);
     }
 
 

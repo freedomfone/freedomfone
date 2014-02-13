@@ -44,11 +44,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	    'required' => true,
             'message'=> __('A valid SMS body is required (Max 160 characters).',true)
 	    ),
-        'file' => array(
-            'rule'=>array('fileSize', '>', '0MB'),
-	    'required' => true,
-            'message'=> __('Please select a file to upload.',true)
-	    ),
+	   
         'name' => array(
 		    'minLength'=> array(
 				'rule'=>array('minLength', 5),
@@ -124,7 +120,12 @@ function getStatus($sms = null, $code= null, $apimsgid = null){
 
 	   $status = 'N/A';
 
-	 }
+	 } elseif($code == 'GM'){
+
+		//FIXME
+	   $result = $sms->getStatus($id, $code, false);
+
+   	} 
 
 	 return $status;
 
@@ -142,7 +143,7 @@ function processBatch($id){
 
       	 $auth  = Configure::read('GAMMU');
      	 $sms   = new sms('mysql', $auth);
-     
+
 	 }
 
 	 //OFFICEROUTE

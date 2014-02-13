@@ -146,16 +146,28 @@ class BatchesController extends AppController{
 						   $data['SmsReceiver'][$key]['apimsgid'] = $status[0][$key];
 				}
 
-	 		$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
+	 		        $this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
 		
 		
-			} //Clickatell
+			  } //Clickatell
+			  elseif($this->request->data['Batch']['gateway_code'] == 'GM'){
+
+
+			  	foreach($receivers as $key => $receiver){
+		  	  	  		   $data['SmsReceiver'][$key]['id'] = $sms_receiver_id[$key];
+						   $data['SmsReceiver'][$key]['gateway'] = $status[0][$key];
+				}
+
+				debug($data);
+	 		        $this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
+			  }
 
 		} //receivers
 
 		 //Save batch status
 		 if(!$status){
-			$status=false	;
+			$status=false;
+
 		 } elseif(is_array($status[0])){
 		        $status=true;
 		 } else { 
@@ -166,7 +178,7 @@ class BatchesController extends AppController{
 		 $this->Batch->id = intval($batch_id);
 	       	 $this->Batch->saveField('status', $status);	
 
-		 $this->redirect(array('action' => 'index'));		 
+//		 $this->redirect(array('action' => 'index'));		 
 
                 }
 	       }
@@ -206,23 +218,31 @@ class BatchesController extends AppController{
     }
 
 
-    function update($id){
+    function update($batch_id){
 
-      $data = $this->Batch->findById($id);
+      $data = $this->Batch->findById($batch_id);
       $code = $data['Batch']['gateway_code'];
 
-      $sms = $this->Batch->authBatch($id);
+
+      if($code != 'OR'){
+      $sms = $this->Batch->authBatch($batch_id);
 
       foreach($data['SmsReceiver']  as $key => $entry){
 
          //Update status
-    	 $status = $this->Batch->getStatus($sms, $code, $entry['apimsgid']);
+	 if($code == 'CT') { $id = $entry['apimsgid'];} 
+	 elseif ($code == 'GM') { $id = $entry['gateway_id'];} 
+
+    	 $status = $this->Batch->getStatus($sms, $code, $id);
+
 	 $this->Batch->SmsReceiver->id = $entry['id'];
 	 $this->Batch->SmsReceiver->saveField('status', $status);
 
 
       }
 
+
+      } 
     }
 
 

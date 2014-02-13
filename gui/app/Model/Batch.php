@@ -77,6 +77,7 @@ function authBatch($id){
       	 $auth  = Configure::read('GAMMU');
      	 $sms   = new sms('mysql', $auth);
      
+
 	 }
 
 	 //OFFICEROUTE
@@ -107,13 +108,13 @@ function authBatch($id){
 } 
 
 
-function getStatus($sms = null, $code= null, $apimsgid = null){
+function getStatus($sms = null, $code= null, $id = null){
 
 	 $status=false;
 
 	 if($code == 'CT' && $sms && $apimsgid){
 
-	   $result = $sms->getStatus(false, $code, $apimsgid);
+	   $result = $sms->getStatus(false, $code, $id);
 	   $status = trim($result[2]);
 
 	 } elseif( $code =='OR'){
@@ -122,8 +123,9 @@ function getStatus($sms = null, $code= null, $apimsgid = null){
 
 	 } elseif($code == 'GM'){
 
-		//FIXME
 	   $result = $sms->getStatus($id, $code, false);
+	   $status = $result[$id];
+
 
    	} 
 
@@ -181,7 +183,10 @@ function processBatch($id){
 	      $receivers[] = $receiver['receiver'];
 
 	   }
+
+
   	    $id = $sms->sendSMS($data['Batch']['body'], $receivers,  $data['Batch']['sender_number']); 
+
 	    return array($id, $receivers);
 
 	 }

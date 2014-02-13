@@ -44,6 +44,11 @@ if(isSet($status_code,$gateway_code)){
 
 		  $msg = $status_code;
 
+
+	} elseif ($gateway_code == 'GM'){
+
+		  $msg = $status_code;
+
 	}
 
 		echo $msg;

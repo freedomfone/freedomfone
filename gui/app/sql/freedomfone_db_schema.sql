@@ -635,9 +635,10 @@ CREATE TABLE `sms_receivers` (
   `receiver` varchar(50) NOT NULL,
   `sms_gateway_id` int(11) NOT NULL,
   `apimsgid` varchar(35) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `gateway_id` int(11) unsigned,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 

@@ -301,7 +301,7 @@ class sms
 	     return $status;
 
      }
-     elseif(is_array($id)){
+     elseif($code == 'GM' && is_array($id)){
 
         $res = mysqli_query($this->res, "select ID,Status from sentitems where ID in (".implode(',',$id).")");
         while ($data = mysqli_fetch_array($res)){
@@ -309,7 +309,7 @@ class sms
         }
         return $status;
 
-      } else {
+      } elseif ($code == 'GM') {
 
          $res = mysqli_query($this->res, "select Status from sentitems where ID = $id");
          $data = mysqli_fetch_array($res);

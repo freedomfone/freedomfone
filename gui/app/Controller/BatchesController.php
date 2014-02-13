@@ -102,7 +102,6 @@ class BatchesController extends AppController{
 
 	        if ($this->Batch->saveAll($this->request->data['Batch'], array('validate' => 'only'))) {
 
-debug($this->request->data);
 
 		if($this->request->data['Batch']['gateway_type']== 'IP_GW'){
 			$this->loadModel('SmsGateway');
@@ -120,7 +119,7 @@ debug($this->request->data);
 		if($receivers){
 
 		        $receivers = $this->validateReceivers($receivers, $this->request->data['Batch']['gateway_code'], $this->getPrefix());
-			
+
 
 			//Save batch data
 	  		$this->Batch->save($this->request->data['Batch']);
@@ -138,7 +137,6 @@ debug($this->request->data);
 			  $sms_receiver_id[] = $this->Batch->SmsReceiver->getLastInsertId();
 			 
 		          $status = $this->Batch->processBatch($batch_id); 
-		
 
 			  //For Clickatell: update apimsgid for receivers
 			  if($this->request->data['Batch']['gateway_code'] == 'CT'){
@@ -149,7 +147,7 @@ debug($this->request->data);
 				}
 
 	 		$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
-			
+		
 		
 			} //Clickatell
 

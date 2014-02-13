@@ -824,6 +824,15 @@ return $result;
 	       return $receivers;
 	       break;
 
+
+		case 'GM':
+	 	foreach($receivers as $key => $entry){
+                  $receivers[$key] = trim($entry);
+                }
+                return $receivers;
+                break;
+
+
 	     }
 
 

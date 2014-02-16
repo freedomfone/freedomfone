@@ -178,7 +178,7 @@ class BatchesController extends AppController{
 		 $this->Batch->id = intval($batch_id);
 	       	 $this->Batch->saveField('status', $status);	
 
-//		 $this->redirect(array('action' => 'index'));		 
+		 $this->redirect(array('action' => 'index'));		 
 
                 }
 	       }

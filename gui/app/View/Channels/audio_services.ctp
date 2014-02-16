@@ -86,7 +86,7 @@ echo $this->Form->end();
 	}
      echo $this->Html->tableCells($row);
      echo "</table>";
-      echo $this->Form->submit(__('Create configuration files',true),  array('class' => 'button'));
+      echo $this->Form->submit(__('Create dialplan',true),  array('class' => 'button'));
       echo $this->Form->end();
 
 

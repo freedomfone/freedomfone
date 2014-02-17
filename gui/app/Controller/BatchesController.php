@@ -158,8 +158,7 @@ class BatchesController extends AppController{
 						   $data['SmsReceiver'][$key]['gateway'] = $status[0][$key];
 				}
 
-				debug($data);
-	 		        $this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
+				$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
 			  }
 
 		} //receivers
@@ -172,7 +171,7 @@ class BatchesController extends AppController{
 		        $status=true;
 		 } else { 
 		        $status=false;
-			$this->Session->setFlash($status[0]);
+			$this->Session->setFlash("The batch failed. Please review your gateway credentials and receivers numbers.", "error");
 		 }
 
 		 $this->Batch->id = intval($batch_id);

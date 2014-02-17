@@ -245,7 +245,7 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Audio channels",true),'/channels/audio_services'); ?>
+<?php echo $this->Html->link(__("Service mapping",true),'/channels/audio_services'); ?>
 </li>
 
 

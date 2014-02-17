@@ -53,6 +53,10 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
     <?=$this->Html->css('modalbox');?>	        	<!-- Modalbox cluetip -->
     <?=$this->Html->meta('icon');?>
 
+
+
+
+
     <?=$this->Html->meta('keywords','SMS, mobile, GMS, callback, development, IVR, poll, FreeSWITCH, GSMOpen, CakePHP, ICT4D, M4D, activism, NGO, civil society, citizen journalism, reporting, journalism, Freedom Fone, Kubatana, voice, voip');?>
 
 

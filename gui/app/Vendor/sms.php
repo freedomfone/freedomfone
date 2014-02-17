@@ -312,8 +312,12 @@ class sms
       } elseif ($code == 'GM') {
 
          $res = mysqli_query($this->res, "select Status from sentitems where ID = $id");
-         $data = mysqli_fetch_array($res);
-         $status[$id] = $data['Status'];
+	 if($res){ 
+	    $data = mysqli_fetch_array($res);
+            $status[$id] = $data['Status'];
+	    } else {
+	    $status[$id] = false;
+	    }
          return $status;
       }
     }

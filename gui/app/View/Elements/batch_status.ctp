@@ -47,8 +47,11 @@ if(isSet($status_code,$gateway_code)){
 
 	} elseif ($gateway_code == 'GM'){
 
-		  $msg = $status_code;
-
+	          if(!$status_code){
+		     $msg = __('Gammu is not running', false);
+		  } else {
+		     $msg = $status_code;
+		  }
 	}
 
 		echo $msg;

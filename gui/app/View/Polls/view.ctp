@@ -82,7 +82,7 @@ echo $this->Form->end();
     	    	if (!$total){ 
 		   $percentage = 0;
 		   } else { 
-		   $percentage = $number->toPercentage(100*$vote['chvotes']/$total,0);
+		   $percentage = $this->Number->toPercentage(100*$vote['chvotes']/$total,0);
 		}
 
                 
@@ -92,7 +92,7 @@ echo $this->Form->end();
 
 	      //Add invalid votes (open)
 	      if ($total) {
-	      	 $percentage = $number->toPercentage(100*$invalid_open/$total,0);
+	      	 $percentage = $this->Number->toPercentage(100*$invalid_open/$total,0);
 	      } else {
 	      	$percentage=0;
 		}

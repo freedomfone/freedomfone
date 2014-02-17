@@ -45,7 +45,8 @@ echo $this->Html->tableCells(array (
 
 
      array(__("Receivers",true),	$this->Form->input('file',array('label'=>false, 'type' => 'file'))),
-     array(array(__("File containing receivers phone numbers. One number per line. Maximum 100 entries for Clickatell batches.",true),"colspan='2' class='formComment'")),
+     array(array(__("File containing receivers phone numbers. One number per line. Maximum 100 entries for Clickatell batches. Examples of valid formats: +263772123456, 00263772123456, 0772123456.",true),"colspan='2' class='formComment'")),
+
 
      ), array('class'=>'blue'),array('class'=>'blue'));
 

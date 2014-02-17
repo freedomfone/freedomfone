@@ -112,7 +112,7 @@ function getStatus($sms = null, $code= null, $id = null){
 
 	 $status=false;
 
-	 if($code == 'CT' && $sms && $apimsgid){
+	 if($code == 'CT' && $sms && $id){
 
 	   $result = $sms->getStatus(false, $code, $id);
 	   $status = trim($result[2]);

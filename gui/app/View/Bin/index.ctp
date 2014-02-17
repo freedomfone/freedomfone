@@ -30,6 +30,11 @@ $this->Session->flash();
 echo $this->Html->script('toggle');
 $channels =  false;
 
+   echo $this->Form->create('Bin',array('type' => 'post','action'=> 'index'));
+   echo $this->Html->div('frameRightAlone', $this->Form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
+   echo $this->Form->end();
+
+
 echo $this->Access->showButton($authGroup, 'Bin', 'export', 'frameRightTrans', __('Export',true), 'submit', 'button');
 echo $this->Access->showCheckbox($authGroup, 'document.Bin','frameRightTrans');
 

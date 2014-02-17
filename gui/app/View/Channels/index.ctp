@@ -96,11 +96,9 @@
    }
 
 
-    echo "<h3>".__('Active channels',true)."</h3>";
+    echo "<h3>".__('GMSOpen',true)."</h3>";
 
      if ($gsmopen){
-
-
     	 unset($row);
     
       foreach ($gsmopen as $key => $entry){
@@ -138,7 +136,51 @@
 
    } else {
 
-   echo $this->Html->div('feedback',__("There are no GSM USB units connected to your system.",true));
+   echo $this->Html->div('feedback',__("There are no GSMOpen devices connected to your system.",true));
+
+   }
+
+   if ($gammu) {
+    echo "<h3>".__('Gammu',true)."</h3>";
+
+    	 unset($row);
+   
+      foreach ($gammu as $key => $entry){
+
+     	$interface_id    = $entry['ID'];
+     	$updated         = $entry['UpdatedInDB'];
+      	$inserted        = $entry['InsertIntoDB'];
+      	$send    	 = $entry['Send'];
+      	$receive  	 = $entry['Receive'];
+	$imei            = $entry['IMEI'];
+	$client          = $entry['Client'];
+	$battery	 = $entry['Battery'];
+	$signal 	 = $entry['Signal'];
+	$sent		 = $entry['Sent'];
+	$received	 = $entry['Received'];
+
+
+     	$row[] = array($interface_id, $imei, $signal, $updated, $inserted, $send, $receive, );
+
+	}
+
+     echo "<table width='95%' cellspacing = 0>";
+     echo $this->Html->tableHeaders(array(
+                        __('Interface id',true),
+                        __('IMEI',true),
+                        __('Signal level',true),
+                        __('Updated',true),
+                        __('Inserted',true),
+                        __('Send',true),
+                        __('Receive',true)));
+     echo $this->Html->tableCells($row);
+     echo "</table>"; 
+
+
+   } else {
+
+
+   echo $this->Html->div('feedback',__("There are no Gammu devices connected to your system.",true));
 
    }
 

@@ -23,7 +23,7 @@
  ***************************************************************************/
 
   echo $this->Html->addCrumb(__('Dashboard',true), '');
-  echo $this->Html->addCrumb(__('Audio channels',true), '/channels/audio_services');
+  echo $this->Html->addCrumb(__('Service mapping',true), '/channels/audio_services');
 
   echo $this->Session->flash();
 
@@ -34,7 +34,8 @@ echo $this->Form->end();
 
 
 
-   echo "</br><h1>".__('Audio channels (GSMOpen)',true)."</h1>";
+   echo "</br><h1>".__('Service mapping',true)."</h1>";
+   echo $this->Html->div(false, 'To map services to an OfficeRoute gateway, please login to the OfficeRoute device and perform the mapping.');
 
    if($gammu_discovery){
 
@@ -47,7 +48,6 @@ echo $this->Form->end();
 			__('Inbound',true),
 			__('Outbound',true),
                         __('IMSI',true),
-                        __('IMEI',true),
                         __('Manufacturer',true),
                         __('Model',true),
                         __('Hardware id',true),
@@ -64,7 +64,6 @@ echo $this->Form->end();
      	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
      	$row[$key]['outbound']		= $entry[8] ? 'Yes' : 'No';;
      	$row[$key]['IMSI']		= $entry[0];
-     	$row[$key]['IMEI'] 		= $entry[1];
      	$row[$key]['manufacturer'] 	= $entry[2];
      	$row[$key]['model'] 		= $entry[4];
      	$row[$key]['hardwareId'] 	= $entry[3];

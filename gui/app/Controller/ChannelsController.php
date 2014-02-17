@@ -61,7 +61,7 @@ class ChannelsController extends AppController{
       $this->Channel->fsCommand("gsmopen_dump list");
       $this->requestAction('/channels/refresh');
       $this->set('gsmopen',$this->Channel->find('all'));
-
+      $this->set('gammu',$this->Channel->getGammu());
 
 
       }
@@ -126,7 +126,7 @@ class ChannelsController extends AppController{
 
    function edit($id ){
 
-        $this->set('title_for_layout', __('Edit Mobigater',true));  
+        $this->set('title_for_layout', __('Edit GSMOpen channel',true));  
 
 
 	  // No id, or empty form
@@ -146,8 +146,9 @@ class ChannelsController extends AppController{
           //Fetch form data 
 	  else {
 
-          $this->Channel->set( $this->request->data );	       
-          $this->Channel->save();
+
+          $this->Channel->set( $this->request->data['Channel']);	       
+	  $this->Channel->save();
   	  $this->redirect(array('action' => 'index'));
   
           }           

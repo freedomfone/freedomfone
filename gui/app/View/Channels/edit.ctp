@@ -22,39 +22,32 @@
  *
 ***************************************************************************/
 
-echo $html->addCrumb(__('Dashboard',true), '');
-echo $html->addCrumb(__('GSM channels',true), '/channels');
+echo $this->Html->addCrumb(__('Dashboard',true), '');
+echo $this->Html->addCrumb(__('GSM channels',true), '/channels');
 
 
+     if($this->data){
 
-	if($this->data){
+                echo $this->Html->addCrumb(__('Edit GSMOpen channel',true), '/channels/edit/'.$this->data['Channel']['id']);
+		echo "<h1>".__("Edit GSMOpen channel",true)."</h1>";
 
-                echo $html->addCrumb(__('Edit Mobigater',true), '/channels/edit/'.$this->data['Channel']['id']);
-		echo "<h1>".__("Edit channel",true)."</h1>";
+                echo $this->Session->flash();
 
-                // Multiple Flash messages
-                if ($messages = $this->Session->read('Message')) {
-                   foreach($messages as $key => $value) {
-                                     echo $this->Session->flash($key);
-                   }
-                }
-
-
-		echo $form->create('Channel', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
-	
+		echo $this->Form->create('Channel', array('type' => 'post', 'action' => 'edit','enctype' => 'multipart/form-data') );
+		echo $this->Form->hidden('id', array('value' => $this->data['Channel']['id']));	
                 $rows = array(
-     		     array(__("Title",true),	$form->input('title',array('label'=>false,'size'=>'50'))),
-     		     array(__("Phone number",true),	$form->input('msisdn',array('label'=>false,'size'=>'50'))),
+     		     array(__("Title",true),	$this->Form->input('title',array('label'=>false,'size'=>'50'))),
+     		     array(__("Phone number",true),	$this->Form->input('msisdn',array('label'=>false,'size'=>'50'))),
      		     array(__("IMSI",true),	$this->data['Channel']['imsi']),
      		     array(__("IMEI",true),	$this->data['Channel']['imei']));
 
 
                echo "<div class='frameLeft'>";
      	       echo "<table width='95%' cellspacing=0 class='blue'>";
-               echo $html->tableCells($rows,array('class' => 'blue'),array('class' => 'blue'));
+               echo $this->Html->tableCells($rows,array('class' => 'blue'),array('class' => 'blue'));
 	       echo "</table>";
 
-		echo $form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'save_button'));
+		echo $this->Form->end(array('name'=>__('Save',true),'label' =>__('Save',true), 'class'=>'save_button'));
                 echo "</div>";
 		}
 

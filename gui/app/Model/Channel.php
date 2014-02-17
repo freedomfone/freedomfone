@@ -113,6 +113,7 @@ class Channel extends AppModel{
 	       $event = $sock->api($cmd);
 	       $body = $event->getBody();
 
+
 		$sock->disconnect();
 		return $body;	
 	       }
@@ -313,7 +314,22 @@ class Channel extends AppModel{
 		     fwrite($handle, trim($line).", ".$instance_id."\n");
 	       }
 	       fclose($handle);
+      }
+
+
+
+
+ function getGammu(){
+
+      $auth  = Configure::read('GAMMU');
+      $gammu = new sms('mysql', $auth);
+      $phones    = $gammu->getPhones(); 
+
+      return $phones;
+
 
       }
+
+
 }
 ?>

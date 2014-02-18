@@ -27,7 +27,7 @@ class BinController extends AppController{
       var $name = 'Bin';
       var $helpers = array('Time','Html', 'Session','Form','Csv','Js');
       var $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'Bin.created' => 'desc')); 
-
+      var $layout = 'jquery';
       var $scaffold;
 
 

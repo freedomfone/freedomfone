@@ -105,7 +105,7 @@ class UsersController extends AppController{
 
                          //If data is saved/validated, update password field with hashed version	               
                          $this->User->id = $this->User->getLastInsertId();
-                         $this->User->saveField('password', $this->Auth->password($this->request->data['User']['pwd']));
+			 $this->User->saveField('password', $this->request->data['User']['pwd']);
 
 			 $this->Session->setFlash(__('New user has been created.', true),'success');
 			 $this->redirect(array('action'=>'index'));
@@ -113,7 +113,7 @@ class UsersController extends AppController{
 		    } else {
 
                          $errors = $this->User->invalidFields(); 
-			 $this->Session->setFlash($errors['password'],'error');
+			 $this->Session->setFlash('Validation error, please try again.','error');
 
                     }
 

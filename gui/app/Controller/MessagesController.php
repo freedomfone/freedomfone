@@ -366,23 +366,14 @@ class MessagesController extends AppController{
 	$name        = $data['Message']['title'];
         $instance_id = $data['Message']['instance_id'];
 
-	$url  = 'webroot/freedomfone/leave_message/'.$instance_id.'/messages';
+	$path  = 'webroot/freedomfone/leave_message/'.$instance_id.'/messages';
 
-        $this->view = 'Media';
+	$this->response->file($path . DS . $file, array(
+		'download' => true, 
+		'name' => $name,
+		));
 
-    	$params = array(
-		'id' => $file,
- 		'name' => $name,
- 		'download' => true,
- 		'cache' => true,
- 		'extension' => 'mp3',
- 		'path' => APP . $url . DS
- 		);
-	$this->set($params);
-
-    	$this->layout = null;
-    	$this->autoLayout = false;
-  	$this->render();    
+	return $this->response;
 
 
     }

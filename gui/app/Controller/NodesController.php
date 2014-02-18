@@ -264,24 +264,17 @@ $this->render();
 
 	$file = $data['Node']['file'].'.mp3';
 	$name = $data['Node']['title'];
-	$url  = 'webroot/freedomfone/ivr/nodes';
-
-        $this->view = 'Media';
-
-    	$params = array(
-		'id' => $file,
- 		'name' => $name,
- 		'download' => true,
- 		'cache' => true,
- 		'extension' => 'mp3',
- 		'path' => APP . $url . DS
- 		);
-	$this->set($params);
+	$path  = 'webroot/freedomfone/ivr/nodes';
 
 
-    	$this->layout = null;
-    	$this->autoLayout = false;
-  	$this->render();    
+
+	$this->response->file($path . DS . $file, array(
+		'download' => true, 
+		'name' => $name,
+		));
+
+	return $this->response;
+
 
 
     }

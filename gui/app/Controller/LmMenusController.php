@@ -238,27 +238,17 @@ class LmMenusController extends AppController{
   
   $file = 'lm'.$message.'.mp3';
   $name = 'lm'.$message;
-  $url  = 'webroot/freedomfone/leave_message/'.$data['LmMenu']['instance_id'].'/audio_menu';
-
-        $this->view = 'Media';
-
-        $params = array(
-                        'id' => $file,
-                             'name' => $name,
-                             'download' => true,
-                             'cache' => true,
-                             'extension' => 'mp3',
-                             'path' => APP . $url . DS
-                             );
-
-        $this->set($params);
-
-        $this->layout = null;
-        $this->autoLayout = false;
-        $this->render();    
+  $path  = 'webroot/freedomfone/leave_message/'.$data['LmMenu']['instance_id'].'/audio_menu';
 
 
-    }
+	$this->response->file($path . DS . $file, array(
+		'download' => true, 
+		'name' => $name,
+		));
+
+		return $this->response;
+
+} 
 
 
     function delete ($id){

@@ -25,7 +25,7 @@
 
 echo $this->Html->addCrumb(__('Message Centre',true), '');
 echo $this->Html->addCrumb(__('Archive',true), '/messages/');
-
+$ext = Configure::read('EXTENSIONS');
 
 
  $this->Session->flash();
@@ -71,7 +71,7 @@ echo $this->Html->addCrumb(__('Archive',true), '/messages/');
                         $status = $this->Html->image("icons/star.png",array("title" => __("New",true)));
 	        }
 
-        $service  = $message['Message']['instance_id'];
+        $service  = array($ext['lam'].$message['Message']['instance_id'], array('align'=>'center'));
 	$title    = $message['Message']['title'];
 	$sender   = $message['Message']['sender'];
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));

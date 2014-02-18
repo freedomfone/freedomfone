@@ -57,8 +57,10 @@ class NodesController extends AppController{
    	$ivr_settings = Configure::read('IVR_SETTINGS');
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
+
+
 	// Form data exist, save and redirect to Index
-	if (!empty($this->request->data)) {
+	if (!empty($this->request->data['node'])) {
 
 
 	   //Fetch form data
@@ -180,7 +182,6 @@ $this->render();
 
 
           $this->Node->set( $this->request->data );	       
-
 
 
 

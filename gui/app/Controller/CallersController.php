@@ -234,12 +234,11 @@ class CallersController extends AppController{
     }
 
     function process (){
- 
 
 	    //One or more callers selected
-	    if(array_key_exists('user',$this->request->data)){
+	    if(array_key_exists('caller',$this->request->data)){
 
-		$entries = $this->request->data['user'];
+		$entries = $this->request->data['caller'];
     	    	$action = $this->request->data['Submit'];
 
 

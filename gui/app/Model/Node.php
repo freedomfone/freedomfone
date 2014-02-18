@@ -60,14 +60,20 @@ function __construct($id = false, $table = null, $ds = null) {
       'file' => array(
 			'validFileSize' =>array(
 					'rule' => array('validFileSize'),
+					'required' => false,
+				       'allowEmpty' => true,
 					'message' => __('The file size exceeds the maximum limit (10MB).',true)
 					),
 			'validFileType' =>array(
 					'rule' => array('validFileType'),
+					'required' => false,
+				       'allowEmpty' => true,
 					'message' => __('Invalid file type (valid formats: mp3 and wav).',true)
 					),
 			'validFile' =>array(
 					'rule' => array('validFile'),
+					'required' => false,
+				       'allowEmpty' => true,
 					'message' => __('No file selected.',true)
 					)
 					));

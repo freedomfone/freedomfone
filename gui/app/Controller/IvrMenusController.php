@@ -92,10 +92,11 @@ class IvrMenusController extends AppController{
 
 
       //Render empty form
-      if (!array_key_exists('IvrMenuFile', $this->request->data)){
+      if (!array_key_exists('IvrMenu', $this->request->data)){
 
         //Get instance id
         $instance_id =$this->IvrMenu->nextInstance();
+
 
         if($instance_id <= $ivr_settings['instance_end']){
 
@@ -174,6 +175,7 @@ class IvrMenusController extends AppController{
                   }
 
                 }
+
 
 
         if ($this->IvrMenu->saveAll($this->request->data )){
@@ -686,29 +688,22 @@ class IvrMenusController extends AppController{
  *
  */
   
+
+
+
   function download ($instance_id,$type) {
 
     	Configure::write('debug', 0);
 	
 	$file = 'file_'.$type.'.mp3';
-	$url  = 'webroot/freedomfone/ivr/'.$instance_id.'/ivr';
+	$path  = 'webroot/freedomfone/ivr/'.$instance_id.'/ivr/';
 
-        $this->view = 'Media';
+	$this->response->file($path . DS . $file, array(
+		'download' => true, 
+		'name' => $file,
+		));
 
-    	$params = array(
-		'id' => $file,
- 		'name' => $type,
- 		'download' => true,
- 		'cache' => true,
- 		'extension' => 'mp3',
- 		'path' => APP . $url . DS
- 		);
-	$this->set($params);
-
-    	$this->layout = null;
-    	$this->autoLayout = false;
-  	$this->render();    
-
+		return $this->response;
 
     }
 

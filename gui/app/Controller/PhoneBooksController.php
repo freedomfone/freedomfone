@@ -44,13 +44,14 @@ class PhoneBooksController extends AppController {
                 $this->set('title_for_layout', __('Add Phone book',true));
 
 
-		if (!empty($this->request->data)) {
+		//Form data exists
+		if (!empty($this->request->data['PhoneBook'])) {
 			$this->PhoneBook->create();
-			if ($this->PhoneBook->save($this->request->data)) {
-				$this->Session->setFlash(__('The phone book has been created', true));
+			if ($this->PhoneBook->save($this->request->data['PhoneBook'])) {
+				$this->Session->setFlash(__('The phone book has been created.', true),'success');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The phone book could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The phone book could not be saved. Please, try again.', true),'error');
 			}
 		}
 	}

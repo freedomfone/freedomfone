@@ -96,7 +96,7 @@ echo "<h1>".__("Edit language selector",true)."</h1>";
                  $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>$path,'file'=>'file_invalid','title'=>__('Invalid Message',true),'id'=>'invalid'));
 
                  if($switcher['file_invalid']){
-        		$step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'], 'short')));  	
+        		$step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'], 'invalid')));  	
 
 	         }
 

@@ -91,7 +91,7 @@ $input2_3 = $input2_4 = false;
   
       if (file_exists($path.'/lmWelcome.mp3')){      	    
 
-        $input1_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Welcome')));
+        $input1_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'],'Welcome')));
       } 
 
 
@@ -116,7 +116,7 @@ $input2_3 = $input2_4 = false;
 
       if (file_exists($path.'/lmInform.mp3')){ 
 
-	    $input2_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'].'/Inform')));
+	    $input2_3 = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "lm_menus", "action" => "download", $this->data['LmMenu']['id'],'Inform')));
 
        } 
 

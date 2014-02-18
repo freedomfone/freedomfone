@@ -88,7 +88,7 @@ $step1[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 if($ivrMenu['file_long']){
 	$box[0] = $this->Form->input('mode_long',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_long'].')'));
 
-        $step1[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/long')));  	
+        $step1[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'], 'long')));  	
 
 }
 
@@ -111,7 +111,7 @@ $step2[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_short']){
 	$box[1] = $this->Form->input('mode_short',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_short'].')'));
-        $step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/short')));  
+        $step2[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'],'short')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";
@@ -132,7 +132,7 @@ $step3[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_exit']){
 	$box[2] = $this->Form->input('mode_exit',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_exit'].')'));
-        $step3[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/exit')));  
+        $step3[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'], 'exit')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";
@@ -154,7 +154,7 @@ $step4[4] = $this->element('player',array('host'=>$ivr_settings['host'],'path'=>
 
 if($ivrMenu['file_invalid']){
 	$box[3] = $this->Form->input('mode_invalid',array('type' =>'checkbox','label' => false, 'after' =>__('Do not use uploaded file',true).' ('.$ivrMenu['file_invalid'].')'));
-        $step4[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'].'/invalid')));  
+        $step4[3] = $this->Html->image("icons/music.png", array("alt" => __("Download",true), "title" => __("Download",true), "url" => array("controller" => "ivr_menus", "action" => "download", $this->data['IvrMenu']['instance_id'], 'invalid')));  
 	}
 
  echo "<table cellspacing=0 class='none'>";

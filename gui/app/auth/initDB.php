@@ -121,6 +121,7 @@
 
     //Authentication
     $this->Acl->deny($group, 'controllers/Users');
+    $this->Acl->allow($group, 'controllers/Users/logout');
     $this->Acl->deny($group, 'controllers/Groups');
 
 

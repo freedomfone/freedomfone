@@ -25,6 +25,7 @@
     $source  = $this->Session->read('Message.source');
     $sort  = $this->Session->read('messages_sort');
 
+
     if($source == 'archive') { $location = __('Archive',true);} else { $location = __('Inbox',true);}
 
     if(!isset($keys)){

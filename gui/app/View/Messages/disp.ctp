@@ -30,7 +30,7 @@ $ext = Configure::read('EXTENSIONS');
 
      echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% "))); 
      echo $this->Form->create('Message',array('type' => 'post','action'=> 'process','name'  => 'Message'));
-     echo $this->Form->hidden('source',array('value'=>'index'));
+     echo $this->Form->hidden('Message.source',array('value'=>'index'));
 
 
      echo $this->Html->div('empty',false);

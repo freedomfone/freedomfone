@@ -46,6 +46,7 @@
 
       $this->Session->flash();
       echo $this->Form->create("Message", array('id' => 'MessageSelection'));
+     echo $this->Form->hidden('source',array('value'=>'index'));
 
       $input1 = $this->Form->input('tag', array('class' => 'ServiceType','type' => 'select', 'options' => $tags, 'label' => false, 'empty' => '-- '.__("Tag",true).' --'));
     $input2 = $this->Form->input('category', array('class' => 'ServiceType','type' => 'select', 'options' => $categories, 'label' => false, 'empty' => '-- '.__("Category",true).' --'));

@@ -47,6 +47,8 @@ class MessagesController extends AppController{
 
          $this->pageTitle = __('Leave-a-Message Inbox',true);
 
+      	 $this->Session->write('Message.source', 'index');
+
          $this->Session->write('messages_tag',false);
          $this->Session->write('messages_category',false);
          $this->Session->write('messages_rate',false);
@@ -71,12 +73,15 @@ class MessagesController extends AppController{
 
 
       function disp($page = null){
-      
+
+
       $this->Message->recursive = 1; 
       $tag = $category = $rate = $instance_id = $dir = $limit = $id = false;
       $param = $conditions = $order = array();
       $data = $this->request->data['Message'];
       $no_match = false;
+
+      $this->Session->write('Message.source', $this->request->data['Message']['source']);
 
 
       if($data['tag']){

@@ -58,7 +58,7 @@ var $helpers = array('Html','Form','Js','Session','Paginator','Text','Time','Acc
 
     public function beforeFilter() {
 
-         $this->Auth->allow('login', 'refresh');
+         $this->Auth->allow('login', 'refresh','logout');
 
         //Configure AuthComponent
         $this->Auth->loginAction = array(

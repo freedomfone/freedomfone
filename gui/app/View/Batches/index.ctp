@@ -94,6 +94,9 @@ echo "<h1>".__('SMS Batches',true)."</h1>";
 
         $view   = $this->Html->image("icons/view.png", array("alt" => __("View receivers",true), "title" => __("View receivers",true), "url" => array("controller" => "batches", "action" => "view", $entry['Batch']['id'])));
 
+
+
+
      	$row[$key] = array(
 		     $id,
 		     $status,

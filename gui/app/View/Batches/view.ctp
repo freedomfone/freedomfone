@@ -54,6 +54,7 @@ echo "<h1>".__('SMS receivers',true)."</h1>";
 	$status	     =  $this->element('batch_status',array('status_code'=>$entry['status'],'gateway_code'=>$batch['Batch']['gateway_code']));
 	$receiver     = array($entry['receiver'], array('width' => '200px'));
 
+	$receiver =  $this->Access->showBlock($authGroup, $receiver,'XXX');
 
      	$row[$key2] = array(
 		     $status,

@@ -73,7 +73,8 @@ $ext = Configure::read('EXTENSIONS');
 
         $service  = array($ext['lam'].$message['Message']['instance_id'], array('align'=>'center'));
 	$title    = $message['Message']['title'];
-	$sender   = $message['Message']['sender'];
+	$sender   = array($this->Access->showBlock($authGroup, $message['Message']['sender'] ) ,array('align'=>'center'));
+
 	$rate     = $this->element('message_status',array('rate'=>$message['Message']['rate']));
 	$category = $message['Category']['name'];
 	$created  = $this->Time->niceShort($message['Message']['created']);

@@ -25,7 +25,6 @@
 
 echo $this->Html->addCrumb(__('System data',true), '');
 echo $this->Html->addCrumb(__('Call data records',true), '/cdr');
-$authGroup = 1;
 
 $this->Session->flash();
 
@@ -87,7 +86,6 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
 
 
 	$delete   = $this->Html->link($this->Html->image("icons/delete.png", array("title" => __("Delete",true))),"/cdr/del/{$entry['Cdr']['id']}",null, __("Are you sure you want to delete this CDR?",true),false);
-
 
 
 

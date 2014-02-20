@@ -27,9 +27,7 @@ class CdrController extends AppController{
 
       var $name = 'Cdr';
       var $helpers = array('Csv','Js','Formatting','Text');
-      var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc')); 
-
-
+      var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc'),'group' => array('call_id','channel_state')); 
       function refresh($method = null){
 
          $this->loadModel('Message');

@@ -81,12 +81,14 @@ class Cdr extends AppModel{
        	          $this->set('proto',$proto);
 
                   //Determine application (IVR or LAM)
+
 		  foreach($mapping as $app => $reg){
 		       preg_match($reg,$ext,$matches);
 		         if($matches){	
 	 	        	$application = $app;
 		         }
 		   }
+		   if(!$app) {  $app = 'Unknown';} 
 
 
 		   //Determine whether entry should be stored or not
@@ -154,10 +156,16 @@ class Cdr extends AppModel{
                                          $update='count_ivr';
                                 } elseif ($application == 'lam'){
                                	  	 $update='count_lam';
-                                }
+                                } else {
+				         $update = false;
+					 }
 
                         	//Update caller statistics
-                        	$caller_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
+				if($update) { 
+				  $caller_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
+				  } else {
+				  $caller_id = false;
+				  }
 
 	                } else {
 

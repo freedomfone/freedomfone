@@ -36,9 +36,6 @@ class AppModel extends Model {
        if($number){
 
         if(preg_match('/%/',$number)){ $number = urldecode($number);}
-       
-         if(preg_match('/^[%2B0-9]+$/', $number)){
-
 
           $entry = $this->query("select value_int from settings where name = 'prefix'");
           $prefix =  $entry[0]['settings']['value_int'];
@@ -48,7 +45,7 @@ class AppModel extends Model {
           if (preg_match('/^[+]{1,1}[0-9]{4,25}$/', $number)){
 
            //Replace +  sign with 00
-           $number = preg_replace (array('/^[+]/'), array('00'),$number);           
+           $number = preg_replace ('/^[+]/', '00',$number);           
 
           } 
           //Starts without country prefix
@@ -59,7 +56,6 @@ class AppModel extends Model {
 
           }
          }
-        }
 
         return $number;
 

@@ -57,7 +57,7 @@ class Cdr extends AppModel{
 
 
               $obj->lock();
-      	      while ($entry = $obj->getNext('update')){
+      	      while ($entry = $obj->getNext('delete')){
 
 	          $channel        = $entry['Channel-Name'];
 	      	  $channel_state  = $entry['Channel-State'];

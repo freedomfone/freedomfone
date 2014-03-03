@@ -23,6 +23,7 @@
 ***************************************************************************/
 
 
+
 if(isSet($signal)){
 
         $data = explode(' ',$signal);
@@ -42,7 +43,7 @@ if(isSet($signal)){
 
       } elseif ($signal > -90 && $signal <= -65){
 
-           $result = __('Good',true);
+           $result = __('GoodXX',true);
 
       } elseif ($signal > -65 ){
 
@@ -51,10 +52,26 @@ if(isSet($signal)){
       } 
 
 
+
+
+} elseif(ifSet($gsmopen_signal)){
+
+
+    if($gsmopen_signal== 0){
+      $result = __('No signal',true);
+
+    } elseif($gsmopen_signal== 1){
+
+      $result = __('Low signal',true);
+    } elseif($gsmopen_signal== 2){
+
+      $result = __('Good signal',true);
+    }
+ 
+
+ }
+
           echo $result;
-
-}
-
 
 
 ?>

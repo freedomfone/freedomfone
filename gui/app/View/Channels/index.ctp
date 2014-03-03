@@ -110,7 +110,7 @@
       	$interface_name  = $entry['Channel']['interface_name'];
 	$imei            = $entry['Channel']['imei'];
 	$imsi            = $entry['Channel']['imsi'];
-	$signal          = $entry['Channel']['got_signal'];
+	$signal          = $this->element('channel_signal_level', array('gsmopen_signal' => $entry['Channel']['got_signal']));
         $edit            =  $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "channels", "action" => "edit", $entry['Channel']['id']))));
 
      	$row[] = array($interface_id,$title, $msisdn, $interface_name,$imei,$imsi,array($signal,array('align'=>'center')),$epoch,$edit);

@@ -155,7 +155,7 @@
 	$imei            = $entry['IMEI'];
 	$client          = $entry['Client'];
 	$battery	 = $entry['Battery'];
-	$signal 	 = $entry['Signal'];
+	$signal 	 = $this->element('channel_signal_level', array('gammu_signal' => $entry['Signal']));
 	$sent		 = $entry['Sent'];
 	$received	 = $entry['Received'];
 

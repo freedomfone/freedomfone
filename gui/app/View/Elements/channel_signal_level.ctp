@@ -43,7 +43,7 @@ if(isSet($signal)){
 
       } elseif ($signal > -90 && $signal <= -65){
 
-           $result = __('GoodXX',true);
+           $result = __('Good',true);
 
       } elseif ($signal > -65 ){
 
@@ -54,22 +54,39 @@ if(isSet($signal)){
 
 
 
-} elseif(ifSet($gsmopen_signal)){
+} elseif(isSet($gsmopen_signal)){
 
 
     if($gsmopen_signal== 0){
-      $result = __('No signal',true);
+      $result = __('Poor',true);
 
     } elseif($gsmopen_signal== 1){
 
-      $result = __('Low signal',true);
+      $result = __('Good',true);
     } elseif($gsmopen_signal== 2){
 
-      $result = __('Good signal',true);
+      $result = __('Excellent',true);
+    }
+ 
+
+
+} elseif(isSet($gammu_signal)){
+
+
+    if($gammu_signal <= 25){
+      $result = __('Poor',true);
+
+    } elseif($gammu_signal <= 75){
+
+      $result = __('Good',true);
+    } elseif($gammu_signal > 75){
+
+      $result = __('Excellent',true);
     }
  
 
  }
+
 
           echo $result;
 

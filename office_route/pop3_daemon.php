@@ -94,7 +94,7 @@ $sock = new ESLconnection($host, $port, $pass);
 
 		} else { 
 	
-		   logPOP($error.'('.$_HostPOP.':'.$_UserPOP.':'.$_PassPOP.':'.$_PortPOP.')','ERROR','POP3',1);
+		   logPOP($error.'('.$_HostPOP.':'.$_UserPOP.':'.$_PortPOP.')','ERROR','POP3',1);
 		   
 	
 		} 

@@ -2502,8 +2502,6 @@ mod_gsmopen/mobigater/gsmopen.conf.xml -text
 mod_gsmopen/mobigater/mod_gsmopen.so -text
 office_route/README -text
 office_route/backups/README -text
-office_route/backups/backup_officeroute_2.3.11.tgz -text
-office_route/backups/backup_officeroute_2.3.13_multiSMS_outSMS.tgz -text
 office_route/backups/backup_officeroute_2.3.22.tgz -text
 office_route/backups/backup_officeroute_2.3.22_multiSMS_outSMS.tgz -text
 office_route/config.php -text

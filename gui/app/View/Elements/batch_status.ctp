@@ -49,7 +49,11 @@ if(isSet($status_code,$gateway_code)){
 
 	          if(!$status_code){
 		     $msg = __('Gammu is not running', false);
-		  } else {
+		  } elseif($status_code =='SendingOKNoReport'){
+		      $msg = __('Sending OK', false);
+		  } elseif($status_code =='SendingError'){
+		      $msg = __('Sending failed', false);
+		  }  else {
 		     $msg = $status_code;
 		  }
 	}

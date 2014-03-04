@@ -138,6 +138,7 @@ class BatchesController extends AppController{
 			 
 		          $status = $this->Batch->processBatch($batch_id); 
 
+
 			  //For Clickatell: update apimsgid for receivers
 			  if($this->request->data['Batch']['gateway_code'] == 'CT'){
 
@@ -155,7 +156,7 @@ class BatchesController extends AppController{
 
 			  	foreach($receivers as $key => $receiver){
 		  	  	  		   $data['SmsReceiver'][$key]['id'] = $sms_receiver_id[$key];
-						   $data['SmsReceiver'][$key]['gateway'] = $status[0][$key];
+						   $data['SmsReceiver'][$key]['gateway_id'] = $status[0][$key];
 				}
 
 				$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));

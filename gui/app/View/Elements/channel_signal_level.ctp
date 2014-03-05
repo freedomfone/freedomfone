@@ -22,13 +22,13 @@
  *
 ***************************************************************************/
 
-
+$result = false;
 
 if(isSet($signal)){
 
+
         $data = explode(' ',$signal);
         $level = $data[0];
-
 
         $signal = (int)$level;
 
@@ -49,7 +49,10 @@ if(isSet($signal)){
 
            $result = __('Excellent',true);
 
-      } 
+      } else {
+
+      $result = false;
+      }
 
 
 

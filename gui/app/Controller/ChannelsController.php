@@ -41,19 +41,7 @@ class ChannelsController extends AppController{
       $this->loadModel('OfficeRoute');
 
       //For each office route in use
-       foreach($snmp as $key => $unit){
-
-     	if($this->isAlive($unit['ip_addr']) && $this->OfficeRoute->snmp_on($key)){
-
-           $data[] = $this->OfficeRoute->findAllByIpAddr($unit['ip_addr']);
-
-	} elseif ($this->isAlive($unit['ip_addr']) && !$this->OfficeRoute->snmp_on()){
-
-           $data = 'snmp_off';
-           $this->Session->setFlash(__('OfficeRoute SNMP daemon is not running.', true),'warning'); 
-
-        }
-       }
+      $data = $this->OfficeRoute->find('all',array('order' => 'id asc'));
 
 
       $this->set('data',$data);

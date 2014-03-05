@@ -37,52 +37,40 @@ class OfficeRouteController extends AppController{
 
         //Create local db of old data
         $db = $this->OfficeRoute->find('all', array('imsi !=' => ''));
-        foreach($db as $key => $entry){
+  
 
+
+       if($db){
+		foreach($db as $key => $entry){
                     $prev[$entry['OfficeRoute']['imsi']]= array($entry['OfficeRoute']['title'], $entry['OfficeRoute']['msisdn']);
+        	}
+	} else {
 
-        }
-
+	            $prev = array();
+	}
+	//$this->OfficeRoute->deleteAll('1 = 1', false);
 	if($data){
 
          foreach ($data as $key => $channel){
 
-                 //Does db entry with IMEI exist?
-                 $entry = $this->OfficeRoute->findByImei($channel['imei']);
-
-                        //If yes: update db entry
-                        if($entry){
-
-                                if($channel['imsi']){ 
-                                $channel['title'] = $prev[$channel['imsi']][0];
-                                $channel['msisdn'] = $prev[$channel['imsi']][1];
-                                } else {
-
-                                $channel['title'] = false;
-                                $channel['msisdn'] = false;
-                                }
-                               // $channel['slot'] = $key;
-                                $id = $entry['OfficeRoute']['id'];
-                                $this->OfficeRoute->set('id',$channel['id']);
-                                $this->OfficeRoute->save($channel);
-                     
-
-                        } 
-
-                        //If not: insert new entry
-                        else {
+	 //IMSI has been seen before
+	  if($channel['imsi'] && array_key_exists($channel['imsi'], $prev)){
 
 
-                              // $channel['slot'] = $key;
-                               $this->OfficeRoute->save($channel);
-			       
-                        }
+	  $data[$key]['title'] = $prev[$channel['imsi']][0];
+	  $data[$key]['msisdn'] = $prev[$channel['imsi']][1];
+
+	  }
 
 
-              }  //foreach   
-	   }
+	 } //foreach
 
-              
+
+
+	 } //data
+
+         $this->OfficeRoute->saveAll($data);
+
 
          }
 

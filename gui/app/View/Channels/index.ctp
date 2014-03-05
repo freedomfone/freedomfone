@@ -33,21 +33,14 @@
   echo $this->Html->div('frameRightAlone',$this->Form->submit(__('Refresh',true),  array('name' =>'submit', 'class' => 'button')));
   echo $this->Form->end();
 
+
   echo "<h1>".__('Active GSM channels',true)."</h1>";
 
      echo "<h3>".__('OfficeRoute',true)."</h3>";
 
-     if ($data == 'snmp_off'){ 
+     if ($data){
 
-       echo $this->Html->div('feedback',__("SNMP daemon is not running.",true));
-
-     } elseif ($data[0]){
-
-
-      foreach ($data as $no => $unit){
-
-
-      	      foreach ($unit as $key => $entry){
+      foreach ($data as $key => $entry){
 
 	            	$edit  = false;
 
@@ -70,8 +63,10 @@
 
      			$row[] = array($slot, $title, $msisdn, $sim_inserted, $signal_level, $imsi, $network_registration, $operator_name, $modified,$edit);
 
-	       }
+	       
 
+
+     }
 
      	       echo "<table width='95%' cellspacing=0>";
      	       echo $this->Html->tableHeaders(array(
@@ -87,7 +82,7 @@
                         __('Actions',true)));
      		echo $this->Html->tableCells($row);
      		echo "</table>"; 
-     }
+
 
    } else {
 

@@ -55,17 +55,19 @@ class OfficeRoute extends AppModel{
 	  
                 for($i=0; $i<4; $i++){
 
-                          $mib[$i]['id']                    =  $i + 1; 
-                          $mib[$i]['line_id']               =  $this->get_entry($unit, 2, $i);
-                          $mib[$i]['imei']                  =  $this->get_entry($unit, 3, $i);
-                          $mib[$i]['signal_level']          =  $this->get_entry($unit, 7, $i);
-                          $mib[$i]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
-                          $mib[$i]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
-                          $mib[$i]['imsi']                  =  $this->get_entry($unit, 12, $i);
-                          $mib[$i]['operator_name']         =  $this->get_entry($unit, 14, $i);         
-                          $mib[$i]['ip_addr']               =  $unit['ip_addr'];
+			  $j = $i+($key*4);
 
-                          if (trim($mib[$i]['sim_inserted']) == 'No') { $mib[$i]['signal_level']= false;}
+                          $mib[$j]['id']                    =  $j + 1; 
+                          $mib[$j]['line_id']               =  $this->get_entry($unit, 2, $i);
+                          $mib[$j]['imei']                  =  $this->get_entry($unit, 3, $i);
+                          $mib[$j]['signal_level']          =  $this->get_entry($unit, 7, $i);
+                          $mib[$j]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
+                          $mib[$j]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
+                          $mib[$j]['imsi']                  =  $this->get_entry($unit, 12, $i);
+                          $mib[$j]['operator_name']         =  $this->get_entry($unit, 14, $i);         
+                          $mib[$j]['ip_addr']               =  $unit['ip_addr'];
+
+                          if (trim($mib[$j]['sim_inserted']) == 'No') { $mib[$j]['signal_level']= false;}
         
                 }  //for
 

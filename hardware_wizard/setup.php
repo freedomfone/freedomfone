@@ -93,7 +93,7 @@ foreach ($file as $key => $line){
 
 	  }
 
-	  $data[$key]['interface_id'] = "GM".$gm."-".$entry[0];
+	  $data[$key]['interface_id'] = "GM".($key+1)."-".$entry[0];
 	  }
 
 	}

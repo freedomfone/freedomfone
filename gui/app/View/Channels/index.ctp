@@ -91,7 +91,7 @@
    }
 
 
-    echo "<h3>".__('GMSOpen',true)."</h3>";
+    echo "<h3>".__('GSMOpen',true)."</h3>";
 
      if ($gsmopen){
     	 unset($row);

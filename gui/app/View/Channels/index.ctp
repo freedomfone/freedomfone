@@ -135,8 +135,9 @@
 
    }
 
-   if ($gammu) {
     echo "<h3>".__('Gammu',true)."</h3>";
+   if ($gammu) {
+
 
     	 unset($row);
    

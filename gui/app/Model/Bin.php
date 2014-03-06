@@ -54,7 +54,7 @@ class Bin extends AppModel{
   	       	  die(printf("Unable to authenticate\r\n"));
            }
 
-     	   while ($entry = $obj->getNext('delete')){
+     	   while ($entry = $obj->getNext('update')){
 
 	      $created  = intval(floor($entry['Event-Date-Timestamp']/1000000));
 	      $sender	= $this->sanitizePhoneNumber($entry['from']);

@@ -28,6 +28,7 @@ class CdrController extends AppController{
       var $name = 'Cdr';
       var $helpers = array('Csv','Js','Formatting','Text');
       var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array( 'Cdr.epoch' => 'desc'),'group' => array('call_id','channel_state')); 
+
       function refresh($method = null){
 
          $this->loadModel('Message');
@@ -175,11 +176,11 @@ class CdrController extends AppController{
 
         $this->set(compact('ivr','lam','cdr','count','application','select_option','app'));
 
-	
+
 
 	//Export data
-        if(isset($this->params['form']['action'])) {	
-	     if ($this->params['form']['action'] ==__('Export',true)){     
+        if(isset($this->request->data['action'])) {	
+	     if ($this->request->data['action'] ==__('Export',true)){     
   	       Configure::write('debug', 0);
     	       $this->layout = null;
     	       $this->autoLayout = false;

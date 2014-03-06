@@ -147,7 +147,6 @@ class BatchesController extends AppController{
 						   $data['SmsReceiver'][$key]['apimsgid'] = $status[0][$key];
 				}
 
-
 	 		        $this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
 		
 		
@@ -181,7 +180,13 @@ class BatchesController extends AppController{
 
 		 $this->redirect(array('action' => 'index'));		 
 
-                }
+                } //validate
+		else {
+
+		   if(!$this->request->data['Batch']['filename']){
+		      $this->Session->setFlash("Validation error. Please make sure that you have selected a file to upload.", "error");
+		   }
+		}
 	       }
 
 
@@ -233,7 +238,6 @@ class BatchesController extends AppController{
          //Update status
 	 if($code == 'CT') { $id = $entry['apimsgid'];} 
 	 elseif ($code == 'GM') { $id = $entry['gateway_id'];} 
-
 
     	 $status = $this->Batch->getStatus($sms, $code, $id);
 

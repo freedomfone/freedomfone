@@ -40,29 +40,34 @@ function __construct($id = false, $table = null, $ds = null) {
 
       $this->validate = array(
         'body' => array(
-            'rule'=>array('maxLength', 160),
-	    'required' => true,
-            'message'=> __('A valid SMS body is required (Max 160 characters).',true)
-	    ),
-	   
+               	  'rule'	=> array('maxLength', 160),
+	          'required' 	=> true,
+            	  'message'	=> __('A valid SMS body is required (Max 160 characters).',true)
+	        ),
+        'filename' => array(
+            	   'rule'	=> array('minLength', 1),
+	           'required' 	=> true,
+            	   'message'	=> __('Please select a file to upload.',true)
+	        ),
         'name' => array(
-		    'minLength'=> array(
-				'rule'=>array('minLength', 5),
-	    			'required' => true,
-            			'message'=> __('A valid name of the SMS batch is required (Main 5 characters).',true)
-	    			),
-	            'isUnique' =>array(
-				'rule' => 'isUnique',
-				'message' => __('The batch name must be unique.',true)
-				 ),
-			),
+	           'minLength'	=> array(
+		   		'rule'	=> array('minLength', 5),
+		   		'required' => true,
+		   		'message'=> __('A valid name of the SMS batch is required (Main 5 characters).',true)
+		   	       ),
+		'isUnique'     => array(
+		       	       'rule'	 => 'isUnique',
+			       'message' => __('The batch name must be unique.',true)
+			       ),
+	),
         'sms_gateway_id' => array(
-	    'rule'	=> array('minLength', 1),
-	    'required' 	=> true,
-            'message'	=> __('Please select an SMS channel.',true)
-	    ),
-	);
+	     'rule'	 => array('minLength', 1),
+	     'required'  => true,
+             'message'	 => __('Please select an SMS channel.',true)
+	        	 ),
+		);
 }
+
 
 
 function authBatch($id){

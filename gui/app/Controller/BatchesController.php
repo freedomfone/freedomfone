@@ -129,13 +129,14 @@ class BatchesController extends AppController{
 			  foreach($receivers as $key => $receiver){
 		  	    $this->request->data['SmsReceiver'][$key]['batch_id'] = $batch_id;
 		  	    $this->request->data['SmsReceiver'][$key]['receiver'] = trim($receiver);
-			  }
+			  
 
 	 		  //Save sms receiver data
-	 		  $this->Batch->SmsReceiver->create($this->request->data['SmsReceiver']);
-	 		  $this->Batch->SmsReceiver->saveAll($this->request->data['SmsReceiver'],array('validate' => false));
+	 		  $this->Batch->SmsReceiver->create($this->request->data['SmsReceiver'][$key]);
+	 		  $this->Batch->SmsReceiver->saveAll($this->request->data['SmsReceiver'][$key],array('validate' => false));
 			  $sms_receiver_id[] = $this->Batch->SmsReceiver->getLastInsertId();
 			 
+			  }
 		          $status = $this->Batch->processBatch($batch_id); 
 
 
@@ -158,6 +159,7 @@ class BatchesController extends AppController{
 		  	  	  		   $data['SmsReceiver'][$key]['id'] = $sms_receiver_id[$key];
 						   $data['SmsReceiver'][$key]['gateway_id'] = $status[0][$key];
 				}
+
 
 				$this->Batch->SmsReceiver->saveAll($data['SmsReceiver'], array('validate' => false));
 			  }

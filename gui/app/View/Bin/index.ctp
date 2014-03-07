@@ -72,7 +72,6 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
  	$this->Paginator->sort('body',__("Message",true)),
  	$this->Paginator->sort('created',__("Time",true)),
  	$this->Paginator->sort('sender',__("Sender",true)),
-	$this->Paginator->sort('login',__("Hardware unit",true)),
 	__('Action',true)));
 
       foreach ($bin as $key => $entry){
@@ -82,7 +81,6 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
 	$body     = array($entry['Bin']['body'], array('width' => '400px'));
 	$created  = $this->Time->format('Y/m/d H:i',$entry['Bin']['created']);
 	$sender   = $entry['Bin']['sender'];
-	$hw_unit   = $entry['Bin']['login'];
         $delete   = $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "bin", "action" => "delete", $entry['Bin']['id']), "onClick" => "return confirm('".__('Are you sure you want to delete this entry?',true)."');"));
 
 
@@ -93,7 +91,6 @@ echo "<h1>".__('Incoming SMS',true)."</h1>";
                      $body, 
                      $created, 
                      $this->Access->showBlock($authGroup, $sender,'XXX'), 
-		     $hw_unit,
                      array($this->Access->showBlock($authGroup, $delete),array('align'=>'center'))
                      );
 

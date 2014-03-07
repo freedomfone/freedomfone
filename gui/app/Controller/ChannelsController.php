@@ -70,8 +70,10 @@ class ChannelsController extends AppController{
       $gammu  = Configure::read('GAMMU');
       $lam = $ivr = false;
 
+
       //Gammu
       if(file_exists($gammu['discovery'])){
+
 
       $gammu_discovery = file($gammu['discovery']);
 

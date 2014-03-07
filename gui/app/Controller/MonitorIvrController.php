@@ -28,8 +28,7 @@ class MonitorIvrController extends AppController{
 
       var $helpers = array('Csv','Js','Text');
 
-
-        var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array('MonitorIvr.epoch' => 'desc'),'group' => array('MonitorIvr.call_id','MonitorIvr.type'));
+        var  $paginate = array('limit' => 50, 'page' => 1, 'order' => array('MonitorIvr.epoch' => 'desc'));
 
 
 

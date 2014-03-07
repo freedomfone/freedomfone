@@ -57,7 +57,7 @@ class Cdr extends AppModel{
 
 
               $obj->lock();
-      	      while ($entry = $obj->getNext('delete')){
+      	      while ($entry = $obj->getNext('update')){
 
 	          $channel        = $entry['Channel-Name'];
 	      	  $channel_state  = $entry['Channel-State'];
@@ -92,8 +92,14 @@ class Cdr extends AppModel{
 
 
 		   //Determine whether entry should be stored or not
+
+		   debug($proto);
+		   debug($channel_state);
+		   debug($answer_state);
+		   debug($application);
 		   $insert = $this->insertCDR($proto,$channel_state,$answer_state,$application);
 
+		   debug($insert);
 		   //Calculate length of LAM and IVR calls
 
 		     //LAM: fetch length of file from Messages
@@ -225,7 +231,7 @@ class Cdr extends AppModel{
     	       	  die(printf("Unable to authenticate\r\n"));
 	      }
 
-      	      while ($entry = $obj->getNext('delete')){
+      	      while ($entry = $obj->getNext('update')){
 
 		$cdr = $this->find('first', array('conditions' => array('call_id' => $entry['FF-IVR-Unique-ID'], 'channel_state'=>'CS_ROUTING'),'order' =>'Cdr.call_id'));
 
@@ -360,6 +366,9 @@ class Cdr extends AppModel{
 		    case 'gsm':
 		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing'){
 		         $insert = false;
+		    } 
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && $application == 'ivr'){
+		         $insert = true;
 		    } 
 		    break;
 

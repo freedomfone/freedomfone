@@ -26,6 +26,10 @@ echo $this->Html->addCrumb(__('Create',true), '/batches/add');
 
 
 echo "<h1>".__("Create SMS batch",true)."</h1>";
+
+echo $this->Session->flash('filename');
+echo $this->Session->flash('sms_gateway_id');
+	
 echo $this->Form->create('Batch',array('type' => 'post','action'=> 'add', 'enctype' => 'multipart/form-data'));
 
 

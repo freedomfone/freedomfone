@@ -93,6 +93,7 @@ class BatchesController extends AppController{
             //Process form data
 	       if(array_key_exists('Batch', $this->request->data)){
 
+
 	        //Validate data 
 		$fileData = $this->request->data['Batch']['file'];
 		unset($this->request->data['Batch']['file']);
@@ -185,9 +186,11 @@ class BatchesController extends AppController{
                 } //validate
 		else {
 
-		   if(!$this->request->data['Batch']['filename']){
-		      $this->Session->setFlash("Validation error. Please make sure that you have selected a file to upload.", "error");
-		   }
+		 $errors = $this->Batch->validationErrors;
+		 foreach($errors as $key => $error){
+		 	$this->Session->setFlash($error[0], "error", array(), $key);
+		 }
+
 		}
 	       }
 

@@ -58,9 +58,8 @@ class NodesController extends AppController{
 	$path = $ivr_settings['path'].$ivr_settings['dir_node'];
 
 
-
 	// Form data exist, save and redirect to Index
-	if (!empty($this->request->data['node'])) {
+	if (!empty($this->request->data['Node'])) {
 
 
 	   //Fetch form data
@@ -80,6 +79,7 @@ class NodesController extends AppController{
 
 
                	    $fileOK = $this->uploadFiles($path, $files ,false,'audio',false,false);
+
 
 	            //File upload OK
 		    if(array_key_exists('urls', $fileOK)){

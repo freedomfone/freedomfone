@@ -25,6 +25,12 @@ $_OfficerouteParamSingle = array(
 $_OfficerouteParamMulti = array(
 		           array(
                                 'host'=>'192.168.1.46',
+	      		        'user'=>'Admin',
+	      		        'pass'=>'2n',
+	      		        'port'=>'110'
+	      		        ),
+		           array(
+                                'host'=>'192.168.1.46',
 	      		        'user'=>'or1sim1',
 	      		        'pass'=>'2n',
 	      		        'port'=>'110'

@@ -71,7 +71,7 @@ $this->Access->showButton($authGroup, 'IvrMenu', 'add', 'frameRightAlone', __('C
 		$modified   = $this->Time->niceShort($ivr_menu['IvrMenu']['modified']);
 
 	        $edit       = $this->Access->showBlock($authGroup, $this->Html->image("icons/edit.png", array("alt" => __("Edit",true), "title" => __("Edit",true), "url" => array("controller" => "ivr_menus", "action" => "edit", $ivr_menu['IvrMenu']['id']))));
-                $delete     = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id'].'/ivr'), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');")));
+                $delete     = $this->Access->showBlock($authGroup, $this->Html->image("icons/delete.png", array("alt" => __("Delete",true), "title" => __("Delete",true), "url" => array("controller" => "ivr_menus", "action" => "delete", $ivr_menu['IvrMenu']['id'], 'ivr'), "onClick" => "return confirm('".__('Are you sure you wish to delete this voice menu?',true)."');")));
 
 
      		$row[$key] = array(

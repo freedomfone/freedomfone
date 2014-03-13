@@ -137,8 +137,10 @@ class IvrMenusController extends AppController{
           //Save text based form data
 
 
-                foreach($this->request->data['Mapping'] as $key => $entry){
+           foreach($this->request->data['Mapping'] as $key => $entry){
 
+	if(array_key_exists('type', $entry)){
+		
                 $index = $entry[$entry['type'].'_id'];
 
                 if($index){
@@ -174,7 +176,8 @@ class IvrMenusController extends AppController{
 
                   }
 
-                }
+		  } //key exists
+                } //foreach
 
 
 
@@ -519,6 +522,23 @@ class IvrMenusController extends AppController{
                //Edit existing mappings
                 foreach($this->request->data['Mapping'] as $key => $entry){
 
+
+                  //Add new mappings
+                  if(!$entry['type'] && ($entry['node_id'] || $entry['lam_id'] || $entry['ivr_id'])){
+
+                     if($entry['node_id']){ 
+                            $type == 'node';
+                     } elseif ($entry['lam_id']) { 
+                            $type = 'lam';
+                     } elseif ($entry['ivr_id']) {
+                            $type = 'ivr';
+                     }
+	            $this->request->data['Mapping'][$key]['type']= $type;                                     
+		    $entry['type'] = $type;
+                }
+
+
+
 		 if(array_key_exists('type', $entry)){
 
 
@@ -534,11 +554,13 @@ class IvrMenusController extends AppController{
                     break;
 
                     case 'lam':
+
 	            $this->request->data['Mapping'][$key]['node_id']= false;
 	            $this->request->data['Mapping'][$key]['ivr_id']= false;
 		    
 		    if($lam_id = $entry['lam_id']){
 		           $this->loadModel('LmMenu');
+
 		    	   $this->request->data['Mapping'][$key]['instance_id']= $this->LmMenu->getInstanceID($lam_id);
 	             } else {
 	   	           $this->request->data['Mapping'][$key]['instance_id']= false;
@@ -565,20 +587,7 @@ class IvrMenusController extends AppController{
 
 
 
-                  //Add new mappings
-                  if(!$entry['type'] && ($entry['node_id'] || $entry['lam_id'] || $entry['ivr_id'])){
-
-                     if($entry['node_id']){ 
-                            $type == 'node';
-                     } elseif ($entry['lam_id']) { 
-                            $type = 'lam';
-                     } elseif ($entry['ivr_id']) {
-                            $type = 'ivr';
-                     }
-	            $this->request->data['Mapping'][$key]['type']= $type;                                     
                    
-                   }
-                  
 		   } //array_key_exists
                 }
 

@@ -196,8 +196,7 @@ function __construct($id = false, $table = null, $ds = null) {
                         $digit = $entry['digit'];
 	                $id   = $entry[$type.'_id'];        
                         $instance_id =  $entry['instance_id'];
-
-		      	$obj->write_ivr_entry($ivr_type, $type, $digit, $id, $instance_id, $data['IvrMenu']['title']);
+		     	$obj->write_ivr_entry($ivr_type, $type, $digit, $id, $instance_id, $data['IvrMenu']['title']);
               } 
         }
        

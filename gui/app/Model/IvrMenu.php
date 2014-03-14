@@ -165,6 +165,7 @@ function __construct($id = false, $table = null, $ds = null) {
      function writeIVR($id){
 
         $data = $this->findById($id);
+
         $instance_id = $data['IvrMenu']['instance_id'];
 
 	//Instanciate class	

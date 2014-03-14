@@ -107,4 +107,3 @@ Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'un
 
 Configure::load('config');
 Configure::load('sweeper');
-

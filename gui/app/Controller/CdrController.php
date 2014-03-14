@@ -43,6 +43,8 @@ class CdrController extends AppController{
 
       function general($action = null){
 
+
+      $title = $app = $application =false;
          $this->set('title_for_layout', __('Call detail report',true));
 
          //Set page limit
@@ -60,14 +62,14 @@ class CdrController extends AppController{
 
          }
 
-
+	 if(array_key_exists('Cdr', $this->request->data)){
         $epoch = $this->Cdr->dateToEpoch($this->request->data['Cdr']);
         if ($epoch['start']) {$this->Session->write('cdr_start',$epoch['start']);}
         if ($epoch['end']) {$this->Session->write('cdr_end',$epoch['end']);}
 
         $app   = $this->request->data['Cdr']['application'];
         if ($app) {$this->Session->write('cdr_app',$app);} else { $app = $this->Session->read('cdr_app');}
-
+	
         $title=false;
         $field = false;
 
@@ -83,7 +85,7 @@ class CdrController extends AppController{
           
 	} 
 
-
+	} //Cdr exists
 	$this->Session->write('title',$title);
 
         $this->Cdr->unbindModel(array('belongsTo' => array('User')));
@@ -169,8 +171,10 @@ class CdrController extends AppController{
         $lam_data = $this->LmMenu->find('list');
         foreach($lam_data as $key => $title){ $lam[$title] = $title;}       
 
+	if(array_key_exists('Cdr', $this->request->data)){
 	$application = $this->request->data['Cdr']['application'];
 
+	}
         $data = $this->paginate('Cdr');
 
 	$this->set('cdr',$data);  

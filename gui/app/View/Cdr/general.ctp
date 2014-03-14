@@ -22,12 +22,6 @@
  *
  ***************************************************************************/
 
-echo $this->Html->addCrumb(__('System data',true), '');
-echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
-
-
- $this->Session->flash();
- $settings = Configure::read('IVR_SETTINGS');
 
  //If action = Export, create CSV file 
  $export=false;
@@ -37,10 +31,12 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 	
      if ($this->request->data['action']==__('Export',true) && $authGroup == 1){
 
-	     $export=true;
 
-		$line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
+     	$this->Csv->clear();
+	     $export= true;
+	     $line = array(__('DateXXX (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Title',true),__('Caller',true),__('Channel',true),__('Length',true));
 		$this->Csv->addRow($line);
+
 
 	if($export_cdr){
 
@@ -74,6 +70,12 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 	} //export
 
    } //action 
+
+
+echo $this->Html->addCrumb(__('System data',true), '');
+echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
+
+$settings = Configure::read('IVR_SETTINGS');
   
 	//Do not display form if action=Export
 	if(!$export){
@@ -189,5 +191,3 @@ echo $this->Html->addCrumb(__('Reporting',true), '/cdr/general');
 	     }
 
 ?>
-
-

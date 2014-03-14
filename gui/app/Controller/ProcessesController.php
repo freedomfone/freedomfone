@@ -87,7 +87,7 @@ class ProcessesController extends AppController{
 		if($type=='run'){
 
 		$pid = $this->Process->getPid($this->request->data['Process']['name']);
-debug($pid);
+
 		//Process is not running
 
 		   if(!$this->Process->isRunning($pid)){
@@ -95,7 +95,7 @@ debug($pid);
 
 			//Run start command
 			$pid = $this->Process->start();
-	debug($pid);						
+
 			//Save NEW pid, update status and timestamps
 			$this->Process->id = $id;
 			$this->request->data['Process']['pid']= $pid;

@@ -93,13 +93,9 @@ class Cdr extends AppModel{
 
 		   //Determine whether entry should be stored or not
 
-		   debug($proto);
-		   debug($channel_state);
-		   debug($answer_state);
-		   debug($application);
 		   $insert = $this->insertCDR($proto,$channel_state,$answer_state,$application);
 
-		   debug($insert);
+
 		   //Calculate length of LAM and IVR calls
 
 		     //LAM: fetch length of file from Messages

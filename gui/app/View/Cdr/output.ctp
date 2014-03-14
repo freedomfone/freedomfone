@@ -25,6 +25,7 @@
 
       $line = array(__('Date (Y-m-d)',true),__('Year',true),__('Month',true),__('Day',true),__('Time',true),__('Type',true),__('Call Id',true),__('Caller',true),__('Application',true),__('Protocol',true));
 
+      $this->Csv->clear();
       $this->Csv->addRow($line);
 
 	if($data){

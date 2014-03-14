@@ -108,13 +108,13 @@ class AppModel extends Model {
               $created = time();
 	      $callerData = $state = false;
 
-	debug($proto);
+
               //Determine state (skype or default) and fetch caller data
 	      if( strcasecmp($proto,'skype')== 0) { 
                   $state = 'skype';
                   $callerData = $caller->find('first',array('conditions' => array('skype' => $sender)));
 
-              } elseif( strcasecmp($proto,'gsm') ==0  || strcasecmp($proto,'sip') == 0 || strcasecmp($proto, 'officeroute') == 0){  
+              } elseif( strcasecmp($proto,'gsm') == 0  || strcasecmp($proto,'sip') == 0 || strcasecmp($proto, 'officeroute') == 0 || strcasecmp($proto, 'gammu') == 0){  
                   $state = 'default';
                   $callerData = $caller->PhoneNumber->find('first',array('conditions' => array('PhoneNumber.number' => $sender)));
               }
@@ -232,7 +232,6 @@ class AppModel extends Model {
 	    $channel = $this->OfficeRoute->findById($pos);
 	    $imsi = $channel['OfficeRoute']['IMSI'];
 
-	    debug($channel);
 
 	    return $login."-".$imsi;
 	  } else {

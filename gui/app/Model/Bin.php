@@ -64,6 +64,7 @@ class Bin extends AppModel{
 	      //FIXME!!!
 	      //$channel = getChannel($proto,$login);
 	 
+
               //Update user statistics
               $user_id = $this->updateCallerStatistics($proto,$sender,$application, $update);
 

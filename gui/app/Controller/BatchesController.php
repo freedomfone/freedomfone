@@ -111,6 +111,7 @@ class BatchesController extends AppController{
 		} else {
 		        $this->request->data['Batch']['gateway_code'] =  substr($this->request->data['Batch']['sms_gateway_id'],0,2); 
 		        $this->request->data['Batch']['sender'] =  $this->request->data['Batch']['sms_gateway_id'];
+			$this->request->data['Batch']['sender_number'] =  $this->request->data['Batch']['sender'];
 			unset($this->request->data['Batch']['sms_gateway_id']);
 		}
 

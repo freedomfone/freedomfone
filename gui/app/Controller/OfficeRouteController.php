@@ -33,10 +33,10 @@ class OfficeRouteController extends AppController{
       $this->logRefresh('office_route',$method); 
 
       $data = $this->OfficeRoute->refresh();
-
+      $this->OfficeRoute->deleteAll(array('IMSI'  => NULL), false);
 
         //Create local db of old data
-        $db = $this->OfficeRoute->find('all', array('imsi !=' => ''));
+        $db = $this->OfficeRoute->find('all');
   
 
 
@@ -68,6 +68,11 @@ class OfficeRouteController extends AppController{
 
 
 	 } //data
+	 else {
+
+	 $this->OfficeRoute->deleteAll('1 = 1', false);
+
+	 }
 
          $this->OfficeRoute->saveAll($data);
 

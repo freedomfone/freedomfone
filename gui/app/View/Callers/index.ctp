@@ -51,7 +51,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.Caller', 'frameRightTrans
 
 
    $options_slim = $options;
-   $options[0] = __('All callers',0);
+   $options['all'] = __('All callers','all');
 
 
      echo $this->Form->create('Caller',array('type' => 'post','action'=> 'index','name'  => 'phone_book'));
@@ -136,6 +136,7 @@ echo $this->Access->showCheckbox($authGroup, 'document.Caller', 'frameRightTrans
                $info = $info.$number['number']."<br/>";
               
             }
+
 
 
         $row[$key] = array($id,

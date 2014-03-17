@@ -39,20 +39,17 @@ class CallersController extends AppController{
 
       }
 
-
       function index(){
 
-       Configure::write('debug', 0);
 
        $this->refreshAll();
        $this->set('title_for_layout', __('Callers',true));
        $this->Caller->recursive = 1;         
+       $callers = false;
 
-       if(strpos($this->referer(),'callers') === false){
+       if(preg_match('/callers/', $this->referer()) == 0){
 
             $this->Session->write('callers_phone_book_id',false);
-
-
        } else {
 
            if(isset($this->params['named']['sort'])) { 
@@ -67,17 +64,43 @@ class CallersController extends AppController{
                 $this->paginate['limit'] = $this->Session->read('callers_limit');
            }	
 
-        }
+      } 
 
 
-        //Phone book selected || Show all phone books
-        if($this->request->data['Caller']['phone_book_id']){
+      if(array_key_exists('Caller', $this->request->data)) {
 
-	   if(array_key_exists('phone_book_id', $this->request->data['Caller'])){
-	
-		$phone_book_id = $this->request->data['Caller']['phone_book_id'];
+       $this->Session->write('callers_phone_book_id', $this->request->data['Caller']['phone_book_id']);
+      }
 
-                $this->Session->write('callers_phone_book_id', $phone_book_id);
+      //First time visit
+      if(!$this->request->data && !$this->Session->read('callers_phone_book_id')){
+
+             $callers = $this->paginate('Caller');
+             $this->set(compact('callers'));    
+
+
+      } else {
+
+       	 if(!$this->request->data && $this->Session->read('callers_phone_book_id')){
+
+	   $phone_book_id = $this->Session->read('callers_phone_book_id');
+	 
+	 } 
+
+
+      	 elseif($phone_book_id = $this->request->data['Caller']['phone_book_id']){
+
+	  $this->Session->write('callers_phone_book_id', $phone_book_id);
+
+
+	  } elseif ($phone_book_id =  $this->Session->read('callers_phone_book_id')) {
+
+
+
+	  }
+
+	  if($phone_book_id != 'all'){
+
                 $data = $this->Caller->PhoneBook->findById($phone_book_id);
 
                 if ($data['Caller']){
@@ -87,49 +110,18 @@ class CallersController extends AppController{
 
                 $callers = $this->paginate('Caller', array('Caller.id' => $user_id));
                 $this->set(compact('callers'));
+		} 
 
-                } else {
-                   $callers = false;
-                }
-	     } //phone_book_id
-
-             //Show all phone books
-            } elseif ( isset($phone_book_id) && $phone_book_id == 0 ){
-             $this->Session->write('callers_phone_book_id', $phone_book_id);
-
+	  } else {
 
              $callers = $this->paginate('Caller');
              $this->set(compact('callers'));    
 
-             //Pagination changed
-             } elseif ( !isset($phone_book_id)  && $this->Session->read('callers_phone_book_id')){
-
-             $phone_book_id = $this->Session->read('callers_phone_book_id');
-     
-             $data = $this->Caller->PhoneBook->findById($phone_book_id);
 
 
+	  } 
 
-             if ($data['Caller']){
-                foreach ($data['Caller'] as $key => $user){
-                     $user_id[] = $user['id'];
-                }
-
-                $callers = $this->paginate('Caller', array('Caller.id' => $user_id));
-                $this->set(compact('callers'));
-
-             
-             } else {
-                $callers = false;
-             }
-
-             } else {
-             //Visit site for first time
-             $this->Session->write('callers_phone_book_id', false);
-             $callers = $this->paginate('Caller');
-             $this->set(compact('callers'));    
-
-             }
+      }
 
 
 
@@ -137,6 +129,7 @@ class CallersController extends AppController{
          $this->loadModel('PhoneBook');
          $options = $this->PhoneBook->find('list');
          $this->set(compact('options','callers'));
+
 
 
       }

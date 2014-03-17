@@ -44,7 +44,7 @@ $config['SWEEP_SETTINGS'] = array(
                           'Message'    => array('low'  => array('sender' => NULL),
                                                    'high' => array('sender' => '555666'),
                                           ),
-                          'User'         => array('low'  => array(),
+                          'Caller'         => array('low'  => array(),
                                                   'high'  => array('name' => 'John', 'surname' => 'Doe', 'email' => false, 'skype' => 'john.doe', 'organization' => NULL),                                                   
                                           ),
                                   );

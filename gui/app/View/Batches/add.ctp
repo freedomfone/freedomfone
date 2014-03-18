@@ -21,8 +21,11 @@
  *
  *
 ***************************************************************************/
-echo $this->Html->addCrumb(__('Batches',true), '/batches');
+echo $this->Html->addCrumb(__('SMS Centre',true), '');
+echo $this->Html->addCrumb(__('SMS Batches',true), '/batches');
 echo $this->Html->addCrumb(__('Create',true), '/batches/add');
+
+
 
 
 echo "<h1>".__("Create SMS batch",true)."</h1>";

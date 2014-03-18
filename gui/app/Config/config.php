@@ -190,7 +190,6 @@ $config['GAMMU'] = array(
 
 $config['SMS_GATEWAY_TYPES']  = array(
 			     'CT' => 'Clickatell',
-			     'PC' => 'Pananea',
 			     );
 
 

@@ -96,7 +96,7 @@
 
 
 
-<li><?php echo __("SMS Center",true);?>
+<li><?php echo __("SMS Centre",true);?>
 <ul>
 <li>
 <?php echo $this->Html->image('menu/corner_inset_left.png',array('class'=>'corner_inset_left')); ?>

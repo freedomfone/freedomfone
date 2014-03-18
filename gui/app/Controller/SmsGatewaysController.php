@@ -48,6 +48,8 @@ class SmsGatewaysController extends AppController{
 
       function add(){
 
+          $this->set('title_for_layout', __('Create SMS Gateway',true));
+
 	       //Process form data
 	       if(array_key_exists('SmsGateway', $this->request->data)){
 

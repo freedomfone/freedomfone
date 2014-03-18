@@ -55,7 +55,7 @@ CREATE TABLE `batches` (
   `name` varchar(50) NOT NULL,
   `filename` varchar(50) DEFAULT NULL,
   `created` int(11) unsigned NOT NULL,
-  `gateway_type` varchar(5) DEFAULT NULL,
+  `gateway_type` varchar(6) DEFAULT NULL,
   `status` tinyint(4) DEFAULT '0',
   `gateway_code` varchar(2) DEFAULT NULL,
   `sms_gateway_id` int(11) unsigned DEFAULT NULL,

@@ -187,8 +187,8 @@ class CallersController extends AppController{
 	      //Save form data
 	      else {
 
+                   unset($this->request->data['PhoneNumber']);
 
-                   //unset($this->request->data['PhoneNumber']);
 
 
 		     if($this->Caller->saveAll($this->request->data)){

@@ -26,7 +26,7 @@
  *
  * Development Mode:
  * 	1: Errors and warnings shown, model caches refreshed, flash messages halted.
- * 	2: As in 1, but also with full debug messages and SQL output.
+ * 	2: As in 1, but also with full debugmessages and SQL output.
  *
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
@@ -398,5 +398,5 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','2.S.7rc1');
+define ('VERSION','2.S.7rc2');
 define ('VERSION_NAME','Sharicus');

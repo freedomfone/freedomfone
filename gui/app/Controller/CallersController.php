@@ -25,12 +25,10 @@
 class CallersController extends AppController{
 
       var $name = 'Callers';
-
       var $helpers = array('Flash','Formatting','Text','Html');      
-
       var  $paginate = array('page' => 1, 'order' => array( 'Caller.name' => 'asc'));
-      var $components = array('RequestHandler');
-
+      var  $components = array('RequestHandler');
+      var $layout = 'jquery';
 
       function refresh($redirect, $id = null){
 
@@ -104,11 +102,11 @@ class CallersController extends AppController{
                 $data = $this->Caller->PhoneBook->findById($phone_book_id);
 
                 if ($data['Caller']){
-                   foreach ($data['Caller'] as $key => $user){
-                     $user_id[] = $user['id'];
+                   foreach ($data['Caller'] as $key => $caller){
+                     $caller_id[] = $caller['id'];
                    }
 
-                $callers = $this->paginate('Caller', array('Caller.id' => $user_id));
+                $callers = $this->paginate('Caller', array('Caller.id' => $caller_id));
                 $this->set(compact('callers'));
 		} 
 
@@ -189,12 +187,13 @@ class CallersController extends AppController{
 	      //Save form data
 	      else {
 
-                   unset($this->request->data['PhoneNumber']);
+
+                   //unset($this->request->data['PhoneNumber']);
 
 
 		     if($this->Caller->saveAll($this->request->data)){
-                                 $this->log("INFO EDIT {ID: ".$id."; NAME: ".$this->request->data['Caller']['name']." ".$this->request->data['Caller']['surname']."}", "user");                       
-                		 $this->Session->setFlash(__('The entry has been updated',true),'success');
+                                 $this->log("INFO EDIT {ID: ".$id."; NAME: ".$this->request->data['Caller']['name']." ".$this->request->data['Caller']['surname']."}", "caller");                       
+                		 $this->Session->setFlash(__('The entry has been updated.',true),'success');
     	     		 	 $this->redirect(array('action' => '/'));
 	              } else {
 
@@ -217,7 +216,7 @@ class CallersController extends AppController{
            if($id){
 
 		$data = $this->Caller->getIdentifier($id);
-		$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['Caller']['name']." ".$data['Caller']['surname']."}", "user");
+		$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['Caller']['name']." ".$data['Caller']['surname']."}", "caller");
 
     	        if($this->Caller->delete($id,true)) {
 	           $this->Session->setFlash(__('Selected user has been deleted.',true),'success');	       
@@ -245,8 +244,8 @@ class CallersController extends AppController{
     	     	        foreach ($entries as $key => $id){
 
 
-                                $user_id = $id;
-                                $phonebooks = $this->Caller->findById($user_id);
+                                $caller_id = $id;
+                                $phonebooks = $this->Caller->findById($caller_id);
                                 $phone_books = $phonebooks['PhoneBook'];
                                 foreach ($phone_books as $book){
                                         
@@ -257,7 +256,7 @@ class CallersController extends AppController{
                                 $phone_book_id = array_unique($phone_book_id);
 
                                 unset($this->request->data);
-                                $this->request->data = $this->Caller->findById($user_id);
+                                $this->request->data = $this->Caller->findById($caller_id);
                                 $this->request->data['PhoneBook'] = $phone_book_id;
                                 $this->Caller->save($this->request->data);
                         }
@@ -272,8 +271,8 @@ class CallersController extends AppController{
                                 unset($phone_book_id);
                                 $phone_book_id = array();
 
-                                $user_id = $id;
-                                $phonebooks = $this->Caller->findById($user_id);
+                                $caller_id = $id;
+                                $phonebooks = $this->Caller->findById($caller_id);
                                 $phone_books = $phonebooks['PhoneBook'];
                                 foreach ($phone_books as $book){                             
                                         $phone_book_id[] = $book['id'];
@@ -284,7 +283,7 @@ class CallersController extends AppController{
 
 
                                 unset($this->request->data);
-                                $this->request->data = $this->Caller->findById($user_id);
+                                $this->request->data = $this->Caller->findById($caller_id);
 
                                if(!sizeof($phone_book_id)){
                                      $this->request->data['PhoneBook'][0] = false;
@@ -307,7 +306,7 @@ class CallersController extends AppController{
 
 		     	   $data = $this->Caller->getIdentifier($id);
 		     	   if ($this->Caller->delete($id)){
-				$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['Caller']['name']." ".$data['Caller']['surname']."}", "user");
+				$this->log("INFO DELETE {ID: ".$id."; NAME: ".$data['Caller']['name']." ".$data['Caller']['surname']."}", "caller");
 			   }
                         }
                            break;
@@ -319,15 +318,15 @@ class CallersController extends AppController{
 		       $this->Caller->id = array_pop($entries);
                        $this->Caller->unbindModel(array('hasMany' => array('Cdr','Message')));   
 		       $core = $this->Caller->read();
-                       $this->log("INFO MERGE {ID: ".$core['Caller']['id']."; NAME: ".$core['Caller']['name']." ".$core['Caller']['surname']."}", "user");                       
+                       $this->log("INFO MERGE {ID: ".$core['Caller']['id']."; NAME: ".$core['Caller']['name']." ".$core['Caller']['surname']."}", "caller");                       
 
-    	     	        foreach ($entries as $key => $user){
+    	     	        foreach ($entries as $key => $caller){
 
 
-                           $id = $user;
+                           $id = $caller;
 			   $this->Caller->id = $id;
                            $tmp = $this->Caller->read();
-                           $this->log("INFO MERGE {ID: ".$tmp['Caller']['id']."; NAME: ".$tmp['Caller']['name']." ".$tmp['Caller']['surname']."}", "user");                       
+                           $this->log("INFO MERGE {ID: ".$tmp['Caller']['id']."; NAME: ".$tmp['Caller']['name']." ".$tmp['Caller']['surname']."}", "caller");                       
                            
                            $core['Caller']['name']         = substr($core['Caller']['name'].$tmp['Caller']['name'],0,20);
                            $core['Caller']['surname']      = substr($core['Caller']['surname'].$tmp['Caller']['surname'],0,20);
@@ -355,7 +354,7 @@ class CallersController extends AppController{
                            if($tmp['PhoneNumber']){
                                 foreach($tmp['PhoneNumber'] as $i => $phone_number){
                            
-                                        $core['PhoneNumber'][$i]['user_id'] = $core['Caller']['id'];
+                                        $core['PhoneNumber'][$i]['caller_id'] = $core['Caller']['id'];
                                         $core['PhoneNumber'][$i]['number'] = $phone_number['number'];
                          
                                 }
@@ -365,7 +364,7 @@ class CallersController extends AppController{
                            if($tmp['PhoneBook']){
                                 foreach($tmp['PhoneBook'] as $i => $phone_book){
   
-                                        $phone_book['PhoneBooksCaller']['user_id'] = $core['Caller']['id'];     
+                                        $phone_book['PhoneBooksCaller']['caller_id'] = $core['Caller']['id'];     
                                         unset($phone_book['PhoneBooksCaller']['id'] );
                                         $core['PhoneBook'][] = $phone_book;
                                  } 
@@ -411,7 +410,7 @@ class CallersController extends AppController{
 		if ($this->Caller->save($this->request->data['Caller'])) {
 
                         $id = $this->Caller->getLastInsertId();
-                        $this->request->data['PhoneNumber']['user_id'] = $id;
+                        $this->request->data['PhoneNumber']['caller_id'] = $id;
                         $this->Caller->PhoneNumber->saveAll($this->request->data['PhoneNumber']);
 			$this->Session->setFlash(__('New caller has been added', true),'success');
 			$this->redirect(array('action'=>'index'));
@@ -437,11 +436,11 @@ class CallersController extends AppController{
 
              if ($data = $this->Caller->PhoneBook->findById($phone_book_id)){
 
-                foreach ($data['Caller'] as $key => $user){
-                     $user_id[] = $user['id'];
+                foreach ($data['Caller'] as $key => $caller){
+                     $caller_id[] = $caller['id'];
                 }
 
-                $callers = $this->Caller->find('all', array('conditions' => array('Caller.id' => $user_id)));
+                $callers = $this->Caller->find('all', array('conditions' => array('Caller.id' => $caller_id)));
                 $this->set(compact('callers'));    
               }
             

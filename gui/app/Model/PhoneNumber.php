@@ -37,11 +37,13 @@ class PhoneNumber extends AppModel {
             	                'isUnique' => array(
 				       'rule'       => 'isUnique',
 				       'message'    => __('This phone number is already in use',true),
+                                        'required' =>  false,
                                        'allowEmpty' => true
 				      ),
                                'format' => array(
  				       'rule'       => 'phoneFormat',
  				       'message'    => __('Invalid phone number format (numbers and plus (+) sign are allowed).',true),
+                                       'required' =>  false,
 		   		       'allowEmpty' => true
  				       )
                              ));

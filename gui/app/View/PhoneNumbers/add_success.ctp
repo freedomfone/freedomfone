@@ -6,7 +6,7 @@
 
 
              $delete = $this->Js->link($this->Html->image("icons/delete.png"),
-                                   array('controller' => 'phone_numbers', 'action' => 'delete', $number['PhoneNumber']['id'], $user),
+                                   array('controller' => 'phone_numbers', 'action' => 'delete', $number['PhoneNumber']['id'], $caller),
                                    array('update' => '#numbers', 'escape' => false, 'class' => 'numbers'));
 
 

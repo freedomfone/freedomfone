@@ -110,7 +110,7 @@ $player = 'AudioPlayer.setup("'.MY_DOMAIN.'/app/webroot/swf/player.swf?randomcou
 
            </div>
 	 <div id="content_wrap">
-        <?php echo $this->Html->div('breadcrumb', $this->Html->getCrumbs(' > ',__('Home',true))); ?>
+        <?php echo $this->Html->div('breadcrumb', $this->Html->getCrumbs(' > ', array('text' => __('Home',true), 'url' => array('controller' => 'cdr', 'action' => 'overview'), 'escape' => false))); ?>
 
 
 

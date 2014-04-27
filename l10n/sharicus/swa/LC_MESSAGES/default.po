@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Freedom Fone manguensis\n"
-"POT-Creation-Date: 2014-01-26 21:09+0100\n"
+"POT-Creation-Date: 2014-03-19 16:00+0100\n"
 "PO-Revision-Date: 2012-04-05 20:46+0200\n"
 "Last-Translator: Martin <martin@kamusi.org>\n"
 "Language-Team: Kamusi Project International\n"
@@ -30,30 +30,34 @@ msgstr "Hakuna faili lililochaguliwa.  Jaribu tena."
 msgid "Failure (invalid file type)"
 msgstr "Kushindwa (aina ya faili ni batili)"
 
-#: Controller/BatchesController.php:38 View/Batches/index.ctp:26;33
-#: View/Batches/view.ctp:26
+#: Controller/BatchesController.php:38 View/Batches/add.ctp:25
+#: View/Batches/index.ctp:26;33 View/Batches/view.ctp:26
 msgid "SMS Batches"
 msgstr ""
 
-#: Controller/BatchesController.php:90 View/Batches/add.ctp:28
+#: Controller/BatchesController.php:90 View/Batches/add.ctp:31
 msgid "Create SMS batch"
+msgstr ""
+
+#: Controller/BatchesController.php:220
+msgid "SMS Receivers"
 msgstr ""
 
 #: Controller/BinController.php:43
 msgid "SMS Incoming"
 msgstr "Ujumbe Mfupi Unaofika"
 
-#: Controller/CallersController.php:48 View/Callers/add.ctp:26
+#: Controller/CallersController.php:46 View/Callers/add.ctp:26
 #: View/Callers/edit.ctp:26 View/Callers/index.ctp:26;47
 #: View/Elements/menuAdmin.ctp:168 View/Elements/menuUser.ctp:152
 msgid "Callers"
 msgstr "Wapigaji"
 
-#: Controller/CallersController.php:148 View/Callers/index.ctp:126
+#: Controller/CallersController.php:141 View/Callers/index.ctp:126
 msgid "Caller details"
 msgstr "Maarifa ya wapigaji"
 
-#: Controller/CallersController.php:159 View/Callers/edit.ctp:37
+#: Controller/CallersController.php:152 View/Callers/edit.ctp:37
 msgid "Edit Caller"
 msgstr "Hariri Mpigaji"
 
@@ -61,58 +65,59 @@ msgstr "Hariri Mpigaji"
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # No version information was available in the source files.
 #
-#: Controller/CallersController.php:162 View/Callers/edit.ctp:30
-#: View/Callers/index.ctp:38 View/Cdr/index.ctp:37 View/Cdr/overview.ctp:29
-#: View/Cdr/statistics.ctp:33 View/Channels/index.ctp:33
-#: View/Messages/index.ctp:91 View/MonitorIvr/index.ctp:37
+#: Controller/CallersController.php:155 View/Bin/index.ctp:34
+#: View/Callers/edit.ctp:30 View/Callers/index.ctp:38 View/Cdr/index.ctp:36
+#: View/Cdr/overview.ctp:29 View/Cdr/statistics.ctp:33
+#: View/Channels/audio_services.ctp:32 View/Channels/index.ctp:33
+#: View/Messages/index.ctp:92 View/MonitorIvr/index.ctp:37
 #: View/Polls/index.ctp:30 View/Polls/view.ctp:28 View/Processes/index.ctp:31
 msgid "Refresh"
 msgstr "Onyesha Upya"
 
-#: Controller/CallersController.php:204 Controller/MessagesController.php:267
+#: Controller/CallersController.php:197 Controller/MessagesController.php:272
 msgid "The entry has been updated"
 msgstr "Ingizo limesasishwa"
 
-#: Controller/CallersController.php:230
+#: Controller/CallersController.php:223
 msgid "Selected user has been deleted."
 msgstr "Mtumiaji aliyechaguliwa amefutwa."
 
-#: Controller/CallersController.php:250 View/Callers/add.ctp:46
-#: View/Callers/index.ctp:166
+#: Controller/CallersController.php:242 View/Callers/add.ctp:46
+#: View/Callers/index.ctp:167
 msgid "Add to phone book"
 msgstr "Ongeza kwenye kitabu cha simu"
 
-#: Controller/CallersController.php:274 View/Callers/index.ctp:167
+#: Controller/CallersController.php:266 View/Callers/index.ctp:168
 msgid "Remove from phone book"
 msgstr "Futa kutoka kitabu cha simu"
 
-#: Controller/CallersController.php:312 Controller/MessagesController.php:326
-#: View/Batches/disp.ctp:49 View/Batches/index.ctp:91;114 View/Bin/disp.ctp:47
-#: View/Bin/index.ctp:81 View/Callers/disp.ctp:32;70;78
-#: View/Callers/index.ctp:131;159 View/Categories/index.ctp:42
-#: View/Cdr/delete.ctp:27;38 View/Cdr/index.ctp:42;89
-#: View/Groups/index.ctp:46;52 View/IvrMenus/index.ctp:74
-#: View/IvrMenus/selectors.ctp:61 View/LmMenus/index.ctp:68
-#: View/Messages/archive.ctp:112 View/Messages/disp.ctp:93
-#: View/Messages/edit.ctp:96 View/Messages/index.ctp:165
-#: View/MonitorIvr/delete.ctp:27;40 View/MonitorIvr/index.ctp:43;109
-#: View/Nodes/index.ctp:63 View/PhoneBooks/index.ctp:46
-#: View/Polls/index.ctp:73 View/SmsGateways/disp.ctp:80
-#: View/SmsGateways/index.ctp:61 View/Tags/index.ctp:48
-#: View/Users/index.ctp:50
+#: Controller/CallersController.php:304 Controller/MessagesController.php:331
+#: View/Batches/disp.ctp:49;49 View/Batches/index.ctp:93;93;120
+#: View/Bin/disp.ctp:47;47 View/Bin/index.ctp:84;84
+#: View/Callers/disp.ctp:32;32;70;78 View/Callers/index.ctp:131;131;160
+#: View/Categories/index.ctp:42;42 View/Cdr/delete.ctp:27;38
+#: View/Cdr/index.ctp:41;88 View/Groups/index.ctp:46;52;52
+#: View/IvrMenus/index.ctp:74;74 View/IvrMenus/selectors.ctp:61;61
+#: View/LmMenus/index.ctp:68;68 View/Messages/archive.ctp:113
+#: View/Messages/disp.ctp:93 View/Messages/edit.ctp:97;97
+#: View/Messages/index.ctp:166 View/MonitorIvr/delete.ctp:27;40;40
+#: View/MonitorIvr/index.ctp:43;109;109 View/Nodes/index.ctp:63;63
+#: View/PhoneBooks/index.ctp:46;46 View/Polls/index.ctp:73;73
+#: View/SmsGateways/disp.ctp:80;80 View/SmsGateways/index.ctp:61;61
+#: View/Tags/index.ctp:48;48 View/Users/index.ctp:50;50
 msgid "Delete"
 msgstr "Futa"
 
-#: Controller/CallersController.php:324 View/Callers/disp.ctp:79
-#: View/Callers/index.ctp:160
+#: Controller/CallersController.php:316 View/Callers/disp.ctp:79
+#: View/Callers/index.ctp:161
 msgid "Merge"
 msgstr "Changanisha"
 
-#: Controller/CallersController.php:409 View/Callers/add.ctp:30
+#: Controller/CallersController.php:401 View/Callers/add.ctp:30
 msgid "Add Caller"
 msgstr "Ongeza Mpigaji"
 
-#: Controller/CallersController.php:424
+#: Controller/CallersController.php:416
 msgid "New caller has been added"
 msgstr "Mpigaji mpya ameongezwa"
 
@@ -147,59 +152,65 @@ msgstr "Kategoria haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 msgid "The category has been deleted."
 msgstr "Kategoria imefutwa."
 
-#: Controller/CdrController.php:46 View/Cdr/general.ctp:26
-#: View/Elements/menuAdmin.ctp:207;243 View/Elements/menuUser.ctp:182;214
-msgid "Reporting"
-msgstr "Simulizi"
+#: Controller/CdrController.php:48 View/Cdr/general.ctp:84
+#: View/Elements/menuAdmin.ctp:209
+msgid "Call detail report"
+msgstr ""
 
-#: Controller/CdrController.php:158
+#: Controller/CdrController.php:163
 msgid "All Voice Menus"
 msgstr "Menyu za Sauti Zote"
 
-#: Controller/CdrController.php:165
+#: Controller/CdrController.php:170
 msgid "All Leave-a-Message"
 msgstr ""
 
-#: Controller/CdrController.php:179 View/Bin/index.ctp:33
-#: View/Cdr/export.ctp:27;40 View/Cdr/general.ctp:38;133 View/Cdr/index.ctp:41
-#: View/MonitorIvr/export.ctp:27;39 View/MonitorIvr/index.ctp:42
-#: View/PhoneBooks/index.ctp:47
+#: Controller/CdrController.php:188 View/Bin/index.ctp:38
+#: View/Cdr/export.ctp:27;40;40 View/Cdr/general.ctp:32;135
+#: View/Cdr/index.ctp:40 View/MonitorIvr/export.ctp:27;39;39
+#: View/MonitorIvr/index.ctp:42 View/PhoneBooks/index.ctp:47;47
 msgid "Export"
 msgstr "Hamisha"
 
-#: Controller/CdrController.php:193;330 View/Cdr/index.ctp:47
+#: Controller/CdrController.php:202 View/Cdr/index.ctp:46
 msgid "Call Data Records"
 msgstr "Makumbukumbu ya Data za Miito"
 
-#: Controller/CdrController.php:239 Controller/MonitorIvrController.php:78
-#: View/Bin/disp.ctp:67 View/Bin/index.ctp:102 View/Cdr/index.ctp:112
+#: Controller/CdrController.php:248 Controller/MonitorIvrController.php:80
+#: View/Bin/disp.ctp:67 View/Bin/index.ctp:104 View/Cdr/index.ctp:110
 #: View/MonitorIvr/index.ctp:55
 msgid "Delete selected"
 msgstr "Futa iliyochaguliwa"
 
-#: Controller/CdrController.php:330 View/Elements/menuAdmin.ctp:34
+#: Controller/CdrController.php:339
+msgid "CDR statistics"
+msgstr ""
+
+#: Controller/CdrController.php:339 View/Elements/menuAdmin.ctp:34
 #: View/Elements/menuUser.ctp:34
 msgid "Overview"
 msgstr "Mandhari ya Jumla"
 
-#: Controller/CdrController.php:400 View/Cdr/overview.ctp:110
+#: Controller/CdrController.php:409 View/Cdr/overview.ctp:110
 msgid "System Overview"
 msgstr "Mandhari ya Jumla ya Mfumo"
 
-#: Controller/ChannelsController.php:52
-msgid "OfficeRoute SNMP daemon is not running."
-msgstr "Programu-tumizi OfficeRoute SNMP haiendeshwi."
-
-#: Controller/ChannelsController.php:61 View/Channels/index.ctp:26;36
-msgid "Audio channels"
+#: Controller/ChannelsController.php:32 View/Channels/index.ctp:37
+#: View/Elements/menuAdmin.ctp:244
+msgid "Active GSM channels"
 msgstr ""
 
-#: Controller/ChannelsController.php:128 View/Channels/edit.ctp:32
-msgid "Edit Mobigater"
-msgstr "Hariri Mobigater"
+#: Controller/ChannelsController.php:59 View/Channels/audio_services.ctp:26;37
+#: View/Elements/menuAdmin.ctp:248
+msgid "Service mapping"
+msgstr ""
 
-#: Controller/ChannelsController.php:133
-#: Controller/OfficeRouteController.php:97
+#: Controller/ChannelsController.php:119 View/Channels/edit.ctp:31;32
+msgid "Edit GSMOpen channel"
+msgstr ""
+
+#: Controller/ChannelsController.php:124
+#: Controller/OfficeRouteController.php:90
 msgid "Invalid option."
 msgstr "Chaguo batili."
 
@@ -218,7 +229,7 @@ msgstr "Menyu za sauti"
 msgid "Add Voice Menu"
 msgstr "Ongeza Menyu ya Sauti"
 
-#: Controller/IvrMenusController.php:106
+#: Controller/IvrMenusController.php:107
 msgid ""
 "There are no more Voice Menus available. Please delete an inactive Voice "
 "Menu, and try again."
@@ -226,44 +237,44 @@ msgstr ""
 "Menyu za Sauti zaidi hazipatikani. Futa Menyu ya Sauti isiyotumiwa na jaribu "
 "tena."
 
-#: Controller/IvrMenusController.php:194;356;473;802
+#: Controller/IvrMenusController.php:199;361;478;806
 #: Controller/LmMenusController.php:106;186
 msgid "The file %s could not be uploaded due to file size restrictions"
 msgstr ""
 
-#: Controller/IvrMenusController.php:215;376;497;817
+#: Controller/IvrMenusController.php:220;381;502;821
 #: Controller/LmMenusController.php:122;201
 msgid "The file %s was successsfully uploaded."
 msgstr ""
 
-#: Controller/IvrMenusController.php:224;385;507;832
+#: Controller/IvrMenusController.php:229;390;512;836
 msgid "The file %s could not be uploaded (error: %s)"
 msgstr ""
 
-#: Controller/IvrMenusController.php:255
+#: Controller/IvrMenusController.php:260
 msgid "Add Language Selector"
 msgstr "Ongeza Kiteuzi cha Lugha"
 
-#: Controller/IvrMenusController.php:273
+#: Controller/IvrMenusController.php:278
 msgid ""
 "There are no more Selectors available. Please delete an inactive Selector, "
 "and try again."
 msgstr "Viteuzi zaidi havipatikani. Futa Kiteuzi kisichotumiwa na jaribu tena."
 
-#: Controller/IvrMenusController.php:417
+#: Controller/IvrMenusController.php:422
 msgid "Edit Voice menu"
 msgstr "Hariri menyu ya sauti"
 
-#: Controller/IvrMenusController.php:427;753
-#: Controller/UsersController.php:132 View/IvrMenus/edit_selector.ctp:93
+#: Controller/IvrMenusController.php:432;757
+#: Controller/UsersController.php:131 View/IvrMenus/edit_selector.ctp:93
 msgid "Invalid option"
 msgstr "Chaguo batili"
 
-#: Controller/IvrMenusController.php:655
+#: Controller/IvrMenusController.php:666
 msgid "The selected entry has been deleted."
 msgstr "Ingizo lililochaguliwa kimefutwa."
 
-#: Controller/IvrMenusController.php:666
+#: Controller/IvrMenusController.php:677
 msgid ""
 "The selected entry could not be deleted since it is a member of another "
 "Voice Menu."
@@ -271,15 +282,15 @@ msgstr ""
 "Ingizo lililochaguliwa halikuweza kufutwa kwa sababu ni sehemu ya Menyu ya "
 "Sauti nyingine."
 
-#: Controller/IvrMenusController.php:674 Controller/LmMenusController.php:300
+#: Controller/IvrMenusController.php:685 Controller/LmMenusController.php:290
 msgid "No entry with this id exist. Please try again."
 msgstr "Hakuna ingizo lenye kitambulisho hiki. Jaribu tena."
 
-#: Controller/IvrMenusController.php:725
+#: Controller/IvrMenusController.php:729
 msgid "Language Selectors"
 msgstr "Viteuzi vya Lugha"
 
-#: Controller/IvrMenusController.php:745
+#: Controller/IvrMenusController.php:749
 msgid "Edit Language Selector"
 msgstr "Hariri Kiteuzi cha Lugha"
 
@@ -307,22 +318,22 @@ msgstr "Data zako hazikuweza kuhifadhiwa. Tafadhali, jaribu tena."
 msgid "Please enter a title for the menu."
 msgstr "Tafadhali andika kichwa kwa menyu hii."
 
-#: Controller/LmMenusController.php:154 Controller/MessagesController.php:226
+#: Controller/LmMenusController.php:154 Controller/MessagesController.php:231
 msgid "Edit Leave-a-Message"
 msgstr "Hariri Acha-Ujumbe"
 
-#: Controller/LmMenusController.php:282
+#: Controller/LmMenusController.php:272
 msgid "The selected menu has been deleted."
 msgstr "Menyu iliochaguliwa imefutwa."
 
-#: Controller/LmMenusController.php:291
+#: Controller/LmMenusController.php:281
 msgid ""
 "The default conf file could not be restored. Please check file permissions."
 msgstr ""
 "Faili la usanidi wa chaguo-msingi halikuweza kurejeshwa. Tafadhali tazama "
 "vibali vya mafaili."
 
-#: Controller/LmMenusController.php:307
+#: Controller/LmMenusController.php:297
 msgid ""
 "The selected menu could not be deleted since it is a member of another IVR."
 msgstr ""
@@ -333,43 +344,43 @@ msgstr ""
 msgid "Leave-a-Message Inbox"
 msgstr "Kikasha Pokezi cha Acha-Ujumbe"
 
-#: Controller/MessagesController.php:190
+#: Controller/MessagesController.php:195
 msgid "Leave-a-Message Archive"
 msgstr "Nyaraka ya Acha-Ujumbe"
 
-#: Controller/MessagesController.php:271 View/Batches/add.ctp:69
+#: Controller/MessagesController.php:276 View/Batches/add.ctp:77
 #: View/Callers/add.ctp:47 View/Callers/edit.ctp:36 View/Categories/add.ctp:41
-#: View/Categories/edit.ctp:49 View/Channels/edit.ctp:57
+#: View/Categories/edit.ctp:49 View/Channels/edit.ctp:50;50
 #: View/Groups/add.ctp:39 View/IvrMenus/add.ctp:147 View/IvrMenus/disp.ctp:47
 #: View/IvrMenus/edit.ctp:252 View/IvrMenus/edit_selector.ctp:196
 #: View/LmMenus/add.ctp:114 View/LmMenus/edit.ctp:142
-#: View/Messages/edit.ctp:95 View/Nodes/add.ctp:45 View/Nodes/edit.ctp:60
-#: View/OfficeRoute/edit.ctp:54 View/PhoneBooks/add.ctp:47
+#: View/Messages/edit.ctp:96;96 View/Nodes/add.ctp:45 View/Nodes/edit.ctp:60
+#: View/OfficeRoute/edit.ctp:54;54 View/PhoneBooks/add.ctp:47
 #: View/PhoneBooks/edit.ctp:50 View/Polls/add.ctp:93 View/Polls/edit.ctp:39
-#: View/Settings/index.ctp:129 View/SmsGateways/add.ctp:69
+#: View/Settings/index.ctp:155 View/SmsGateways/add.ctp:69
 #: View/SmsGateways/edit.ctp:74 View/Tags/add.ctp:42 View/Tags/edit.ctp:51
 #: View/Users/add.ctp:43 View/Users/edit.ctp:49
 msgid "Save"
 msgstr "Hifadhi"
 
-#: Controller/MessagesController.php:331 View/Messages/disp.ctp:94
-#: View/Messages/index.ctp:166
+#: Controller/MessagesController.php:336 View/Messages/disp.ctp:94
+#: View/Messages/index.ctp:167
 msgid "Move to Archive"
 msgstr "Hamisha kwenye nyaraka"
 
-#: Controller/MessagesController.php:334 View/Messages/archive.ctp:113
+#: Controller/MessagesController.php:339 View/Messages/archive.ctp:114
 msgid "Activate"
 msgstr "Amilisha"
 
-#: Controller/MonitorIvrController.php:35
+#: Controller/MonitorIvrController.php:37
 msgid "Monitor Voice Menus"
 msgstr "Fuatia Menyu za Sauti"
 
-#: Controller/MonitorIvrController.php:95 View/MonitorIvr/export.ctp:29
+#: Controller/MonitorIvrController.php:97 View/MonitorIvr/export.ctp:29
 msgid "Export monitoring data"
 msgstr "Hamisha data za ufuatiliaji"
 
-#: Controller/MonitorIvrController.php:157 View/MonitorIvr/delete.ctp:30
+#: Controller/MonitorIvrController.php:159 View/MonitorIvr/delete.ctp:30
 msgid "Delete monitoring data"
 msgstr "Futa data za ufuatiliaji"
 
@@ -386,21 +397,21 @@ msgstr "Maudhui"
 msgid "Upload content"
 msgstr "Pakia maudhui"
 
-#: Controller/NodesController.php:76;205
+#: Controller/NodesController.php:77;206
 msgid "File upload failure (filesize exceeds maximum)"
 msgstr "Faili lilishindwa kupakia (ukubwa wa faili unazidi upeo)"
 
-#: Controller/NodesController.php:99
+#: Controller/NodesController.php:101
 msgid "The menu option has been created."
 msgstr "Chaguo la menyu imeundwa."
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) endpunc: checks whether punctuation at the end of the strings match
-#: Controller/NodesController.php:139
+#: Controller/NodesController.php:141
 msgid "The selected voice menu node has been deleted."
 msgstr "Fundo la menyu ya sauti lililochaguliwa kimefutwa."
 
-#: Controller/NodesController.php:146
+#: Controller/NodesController.php:148
 msgid ""
 "The selected voice menu node could not be deleted as it is present in one or "
 "more Voice menus."
@@ -408,23 +419,23 @@ msgstr ""
 "Fundo la menyu ya sauti lillochaguliwa halikuweza kufutwa kwani linatumika "
 "kwenye menyu ya sauti moja au zaidi."
 
-#: Controller/NodesController.php:156
+#: Controller/NodesController.php:158
 msgid "Edit content"
 msgstr "Hariri maudhui"
 
-#: Controller/NodesController.php:164
+#: Controller/NodesController.php:166
 msgid "Invalid audio file"
 msgstr "Faili ya sikizi batili"
 
-#: Controller/NodesController.php:231
+#: Controller/NodesController.php:232
 msgid "Success"
 msgstr "Mafanikio"
 
-#: Controller/NodesController.php:243
+#: Controller/NodesController.php:244
 msgid "Your changes have been saved."
 msgstr "Mabadiliko yako yamehifadhiwa."
 
-#: Controller/OfficeRouteController.php:92 View/OfficeRoute/edit.ctp:31
+#: Controller/OfficeRouteController.php:85 View/OfficeRoute/edit.ctp:31
 msgid "Edit OfficeRoute"
 msgstr "Hariri OfficeRoute"
 
@@ -439,97 +450,96 @@ msgstr "Vitabu vya simu"
 msgid "Add Phone book"
 msgstr "Ongeza kitabu cha simu"
 
-#: Controller/PhoneBooksController.php:50
-msgid "The phone book has been created"
-msgstr "Kitabu cha simu kimeundwa"
+#: Controller/PhoneBooksController.php:51
+msgid "The phone book has been created."
+msgstr ""
 
-#: Controller/PhoneBooksController.php:53
+#: Controller/PhoneBooksController.php:54
 msgid "The phone book could not be saved. Please, try again."
 msgstr "Kitabu cha simu hakikuweza kuhifadhiwa. Tafadhali jaribu tena."
 
-#: Controller/PhoneBooksController.php:61 View/PhoneBooks/edit.ctp:33
+#: Controller/PhoneBooksController.php:62 View/PhoneBooks/edit.ctp:33
 msgid "Edit Phone book"
 msgstr "Hariri kitabu cha simu"
 
-#: Controller/PhoneBooksController.php:64
+#: Controller/PhoneBooksController.php:65
 msgid "Invalid id"
 msgstr "Kita batili"
 
-#: Controller/PhoneBooksController.php:71
+#: Controller/PhoneBooksController.php:72
 msgid "The phone book has been updated."
 msgstr "Kitabu cha simu kimesasishwa."
 
-#: Controller/PhoneBooksController.php:74
+#: Controller/PhoneBooksController.php:75
 msgid "The data could not be saved. Please, try again."
 msgstr "Data haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 
-#: Controller/PhoneBooksController.php:94
+#: Controller/PhoneBooksController.php:95
 msgid "The selected phone book has been deleted."
 msgstr "Kitabu cha simu kilichochaguliwa kimefutwa."
 
-#: Controller/PollsController.php:46
+#: Controller/PollsController.php:45
 msgid "Manage Polls"
 msgstr "Simamia Vidadisi"
 
-#: Controller/PollsController.php:55
+#: Controller/PollsController.php:54
 msgid "View Poll"
 msgstr "Tazama Kidadisi"
 
-#: Controller/PollsController.php:65 View/Polls/add.ctp:29
+#: Controller/PollsController.php:64 View/Polls/add.ctp:29
 msgid "Create Poll"
 msgstr "Unda Kidadisi"
 
-#: Controller/PollsController.php:108
+#: Controller/PollsController.php:107
 msgid ""
 "The poll has been created. Please note that the poll's closing time has "
 "already passed."
 msgstr ""
 "Kidadisi kimeundwa. Uwe mwangalifu kwamba mwisho wa kidadisi ulishatokea."
 
-#: Controller/PollsController.php:111
+#: Controller/PollsController.php:110
 msgid "The poll has successfully been created."
 msgstr "Kidadisi kimefanikiwa kuundwa."
 
-#: Controller/PollsController.php:125
+#: Controller/PollsController.php:124
 msgid "Delete Poll"
 msgstr "Futa Kidadisi"
 
-#: Controller/PollsController.php:130
+#: Controller/PollsController.php:129
 msgid "The following poll has been deleted"
 msgstr "Kidadisi kinachofuata kimefutwa"
 
-#: Controller/PollsController.php:154
+#: Controller/PollsController.php:153
 msgid "Poll option could not be deleted. A poll needs at least two options."
 msgstr ""
 "Chaguo la kidadisi halikuweza kufutwa. Kidadisi kinahitaji angalau machaguo "
 "mawili."
 
-#: Controller/PollsController.php:165 View/Polls/edit.ctp:30
+#: Controller/PollsController.php:164 View/Polls/edit.ctp:30
 msgid "Edit Poll"
 msgstr "Hariri Kidadisi"
 
-#: Controller/PollsController.php:168
+#: Controller/PollsController.php:167
 msgid "Invalid Poll"
 msgstr "Kidadisi batili"
 
-#: Controller/PollsController.php:191
+#: Controller/PollsController.php:190
 msgid ""
 "The poll has been updated. Please note that the poll's closing time has "
 "already passed."
 msgstr ""
 "Kidadisi kimesasishwa. Uwe mwangalifu kwamba mwisho wa kidadisi ulishatokea."
 
-#: Controller/PollsController.php:196
+#: Controller/PollsController.php:195
 msgid "The poll has been updated."
 msgstr "Kidadisi kimesasishwa."
 
-#: Controller/ProcessesController.php:36 View/Elements/menuAdmin.ctp:224
-#: View/Elements/menuUser.ctp:199 View/Logs/index.ctp:32
-#: View/Processes/index.ctp:26;34
+#: Controller/ProcessesController.php:36 View/Elements/menuAdmin.ctp:233
+#: View/Elements/menuUser.ctp:199 View/Processes/index.ctp:26;34
 msgid "Health"
 msgstr "Afya"
 
-#: Controller/ProcessesController.php:65 View/Elements/menuAdmin.ctp:253
+#: Controller/ProcessesController.php:65 View/Elements/menuAdmin.ctp:259
 #: View/Elements/menuUser.ctp:220 View/Processes/system.ctp:27;70
 msgid "About"
 msgstr "Kuhusu"
@@ -565,7 +575,7 @@ msgstr "simamishwa"
 msgid "was already stopped"
 msgstr "tayari imesimamishwa"
 
-#: Controller/SettingsController.php:33 View/Elements/menuAdmin.ctp:230
+#: Controller/SettingsController.php:33 View/Elements/menuAdmin.ctp:239
 #: View/Elements/menuUser.ctp:205 View/Settings/index.ctp:26;29
 msgid "Settings"
 msgstr "Mipangilio"
@@ -582,15 +592,19 @@ msgstr "Tafadhali jaribu tena."
 msgid "SMS Gateways"
 msgstr ""
 
-#: Controller/SmsGatewaysController.php:66 View/SmsGateways/edit.ctp:29
+#: Controller/SmsGatewaysController.php:51
+msgid "Create SMS Gateway"
+msgstr ""
+
+#: Controller/SmsGatewaysController.php:68 View/SmsGateways/edit.ctp:29
 msgid "Edit SMS gateway"
 msgstr ""
 
-#: Controller/SmsGatewaysController.php:69
+#: Controller/SmsGatewaysController.php:71
 msgid "Invalid SMS gateway"
 msgstr ""
 
-#: Controller/SmsGatewaysController.php:86
+#: Controller/SmsGatewaysController.php:88
 msgid "The SMS gateway has been updated."
 msgstr ""
 
@@ -628,59 +642,59 @@ msgstr "Lebo haikuweza kuhifadhiwa. Tafadhali jaribu tena."
 msgid "The selected tag has been deleted."
 msgstr "Lebo iliyochaguliwa imefutwa."
 
-#: Controller/UsersController.php:54
+#: Controller/UsersController.php:53
 msgid "Your username or password was incorrect."
 msgstr ""
 
-#: Controller/UsersController.php:61
+#: Controller/UsersController.php:60
 msgid "You are logged out."
 msgstr "Umeaga."
 
-#: Controller/UsersController.php:70 View/Users/edit.ctp:26
+#: Controller/UsersController.php:69 View/Users/edit.ctp:26
 #: View/Users/index.ctp:26;34
 msgid "System Users"
 msgstr "Watumiaji wa Mfumo"
 
-#: Controller/UsersController.php:82
+#: Controller/UsersController.php:81
 msgid ""
 "Default password is currently in use for Admin. Please change the password "
 "as soon as possible using Edit functionality below."
 msgstr ""
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
-#: Controller/UsersController.php:92 View/Users/add.ctp:30
+#: Controller/UsersController.php:91 View/Users/add.ctp:30
 msgid "Add System User"
 msgstr "Ongeza Mtumiaji wa Mfumo"
 
-#: Controller/UsersController.php:111
+#: Controller/UsersController.php:110
 msgid "New user has been created."
 msgstr "Mtumiaji mpya ameundwa."
 
-#: Controller/UsersController.php:129 View/Users/edit.ctp:31
+#: Controller/UsersController.php:128 View/Users/edit.ctp:31
 msgid "Edit System User"
 msgstr "Hariri Mtumiaji wa Mfumo"
 
-#: Controller/UsersController.php:158;170
+#: Controller/UsersController.php:159;171
 msgid "User has been updated."
 msgstr "Mtumiaji amesasishwa."
 
-#: Controller/UsersController.php:191
+#: Controller/UsersController.php:192
 msgid "The user been deleted."
 msgstr "Mtumiaji huyu amefutwa."
 
-#: Controller/UsersController.php:195
+#: Controller/UsersController.php:196
 msgid "You cannot delete the Admin user."
 msgstr "Huwezekani kufuta mtumiaji Msimamizi."
 
-#: Controller/UsersController.php:210
+#: Controller/UsersController.php:211
 msgid "Freedom Fone has successfully been swept."
 msgstr "Freedom Fone imefanikiwa kufagiwa."
 
-#: Controller/UsersController.php:212
+#: Controller/UsersController.php:213
 msgid "Sweeping failed. Please review your Sweeper settings."
 msgstr "Kufagia kumeshindwa. Tafadhali hakikisha mipangilio yako ya Ufagizi."
 
-#: Model/AppModel.php:141
+#: Model/AppModel.php:139
 msgid "Unknown user"
 msgstr "Mtumiaji haujulikani"
 
@@ -749,7 +763,7 @@ msgstr "Jina hili tayari limetumika."
 msgid "Please enter a description using 1 to 50 characters"
 msgstr "Andika maelezo. Tumia kati ya herufi 1 hadi 50."
 
-#: Model/Cdr.php:253 View/MonitorIvr/index.ctp:97
+#: Model/Cdr.php:263 View/MonitorIvr/index.ctp:97
 msgid "tag"
 msgstr "lebo"
 
@@ -761,7 +775,7 @@ msgstr "Kichwa cha habari kinahitajika. Herufi 3 au zaidi."
 msgid "No hyperlinks allowed."
 msgstr "Viungo vya wavuti haviruhusiwi."
 
-#: Model/IvrMenu.php:72;77;82;87 Model/Node.php:63
+#: Model/IvrMenu.php:72;77;82;87 Model/Node.php:65
 msgid "The file size exceeds the maximum limit (10MB)."
 msgstr "Ukubwa wa faili unazidi mpaka wa upeo (10MB)"
 
@@ -773,11 +787,11 @@ msgstr "Herufi 3 au zaidi."
 msgid "This title is already in use."
 msgstr "Kichwa hiki tayari kimetumika."
 
-#: Model/Node.php:67
+#: Model/Node.php:71
 msgid "Invalid file type (valid formats: mp3 and wav)."
 msgstr "Aina batili ya faili (umbizo halali: mp3 na wav)."
 
-#: Model/Node.php:71
+#: Model/Node.php:77
 msgid "No file selected."
 msgstr "Hakuna faili lolote lililochaguliwa"
 
@@ -919,10 +933,7 @@ msgid ""
 msgstr ""
 
 #: Plugin/AclExtras/Console/Command/AclExtrasShell.php:93
-msgid ""
-"Perform a full sync on the ACO table.Will create new ACOs or missing "
-"controllers and actions.Will also remove orphaned entries that no longer "
-"have a matching controller/action"
+msgid "Perform a full sync on the ACO table."
 msgstr ""
 
 #: Plugin/AclExtras/Console/Command/AclExtrasShell.php:97
@@ -977,17 +988,20 @@ msgstr ""
 msgid "<error>Tree recovery failed.</error>"
 msgstr ""
 
-#: View/Batches/add.ctp:24
-msgid "Batches"
+#: View/Batches/add.ctp:24 View/Batches/index.ctp:25 View/Batches/view.ctp:25
+#: View/Elements/menuAdmin.ctp:99 View/Elements/menuUser.ctp:91
+#: View/SmsGateways/add.ctp:24 View/SmsGateways/disp.ctp:25
+#: View/SmsGateways/edit.ctp:24 View/SmsGateways/index.ctp:25
+msgid "SMS Centre"
 msgstr ""
 
-#: View/Batches/add.ctp:25 View/IvrMenus/add.ctp:27
+#: View/Batches/add.ctp:26 View/IvrMenus/add.ctp:27
 #: View/IvrMenus/add_selector.ctp:27 View/LmMenus/add.ctp:27
 #: View/Polls/add.ctp:25
 msgid "Create"
 msgstr "Unda"
 
-#: View/Batches/add.ctp:37 View/Batches/disp.ctp:34 View/Batches/index.ctp:74
+#: View/Batches/add.ctp:44 View/Batches/disp.ctp:34 View/Batches/index.ctp:74
 #: View/Callers/add.ctp:39 View/Callers/disp.ctp:63 View/Callers/edit.ctp:66
 #: View/Callers/index.ctp:90 View/Callers/view.ctp:50 View/Groups/add.ctp:38
 #: View/IvrMenus/add.ctp:58 View/IvrMenus/edit.ctp:70
@@ -998,89 +1012,84 @@ msgstr "Unda"
 msgid "Name"
 msgstr "Jina"
 
-#: View/Batches/add.ctp:38
+#: View/Batches/add.ctp:45
 msgid "Name of SMS batch."
 msgstr ""
 
-#: View/Batches/add.ctp:40
+#: View/Batches/add.ctp:47
 msgid "SMS body"
 msgstr ""
 
-#: View/Batches/add.ctp:41
+#: View/Batches/add.ctp:48
 msgid "Alpha-numeric characters only (maximum 160)"
 msgstr ""
 
-#: View/Batches/add.ctp:43
+#: View/Batches/add.ctp:50
 msgid "Sender number"
 msgstr ""
 
-#: View/Batches/add.ctp:44
+#: View/Batches/add.ctp:51
 msgid ""
-"Number to appear as sender of the SMS. Include country prefix but without "
-"plus sign (+) and double zeros (00)."
+"For Clickatell only: Number to appear as sender of the SMS. Include country "
+"prefix but without plus sign (+) and double zeros (00)."
 msgstr ""
 
-#: View/Batches/add.ctp:47
+#: View/Batches/add.ctp:54
 msgid "Receivers"
 msgstr ""
 
-#: View/Batches/add.ctp:48
+#: View/Batches/add.ctp:55
 msgid ""
 "File containing receivers phone numbers. One number per line. Maximum 100 "
-"entries for Clickatell batches."
+"entries for Clickatell batches. Examples of valid formats: +263772123456, "
+"00263772123456, 0772123456."
 msgstr ""
 
-#: View/Batches/add.ctp:55
+#: View/Batches/add.ctp:63
 msgid "Select sending method"
 msgstr ""
 
 #: View/Batches/disp.ctp:33 View/Batches/index.ctp:73 View/Batches/view.ctp:43
-#: View/Cdr/overview.ctp:183 View/Messages/edit.ctp:86 View/Polls/index.ctp:88
+#: View/Cdr/overview.ctp:183 View/Messages/edit.ctp:87 View/Polls/index.ctp:88
 #: View/Polls/view.ctp:115 View/Processes/index.ctp:90
 msgid "Status"
 msgstr "Hali"
 
 #: View/Batches/disp.ctp:35 View/Batches/index.ctp:75 View/Bin/disp.ctp:34
-#: View/Bin/export.ctp:25 View/Bin/index.ctp:67 View/SmsGateways/disp.ctp:70
+#: View/Bin/export.ctp:25 View/Bin/index.ctp:72 View/SmsGateways/disp.ctp:70
 #: Plugin/DebugKit/View/Elements/log_panel.ctp:27
 #: Plugin/DebugKit/View/Elements/timer_panel.ctp:42;66
 msgid "Message"
 msgstr "Ujumbe"
 
-#: View/Batches/disp.ctp:36 View/Batches/index.ctp:50;76 View/Bin/disp.ctp:33
-#: View/Bin/export.ctp:25 View/Bin/index.ctp:43;66 View/Cdr/general.ctp:42
+#: View/Batches/disp.ctp:36 View/Batches/index.ctp:50;77 View/Bin/disp.ctp:33
+#: View/Bin/export.ctp:25 View/Bin/index.ctp:48;71 View/Cdr/general.ctp:37
 #: View/SmsGateways/disp.ctp:43;71
 msgid "Channel"
 msgstr "Waya ya simu"
 
-#: View/Batches/disp.ctp:37 View/Batches/index.ctp:77 View/Bin/disp.ctp:35
-#: View/Bin/export.ctp:25 View/Bin/index.ctp:68 View/Cdr/general.ctp:42;162
-#: View/Cdr/index.ctp:61 View/Cdr/output.ctp:26 View/Cdr/overview.ctp:135
+#: View/Batches/disp.ctp:37 View/Batches/index.ctp:78 View/Bin/disp.ctp:35
+#: View/Bin/export.ctp:25 View/Bin/index.ctp:73 View/Cdr/general.ctp:37;164
+#: View/Cdr/index.ctp:60 View/Cdr/output.ctp:26 View/Cdr/overview.ctp:135
 #: View/Messages/index.ctp:34 View/MonitorIvr/index.ctp:62
 #: View/MonitorIvr/output.ctp:28 View/SmsGateways/disp.ctp:72
 #: Plugin/DebugKit/View/Elements/log_panel.ctp:27
 msgid "Time"
 msgstr "Saa"
 
-#: View/Batches/disp.ctp:38 View/Batches/index.ctp:78 View/Bin/disp.ctp:37
-#: View/Bin/index.ctp:71 View/SmsGateways/disp.ctp:73
+#: View/Batches/disp.ctp:38 View/Batches/index.ctp:79 View/Bin/disp.ctp:37
+#: View/Bin/index.ctp:75 View/SmsGateways/disp.ctp:73
 #: View/SmsGateways/index.ctp:52
 msgid "Action"
 msgstr "Kitendo"
 
-#: View/Batches/disp.ctp:49 View/Batches/index.ctp:91
+#: View/Batches/disp.ctp:49 View/Batches/index.ctp:93
 #: View/SmsGateways/disp.ctp:80
 msgid "Are you sure you want to delete this SMS batch?"
 msgstr ""
 
-#: View/Batches/disp.ctp:51 View/Batches/index.ctp:93
+#: View/Batches/disp.ctp:51;51 View/Batches/index.ctp:95;95
 msgid "View receivers"
-msgstr ""
-
-#: View/Batches/index.ctp:25 View/Batches/view.ctp:25
-#: View/SmsGateways/add.ctp:24 View/SmsGateways/disp.ctp:25
-#: View/SmsGateways/edit.ctp:24 View/SmsGateways/index.ctp:25
-msgid "SMS Centre"
 msgstr ""
 
 #: View/Batches/index.ctp:35 View/Categories/index.ctp:28
@@ -1092,60 +1101,71 @@ msgid "Create new"
 msgstr "Unda mpya"
 
 #: View/Batches/index.ctp:66 View/Batches/view.ctp:37 View/Bin/disp.ctp:26
-#: View/Bin/index.ctp:58 View/Messages/archive.ctp:38
-#: View/Messages/disp.ctp:31 View/Messages/index.ctp:103
+#: View/Bin/index.ctp:63 View/Messages/archive.ctp:38
+#: View/Messages/disp.ctp:31 View/Messages/index.ctp:104
 #: View/SmsGateways/disp.ctp:61
 msgid "Message:"
 msgstr "Ujumbe:"
 
 #: View/Batches/index.ctp:66 View/Batches/view.ctp:37 View/Bin/disp.ctp:26
-#: View/Bin/index.ctp:58 View/Callers/index.ctp:83 View/Cdr/index.ctp:53
+#: View/Bin/index.ctp:63 View/Callers/index.ctp:83 View/Cdr/index.ctp:52
 #: View/Messages/archive.ctp:38 View/Messages/disp.ctp:31
-#: View/Messages/index.ctp:103 View/MonitorIvr/index.ctp:51
+#: View/Messages/index.ctp:104 View/MonitorIvr/index.ctp:51
 #: View/Nodes/index.ctp:41 View/SmsGateways/disp.ctp:61
 #: View/SmsGateways/index.ctp:40
 msgid "-"
 msgstr "-"
 
 #: View/Batches/index.ctp:66 View/Batches/view.ctp:37 View/Bin/disp.ctp:26
-#: View/Bin/index.ctp:58 View/Callers/index.ctp:83 View/Cdr/index.ctp:53
+#: View/Bin/index.ctp:63 View/Callers/index.ctp:83 View/Cdr/index.ctp:52
 #: View/Messages/archive.ctp:38 View/Messages/disp.ctp:31
-#: View/Messages/index.ctp:103 View/MonitorIvr/index.ctp:51
+#: View/Messages/index.ctp:104 View/MonitorIvr/index.ctp:51
 #: View/Nodes/index.ctp:41 View/SmsGateways/disp.ctp:61
 #: View/SmsGateways/index.ctp:40
 msgid "of"
 msgstr "ya"
 
-#: View/Batches/index.ctp:113 View/Callers/index.ctp:158
-#: View/Messages/disp.ctp:92 View/Messages/index.ctp:164
+#: View/Batches/index.ctp:76 View/Bin/disp.ctp:36 View/Bin/export.ctp:25
+#: View/Bin/index.ctp:74 View/Cdr/overview.ctp:135
+msgid "Sender"
+msgstr "Mtumaji"
+
+#: View/Batches/index.ctp:119 View/Callers/index.ctp:159
+#: View/Messages/disp.ctp:92 View/Messages/index.ctp:165
 msgid "Perform action on selected"
 msgstr "Fanya kitendo kwenye iliyochaguliwa"
 
-#: View/Batches/index.ctp:120 View/Batches/view.ctp:72 View/Bin/disp.ctp:71
-#: View/Bin/index.ctp:106 View/Callers/index.ctp:174 View/Cdr/general.ctp:173
-#: View/Cdr/index.ctp:118 View/Messages/disp.ctp:108
-#: View/Messages/index.ctp:172;175 View/MonitorIvr/index.ctp:142
+#: View/Batches/index.ctp:128 View/Batches/view.ctp:73 View/Bin/disp.ctp:71
+#: View/Bin/index.ctp:108 View/Callers/index.ctp:175 View/Cdr/general.ctp:175
+#: View/Cdr/index.ctp:116 View/Messages/disp.ctp:108
+#: View/Messages/index.ctp:173;176 View/MonitorIvr/index.ctp:142
 #: View/Nodes/index.ctp:82 View/SmsGateways/disp.ctp:99
 #: View/SmsGateways/index.ctp:83
 msgid "Previous"
 msgstr "Iliyotangulia"
 
-#: View/Batches/index.ctp:120 View/Batches/view.ctp:72 View/Bin/disp.ctp:71
-#: View/Bin/index.ctp:106 View/Callers/index.ctp:174 View/Cdr/general.ctp:173
-#: View/Cdr/index.ctp:118 View/Messages/disp.ctp:111
-#: View/Messages/index.ctp:172;177 View/MonitorIvr/index.ctp:142
+#: View/Batches/index.ctp:128 View/Batches/view.ctp:73 View/Bin/disp.ctp:71
+#: View/Bin/index.ctp:108 View/Callers/index.ctp:175 View/Cdr/general.ctp:175
+#: View/Cdr/index.ctp:116 View/Messages/disp.ctp:111
+#: View/Messages/index.ctp:173;177 View/MonitorIvr/index.ctp:142
 #: View/Nodes/index.ctp:82 View/SmsGateways/disp.ctp:99
 #: View/SmsGateways/index.ctp:83
 msgid "Next"
 msgstr "Ifuatayo"
 
-#: View/Batches/index.ctp:124 View/Batches/view.ctp:76 View/Bin/disp.ctp:75
-#: View/Bin/index.ctp:110 View/Callers/index.ctp:177 View/Cdr/general.ctp:177
-#: View/Cdr/index.ctp:122 View/MonitorIvr/index.ctp:146
+#: View/Batches/index.ctp:132 View/Batches/view.ctp:77 View/Bin/disp.ctp:75
+#: View/Bin/index.ctp:112 View/Callers/index.ctp:178 View/Cdr/general.ctp:179
+#: View/Cdr/index.ctp:120 View/MonitorIvr/index.ctp:146
 #: View/Nodes/index.ctp:86 View/SmsGateways/disp.ctp:103
 #: View/SmsGateways/index.ctp:87
 msgid "Entries per page "
 msgstr "Maingizo kwenye kila ukurasa"
+
+#: View/Batches/index.ctp:139
+msgid ""
+"No batches exist. Please create one by clicking the <i>Create new</i> button "
+"to the right."
+msgstr ""
 
 #: View/Batches/view.ctp:33
 msgid "SMS receivers"
@@ -1155,25 +1175,20 @@ msgstr ""
 msgid "SMS receiver"
 msgstr ""
 
-#: View/Batches/view.ctp:83 View/Categories/edit.ctp:55
-#: View/Channels/edit.ctp:62 View/LmMenus/edit.ctp:146
-#: View/Messages/edit.ctp:125 View/OfficeRoute/edit.ctp:61
+#: View/Batches/view.ctp:84 View/Categories/edit.ctp:55
+#: View/Channels/edit.ctp:55 View/LmMenus/edit.ctp:146
+#: View/Messages/edit.ctp:126 View/OfficeRoute/edit.ctp:61
 #: View/Polls/edit.ctp:125 View/Polls/view.ctp:124 View/Tags/edit.ctp:58
 #: View/Users/edit.ctp:57
 msgid "This page does not exist."
 msgstr "Ukurasa huu haupo."
 
-#: View/Bin/disp.ctp:32 View/Bin/export.ctp:25 View/Bin/index.ctp:65
-#: View/Channels/audio_services.ctp:40
+#: View/Bin/disp.ctp:32 View/Bin/export.ctp:25 View/Bin/index.ctp:70
+#: View/Channels/audio_services.ctp:47
 msgid "Gateway"
 msgstr ""
 
-#: View/Bin/disp.ctp:36 View/Bin/export.ctp:25 View/Bin/index.ctp:69
-#: View/Cdr/overview.ctp:135
-msgid "Sender"
-msgstr "Mtumaji"
-
-#: View/Bin/disp.ctp:47 View/Bin/index.ctp:81
+#: View/Bin/disp.ctp:47 View/Bin/index.ctp:84
 msgid "Are you sure you want to delete this entry?"
 msgstr "Una uhakika unataka kufuta ingizo hili?"
 
@@ -1181,9 +1196,9 @@ msgstr "Una uhakika unataka kufuta ingizo hili?"
 msgid "Date and Time"
 msgstr "Tarehe na Saa"
 
-#: View/Bin/export.ctp:25 View/Cdr/general.ctp:162
+#: View/Bin/export.ctp:25 View/Cdr/general.ctp:164
 #: View/Messages/archive.ctp:56 View/Messages/disp.ctp:46
-#: View/Messages/index.ctp:118
+#: View/Messages/index.ctp:119
 msgid "Date"
 msgstr "Tarehe"
 
@@ -1195,20 +1210,16 @@ msgstr "Ujumbe mfupi mwingine"
 #: View/Categories/edit.ctp:25 View/Categories/index.ctp:25
 #: View/Elements/menuAdmin.ctp:63 View/Elements/menuUser.ctp:58
 #: View/LmMenus/add.ctp:25 View/LmMenus/edit.ctp:25 View/LmMenus/index.ctp:25
-#: View/Logs/index.ctp:32 View/Messages/archive.ctp:26
-#: View/Messages/edit.ctp:34 View/Messages/index.ctp:27 View/Tags/add.ctp:25
-#: View/Tags/edit.ctp:25 View/Tags/index.ctp:25
+#: View/Messages/archive.ctp:26 View/Messages/edit.ctp:35
+#: View/Messages/index.ctp:27 View/Tags/add.ctp:25 View/Tags/edit.ctp:25
+#: View/Tags/index.ctp:25
 msgid "Message Centre"
 msgstr "Kituo cha Ujumbe"
 
-#: View/Bin/index.ctp:26;36 View/Cdr/overview.ctp:114
-#: View/Cdr/statistics.ctp:86 View/Logs/index.ctp:32
+#: View/Bin/index.ctp:26;41 View/Cdr/overview.ctp:114
+#: View/Cdr/statistics.ctp:86
 msgid "Incoming SMS"
 msgstr "Ujumbe fupi zinazofika"
-
-#: View/Bin/index.ctp:70
-msgid "Hardware unit"
-msgstr ""
 
 #: View/Callers/add.ctp:25 View/Callers/edit.ctp:25 View/Callers/index.ctp:25
 #: View/Callers/view.ctp:25 View/PhoneBooks/add.ctp:25
@@ -1241,7 +1252,7 @@ msgid "Skype"
 msgstr "Skype"
 
 #: View/Callers/add.ctp:43 View/Callers/edit.ctp:93;109
-#: View/Channels/edit.ctp:47 View/Channels/index.ctp:80;128
+#: View/Channels/edit.ctp:40 View/Channels/index.ctp:75;121
 #: View/OfficeRoute/edit.ctp:44 View/PhoneBooks/export.ctp:42
 msgid "Phone number"
 msgstr "Nambari ya simu"
@@ -1257,23 +1268,24 @@ msgstr "ODU"
 
 #: View/Callers/disp.ctp:11;62 View/Callers/index.ctp:89;111
 #: View/Messages/archive.ctp:50;71 View/Messages/disp.ctp:40;57
-#: View/Messages/index.ctp:112;129
+#: View/Messages/index.ctp:113;130
 msgid "New"
 msgstr "Mpya"
 
 #: View/Callers/disp.ctp:30;69 View/Callers/edit.ctp:27
-#: View/Callers/index.ctp:130 View/Categories/edit.ctp:35
-#: View/Categories/index.ctp:41 View/Cdr/overview.ctp:167
-#: View/Channels/index.ctp:68;116 View/Groups/index.ctp:46;51
+#: View/Callers/index.ctp:130;130 View/Categories/edit.ctp:35
+#: View/Categories/index.ctp:41;41 View/Cdr/overview.ctp:167;167
+#: View/Channels/index.ctp:61;61;109;109 View/Groups/index.ctp:46;51;51
 #: View/IvrMenus/edit.ctp:53 View/IvrMenus/edit_selector.ctp:44
-#: View/IvrMenus/index.ctp:73 View/IvrMenus/selectors.ctp:60
-#: View/LmMenus/edit.ctp:31 View/LmMenus/index.ctp:67
-#: View/Messages/archive.ctp:82 View/Messages/disp.ctp:67
-#: View/Messages/index.ctp:139 View/Nodes/edit.ctp:32 View/Nodes/index.ctp:62
-#: View/PhoneBooks/edit.ctp:27 View/PhoneBooks/index.ctp:45
-#: View/Polls/edit.ctp:29 View/Polls/index.ctp:71 View/Polls/view.ctp:47
-#: View/SmsGateways/index.ctp:62 View/Tags/edit.ctp:36 View/Tags/index.ctp:47
-#: View/Users/edit.ctp:30 View/Users/index.ctp:49
+#: View/IvrMenus/index.ctp:73;73 View/IvrMenus/selectors.ctp:60;60
+#: View/LmMenus/edit.ctp:31 View/LmMenus/index.ctp:67;67
+#: View/Messages/archive.ctp:83;83 View/Messages/disp.ctp:67;67
+#: View/Messages/index.ctp:140;140 View/Nodes/edit.ctp:32
+#: View/Nodes/index.ctp:62;62 View/PhoneBooks/edit.ctp:27
+#: View/PhoneBooks/index.ctp:45;45 View/Polls/edit.ctp:29
+#: View/Polls/index.ctp:71;71 View/Polls/view.ctp:47;47
+#: View/SmsGateways/index.ctp:62;62 View/Tags/edit.ctp:36
+#: View/Tags/index.ctp:47;47 View/Users/edit.ctp:30 View/Users/index.ctp:49;49
 msgid "Edit"
 msgstr "Hariri"
 
@@ -1312,7 +1324,7 @@ msgstr "Orodha dhibiti ufikivu (ODU)"
 msgid "Phone book"
 msgstr "Kitabu cha simu"
 
-#: View/Callers/edit.ctp:72 View/Callers/index.ctp:60;165
+#: View/Callers/edit.ctp:72 View/Callers/index.ctp:60;166
 msgid "Select phone book"
 msgstr "Chagua kitabu cha simu"
 
@@ -1321,7 +1333,7 @@ msgid "Add phone number"
 msgstr "Ongeza nambari ya simu"
 
 #: View/Callers/edit.ctp:125 View/Callers/view.ctp:75
-#: View/Cdr/statistics.ctp:26 View/Elements/menuAdmin.ctp:199
+#: View/Cdr/statistics.ctp:26 View/Elements/menuAdmin.ctp:201
 #: View/Elements/menuUser.ctp:174
 msgid "Statistics"
 msgstr "Takwimu"
@@ -1354,8 +1366,7 @@ msgstr "Shughuli"
 #: View/Cdr/overview.ctp:113 View/Cdr/statistics.ctp:85
 #: View/Elements/menuAdmin.ctp:40 View/Elements/menuUser.ctp:40
 #: View/Elements/services.ctp:44 View/Helper/FormattingHelper.php:76;104
-#: View/Logs/index.ctp:32 View/Pages/polls/index.ctp:4
-#: View/Pages/polls/tip.ctp:4
+#: View/Pages/polls/index.ctp:4 View/Pages/polls/tip.ctp:4
 msgid "Poll"
 msgstr "Kidadisi"
 
@@ -1399,18 +1410,18 @@ msgstr "Wasilisha"
 msgid "from phone book"
 msgstr "kutoka kitabu cha simu"
 
-#: View/Callers/index.ctp:83 View/Cdr/general.ctp:42;162 View/Cdr/index.ctp:64
+#: View/Callers/index.ctp:83 View/Cdr/general.ctp:37;164 View/Cdr/index.ctp:63
 #: View/Cdr/output.ctp:26 View/Messages/archive.ctp:53
-#: View/Messages/disp.ctp:43 View/Messages/edit.ctp:114
-#: View/Messages/index.ctp:115
+#: View/Messages/disp.ctp:43 View/Messages/edit.ctp:115
+#: View/Messages/index.ctp:116
 msgid "Caller"
 msgstr "Mpigaji"
 
 #: View/Callers/index.ctp:96 View/Categories/index.ctp:52
-#: View/Cdr/overview.ctp:135;183 View/Channels/index.ctp:87;134
+#: View/Cdr/overview.ctp:135;183 View/Channels/index.ctp:82;127
 #: View/IvrMenus/index.ctp:62 View/IvrMenus/selectors.ctp:50
 #: View/LmMenus/index.ctp:56 View/Messages/archive.ctp:58
-#: View/Messages/disp.ctp:48 View/Messages/index.ctp:120
+#: View/Messages/disp.ctp:48 View/Messages/index.ctp:121
 #: View/Nodes/index.ctp:50 View/PhoneBooks/index.ctp:39
 #: View/Polls/index.ctp:88 View/Tags/index.ctp:38 View/Users/index.ctp:42
 msgid "Actions"
@@ -1420,7 +1431,7 @@ msgstr "Vitendo"
 msgid "Are you sure you wish to delete this caller?"
 msgstr ""
 
-#: View/Callers/index.ctp:181
+#: View/Callers/index.ctp:182
 msgid "There are no callers in the selected phone book."
 msgstr "Hakuna mpigaji wowote katika kitabu cha simu kilichochaguliwa"
 
@@ -1434,8 +1445,8 @@ msgstr "Ongeza Kategoria"
 
 #: View/Categories/add.ctp:39 View/Categories/edit.ctp:46
 #: View/Categories/index.ctp:52 View/Messages/archive.ctp:55
-#: View/Messages/disp.ctp:45 View/Messages/edit.ctp:89
-#: View/Messages/index.ctp:34;51;117
+#: View/Messages/disp.ctp:45 View/Messages/edit.ctp:90
+#: View/Messages/index.ctp:34;52;118
 msgid "Category"
 msgstr "Kategoria"
 
@@ -1471,7 +1482,7 @@ msgstr ""
 "Hakuna kategoria yoyote. Tafadhali unda moja ukibofya kitufe <i>Unda mpya</"
 "i> upande wa kulia."
 
-#: View/Cdr/delete.ctp:25 View/Cdr/export.ctp:25 View/Cdr/general.ctp:25
+#: View/Cdr/delete.ctp:25 View/Cdr/export.ctp:25 View/Cdr/general.ctp:75
 #: View/Cdr/index.ctp:26 View/Cdr/statistics.ctp:25
 #: View/Elements/menuAdmin.ctp:189 View/Elements/menuUser.ctp:164
 #: View/MonitorIvr/delete.ctp:25 View/MonitorIvr/export.ctp:25
@@ -1488,14 +1499,14 @@ msgstr "Makumbukumbu ya data za miito"
 msgid "Delete Call Data Records"
 msgstr "Futa Makumbukumbu ya Data za Miito"
 
-#: View/Cdr/delete.ctp:34 View/Cdr/export.ctp:35 View/Cdr/general.ctp:122
+#: View/Cdr/delete.ctp:34 View/Cdr/export.ctp:35 View/Cdr/general.ctp:124
 #: View/Cdr/statistics.ctp:96 View/MonitorIvr/delete.ctp:35
 #: View/MonitorIvr/erase.ctp:30 View/MonitorIvr/export.ctp:34
 #: View/Polls/add.ctp:89 View/Polls/edit.ctp:64 View/Polls/view.ctp:116
 msgid "Start time"
 msgstr "Muda wa kuanza"
 
-#: View/Cdr/delete.ctp:35 View/Cdr/export.ctp:36 View/Cdr/general.ctp:123
+#: View/Cdr/delete.ctp:35 View/Cdr/export.ctp:36 View/Cdr/general.ctp:125
 #: View/Cdr/statistics.ctp:97 View/MonitorIvr/delete.ctp:36
 #: View/MonitorIvr/erase.ctp:31 View/MonitorIvr/export.ctp:35
 #: View/Polls/add.ctp:90 View/Polls/edit.ctp:65 View/Polls/view.ctp:117
@@ -1506,94 +1517,95 @@ msgstr "Muda wa kumaliza"
 msgid "Export CDR"
 msgstr "Hamisha MDM"
 
-#: View/Cdr/general.ctp:42 View/Cdr/output.ctp:26
+#: View/Cdr/general.ctp:37 View/Cdr/output.ctp:26
 #: View/MonitorIvr/output.ctp:28
 msgid "Date (Y-m-d)"
 msgstr "Tarehe (Mwaka-mwezi-siku)"
 
-#: View/Cdr/general.ctp:42 View/Cdr/output.ctp:26
+#: View/Cdr/general.ctp:37 View/Cdr/output.ctp:26
 #: View/MonitorIvr/output.ctp:28
 msgid "Year"
 msgstr "Mwaka"
 
-#: View/Cdr/general.ctp:42 View/Cdr/output.ctp:26
+#: View/Cdr/general.ctp:37 View/Cdr/output.ctp:26
 #: View/MonitorIvr/output.ctp:28
 msgid "Month"
 msgstr "Mwezi"
 
-#: View/Cdr/general.ctp:42 View/Cdr/output.ctp:26
+#: View/Cdr/general.ctp:37 View/Cdr/output.ctp:26
 #: View/MonitorIvr/output.ctp:28
 msgid "Day"
 msgstr "Siku"
 
-#: View/Cdr/general.ctp:42;162 View/Cdr/index.ctp:65 View/Channels/edit.ctp:46
-#: View/Channels/index.ctp:79;127 View/IvrMenus/add_selector.ctp:56
+#: View/Cdr/general.ctp:37;164 View/Cdr/index.ctp:64 View/Channels/edit.ctp:39
+#: View/Channels/index.ctp:74;120 View/IvrMenus/add_selector.ctp:56
 #: View/IvrMenus/edit_selector.ctp:60 View/IvrMenus/index.ctp:60
 #: View/IvrMenus/selectors.ctp:47 View/LmMenus/add.ctp:75
 #: View/LmMenus/edit.ctp:76 View/LmMenus/index.ctp:54
 #: View/Messages/archive.ctp:52 View/Messages/disp.ctp:42
-#: View/Messages/edit.ctp:85 View/Messages/index.ctp:114
+#: View/Messages/edit.ctp:86 View/Messages/index.ctp:115
 #: View/MonitorIvr/index.ctp:68 View/MonitorIvr/output.ctp:28
 #: View/Nodes/add.ctp:37 View/Nodes/edit.ctp:50 View/Nodes/index.ctp:46
 #: View/OfficeRoute/edit.ctp:43
 msgid "Title"
 msgstr "Kichwa"
 
-#: View/Cdr/general.ctp:42;162 View/Cdr/overview.ctp:135
+#: View/Cdr/general.ctp:37;164 View/Cdr/overview.ctp:135
 #: View/Messages/archive.ctp:57 View/Messages/disp.ctp:47
-#: View/Messages/edit.ctp:113 View/Messages/index.ctp:34;119
+#: View/Messages/edit.ctp:114 View/Messages/index.ctp:34;120
 msgid "Length"
 msgstr "Urefu"
 
-#: View/Cdr/general.ctp:69 View/Cdr/output.ctp:51 View/Logs/index.ctp:32
+#: View/Cdr/general.ctp:65 View/Cdr/output.ctp:52
 msgid "CDR"
 msgstr "MDM"
 
-#: View/Cdr/general.ctp:82
-msgid "Reporting of incoming calls"
-msgstr "Simulizi la miito iliyofika"
+#: View/Cdr/general.ctp:76 View/Elements/menuUser.ctp:182;214
+msgid "Reporting"
+msgstr "Simulizi"
 
-#: View/Cdr/general.ctp:114 View/Cdr/index.ctp:66 View/Cdr/output.ctp:26
+#: View/Cdr/general.ctp:116 View/Cdr/index.ctp:65 View/Cdr/output.ctp:26
 #: View/Cdr/overview.ctp:117 View/Cdr/statistics.ctp:82
 msgid "Application"
 msgstr "Programu-tumizi"
 
-#: View/Cdr/general.ctp:130 View/Cdr/statistics.ctp:98 View/Polls/view.ctp:44
+#: View/Cdr/general.ctp:132 View/Cdr/statistics.ctp:98;98
+#: View/Polls/view.ctp:44
 msgid "View"
 msgstr "Angalia"
 
-#: View/Cdr/general.ctp:146
+#: View/Cdr/general.ctp:148
 msgid "Number of records found:"
 msgstr "Idadi ya makumbukumbu yaliyogunduliwa:"
 
-#: View/Cdr/general.ctp:164 View/Messages/edit.ctp:115
+#: View/Cdr/general.ctp:166 View/Messages/edit.ctp:116
 msgid "Quick hangup"
 msgstr "Kata simu chapu"
 
-#: View/Cdr/general.ctp:184 View/Messages/archive.ctp:130
-#: View/Messages/disp.ctp:121 View/Messages/index.ctp:186
+#: View/Cdr/general.ctp:186 View/Messages/archive.ctp:131
+#: View/Messages/disp.ctp:121 View/Messages/index.ctp:187
 #: View/MonitorIvr/index.ctp:151
 msgid "No records found."
 msgstr "Hakuna kumbukumbu lililogunduliwa"
 
-#: View/Cdr/index.ctp:32 View/MonitorIvr/index.ctp:34
+#: View/Cdr/index.ctp:31 View/MonitorIvr/index.ctp:34
 msgid "Are you sure that you want to delete the selected entries?"
 msgstr "Una uhakika unataka kufuta maingizo yaliyoteuliwa?"
 
-#: View/Cdr/index.ctp:40 View/MonitorIvr/index.ctp:41
+#: View/Cdr/index.ctp:39 View/MonitorIvr/index.ctp:41
 msgid "Export all"
 msgstr "Hamisha zote"
 
-#: View/Cdr/index.ctp:53
+#: View/Cdr/index.ctp:52
 msgid "CDR:"
 msgstr "MDM:"
 
 # (pofilter) acronyms: acronyms should not be translated: YMD
-#: View/Cdr/index.ctp:60 View/MonitorIvr/index.ctp:61
+#: View/Cdr/index.ctp:59 View/MonitorIvr/index.ctp:61
 msgid "Date (YMD)"
 msgstr "Tarehe (MwakaMweziSiku)"
 
-#: View/Cdr/index.ctp:62 View/Cdr/output.ctp:26 View/IvrMenus/selectors.ctp:48
+#: View/Cdr/index.ctp:61 View/Cdr/output.ctp:26 View/IvrMenus/selectors.ctp:48
 #: View/MonitorIvr/index.ctp:69 View/MonitorIvr/output.ctp:28
 #: View/SmsGateways/add.ctp:44 View/SmsGateways/edit.ctp:48
 #: View/SmsGateways/index.ctp:48
@@ -1601,16 +1613,16 @@ msgid "Type"
 msgstr "Aina"
 
 # (pofilter) acronyms: acronyms should not be translated: ID
-#: View/Cdr/index.ctp:63 View/MonitorIvr/index.ctp:63
+#: View/Cdr/index.ctp:62 View/MonitorIvr/index.ctp:63
 #: View/MonitorIvr/output.ctp:28
 msgid "Call ID"
 msgstr "Kitambulisho cha mwito"
 
-#: View/Cdr/index.ctp:89
+#: View/Cdr/index.ctp:88
 msgid "Are you sure you want to delete this CDR?"
 msgstr "Una uhakika unataka kufuta MDM hii?"
 
-#: View/Cdr/index.ctp:128
+#: View/Cdr/index.ctp:126
 msgid "No records found"
 msgstr "Hakuna kumbukumbu lililogunduliwa"
 
@@ -1622,7 +1634,7 @@ msgstr "Kitambulisho cha mwito"
 msgid "Protocol"
 msgstr "Itifaki"
 
-#: View/Cdr/overview.ctp:83
+#: View/Cdr/overview.ctp:83;83
 msgid "Download audio file"
 msgstr "Pakua faili sikizi"
 
@@ -1630,7 +1642,7 @@ msgstr "Pakua faili sikizi"
 msgid "New message"
 msgstr "Ujumbe mpya"
 
-#: View/Cdr/overview.ctp:91 View/Messages/edit.ctp:36
+#: View/Cdr/overview.ctp:91;91 View/Messages/edit.ctp:37
 msgid "Edit message"
 msgstr "Hariri ujumbe"
 
@@ -1655,8 +1667,8 @@ msgid "The table below shows the five most recent new messages"
 msgstr "Jedwali hapo chini linaonyesha ujumbe tano za mwisho"
 
 #: View/Cdr/overview.ctp:135 View/Messages/archive.ctp:59
-#: View/Messages/disp.ctp:49 View/Messages/edit.ctp:117
-#: View/Messages/index.ctp:121 View/Nodes/edit.ctp:54 View/Nodes/index.ctp:51
+#: View/Messages/disp.ctp:49 View/Messages/edit.ctp:118
+#: View/Messages/index.ctp:122 View/Nodes/edit.ctp:54 View/Nodes/index.ctp:51
 msgid "Listen"
 msgstr "Sikiliza"
 
@@ -1697,79 +1709,66 @@ msgid "CDR Statistics"
 msgstr "Takwimu za MDM"
 
 #: View/Channels/audio_services.ctp:25 View/Channels/edit.ctp:25
-#: View/Channels/index.ctp:25 View/Elements/menuAdmin.ctp:219
+#: View/Channels/index.ctp:25 View/Elements/menuAdmin.ctp:228
 #: View/Elements/menuUser.ctp:194 View/Logs/index.ctp:25
 #: View/OfficeRoute/edit.ctp:25 View/Processes/index.ctp:25
 #: View/Processes/system.ctp:26 View/Settings/index.ctp:25
 msgid "Dashboard"
 msgstr "Paneli dhibiti"
 
-#: View/Channels/audio_services.ctp:26 View/Elements/menuAdmin.ctp:239
-msgid "Audio services"
-msgstr ""
-
-#: View/Channels/audio_services.ctp:31
-msgid "GSMOpen channels"
-msgstr ""
-
-#: View/Channels/audio_services.ctp:39
+#: View/Channels/audio_services.ctp:46
 msgid "Enabled"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:41
+#: View/Channels/audio_services.ctp:48
 msgid "Inbound"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:42
+#: View/Channels/audio_services.ctp:49
 msgid "Outbound"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:43 View/Channels/edit.ctp:48
-#: View/Channels/index.ctp:83;131
+#: View/Channels/audio_services.ctp:50 View/Channels/edit.ctp:41
+#: View/Channels/index.ctp:78;124
 msgid "IMSI"
 msgstr "IMSI"
 
-#: View/Channels/audio_services.ctp:44 View/Channels/edit.ctp:49
-#: View/Channels/index.ctp:130
-msgid "IMEI"
-msgstr "IMEI"
-
-#: View/Channels/audio_services.ctp:45
+#: View/Channels/audio_services.ctp:51
 msgid "Manufacturer"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:46
+#: View/Channels/audio_services.ctp:52
 msgid "Model"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:47
+#: View/Channels/audio_services.ctp:53
 msgid "Hardware id"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:48 View/Channels/index.ctp:126
+#: View/Channels/audio_services.ctp:54 View/Channels/index.ctp:119;165
 msgid "Interface id"
 msgstr "Kitambulisho cha kiolesura"
 
-#: View/Channels/audio_services.ctp:49 View/IvrMenus/index.ctp:59
+#: View/Channels/audio_services.ctp:55 View/IvrMenus/index.ctp:59
 #: View/IvrMenus/selectors.ctp:46 View/LmMenus/index.ctp:53
 #: View/Messages/archive.ctp:51 View/Messages/disp.ctp:41
-#: View/Messages/index.ctp:34;53;113
+#: View/Messages/index.ctp:34;54;114
 msgid "Service"
 msgstr "Huduma"
 
-#: View/Channels/audio_services.ctp:72 View/IvrMenus/add_selector.ctp:82
+#: View/Channels/audio_services.ctp:77 View/IvrMenus/add_selector.ctp:82
 msgid "Select service"
 msgstr "Chagua huduma"
 
-#: View/Channels/audio_services.ctp:83
-msgid "Create configuration files"
+#: View/Channels/audio_services.ctp:88
+msgid "Create dialplan"
 msgstr ""
 
-#: View/Channels/audio_services.ctp:90
+#: View/Channels/audio_services.ctp:95
 msgid "There are no GSMOpen based units connected to your system."
 msgstr ""
 
-#: View/Channels/audio_services.ctp:93 View/Channels/index.ctp:146
+#: View/Channels/audio_services.ctp:98 View/Channels/index.ctp:184
 #: View/Processes/index.ctp:108
 msgid "Generated"
 msgstr "Zalishwa"
@@ -1779,75 +1778,111 @@ msgstr "Zalishwa"
 msgid "GSM channels"
 msgstr "Waya za simu za GSM"
 
-#: View/Channels/edit.ctp:33 View/OfficeRoute/edit.ctp:33
-msgid "Edit channel"
-msgstr "Hariri waya ya simu"
+#: View/Channels/edit.ctp:42 View/Channels/index.ctp:123;166
+msgid "IMEI"
+msgstr "IMEI"
 
-#: View/Channels/index.ctp:38
-msgid "Office Route"
-msgstr "Office Route"
+#: View/Channels/index.ctp:26
+msgid "Active GSM Channels"
+msgstr ""
 
-#: View/Channels/index.ctp:42
-msgid "SNMP daemon is not running."
-msgstr "Programu-tumizi SNMP haiendeshwi"
+#: View/Channels/index.ctp:39
+msgid "OfficeRoute"
+msgstr ""
 
-#: View/Channels/index.ctp:67 View/Elements/message_status.ctp:80
+#: View/Channels/index.ctp:60 View/Elements/message_status.ctp:80
 msgid "Yes"
 msgstr "Ndiyo"
 
-#: View/Channels/index.ctp:78
+#: View/Channels/index.ctp:73
 msgid "Slot"
 msgstr "Mfuo"
 
-#: View/Channels/index.ctp:81
+#: View/Channels/index.ctp:76
 msgid "Sim inserted"
 msgstr "SIM imechomekwa"
 
-#: View/Channels/index.ctp:82;132
+#: View/Channels/index.ctp:77;125;167
 msgid "Signal level"
 msgstr "Kiwango cha mawimbi"
 
-#: View/Channels/index.ctp:84
+#: View/Channels/index.ctp:79
 msgid "Network registration"
 msgstr "Usajili wa mtandao"
 
-#: View/Channels/index.ctp:85 View/OfficeRoute/edit.ctp:45
+#: View/Channels/index.ctp:80 View/OfficeRoute/edit.ctp:45
 msgid "Operator"
 msgstr "Mtoa huduma"
 
-#: View/Channels/index.ctp:86;133
+#: View/Channels/index.ctp:81;126
 msgid "Last updated"
 msgstr "Mara ya mwisho kusasishwa"
 
-#: View/Channels/index.ctp:94
+#: View/Channels/index.ctp:89
 msgid "There are no OfficeRoute units connected to your system."
 msgstr "Hakuna kifaa cha OfficeRoute kilichounganishwa na mfumo wako."
 
-#: View/Channels/index.ctp:99
-msgid "Active channels"
+#: View/Channels/index.ctp:94
+msgid "GSMOpen"
 msgstr ""
 
-#: View/Channels/index.ctp:129
+#: View/Channels/index.ctp:122
 msgid "Interface name"
 msgstr "Jina la kiolesura"
 
-#: View/Channels/index.ctp:141
-msgid "There are no Mobigater units connected to your system."
-msgstr "Hakuna kifaa cha Mobigater kilichounganishwa na mfumo wako."
+#: View/Channels/index.ctp:134
+msgid "There are no GSMOpen devices connected to your system."
+msgstr ""
+
+#: View/Channels/index.ctp:138
+msgid "Gammu"
+msgstr ""
+
+#: View/Channels/index.ctp:168
+msgid "Updated"
+msgstr ""
+
+#: View/Channels/index.ctp:169
+msgid "Inserted"
+msgstr ""
+
+#: View/Channels/index.ctp:170
+msgid "Send"
+msgstr ""
+
+#: View/Channels/index.ctp:171
+msgid "Receive"
+msgstr ""
+
+#: View/Channels/index.ctp:179
+msgid "There are no Gammu devices connected to your system."
+msgstr ""
 
 #: View/Elements/batch_status.ctp:34
 msgid "No status code available"
 msgstr ""
 
-#: View/Elements/channel_signal_level.ctp:41
+#: View/Elements/batch_status.ctp:51
+msgid "Gammu is not running"
+msgstr ""
+
+#: View/Elements/batch_status.ctp:53
+msgid "Sending OK"
+msgstr ""
+
+#: View/Elements/batch_status.ctp:55
+msgid "Sending failed"
+msgstr ""
+
+#: View/Elements/channel_signal_level.ctp:42;64;80
 msgid "Poor"
 msgstr "Mbaya"
 
-#: View/Elements/channel_signal_level.ctp:45
+#: View/Elements/channel_signal_level.ctp:46;68;84
 msgid "Good"
 msgstr "Nzuri"
 
-#: View/Elements/channel_signal_level.ctp:49
+#: View/Elements/channel_signal_level.ctp:50;71;87
 msgid "Excellent"
 msgstr "Bora"
 
@@ -1872,10 +1907,6 @@ msgstr "Nyaraka"
 msgid "Manage LAM"
 msgstr "Simamia Acha-Ujumbe"
 
-#: View/Elements/menuAdmin.ctp:99 View/Elements/menuUser.ctp:91
-msgid "SMS Center"
-msgstr ""
-
 #: View/Elements/menuAdmin.ctp:108 View/SmsGateways/add.ctp:25
 #: View/SmsGateways/edit.ctp:25 View/SmsGateways/index.ctp:26;35
 msgid "SMS gateways"
@@ -1893,8 +1924,7 @@ msgstr ""
 #: View/IvrMenus/add.ctp:25 View/IvrMenus/add_selector.ctp:25
 #: View/IvrMenus/edit.ctp:25 View/IvrMenus/edit_selector.ctp:26
 #: View/IvrMenus/index.ctp:26 View/IvrMenus/selectors.ctp:25
-#: View/Logs/index.ctp:32 View/Nodes/add.ctp:26 View/Nodes/edit.ctp:25
-#: View/Nodes/index.ctp:25
+#: View/Nodes/add.ctp:26 View/Nodes/edit.ctp:25 View/Nodes/index.ctp:25
 msgid "IVR Centre"
 msgstr "Kituo cha Menyu za Sauti"
 
@@ -1916,47 +1946,47 @@ msgstr "Watumiaji wa mfumo"
 msgid "Frontend Sweeper"
 msgstr "Ufagizi wa Maarifa Binafsi"
 
-#: View/Elements/menuAdmin.ctp:203 View/Elements/menuUser.ctp:178
-#: View/Logs/index.ctp:32 View/MonitorIvr/delete.ctp:26
-#: View/MonitorIvr/export.ctp:26 View/MonitorIvr/index.ctp:26
+#: View/Elements/menuAdmin.ctp:205 View/Elements/menuUser.ctp:178
+#: View/MonitorIvr/delete.ctp:26 View/MonitorIvr/export.ctp:26
+#: View/MonitorIvr/index.ctp:26
 msgid "Monitoring"
 msgstr "Ufuatiliaji"
 
-#: View/Elements/menuAdmin.ctp:235
-msgid "Active GSM channels"
+#: View/Elements/menuAdmin.ctp:214
+msgid "Call graphs"
 msgstr ""
 
-#: View/Elements/menuAdmin.ctp:248 View/Logs/index.ctp:26;28
+#: View/Elements/menuAdmin.ctp:254 View/Logs/index.ctp:26;28
 #: Plugin/DebugKit/View/Elements/log_panel.ctp:19
 msgid "Logs"
 msgstr "Batli"
 
-#: View/Elements/menuAdmin.ctp:266 View/Elements/menuUser.ctp:233
+#: View/Elements/menuAdmin.ctp:272 View/Elements/menuUser.ctp:233
 msgid "Help"
 msgstr "Msaada"
 
-#: View/Elements/menuAdmin.ctp:271 View/Elements/menuUser.ctp:238
+#: View/Elements/menuAdmin.ctp:277 View/Elements/menuUser.ctp:238
 msgid "Downloads"
 msgstr "Faili kupakuliwa"
 
-#: View/Elements/menuAdmin.ctp:277 View/Elements/menuUser.ctp:244
+#: View/Elements/menuAdmin.ctp:283 View/Elements/menuUser.ctp:244
 msgid "Website"
 msgstr "Tovuti"
 
-#: View/Elements/menuAdmin.ctp:281 View/Elements/menuUser.ctp:248
+#: View/Elements/menuAdmin.ctp:287 View/Elements/menuUser.ctp:248
 msgid "Wiki/SVN"
 msgstr "Wiki/SVN"
 
-#: View/Elements/menuAdmin.ctp:286 View/Elements/menuUser.ctp:253
+#: View/Elements/menuAdmin.ctp:292 View/Elements/menuUser.ctp:253
 msgid "Feedback"
 msgstr "Mawazo"
 
 #: View/Elements/message_status.ctp:29 View/Messages/archive.ctp:27
-#: View/Messages/edit.ctp:28;49
+#: View/Messages/edit.ctp:29;50
 msgid "Archive"
 msgstr "Nyaraka"
 
-#: View/Elements/message_status.ctp:35 View/Messages/edit.ctp:49
+#: View/Elements/message_status.ctp:35 View/Messages/edit.ctp:50
 msgid "Active"
 msgstr "Hai"
 
@@ -1986,13 +2016,13 @@ msgstr "Fungwa"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) acronyms: acronyms should not be translated: OFF
-#: View/Elements/process_status.ctp:31;44
+#: View/Elements/process_status.ctp:31;31;44
 msgid "OFF"
 msgstr "Zimwa"
 
 # (pofilter) simplecaps: checks the capitalisation of two strings isn't wildly different
 # (pofilter) acronyms: acronyms should not be translated: ON
-#: View/Elements/process_status.ctp:35;47
+#: View/Elements/process_status.ctp:35;35;47
 msgid "ON"
 msgstr "Washwa"
 
@@ -2187,11 +2217,13 @@ msgstr "Ujumbe wa kukaribisha"
 msgid "Do not use uploaded file"
 msgstr "Usitumie faili lililopakiwa"
 
-#: View/IvrMenus/edit.ctp:91;114;135;157 View/IvrMenus/edit_selector.ctp:80;99
-#: View/LmMenus/advanced_edit.ctp:57;79;102;125;148;170
-#: View/LmMenus/edit.ctp:94;119 View/Messages/archive.ctp:83
-#: View/Messages/disp.ctp:68 View/Messages/edit.ctp:116
-#: View/Messages/index.ctp:140 View/Nodes/edit.ctp:43 View/Nodes/index.ctp:64
+#: View/IvrMenus/edit.ctp:91;91;114;114;135;135;157;157
+#: View/IvrMenus/edit_selector.ctp:80;80;99;99
+#: View/LmMenus/advanced_edit.ctp:57;57;79;79;102;102;125;125;148;148;170;170
+#: View/LmMenus/edit.ctp:94;94;119;119 View/Messages/archive.ctp:84;84
+#: View/Messages/disp.ctp:68;68 View/Messages/edit.ctp:117;117;117
+#: View/Messages/index.ctp:141;141 View/Nodes/edit.ctp:43;43
+#: View/Nodes/index.ctp:64;64
 msgid "Download"
 msgstr "Pakua"
 
@@ -2270,20 +2302,20 @@ msgstr ""
 "Hakuna kiteuzi cha lugha chochote. Tafadhali unda kimoja ukibofya kitufe "
 "<i>Unda mpya</i> upande wa kulia."
 
-#: View/Layouts/default.ctp:82 View/Layouts/jquery.ctp:86
+#: View/Layouts/default.ctp:86 View/Layouts/jquery.ctp:86
 msgid "Logged in as"
 msgstr "Umeingia kama"
 
-#: View/Layouts/default.ctp:100 View/Layouts/jquery.ctp:104
+#: View/Layouts/default.ctp:104;104 View/Layouts/jquery.ctp:104;104
 msgid "Logout"
 msgstr "Toka"
 
-#: View/Layouts/default.ctp:104 View/Layouts/jquery.ctp:108
+#: View/Layouts/default.ctp:108;108 View/Layouts/jquery.ctp:108;108
 #: View/Users/login.ctp:26;28;39
 msgid "Login"
 msgstr "Ingia"
 
-#: View/Layouts/default.ctp:109 View/Layouts/jquery.ctp:113
+#: View/Layouts/default.ctp:113 View/Layouts/jquery.ctp:113
 msgid "Home"
 msgstr "Nyumbani"
 
@@ -2468,7 +2500,7 @@ msgstr "Ujumbe wa Maagizo"
 msgid "Manage Leave-a-message"
 msgstr "Simamia Acha-ujumbe"
 
-#: View/LmMenus/index.ctp:55 View/Messages/edit.ctp:111
+#: View/LmMenus/index.ctp:55 View/Messages/edit.ctp:112
 #: View/Nodes/index.ctp:48 View/SmsGateways/index.ctp:51
 msgid "Created"
 msgstr "Undwa"
@@ -2485,7 +2517,11 @@ msgstr ""
 "Hakuna menyu ya Acha-Ujumbe yoyote. Tafadhali unda moja ukibofya kitufe "
 "<i>Unda mpya</i> upande wa kulia."
 
-#: View/Logs/disp.ctp:48
+#: View/Logs/disp.ctp:54
+msgid "No log entries."
+msgstr ""
+
+#: View/Logs/disp.ctp:59
 msgid "No log file of this type exists"
 msgstr "Hakuna faili la batli la aina hii"
 
@@ -2493,28 +2529,7 @@ msgstr "Hakuna faili la batli la aina hii"
 msgid "Select log file to view."
 msgstr "Chagua faili la batli kuangalia."
 
-#: View/Logs/index.ctp:32
-msgid "Cron and refresh"
-msgstr "Ratibisha na kuonyesha upya"
-
-#: View/Logs/index.ctp:32
-msgid "Debug"
-msgstr "Eua"
-
-#: View/Logs/index.ctp:32 View/Errors/error400.ctp:21
-#: View/Errors/error500.ctp:21
-msgid "Error"
-msgstr "Kosa"
-
-#: View/Logs/index.ctp:32
-msgid "Office Route SMS"
-msgstr ""
-
-#: View/Logs/index.ctp:32
-msgid "Gammu SMS"
-msgstr ""
-
-#: View/Logs/index.ctp:34
+#: View/Logs/index.ctp:36
 msgid "Select log file"
 msgstr "Chagua faili la batli"
 
@@ -2523,62 +2538,62 @@ msgid "Archived messages"
 msgstr "Ujumbe uliohifadhiwa kwenye nyaraka"
 
 #: View/Messages/archive.ctp:54 View/Messages/disp.ctp:44
-#: View/Messages/edit.ctp:88 View/Messages/index.ctp:34;52;116
+#: View/Messages/edit.ctp:89 View/Messages/index.ctp:34;53;117
 msgid "Rate"
 msgstr "Kadiria"
 
 # (pofilter) endwhitespace: checks whether whitespace at the end of the strings matches
-#: View/Messages/archive.ctp:121
+#: View/Messages/archive.ctp:122
 msgid "No of messages per page: "
 msgstr "Idadi ya jumbe kwa ukurasa: "
 
-#: View/Messages/archive.ctp:125
+#: View/Messages/archive.ctp:126
 msgid "All"
 msgstr "Zote"
 
-#: View/Messages/edit.ctp:28
+#: View/Messages/edit.ctp:29
 msgid "Inbox"
 msgstr "Kikasha pokezi"
 
-#: View/Messages/edit.ctp:47
+#: View/Messages/edit.ctp:48
 msgid "No rate"
 msgstr "Bila kadirio"
 
-#: View/Messages/edit.ctp:56
+#: View/Messages/edit.ctp:57
 msgid "Previous message"
 msgstr "Ujumbe uliotangulia"
 
-#: View/Messages/edit.ctp:61
+#: View/Messages/edit.ctp:62
 msgid "Next message"
 msgstr "Ujumbe unaofuata"
 
-#: View/Messages/edit.ctp:70
+#: View/Messages/edit.ctp:71
 msgid "Edit Message"
 msgstr "Hariri ujumbe"
 
-#: View/Messages/edit.ctp:89
+#: View/Messages/edit.ctp:90
 msgid "No category"
 msgstr "Hakuna kategoria"
 
-#: View/Messages/edit.ctp:90 View/SmsGateways/add.ctp:41;42
+#: View/Messages/edit.ctp:91 View/SmsGateways/add.ctp:41;42
 #: View/SmsGateways/edit.ctp:45;46 View/SmsGateways/index.ctp:47
 msgid "Comment"
 msgstr "Maoni"
 
-#: View/Messages/edit.ctp:91 View/Messages/index.ctp:50 View/Tags/add.ctp:40
+#: View/Messages/edit.ctp:92 View/Messages/index.ctp:51 View/Tags/add.ctp:40
 #: View/Tags/edit.ctp:48 View/Tags/index.ctp:38
 msgid "Tag"
 msgstr "Lebo"
 
-#: View/Messages/edit.ctp:91
+#: View/Messages/edit.ctp:92
 msgid "No tag"
 msgstr "Hakuna lebo"
 
-#: View/Messages/edit.ctp:96
+#: View/Messages/edit.ctp:97
 msgid "Are you sure you wish to delete this message?"
 msgstr "Una uhakika unataka kufuta ujumbe huu?"
 
-#: View/Messages/edit.ctp:112
+#: View/Messages/edit.ctp:113
 msgid "Modified"
 msgstr "Rekebishwa"
 
@@ -2598,23 +2613,23 @@ msgstr "Kuumbia"
 msgid "Descending"
 msgstr "Kuteremua"
 
-#: View/Messages/index.ctp:56
+#: View/Messages/index.ctp:57
 msgid "Order by"
 msgstr "Panga kwa"
 
-#: View/Messages/index.ctp:57
+#: View/Messages/index.ctp:58
 msgid "Sorting direction"
 msgstr "Uelekeo wa kupanga"
 
-#: View/Messages/index.ctp:58
+#: View/Messages/index.ctp:59
 msgid "Entries per page"
 msgstr "Maingizo kwenye kila ukurasa"
 
-#: View/Messages/index.ctp:60
+#: View/Messages/index.ctp:61
 msgid "Selection criteria"
 msgstr "Vigezo vya uteuzi"
 
-#: View/Messages/index.ctp:68
+#: View/Messages/index.ctp:69
 msgid "Order and direction"
 msgstr "Utaratibu na uelekezo"
 
@@ -2735,6 +2750,10 @@ msgid ""
 msgstr ""
 "Hakuna kipengee cha maudhui chochote. Tafadhali pakia kimoja ukibofya kitufe "
 "<i>Pakia mpya</i> upande wa kulia."
+
+#: View/OfficeRoute/edit.ctp:33
+msgid "Edit channel"
+msgstr "Hariri waya ya simu"
 
 #: View/OfficeRoute/edit.ctp:34
 msgid "slot"
@@ -3120,11 +3139,11 @@ msgstr "Taarifa ya kidadisi"
 msgid "Running since"
 msgstr "Imeendesha kuanzia"
 
-#: View/Processes/index.ctp:62;90
+#: View/Processes/index.ctp:62;62;90
 msgid "Start"
 msgstr "Anzisha"
 
-#: View/Processes/index.ctp:63;90
+#: View/Processes/index.ctp:63;63;90
 msgid "Stop"
 msgstr "Simamisha"
 
@@ -3194,11 +3213,11 @@ msgstr "Kitolewacho"
 msgid "Environment"
 msgstr "Mazingira"
 
-#: View/Processes/system.ctp:117 View/Settings/index.ctp:122
+#: View/Processes/system.ctp:117 View/Settings/index.ctp:148
 msgid "IP address"
 msgstr "Anwani ya IP (itifaki ya wavuti)"
 
-#: View/Processes/system.ctp:118 View/Settings/index.ctp:58
+#: View/Processes/system.ctp:118 View/Settings/index.ctp:61;119
 msgid "Language"
 msgstr "Lugha"
 
@@ -3227,31 +3246,31 @@ msgstr "imeunganishwa na mtandao wa kiambo (LAN), chagua Mtandao wa Kiambo."
 msgid "is not networked, select Local machine."
 msgstr "haijaunganishwa na mtandao, chagua Tarakilishi ya kiambo."
 
-#: View/Settings/index.ctp:72
+#: View/Settings/index.ctp:75;123
 msgid "Time zone"
 msgstr "Majira ya saa"
 
-#: View/Settings/index.ctp:79
+#: View/Settings/index.ctp:82;127
 msgid "Country"
 msgstr "Nchi"
 
-#: View/Settings/index.ctp:86
+#: View/Settings/index.ctp:89
 msgid "Internet"
 msgstr "Wavuti"
 
-#: View/Settings/index.ctp:87
+#: View/Settings/index.ctp:90
 msgid "Local Area Network"
 msgstr "Mtandao wa Kiambo"
 
-#: View/Settings/index.ctp:88
+#: View/Settings/index.ctp:91
 msgid "Local machine"
 msgstr "Tarakilishi ya kiambo"
 
-#: View/Settings/index.ctp:95
+#: View/Settings/index.ctp:98;132
 msgid "Your current IP address is"
 msgstr "Anwani yako ya IP (itifaki ya wavuti) ni"
 
-#: View/Settings/index.ctp:115
+#: View/Settings/index.ctp:141
 msgid "Environment settings"
 msgstr "Mipangilio ya mazingira"
 
@@ -3317,6 +3336,12 @@ msgstr ""
 
 #: View/SmsGateways/index.ctp:61
 msgid "Are you sure you want to delete this SMS gateway?"
+msgstr ""
+
+#: View/SmsGateways/index.ctp:95
+msgid ""
+"No SMS gateways exist. Please create one by clicking the <i>Create new</i> "
+"button to the right."
 msgstr ""
 
 #: View/Tags/add.ctp:29
@@ -3413,9 +3438,7 @@ msgid "Longest/shortest request: :longest sec/:shortest sec"
 msgstr ""
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:134
-msgid ""
-"Allows you to obtain some rough benchmarking statisticsabout a fully "
-"qualified URL."
+msgid "Allows you to obtain some rough benchmarking statistics"
 msgstr ""
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:139
@@ -3427,15 +3450,12 @@ msgid "Number of iterations to perform."
 msgstr ""
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:148
-msgid ""
-"Maximum total time for all iterations, in seconds.If a single iteration "
-"takes more than the tiemout, only one request will be made"
+msgid "Maximum total time for all iterations, in seconds."
 msgstr ""
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:152
 msgid ""
 "Example Use: `cake benchmark --n 10 --t 100 http://localhost/testsite`. "
-"<info>Note:</info> this benchmark does not include browser render times."
 msgstr ""
 
 #: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:159
@@ -3634,6 +3654,10 @@ msgstr ""
 msgid "Absolute path or relative to APP."
 msgstr ""
 
+#: View/Errors/error400.ctp:21 View/Errors/error500.ctp:21
+msgid "Error"
+msgstr "Kosa"
+
 #: View/Errors/error400.ctp:23
 msgid "The requested address %s was not found on this server."
 msgstr ""
@@ -3662,6 +3686,12 @@ msgstr ""
 #~ msgid "French"
 #~ msgstr "Kifaransa"
 
+#~ msgid "OfficeRoute SNMP daemon is not running."
+#~ msgstr "Programu-tumizi OfficeRoute SNMP haiendeshwi."
+
+#~ msgid "Edit Mobigater"
+#~ msgstr "Hariri Mobigater"
+
 #~ msgid "You are logged in!"
 #~ msgstr "Umeingia!"
 
@@ -3676,20 +3706,41 @@ msgstr ""
 #~ "The following file could not be uploaded due to file size restrictions"
 #~ msgstr "Faili hili halijapakiliwa kwa sababu ukubwa unazidi upeo"
 
+#~ msgid "The phone book has been created"
+#~ msgstr "Kitabu cha simu kimeundwa"
+
 #~ msgid "No file found"
 #~ msgstr "Hakuna faili lolote lililogunduliwa"
+
+#~ msgid "Reporting of incoming calls"
+#~ msgstr "Simulizi la miito iliyofika"
 
 #~ msgid "All Leave-a-message"
 #~ msgstr "Acha-ujumbe zote"
 
+#~ msgid "Office Route"
+#~ msgstr "Office Route"
+
+#~ msgid "SNMP daemon is not running."
+#~ msgstr "Programu-tumizi SNMP haiendeshwi"
+
 #~ msgid "Mobigater"
 #~ msgstr "Mobigater"
+
+#~ msgid "There are no Mobigater units connected to your system."
+#~ msgstr "Hakuna kifaa cha Mobigater kilichounganishwa na mfumo wako."
 
 #~ msgid "This page does not exist. Missing controller."
 #~ msgstr "Ukurasa huo haupo. Hakuna kidhibiti."
 
 #~ msgid "This view does not exist."
 #~ msgstr "Muonekano huo haupo."
+
+#~ msgid "Cron and refresh"
+#~ msgstr "Ratibisha na kuonyesha upya"
+
+#~ msgid "Debug"
+#~ msgstr "Eua"
 
 #~ msgid "LAM Service"
 #~ msgstr "Huduma ya Acha-Ujumbe"

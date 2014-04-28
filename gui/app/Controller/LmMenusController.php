@@ -119,7 +119,7 @@ class LmMenusController extends AppController{
 
                       foreach ($fileOK['urls'] as $key =>  $url ){
                               $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-                              $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+                              $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 
 
                       }
@@ -198,7 +198,7 @@ class LmMenusController extends AppController{
 
                                         foreach ($fileOK['urls'] as $key =>  $url ){
                                             $this->log("Msg: NEW MENU AUDIO FILE; File: ".$url, "leave_message");
-                              		    $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+                              		    $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
                                         }
                                   }
 

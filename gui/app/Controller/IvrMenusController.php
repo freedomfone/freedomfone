@@ -217,7 +217,7 @@ class IvrMenusController extends AppController{
                                            $this->IvrMenu->saveField($field,$name);
 
 		   			   $this->log("[INFO] ADD IVR, New audio file: ".$url, "ivr");
-                   			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+                   			   $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 				   }
 					
 				}
@@ -378,7 +378,7 @@ class IvrMenusController extends AppController{
                                            $this->IvrMenu->saveField($field,$name);
 
 		   			   $this->log("[INFO] EDIT SELECTOR, New audio file: ".$url, "ivr");
-		  			    $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+		  			    $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 				   }
 					
 				}
@@ -499,7 +499,7 @@ class IvrMenusController extends AppController{
                                            $field = $fileData[$key]['fileName'];
    
                                            $this->IvrMenu->saveField($field,$name);
-		    			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+		    			   $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 					   $this->log("[INFO] EDIT IVR, New file uploaded: ".$url, "ivr");
 				   }
 					
@@ -818,7 +818,7 @@ class IvrMenusController extends AppController{
                                 foreach ($fileOK['urls'] as $key => $url ){
 				           $this->IvrMenu->id = $id;
 
-                   			   $this->Session->setFlash(__('The file %s was successsfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
+                   			   $this->Session->setFlash(__('The file %s was successfully uploaded.', $fileOK['original'][$key]), 'success', array(), $key);
 
 					   $this->log("[INFO] EDIT SELECTOR, File uploaded: ".$url, "ivr");
 					   $name= $fileData[$key]['name'];

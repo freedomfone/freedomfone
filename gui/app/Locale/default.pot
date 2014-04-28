@@ -292,7 +292,7 @@ msgstr ""
 
 #: Controller/IvrMenusController.php:220;381;502;821
 #: Controller/LmMenusController.php:122;201
-msgid "The file %s was successsfully uploaded."
+msgid "The file %s was successfully uploaded."
 msgstr ""
 
 #: Controller/IvrMenusController.php:229;390;512;836

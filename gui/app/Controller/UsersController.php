@@ -189,7 +189,7 @@ class UsersController extends AppController{
 
          if($id != 1 ){
     	     if($this->User->delete($id,true)) {
-    	         $this->Session->setFlash(__('The user been deleted.',true),'success');
+    	         $this->Session->setFlash(__('The user has been deleted.',true),'success');
 	         $this->redirect(array('action' => '/index'));
 	     }
          } else {

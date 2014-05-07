@@ -28,14 +28,14 @@ class PhoneBooksController extends AppController {
 
       var $scaffold;
       var $helpers = array('Csv','Session');
-      var $paginate = array('limit' => 100, 'page' => 1, 'order' => array( 'PhoneBook.name' => 'asc'));
+      var $paginate = array('limit' => 10, 'page' => 1, 'order' => array( 'PhoneBook.name' => 'asc'));
 
 
 	function index() {
 
                 $this->set('title_for_layout', __('Phone books',true));
 		$this->PhoneBook->recursive = 0;
-		$this->set('data', $this->paginate());
+		$this->set('data', $this->paginate('PhoneBook'));
 
 
 	}

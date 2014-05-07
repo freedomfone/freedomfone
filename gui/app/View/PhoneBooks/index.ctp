@@ -34,6 +34,9 @@ $this->Access->showButton($authGroup, 'PhoneBook', 'add', 'frameRightAlone', __(
 
    if ($data){
 
+     echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Phone book:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+
+
 
       echo "<table width='500px' class='collapsed' cellspacing=0>";
       echo $this->Html->tableHeaders(array(__('Phone book',true),__('Description',true),__('Actions',true)));
@@ -54,6 +57,16 @@ $this->Access->showButton($authGroup, 'PhoneBook', 'add', 'frameRightAlone', __(
 
          echo $this->Html->tableCells($row);
          echo "</table>";
+
+     if($this->Paginator->counter(array('format' => '%pages%'))>1){
+           echo $this->Html->div('paginator', $this->Paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$this->Paginator->numbers().' '.$this->Paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+     }
+
+
+     echo $this->Html->div('paginator', __("Entries per page ",true).$this->Html->link('25','index/limit:25',null, null, false)." | ".$this->Html->link('50','index/limit:50',null, null, false)." | ".$this->Html->link('100','index/limit:100',null, null, false));
+
+
+
 
 
    }   else {

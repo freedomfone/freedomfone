@@ -28,6 +28,8 @@ class PhoneBooksController extends AppController {
 
       var $scaffold;
       var $helpers = array('Csv','Session');
+      var $paginate = array('limit' => 100, 'page' => 1, 'order' => array( 'PhoneBook.name' => 'asc'));
+
 
 	function index() {
 

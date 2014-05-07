@@ -53,7 +53,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	           'minLength'	=> array(
 		   		'rule'	=> array('minLength', 5),
 		   		'required' => true,
-		   		'message'=> __('A valid name of the SMS batch is required (Main 5 characters).',true)
+		   		'message'=> __('A valid name of the SMS batch is required (Min 5 characters).',true)
 		   	       ),
 		'isUnique'     => array(
 		       	       'rule'	 => 'isUnique',

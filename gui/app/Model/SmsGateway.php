@@ -64,7 +64,7 @@ function __construct($id = false, $table = null, $ds = null) {
         'api_key' => array(
             'rule'      => 'numeric',
 	    'required' 	=> true,
-            'message'	=> __('Please enter a API key. Valid  characters are	1-9.',true)
+            'message'	=> __('Please enter a API key. Valid  characters are 1-9.',true)
 	    ),
 
 	);

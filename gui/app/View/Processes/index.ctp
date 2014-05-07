@@ -87,7 +87,7 @@ echo "<h1>".__('Health',true)."</h1>";
     	$row[] = array($this->element('process_status',array('status'=>$freeswitch,'mode'=>'image')),__("FreeSWITCH",true), $running,"","",""); 
 
 
-        $headers = array('',__('Component',true),__('Status',true),__('Interupt mode',true),__('Start',true),__('Stop',true));
+        $headers = array('',__('Component',true),__('Status',true),__('Interrupt mode',true),__('Start',true),__('Stop',true));
 
         if($authGroup != 1){
               unset($headers[4]);

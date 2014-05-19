@@ -38,9 +38,48 @@ echo "The following networks will be whitelisted in the firewall"
 cat $WHITELIST_FILE
 }
 
+
+start () {
+for NET in `cat $WHITELIST_FILE`; do
+/sbin/iptables -A INPUT -p udp -m udp --dport 5060 -s $NET -j ACCEPT 
+/sbin/iptables -A INPUT -p udp -m udp --dport 5080 -s $NET -j ACCEPT 
+done
+/sbin/iptables -A INPUT -p udp -m udp --dport 5060 -j LOG --log-prefix "Freedom Fone SIP registration request" 
+/sbin/iptables -A INPUT -p udp -m udp --dport 5080 -j LOG --log-prefix "Freedom Fone SIP registration request" 
+/sbin/iptables -A INPUT -p udp -m udp --dport 5060  -j DROP
+/sbin/iptables -A INPUT -p udp -m udp --dport 5080  -j DROP
+}
+
+
+stop () {
+for NET in `cat $WHITELIST_FILE`; do
+/sbin/iptables -D INPUT -p udp -m udp --dport 5060 -s $NET -j ACCEPT
+/sbin/iptables -D INPUT -p udp -m udp --dport 5080 -s $NET -j ACCEPT
+done
+/sbin/iptables -D INPUT -p udp -m udp --dport 5060 -j LOG --log-prefix "Freedom Fone SIP registration request" 
+/sbin/iptables -D INPUT -p udp -m udp --dport 5080 -j LOG --log-prefix "Freedom Fone SIP registration request" 
+/sbin/iptables -D INPUT -p udp -m udp --dport 5060  -j DROP
+/sbin/iptables -D INPUT -p udp -m udp --dport 5080  -j DROP
+}
+
+show () {
+echo "Networks whitelisted" 
+cat $WHITELIST_FILE
+/sbin/iptables -L 
+}
+
 case "$1" in
 	config)
 	config
+	;;
+	start)
+	start	
+	;;
+	stop)
+	stop
+	;;
+	show)
+	show
 	;;
   	*)
         echo "Usage: $ROOT_PATH/freedomfone_firewall {config|start|stop}"

@@ -43,9 +43,9 @@ start () {
 for NET in `cat $WHITELIST_FILE`; do
 /sbin/iptables -A INPUT -p udp -m udp --dport 5060 -s $NET -j ACCEPT 
 /sbin/iptables -A INPUT -p udp -m udp --dport 5080 -s $NET -j ACCEPT 
+/sbin/iptables -A INPUT -p udp -m udp --dport 5060 ! -s $NET  -j LOG --log-prefix "Freedom Fone SIP registration attempt " 
+/sbin/iptables -A INPUT -p udp -m udp --dport 5080 ! -s $NET  -j LOG --log-prefix "Freedom Fone SIP registration attempt " 
 done
-/sbin/iptables -A INPUT -p udp -m udp --dport 5060 -j LOG --log-prefix "Freedom Fone SIP registration request" 
-/sbin/iptables -A INPUT -p udp -m udp --dport 5080 -j LOG --log-prefix "Freedom Fone SIP registration request" 
 /sbin/iptables -A INPUT -p udp -m udp --dport 5060  -j DROP
 /sbin/iptables -A INPUT -p udp -m udp --dport 5080  -j DROP
 }
@@ -55,9 +55,9 @@ stop () {
 for NET in `cat $WHITELIST_FILE`; do
 /sbin/iptables -D INPUT -p udp -m udp --dport 5060 -s $NET -j ACCEPT
 /sbin/iptables -D INPUT -p udp -m udp --dport 5080 -s $NET -j ACCEPT
+/sbin/iptables -D INPUT -p udp -m udp --dport 5060 ! -s $NET -j LOG --log-prefix "Freedom Fone SIP registration attempt " 
+/sbin/iptables -D INPUT -p udp -m udp --dport 5080 ! -s $NET -j LOG --log-prefix "Freedom Fone SIP registration attempt " 
 done
-/sbin/iptables -D INPUT -p udp -m udp --dport 5060 -j LOG --log-prefix "Freedom Fone SIP registration request" 
-/sbin/iptables -D INPUT -p udp -m udp --dport 5080 -j LOG --log-prefix "Freedom Fone SIP registration request" 
 /sbin/iptables -D INPUT -p udp -m udp --dport 5060  -j DROP
 /sbin/iptables -D INPUT -p udp -m udp --dport 5080  -j DROP
 }
@@ -82,7 +82,7 @@ case "$1" in
 	show
 	;;
   	*)
-        echo "Usage: $ROOT_PATH/freedomfone_firewall {config|start|stop}"
+        echo "Usage: $ROOT_PATH/freedomfone_firewall {config|show|start|stop}"
         exit 1
 
 esac

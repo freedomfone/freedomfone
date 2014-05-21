@@ -26,6 +26,8 @@
 
      if($batch){
 
+     echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
+
       echo $this->Form->create('Batch',array('type' => 'post','action'=> 'process','name' =>'Batch'));
       echo "<table width='95%' cellspacing=0>";
 
@@ -42,9 +44,9 @@
       foreach ($batch as $key => $entry){
         $id = $this->Access->showBlock($authGroup, "<input name='batch[$key]['Batch']' type='checkbox' value='".$entry['Batch']['id']."' id='check' class='check'>");
 	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
-	$name         = $entry['Batch']['name'];
-	$message      = array($entry['Batch']['body'], array('width' => '400px'));
-	$sender        = $entry['Batch']['sender_number'];
+	$name     = array($entry['Batch']['name'], array('width' => '200px'));
+	$message      = array($entry['Batch']['body'], array('width' => '250px'));
+	$sender  = array($entry['Batch']['sender_number'], array('width' => '100px'));
 	if(!$channel  = $entry['Batch']['sender']){
 	 $channel     = $entry['SmsGateway']['name'];
 	}

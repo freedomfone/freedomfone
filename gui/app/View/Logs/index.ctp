@@ -29,7 +29,27 @@ echo "<h1>".__("Logs",true)."</h1>";
 echo $this->Html->div('instructions',__('Select log file to view.',true));
 echo $this->Form->create("Log");
 
-     $system_log = Configure::read('SYSTEM_LOG');
+$system_log = array('gui' => array(
+					'poll'=>__('Poll'),
+					'bin' => __('Incoming SMS'),
+					'message'=> __('Message Centre'),
+					'ivr' => __('IVR Centre'),
+					'cdr' => __('CDR'), 
+					'monitor_ivr' => __('Monitoring'),
+					'health' => __('Health'), 
+					'refresh' => __('Cron and refresh'),
+					'debug'=> __('Debug'),
+					'error' => __('Error'),
+					),
+			'system' => array(
+					'pop3_daemon' => __('Office Route SMS'),
+					'gammu_daemon' => __('Gammu SMS'),
+					'dispatcher_in'  => __('Dispatcher'),
+					'gui-access' => __('GUI access'),
+					'gui-error' => __('GUI error'),
+					));
+
+
      $opt = $system_log['gui'] + $system_log['system'];
 
 

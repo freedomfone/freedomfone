@@ -59,7 +59,7 @@ echo "<h1>".__('SMS receivers',true)."</h1>";
      	$row[$key2] = array(
 		     $status,
                      $receiver, 
-                     );
+                     );		
 
 	}
 

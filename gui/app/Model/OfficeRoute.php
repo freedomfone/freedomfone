@@ -39,6 +39,17 @@ class OfficeRoute extends AppModel{
 
  function refresh(){
 
+   $OR_MIB= array( 
+                'sim_inserted'		=> array(__('No'), __('Yes')),
+                'network_registration'  => array(__('Not registered'), 
+					         __('Registered to home network'),
+						 __('Searching for network'),
+						 __('Registration denied'),
+						 __('Unknown'),
+						 __('Registered roaming'))
+                				 );
+
+
     $or_mib    = Configure::read('OR_MIB');
     $snmp   = Configure::read('OR_SNMP');
     $mib = false;
@@ -61,8 +72,8 @@ class OfficeRoute extends AppModel{
                           $mib[$j]['line_id']               =  $this->get_entry($unit, 2, $i);
                           $mib[$j]['imei']                  =  $this->get_entry($unit, 3, $i);
                           $mib[$j]['signal_level']          =  $this->get_entry($unit, 7, $i);
-                          $mib[$j]['sim_inserted']          =  $or_mib['sim_inserted'][$this->get_entry($unit, 9, $i)];
-                          $mib[$j]['network_registration']  =  $or_mib['network_registration'][$this->get_entry($unit, 10, $i)];
+                          $mib[$j]['sim_inserted']          =  $OR_MIB['sim_inserted'][$this->get_entry($unit, 9, $i)];
+                          $mib[$j]['network_registration']  =  $OR_MIB['network_registration'][$this->get_entry($unit, 10, $i)];
                           $mib[$j]['imsi']                  =  $this->get_entry($unit, 12, $i);
                           $mib[$j]['operator_name']         =  $this->get_entry($unit, 14, $i);         
                           $mib[$j]['ip_addr']               =  $unit['ip_addr'];

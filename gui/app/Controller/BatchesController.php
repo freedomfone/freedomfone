@@ -176,7 +176,7 @@ class BatchesController extends AppController{
 		        $status=true;
 		 } else { 
 		        $status=false;
-			$this->Session->setFlash("The batch failed. Please review your gateway credentials and receivers numbers.", "error");
+			$this->Session->setFlash(__("The batch failed. Please review your gateway credentials and receivers numbers.",true), "error");
 		 }
 
 		 $this->Batch->id = intval($batch_id);
@@ -206,7 +206,7 @@ class BatchesController extends AppController{
     
     	     if($this->Batch->delete($id))
 	     {
-		$this->Session->setFlash('SMS batch has been deleted.','success');
+		$this->Session->setFlash(__('SMS batch has been deleted.',true),'success');
                 $this->log('[INFO], SMS DELETED; Id: '.$id, 'batch');
 	     	$this->redirect(array('action' => 'index'));
 	     }

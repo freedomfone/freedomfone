@@ -97,7 +97,7 @@ class SmsGatewaysController extends AppController{
 
     	     if($this->SmsGateway->delete($id))
 	     {
-		$this->Session->setFlash('SMS gateway has been deleted.');
+		$this->Session->setFlash(__('SMS gateway has been deleted.',true),'success');
                 $this->log('[INFO], SMS GATEWAY DELETED; Id: '.$id, 'sms_gateway');
 	     	$this->redirect(array('action' => 'index'));
 	     }

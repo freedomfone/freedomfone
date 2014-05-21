@@ -30,17 +30,21 @@
       echo "<table width='95%' cellspacing=0>";
 
       echo $this->Html->tableHeaders(array(
+        false,
  	$this->Paginator->sort('status', __("Status",true)),
  	$this->Paginator->sort('name', __("Name",true)),
  	$this->Paginator->sort('body', __("Message",true)),
+ 	$this->Paginator->sort('sender_number', __("Sender",true)),
  	$this->Paginator->sort('sender', __("Channel",true)),
  	$this->Paginator->sort('created', __("Time",true)),
 	__('Action',true)));
 
       foreach ($batch as $key => $entry){
+        $id = $this->Access->showBlock($authGroup, "<input name='batch[$key]['Batch']' type='checkbox' value='".$entry['Batch']['id']."' id='check' class='check'>");
 	$status	  =  $this->element('process_status',array('status'=>$entry['Batch']['status'],'mode'=>'image'));
 	$name         = $entry['Batch']['name'];
 	$message      = array($entry['Batch']['body'], array('width' => '400px'));
+	$sender        = $entry['Batch']['sender_number'];
 	if(!$channel  = $entry['Batch']['sender']){
 	 $channel     = $entry['SmsGateway']['name'];
 	}
@@ -51,9 +55,11 @@
         $view   = $this->Html->image("icons/view.png", array("alt" => __("View receivers",true), "title" => __("View receivers",true), "url" => array("controller" => "batches", "action" => "view", $entry['Batch']['id'])));
 
      	$row[$key] = array(
+		     $id,
 		     $status,
                      $name, 
-   		     $message, 
+   		     $message,
+		     $sender, 
                      $channel, 
                      $created, 
                      array($this->Access->showBlock($authGroup, $delete)." ".$view , array('align'=>'center'))
@@ -65,9 +71,26 @@
      echo $this->Html->tableCells($row);
      echo "</table>"; 
 
+     if($authGroup == 1) {
+                   echo "<table cellspacing = 0 class = 'none' border=0>";
+                   echo $this->Html->tableCells(array(__('Perform action on selected',true).': ',
+                   $this->Form->submit( __('Delete',true), array('name' =>'data[Submit]', 'class' => 'button'))),array('class' => 'none'),array('class' => 'none'));
+                   echo "</table>";
+     }
+
 
      echo $this->Form->end();
     
+
+     if($this->Paginator->counter(array('format' => '%pages%'))>1){
+           echo $this->Html->div('paginator', $this->Paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$this->Paginator->numbers().' '.$this->Paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
+     }
+
+
+     echo $this->Html->div('paginator', __("Entries per page ",true).$this->Html->link('10','index/limit:10',null, null, false)." | ".$this->Html->link('25','index/limit:25',null, null, false)." | ".$this->Html->link('50','index/limit:50',null, null, false));
+
+
+
     }
 
 

@@ -46,9 +46,7 @@ echo "<table cellpadding=0 class='blue'>";
      array(array(__("Comment",true),"colspan='2' class='formComment'")),
 
      array(__("Type",true),	$this->Form->input('gateway_code',array('label'=>false,'options' => $gateway_types))),
-     array(array(__("URL of SMS gateway.",true),"colspan='2' class='formComment'")),
-
-
+     array(array(__("Type of SMS gateway. Currently only Clickatell supported.",true),"colspan='2' class='formComment'")),
 
      array(__("URL",true),	$this->Form->input('url',array('label'=>false,'size' => '30'))),
      array(array(__("URL of SMS gateway.",true),"colspan='2' class='formComment'")),

@@ -35,7 +35,7 @@ echo $this->Form->end();
 
 
    echo "</br><h1>".__('Service mapping',true)."</h1>";
-   echo $this->Html->div(false, 'To map services to an OfficeRoute gateway, please login to the OfficeRoute device and perform the mapping.');
+   echo $this->Html->div(false, __('To map services to an OfficeRoute gateway, please login to the OfficeRoute device and perform the mapping.',true));
 
    if($gammu_discovery){
 

@@ -262,7 +262,7 @@ class BatchesController extends AppController{
 
     	     if(array_key_exists('Submit', $this->request->data)){
 
-	        if($this->request->data['Submit'] == 'Delete'){
+	        if($this->request->data['Submit'] == __('Delete')){
 
 		  foreach($this->request->data['batch'] as $id){
 		    $this->Batch->delete($id);

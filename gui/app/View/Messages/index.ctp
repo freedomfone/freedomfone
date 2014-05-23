@@ -169,18 +169,6 @@
      }
 
 
-     if($this->Paginator->counter(array('format' => '%pages%'))>1){
-           echo $this->Html->div('paginator', $this->Paginator->prev('«'.__('Previous',true), array( 'class' => 'PrevPg'), null, array('class' => 'PrevPg DisabledPgLk')).' '.$this->Paginator->numbers().' '.$this->Paginator->next(__('Next',true).'»',array('class' => 'NextPg'), null, array('class' => 'NextPg DisabledPgLk')));
-
-
-        $prev = $this->Js->link('«'.__('Previous',true),"/messages/disp/2", array('update' => 'service_div'), null, 1);
-	$next = $this->Js->link(__('Next',true).'»','/messages/disp/2', array('update' => 'service_div'), null, 1);
-
-
-        echo  $this->Html->div('paginator', $prev.$next);
-
-    }
-
 
      } else {
 

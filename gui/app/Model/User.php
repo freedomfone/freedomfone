@@ -108,7 +108,7 @@ function __construct($id = false, $table = null, $ds = null) {
 	'password' => array(
  			'between' => array(
                                        'required' => false,
-                                       'empty' => false,
+                                       'empty' => true,
  				       'rule' => array('between', 5, 50),
  				       'message' => __('The password must be between 5 to 50 characters',true)
  				       ),

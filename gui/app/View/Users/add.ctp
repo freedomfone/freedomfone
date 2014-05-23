@@ -32,7 +32,7 @@
      echo $this->Session->flash();
 
 
-      echo $this->Form->create('User',array('type' => 'post','action'=> 'add'));
+      echo $this->Form->create('User',array('type' => 'post','action'=> 'add', 'novalidate'=> true,'autocomplete' =>'off' ));   				       			 
       echo "<table cellspacing=0 'class'='stand-alone'>";
 
       echo $this->Html->tableCells(array (

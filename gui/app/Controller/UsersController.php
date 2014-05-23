@@ -114,7 +114,7 @@ class UsersController extends AppController{
 		    } else {
 
                          $errors = $this->User->invalidFields(); 
-			 $this->Session->setFlash(__('Validation error, please try again.',true),'error');
+			 $this->Session->setFlash($errors['password'][0],'error');
 
                     }
 

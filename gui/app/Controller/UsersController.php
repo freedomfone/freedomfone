@@ -25,6 +25,7 @@
 class UsersController extends AppController{
 
       var $name = 'Users';
+      var $helpers = array('Session');
       var $belongsTo = array('Group');
       var $actsAs = array('Acl' => array('type' => 'requester'));
 
@@ -125,13 +126,23 @@ class UsersController extends AppController{
 
 	function edit($id = null) {
 
+                   $this->loadModel('Group');
+                   $groups =  $this->Group->find('list');
+                   $this->set(compact('groups'));
+
+
+
                 $this->set('title_for_layout', __('Edit System User',true));
 
+
+		//No id set
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(__('Invalid option', true),'warning');
 			$this->redirect(array('action'=>'index'));
 		}
 
+
+		//Form data exists, validate and save
 		if (!empty($this->request->data)) {
 
                     //Set password to non-hashed for validation
@@ -146,16 +157,16 @@ class UsersController extends AppController{
 
                     $this->User->set($this->request->data);
 
-  		    if ($this->User->save($this->request->data) && key_exists('password',$this->request->data['User']) ) {
 
+		    //If password is being changed, validate data
+		   if(key_exists('password',$this->request->data['User'])){
+
+  		    if ($this->User->validates($this->request->data)) {
 
                          //If data is saved/validated, update password field with hashed version	               
                          $this->User->id = $id;
 
 			 $this->User->saveField('password', $this->request->data['User']['pwd']);
-        
-
-
 			 $this->Session->setFlash(__('User has been updated.', true),'success');
 			 $this->redirect(array('action'=>'index'));
 
@@ -163,17 +174,23 @@ class UsersController extends AppController{
 
                          $errors = $this->User->invalidFields(); 
                          if(key_exists('password', $errors)){
-			    $this->Session->setFlash($errors['password'], 'error');
+
+			    $this->Session->setFlash($errors['password'][0], 'error');
                          }
 
-                    }
+                    } //else
 
+		    } //else
+		    else {
+
+		    $this->User->saveField('group_id', $this->request->data['User']['group_id']);
 			 $this->Session->setFlash(__('User has been updated.', true),'success');
 			 $this->redirect(array('action'=>'index'));
 
- 
-		}
+		    } 
 
+		} //if
+		else {
 
                    $this->loadModel('Group');
                    $groups =  $this->Group->find('list');
@@ -183,6 +200,8 @@ class UsersController extends AppController{
 
 
 	}
+
+}
 
 
        function delete ($id){

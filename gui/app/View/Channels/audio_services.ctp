@@ -37,6 +37,7 @@ echo $this->Form->end();
    echo "</br><h1>".__('Service mapping',true)."</h1>";
    echo $this->Html->div(false, __('To map services to an OfficeRoute gateway, please login to the OfficeRoute device and perform the mapping.',true));
 
+
    if($gammu_discovery){
 
       echo $this->Form->create("Channel");
@@ -59,10 +60,10 @@ echo $this->Form->end();
 
         $entry = explode(',',$entry);
       echo $this->Form->hidden('Channel.'.$key.'.interface_id',array('value'=>trim($entry[9]))); 
-    	$row[$key]['enable']		= $entry[5] ? 'Yes' : 'No';
+    	$row[$key]['enable']		= $entry[5] ? __('Yes') : __('No');
      	$row[$key]['gateway']		= $entry[6];
-     	$row[$key]['inbound']		= $entry[7] ? 'Yes' : 'No';
-     	$row[$key]['outbound']		= $entry[8] ? 'Yes' : 'No';;
+     	$row[$key]['inbound']		= $entry[7] ? __('Yes') : __('No');
+     	$row[$key]['outbound']		= $entry[8] ? __('Yes') : __('No');
      	$row[$key]['IMSI']		= $entry[0];
      	$row[$key]['manufacturer'] 	= $entry[2];
      	$row[$key]['model'] 		= $entry[4];

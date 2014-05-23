@@ -36,7 +36,7 @@
         $options    = array('label' =>  false, 'value' => '','type' => 'password');
 
 
-        echo $this->Form->create('User', array('type' => 'post','action'=> 'edit'));   				       			 
+        echo $this->Form->create('User', array('type' => 'post','action'=> 'edit', 'novalidate'=> true,'autocomplete' => 'off' ));   				       			 
         echo $this->Form->hidden('id');
         echo $this->Form->hidden('username');
 

@@ -143,7 +143,7 @@
    
       foreach ($gammu as $key => $entry){
 
-
+print_r($entry);
      	$interface_id    = $entry['ID'];
      	$updated         = $entry['UpdatedInDB'];
       	$inserted        = $entry['InsertIntoDB'];

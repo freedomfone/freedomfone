@@ -25,11 +25,11 @@
 	if ($string){
 
 
-		if($string == 'yes'){
+		if($string == 'yes' || $string == 'Yes'){
    		  return __('Yes',true);
 		}
 
-		elseif($string == 'no'){
+		elseif($string == 'no' || $string =='No'){
    		  return  __('No',true);
 		}
 

@@ -26,18 +26,14 @@
 
 
 		if($string == 'yes' || $string == 'Yes'){
-   		  return __('Yes',true);
+   		  echo __('Yes',true);
 		}
 
 		elseif($string == 'no' || $string =='No'){
-   		  return  __('No',true);
+   		  echo  __('No',true);
 		}
 
-	} else {
-
-	  return false;
-
-	  }
+	} 
 
 
 

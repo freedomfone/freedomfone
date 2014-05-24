@@ -24,7 +24,7 @@
 
 	if ($string){
 
-echo $string;
+
 		if($string == 'yes'){
    		  return __('Yes',true);
 		}

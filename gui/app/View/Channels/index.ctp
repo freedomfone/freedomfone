@@ -143,21 +143,20 @@
    
       foreach ($gammu as $key => $entry){
 
-print_r($entry);
+
      	$interface_id    = $entry['ID'];
      	$updated         = $entry['UpdatedInDB'];
       	$inserted        = $entry['InsertIntoDB'];
-      	$send    	 = $entry['Send'];
-      	$receive  	 = $entry['Receive'];
+
 	$imei            = $entry['IMEI'];
 	$client          = $entry['Client'];
 	$battery	 = $entry['Battery'];
 	$signal 	 = $this->element('channel_signal_level', array('gammu_signal' => $entry['Signal']));
-	$sent		 = $this->element('general', array('string'=> $entry['Sent']));
-	$received	 = $this->element('general', array('string'=> $entry['Received']));
+	$send		 = $this->element('general', array('string'=> $entry['Send']));
+	$receive	 = $this->element('general', array('string'=> $entry['Receive']));
 
 
-     	$row[] = array($interface_id, $imei, $signal, $updated, $inserted, $sent, $received );
+     	$row[] = array($interface_id, $imei, $signal, $updated, $inserted, $send, $receive );
 
 	}
 

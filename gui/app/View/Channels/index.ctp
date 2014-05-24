@@ -152,11 +152,11 @@
 	$client          = $entry['Client'];
 	$battery	 = $entry['Battery'];
 	$signal 	 = $this->element('channel_signal_level', array('gammu_signal' => $entry['Signal']));
-	$sent		 = $entry['Sent'];
-	$received	 = $entry['Received'];
+	$sent		 = $this->element('general', array('string'=> $entry['Sent']));
+	$received	 = $this->element('general', array('string'=> $entry['Received']));
 
 
-     	$row[] = array($interface_id, $imei, $signal, $updated, $inserted, $send, $receive, );
+     	$row[] = array($interface_id, $imei, $signal, $updated, $inserted, $sent, $received );
 
 	}
 

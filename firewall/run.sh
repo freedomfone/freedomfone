@@ -82,7 +82,7 @@ case "$1" in
 	show
 	;;
   	*)
-        echo "Usage: $ROOT_PATH/freedomfone_firewall {config|show|start|stop}"
+        echo "Usage: $ROOT_PATH/run.sh {config|show|start|stop}"
         exit 1
 
 esac

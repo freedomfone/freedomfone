@@ -1,58 +1,81 @@
-Migrating swa
-** Migrating files... **
-Copied sharicus/swa/LC_MESSAGES/./default.po
-** Updating files against templates **
-sharicus/swa/LC_MESSAGES/./default.posharicus/swa/LC_MESSAGES/default.po
+Total words to translate per release
+pot/sharicus/default.pot
 type              strings      words (source)    words (translation)
-translated:     598 ( 79%)       2896 ( 79%)            2775
+translated:       0 (  0%)          0 (  0%)               0
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   157 ( 20%)        761 ( 20%)             n/a
-Total:          755              3657                   2775
+untranslated:   729 (100%)       3577 (100%)             n/a
+Total:          729              3577                      0
 
-unreviewed:      598 ( 79%)       2896 ( 79%)            2775
-empty:      157 ( 20%)        761 ( 20%)               0
+empty:      729 (100%)       3577 (100%)               0
 
-Migrating fre
-** Migrating files... **
-Copied sharicus/fre/LC_MESSAGES/./default.po
-** Updating files against templates **
-sharicus/fre/LC_MESSAGES/./default.posharicus/fre/LC_MESSAGES/default.po
+pot/sekowei/default.pot
 type              strings      words (source)    words (translation)
-translated:     566 ( 74%)       2748 ( 75%)            2970
+translated:       0 (  0%)          0 (  0%)               0
 fuzzy:            0 (  0%)          0 (  0%)             n/a
-untranslated:   189 ( 25%)        909 ( 24%)             n/a
-Total:          755              3657                   2970
+untranslated:   512 (100%)       2428 (100%)             n/a
+Total:          512              2428                      0
 
-unreviewed:      566 ( 74%)       2748 ( 75%)            2970
-empty:      189 ( 25%)        909 ( 24%)               0
+empty:      512 (100%)       2428 (100%)               0
 
-Migrating esp
-** Migrating files... **
-Copied sharicus/esp/LC_MESSAGES/./default.po
-** Updating files against templates **
-sharicus/esp/LC_MESSAGES/./default.posharicus/esp/LC_MESSAGES/default.po
+pot/manguensis/default.pot
 type              strings      words (source)    words (translation)
-translated:     237 ( 31%)        668 ( 18%)             778
-fuzzy:            1 (  0%)          1 (  0%)             n/a
-untranslated:   517 ( 68%)       2988 ( 81%)             n/a
-Total:          755              3657                    778
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   607 (100%)       2943 (100%)             n/a
+Total:          607              2943                      0
 
-unreviewed:      237 ( 31%)        668 ( 18%)             778
-needs-work:        1 (  0%)          1 (  0%)               0
-empty:      517 ( 68%)       2988 ( 81%)               0
+empty:      607 (100%)       2943 (100%)               0
 
-Migrating por
-** Migrating files... **
-Copied sharicus/por/LC_MESSAGES/./default.po
-** Updating files against templates **
-sharicus/por/LC_MESSAGES/./default.posharicus/por/LC_MESSAGES/default.po
+pot/suyo/default.pot
 type              strings      words (source)    words (translation)
-translated:     586 ( 77%)       2830 ( 77%)            3112
-fuzzy:            2 (  0%)          4 (  0%)             n/a
-untranslated:   167 ( 22%)        823 ( 22%)             n/a
-Total:          755              3657                   3112
+translated:       0 (  0%)          0 (  0%)               0
+fuzzy:            0 (  0%)          0 (  0%)             n/a
+untranslated:   638 (100%)       2648 (100%)             n/a
+Total:          638              2648                      0
 
-unreviewed:      586 ( 77%)       2830 ( 77%)            3112
-needs-work:        2 (  0%)          4 (  0%)               0
-empty:      167 ( 22%)        823 ( 22%)               0
+empty:      638 (100%)       2648 (100%)               0
 
+Total words to translate per release after migration
+./sharicus/por/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     687 ( 94%)       3319 ( 92%)            3663
+fuzzy:           11 (  1%)         58 (  1%)             n/a
+untranslated:    31 (  4%)        200 (  5%)             n/a
+Total:          729              3577                   3663
+
+unreviewed:      687 ( 94%)       3319 ( 92%)            3663
+needs-work:       11 (  1%)         58 (  1%)               0
+empty:       31 (  4%)        200 (  5%)               0
+
+./sharicus/fra/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     692 ( 94%)       3352 ( 93%)            3687
+fuzzy:            7 (  0%)         28 (  0%)             n/a
+untranslated:    30 (  4%)        197 (  5%)             n/a
+Total:          729              3577                   3687
+
+unreviewed:      692 ( 94%)       3352 ( 93%)            3687
+needs-work:        7 (  0%)         28 (  0%)               0
+empty:       30 (  4%)        197 (  5%)               0
+
+./sharicus/swa/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     690 ( 94%)       3347 ( 93%)            3272
+fuzzy:            2 (  0%)          2 (  0%)             n/a
+untranslated:    37 (  5%)        228 (  6%)             n/a
+Total:          729              3577                   3272
+
+unreviewed:      690 ( 94%)       3347 ( 93%)            3272
+needs-work:        2 (  0%)          2 (  0%)               0
+empty:       37 (  5%)        228 (  6%)               0
+
+./sharicus/esp/LC_MESSAGES/default.po
+type              strings      words (source)    words (translation)
+translated:     694 ( 95%)       3361 ( 93%)            3667
+fuzzy:            4 (  0%)         16 (  0%)             n/a
+untranslated:    31 (  4%)        200 (  5%)             n/a
+Total:          729              3577                   3667
+
+unreviewed:      694 ( 95%)       3361 ( 93%)            3667
+needs-work:        4 (  0%)         16 (  0%)               0
+empty:       31 (  4%)        200 (  5%)               0

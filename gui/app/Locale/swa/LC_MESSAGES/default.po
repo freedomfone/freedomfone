@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Freedom Fone manguensis\n"
 "POT-Creation-Date: 2014-05-23 13:34+0200\n"
-"PO-Revision-Date: 2014-05-25 11:31+0200\n"
+"PO-Revision-Date: 2014-05-27 11:17+0200\n"
 "Last-Translator: Brenda Burrell <bren@kubatana.net>\n"
 "Language-Team: Swahili\n"
 "Language: sw\n"
@@ -45,6 +45,8 @@ msgid ""
 "The batch failed. Please review your gateway credentials and receivers "
 "numbers."
 msgstr ""
+"Fungu limeshindwa. Tafadhali hakikisha hati za utambulisho za mlango, na "
+"nambari za wapokeaji."
 
 #: /Controller/BatchesController.php:209
 msgid "SMS batch has been deleted."
@@ -2700,28 +2702,36 @@ msgid "Error"
 msgstr "Kosa"
 
 # Log file name
+# Translated by Bren
 #: /View/Logs/index.ctp:45
+#, fuzzy
 msgid "Office Route SMS"
-msgstr ""
+msgstr "Office Route Ujumbe Mfupi"
 
 # Log file name
+# Translated by Bren
 #: /View/Logs/index.ctp:46
+#, fuzzy
 msgid "Gammu SMS"
-msgstr ""
+msgstr "Gammu Ujumbe Mfupi"
 
 #: /View/Logs/index.ctp:47 /View/Processes/system.ctp:110
 msgid "Dispatcher"
 msgstr "Kitolewacho"
 
 # Log file name
+# Translated by Bren
 #: /View/Logs/index.ctp:48
+#, fuzzy
 msgid "GUI access"
-msgstr ""
+msgstr "GUI kufikia"
 
 # Log file name
+# Translated by Bren
 #: /View/Logs/index.ctp:49
+#, fuzzy
 msgid "GUI error"
-msgstr ""
+msgstr "GUI kosa"
 
 #: /View/Logs/index.ctp:56
 msgid "Select log file"
@@ -3481,7 +3491,7 @@ msgstr "Jina la mlango wa Ujumbe Mfupi."
 
 #: /View/SmsGateways/add.ctp:45 /View/SmsGateways/edit.ctp:49
 msgid "Type of SMS gateway. Currently only Clickatell supported."
-msgstr ""
+msgstr "Aina ya mlango wa ujumbe mfupi. Clickatell tu kwa sasa."
 
 # Universal acronym
 #: /View/SmsGateways/add.ctp:49 /View/SmsGateways/edit.ctp:51

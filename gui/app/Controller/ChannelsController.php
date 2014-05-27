@@ -38,6 +38,8 @@ class ChannelsController extends AppController{
 
       //Refresh OfficeRoute
       $this->requestAction('/office_route/refresh');
+
+
       $this->loadModel('OfficeRoute');
 
       //For each office route in use

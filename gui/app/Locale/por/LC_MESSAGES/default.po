@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Freedom Fone v2.S.2\n"
 "POT-Creation-Date: 2014-05-23 13:34+0200\n"
-"PO-Revision-Date: 2014-05-25 11:02+0200\n"
+"PO-Revision-Date: 2014-05-28 13:47+0200\n"
 "Last-Translator: Brenda Burrell <bren@kubatana.net>\n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -44,7 +44,6 @@ msgstr "Crie lote SMS"
 
 # Translated by Bren
 #: /Controller/BatchesController.php:179
-#, fuzzy
 msgid ""
 "The batch failed. Please review your gateway credentials and receivers "
 "numbers."
@@ -52,10 +51,9 @@ msgstr ""
 "O lote falhou. Por favor, revise as suas credenciais de gateway e os números "
 "de receptores."
 
-# Translated by Bren
 #: /Controller/BatchesController.php:209
 msgid "SMS batch has been deleted."
-msgstr "Lote SMS foi eliminada."
+msgstr "Lote SMS foi excluído."
 
 #: /Controller/BatchesController.php:220
 msgid "SMS Receivers"
@@ -641,9 +639,8 @@ msgstr "A porta de ligação foi atualizada."
 
 # Translated by Bren
 #: /Controller/SmsGatewaysController.php:100
-#, fuzzy
 msgid "SMS gateway has been deleted."
-msgstr "A porta de ligação SMS foi eliminada."
+msgstr "A porta de ligação SMS foi excluído."
 
 #: /Controller/TagsController.php:34 /View/Elements/menuAdmin.ctp:77
 #: /View/Elements/menuUser.ctp:72 /View/Tags/add.ctp:26 /View/Tags/edit.ctp:26
@@ -710,9 +707,7 @@ msgstr "Adicione Usuário do Sistema"
 msgid "New user has been created."
 msgstr "Usuário novo foi criado."
 
-# Translated by Bren
 #: /Controller/UsersController.php:116
-#, fuzzy
 msgid "Validation error, please try again."
 msgstr "Erro de validação, por favor, tente novamente."
 
@@ -857,17 +852,13 @@ msgstr "Não"
 msgid "Yes"
 msgstr "Sim"
 
-# Translated by Bren
 #: /Model/OfficeRoute.php:44
-#, fuzzy
 msgid "Not registered"
-msgstr "Não registado"
+msgstr "Não está registado"
 
-# Translated by Bren
 #: /Model/OfficeRoute.php:45
-#, fuzzy
 msgid "Registered to home network"
-msgstr "Registrado para rede doméstica"
+msgstr "Registrado na rede subscrita"
 
 #: /Model/OfficeRoute.php:46
 msgid "Searching for network"
@@ -1779,15 +1770,13 @@ msgstr "Estatíisticas CDR"
 msgid "Dashboard"
 msgstr "Painel de controle"
 
-# Translation by Bren
 #: /View/Channels/audio_services.ctp:38
-#, fuzzy
 msgid ""
 "To map services to an OfficeRoute gateway, please login to the OfficeRoute "
 "device and perform the mapping."
 msgstr ""
-"A mapa serviços a um porta de ligação OfficeRoute, faça o login para o "
-"OfficeRoute dispositivo e realizar o mapeamento."
+"Para mapear os serviços de uma porta de ligação OfficeRoute, por favor de "
+"acessar o aparelho OfficeRoute e realizar o mapeamento"
 
 #: /View/Channels/audio_services.ctp:47
 msgid "Enabled"
@@ -3516,7 +3505,6 @@ msgstr "Nome da porta de ligaçãoes SMS"
 
 # Translated by Bren
 #: /View/SmsGateways/add.ctp:45 /View/SmsGateways/edit.ctp:49
-#, fuzzy
 msgid "Type of SMS gateway. Currently only Clickatell supported."
 msgstr ""
 "Tipo de porta de ligação SMS. Atualmente, apenas Clickatell suportados."

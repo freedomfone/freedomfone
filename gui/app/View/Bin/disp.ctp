@@ -22,7 +22,6 @@
  *
  ***************************************************************************/
 
-
      echo $this->Html->div("",$this->Paginator->counter(array('format' => __("Message:",true)." %start% ".__("-",true)." %end% ".__("of",true)." %count% ")));
 
      echo $this->Form->create('Bin',array('type' => 'post','action'=> 'process','name' =>'Bin'));

@@ -42,6 +42,7 @@ class BinController extends AppController{
 
           $this->set('title_for_layout', __('SMS Incoming',true));
           $this->Session->write('Bin.source', 'index');
+	  $this->Session->write('Bin.login', false);
 
 	  $login = $this->Bin->find('all', array('fields' => 'DISTINCT login','order' => 'login ASC'));
 
@@ -66,6 +67,7 @@ class BinController extends AppController{
     function disp(){
 
     	     $login = $this->request->data['Bin']['login'];
+
     	     if($login){
 		$data   = $this->paginate('Bin', array('Bin.login' => $login));
 	     } else { 
@@ -73,6 +75,8 @@ class BinController extends AppController{
 	     }
 
     	     $this->set('bin',$data);  
+
+	    $this->Session->write('Bin.login', $login);
 
 
     }
@@ -119,9 +123,14 @@ class BinController extends AppController{
     function export(){
 
     	     Configure::write('debug', 0);
-    	     $this->set('data', $this->Bin->find('all')); 
+    	    
+	     $login = $this->Session->read('Bin.login');
+    	     if($login){
+	        $this->set('data', $this->Bin->find('all', array('conditions' => array('Bin.login' => $login)))); 
 
-
+	     } else { 
+	        $this->set('data', $this->Bin->find('all'));
+	     }
     	     $this->layout = null;
     	     $this->autoLayout = false;
 

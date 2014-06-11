@@ -139,6 +139,9 @@ class BatchesController extends AppController{
 			  $sms_receiver_id[] = $this->Batch->SmsReceiver->getLastInsertId();
 			 
 			  }
+
+
+
 		          $status = $this->Batch->processBatch($batch_id); 
 
 
@@ -258,7 +261,9 @@ class BatchesController extends AppController{
     }
 
 
-    function process(){
+    function process($id){
+
+    	     Configure::write('debug', 0);
 
     	     if(array_key_exists('Submit', $this->request->data)){
 
@@ -267,11 +272,26 @@ class BatchesController extends AppController{
 		  foreach($this->request->data['batch'] as $id){
 		    $this->Batch->delete($id);
                   }
-		}
 
-	     }
+         	  $this->redirect(array('action' => 'index'));	     
+		} elseif ($this->request->data['Submit'] == __('Export')){
 
-	     	$this->redirect(array('action' => 'index'));	     
-    }
+
+             	$this->set('data', $this->Batch->findById($id));
+
+    	     	$this->layout = null;
+    	     	$this->autoLayout = false;
+
+    	     	$this->render();    
+
+
+
+	     } //elseif
+
+             }//if
+
+
+} 
+
 }
 ?>

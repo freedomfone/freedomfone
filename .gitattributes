@@ -1311,6 +1311,7 @@ gui/app/View/Batches/add.ctp -text
 gui/app/View/Batches/disp.ctp -text
 gui/app/View/Batches/index.ctp -text
 gui/app/View/Batches/method.ctp -text
+gui/app/View/Batches/process.ctp -text
 gui/app/View/Batches/view.ctp -text
 gui/app/View/Bin/disp.ctp -text
 gui/app/View/Bin/export.ctp -text

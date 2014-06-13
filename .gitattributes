@@ -176,6 +176,7 @@ firewall/README -text
 firewall/run.sh -text
 firewall/syslog.sample -text
 firewall/whitelist.txt -text
+/fix_1404 -text
 /fix_perms_all.sh -text
 /freeswitch -text
 gammu-smsd/conf/huawei_gammu-smsdrc -text

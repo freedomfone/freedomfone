@@ -88,6 +88,9 @@
 </ul>
 </li>
 
+
+
+
 <li><?php echo __("SMS Centre",true);?>
 <ul>
 <li>
@@ -95,6 +98,11 @@
 <?php echo $this->Html->link(__("Inboxes",true),'/bin/'); ?>
 <?php echo $this->Html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
+
+<li>
+<?php echo $this->Html->link(__("SMS gateways",true),'/sms_gateways/index'); ?>
+</li>
+
 
 <li>
 <?php echo $this->Html->link(__("SMS batches",true),'/batches/index'); ?>
@@ -148,9 +156,12 @@
 <?php echo $this->Html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
+
+
 <li>
-<?php echo $this->Html->link(__("Callers",true),'/callers'); ?>
+<?php echo $this->Html->link(__("System users",true),'/users'); ?>
 </li>
+
 
 <li class='last'>
 <?php echo $this->Html->image('menu/corner_left.png',array('class'=>'corner_left')); ?>
@@ -170,6 +181,8 @@
 <?php echo $this->Html->image('menu/corner_inset_right.png',array('class'=>'corner_inset_right')); ?>
 </li>
 
+
+
 <li>
 <?php echo $this->Html->link(__("Statistics",true),'/cdr/statistics'); ?>
 </li>
@@ -179,8 +192,15 @@
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Reporting",true),'/cdr/general'); ?>
+<?php echo $this->Html->link(__("Call detail report",true),'/cdr/general'); ?>
 </li>
+
+
+<li>
+<?php echo $this->Html->link(__("Call graphs",true),'/reporting'); ?>
+</li>
+
+
 
 
 <li class='last'>
@@ -207,11 +227,11 @@
 
 
 <li>
-<?php echo $this->Html->link(__("GSM channels",true),'/channels'); ?>
+<?php echo $this->Html->link(__("Active GSM channels",true),'/channels'); ?>
 </li>
 
 <li>
-<?php echo $this->Html->link(__("Reporting",true),'/reporting'); ?>
+<?php echo $this->Html->link(__("Service mapping",true),'/channels/audio_services'); ?>
 </li>
 
 

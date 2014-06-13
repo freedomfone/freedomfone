@@ -157,7 +157,7 @@ $mypid = getmypid();
 		       //4.5 APPLY BLACKLIST WITH XSL
 			if (!$result = applyBlackList($event)){
 
-			logESL("New event: ".$event->getType(),"INFO",1); 
+			logESL("New event","INFO",1); 
 			debugESL($event->getBody(),"ESL raw event data");
 		
 

@@ -79,6 +79,7 @@ class ChannelsController extends AppController{
 
       $gammu_discovery = file($gammu['discovery']);
 
+
       $this->loadModel('LmMenu');
       $lam = $this->LmMenu->find('list', array('fields' => array('instance_id','title')));
       foreach($lam as $key => $entry){

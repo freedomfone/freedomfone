@@ -300,10 +300,11 @@ class Channel extends AppModel{
 
 	       foreach($file as $key => $line){
 
-	         $_line = explode(',',trim($line));
+	         $_line[$key] = explode(',',trim($line));
+		 $size = sizeof($_line[$key]);
 
-		 if($imsi && array_key_exists(trim($_line[9]),$imsi)){
-		     $instance_id = $imsi[trim($_line[9])];		 
+		 if($imsi && array_key_exists(trim($_line[$key][9]),$imsi)){
+		     $instance_id = $imsi[trim($_line[$key][9])];		 
 
 
 		 } else {
@@ -311,8 +312,17 @@ class Channel extends AppModel{
 		    $instance_id = 'false';
 		 }
          
-		     fwrite($handle, trim($line).", ".$instance_id."\n");
+		$_line[$key][10] = $instance_id;
+
+	       } //foreach
+
+	       foreach($_line as $key => $line){
+
+	       $new_line = rtrim(implode(",",$line),',')."\r\n";
+	       fwrite($handle, $new_line);
+
 	       }
+
 	       fclose($handle);
       }
 

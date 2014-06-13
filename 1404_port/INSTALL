@@ -15,7 +15,7 @@ https://jira.freeswitch.org/browse/FS-1467
 		AllowOverride None
 		Require all granted
 + and - are always needed and "Require all granted" 
-
+See. https://library.linode.com/web-servers/apache/2.2-2.4-upgrade
 ===========================================================================
 
 

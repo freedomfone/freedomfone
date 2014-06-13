@@ -75,7 +75,11 @@ echo $this->Form->end();
 
 	if($entry[6] == 'freeswitch'){
 
-	$row[$key]['Service'] 		= $this->Form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+	//$row[$key]['Service'] 		= $this->Form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --'));
+
+	$row[$key]['Service'] 		= $this->Access->showBlock($authGroup, $this->Form->input('Channel.'.$key.'.instance_id', array('type' => 'select', 'options' => $lam+$ivr, 'selected' => $selected, 'label' => false, 'empty' => '-- '.__("Select service",true).' --')));
+
+
 
 	} else {
 
@@ -86,7 +90,10 @@ echo $this->Form->end();
 	}
      echo $this->Html->tableCells($row);
      echo "</table>";
+
+      
       echo $this->Form->submit(__('Create dialplan',true),  array('class' => 'button'));
+      
       echo $this->Form->end();
 
 

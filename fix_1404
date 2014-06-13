@@ -1,5 +1,0 @@
-a2dissite 000-default
-mv /etc/apache2/sites-available/freedomfone /etc/apache2/sites-available/freedomfone.conf
-a2ensite freedomfone
-killall apache2
-/etc/init.d/apache2 start

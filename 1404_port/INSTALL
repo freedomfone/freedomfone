@@ -1,0 +1,61 @@
+Changes in Ubuntu 14.04
+
+* The ESL.so library used by the dispatcher no longer uses the 
+20090626 API and needs to be rebuild for the 20121212 API
+
+* The ESL.so library will not build in freeswitch and 14.04 without a patch.
+https://jira.freeswitch.org/secure/attachment/16814/esl-phpmod-constfix.patch
+
+* Spidermonkey module needs to be linked with libz. If not 
+undefined symbol: inflateReset is not found
+https://jira.freeswitch.org/browse/FS-1467
+ 
+* Apache2 requires new configuration changes
+		Options +FollowSymLinks
+		AllowOverride None
+		Require all granted
++ and - are always needed and "Require all granted" 
+
+===========================================================================
+
+
+STEP 1.
+
+Disable default apache site in 14.04
+
+a2disite 000-default
+
+STEP 2.
+
+a) Remove old apache2 configuration /etc/apache2/sites-available/freedomfone
+
+rm  /etc/apache2/sites-available/freedomfone
+
+b) Add new configuration
+
+cp etc/apache2/sites-available/freedomfone.conf /etc/apache2/sites-available/
+
+c) Enable the site
+
+a2ensite freedomfone
+
+
+STEP 3.
+
+mod_spidermonkey.so is broken in 14.04 as it requires to be linked with libz (-lz)
+A new set of mod language mod_spidermonkey (.so) are available to replace the 12.04 ones
+
+cp usr/lib/freeswitch/mod/mod_spidermonkey* /usr/lib/freeswitch/
+
+STEP 4.
+
+The user www-data comes with out shell in 14.04, the su - www-data -c <command> of the init.d
+of the dispatcher needs to be replaced with su - www-data -s "/bin/sh" -c <command>
+
+cp etc/init.d/dispatcher_in /etc/init.d/
+
+STEP 5.
+
+PHP Cli requires enable_dl = On
+
+cp etc/php5/cli/php5.cli /etc/php5/cli/php5.cli  

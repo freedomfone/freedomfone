@@ -26,6 +26,7 @@ if (!extension_loaded("ESL")) {
 }
 
 
+
 abstract class ESL {
 	static function eslSetLogLevel($level) {
 		eslSetLogLevel($level);
@@ -75,8 +76,8 @@ class ESLevent {
 		return $r;
 	}
 
-	function getHeader($header_name) {
-		return ESLevent_getHeader($this->_cPtr,$header_name);
+	function getHeader($header_name,$idx=-1) {
+		return ESLevent_getHeader($this->_cPtr,$header_name,$idx);
 	}
 
 	function getBody() {
@@ -95,6 +96,14 @@ class ESLevent {
 		return ESLevent_addHeader($this->_cPtr,$header_name,$value);
 	}
 
+	function pushHeader($header_name,$value) {
+		return ESLevent_pushHeader($this->_cPtr,$header_name,$value);
+	}
+
+	function unshiftHeader($header_name,$value) {
+		return ESLevent_unshiftHeader($this->_cPtr,$header_name,$value);
+	}
+
 	function delHeader($header_name) {
 		return ESLevent_delHeader($this->_cPtr,$header_name);
 	}
@@ -111,11 +120,12 @@ class ESLevent {
 class ESLconnection {
 	public $_cPtr=null;
 
-	function __construct($host_or_socket,$port=null,$password=null) {
+	function __construct($host_or_socket,$port=null,$user_or_password=null,$password=null) {
 		switch (func_num_args()) {
 		case 1: $r=new_ESLconnection($host_or_socket); break;
 		case 2: $r=new_ESLconnection($host_or_socket,$port); break;
-		default: $r=new_ESLconnection($host_or_socket,$port,$password);
+		case 3: $r=new_ESLconnection($host_or_socket,$port,$user_or_password); break;
+		default: $r=new_ESLconnection($host_or_socket,$port,$user_or_password,$password);
 		}
 		$this->_cPtr=$r;
 	}
@@ -150,16 +160,26 @@ class ESLconnection {
 		return is_resource($r) ? new ESLevent($r) : $r;
 	}
 
-	function bgapi($cmd,$arg=null) {
+	function bgapi($cmd,$arg=null,$job_uuid=null) {
 		switch (func_num_args()) {
 		case 1: $r=ESLconnection_bgapi($this->_cPtr,$cmd); break;
-		default: $r=ESLconnection_bgapi($this->_cPtr,$cmd,$arg);
+		case 2: $r=ESLconnection_bgapi($this->_cPtr,$cmd,$arg); break;
+		default: $r=ESLconnection_bgapi($this->_cPtr,$cmd,$arg,$job_uuid);
 		}
 		return is_resource($r) ? new ESLevent($r) : $r;
 	}
 
 	function sendEvent($send_me) {
-		return ESLconnection_sendEvent($this->_cPtr,$send_me);
+		$r=ESLconnection_sendEvent($this->_cPtr,$send_me);
+		return is_resource($r) ? new ESLevent($r) : $r;
+	}
+
+	function sendMSG($send_me,$uuid=null) {
+		switch (func_num_args()) {
+		case 1: $r=ESLconnection_sendMSG($this->_cPtr,$send_me); break;
+		default: $r=ESLconnection_sendMSG($this->_cPtr,$send_me,$uuid);
+		}
+		return $r;
 	}
 
 	function recvEvent() {
@@ -187,7 +207,7 @@ class ESLconnection {
 		case 2: $r=ESLconnection_execute($this->_cPtr,$app,$arg); break;
 		default: $r=ESLconnection_execute($this->_cPtr,$app,$arg,$uuid);
 		}
-		return $r;
+		return is_resource($r) ? new ESLevent($r) : $r;
 	}
 
 	function executeAsync($app,$arg=null,$uuid=null) {
@@ -196,7 +216,7 @@ class ESLconnection {
 		case 2: $r=ESLconnection_executeAsync($this->_cPtr,$app,$arg); break;
 		default: $r=ESLconnection_executeAsync($this->_cPtr,$app,$arg,$uuid);
 		}
-		return $r;
+		return is_resource($r) ? new ESLevent($r) : $r;
 	}
 
 	function setAsyncExecute($val) {

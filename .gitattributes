@@ -1,6 +1,14 @@
 * text=auto !eol
 /.deb_1204 -text
 /.dependencies_1204 -text
+1404_port/INSTALL -text
+1404_port/esl/ESL.php -text
+1404_port/esl/README -text
+1404_port/esl/esl.patch -text
+1404_port/esl/install.ESL.sh -text
+1404_port/etc/apache2/sites-available/freedomfone.conf -text
+1404_port/etc/init.d/dispatcher_in -text
+1404_port/etc/php5/cli/php.ini -text
 /AUTHORS -text
 /COPYING -text
 /FIXME -text
@@ -176,7 +184,6 @@ firewall/README -text
 firewall/run.sh -text
 firewall/syslog.sample -text
 firewall/whitelist.txt -text
-/fix_1404 -text
 /fix_perms_all.sh -text
 /freeswitch -text
 gammu-smsd/conf/huawei_gammu-smsdrc -text

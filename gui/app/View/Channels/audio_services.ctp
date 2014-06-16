@@ -91,9 +91,10 @@ echo $this->Form->end();
      echo $this->Html->tableCells($row);
      echo "</table>";
 
-      
+     //Admin: create dialplan
+     if($authGroup == 1){      
       echo $this->Form->submit(__('Create dialplan',true),  array('class' => 'button'));
-      
+      }
       echo $this->Form->end();
 
 

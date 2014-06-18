@@ -2,6 +2,7 @@
 /.deb_1204 -text
 /.dependencies_1204 -text
 1404_port/INSTALL -text
+1404_port/build -text
 1404_port/esl/ESL.php -text
 1404_port/esl/README -text
 1404_port/esl/esl.patch -text

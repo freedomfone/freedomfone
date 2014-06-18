@@ -1,0 +1,12 @@
+fix build error due to missing zlib linking when using libtool 2.2 or later 
+
+changing
+src/mod/languages/mod_spidermonkey/Makefile
+
+modify
+SWITCH_AM_LDFLAGS = -lm
+to
+SWITCH_AM_LDFLAGS = -lm -lz
+
+
+#apt-get install snmp libzlib-dev zlib1g  zlib1g-dbg  zlib1g-dev  zlib-bin zlibc

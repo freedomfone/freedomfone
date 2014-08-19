@@ -26,15 +26,13 @@
 
      $system_log = Configure::read('SYSTEM_LOG');
 
-
-      if(array_key_exists($this->request->data['Log']['type'], $system_log['system'])){
+      if(array_search($this->request->data['Log']['type'], $system_log['system'])){
 
       $file = LOG_DIR_CORE.$this->request->data['Log']['type'].'.log';
 
       } else {
 
       $file = LOG_DIR_GUI.$this->request->data['Log']['type'].'.log';
-
       }
 
       if (file_exists($file)){

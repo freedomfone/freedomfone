@@ -34,10 +34,10 @@ is_true()
 
 case "${1:-}" in
     start)
-      if [ -f "$PIDFILE" ] ; then
-         log_warning_msg "Warning: iwatch daemon already running, doing nothing therefore."
-         exit 0
-      fi
+      #if [ -f "$PIDFILE" ] ; then
+      #   log_warning_msg "Warning: iwatch daemon already running, doing nothing therefore."
+      #   exit 0
+      #fi
 
       if is_true $START_DAEMON; then
          log_daemon_msg "Freedom Fone: Starting iwatch daemon" 

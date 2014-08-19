@@ -10,14 +10,6 @@
 # bits.
 #
 # By default this script does nothing.
-###############################################################################
-# Freedom Fone rc.local        
-
-#echo "Freedom Fone: Waiting 10 seconds for network interface to settle"
-
-# Village Telco bridge via 192.168.1.59 supernode
-#/sbin/route add -net 10.130.1.0 netmask 255.255.255.0 gw 192.168.1.59 
-
 # Interface Aliasing for OfficeRoute
 /sbin/ifconfig eth0:0 192.168.1.250 netmask 255.255.255.0 up
 /etc/init.d/gsmopen start > /dev/null 2>&1 &
@@ -31,6 +23,9 @@ sleep 10
 /etc/init.d/gsmopen reload > /dev/null 2>&1 &
 sleep 10
 /etc/init.d/dispatcher_in start > /dev/null 2>&1 & 
+
+/etc/init.d/iwatch start > /dev/null 2>&1 &
+/etc/init.d/gammu-smsd start > /dev/null 2>&1 &
 
 
 ###############################################################################

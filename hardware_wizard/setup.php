@@ -111,9 +111,9 @@ foreach ($file as $key => $line){
 //STEP 2: GAMMU CONFIG
 
 
-$data = file(HardwareDiscovery);
+$data_HD = file(HardwareDiscovery);
 
-foreach($data as $key => $entry){
+foreach($data_HD as $key => $entry){
 
  $entry = explode(",",$entry);
 
@@ -136,6 +136,9 @@ if($entry[6] == 'gammu'){
  fwrite($handle, "MaxRetries = 5\n");
  fwrite($handle, "database = ".$gammu_credentials['database']."\n");
  fwrite($handle, "phoneid = GM".($key+1)."-".$entry[0]."\n");
+ fwrite($handle, "Send = ".$entry[8]."\n");
+ fwrite($handle, "Receive = ".$entry[7]."\n");
+
 
   fclose($handle);
  }

@@ -44,6 +44,7 @@ echo $this->Form->end();
 
      echo "<table width='95%' cellspacing = 0>";
      echo $this->Html->tableHeaders(array(
+			__('Active',true),
 			__('Enabled',true),
 			__('Gateway',true),
 			__('Inbound',true),
@@ -59,7 +60,22 @@ echo $this->Form->end();
 
 
         $entry = explode(',',$entry);
+
+       //Check with Gammu db if channel is active
+        $active = $this->Html->image("icons/off.png", array("alt" => __("Not active",true),"title" => "This channel is not active."));
+	$interface_id = trim($entry[9]);
+	foreach($gammu as $key => $phone){
+	if($phone['ID'] == $interface_id) { 
+	   if(time() - strtotime($phone['TimeOut']) < 60){
+	   $active = __('Yes');
+	   } 
+	   }
+	}
+
+
+
       echo $this->Form->hidden('Channel.'.$key.'.interface_id',array('value'=>trim($entry[9]))); 
+     	$row[$key]['active']		= $active;
     	$row[$key]['enable']		= $entry[5] ? __('Yes') : __('No');
      	$row[$key]['gateway']		= $entry[6];
      	$row[$key]['inbound']		= $entry[7] ? __('Yes') : __('No');

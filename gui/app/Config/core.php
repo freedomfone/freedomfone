@@ -31,7 +31,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 3);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -398,5 +398,5 @@ $config['VERSION'] = array(
 
 Configure::load('ip_addr'); 
 define ('MY_DOMAIN', "http://".Configure::read('Setting.ip_addr').'/freedomfone/'); 
-define ('VERSION','2.S.7rc2');
+define ('VERSION','2.S.8 20140901');
 define ('VERSION_NAME','Sharicus');

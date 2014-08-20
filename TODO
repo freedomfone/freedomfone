@@ -1,0 +1,6 @@
+Kelele - Roadmap
+
+* Security: The GUI has access to ESL to check the process and status breaking the security architecture. This information needs to be provided via the dispatcher
+* Logs: Review logs for gammu and freeswitch. Move  FS log to FF folder
+* Start: Convert the init scripts to upstart or whatever 14.04 LTS will adopt.
+* Start: Review all the pids left by broken processes.

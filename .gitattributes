@@ -19,6 +19,7 @@
 /README -text
 /RELEASE_1204.txt -text
 /RELEASE_1204_2S7.txt -text
+/TODO -text
 audio_bot/README -text
 audio_bot/filters/meta2mp3.sh -text
 audio_bot/filters/mp32wav.sh -text

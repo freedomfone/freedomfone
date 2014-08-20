@@ -2484,6 +2484,7 @@ hardware_wizard/config.php -text
 hardware_wizard/discovery.php -text
 hardware_wizard/scan_reset.sh -text
 hardware_wizard/setup.php -text
+/heartbeat.sh -text
 l10n/README -text
 l10n/Status -text
 l10n/Status.sharicus -text

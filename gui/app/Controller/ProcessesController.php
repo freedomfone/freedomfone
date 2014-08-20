@@ -51,17 +51,6 @@ class ProcessesController extends AppController{
 
       function system(){
 
-      //FIXME
-      /*
-      	       if($rss = Configure::read('RSS.path')){
-                    $max   = Configure::read('RSS.max');
-	            $items = $this->Simplepie->feed($rss,$max);
-	       } else {
-	       	    $items = false;
-	       }
-*/
-
-
         $this->set('title_for_layout', __('About',true));
 
  	$version[0]   = $this->Process->version(3);

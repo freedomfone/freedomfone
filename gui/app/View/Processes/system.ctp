@@ -100,13 +100,12 @@ echo $this->Html->addCrumb(__('About',true), '/processes/system');
      echo "</table>"; 
 
 
-
+     
      echo "<h2>".__("Software",true)."</h2>";
      $row1[] = array( array(__("Operating system",true), array('width' => '200px')), $string); 
      $row1[] = array(__("Cake",true), $cake); 
      $row1[] = array(__("FreeSWITCH",true), $version[1]); 
      $row1[] = array(__("Web server",true), apache_get_version());
-     $row1[] = array(__("MySQL",true), mysql_get_server_info());
      $row1[] = array(__("Dispatcher",true), $version[0]);
     echo "<table width='70%' cellspacing = 0 class='stand-alone'>";
     echo $this->Html->tableCells($row1,array('class' =>'stand-alone'),array('class' =>'stand-alone'));

@@ -13,6 +13,8 @@ IWATCHD=/usr/bin/iwatch
 PATH="/sbin:/bin"
 DEBIANCONFIG=/etc/default/iwatch
 PIDFILE=/var/run/iwatch.pid
+PIDFILE_PID=""
+PID_PS=""
 
 test -x $IWATCHD || exit 0
 
@@ -34,10 +36,21 @@ is_true()
 
 case "${1:-}" in
     start)
-      #if [ -f "$PIDFILE" ] ; then
-      #   log_warning_msg "Warning: iwatch daemon already running, doing nothing therefore."
-      #   exit 0
-      #fi
+      if [ -f "$PIDFILE" ]; then
+      PIDFILE_PID=`cat $PIDFILE`
+      PID_PS=`ps -ef |grep iwatch |grep '/usr/bin/' | /usr/bin/awk '{print $2}'`
+      fi
+ 
+      if [ "$PIDFILE_PID" != "$PID_PS" ] ; then
+         log_warning_msg "Warning: iwatch crashed! Pid file exists but not process!"
+      fi
+
+      if [ -f "$PIDFILE" ] && [ -n "$PID_PS" ] ; then
+         log_warning_msg "Warning: iwatch daemon already running ($PIDFILE_PID,$PID_PS), doing nothing therefore."
+         exit 0
+      fi
+
+
 
       if is_true $START_DAEMON; then
          log_daemon_msg "Freedom Fone: Starting iwatch daemon" 
@@ -53,7 +66,7 @@ case "${1:-}" in
 
     stop)
       if [ -f "$PIDFILE" ] ; then
-         log_daemon_msg "Freedom Fome: Stopping iwatch daemon" 
+         log_daemon_msg "Freedom Fone: Stopping iwatch daemon" 
          set +e
          start-stop-daemon -K -p $PIDFILE
          RC=$?

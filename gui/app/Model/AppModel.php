@@ -122,6 +122,7 @@ class AppModel extends Model {
 
               //If Caller exists
               if ($callerData){
+	      debug("caller exists");
                      $caller_id = $callerData['Caller']['id'];
 	             $count = $callerData['Caller'][$update]+1;
                      $caller->read(null, $callerData['Caller']['id']);
@@ -130,7 +131,7 @@ class AppModel extends Model {
 
 	      } else {
               //If New Caller
-
+	      debug("new caller");
                    if($state == 'default'){
                            $new_caller =array('created'=> $created,'new'=>1,
                                             $update  =>1,'first_app'=>$application,

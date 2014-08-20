@@ -59,6 +59,8 @@ class Cdr extends AppModel{
               $obj->lock();
       	      while ($entry = $obj->getNext('update')){
 
+
+
 	          $channel        = $entry['Channel-Name'];
 	      	  $channel_state  = $entry['Channel-State'];
 	      	  $answer_state   = $entry['Answer-State'];
@@ -143,7 +145,6 @@ class Cdr extends AppModel{
 		     $this->set('application', $application);
 
 		     if($insert){
-
 
 			//Check if caller is registered
 
@@ -360,7 +361,7 @@ class Cdr extends AppModel{
 		   switch ($proto){
 
 		    case 'gsm':
-		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing'){
+		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && $application == ''){
 		         $insert = false;
 		    } 
 		    if ($channel_state == 'CS_ROUTING' && $answer_state =='ringing' && $application == 'ivr'){

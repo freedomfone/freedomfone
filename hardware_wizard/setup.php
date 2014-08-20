@@ -135,7 +135,7 @@ if($entry[6] == 'gammu'){
  fwrite($handle, "pc = localhost\n");
  fwrite($handle, "MaxRetries = 5\n");
  fwrite($handle, "database = ".$gammu_credentials['database']."\n");
- fwrite($handle, "phoneid = GM".($key+1)."-".$entry[0]."\n");
+ fwrite($handle, "phoneid = ".$entry[9]."\n");
  fwrite($handle, "Send = ".$entry[8]."\n");
  fwrite($handle, "Receive = ".$entry[7]."\n");
 

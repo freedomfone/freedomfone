@@ -59,7 +59,7 @@ $system_log = array('gui' => array(
 	echo $this->Form->end();
 
 	echo $this->Html->div('log_div',false,array('id' => 'log_div'));
-	echo "</div>";
+
 
 ?>
 

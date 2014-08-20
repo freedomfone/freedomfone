@@ -64,13 +64,26 @@ echo $this->Form->end();
        //Check with Gammu db if channel is active
         $active = $this->Html->image("icons/off.png", array("alt" => __("Not active",true),"title" => "This channel is not active."));
 	$interface_id = trim($entry[9]);
-	foreach($gammu as $key => $phone){
-	if($phone['ID'] == $interface_id) { 
-	   if(time() - strtotime($phone['TimeOut']) < 60){
-	   $active = __('Yes');
-	   } 
+
+	if($gammu){
+	 foreach($gammu as $key => $phone){
+	   if(strstr($interface_id,'GM')){
+	     if($phone['ID'] == $interface_id) { 
+	         if(time() - strtotime($phone['TimeOut']) < 60){
+	             $active = __('Yes');
+	         } 
+	     }
+	   } else {
+
+           $active = __('Yes');
 	   }
-	}
+	 }
+
+	 } //IF gammu
+	 else {
+           $active = __('Yes');
+	 }	
+     
 
 
 
@@ -103,7 +116,7 @@ echo $this->Form->end();
 
 	}
 
-	}
+	} //foreach
      echo $this->Html->tableCells($row);
      echo "</table>";
 
@@ -115,7 +128,9 @@ echo $this->Form->end();
 
 
 
-   } else {
+   } //IF GAMMU DISCOVERY
+
+  else {
 
    echo $this->Html->div('feedback',__("There are no GSMOpen based units connected to your system.",true));
 

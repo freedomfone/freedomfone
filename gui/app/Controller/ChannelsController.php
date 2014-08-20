@@ -79,7 +79,6 @@ class ChannelsController extends AppController{
 
       $gammu_discovery = file($gammu['discovery']);
 
-
       $this->loadModel('LmMenu');
       $lam = $this->LmMenu->find('list', array('fields' => array('instance_id','title')));
       foreach($lam as $key => $entry){
@@ -102,6 +101,7 @@ class ChannelsController extends AppController{
 
       }
 
+      $this->set('gammu',$this->Channel->getGammu());
       $this->set('gammu_discovery',$gammu_discovery);      
       $this->set(compact('gammu_discovery','lam','ivr'));
 

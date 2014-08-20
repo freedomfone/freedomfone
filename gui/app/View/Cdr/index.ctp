@@ -53,7 +53,7 @@ echo "<h1>".__('Call Data Records',true)."</h1>";
      echo $this->Form->create('Cdr',array('type' => 'post','action'=> 'process','name'  => 'Cdr'));
 
 
-     echo "<table width='800px' cellspacing = 0>";
+     echo "<table width='1000px' cellspacing = 0>";
      echo $this->Html->tableHeaders(array(
 	'',
  	$this->Paginator->sort('epoch', __("Date (YMD)",true)),

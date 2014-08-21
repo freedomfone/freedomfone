@@ -1,0 +1,103 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          iwatch
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start iwatch, realtime filesystem monitoring program using inotify
+### END INIT INFO
+set -eu
+##############################################################################
+IWATCHD=/usr/bin/iwatch
+PATH="/sbin:/bin"
+DEBIANCONFIG=/etc/default/iwatch
+PIDFILE=/var/run/iwatch.pid
+PIDFILE_PID=""
+PID_PS=""
+
+test -x $IWATCHD || exit 0
+
+CONFIGFILE=/etc/iwatch/iwatch.xml
+START_DAEMON=true
+test -f $DEBIANCONFIG && . $DEBIANCONFIG
+
+. /lib/lsb/init-functions
+
+is_true()
+{
+  case "${1:-}" in
+    [Yy]es|[Yy]|1|[Tt]|[Tt]rue) return 0;;
+    *) return 1;
+  esac
+}
+##############################################################################
+#echo $CONFIGFILE
+
+case "${1:-}" in
+    start)
+      if [ -f "$PIDFILE" ]; then
+      PIDFILE_PID=`cat $PIDFILE`
+      PID_PS=`ps -ef |grep iwatch |grep '/usr/bin/' | /usr/bin/awk '{print $2}'`
+      fi
+ 
+      if [ "$PIDFILE_PID" != "$PID_PS" ] ; then
+         log_warning_msg "Warning: iwatch crashed! Pid file exists but not process!"
+      fi
+
+      if [ -f "$PIDFILE" ] && [ -n "$PID_PS" ] ; then
+         log_warning_msg "Warning: iwatch daemon already running ($PIDFILE_PID,$PID_PS), doing nothing therefore."
+         exit 0
+      fi
+
+
+
+      if is_true $START_DAEMON; then
+         log_daemon_msg "Freedom Fone: Starting iwatch daemon" 
+         set +e
+         $IWATCHD -f $CONFIGFILE -p $PIDFILE -d -v
+         RC=$?
+         set -e
+         log_end_msg $RC
+      else
+         log_warning_msg "Not starting iwatch daemon as startup is deactivated via /etc/default/iwatch"
+      fi
+      ;;
+
+    stop)
+      if [ -f "$PIDFILE" ] ; then
+         log_daemon_msg "Freedom Fone: Stopping iwatch daemon" 
+         set +e
+         start-stop-daemon -K -p $PIDFILE
+         RC=$?
+         rm -f $PIDFILE
+         set -e
+         log_end_msg $RC
+      fi
+      ;;
+
+    status)
+      [ -f "$PIDFILE" ] && PROCESS="$(cat $PIDFILE)" || PROCESS=''
+      if [ -n "$PROCESS" ] ; then
+         log_success_msg "iwatch daemon with pid $PROCESS is running."
+         exit 0
+      else
+         log_warning_msg "Could not find a running iwatch daemon."
+         exit 1
+      fi
+      ;;
+
+    restart|reload|force-reload)
+      $0 stop
+      $0 start
+      ;;
+
+    *)
+      echo "Usage: ${0:-} {start|stop|restart|reload|force-reload|status}" >&2
+      exit 1
+    ;;
+esac
+
+exit 0
+
+# vim: ai expandtab

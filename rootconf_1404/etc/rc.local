@@ -1,0 +1,51 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# Freedom Fone requires the following services active in the system
+# apache2, mysqld, iwatch, dispatcher_in, gammu-smsd, freeswitch
+#
+# It also requires that the gsmopen based devices (dongles) are properly
+# loaded.
+#
+# Legacy devices based on Mobigater required the legacy gsmopen channel
+
+ 
+# Network Alias
+# ==============
+#
+# This network alias adds a fixed IP addresses to Freedom Fone, the 
+# second IP (192.168.1.250) is used our office Office Route to forward inbound
+# calls (SIP/5080). 
+#
+# Network Manager in Desktop edition can play its own tricks. It is 
+# recommended to fix a primary IP via network-manager
+#
+/sbin/ifconfig eth0:0 192.168.1.250 netmask 255.255.255.0 up
+#
+#
+# Starting services that are not automatically launched by upstart
+#
+# Freeswitch
+#
+# ALSA in legacy gsmopen needs freeswitch to be launched via "su" 
+# su - root /etc/init.d/freeswitch start > /dev/null 2>&1 &
+
+/etc/init.d/freeswitch start > /dev/null 2>&1 &
+sleep 10
+# Freedom Fone event dispatcher
+/etc/init.d/dispatcher_in start > /dev/null 2>&1 & 
+#
+# iWatch file system monitor
+/etc/init.d/iwatch start > /dev/null 2>&1 &
+#
+# Gammu SMSD
+/etc/init.d/gammu-smsd start > /dev/null 2>&1 &
+#
+#/etc/init.d/gsmopen start > /dev/null 2>&1 &
+#/etc/init.d/gsmopen reload > /dev/null 2>&1 &
+#/etc/init.d/gsmopen reload > /dev/null 2>&1 &
+
+
+###############################################################################
+exit 0

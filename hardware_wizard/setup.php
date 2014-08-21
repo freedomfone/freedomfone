@@ -222,6 +222,11 @@ foreach($data as $key => $entry){
     $writer->writeAttribute('value','500'.($i-1)); // Extention
     $writer->endElement();  
 
+    if($audio  < 0 ){
+
+    print("Warning! Incorrect port mapping. Please make sure that FreeSWITCH is not running, and try again");
+
+    }
 
  }
 
@@ -232,7 +237,7 @@ $writer->endElement();  //configuration
 $writer->endDocument();  
 $writer->flush();  
 
-
+print("Done. Please start Gammu and FreeSWITCH");
 
 
 

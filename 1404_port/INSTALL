@@ -23,7 +23,7 @@ STEP 1.
 
 Disable default apache site in 14.04
 
-a2disite 000-default
+a2dissite 000-default
 
 STEP 2.
 

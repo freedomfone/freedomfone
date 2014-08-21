@@ -25,7 +25,9 @@
  * 
  ***************************************************************************/
 
-echo "FIXME! Make sure that gammu and freeswitch are not running"."\n";
+echo "\nWARNING! Make sure that gammu and freeswitch are not running"."\n";
+echo "Run: /etc/init.d/gammu-smsd stop"."\n";
+echo "Run: /etc/init.d/freeswitch stop"."\n\n\n";
 
 //Include configuration file
 include_once('config.php');
@@ -41,6 +43,7 @@ $files = scandir($dir);
 $i = 0;
 $data = array();
 $imsis = array();
+
 foreach($files as $key => $port){
 	 if(preg_match("/USB|ACM/", $port)){
 
@@ -58,8 +61,15 @@ foreach($files as $key => $port){
 		 exec("gammu -c ".GammuConfig." -s ".($i-1)." --identify", $result);
 
 		print_r($result);
-		 //Gammu unit with id ($i+1) detected 
-		 if(sizeof($result)> 1){
+		 //Gammu unit with id ($i+1) detected
+
+		 //SIM LOCK 
+		 if(sizeof($result) == 5){
+
+		 echo "SIM locked with PIN. Please unlock and try again";
+		 }
+
+		 elseif(sizeof($result) == 6){
 		     $imsi = trim(ltrim(strstr($result[5],":"),':'));
 
 		     //If current IMSI is found for the first time
@@ -83,7 +93,7 @@ foreach($files as $key => $port){
 		      $data[$key]['Device'] =  trim(ltrim(strstr($result[0],":"),':'));
 
 		     }
-		 }
+		 } //IF RESULT EXIST
 
 		 unset($result);
 

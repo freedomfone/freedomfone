@@ -1,0 +1,39 @@
+Welcome to FFv2S8! (LTS Under Ubuntu 14.04)
+What’s new?
+------------
+SMS sending via OfficeRoutes, Huawei dongles and Clickatell Bulk SMS gateway
+
+The new ‘SMS Centre’ menu option brings SMS sending and receiving under one menu – the original ‘Message centre’ is now exclusively for voice messages and LAM IVR
+
+SMSs can either be received into one global Inbox or separated into a different Inbox for each sim card
+
+SMSs can be received via multiple OfficeRoute devices
+
+Improved Hardware management
+o New USB dongle detection and management wizards/scripts
+o New Dashboard → Service Mapping option for connecting voice enabled dongles to IVR menus. No need to edit configuration files if you add additional Leave a message IVRs or other IVRs.
+o The Dashboard → Active GSM channels page will now show details for multiple connected OfficeRoute devices
+o Dashboard → GSM channels page renamed to Active GSM channels and now displays additional device information
+
+The Graphic Reporting tool has been integrated into the System data menu as System data → Call graphs
+
+Additional security for OfficeRoute devices has been added in the form of an optional firewall whitelist
+
+Logs are now displayed in descending chronological order
+
+Default user and password for FFv2S7 servers are:
+user: sharicus
+password: sharicus
+
+What else has been improved?
+-----------------------------
+We’ve updated the development framework to CakePHP v2.4
+
+Fixed a variety of bugs
+
+Clarified the normalization settings required for the OfficeRoute
+
+We’ve written a Developer’s guide that covers additions and improvements made in FFv2S7. Download the latest version of the Sharicus_2S7_developer_guide from www.freedomfone.org/page/documentation
+
+ENJOY.
+

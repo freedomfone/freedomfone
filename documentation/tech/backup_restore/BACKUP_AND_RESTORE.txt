@@ -1,0 +1,62 @@
+================================================================================================
++                                                                                              +
++		              BACKUP AND RESTORE                                               + 
+================================================================================================
+
+Included in the Backup_Restore folder on the desktop are two scripts that help you do a backup 
+and restore of your database. The backup script is for backing up your database as well as the 
+audio files in your voice menu(s) and Leave-a-message service(s).
+
+**********************************BACKUP *******************************************************
+
+To run the backup script click the terminal icon on the launcher bar on the left hand side.
+
+At the command prompt type the following command:
+
+sudo su
+
+When prompted for a password, enter the login password you assigned Ubuntu during installation.
+The default password for FFv2S7 is sharicus.
+
+After succesfully entering the password type the following command:
+
+cd Desktop/Backup_Restore
+
+After the command above you run the script with the following command:
+
+bash ./backup.sh
+
+At the password prompt press "Enter" ie there is no password to provide.
+
+NB Please note there is a dot(.) at the beginning of the command above.The command above should 
+create a backup folder on your desktop, this will have the audio files as well as the database.
+
+If you need to store the backup elswhere, copy the backup folder from your desktop. Since the 
+backup script always creates a folder with the same name, rename the folder later to 
+differentiate between your backups.	
+
+***********************************RESTORE*****************************************************
+
+For the restore script to work you have to put the backup files on the Desktop inside the 
+"backup" folder as is specified in the backup.sh script.
+
+To restore your database backup as well as the audio files, run the restore script by clicking
+the terminal icon on the launcher bar on the left hand side.
+
+At the command prompt type the following command:
+
+sudo su
+
+When prompted for a password, enter the login password you assigned Ubuntu during installation.
+The default password for FFv2S7 is sharicus.
+
+After succesfully entering the password type the following command
+
+cd Desktop/Backup_Restore
+
+After the command above you run the restore script with the following command:
+
+bash ./restore.sh
+
+The command above should restore the database and the audio files you had initially backed up.		
+

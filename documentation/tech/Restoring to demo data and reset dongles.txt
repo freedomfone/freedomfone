@@ -1,0 +1,58 @@
+To clear/reset data back to demo data only:
+
+$ sudo su
+password =sharicus
+
+# cd /opt/freedomfone
+# ./fix_perms_all.sh
+# ./db_install.sh
+# ./demo_install.sh
+
+
+To reset references to USB dongles
+
+1) Stop FreeSWITCH and the Dispatcher
+When prompted for a password, use the sharicus password (default is sharicus)
+
+# service freeswitch stop
+# /etc/init.d/dispatcher_in stop
+
+2) Log into Gammu database
+# mysql -u gammu gammu -p
+password =thefone
+
+3) Delete all data from phones table
+# delete from phones;
+# exit;
+
+4) Log into Freedomfone database
+# mysql -u freedomfone freedomfone -p
+password =thefone
+
+5) Delete all data from office_route and channels tables
+# delete from office_route;
+# delete from channels;
+# exit;
+
+6) Stop all gammu process
+To find out the IMSI of the running processes, run:
+# /etc/init.d/gammu-smsd status
+
+# /etc/init.d/gammu-smsd stop <IMSI>
+
+7) Remove old Gammu config files
+# rm /opt/freedomfone/hardware_wizard/tmp/hardware-discovery*
+# rm /opt/freedomfone/gammu-smsd/conf/gammu-smsdrc-*
+
+8) Run discovery.php and setup.php scripts to configure USB dongles.
+# php /opt/freedomfone/hardware_wizard/discovery.php
+# php /opt/freedomfone/hardware_wizard/setup.php
+
+9) Start Gammu processes
+# /etc/init.d/gammu-smsd start <IMSI>
+
+10) Start FreeSWITCH and the Dispatcher
+# service freeswitch start
+# /etc/init.d/dispatcher_in start
+
+11) If the dongles do not answer calls or receive SMSs as expected, try shutting the server down, reseating the dongles and booting up again.

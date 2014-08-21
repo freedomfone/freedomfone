@@ -1,0 +1,2 @@
+mod_spidermonkey requires during building for 14.04 more extra packages
+libedit-dev install zlib1g  zlib1g-dbg  zlib1g-dev  zlib-bin zlib zlib-gst

@@ -2508,6 +2508,7 @@ office_route/config.php -text
 office_route/install_postfix.sh -text
 office_route/pop3.php -text
 office_route/pop3_daemon.php -text
+packages/1404.packages -text
 /rootconf_1204.tar.gz -text
 rootconf_1204/bin/setmixers -text
 rootconf_1204/etc/apache2/sites-available/freedomfone -text

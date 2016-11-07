@@ -13,7 +13,7 @@ STEP 2. Install subversion
 STEP 3. Download Freedom Fone builder
 
 	# mkdir -p /opt/freedomfone
-	# cd /opt/freedomfone; svn co https://dev.freedomfone.org/svn/freedomfone/trunk .
+	# cd /opt/freedomfone; svn co https://github.com/freedomfone/freedomfone.git/trunk  .
 	# cd /opt/freedomfone; chmod 755 *.sh
 
 STEP 4. Install packages and dependencies
